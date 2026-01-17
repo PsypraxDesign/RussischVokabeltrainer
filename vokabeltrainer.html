@@ -714,15 +714,16 @@
             display: block;
         }
 
-        /* Stats Bar */
+        /* Stats Bar - kompakt */
         .stats-bar {
             display: none;
             justify-content: center;
-            gap: 32px;
-            margin-bottom: 32px;
-            padding: 16px;
+            align-items: center;
+            gap: 24px;
+            margin-bottom: 12px;
+            padding: 8px 16px;
             background: var(--bg-card);
-            border-radius: 12px;
+            border-radius: 8px;
         }
 
         .stats-bar.visible {
@@ -731,28 +732,32 @@
 
         .stat {
             text-align: center;
+            display: flex;
+            align-items: baseline;
+            gap: 6px;
         }
 
         .stat-value {
             font-family: 'Playfair Display', serif;
-            font-size: 1.8rem;
+            font-size: 1.3rem;
             font-weight: 600;
             color: var(--accent);
         }
 
         .stat-label {
-            font-size: 0.85rem;
+            font-size: 0.75rem;
             color: var(--text-muted);
             text-transform: uppercase;
             letter-spacing: 0.05em;
         }
 
-        /* Controls */
+        /* Controls - kompakt */
         .controls {
             display: none;
             justify-content: center;
-            gap: 16px;
+            gap: 8px;
             flex-wrap: wrap;
+            margin-bottom: 16px;
         }
 
         .controls.visible {
@@ -762,27 +767,27 @@
         .controls-row {
             display: flex;
             justify-content: center;
-            gap: 16px;
+            gap: 8px;
             flex-wrap: wrap;
             width: 100%;
         }
 
         .controls-row:not(:last-child) {
-            margin-bottom: 12px;
+            margin-bottom: 6px;
         }
 
         .btn {
-            padding: 14px 28px;
+            padding: 8px 16px;
             border: none;
-            border-radius: 10px;
+            border-radius: 8px;
             font-family: inherit;
-            font-size: 1rem;
+            font-size: 0.9rem;
             font-weight: 500;
             cursor: pointer;
             transition: all 0.2s ease;
             display: flex;
             align-items: center;
-            gap: 8px;
+            gap: 6px;
         }
 
         .btn-primary {
@@ -836,12 +841,12 @@
         }
 
         .btn-icon {
-            font-size: 1.2rem;
+            font-size: 1rem;
         }
 
-        /* Card List */
+        /* Card List - kompakt */
         .card-list {
-            margin-top: 48px;
+            margin-top: 24px;
             display: none;
         }
 
@@ -851,8 +856,8 @@
 
         .card-list h2 {
             font-family: 'Playfair Display', serif;
-            font-size: 1.5rem;
-            margin-bottom: 20px;
+            font-size: 1.2rem;
+            margin-bottom: 12px;
             color: var(--text-secondary);
         }
 
@@ -931,6 +936,53 @@
             color: var(--accent);
         }
 
+        /* Flashcard Setup Screen - kompakt */
+        .flashcard-setup {
+            text-align: center;
+            margin-bottom: 24px;
+        }
+
+        .setup-card {
+            background: linear-gradient(145deg, var(--bg-card) 0%, #1e2d3d 100%);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 28px 32px;
+            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.3);
+        }
+
+        .setup-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.4rem;
+            color: var(--accent);
+            margin-bottom: 8px;
+        }
+
+        .setup-info {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+            margin-bottom: 20px;
+        }
+
+        .setup-voice-section {
+            margin-bottom: 20px;
+        }
+
+        .setup-label {
+            display: block;
+            color: var(--text-secondary);
+            margin-bottom: 10px;
+            font-size: 0.9rem;
+        }
+
+        .setup-gender {
+            justify-content: center;
+        }
+
+        .btn-large {
+            padding: 12px 28px;
+            font-size: 1rem;
+        }
+
         /* Responsive */
         @media (max-width: 600px) {
             h1 { font-size: 2rem; }
@@ -940,6 +992,7 @@
             .text-paragraph { font-size: 1.15rem; }
             .controls { gap: 10px; }
             .btn { padding: 12px 20px; font-size: 0.95rem; }
+            .setup-card { padding: 32px 24px; }
         }
     </style>
 </head>
@@ -1048,6 +1101,32 @@
         </div>
 
         <!-- ============================================
+             FLASHCARD SETUP (Stimmauswahl vor Start)
+             ============================================ -->
+        <div class="flashcard-setup" id="flashcardSetup" style="display: none;">
+            <div class="setup-card">
+                <h2 class="setup-title">Karteikarten bereit</h2>
+                <p class="setup-info" id="setupCardCount"></p>
+
+                <div class="setup-voice-section">
+                    <label class="setup-label">Stimme auswählen:</label>
+                    <div class="gender-selector setup-gender">
+                        <button class="gender-btn active" id="setupGenderFemaleBtn" title="Weibliche Stimme">
+                            <span>👩</span> Weiblich
+                        </button>
+                        <button class="gender-btn" id="setupGenderMaleBtn" title="Männliche Stimme">
+                            <span>👨</span> Männlich
+                        </button>
+                    </div>
+                </div>
+
+                <button class="btn btn-primary btn-large" id="startFlashcardsBtn">
+                    <span class="btn-icon">▶</span> Karteikarten starten
+                </button>
+            </div>
+        </div>
+
+        <!-- ============================================
              FLASHCARD MODE
              ============================================ -->
         <div class="stats-bar" id="statsBar">
@@ -1061,23 +1140,7 @@
             </div>
         </div>
 
-        <div class="flashcard-container" id="flashcardContainer">
-            <div class="flashcard" id="flashcard">
-                <div class="flashcard-face flashcard-front">
-                    <span class="card-label">Russisch</span>
-                    <span class="speaking-indicator" id="speakingIndicator">🔊</span>
-                    <div class="grammar-rule" id="grammarRule"></div>
-                    <div class="card-text card-text-ru" id="questionText"></div>
-                    <span class="flip-hint">Klicken zum Umdrehen</span>
-                </div>
-                <div class="flashcard-face flashcard-back">
-                    <span class="card-label">Deutsch</span>
-                    <div class="card-text card-text-de" id="answerText"></div>
-                    <span class="flip-hint">Klicken zum Umdrehen</span>
-                </div>
-            </div>
-        </div>
-
+        <!-- Controls OBEN (vor der Karteikarte) -->
         <div class="controls" id="flashcardControls">
             <div class="controls-row">
                 <button class="btn btn-secondary" id="prevBtn">
@@ -1108,6 +1171,23 @@
                 <button class="btn btn-secondary" id="shuffleBtn">
                     <span class="btn-icon">🔀</span> Mischen
                 </button>
+            </div>
+        </div>
+
+        <div class="flashcard-container" id="flashcardContainer">
+            <div class="flashcard" id="flashcard">
+                <div class="flashcard-face flashcard-front">
+                    <span class="card-label">Russisch</span>
+                    <span class="speaking-indicator" id="speakingIndicator">🔊</span>
+                    <div class="grammar-rule" id="grammarRule"></div>
+                    <div class="card-text card-text-ru" id="questionText"></div>
+                    <span class="flip-hint">Klicken zum Umdrehen</span>
+                </div>
+                <div class="flashcard-face flashcard-back">
+                    <span class="card-label">Deutsch</span>
+                    <div class="card-text card-text-de" id="answerText"></div>
+                    <span class="flip-hint">Klicken zum Umdrehen</span>
+                </div>
             </div>
         </div>
 
@@ -1175,6 +1255,13 @@
         const textSpeakingIndicator = document.getElementById('textSpeakingIndicator');
         const textList = document.getElementById('textList');
         const textListItems = document.getElementById('textListItems');
+
+        // Flashcard Setup Elements
+        const flashcardSetup = document.getElementById('flashcardSetup');
+        const setupCardCount = document.getElementById('setupCardCount');
+        const setupGenderFemaleBtn = document.getElementById('setupGenderFemaleBtn');
+        const setupGenderMaleBtn = document.getElementById('setupGenderMaleBtn');
+        const startFlashcardsBtn = document.getElementById('startFlashcardsBtn');
 
         // Flashcard Elements
         const statsBar = document.getElementById('statsBar');
@@ -1306,7 +1393,7 @@
             selectedVoice = filteredVoices[voiceSelect.selectedIndex];
         });
 
-        // Gender Toggle
+        // Gender Toggle (für Text-Modus)
         genderFemaleBtn.addEventListener('click', () => {
             selectedGender = 'female';
             genderFemaleBtn.classList.add('active');
@@ -1319,6 +1406,35 @@
             genderMaleBtn.classList.add('active');
             genderFemaleBtn.classList.remove('active');
             updateVoiceSelect();
+        });
+
+        // Gender Toggle (für Flashcard-Setup)
+        setupGenderFemaleBtn.addEventListener('click', () => {
+            selectedGender = 'female';
+            setupGenderFemaleBtn.classList.add('active');
+            setupGenderMaleBtn.classList.remove('active');
+            // Auch die anderen Buttons synchronisieren
+            genderFemaleBtn.classList.add('active');
+            genderMaleBtn.classList.remove('active');
+            updateVoiceSelect();
+        });
+
+        setupGenderMaleBtn.addEventListener('click', () => {
+            selectedGender = 'male';
+            setupGenderMaleBtn.classList.add('active');
+            setupGenderFemaleBtn.classList.remove('active');
+            // Auch die anderen Buttons synchronisieren
+            genderMaleBtn.classList.add('active');
+            genderFemaleBtn.classList.remove('active');
+            updateVoiceSelect();
+        });
+
+        // Start Flashcards Button
+        startFlashcardsBtn.addEventListener('click', () => {
+            showFlashcardMode();
+            if (autoSpeakCheckbox.checked) {
+                setTimeout(() => speak(cards[currentIndex].speakableText), 300);
+            }
         });
 
         speedRange.addEventListener('input', () => {
@@ -1416,18 +1532,12 @@
                 isClassicFormat = format === 'classic';
             }
 
+            // Kein Format-Indicator mehr anzeigen
+            formatIndicator.classList.remove('visible');
+
             if (isTextMode) {
-                // Kein Format-Indicator für Text-Modus
-                formatIndicator.classList.remove('visible');
                 parseTexts(content);
             } else {
-                formatIndicator.classList.add('visible');
-                formatIndicator.className = isClassicFormat
-                    ? 'format-indicator visible classic'
-                    : 'format-indicator visible advanced';
-                formatIndicator.textContent = isClassicFormat
-                    ? '📋 Klassisches Quizlet-Format'
-                    : '📝 Erweitertes Format';
                 parseCards(content);
             }
         }
@@ -1625,10 +1735,27 @@
             });
 
             currentIndex = 0;
-            showFlashcardMode();
+            showFlashcardSetup();
+        }
+
+        function showFlashcardSetup() {
+            modeSelection.style.display = 'none';
+            uploadSection.style.display = 'none';
+            flashcardSetup.style.display = 'block';
+            setupCardCount.textContent = `${cards.length} Karteikarten geladen`;
+
+            // Synchronisiere Geschlecht mit den Setup-Buttons
+            if (selectedGender === 'female') {
+                setupGenderFemaleBtn.classList.add('active');
+                setupGenderMaleBtn.classList.remove('active');
+            } else {
+                setupGenderMaleBtn.classList.add('active');
+                setupGenderFemaleBtn.classList.remove('active');
+            }
         }
 
         function showFlashcardMode() {
+            flashcardSetup.style.display = 'none';
             modeSelection.style.display = 'none';
             uploadSection.style.display = 'none';
             textReaderContainer.classList.remove('visible');
@@ -1645,10 +1772,6 @@
             totalCardsEl.textContent = cards.length;
             renderCard();
             renderCardList();
-
-            if (autoSpeakCheckbox.checked) {
-                setTimeout(() => speak(cards[currentIndex].speakableText), 300);
-            }
         }
 
         function renderCard() {
