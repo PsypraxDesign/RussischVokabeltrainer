@@ -714,6 +714,28 @@
             display: block;
         }
 
+        /* Mode Switch Button */
+        .mode-switch-btn {
+            padding: 10px 16px;
+            background: var(--bg-primary);
+            border: 1px solid var(--accent);
+            border-radius: 8px;
+            color: var(--accent);
+            font-family: inherit;
+            font-size: 0.95rem;
+            cursor: pointer;
+            transition: all 0.2s;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .mode-switch-btn:hover {
+            border-color: var(--accent);
+            color: var(--bg-primary);
+            background: var(--accent);
+        }
+
         /* Stats Bar - kompakt */
         .stats-bar {
             display: none;
@@ -1059,6 +1081,13 @@
                 <input type="checkbox" id="autoSpeak" checked>
                 <span>Auto-Vorlesen</span>
             </label>
+            <!-- Modus-Wechsel-Buttons -->
+            <button class="mode-switch-btn" id="switchToTextBtn" style="display: none;" title="Zu Text vorlesen wechseln">
+                📖 zum Text vorlesen
+            </button>
+            <button class="mode-switch-btn" id="switchToCardsBtn" style="display: none;" title="Zu Vokabeltrainer wechseln">
+                🎴 zum Vokabeltrainer
+            </button>
             <!-- Nur für Texte: Lese-Modus -->
             <div class="read-mode-selector" id="readModeSelector" style="display: none;">
                 <button class="read-mode-btn active" id="readAllBtn" title="Ganzen Text vorlesen">📖 Alles</button>
@@ -1246,6 +1275,10 @@
         const autoSpeakCheckbox = document.getElementById('autoSpeak');
         const readAllBtn = document.getElementById('readAllBtn');
         const readSentenceBtn = document.getElementById('readSentenceBtn');
+
+        // Mode Switch Buttons
+        const switchToTextBtn = document.getElementById('switchToTextBtn');
+        const switchToCardsBtn = document.getElementById('switchToCardsBtn');
 
         // Text Reader Elements
         const textReaderContainer = document.getElementById('textReaderContainer');
@@ -1488,6 +1521,33 @@
             modeSelection.style.display = 'block';
         });
 
+        // Mode Switch Buttons
+        function switchToModeSelection() {
+            speechSynthesis.cancel();
+            selectedMode = null;
+            // Alle Modi ausblenden
+            flashcardSetup.style.display = 'none';
+            statsBar.classList.remove('visible');
+            flashcardContainer.classList.remove('visible');
+            flashcardControls.classList.remove('visible');
+            cardList.classList.remove('visible');
+            textReaderContainer.classList.remove('visible');
+            // Modus-Auswahl anzeigen
+            modeSelection.style.display = 'block';
+        }
+
+        switchToTextBtn.addEventListener('click', () => {
+            switchToModeSelection();
+            // Direkt Text-Modus auswählen
+            modeTextsBtn.click();
+        });
+
+        switchToCardsBtn.addEventListener('click', () => {
+            switchToModeSelection();
+            // Direkt Karteikarten-Modus auswählen
+            modeFlashcardsBtn.click();
+        });
+
         // ============================================
         // FILE UPLOAD
         // ============================================
@@ -1606,6 +1666,8 @@
             autoSpeakOption.style.display = 'none';
             readModeSelector.style.display = 'flex';
             voiceControls.style.display = 'flex';
+            switchToTextBtn.style.display = 'none';
+            switchToCardsBtn.style.display = 'inline-flex';
 
             renderTextContent();
 
@@ -1768,6 +1830,8 @@
             autoSpeakOption.style.display = 'flex';
             readModeSelector.style.display = 'none';
             voiceControls.style.display = 'none';
+            switchToTextBtn.style.display = 'inline-flex';
+            switchToCardsBtn.style.display = 'none';
 
             totalCardsEl.textContent = cards.length;
             renderCard();
