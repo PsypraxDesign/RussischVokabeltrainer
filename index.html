@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Russisch Lernen</title>
+    <title>Russisch Lernen / Learn Russian</title>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Source+Sans+3:wght@300;400;500;600&display=swap" rel="stylesheet">
     <style>
         :root {
@@ -620,7 +620,7 @@
         .flashcard {
             position: relative;
             width: 100%;
-            min-height: 280px;
+            min-height: 420px;
             cursor: pointer;
             transform-style: preserve-3d;
             transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
@@ -633,7 +633,7 @@
         .flashcard-face {
             position: absolute;
             width: 100%;
-            min-height: 280px;
+            min-height: 420px;
             backface-visibility: hidden;
             border-radius: 20px;
             padding: 40px;
@@ -692,6 +692,44 @@
 
         .card-text-de {
             color: var(--success);
+        }
+
+        .card-images {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 12px;
+            margin-bottom: 16px;
+        }
+
+        .card-images:empty {
+            display: none;
+        }
+
+        .card-images img {
+            max-width: 100%;
+            max-height: 200px;
+            border-radius: 12px;
+            object-fit: contain;
+            border: 1px solid var(--border);
+            background: rgba(255, 255, 255, 0.05);
+        }
+
+        .card-images.solo img {
+            max-height: 340px;
+        }
+
+        .card-images .img-error {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 160px;
+            height: 120px;
+            border-radius: 12px;
+            border: 1px dashed var(--text-muted);
+            color: var(--text-muted);
+            font-size: 0.85rem;
+            background: rgba(255, 255, 255, 0.03);
         }
 
         .flip-hint {
@@ -1003,41 +1041,538 @@
         .btn-large {
             padding: 12px 28px;
             font-size: 1rem;
+            justify-content: center;
+            min-width: 240px;
+        }
+
+        .setup-actions {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 10px;
+            margin-top: 20px;
+        }
+
+        /* ============================================
+           SPACED REPETITION UI
+           ============================================ */
+
+        /* Learning Mode Selector */
+        .sr-mode-selector {
+            display: flex;
+            gap: 8px;
+            justify-content: center;
+            margin-bottom: 16px;
+            flex-wrap: wrap;
+        }
+
+        .sr-mode-btn {
+            padding: 10px 18px;
+            border: 2px solid var(--border);
+            border-radius: 10px;
+            background: var(--bg-primary);
+            color: var(--text-secondary);
+            font-family: inherit;
+            font-size: 0.9rem;
+            cursor: pointer;
+            transition: all 0.2s;
+            text-align: center;
+            min-width: 130px;
+        }
+
+        .sr-mode-btn:hover {
+            border-color: var(--text-muted);
+            color: var(--text-primary);
+        }
+
+        .sr-mode-btn.active {
+            border-color: var(--accent);
+            background: rgba(232, 179, 65, 0.1);
+            color: var(--accent);
+        }
+
+        .sr-mode-btn-label {
+            font-weight: 600;
+            display: block;
+            margin-bottom: 2px;
+        }
+
+        .sr-mode-btn-desc {
+            font-size: 0.75rem;
+            color: var(--text-muted);
+        }
+
+        .sr-mode-btn.active .sr-mode-btn-desc {
+            color: var(--accent);
+            opacity: 0.7;
+        }
+
+        /* Setup Due Info */
+        .setup-due-info {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-bottom: 16px;
+            padding: 10px;
+            background: var(--bg-primary);
+            border-radius: 8px;
+        }
+
+        .setup-due-stat {
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+        }
+
+        .setup-due-stat strong {
+            color: var(--accent);
+        }
+
+        .setup-reset-btn {
+            background: none;
+            border: none;
+            color: var(--text-muted);
+            font-family: inherit;
+            font-size: 0.8rem;
+            cursor: pointer;
+            text-decoration: underline;
+            margin-top: 8px;
+        }
+
+        .setup-reset-btn:hover {
+            color: #fc8181;
+        }
+
+        .setup-new-limit {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            margin-top: 12px;
+        }
+
+        .setup-new-limit input[type="number"] {
+            width: 80px;
+            padding: 8px 12px;
+            background: var(--bg-primary);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            color: var(--accent);
+            font-family: inherit;
+            font-size: 1rem;
+            font-weight: 600;
+            text-align: center;
+        }
+
+        .setup-new-limit input[type="number"]:focus {
+            outline: none;
+            border-color: var(--accent);
+        }
+
+        /* Statistics Panel */
+        .stats-panel {
+            display: none;
+            position: fixed;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: rgba(0, 0, 0, 0.85);
+            z-index: 1000;
+            overflow-y: auto;
+            padding: 40px 24px;
+            animation: fadeIn 0.3s ease;
+        }
+
+        .stats-panel.visible {
+            display: block;
+        }
+
+        .stats-panel-inner {
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        .stats-panel-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 28px;
+        }
+
+        .stats-panel-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.8rem;
+            color: var(--accent);
+        }
+
+        .stats-close-btn {
+            padding: 8px 16px;
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            color: var(--text-secondary);
+            font-family: inherit;
+            font-size: 0.9rem;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .stats-close-btn:hover {
+            border-color: var(--accent);
+            color: var(--accent);
+        }
+
+        .stats-summary {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+            gap: 12px;
+            margin-bottom: 32px;
+        }
+
+        .stats-tile {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 20px 16px;
+            text-align: center;
+        }
+
+        .stats-tile-value {
+            font-family: 'Playfair Display', serif;
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--accent);
+        }
+
+        .stats-tile-label {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            margin-top: 4px;
+        }
+
+        .stats-history-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.2rem;
+            color: var(--text-secondary);
+            margin-bottom: 12px;
+        }
+
+        .stats-history {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            max-height: 400px;
+            overflow-y: auto;
+        }
+
+        .stats-day {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            padding: 14px 18px;
+            background: var(--bg-card);
+            border-radius: 10px;
+            border: 1px solid var(--border);
+        }
+
+        .stats-day-date {
+            font-weight: 600;
+            color: var(--text-primary);
+            min-width: 100px;
+        }
+
+        .stats-day-detail {
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+        }
+
+        .stats-day-duration {
+            margin-left: auto;
+            font-size: 0.85rem;
+            color: var(--text-muted);
+        }
+
+        .stats-empty {
+            text-align: center;
+            color: var(--text-muted);
+            padding: 40px;
+            font-size: 1rem;
+        }
+
+        /* Rating Buttons */
+        .rating-container {
+            display: none;
+            justify-content: center;
+            gap: 10px;
+            margin-top: 16px;
+            margin-bottom: 24px;
+            flex-wrap: wrap;
+            animation: fadeIn 0.3s ease;
+        }
+
+        .rating-container.visible {
+            display: flex;
+        }
+
+        .rating-btn {
+            padding: 12px 16px;
+            border: 2px solid;
+            border-radius: 12px;
+            font-family: inherit;
+            font-size: 0.95rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s;
+            text-align: center;
+            min-width: 90px;
+        }
+
+        .rating-btn:hover {
+            transform: translateY(-2px);
+        }
+
+        .rating-btn-again {
+            border-color: #e53e3e;
+            background: rgba(229, 62, 62, 0.1);
+            color: #fc8181;
+        }
+
+        .rating-btn-again:hover {
+            background: rgba(229, 62, 62, 0.25);
+            box-shadow: 0 6px 16px rgba(229, 62, 62, 0.2);
+        }
+
+        .rating-btn-hard {
+            border-color: #dd6b20;
+            background: rgba(221, 107, 32, 0.1);
+            color: #f6ad55;
+        }
+
+        .rating-btn-hard:hover {
+            background: rgba(221, 107, 32, 0.25);
+            box-shadow: 0 6px 16px rgba(221, 107, 32, 0.2);
+        }
+
+        .rating-btn-good {
+            border-color: #38a169;
+            background: rgba(56, 161, 105, 0.1);
+            color: #68d391;
+        }
+
+        .rating-btn-good:hover {
+            background: rgba(56, 161, 105, 0.25);
+            box-shadow: 0 6px 16px rgba(56, 161, 105, 0.2);
+        }
+
+        .rating-btn-easy {
+            border-color: #3182ce;
+            background: rgba(49, 130, 206, 0.1);
+            color: #63b3ed;
+        }
+
+        .rating-btn-easy:hover {
+            background: rgba(49, 130, 206, 0.25);
+            box-shadow: 0 6px 16px rgba(49, 130, 206, 0.2);
+        }
+
+        .rating-interval {
+            display: block;
+            font-size: 0.7rem;
+            font-weight: 400;
+            margin-top: 3px;
+            opacity: 0.8;
+        }
+
+        /* SR Stats Bar */
+        .sr-stats {
+            display: none;
+            justify-content: center;
+            gap: 24px;
+            margin-bottom: 12px;
+            padding: 10px 16px;
+            background: var(--bg-card);
+            border-radius: 8px;
+        }
+
+        .sr-stats.visible {
+            display: flex;
+        }
+
+        .sr-stat {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 0.9rem;
+        }
+
+        .sr-stat-value {
+            font-weight: 600;
+            font-family: 'Playfair Display', serif;
+        }
+
+        .sr-stat-due .sr-stat-value { color: #fc8181; }
+        .sr-stat-new .sr-stat-value { color: #63b3ed; }
+        .sr-stat-done .sr-stat-value { color: var(--success); }
+
+        .sr-stat-label {
+            color: var(--text-muted);
+            font-size: 0.8rem;
+        }
+
+        /* Card List Badges */
+        .card-item-badge {
+            font-size: 0.7rem;
+            padding: 2px 8px;
+            border-radius: 10px;
+            font-weight: 600;
+            white-space: nowrap;
+        }
+
+        .badge-due {
+            background: rgba(229, 62, 62, 0.15);
+            color: #fc8181;
+        }
+
+        .badge-new {
+            background: rgba(49, 130, 206, 0.15);
+            color: #63b3ed;
+        }
+
+        .badge-learned {
+            background: rgba(72, 187, 120, 0.15);
+            color: var(--success);
+        }
+
+        /* Session Complete */
+        .session-complete {
+            display: none;
+            text-align: center;
+            padding: 48px 32px;
+            background: linear-gradient(145deg, var(--bg-card) 0%, #1e2d3d 100%);
+            border: 1px solid var(--border);
+            border-radius: 20px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+            animation: fadeIn 0.5s ease;
+        }
+
+        .session-complete.visible {
+            display: block;
+        }
+
+        .session-complete-icon {
+            font-size: 4rem;
+            margin-bottom: 16px;
+        }
+
+        .session-complete-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.6rem;
+            color: var(--success);
+            margin-bottom: 12px;
+        }
+
+        .session-complete-text {
+            color: var(--text-secondary);
+            font-size: 1rem;
+            margin-bottom: 24px;
+            line-height: 1.6;
+        }
+
+        .session-complete-stats {
+            display: flex;
+            justify-content: center;
+            gap: 32px;
+            margin-bottom: 24px;
+        }
+
+        .session-stat {
+            text-align: center;
+        }
+
+        .session-stat-value {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: var(--accent);
+        }
+
+        .session-stat-label {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+        }
+
+        .session-complete .btn {
+            margin: 6px;
+        }
+
+        /* Language Switcher */
+        .lang-switcher {
+            display: flex;
+            justify-content: center;
+            gap: 6px;
+            margin-top: 10px;
+        }
+        .lang-btn {
+            background: transparent;
+            border: 1px solid var(--border);
+            color: var(--text-secondary);
+            padding: 4px 12px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 0.85rem;
+            font-family: 'Source Sans 3', sans-serif;
+            transition: all 0.2s ease;
+        }
+        .lang-btn:hover {
+            border-color: var(--accent);
+            color: var(--text-primary);
+        }
+        .lang-btn.active {
+            background: var(--accent);
+            border-color: var(--accent);
+            color: #000;
+            font-weight: 600;
         }
 
         /* Responsive */
         @media (max-width: 600px) {
             h1 { font-size: 2rem; }
-            .flashcard-face { padding: 28px 20px; min-height: 240px; }
+            .flashcard-face { padding: 28px 20px; min-height: 340px; }
             .card-text { font-size: 1.4rem; }
+            .card-images img { max-height: 150px; }
+            .card-images.solo img { max-height: 200px; }
             .text-reader-content { font-size: 1.1rem; max-height: 350px; }
             .text-paragraph { font-size: 1.15rem; }
             .controls { gap: 10px; }
             .btn { padding: 12px 20px; font-size: 0.95rem; }
             .setup-card { padding: 32px 24px; }
+            .rating-btn { min-width: 75px; padding: 10px 12px; font-size: 0.85rem; }
+            .sr-mode-btn { min-width: 100px; padding: 8px 12px; }
         }
     </style>
 </head>
 <body>
     <div class="container">
         <header>
-            <h1>Russisch Lernen</h1>
-            <p class="subtitle">Karteikarten & Texte mit Sprachausgabe</p>
+            <h1 data-i18n="title">Russisch Lernen</h1>
+            <p class="subtitle" data-i18n="subtitle">Karteikarten & Texte mit Sprachausgabe</p>
+            <div class="lang-switcher" id="langSwitcher">
+                <button class="lang-btn active" data-lang="de">DE</button>
+                <button class="lang-btn" data-lang="en">EN</button>
+                <button class="lang-btn" data-lang="ru">RU</button>
+            </div>
         </header>
 
         <!-- Mode Selection -->
         <div class="mode-selection" id="modeSelection">
-            <h2 class="mode-title">Was möchtest du lernen?</h2>
+            <h2 class="mode-title" data-i18n="mode_title">Was möchtest du lernen?</h2>
             <div class="mode-buttons">
                 <button class="mode-btn" id="modeFlashcards">
                     <span class="mode-icon">🎴</span>
-                    <span class="mode-label">Karteikarten</span>
-                    <span class="mode-desc">Vokabeln mit Vorder- und Rückseite</span>
+                    <span class="mode-label" data-i18n="mode_flashcards">Karteikarten</span>
+                    <span class="mode-desc" data-i18n="mode_flashcards_desc">Vokabeln mit Vorder- und Rückseite</span>
                 </button>
                 <button class="mode-btn" id="modeTexts">
                     <span class="mode-icon">📖</span>
-                    <span class="mode-label">Texte vorlesen</span>
-                    <span class="mode-desc">Längere Texte im scrollbaren Fenster</span>
+                    <span class="mode-label" data-i18n="mode_texts">Texte vorlesen</span>
+                    <span class="mode-desc" data-i18n="mode_texts_desc">Längere Texte im scrollbaren Fenster</span>
                 </button>
             </div>
         </div>
@@ -1045,10 +1580,10 @@
         <!-- Upload Section -->
         <div class="upload-section" id="uploadSection" style="display: none;">
             <div class="upload-icon">📂</div>
-            <div class="upload-text" id="uploadText">Datei hier ablegen oder klicken</div>
-            <div class="upload-hint" id="uploadHint">Unterstützt Quizlet-Dateien und mehrzeilige Formate</div>
+            <div class="upload-text" id="uploadText" data-i18n="upload_text">Datei hier ablegen oder klicken</div>
+            <div class="upload-hint" id="uploadHint" data-i18n="upload_hint">Unterstützt Quizlet-Dateien und mehrzeilige Formate</div>
             <input type="file" id="fileInput" accept=".txt,.csv">
-            <button class="back-btn" id="backToModeBtn">← Zurück zur Auswahl</button>
+            <button class="back-btn" id="backToModeBtn" data-i18n="back_to_selection">← Zurück zur Auswahl</button>
         </div>
 
         <!-- Format Indicator -->
@@ -1057,52 +1592,56 @@
         <!-- Voice Selection -->
         <div class="voice-section" id="voiceSection">
             <div class="gender-selector">
-                <button class="gender-btn active" id="genderFemaleBtn" title="Weibliche Stimme">
-                    <span>👩</span> Weiblich
+                <button class="gender-btn active" id="genderFemaleBtn" data-i18n-title="voice_female_title" title="Weibliche Stimme">
+                    <span>👩</span> <span data-i18n="voice_female">Weiblich</span>
                 </button>
-                <button class="gender-btn" id="genderMaleBtn" title="Männliche Stimme">
-                    <span>👨</span> Männlich
+                <button class="gender-btn" id="genderMaleBtn" data-i18n-title="voice_male_title" title="Männliche Stimme">
+                    <span>👨</span> <span data-i18n="voice_male">Männlich</span>
                 </button>
             </div>
             <label>
                 <span>🎙️</span>
-                <span>Stimme:</span>
+                <span data-i18n="voice_label">Stimme:</span>
             </label>
             <select id="voiceSelect">
-                <option value="">Lädt Stimmen...</option>
+                <option value="" data-i18n="voice_loading">Lädt Stimmen...</option>
             </select>
             <div class="speed-control">
-                <label>Tempo:</label>
+                <label data-i18n="speed_label">Tempo:</label>
                 <input type="range" id="speedRange" min="0.5" max="1.5" step="0.1" value="0.9">
                 <span class="speed-value" id="speedValue">0.9x</span>
             </div>
             <!-- Nur für Karteikarten -->
             <label class="toggle-option" id="autoSpeakOption">
                 <input type="checkbox" id="autoSpeak" checked>
-                <span>Auto-Vorlesen</span>
+                <span data-i18n="auto_speak">Auto-Vorlesen</span>
+            </label>
+            <label class="toggle-option" id="speakBackOption">
+                <input type="checkbox" id="speakBack">
+                <span data-i18n="speak_back">Rückseite vorlesen</span>
             </label>
             <!-- Modus-Wechsel-Buttons -->
-            <button class="mode-switch-btn" id="switchToTextBtn" style="display: none;" title="Zu Text vorlesen wechseln">
-                📖 zum Text vorlesen
+            <button class="mode-switch-btn" id="switchToTextBtn" style="display: none;" data-i18n-title="switch_to_text_title" title="Zu Text vorlesen wechseln">
+                📖 <span data-i18n="switch_to_text">zum Text vorlesen</span>
             </button>
-            <button class="mode-switch-btn" id="switchToCardsBtn" style="display: none;" title="Zu Vokabeltrainer wechseln">
-                🎴 zum Vokabeltrainer
+            <button class="mode-switch-btn" id="switchToCardsBtn" style="display: none;" data-i18n-title="switch_to_cards_title" title="Zu Vokabeltrainer wechseln">
+                🎴 <span data-i18n="switch_to_cards">zum Vokabeltrainer</span>
             </button>
             <!-- Nur für Texte: Lese-Modus -->
             <div class="read-mode-selector" id="readModeSelector" style="display: none;">
-                <button class="read-mode-btn active" id="readAllBtn" title="Ganzen Text vorlesen">📖 Alles</button>
-                <button class="read-mode-btn" id="readSentenceBtn" title="Satzweise vorlesen">📝 Satzweise</button>
+                <button class="read-mode-btn active" id="readAllBtn" data-i18n-title="read_all_title" title="Ganzen Text vorlesen">📖 <span data-i18n="read_all">Alles</span></button>
+                <button class="read-mode-btn" id="readSentenceBtn" data-i18n-title="read_sentence_title" title="Satzweise vorlesen">📝 <span data-i18n="read_sentence">Satzweise</span></button>
             </div>
             <!-- Nur für Texte: Play-Buttons oben -->
             <div class="voice-controls" id="voiceControls" style="display: none;">
                 <button class="btn btn-primary btn-sm" id="mainSpeakBtn">
-                    <span class="btn-icon">▶</span> Start
+                    <span class="btn-icon">▶</span> <span data-i18n="btn_start">Start</span>
                 </button>
                 <button class="btn btn-stop btn-sm" id="mainStopBtn" style="display: none;">
-                    <span class="btn-icon">⏹</span> Stopp
+                    <span class="btn-icon">⏹</span> <span data-i18n="btn_stop">Stopp</span>
                 </button>
                 <button class="btn btn-restart btn-sm" id="mainRestartBtn">
-                    <span class="btn-icon">🔄</span> Von vorne
+                    <span class="btn-icon">🔄</span> <span data-i18n="btn_restart">Von vorne</span>
                 </button>
             </div>
         </div>
@@ -1124,7 +1663,7 @@
 
             <!-- Text List (nur bei mehreren Texten) -->
             <div class="text-list" id="textList">
-                <h3>Alle Texte</h3>
+                <h3 data-i18n="all_texts">Alle Texte</h3>
                 <div class="text-list-items" id="textListItems"></div>
             </div>
         </div>
@@ -1134,24 +1673,61 @@
              ============================================ -->
         <div class="flashcard-setup" id="flashcardSetup" style="display: none;">
             <div class="setup-card">
-                <h2 class="setup-title">Karteikarten bereit</h2>
+                <h2 class="setup-title" data-i18n="setup_title">Karteikarten bereit</h2>
                 <p class="setup-info" id="setupCardCount"></p>
 
                 <div class="setup-voice-section">
-                    <label class="setup-label">Stimme auswählen:</label>
-                    <div class="gender-selector setup-gender">
-                        <button class="gender-btn active" id="setupGenderFemaleBtn" title="Weibliche Stimme">
-                            <span>👩</span> Weiblich
+                    <label class="setup-label" data-i18n="learn_mode_label">Lernmodus:</label>
+                    <div class="sr-mode-selector">
+                        <button class="sr-mode-btn active" id="srModeFree">
+                            <span class="sr-mode-btn-label" data-i18n="sr_free">Frei</span>
+                            <span class="sr-mode-btn-desc" data-i18n="sr_free_desc">Selbst durchblättern</span>
                         </button>
-                        <button class="gender-btn" id="setupGenderMaleBtn" title="Männliche Stimme">
-                            <span>👨</span> Männlich
+                        <button class="sr-mode-btn" id="srModeSM2">
+                            <span class="sr-mode-btn-label">SM-2</span>
+                            <span class="sr-mode-btn-desc" data-i18n="sr_sm2_desc">Klassisch (SuperMemo)</span>
+                        </button>
+                        <button class="sr-mode-btn" id="srModeFSRS">
+                            <span class="sr-mode-btn-label">FSRS</span>
+                            <span class="sr-mode-btn-desc" data-i18n="sr_fsrs_desc">Modern (optimiert)</span>
                         </button>
                     </div>
+                    <div class="setup-due-info" id="setupDueInfo" style="display: none;">
+                        <span class="setup-due-stat"><span data-i18n="due">Fällig</span>: <strong id="setupDueCount">0</strong></span>
+                        <span class="setup-due-stat"><span data-i18n="new">Neu</span>: <strong id="setupNewCount">0</strong></span>
+                        <span class="setup-due-stat"><span data-i18n="learned">Gelernt</span>: <strong id="setupLearnedCount">0</strong></span>
+                    </div>
+                    <div class="setup-new-limit" id="setupNewLimit" style="display: none;">
+                        <label class="setup-due-stat" for="maxNewCardsInput" data-i18n="max_new_cards">Max. neue Karten:</label>
+                        <input type="number" id="maxNewCardsInput" min="1" value="20">
+                    </div>
+                    <button class="setup-reset-btn" id="setupResetBtn" style="display: none;" data-i18n="reset_progress">Lernfortschritt zurücksetzen</button>
                 </div>
 
-                <button class="btn btn-primary btn-large" id="startFlashcardsBtn">
-                    <span class="btn-icon">▶</span> Karteikarten starten
-                </button>
+                <div class="setup-actions">
+                    <button class="btn btn-primary btn-large" id="startFlashcardsBtn">
+                        <span class="btn-icon">▶</span> <span data-i18n="start_flashcards">Karteikarten starten</span>
+                    </button>
+                    <button class="btn btn-secondary btn-large" id="showStatsBtn">
+                        <span class="btn-icon">&#128202;</span> <span data-i18n="statistics">Statistik</span>
+                    </button>
+                    <button class="btn btn-secondary btn-large" id="exportVocabBtn">
+                        <span class="btn-icon">&#128203;</span> <span data-i18n="export_vocab">Export (Excel)</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Statistics Panel -->
+        <div class="stats-panel" id="statsPanel">
+            <div class="stats-panel-inner">
+                <div class="stats-panel-header">
+                    <h2 class="stats-panel-title" data-i18n="stats_title">Lernstatistik</h2>
+                    <button class="stats-close-btn" id="statsCloseBtn" data-i18n="close">Schließen</button>
+                </div>
+                <div class="stats-summary" id="statsSummary"></div>
+                <h3 class="stats-history-title" data-i18n="history">Verlauf</h3>
+                <div class="stats-history" id="statsHistory"></div>
             </div>
         </div>
 
@@ -1161,11 +1737,11 @@
         <div class="stats-bar" id="statsBar">
             <div class="stat">
                 <div class="stat-value" id="currentCard">1</div>
-                <div class="stat-label">Karte</div>
+                <div class="stat-label" data-i18n="card">Karte</div>
             </div>
             <div class="stat">
                 <div class="stat-value" id="totalCards">0</div>
-                <div class="stat-label">Gesamt</div>
+                <div class="stat-label" data-i18n="total">Gesamt</div>
             </div>
         </div>
 
@@ -1173,32 +1749,35 @@
         <div class="controls" id="flashcardControls">
             <div class="controls-row">
                 <button class="btn btn-secondary" id="prevBtn">
-                    <span class="btn-icon">←</span> Zurück
+                    <span class="btn-icon">←</span> <span data-i18n="btn_prev">Zurück</span>
                 </button>
                 <button class="btn btn-primary" id="speakBtn">
-                    <span class="btn-icon">🔊</span> Vorlesen
+                    <span class="btn-icon">🔊</span> <span data-i18n="btn_speak">Vorlesen</span>
                 </button>
                 <button class="btn btn-stop" id="stopBtn" style="display: none;">
-                    <span class="btn-icon">⏹</span> Stopp
+                    <span class="btn-icon">⏹</span> <span data-i18n="btn_stop">Stopp</span>
                 </button>
                 <button class="btn btn-secondary" id="nextBtn">
-                    Weiter <span class="btn-icon">→</span>
+                    <span data-i18n="btn_next">Weiter</span> <span class="btn-icon">→</span>
                 </button>
             </div>
             <div class="controls-row" id="sentenceControls" style="display: none;">
                 <button class="btn btn-secondary" id="prevSentenceBtn">
-                    <span class="btn-icon">⏮</span> Voriger Satz
+                    <span class="btn-icon">⏮</span> <span data-i18n="btn_prev_sentence">Voriger Satz</span>
                 </button>
                 <button class="btn btn-secondary" id="nextSentenceBtn">
-                    Nächster Satz <span class="btn-icon">⏭</span>
+                    <span data-i18n="btn_next_sentence">Nächster Satz</span> <span class="btn-icon">⏭</span>
                 </button>
             </div>
             <div class="controls-row">
                 <button class="btn btn-restart" id="restartBtn">
-                    <span class="btn-icon">🔄</span> Erneut durcharbeiten
+                    <span class="btn-icon">🔄</span> <span data-i18n="btn_restart_cards">Erneut durcharbeiten</span>
                 </button>
                 <button class="btn btn-secondary" id="shuffleBtn">
-                    <span class="btn-icon">🔀</span> Mischen
+                    <span class="btn-icon">🔀</span> <span data-i18n="btn_shuffle">Mischen</span>
+                </button>
+                <button class="btn btn-secondary" id="mainMenuBtn">
+                    <span class="btn-icon">←</span> <span data-i18n="btn_main_menu">Hauptmenü</span>
                 </button>
             </div>
         </div>
@@ -1206,27 +1785,459 @@
         <div class="flashcard-container" id="flashcardContainer">
             <div class="flashcard" id="flashcard">
                 <div class="flashcard-face flashcard-front">
-                    <span class="card-label">Russisch</span>
+                    <span class="card-label" data-i18n="lang_russian">Russisch</span>
                     <span class="speaking-indicator" id="speakingIndicator">🔊</span>
                     <div class="grammar-rule" id="grammarRule"></div>
+                    <div class="card-images" id="cardImages"></div>
                     <div class="card-text card-text-ru" id="questionText"></div>
-                    <span class="flip-hint">Klicken zum Umdrehen</span>
+                    <span class="flip-hint" data-i18n="flip_hint">Klicken zum Umdrehen</span>
                 </div>
                 <div class="flashcard-face flashcard-back">
-                    <span class="card-label">Deutsch</span>
+                    <span class="card-label" data-i18n="lang_german">Deutsch</span>
                     <div class="card-text card-text-de" id="answerText"></div>
-                    <span class="flip-hint">Klicken zum Umdrehen</span>
+                    <span class="flip-hint" data-i18n="flip_hint">Klicken zum Umdrehen</span>
                 </div>
             </div>
         </div>
 
+        <!-- Rating Buttons (Spaced Repetition) -->
+        <div class="rating-container" id="ratingContainer">
+            <button class="rating-btn rating-btn-again" id="ratingAgain">
+                <span data-i18n="rating_again">Nochmal</span>
+                <span class="rating-interval" id="intervalAgain"></span>
+            </button>
+            <button class="rating-btn rating-btn-hard" id="ratingHard">
+                <span data-i18n="rating_hard">Schwer</span>
+                <span class="rating-interval" id="intervalHard"></span>
+            </button>
+            <button class="rating-btn rating-btn-good" id="ratingGood">
+                <span data-i18n="rating_good">Gut</span>
+                <span class="rating-interval" id="intervalGood"></span>
+            </button>
+            <button class="rating-btn rating-btn-easy" id="ratingEasy">
+                <span data-i18n="rating_easy">Leicht</span>
+                <span class="rating-interval" id="intervalEasy"></span>
+            </button>
+        </div>
+
+        <!-- SR Stats -->
+        <div class="sr-stats" id="srStats">
+            <div class="sr-stat sr-stat-due">
+                <span class="sr-stat-value" id="srDueCount">0</span>
+                <span class="sr-stat-label" data-i18n="due">Fällig</span>
+            </div>
+            <div class="sr-stat sr-stat-new">
+                <span class="sr-stat-value" id="srNewCount">0</span>
+                <span class="sr-stat-label" data-i18n="new">Neu</span>
+            </div>
+            <div class="sr-stat sr-stat-done">
+                <span class="sr-stat-value" id="srDoneCount">0</span>
+                <span class="sr-stat-label" data-i18n="done">Erledigt</span>
+            </div>
+        </div>
+
+        <!-- Session Complete -->
+        <div class="session-complete" id="sessionComplete">
+            <div class="session-complete-icon">&#10003;</div>
+            <h2 class="session-complete-title" data-i18n="session_complete_title">Alle Karten für heute gelernt!</h2>
+            <p class="session-complete-text" id="sessionCompleteText"></p>
+            <div class="session-complete-stats" id="sessionCompleteStats"></div>
+            <button class="btn btn-primary btn-large" id="restartSRBtn">
+                <span class="btn-icon">&#128260;</span> <span data-i18n="btn_practice_again">Nochmal üben</span>
+            </button>
+            <button class="btn btn-secondary btn-large" id="switchToFreeBtn" data-i18n="btn_free_browse">
+                Frei durchblättern
+            </button>
+            <button class="btn btn-secondary btn-large" id="sessionMainMenuBtn">
+                <span class="btn-icon">←</span> <span data-i18n="btn_main_menu">Hauptmenü</span>
+            </button>
+        </div>
+
         <div class="card-list" id="cardList">
-            <h2>Alle Karten</h2>
+            <h2 data-i18n="all_cards">Alle Karten</h2>
             <div class="card-list-items" id="cardListItems"></div>
         </div>
     </div>
 
     <script>
+        // ============================================
+        // INTERNATIONALIZATION (i18n)
+        // ============================================
+        const translations = {
+            de: {
+                title: 'Russisch Lernen',
+                subtitle: 'Karteikarten & Texte mit Sprachausgabe',
+                mode_title: 'Was möchtest du lernen?',
+                mode_flashcards: 'Karteikarten',
+                mode_flashcards_desc: 'Vokabeln mit Vorder- und Rückseite',
+                mode_texts: 'Texte vorlesen',
+                mode_texts_desc: 'Längere Texte im scrollbaren Fenster',
+                upload_text: 'Datei hier ablegen oder klicken',
+                upload_hint: 'Unterstützt Quizlet-Dateien und mehrzeilige Formate',
+                upload_flashcards: 'Karteikarten-Datei hier ablegen oder klicken',
+                upload_flashcards_hint: 'Unterstützt Quizlet-Dateien (Russisch, Deutsch pro Zeile)',
+                upload_texts: 'Text-Datei hier ablegen oder klicken',
+                upload_texts_hint: 'Russische Texte zum Vorlesen und Mitlesen',
+                back_to_selection: '← Zurück zur Auswahl',
+                voice_female: 'Weiblich',
+                voice_male: 'Männlich',
+                voice_female_title: 'Weibliche Stimme',
+                voice_male_title: 'Männliche Stimme',
+                voice_label: 'Stimme:',
+                voice_loading: 'Lädt Stimmen...',
+                voice_none: 'Keine russischen Stimmen',
+                speed_label: 'Tempo:',
+                auto_speak: 'Auto-Vorlesen',
+                speak_back: 'Rückseite vorlesen',
+                switch_to_text: 'zum Text vorlesen',
+                switch_to_text_title: 'Zu Text vorlesen wechseln',
+                switch_to_cards: 'zum Vokabeltrainer',
+                switch_to_cards_title: 'Zu Vokabeltrainer wechseln',
+                read_all: 'Alles',
+                read_all_title: 'Ganzen Text vorlesen',
+                read_sentence: 'Satzweise',
+                read_sentence_title: 'Satzweise vorlesen',
+                btn_start: 'Start',
+                btn_stop: 'Stopp',
+                btn_restart: 'Von vorne',
+                all_texts: 'Alle Texte',
+                setup_title: 'Karteikarten bereit',
+                cards_loaded: '{n} Karteikarten geladen',
+                learn_mode_label: 'Lernmodus:',
+                sr_free: 'Frei',
+                sr_free_desc: 'Selbst durchblättern',
+                sr_sm2_desc: 'Klassisch (SuperMemo)',
+                sr_fsrs_desc: 'Modern (optimiert)',
+                due: 'Fällig',
+                new: 'Neu',
+                learned: 'Gelernt',
+                max_new_cards: 'Max. neue Karten:',
+                reset_progress: 'Lernfortschritt zurücksetzen',
+                reset_confirm: 'Lernfortschritt für alle Karten zurücksetzen?',
+                start_flashcards: 'Karteikarten starten',
+                statistics: 'Statistik',
+                export_vocab: 'Export (Excel)',
+                export_empty: 'Keine Vokabeln gespeichert',
+                stats_title: 'Lernstatistik',
+                close: 'Schließen',
+                history: 'Verlauf',
+                card: 'Karte',
+                total: 'Gesamt',
+                btn_prev: 'Zurück',
+                btn_speak: 'Vorlesen',
+                btn_next: 'Weiter',
+                btn_prev_sentence: 'Voriger Satz',
+                btn_next_sentence: 'Nächster Satz',
+                btn_restart_cards: 'Erneut durcharbeiten',
+                btn_shuffle: 'Mischen',
+                btn_main_menu: 'Hauptmenü',
+                lang_russian: 'Russisch',
+                lang_german: 'Deutsch',
+                flip_hint: 'Klicken zum Umdrehen',
+                img_load_error: 'Bild nicht geladen',
+                rating_again: 'Nochmal',
+                rating_hard: 'Schwer',
+                rating_good: 'Gut',
+                rating_easy: 'Leicht',
+                done: 'Erledigt',
+                session_complete_title: 'Alle Karten für heute gelernt!',
+                session_summary: 'Du hast {reviewed} Karte{plural} wiederholt{new_part}.',
+                session_summary_new: ', davon {n} neue',
+                session_reviewed: 'Wiederholt',
+                session_new: 'Neue',
+                session_again: 'Nochmal',
+                no_cards_due: 'Keine Karten fällig. Komm später wieder!',
+                no_cards_alert: 'Keine Karten fällig und keine neuen Karten. Komm später wieder!',
+                btn_practice_again: 'Nochmal üben',
+                btn_free_browse: 'Frei durchblättern',
+                all_cards: 'Alle Karten',
+                badge_new: 'Neu',
+                badge_due: 'Fällig',
+                text_fallback: 'Text {n}',
+                click_sentence: 'Klicke auf einen Satz',
+                sentence_progress: 'Satz {current} von {total}',
+                btn_read_aloud: 'Vorlesen',
+                interval_less_1day: '< 1 Tag',
+                interval_1day: '1 Tag',
+                interval_days: '{n} Tage',
+                interval_months: '{n} Mon.',
+                interval_years: '{n} J.',
+                duration_sec: '{n} Sek.',
+                duration_min: '{m} Min.',
+                duration_min_sec: '{m} Min. {s} Sek.',
+                duration_hr_min: '{h} Std. {m} Min.',
+                stats_no_sessions: 'Noch keine Lernsessions aufgezeichnet.',
+                stats_streak: 'Tage Streak',
+                stats_days: 'Lerntage',
+                stats_cards_total: 'Karten gesamt',
+                stats_avg_session: '\u2205 pro Session',
+                stats_time_total: 'Lernzeit gesamt',
+                stats_day_detail: '{cards} Karten ({newCards} neue) \u00b7 {sessions} Session{plural}',
+                day_names: ['So', 'Mo', 'Di', 'Mi', 'Do', 'Fr', 'Sa'],
+                cards_suffix: 'n',
+            },
+            en: {
+                title: 'Learn Russian',
+                subtitle: 'Flashcards & Texts with Speech',
+                mode_title: 'What do you want to learn?',
+                mode_flashcards: 'Flashcards',
+                mode_flashcards_desc: 'Vocabulary with front and back',
+                mode_texts: 'Read texts aloud',
+                mode_texts_desc: 'Longer texts in a scrollable window',
+                upload_text: 'Drop file here or click',
+                upload_hint: 'Supports Quizlet files and multiline formats',
+                upload_flashcards: 'Drop flashcard file here or click',
+                upload_flashcards_hint: 'Supports Quizlet files (Russian, German per line)',
+                upload_texts: 'Drop text file here or click',
+                upload_texts_hint: 'Russian texts for reading and listening',
+                back_to_selection: '\u2190 Back to selection',
+                voice_female: 'Female',
+                voice_male: 'Male',
+                voice_female_title: 'Female voice',
+                voice_male_title: 'Male voice',
+                voice_label: 'Voice:',
+                voice_loading: 'Loading voices...',
+                voice_none: 'No Russian voices',
+                speed_label: 'Speed:',
+                auto_speak: 'Auto-read',
+                speak_back: 'Read back side',
+                switch_to_text: 'to text reading',
+                switch_to_text_title: 'Switch to text reading',
+                switch_to_cards: 'to flashcards',
+                switch_to_cards_title: 'Switch to flashcards',
+                read_all: 'All',
+                read_all_title: 'Read entire text',
+                read_sentence: 'By sentence',
+                read_sentence_title: 'Read sentence by sentence',
+                btn_start: 'Start',
+                btn_stop: 'Stop',
+                btn_restart: 'Restart',
+                all_texts: 'All texts',
+                setup_title: 'Flashcards ready',
+                cards_loaded: '{n} flashcards loaded',
+                learn_mode_label: 'Learning mode:',
+                sr_free: 'Free',
+                sr_free_desc: 'Browse freely',
+                sr_sm2_desc: 'Classic (SuperMemo)',
+                sr_fsrs_desc: 'Modern (optimized)',
+                due: 'Due',
+                new: 'New',
+                learned: 'Learned',
+                max_new_cards: 'Max new cards:',
+                reset_progress: 'Reset learning progress',
+                reset_confirm: 'Reset learning progress for all cards?',
+                start_flashcards: 'Start flashcards',
+                statistics: 'Statistics',
+                export_vocab: 'Export (Excel)',
+                export_empty: 'No vocabulary saved',
+                stats_title: 'Learning Statistics',
+                close: 'Close',
+                history: 'History',
+                card: 'Card',
+                total: 'Total',
+                btn_prev: 'Back',
+                btn_speak: 'Read aloud',
+                btn_next: 'Next',
+                btn_prev_sentence: 'Previous sentence',
+                btn_next_sentence: 'Next sentence',
+                btn_restart_cards: 'Start over',
+                btn_shuffle: 'Shuffle',
+                btn_main_menu: 'Main menu',
+                lang_russian: 'Russian',
+                lang_german: 'German',
+                flip_hint: 'Click to flip',
+                img_load_error: 'Image not loaded',
+                rating_again: 'Again',
+                rating_hard: 'Hard',
+                rating_good: 'Good',
+                rating_easy: 'Easy',
+                done: 'Done',
+                session_complete_title: 'All cards done for today!',
+                session_summary: 'You reviewed {reviewed} card{plural}{new_part}.',
+                session_summary_new: ', including {n} new',
+                session_reviewed: 'Reviewed',
+                session_new: 'New',
+                session_again: 'Again',
+                no_cards_due: 'No cards due. Come back later!',
+                no_cards_alert: 'No cards due and no new cards. Come back later!',
+                btn_practice_again: 'Practice again',
+                btn_free_browse: 'Browse freely',
+                all_cards: 'All cards',
+                badge_new: 'New',
+                badge_due: 'Due',
+                text_fallback: 'Text {n}',
+                click_sentence: 'Click on a sentence',
+                sentence_progress: 'Sentence {current} of {total}',
+                btn_read_aloud: 'Read aloud',
+                interval_less_1day: '< 1 day',
+                interval_1day: '1 day',
+                interval_days: '{n} days',
+                interval_months: '{n} mo.',
+                interval_years: '{n} yr.',
+                duration_sec: '{n} sec.',
+                duration_min: '{m} min.',
+                duration_min_sec: '{m} min. {s} sec.',
+                duration_hr_min: '{h} hr. {m} min.',
+                stats_no_sessions: 'No learning sessions recorded yet.',
+                stats_streak: 'Day streak',
+                stats_days: 'Study days',
+                stats_cards_total: 'Total cards',
+                stats_avg_session: '\u2205 per session',
+                stats_time_total: 'Total study time',
+                stats_day_detail: '{cards} cards ({newCards} new) \u00b7 {sessions} session{plural}',
+                day_names: ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'],
+                cards_suffix: 's',
+            },
+            ru: {
+                title: 'Учим русский',
+                subtitle: 'Карточки и тексты с озвучиванием',
+                mode_title: 'Что ты хочешь изучать?',
+                mode_flashcards: 'Карточки',
+                mode_flashcards_desc: 'Словарь с лицевой и обратной стороной',
+                mode_texts: 'Чтение текстов',
+                mode_texts_desc: 'Длинные тексты в прокручиваемом окне',
+                upload_text: 'Перетащите файл сюда или нажмите',
+                upload_hint: 'Поддержка файлов Quizlet и многострочных форматов',
+                upload_flashcards: 'Перетащите файл карточек сюда или нажмите',
+                upload_flashcards_hint: 'Поддержка файлов Quizlet (русский, немецкий в строке)',
+                upload_texts: 'Перетащите текстовый файл сюда или нажмите',
+                upload_texts_hint: 'Русские тексты для чтения и прослушивания',
+                back_to_selection: '\u2190 Назад к выбору',
+                voice_female: 'Женский',
+                voice_male: 'Мужской',
+                voice_female_title: 'Женский голос',
+                voice_male_title: 'Мужской голос',
+                voice_label: 'Голос:',
+                voice_loading: 'Загрузка голосов...',
+                voice_none: 'Нет русских голосов',
+                speed_label: 'Темп:',
+                auto_speak: 'Авто-озвучивание',
+                speak_back: 'Озвучить обратную сторону',
+                switch_to_text: 'к чтению текстов',
+                switch_to_text_title: 'Перейти к чтению текстов',
+                switch_to_cards: 'к карточкам',
+                switch_to_cards_title: 'Перейти к карточкам',
+                read_all: 'Всё',
+                read_all_title: 'Прочитать весь текст',
+                read_sentence: 'По предложениям',
+                read_sentence_title: 'Читать по предложениям',
+                btn_start: 'Старт',
+                btn_stop: 'Стоп',
+                btn_restart: 'Сначала',
+                all_texts: 'Все тексты',
+                setup_title: 'Карточки готовы',
+                cards_loaded: '{n} карточек загружено',
+                learn_mode_label: 'Режим обучения:',
+                sr_free: 'Свободный',
+                sr_free_desc: 'Листать самому',
+                sr_sm2_desc: 'Классический (SuperMemo)',
+                sr_fsrs_desc: 'Современный (оптимизир.)',
+                due: 'К повтору',
+                new: 'Новые',
+                learned: 'Выучено',
+                max_new_cards: 'Макс. новых карточек:',
+                reset_progress: 'Сбросить прогресс',
+                reset_confirm: 'Сбросить прогресс обучения для всех карточек?',
+                start_flashcards: 'Начать карточки',
+                statistics: 'Статистика',
+                export_vocab: 'Экспорт (Excel)',
+                export_empty: 'Нет сохранённых слов',
+                stats_title: 'Статистика обучения',
+                close: 'Закрыть',
+                history: 'История',
+                card: 'Карточка',
+                total: 'Всего',
+                btn_prev: 'Назад',
+                btn_speak: 'Озвучить',
+                btn_next: 'Далее',
+                btn_prev_sentence: 'Пред. предложение',
+                btn_next_sentence: 'След. предложение',
+                btn_restart_cards: 'Пройти заново',
+                btn_shuffle: 'Перемешать',
+                btn_main_menu: 'Главное меню',
+                lang_russian: 'Русский',
+                lang_german: 'Немецкий',
+                flip_hint: 'Нажмите, чтобы перевернуть',
+                img_load_error: 'Изображение не загружено',
+                rating_again: 'Снова',
+                rating_hard: 'Трудно',
+                rating_good: 'Хорошо',
+                rating_easy: 'Легко',
+                done: 'Готово',
+                session_complete_title: 'Все карточки на сегодня изучены!',
+                session_summary: 'Вы повторили {reviewed} карточ{plural}{new_part}.',
+                session_summary_new: ', из них {n} новых',
+                session_reviewed: 'Повторено',
+                session_new: 'Новые',
+                session_again: 'Снова',
+                no_cards_due: 'Нет карточек к повтору. Возвращайтесь позже!',
+                no_cards_alert: 'Нет карточек к повтору и нет новых. Возвращайтесь позже!',
+                btn_practice_again: 'Повторить ещё',
+                btn_free_browse: 'Свободный просмотр',
+                all_cards: 'Все карточки',
+                badge_new: 'Новая',
+                badge_due: 'К повтору',
+                text_fallback: 'Текст {n}',
+                click_sentence: 'Нажмите на предложение',
+                sentence_progress: 'Предложение {current} из {total}',
+                btn_read_aloud: 'Озвучить',
+                interval_less_1day: '< 1 дня',
+                interval_1day: '1 день',
+                interval_days: '{n} дн.',
+                interval_months: '{n} мес.',
+                interval_years: '{n} г.',
+                duration_sec: '{n} сек.',
+                duration_min: '{m} мин.',
+                duration_min_sec: '{m} мин. {s} сек.',
+                duration_hr_min: '{h} ч. {m} мин.',
+                stats_no_sessions: 'Сессий обучения ещё не было.',
+                stats_streak: 'Дней подряд',
+                stats_days: 'Дней учёбы',
+                stats_cards_total: 'Всего карточек',
+                stats_avg_session: '\u2205 за сессию',
+                stats_time_total: 'Всего время учёбы',
+                stats_day_detail: '{cards} карточек ({newCards} новых) \u00b7 {sessions} сесси{plural}',
+                day_names: ['Вс', 'Пн', 'Вт', 'Ср', 'Чт', 'Пт', 'Сб'],
+                cards_suffix: 'ек',
+            }
+        };
+
+        let currentLang = localStorage.getItem('vokabeltrainer_lang') || 'de';
+
+        function t(key, params) {
+            let text = (translations[currentLang] && translations[currentLang][key]) || translations['de'][key] || key;
+            if (params) {
+                Object.entries(params).forEach(([k, v]) => {
+                    text = text.replace(new RegExp('\\{' + k + '\\}', 'g'), v);
+                });
+            }
+            return text;
+        }
+
+        function applyLanguage(lang) {
+            currentLang = lang;
+            localStorage.setItem('vokabeltrainer_lang', lang);
+            document.documentElement.lang = lang;
+            document.title = t('title');
+
+            // Update lang switcher buttons
+            document.querySelectorAll('.lang-btn').forEach(btn => {
+                btn.classList.toggle('active', btn.dataset.lang === lang);
+            });
+
+            // Update all data-i18n elements
+            document.querySelectorAll('[data-i18n]').forEach(el => {
+                const key = el.getAttribute('data-i18n');
+                el.textContent = t(key);
+            });
+
+            // Update all data-i18n-title elements
+            document.querySelectorAll('[data-i18n-title]').forEach(el => {
+                const key = el.getAttribute('data-i18n-title');
+                el.title = t(key);
+            });
+        }
+
         // ============================================
         // STATE
         // ============================================
@@ -1244,6 +2255,15 @@
         let voices = [];
         let selectedVoice = null;
         let isClassicFormat = false;
+        let isTabFormat = false;
+
+        // Spaced Repetition State
+        let srMode = 'free'; // 'free', 'sm2', 'fsrs'
+        let srData = {}; // { cardId: { iterations, easiness, interval, nextReview, lastReview, difficulty, stability, reps } }
+        let reviewQueue = [];
+        let reviewQueueIndex = 0;
+        let sessionStats = { reviewed: 0, again: 0, newCards: 0 };
+        let sessionStartTime = 0;
 
         // Bekannte russische Stimmen nach Geschlecht
         const femaleVoiceNames = ['irina', 'svetlana', 'maria', 'anna', 'elena', 'natasha', 'olga', 'female', 'женский'];
@@ -1273,6 +2293,7 @@
         const speedRange = document.getElementById('speedRange');
         const speedValue = document.getElementById('speedValue');
         const autoSpeakCheckbox = document.getElementById('autoSpeak');
+        const speakBackCheckbox = document.getElementById('speakBack');
         const readAllBtn = document.getElementById('readAllBtn');
         const readSentenceBtn = document.getElementById('readSentenceBtn');
 
@@ -1292,8 +2313,7 @@
         // Flashcard Setup Elements
         const flashcardSetup = document.getElementById('flashcardSetup');
         const setupCardCount = document.getElementById('setupCardCount');
-        const setupGenderFemaleBtn = document.getElementById('setupGenderFemaleBtn');
-        const setupGenderMaleBtn = document.getElementById('setupGenderMaleBtn');
+        // Setup Gender Buttons entfernt - Auswahl erfolgt im Hauptfeld
         const startFlashcardsBtn = document.getElementById('startFlashcardsBtn');
 
         // Flashcard Elements
@@ -1353,6 +2373,546 @@
         }
 
         // ============================================
+        // SPACED REPETITION ALGORITHMS
+        // ============================================
+
+        // --- Card ID (hash of content) ---
+        function getCardId(card) {
+            const str = (card.speakableText || card.displayText) + '|' + card.answer;
+            let hash = 0;
+            for (let i = 0; i < str.length; i++) {
+                hash = ((hash << 5) - hash) + str.charCodeAt(i);
+                hash = hash & hash;
+            }
+            return 'c_' + Math.abs(hash).toString(36);
+        }
+
+        // --- localStorage ---
+        function loadSRData() {
+            try {
+                const data = localStorage.getItem('vokabeltrainer_sr');
+                srData = data ? JSON.parse(data) : {};
+            } catch (e) { srData = {}; }
+        }
+
+        function saveSRData() {
+            localStorage.setItem('vokabeltrainer_sr', JSON.stringify(srData));
+        }
+
+        function resetSRData() {
+            srData = {};
+            localStorage.removeItem('vokabeltrainer_sr');
+        }
+
+        // --- New card data ---
+        function createNewCardData() {
+            return {
+                iterations: 0,
+                easiness: 2.5,
+                interval: 0,
+                difficulty: 0,
+                stability: 0,
+                reps: 0,
+                lastReview: 0,
+                nextReview: 0,
+                algorithm: ''
+            };
+        }
+
+        // --- SM-2 Algorithm ---
+        function sm2Review(data, quality) {
+            // quality: 0-5
+            if (quality >= 3) {
+                if (data.iterations === 0) data.interval = 1;
+                else if (data.iterations === 1) data.interval = 6;
+                else data.interval = Math.round(data.interval * data.easiness);
+                data.iterations++;
+                data.easiness = Math.max(1.3,
+                    data.easiness + (0.1 - (5 - quality) * (0.08 + (5 - quality) * 0.02)));
+            } else {
+                data.iterations = 0;
+                data.interval = 1;
+            }
+            data.lastReview = Date.now();
+            data.nextReview = Date.now() + data.interval * 24 * 60 * 60 * 1000;
+            data.algorithm = 'sm2';
+            return data;
+        }
+
+        // Predict SM-2 interval for a given quality
+        function sm2PredictInterval(data, quality) {
+            const d = JSON.parse(JSON.stringify(data));
+            if (quality >= 3) {
+                if (d.iterations === 0) return 1;
+                if (d.iterations === 1) return 6;
+                return Math.round(d.interval * d.easiness);
+            }
+            return 1;
+        }
+
+        // --- FSRS Algorithm (simplified with default weights) ---
+        const FSRS_W = [0.4, 0.6, 2.4, 5.8, 4.93, 0.94, 0.86, 0.01, 1.49, 0.14, 0.94, 2.18, 0.05, 0.34, 1.26, 0.29, 2.61];
+
+        function fsrsInitStability(grade) {
+            return Math.max(0.1, FSRS_W[grade - 1]);
+        }
+
+        function fsrsInitDifficulty(grade) {
+            return Math.min(10, Math.max(1, FSRS_W[4] - (grade - 3) * FSRS_W[5]));
+        }
+
+        function fsrsRetrievability(elapsedDays, stability) {
+            return Math.pow(0.9, elapsedDays / stability);
+        }
+
+        function fsrsNextDifficulty(d, grade) {
+            const newD = d - FSRS_W[6] * (grade - 3);
+            return Math.min(10, Math.max(1, FSRS_W[5] * FSRS_W[4] + (1 - FSRS_W[5]) * newD));
+        }
+
+        function fsrsNextStability(d, s, r, grade) {
+            if (grade === 1) {
+                // Forget stability
+                return FSRS_W[11] * Math.pow(d, -FSRS_W[12]) *
+                    (Math.pow(s + 1, FSRS_W[13]) - 1) *
+                    Math.exp((1 - r) * FSRS_W[14]);
+            }
+            const hardPenalty = grade === 2 ? FSRS_W[15] : 1;
+            const easyBonus = grade === 4 ? FSRS_W[16] : 1;
+            return s * (1 + Math.exp(FSRS_W[8]) *
+                (11 - d) * Math.pow(s, -FSRS_W[9]) *
+                (Math.exp((1 - r) * FSRS_W[10]) - 1) *
+                hardPenalty * easyBonus);
+        }
+
+        function fsrsReview(data, grade) {
+            // grade: 1 (Again), 2 (Hard), 3 (Good), 4 (Easy)
+            if (data.reps === 0) {
+                data.difficulty = fsrsInitDifficulty(grade);
+                data.stability = fsrsInitStability(grade);
+            } else {
+                const elapsed = Math.max(0, (Date.now() - data.lastReview) / (1000 * 60 * 60 * 24));
+                const r = fsrsRetrievability(elapsed, data.stability);
+                data.difficulty = fsrsNextDifficulty(data.difficulty, grade);
+                data.stability = fsrsNextStability(data.difficulty, data.stability, r, grade);
+            }
+            data.reps++;
+            data.interval = Math.max(1, Math.round(data.stability));
+            data.lastReview = Date.now();
+            data.nextReview = Date.now() + data.interval * 24 * 60 * 60 * 1000;
+            data.algorithm = 'fsrs';
+            return data;
+        }
+
+        // Predict FSRS interval for a given grade
+        function fsrsPredictInterval(data, grade) {
+            if (data.reps === 0) {
+                return Math.max(1, Math.round(fsrsInitStability(grade)));
+            }
+            const elapsed = Math.max(0, (Date.now() - data.lastReview) / (1000 * 60 * 60 * 24));
+            const r = fsrsRetrievability(elapsed, data.stability);
+            const d = fsrsNextDifficulty(data.difficulty, grade);
+            const s = fsrsNextStability(d, data.stability, r, grade);
+            return Math.max(1, Math.round(s));
+        }
+
+        // --- Vocabulary Database (IndexedDB) ---
+        let currentSourceFile = '';
+
+        function openVocabDB() {
+            return new Promise((resolve, reject) => {
+                const req = indexedDB.open('vokabeltrainer', 1);
+                req.onupgradeneeded = (e) => {
+                    const db = e.target.result;
+                    if (!db.objectStoreNames.contains('vocabulary')) {
+                        const store = db.createObjectStore('vocabulary', { keyPath: 'id' });
+                        store.createIndex('source', 'source', { unique: false });
+                        store.createIndex('topic', 'topic', { unique: false });
+                    }
+                };
+                req.onsuccess = (e) => resolve(e.target.result);
+                req.onerror = (e) => reject(e.target.error);
+            });
+        }
+
+        async function saveCardsToDB(cardsList, source) {
+            const db = await openVocabDB();
+            const tx = db.transaction('vocabulary', 'readwrite');
+            const store = tx.objectStore('vocabulary');
+            for (const card of cardsList) {
+                const id = getCardId(card);
+                const existing = await new Promise(r => { const req = store.get(id); req.onsuccess = () => r(req.result); req.onerror = () => r(null); });
+                let front = card.displayText;
+                let grammar = '';
+                const gm = front.match(/^\((?!img:|speak:)([^)]*)\)\s*/);
+                if (gm) {
+                    grammar = gm[1];
+                    front = front.substring(gm[0].length);
+                }
+                store.put({
+                    id,
+                    front: front || card.displayText,
+                    back: card.answer,
+                    grammar,
+                    images: card.images || [],
+                    tags: existing?.tags || [],
+                    topic: existing?.topic || '',
+                    category: existing?.category || '',
+                    source: source || existing?.source || '',
+                    added: existing?.added || new Date().toISOString()
+                });
+            }
+            return new Promise((resolve, reject) => { tx.oncomplete = resolve; tx.onerror = reject; });
+        }
+
+        async function getAllCardsFromDB() {
+            const db = await openVocabDB();
+            return new Promise((resolve, reject) => {
+                const tx = db.transaction('vocabulary', 'readonly');
+                const req = tx.objectStore('vocabulary').getAll();
+                req.onsuccess = () => resolve(req.result);
+                req.onerror = (e) => reject(e.target.error);
+            });
+        }
+
+        async function exportVocabularyTSV() {
+            const allCards = await getAllCardsFromDB();
+            if (allCards.length === 0) {
+                alert(t('export_empty'));
+                return;
+            }
+            const header = 'Russisch;Deutsch;Thema;Kategorie;Grammatik;Quelle';
+            const rows = allCards.map(c => {
+                const fields = [c.front, c.back, c.topic, c.category, c.grammar, c.source];
+                return fields.map(f => {
+                    const clean = (f || '').replace(/\n/g, ' ');
+                    if (clean.includes(';') || clean.includes('"')) {
+                        return '"' + clean.replace(/"/g, '""') + '"';
+                    }
+                    return clean;
+                }).join(';');
+            });
+            const csv = '\uFEFF' + header + '\n' + rows.join('\n');
+            const blob = new Blob([csv], { type: 'text/csv;charset=utf-8' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            const date = new Date().toISOString().slice(0, 10);
+            a.href = url;
+            a.download = `vokabeln_${date}.csv`;
+            a.click();
+            URL.revokeObjectURL(url);
+        }
+
+        // --- Interval Formatting ---
+        function formatInterval(days) {
+            if (days < 1) return t('interval_less_1day');
+            if (days === 1) return t('interval_1day');
+            if (days < 30) return t('interval_days', { n: Math.round(days) });
+            if (days < 365) return t('interval_months', { n: (Math.round(days / 30 * 10) / 10) });
+            return t('interval_years', { n: (Math.round(days / 365 * 10) / 10) });
+        }
+
+        // --- Review Queue ---
+        function buildReviewQueue() {
+            const now = Date.now();
+            const dueCards = [];
+            const newCards = [];
+
+            cards.forEach((card, idx) => {
+                const cardId = getCardId(card);
+                const data = srData[cardId];
+                if (!data || !data.lastReview) {
+                    newCards.push(idx);
+                } else if (data.nextReview <= now) {
+                    dueCards.push({ idx, overdue: now - data.nextReview });
+                }
+            });
+
+            // Sort due by most overdue first
+            dueCards.sort((a, b) => b.overdue - a.overdue);
+
+            const maxNew = parseInt(document.getElementById('maxNewCardsInput').value) || newCards.length;
+            reviewQueue = [
+                ...dueCards.map(d => d.idx),
+                ...newCards.slice(0, maxNew)
+            ];
+            reviewQueueIndex = 0;
+            sessionStats = { reviewed: 0, again: 0, newCards: 0 };
+        }
+
+        // --- Count cards by status ---
+        function countCardStatuses() {
+            const now = Date.now();
+            let due = 0, newCount = 0, learned = 0;
+            cards.forEach(card => {
+                const data = srData[getCardId(card)];
+                if (!data || !data.lastReview) newCount++;
+                else if (data.nextReview <= now) due++;
+                else learned++;
+            });
+            return { due, new: newCount, learned };
+        }
+
+        // --- Show Rating Buttons ---
+        function showRatingButtons() {
+            const ratingContainer = document.getElementById('ratingContainer');
+            ratingContainer.classList.add('visible');
+
+            const cardIdx = srMode !== 'free' ? reviewQueue[reviewQueueIndex] : currentIndex;
+            const card = cards[cardIdx];
+            const cardId = getCardId(card);
+            const data = srData[cardId] || createNewCardData();
+
+            // Predict intervals for each rating
+            if (srMode === 'sm2') {
+                const qualityMap = { 1: 1, 2: 3, 3: 4, 4: 5 };
+                document.getElementById('intervalAgain').textContent = formatInterval(sm2PredictInterval(data, qualityMap[1]));
+                document.getElementById('intervalHard').textContent = formatInterval(sm2PredictInterval(data, qualityMap[2]));
+                document.getElementById('intervalGood').textContent = formatInterval(sm2PredictInterval(data, qualityMap[3]));
+                document.getElementById('intervalEasy').textContent = formatInterval(sm2PredictInterval(data, qualityMap[4]));
+            } else {
+                document.getElementById('intervalAgain').textContent = formatInterval(fsrsPredictInterval(data, 1));
+                document.getElementById('intervalHard').textContent = formatInterval(fsrsPredictInterval(data, 2));
+                document.getElementById('intervalGood').textContent = formatInterval(fsrsPredictInterval(data, 3));
+                document.getElementById('intervalEasy').textContent = formatInterval(fsrsPredictInterval(data, 4));
+            }
+        }
+
+        function hideRatingButtons() {
+            document.getElementById('ratingContainer').classList.remove('visible');
+        }
+
+        // --- Rate Card ---
+        function rateCard(grade) {
+            // grade: 1 (Again), 2 (Hard), 3 (Good), 4 (Easy)
+            const cardIdx = reviewQueue[reviewQueueIndex];
+            const card = cards[cardIdx];
+            const cardId = getCardId(card);
+            let data = srData[cardId] || createNewCardData();
+
+            const wasNew = !data.lastReview;
+
+            if (srMode === 'sm2') {
+                const qualityMap = { 1: 1, 2: 3, 3: 4, 4: 5 };
+                data = sm2Review(data, qualityMap[grade]);
+            } else {
+                data = fsrsReview(data, grade);
+            }
+
+            srData[cardId] = data;
+            saveSRData();
+
+            // Update session stats
+            sessionStats.reviewed++;
+            if (wasNew) sessionStats.newCards++;
+            if (grade === 1) {
+                sessionStats.again++;
+                // Re-queue the card
+                reviewQueue.push(cardIdx);
+            }
+
+            hideRatingButtons();
+            reviewQueueIndex++;
+
+            if (reviewQueueIndex < reviewQueue.length) {
+                currentIndex = reviewQueue[reviewQueueIndex];
+                renderCard();
+                updateSRStats();
+                if (autoSpeakCheckbox.checked) {
+                    setTimeout(() => speak(cards[currentIndex].speakableText), 300);
+                }
+            } else {
+                showSessionComplete();
+            }
+        }
+
+        // --- Update SR Stats Bar ---
+        function updateSRStats() {
+            const remaining = reviewQueue.length - reviewQueueIndex;
+            const counts = countCardStatuses();
+            document.getElementById('srDueCount').textContent = remaining;
+            document.getElementById('srNewCount').textContent = counts.new;
+            document.getElementById('srDoneCount').textContent = sessionStats.reviewed;
+        }
+
+        // --- Session Complete ---
+        function showSessionComplete() {
+            recordSession();
+            flashcardContainer.classList.remove('visible');
+            flashcardControls.classList.remove('visible');
+            hideRatingButtons();
+            document.getElementById('srStats').classList.remove('visible');
+
+            const sc = document.getElementById('sessionComplete');
+            sc.classList.add('visible');
+
+            const plural = currentLang === 'ru'
+                ? (sessionStats.reviewed === 1 ? 'ку' : sessionStats.reviewed < 5 ? 'ки' : 'ек')
+                : (sessionStats.reviewed !== 1 ? t('cards_suffix') : '');
+            const newPart = sessionStats.newCards > 0 ? t('session_summary_new', { n: sessionStats.newCards }) : '';
+            document.getElementById('sessionCompleteText').textContent =
+                t('session_summary', { reviewed: sessionStats.reviewed, plural: plural, new_part: newPart });
+
+            const statsHtml =
+                `<div class="session-stat"><div class="session-stat-value">${sessionStats.reviewed}</div><div class="session-stat-label">${t('session_reviewed')}</div></div>` +
+                `<div class="session-stat"><div class="session-stat-value">${sessionStats.newCards}</div><div class="session-stat-label">${t('session_new')}</div></div>` +
+                `<div class="session-stat"><div class="session-stat-value">${sessionStats.again}</div><div class="session-stat-label">${t('session_again')}</div></div>`;
+            document.getElementById('sessionCompleteStats').innerHTML = statsHtml;
+        }
+
+        function restartSRSession() {
+            document.getElementById('sessionComplete').classList.remove('visible');
+            loadSRData();
+            buildReviewQueue();
+            if (reviewQueue.length > 0) {
+                currentIndex = reviewQueue[0];
+                flashcardContainer.classList.add('visible');
+                flashcardControls.classList.add('visible');
+                document.getElementById('srStats').classList.add('visible');
+                renderCard();
+                updateSRStats();
+                if (autoSpeakCheckbox.checked) {
+                    setTimeout(() => speak(cards[currentIndex].speakableText), 300);
+                }
+            } else {
+                document.getElementById('sessionComplete').classList.add('visible');
+                document.getElementById('sessionCompleteText').textContent = t('no_cards_due');
+                document.getElementById('sessionCompleteStats').innerHTML = '';
+            }
+        }
+
+        function switchToFreeMode() {
+            recordSession();
+            document.getElementById('sessionComplete').classList.remove('visible');
+            srMode = 'free';
+            currentIndex = 0;
+            showFlashcardMode();
+        }
+
+        // ============================================
+        // SESSION HISTORY & STATISTICS
+        // ============================================
+
+        function loadHistory() {
+            try {
+                const data = localStorage.getItem('vokabeltrainer_history');
+                return data ? JSON.parse(data) : [];
+            } catch (e) { return []; }
+        }
+
+        function saveHistory(history) {
+            localStorage.setItem('vokabeltrainer_history', JSON.stringify(history));
+        }
+
+        function recordSession() {
+            if (sessionStartTime === 0 || sessionStats.reviewed === 0) return;
+            const duration = Math.round((Date.now() - sessionStartTime) / 1000);
+            const today = new Date().toISOString().slice(0, 10);
+            const entry = {
+                date: today,
+                duration: duration,
+                cardsReviewed: sessionStats.reviewed,
+                newCards: sessionStats.newCards,
+                algorithm: srMode
+            };
+            const history = loadHistory();
+            history.push(entry);
+            saveHistory(history);
+            sessionStartTime = 0;
+        }
+
+        function calculateStreak(history) {
+            if (history.length === 0) return 0;
+            const uniqueDays = [...new Set(history.map(h => h.date))].sort().reverse();
+            const today = new Date().toISOString().slice(0, 10);
+            const yesterday = new Date(Date.now() - 86400000).toISOString().slice(0, 10);
+
+            // Streak muss heute oder gestern begonnen haben
+            if (uniqueDays[0] !== today && uniqueDays[0] !== yesterday) return 0;
+
+            let streak = 1;
+            for (let i = 1; i < uniqueDays.length; i++) {
+                const prev = new Date(uniqueDays[i - 1]);
+                const curr = new Date(uniqueDays[i]);
+                const diff = (prev - curr) / 86400000;
+                if (diff === 1) streak++;
+                else break;
+            }
+            return streak;
+        }
+
+        function formatDuration(seconds) {
+            if (seconds < 60) return t('duration_sec', { n: seconds });
+            const min = Math.floor(seconds / 60);
+            const sec = seconds % 60;
+            if (min < 60) {
+                if (sec > 0) return t('duration_min_sec', { m: min, s: sec });
+                return t('duration_min', { m: min });
+            }
+            const hrs = Math.floor(min / 60);
+            return t('duration_hr_min', { h: hrs, m: min % 60 });
+        }
+
+        function formatDate(dateStr) {
+            const d = new Date(dateStr + 'T00:00:00');
+            const dayNames = t('day_names');
+            return dayNames[d.getDay()] + ', ' + d.getDate() + '.' + (d.getMonth() + 1) + '.' + d.getFullYear();
+        }
+
+        function renderStatistics() {
+            const history = loadHistory();
+            const summaryEl = document.getElementById('statsSummary');
+            const historyEl = document.getElementById('statsHistory');
+
+            if (history.length === 0) {
+                summaryEl.innerHTML = '';
+                historyEl.innerHTML = '<div class="stats-empty">' + t('stats_no_sessions') + '</div>';
+                return;
+            }
+
+            // Zusammenfassung berechnen
+            const streak = calculateStreak(history);
+            const uniqueDays = new Set(history.map(h => h.date)).size;
+            const totalCards = history.reduce((s, h) => s + h.cardsReviewed, 0);
+            const totalDuration = history.reduce((s, h) => s + h.duration, 0);
+            const avgCards = Math.round(totalCards / history.length);
+
+            summaryEl.innerHTML =
+                `<div class="stats-tile"><div class="stats-tile-value">${streak}</div><div class="stats-tile-label">${t('stats_streak')}</div></div>` +
+                `<div class="stats-tile"><div class="stats-tile-value">${uniqueDays}</div><div class="stats-tile-label">${t('stats_days')}</div></div>` +
+                `<div class="stats-tile"><div class="stats-tile-value">${totalCards}</div><div class="stats-tile-label">${t('stats_cards_total')}</div></div>` +
+                `<div class="stats-tile"><div class="stats-tile-value">${avgCards}</div><div class="stats-tile-label">${t('stats_avg_session')}</div></div>` +
+                `<div class="stats-tile"><div class="stats-tile-value">${formatDuration(totalDuration)}</div><div class="stats-tile-label">${t('stats_time_total')}</div></div>`;
+
+            // Tage gruppieren (neueste zuerst)
+            const dayMap = {};
+            history.forEach(h => {
+                if (!dayMap[h.date]) dayMap[h.date] = { cards: 0, duration: 0, sessions: 0, newCards: 0 };
+                dayMap[h.date].cards += h.cardsReviewed;
+                dayMap[h.date].duration += h.duration;
+                dayMap[h.date].sessions++;
+                dayMap[h.date].newCards += h.newCards;
+            });
+
+            const sortedDays = Object.keys(dayMap).sort().reverse();
+            historyEl.innerHTML = sortedDays.map(date => {
+                const d = dayMap[date];
+                let sp;
+                if (currentLang === 'ru') {
+                    sp = d.sessions === 1 ? 'ю' : (d.sessions < 5 ? 'и' : 'й');
+                } else {
+                    sp = d.sessions > 1 ? 's' : '';
+                }
+                const detail = t('stats_day_detail', { cards: d.cards, newCards: d.newCards, sessions: d.sessions, plural: sp });
+                return `<div class="stats-day">
+                    <span class="stats-day-date">${formatDate(date)}</span>
+                    <span class="stats-day-detail">${detail}</span>
+                    <span class="stats-day-duration">${formatDuration(d.duration)}</span>
+                </div>`;
+            }).join('');
+        }
+
+        // ============================================
         // VOICE LOADING
         // ============================================
         function getVoiceGender(voice) {
@@ -1373,7 +2933,7 @@
             voiceSelect.innerHTML = '';
 
             if (russianVoices.length === 0) {
-                voiceSelect.innerHTML = '<option value="">Keine russischen Stimmen</option>';
+                voiceSelect.innerHTML = '<option value="">' + t('voice_none') + '</option>';
                 return;
             }
 
@@ -1441,29 +3001,95 @@
             updateVoiceSelect();
         });
 
-        // Gender Toggle (für Flashcard-Setup)
-        setupGenderFemaleBtn.addEventListener('click', () => {
-            selectedGender = 'female';
-            setupGenderFemaleBtn.classList.add('active');
-            setupGenderMaleBtn.classList.remove('active');
-            // Auch die anderen Buttons synchronisieren
-            genderFemaleBtn.classList.add('active');
-            genderMaleBtn.classList.remove('active');
-            updateVoiceSelect();
+        // SR Mode Selector Buttons
+        document.getElementById('srModeFree').addEventListener('click', () => {
+            srMode = 'free';
+            document.querySelectorAll('.sr-mode-btn').forEach(b => b.classList.remove('active'));
+            document.getElementById('srModeFree').classList.add('active');
+            document.getElementById('setupDueInfo').style.display = 'none';
+            document.getElementById('setupNewLimit').style.display = 'none';
+            document.getElementById('setupResetBtn').style.display = 'none';
         });
 
-        setupGenderMaleBtn.addEventListener('click', () => {
-            selectedGender = 'male';
-            setupGenderMaleBtn.classList.add('active');
-            setupGenderFemaleBtn.classList.remove('active');
-            // Auch die anderen Buttons synchronisieren
-            genderMaleBtn.classList.add('active');
-            genderFemaleBtn.classList.remove('active');
-            updateVoiceSelect();
+        document.getElementById('maxNewCardsInput').addEventListener('input', function() {
+            this.dataset.userChanged = 'true';
+        });
+        document.getElementById('srModeSM2').addEventListener('click', () => {
+            srMode = 'sm2';
+            document.querySelectorAll('.sr-mode-btn').forEach(b => b.classList.remove('active'));
+            document.getElementById('srModeSM2').classList.add('active');
+            updateSetupDueInfo();
+        });
+        document.getElementById('srModeFSRS').addEventListener('click', () => {
+            srMode = 'fsrs';
+            document.querySelectorAll('.sr-mode-btn').forEach(b => b.classList.remove('active'));
+            document.getElementById('srModeFSRS').classList.add('active');
+            updateSetupDueInfo();
+        });
+
+        function updateSetupDueInfo() {
+            loadSRData();
+            const counts = countCardStatuses();
+            const maxInput = document.getElementById('maxNewCardsInput');
+            maxInput.max = counts.new;
+            if (parseInt(maxInput.value) > counts.new || !maxInput.dataset.userChanged) {
+                maxInput.value = counts.new;
+            }
+            document.getElementById('setupDueCount').textContent = counts.due;
+            document.getElementById('setupNewCount').textContent = counts.new;
+            document.getElementById('setupLearnedCount').textContent = counts.learned;
+            document.getElementById('setupDueInfo').style.display = 'flex';
+            document.getElementById('setupNewLimit').style.display = counts.new > 0 ? 'flex' : 'none';
+            document.getElementById('setupResetBtn').style.display = counts.learned + counts.due > 0 ? 'inline' : 'none';
+        }
+
+        document.getElementById('setupResetBtn').addEventListener('click', () => {
+            if (confirm(t('reset_confirm'))) {
+                resetSRData();
+                updateSetupDueInfo();
+            }
+        });
+
+        // Rating Button Handlers
+        document.getElementById('ratingAgain').addEventListener('click', () => rateCard(1));
+        document.getElementById('ratingHard').addEventListener('click', () => rateCard(2));
+        document.getElementById('ratingGood').addEventListener('click', () => rateCard(3));
+        document.getElementById('ratingEasy').addEventListener('click', () => rateCard(4));
+
+        // Session Complete Buttons
+        document.getElementById('restartSRBtn').addEventListener('click', restartSRSession);
+        document.getElementById('switchToFreeBtn').addEventListener('click', switchToFreeMode);
+        document.getElementById('sessionMainMenuBtn').addEventListener('click', () => {
+            document.getElementById('sessionComplete').classList.remove('visible');
+            showFlashcardSetup();
+        });
+
+        // Statistics Panel
+        document.getElementById('showStatsBtn').addEventListener('click', () => {
+            renderStatistics();
+            document.getElementById('statsPanel').classList.add('visible');
+        });
+        document.getElementById('statsCloseBtn').addEventListener('click', () => {
+            document.getElementById('statsPanel').classList.remove('visible');
+        });
+
+        // Export Button
+        document.getElementById('exportVocabBtn').addEventListener('click', () => {
+            exportVocabularyTSV();
         });
 
         // Start Flashcards Button
         startFlashcardsBtn.addEventListener('click', () => {
+            if (srMode !== 'free') {
+                loadSRData();
+                buildReviewQueue();
+                if (reviewQueue.length === 0) {
+                    alert(t('no_cards_alert'));
+                    return;
+                }
+                currentIndex = reviewQueue[0];
+            }
+            sessionStartTime = Date.now();
             showFlashcardMode();
             if (autoSpeakCheckbox.checked) {
                 setTimeout(() => speak(cards[currentIndex].speakableText), 300);
@@ -1501,17 +3127,26 @@
         modeFlashcardsBtn.addEventListener('click', () => {
             selectedMode = 'flashcards';
             modeSelection.style.display = 'none';
-            uploadSection.style.display = 'block';
-            uploadText.textContent = 'Karteikarten-Datei hier ablegen oder klicken';
-            uploadHint.textContent = 'Unterstützt Quizlet-Dateien (Russisch, Deutsch pro Zeile)';
+            if (cards.length > 0) {
+                showFlashcardSetup();
+            } else {
+                uploadSection.style.display = 'block';
+                uploadText.textContent = t('upload_flashcards');
+                uploadHint.textContent = t('upload_flashcards_hint');
+            }
         });
 
         modeTextsBtn.addEventListener('click', () => {
             selectedMode = 'texts';
             modeSelection.style.display = 'none';
-            uploadSection.style.display = 'block';
-            uploadText.textContent = 'Text-Datei hier ablegen oder klicken';
-            uploadHint.textContent = 'Russische Texte zum Vorlesen und Mitlesen';
+            if (texts.length > 0) {
+                isTextMode = true;
+                showTextMode();
+            } else {
+                uploadSection.style.display = 'block';
+                uploadText.textContent = t('upload_texts');
+                uploadHint.textContent = t('upload_texts_hint');
+            }
         });
 
         backToModeBtn.addEventListener('click', (e) => {
@@ -1532,6 +3167,10 @@
             flashcardControls.classList.remove('visible');
             cardList.classList.remove('visible');
             textReaderContainer.classList.remove('visible');
+            // SR-Elemente ausblenden
+            document.getElementById('srStats').classList.remove('visible');
+            document.getElementById('sessionComplete').classList.remove('visible');
+            hideRatingButtons();
             // Modus-Auswahl anzeigen
             modeSelection.style.display = 'block';
         }
@@ -1569,6 +3208,7 @@
         });
 
         function processFile(file) {
+            currentSourceFile = file.name;
             const reader = new FileReader();
             reader.onload = (e) => parseContent(e.target.result);
             reader.readAsText(file);
@@ -1576,6 +3216,8 @@
 
         function detectFormat(content) {
             const lines = content.split('\n').filter(line => line.trim());
+            const linesWithTab = lines.filter(line => line.includes('\t')).length;
+            if (linesWithTab / lines.length > 0.5) return 'tab';
             let linesWithComma = lines.filter(line => line.includes(',')).length;
             if (linesWithComma / lines.length < 0.5) return 'text';
             if (content.includes('\\n') || content.includes('"')) return 'advanced';
@@ -1586,10 +3228,11 @@
             // Verwende den vom Benutzer gewählten Modus
             isTextMode = selectedMode === 'texts';
 
-            // Für Karteikarten: Erkenne das Format (klassisch vs. erweitert)
+            // Für Karteikarten: Erkenne das Format
             if (!isTextMode) {
                 const format = detectFormat(content);
                 isClassicFormat = format === 'classic';
+                isTabFormat = format === 'tab';
             }
 
             // Kein Format-Indicator mehr anzeigen
@@ -1637,7 +3280,7 @@
 
                 if (body) {
                     texts.push({
-                        title: title || `Text ${idx + 1}`,
+                        title: title || t('text_fallback', { n: idx + 1 }),
                         body: body
                     });
                 }
@@ -1645,7 +3288,7 @@
 
             // Fallback: Gesamten Inhalt als einen Text behandeln
             if (texts.length === 0) {
-                texts = [{ title: 'Text', body: content.trim() }];
+                texts = [{ title: t('text_fallback', { n: 1 }), body: content.trim() }];
             }
 
             currentIndex = 0;
@@ -1662,8 +3305,12 @@
             flashcardControls.classList.remove('visible');
             cardList.classList.remove('visible');
 
+            // Voice-Section wieder einblenden für Text-Modus
+            document.getElementById('voiceSection').style.display = 'flex';
+
             // UI für Text-Modus anpassen
             autoSpeakOption.style.display = 'none';
+            document.getElementById('speakBackOption').style.display = 'none';
             readModeSelector.style.display = 'flex';
             voiceControls.style.display = 'flex';
             switchToTextBtn.style.display = 'none';
@@ -1684,7 +3331,7 @@
             const text = texts[currentIndex];
             sentences = splitIntoSentences(text.body);
 
-            textReaderTitle.textContent = text.title || `Text ${currentIndex + 1}`;
+            textReaderTitle.textContent = text.title || t('text_fallback', { n: currentIndex + 1 });
 
             // Render sentences with spans
             let html = '';
@@ -1712,7 +3359,7 @@
 
             // Update progress
             if (readMode === 'sentence') {
-                textReaderProgress.textContent = `Klicke auf einen Satz`;
+                textReaderProgress.textContent = t('click_sentence');
             } else {
                 textReaderProgress.textContent = '';
             }
@@ -1728,11 +3375,11 @@
             texts.forEach((text, idx) => {
                 const item = document.createElement('div');
                 item.className = 'text-list-item' + (idx === currentIndex ? ' active' : '');
-                const title = text.title || `Text ${idx + 1}`;
+                const title = text.title || t('text_fallback', { n: idx + 1 });
                 item.innerHTML = `
                     <span class="text-list-item-number">${idx + 1}</span>
                     <span class="text-list-item-title">${title}</span>
-                    <button class="text-list-item-btn" title="Vorlesen">🔊</button>
+                    <button class="text-list-item-btn" title="${t('btn_read_aloud')}">🔊</button>
                 `;
                 item.addEventListener('click', (e) => {
                     if (!e.target.classList.contains('text-list-item-btn')) {
@@ -1761,7 +3408,7 @@
                     el.classList.add('current');
                 }
             });
-            textReaderProgress.textContent = `Satz ${currentSentenceIndex + 1} von ${sentences.length}`;
+            textReaderProgress.textContent = t('sentence_progress', { current: currentSentenceIndex + 1, total: sentences.length });
         }
 
         // ============================================
@@ -1770,33 +3417,79 @@
         function parseCards(content) {
             const lines = content.split('\n').filter(line => line.trim());
             cards = [];
-            
+
             lines.forEach(line => {
-                const lastComma = line.lastIndexOf(',');
-                if (lastComma === -1) return;
-                
-                let question = line.substring(0, lastComma).trim();
-                const answer = line.substring(lastComma + 1).trim();
-                
-                if (question && answer) {
-                    let displayText = question;
-                    let speakableText = question;
-                    
-                    if (!isClassicFormat) {
-                        question = question.replace(/\\n/g, '\n');
-                        displayText = question;
-                        const quotes = question.match(/"([^"]+)"/g);
-                        if (quotes) {
-                            speakableText = quotes.map(m => m.replace(/"/g, '')).join(' ');
-                        }
-                        displayText = question.replace(/"/g, '');
+                let question, answer;
+
+                // Split: tab-separated or last-comma
+                if (isTabFormat) {
+                    const tabIdx = line.indexOf('\t');
+                    if (tabIdx === -1) return;
+                    question = line.substring(0, tabIdx).trim();
+                    answer = line.substring(tabIdx + 1).trim();
+                } else {
+                    const lastComma = line.lastIndexOf(',');
+                    if (lastComma === -1) return;
+                    question = line.substring(0, lastComma).trim();
+                    answer = line.substring(lastComma + 1).trim();
+                }
+
+                if (!question && !answer) return;
+
+                // Extract (img:...) tags — also support legacy [img:...]
+                const images = [];
+                const imgRegex = /(?:\(img:([^)]+)\)|\[img:([^\]]+)\])/g;
+                let imgMatch;
+                while ((imgMatch = imgRegex.exec(question)) !== null) {
+                    images.push((imgMatch[1] || imgMatch[2]).trim());
+                }
+                question = question.replace(imgRegex, '').trim();
+
+                // Extract (speak:...) tag
+                let speakOverride = null;
+                const speakMatch = question.match(/\(speak:([^)]+)\)/);
+                if (speakMatch) {
+                    speakOverride = speakMatch[1].trim();
+                    question = question.replace(speakMatch[0], '').trim();
+                }
+
+                let displayText = question;
+                let speakableText;
+
+                if (!isClassicFormat && !isTabFormat) {
+                    // Legacy advanced format: \n and "quotes"
+                    question = question.replace(/\\n/g, '\n');
+                    displayText = question;
+                    const quotes = question.match(/"([^"]+)"/g);
+                    if (quotes) {
+                        speakableText = quotes.map(m => m.replace(/"/g, '')).join(' ');
                     }
-                    
-                    cards.push({ displayText, speakableText, answer });
+                    displayText = question.replace(/"/g, '');
+                }
+
+                // Determine speakable text
+                if (speakOverride) {
+                    speakableText = speakOverride;
+                } else if (!speakableText) {
+                    // Strip grammar (text) from start for speech
+                    let text = displayText;
+                    if (text.match(/^\((?!img:|speak:)[^)]*\)/)) {
+                        text = text.replace(/^\([^)]*\)\s*/, '');
+                    }
+                    speakableText = text;
+                }
+
+                // Allow image-only cards (no text, just image)
+                if (question || images.length > 0) {
+                    cards.push({ displayText: displayText || '', speakableText: speakableText || '', answer: answer || '', images });
                 }
             });
 
             currentIndex = 0;
+
+            // Save to IndexedDB (cumulative, no duplicates)
+            saveCardsToDB(cards, currentSourceFile).catch(e => console.warn('DB save error:', e));
+
             showFlashcardSetup();
         }
 
@@ -1804,16 +3497,14 @@
             modeSelection.style.display = 'none';
             uploadSection.style.display = 'none';
             flashcardSetup.style.display = 'block';
-            setupCardCount.textContent = `${cards.length} Karteikarten geladen`;
+            setupCardCount.textContent = t('cards_loaded', { n: cards.length });
 
-            // Synchronisiere Geschlecht mit den Setup-Buttons
-            if (selectedGender === 'female') {
-                setupGenderFemaleBtn.classList.add('active');
-                setupGenderMaleBtn.classList.remove('active');
-            } else {
-                setupGenderMaleBtn.classList.add('active');
-                setupGenderFemaleBtn.classList.remove('active');
+            // Load SR data and update info if SR mode is selected
+            loadSRData();
+            if (srMode !== 'free') {
+                updateSetupDueInfo();
             }
+
         }
 
         function showFlashcardMode() {
@@ -1821,17 +3512,34 @@
             modeSelection.style.display = 'none';
             uploadSection.style.display = 'none';
             textReaderContainer.classList.remove('visible');
+            document.getElementById('sessionComplete').classList.remove('visible');
             flashcardContainer.classList.add('visible');
-            statsBar.classList.add('visible');
             flashcardControls.classList.add('visible');
             cardList.classList.add('visible');
 
+            // Voice-Section ausblenden während Karteikarten-Session
+            document.getElementById('voiceSection').style.display = 'none';
+
             // UI für Karteikarten-Modus anpassen
-            autoSpeakOption.style.display = 'flex';
             readModeSelector.style.display = 'none';
             voiceControls.style.display = 'none';
             switchToTextBtn.style.display = 'inline-flex';
             switchToCardsBtn.style.display = 'none';
+
+            if (srMode !== 'free') {
+                // SR Mode: hide free-mode controls, show SR stats
+                statsBar.classList.remove('visible');
+                document.getElementById('srStats').classList.add('visible');
+                // Hide shuffle and restart for SR mode
+                shuffleBtn.style.display = 'none';
+                restartBtn.style.display = 'none';
+                updateSRStats();
+            } else {
+                statsBar.classList.add('visible');
+                document.getElementById('srStats').classList.remove('visible');
+                shuffleBtn.style.display = 'flex';
+                restartBtn.style.display = 'flex';
+            }
 
             totalCardsEl.textContent = cards.length;
             renderCard();
@@ -1840,29 +3548,57 @@
 
         function renderCard() {
             const card = cards[currentIndex];
-            const lines = card.displayText.split('\n');
             let grammar = '';
             let mainText = card.displayText;
-            
-            if (lines[0]?.trim().startsWith('(') && lines[0].includes(')')) {
-                grammar = lines[0].trim();
-                mainText = lines.slice(1).join('\n').trim();
+
+            // Extract grammar: (text) at start, but NOT (img:...) or (speak:...)
+            const grammarMatch = mainText.match(/^\((?!img:|speak:)([^)]*)\)\s*/);
+            if (grammarMatch) {
+                grammar = grammarMatch[0].trim();
+                mainText = mainText.substring(grammarMatch[0].length).trim();
             }
-            
+
             grammarRule.textContent = grammar;
             grammarRule.style.display = grammar ? 'block' : 'none';
+
+            // Render images
+            const cardImages = document.getElementById('cardImages');
+            cardImages.innerHTML = '';
+            if (card.images && card.images.length > 0) {
+                card.images.forEach(src => {
+                    const img = document.createElement('img');
+                    img.src = src;
+                    img.alt = '';
+                    img.onerror = function() {
+                        const errDiv = document.createElement('div');
+                        errDiv.className = 'img-error';
+                        errDiv.textContent = t('img_load_error');
+                        this.replaceWith(errDiv);
+                    };
+                    cardImages.appendChild(img);
+                });
+                cardImages.classList.toggle('solo', !mainText);
+            }
+
             questionText.textContent = mainText;
             answerText.textContent = card.answer;
             currentCardEl.textContent = currentIndex + 1;
-            
+
             flashcard.classList.remove('flipped');
-            
+            hideRatingButtons();
+
             sentences = splitIntoSentences(card.speakableText);
             currentSentenceIndex = 0;
-            
-            prevBtn.disabled = currentIndex === 0;
-            nextBtn.disabled = currentIndex === cards.length - 1;
-            
+
+            if (srMode !== 'free') {
+                // In SR mode, disable prev/next
+                prevBtn.disabled = true;
+                nextBtn.disabled = true;
+            } else {
+                prevBtn.disabled = currentIndex === 0;
+                nextBtn.disabled = currentIndex === cards.length - 1;
+            }
+
             document.querySelectorAll('.card-item').forEach((item, i) => {
                 item.classList.toggle('active', i === currentIndex);
             });
@@ -1870,17 +3606,35 @@
 
         function renderCardList() {
             cardListItems.innerHTML = '';
+            const now = Date.now();
             cards.forEach((card, idx) => {
                 const item = document.createElement('div');
                 item.className = 'card-item' + (idx === currentIndex ? ' active' : '');
                 const text = card.speakableText.substring(0, 50) + (card.speakableText.length > 50 ? '...' : '');
+
+                // SR badge
+                let badgeHtml = '';
+                if (srMode !== 'free') {
+                    const cardId = getCardId(card);
+                    const data = srData[cardId];
+                    if (!data || !data.lastReview) {
+                        badgeHtml = '<span class="card-item-badge badge-new">' + t('badge_new') + '</span>';
+                    } else if (data.nextReview <= now) {
+                        badgeHtml = '<span class="card-item-badge badge-due">' + t('badge_due') + '</span>';
+                    } else {
+                        badgeHtml = '<span class="card-item-badge badge-learned">' + formatInterval(Math.max(0, (data.nextReview - now) / 86400000)) + '</span>';
+                    }
+                }
+
                 item.innerHTML = `
                     <span class="card-item-number">${idx + 1}</span>
                     <span class="card-item-text">${text}</span>
-                    <button class="card-item-speak" title="Vorlesen">🔊</button>
+                    ${badgeHtml}
+                    <button class="card-item-speak" title="${t('btn_read_aloud')}">🔊</button>
                 `;
                 item.addEventListener('click', (e) => {
                     if (!e.target.classList.contains('card-item-speak')) {
+                        if (srMode !== 'free') return; // No free navigation in SR mode
                         speechSynthesis.cancel();
                         currentIndex = idx;
                         renderCard();
@@ -1949,6 +3703,34 @@
             speechSynthesis.speak(utterance);
         }
 
+        function speakAnswer(text) {
+            speechSynthesis.cancel();
+            if (!text?.trim()) return;
+
+            const utterance = new SpeechSynthesisUtterance(text);
+            utterance.rate = parseFloat(speedRange.value);
+            utterance.pitch = 1;
+            utterance.lang = 'de-DE';
+
+            utterance.onstart = () => {
+                isSpeaking = true;
+                speakBtn.style.display = 'none';
+                stopBtn.style.display = 'flex';
+            };
+            utterance.onend = () => {
+                isSpeaking = false;
+                speakBtn.style.display = 'flex';
+                stopBtn.style.display = 'none';
+            };
+            utterance.onerror = () => {
+                isSpeaking = false;
+                speakBtn.style.display = 'flex';
+                stopBtn.style.display = 'none';
+            };
+
+            speechSynthesis.speak(utterance);
+        }
+
         function speakFullText() {
             if (!texts[currentIndex]) return;
             speak(texts[currentIndex].body);
@@ -1999,7 +3781,20 @@
         // ============================================
         // EVENT LISTENERS - FLASHCARD MODE
         // ============================================
-        flashcard.addEventListener('click', () => flashcard.classList.toggle('flipped'));
+        flashcard.addEventListener('click', () => {
+            const wasFlipped = flashcard.classList.contains('flipped');
+            flashcard.classList.toggle('flipped');
+            // In SR mode, show rating buttons when flipped to answer side
+            if (srMode !== 'free' && !wasFlipped) {
+                setTimeout(() => showRatingButtons(), 400);
+            } else {
+                hideRatingButtons();
+            }
+            // Speak back side when flipping to answer
+            if (!wasFlipped && speakBackCheckbox.checked && cards.length > 0) {
+                setTimeout(() => speakAnswer(cards[currentIndex].answer), 400);
+            }
+        });
 
         prevBtn.addEventListener('click', () => {
             if (currentIndex > 0) {
@@ -2058,6 +3853,23 @@
             renderCardList();
         });
 
+        document.getElementById('mainMenuBtn').addEventListener('click', () => {
+            speechSynthesis.cancel();
+            recordSession();
+            // Flashcard-Modus ausblenden
+            flashcardContainer.classList.remove('visible');
+            flashcardControls.classList.remove('visible');
+            statsBar.classList.remove('visible');
+            cardList.classList.remove('visible');
+            document.getElementById('srStats').classList.remove('visible');
+            document.getElementById('sessionComplete').classList.remove('visible');
+            hideRatingButtons();
+            // Voice-Section wieder einblenden
+            document.getElementById('voiceSection').style.display = 'flex';
+            // Zurück zum Setup-Screen
+            showFlashcardSetup();
+        });
+
         // ============================================
         // KEYBOARD NAVIGATION
         // ============================================
@@ -2082,12 +3894,19 @@
                         break;
                 }
             } else if (cards.length > 0) {
+                // SR rating shortcuts (1-4)
+                if (srMode !== 'free' && document.getElementById('ratingContainer').classList.contains('visible')) {
+                    if (e.key === '1') { rateCard(1); return; }
+                    if (e.key === '2') { rateCard(2); return; }
+                    if (e.key === '3') { rateCard(3); return; }
+                    if (e.key === '4') { rateCard(4); return; }
+                }
                 switch(e.key) {
                     case 'ArrowLeft':
-                        prevBtn.click();
+                        if (srMode === 'free') prevBtn.click();
                         break;
                     case 'ArrowRight':
-                        nextBtn.click();
+                        if (srMode === 'free') nextBtn.click();
                         break;
                     case ' ':
                         e.preventDefault();
@@ -2101,11 +3920,23 @@
                         stopBtn.click();
                         break;
                     case 'Home':
-                        restartBtn.click();
+                        if (srMode === 'free') restartBtn.click();
                         break;
                 }
             }
         });
+        // ============================================
+        // LANGUAGE SWITCHER
+        // ============================================
+        document.getElementById('langSwitcher').addEventListener('click', (e) => {
+            const btn = e.target.closest('.lang-btn');
+            if (!btn) return;
+            applyLanguage(btn.dataset.lang);
+        });
+
+        // Apply saved language on load
+        applyLanguage(currentLang);
+
     </script>
 </body>
 </html>
