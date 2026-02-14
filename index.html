@@ -2344,9 +2344,10 @@
         // ============================================
         function cleanTextForSpeech(text) {
             if (!text) return '';
-            let cleaned = text.replace(/\//g, ', ');
+            let cleaned = text.replace(/\([^)]*\)/g, '');
+            cleaned = cleaned.replace(/\//g, ', ');
             cleaned = cleaned.normalize('NFD');
-            cleaned = cleaned.replace(/[\u0300-\u036f]/g, '');
+            cleaned = cleaned.replace(/[\u0300\u0301]/g, '');
             cleaned = cleaned.normalize('NFC');
             const accentedMap = {
                 'а́': 'а', 'а̀': 'а', 'е́': 'е', 'ѐ': 'е',
@@ -3088,6 +3089,8 @@
                     return;
                 }
                 currentIndex = reviewQueue[0];
+            } else {
+                currentIndex = 0;
             }
             sessionStartTime = Date.now();
             showFlashcardMode();
