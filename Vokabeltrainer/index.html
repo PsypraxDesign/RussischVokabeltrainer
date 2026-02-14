@@ -620,7 +620,7 @@
         .flashcard {
             position: relative;
             width: 100%;
-            min-height: 280px;
+            min-height: 420px;
             cursor: pointer;
             transform-style: preserve-3d;
             transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
@@ -633,7 +633,7 @@
         .flashcard-face {
             position: absolute;
             width: 100%;
-            min-height: 280px;
+            min-height: 420px;
             backface-visibility: hidden;
             border-radius: 20px;
             padding: 40px;
@@ -692,6 +692,44 @@
 
         .card-text-de {
             color: var(--success);
+        }
+
+        .card-images {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 12px;
+            margin-bottom: 16px;
+        }
+
+        .card-images:empty {
+            display: none;
+        }
+
+        .card-images img {
+            max-width: 100%;
+            max-height: 200px;
+            border-radius: 12px;
+            object-fit: contain;
+            border: 1px solid var(--border);
+            background: rgba(255, 255, 255, 0.05);
+        }
+
+        .card-images.solo img {
+            max-height: 340px;
+        }
+
+        .card-images .img-error {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 160px;
+            height: 120px;
+            border-radius: 12px;
+            border: 1px dashed var(--text-muted);
+            color: var(--text-muted);
+            font-size: 0.85rem;
+            background: rgba(255, 255, 255, 0.03);
         }
 
         .flip-hint {
@@ -1003,6 +1041,16 @@
         .btn-large {
             padding: 12px 28px;
             font-size: 1rem;
+            justify-content: center;
+            min-width: 240px;
+        }
+
+        .setup-actions {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 10px;
+            margin-top: 20px;
         }
 
         /* ============================================
@@ -1486,8 +1534,10 @@
         /* Responsive */
         @media (max-width: 600px) {
             h1 { font-size: 2rem; }
-            .flashcard-face { padding: 28px 20px; min-height: 240px; }
+            .flashcard-face { padding: 28px 20px; min-height: 340px; }
             .card-text { font-size: 1.4rem; }
+            .card-images img { max-height: 150px; }
+            .card-images.solo img { max-height: 200px; }
             .text-reader-content { font-size: 1.1rem; max-height: 350px; }
             .text-paragraph { font-size: 1.15rem; }
             .controls { gap: 10px; }
@@ -1654,12 +1704,17 @@
                     <button class="setup-reset-btn" id="setupResetBtn" style="display: none;" data-i18n="reset_progress">Lernfortschritt zurücksetzen</button>
                 </div>
 
-                <button class="btn btn-primary btn-large" id="startFlashcardsBtn">
-                    <span class="btn-icon">▶</span> <span data-i18n="start_flashcards">Karteikarten starten</span>
-                </button>
-                <button class="btn btn-secondary btn-large" id="showStatsBtn" style="margin-top: 10px;">
-                    <span class="btn-icon">&#128202;</span> <span data-i18n="statistics">Statistik</span>
-                </button>
+                <div class="setup-actions">
+                    <button class="btn btn-primary btn-large" id="startFlashcardsBtn">
+                        <span class="btn-icon">▶</span> <span data-i18n="start_flashcards">Karteikarten starten</span>
+                    </button>
+                    <button class="btn btn-secondary btn-large" id="showStatsBtn">
+                        <span class="btn-icon">&#128202;</span> <span data-i18n="statistics">Statistik</span>
+                    </button>
+                    <button class="btn btn-secondary btn-large" id="exportVocabBtn">
+                        <span class="btn-icon">&#128203;</span> <span data-i18n="export_vocab">Export (Excel)</span>
+                    </button>
+                </div>
             </div>
         </div>
 
@@ -1733,6 +1788,7 @@
                     <span class="card-label" data-i18n="lang_russian">Russisch</span>
                     <span class="speaking-indicator" id="speakingIndicator">🔊</span>
                     <div class="grammar-rule" id="grammarRule"></div>
+                    <div class="card-images" id="cardImages"></div>
                     <div class="card-text card-text-ru" id="questionText"></div>
                     <span class="flip-hint" data-i18n="flip_hint">Klicken zum Umdrehen</span>
                 </div>
@@ -1860,6 +1916,8 @@
                 reset_confirm: 'Lernfortschritt für alle Karten zurücksetzen?',
                 start_flashcards: 'Karteikarten starten',
                 statistics: 'Statistik',
+                export_vocab: 'Export (Excel)',
+                export_empty: 'Keine Vokabeln gespeichert',
                 stats_title: 'Lernstatistik',
                 close: 'Schließen',
                 history: 'Verlauf',
@@ -1876,6 +1934,7 @@
                 lang_russian: 'Russisch',
                 lang_german: 'Deutsch',
                 flip_hint: 'Klicken zum Umdrehen',
+                img_load_error: 'Bild nicht geladen',
                 rating_again: 'Nochmal',
                 rating_hard: 'Schwer',
                 rating_good: 'Gut',
@@ -1969,6 +2028,8 @@
                 reset_confirm: 'Reset learning progress for all cards?',
                 start_flashcards: 'Start flashcards',
                 statistics: 'Statistics',
+                export_vocab: 'Export (Excel)',
+                export_empty: 'No vocabulary saved',
                 stats_title: 'Learning Statistics',
                 close: 'Close',
                 history: 'History',
@@ -1985,6 +2046,7 @@
                 lang_russian: 'Russian',
                 lang_german: 'German',
                 flip_hint: 'Click to flip',
+                img_load_error: 'Image not loaded',
                 rating_again: 'Again',
                 rating_hard: 'Hard',
                 rating_good: 'Good',
@@ -2078,6 +2140,8 @@
                 reset_confirm: 'Сбросить прогресс обучения для всех карточек?',
                 start_flashcards: 'Начать карточки',
                 statistics: 'Статистика',
+                export_vocab: 'Экспорт (Excel)',
+                export_empty: 'Нет сохранённых слов',
                 stats_title: 'Статистика обучения',
                 close: 'Закрыть',
                 history: 'История',
@@ -2094,6 +2158,7 @@
                 lang_russian: 'Русский',
                 lang_german: 'Немецкий',
                 flip_hint: 'Нажмите, чтобы перевернуть',
+                img_load_error: 'Изображение не загружено',
                 rating_again: 'Снова',
                 rating_hard: 'Трудно',
                 rating_good: 'Хорошо',
@@ -2190,6 +2255,7 @@
         let voices = [];
         let selectedVoice = null;
         let isClassicFormat = false;
+        let isTabFormat = false;
 
         // Spaced Repetition State
         let srMode = 'free'; // 'free', 'sm2', 'fsrs'
@@ -2278,9 +2344,10 @@
         // ============================================
         function cleanTextForSpeech(text) {
             if (!text) return '';
-            let cleaned = text.replace(/\//g, ', ');
+            let cleaned = text.replace(/\([^)]*\)/g, '');
+            cleaned = cleaned.replace(/\//g, ', ');
             cleaned = cleaned.normalize('NFD');
-            cleaned = cleaned.replace(/[\u0300-\u036f]/g, '');
+            cleaned = cleaned.replace(/[\u0300\u0301]/g, '');
             cleaned = cleaned.normalize('NFC');
             const accentedMap = {
                 'а́': 'а', 'а̀': 'а', 'е́': 'е', 'ѐ': 'е',
@@ -2448,6 +2515,93 @@
             const d = fsrsNextDifficulty(data.difficulty, grade);
             const s = fsrsNextStability(d, data.stability, r, grade);
             return Math.max(1, Math.round(s));
+        }
+
+        // --- Vocabulary Database (IndexedDB) ---
+        let currentSourceFile = '';
+
+        function openVocabDB() {
+            return new Promise((resolve, reject) => {
+                const req = indexedDB.open('vokabeltrainer', 1);
+                req.onupgradeneeded = (e) => {
+                    const db = e.target.result;
+                    if (!db.objectStoreNames.contains('vocabulary')) {
+                        const store = db.createObjectStore('vocabulary', { keyPath: 'id' });
+                        store.createIndex('source', 'source', { unique: false });
+                        store.createIndex('topic', 'topic', { unique: false });
+                    }
+                };
+                req.onsuccess = (e) => resolve(e.target.result);
+                req.onerror = (e) => reject(e.target.error);
+            });
+        }
+
+        async function saveCardsToDB(cardsList, source) {
+            const db = await openVocabDB();
+            const tx = db.transaction('vocabulary', 'readwrite');
+            const store = tx.objectStore('vocabulary');
+            for (const card of cardsList) {
+                const id = getCardId(card);
+                const existing = await new Promise(r => { const req = store.get(id); req.onsuccess = () => r(req.result); req.onerror = () => r(null); });
+                let front = card.displayText;
+                let grammar = '';
+                const gm = front.match(/^\((?!img:|speak:)([^)]*)\)\s*/);
+                if (gm) {
+                    grammar = gm[1];
+                    front = front.substring(gm[0].length);
+                }
+                store.put({
+                    id,
+                    front: front || card.displayText,
+                    back: card.answer,
+                    grammar,
+                    images: card.images || [],
+                    tags: existing?.tags || [],
+                    topic: existing?.topic || '',
+                    category: existing?.category || '',
+                    source: source || existing?.source || '',
+                    added: existing?.added || new Date().toISOString()
+                });
+            }
+            return new Promise((resolve, reject) => { tx.oncomplete = resolve; tx.onerror = reject; });
+        }
+
+        async function getAllCardsFromDB() {
+            const db = await openVocabDB();
+            return new Promise((resolve, reject) => {
+                const tx = db.transaction('vocabulary', 'readonly');
+                const req = tx.objectStore('vocabulary').getAll();
+                req.onsuccess = () => resolve(req.result);
+                req.onerror = (e) => reject(e.target.error);
+            });
+        }
+
+        async function exportVocabularyTSV() {
+            const allCards = await getAllCardsFromDB();
+            if (allCards.length === 0) {
+                alert(t('export_empty'));
+                return;
+            }
+            const header = 'Russisch;Deutsch;Thema;Kategorie;Grammatik;Quelle';
+            const rows = allCards.map(c => {
+                const fields = [c.front, c.back, c.topic, c.category, c.grammar, c.source];
+                return fields.map(f => {
+                    const clean = (f || '').replace(/\n/g, ' ');
+                    if (clean.includes(';') || clean.includes('"')) {
+                        return '"' + clean.replace(/"/g, '""') + '"';
+                    }
+                    return clean;
+                }).join(';');
+            });
+            const csv = '\uFEFF' + header + '\n' + rows.join('\n');
+            const blob = new Blob([csv], { type: 'text/csv;charset=utf-8' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            const date = new Date().toISOString().slice(0, 10);
+            a.href = url;
+            a.download = `vokabeln_${date}.csv`;
+            a.click();
+            URL.revokeObjectURL(url);
         }
 
         // --- Interval Formatting ---
@@ -2920,6 +3074,11 @@
             document.getElementById('statsPanel').classList.remove('visible');
         });
 
+        // Export Button
+        document.getElementById('exportVocabBtn').addEventListener('click', () => {
+            exportVocabularyTSV();
+        });
+
         // Start Flashcards Button
         startFlashcardsBtn.addEventListener('click', () => {
             if (srMode !== 'free') {
@@ -2930,6 +3089,8 @@
                     return;
                 }
                 currentIndex = reviewQueue[0];
+            } else {
+                currentIndex = 0;
             }
             sessionStartTime = Date.now();
             showFlashcardMode();
@@ -3050,6 +3211,7 @@
         });
 
         function processFile(file) {
+            currentSourceFile = file.name;
             const reader = new FileReader();
             reader.onload = (e) => parseContent(e.target.result);
             reader.readAsText(file);
@@ -3057,6 +3219,8 @@
 
         function detectFormat(content) {
             const lines = content.split('\n').filter(line => line.trim());
+            const linesWithTab = lines.filter(line => line.includes('\t')).length;
+            if (linesWithTab / lines.length > 0.5) return 'tab';
             let linesWithComma = lines.filter(line => line.includes(',')).length;
             if (linesWithComma / lines.length < 0.5) return 'text';
             if (content.includes('\\n') || content.includes('"')) return 'advanced';
@@ -3067,10 +3231,11 @@
             // Verwende den vom Benutzer gewählten Modus
             isTextMode = selectedMode === 'texts';
 
-            // Für Karteikarten: Erkenne das Format (klassisch vs. erweitert)
+            // Für Karteikarten: Erkenne das Format
             if (!isTextMode) {
                 const format = detectFormat(content);
                 isClassicFormat = format === 'classic';
+                isTabFormat = format === 'tab';
             }
 
             // Kein Format-Indicator mehr anzeigen
@@ -3142,6 +3307,9 @@
             statsBar.classList.remove('visible');
             flashcardControls.classList.remove('visible');
             cardList.classList.remove('visible');
+
+            // Voice-Section wieder einblenden für Text-Modus
+            document.getElementById('voiceSection').style.display = 'flex';
 
             // UI für Text-Modus anpassen
             autoSpeakOption.style.display = 'none';
@@ -3252,33 +3420,79 @@
         function parseCards(content) {
             const lines = content.split('\n').filter(line => line.trim());
             cards = [];
-            
+
             lines.forEach(line => {
-                const lastComma = line.lastIndexOf(',');
-                if (lastComma === -1) return;
-                
-                let question = line.substring(0, lastComma).trim();
-                const answer = line.substring(lastComma + 1).trim();
-                
-                if (question && answer) {
-                    let displayText = question;
-                    let speakableText = question;
-                    
-                    if (!isClassicFormat) {
-                        question = question.replace(/\\n/g, '\n');
-                        displayText = question;
-                        const quotes = question.match(/"([^"]+)"/g);
-                        if (quotes) {
-                            speakableText = quotes.map(m => m.replace(/"/g, '')).join(' ');
-                        }
-                        displayText = question.replace(/"/g, '');
+                let question, answer;
+
+                // Split: tab-separated or last-comma
+                if (isTabFormat) {
+                    const tabIdx = line.indexOf('\t');
+                    if (tabIdx === -1) return;
+                    question = line.substring(0, tabIdx).trim();
+                    answer = line.substring(tabIdx + 1).trim();
+                } else {
+                    const lastComma = line.lastIndexOf(',');
+                    if (lastComma === -1) return;
+                    question = line.substring(0, lastComma).trim();
+                    answer = line.substring(lastComma + 1).trim();
+                }
+
+                if (!question && !answer) return;
+
+                // Extract (img:...) tags — also support legacy [img:...]
+                const images = [];
+                const imgRegex = /(?:\(img:([^)]+)\)|\[img:([^\]]+)\])/g;
+                let imgMatch;
+                while ((imgMatch = imgRegex.exec(question)) !== null) {
+                    images.push((imgMatch[1] || imgMatch[2]).trim());
+                }
+                question = question.replace(imgRegex, '').trim();
+
+                // Extract (speak:...) tag
+                let speakOverride = null;
+                const speakMatch = question.match(/\(speak:([^)]+)\)/);
+                if (speakMatch) {
+                    speakOverride = speakMatch[1].trim();
+                    question = question.replace(speakMatch[0], '').trim();
+                }
+
+                let displayText = question;
+                let speakableText;
+
+                if (!isClassicFormat && !isTabFormat) {
+                    // Legacy advanced format: \n and "quotes"
+                    question = question.replace(/\\n/g, '\n');
+                    displayText = question;
+                    const quotes = question.match(/"([^"]+)"/g);
+                    if (quotes) {
+                        speakableText = quotes.map(m => m.replace(/"/g, '')).join(' ');
                     }
-                    
-                    cards.push({ displayText, speakableText, answer });
+                    displayText = question.replace(/"/g, '');
+                }
+
+                // Determine speakable text
+                if (speakOverride) {
+                    speakableText = speakOverride;
+                } else if (!speakableText) {
+                    // Strip grammar (text) from start for speech
+                    let text = displayText;
+                    if (text.match(/^\((?!img:|speak:)[^)]*\)/)) {
+                        text = text.replace(/^\([^)]*\)\s*/, '');
+                    }
+                    speakableText = text;
+                }
+
+                // Allow image-only cards (no text, just image)
+                if (question || images.length > 0) {
+                    cards.push({ displayText: displayText || '', speakableText: speakableText || '', answer: answer || '', images });
                 }
             });
 
             currentIndex = 0;
+
+            // Save to IndexedDB (cumulative, no duplicates)
+            saveCardsToDB(cards, currentSourceFile).catch(e => console.warn('DB save error:', e));
+
             showFlashcardSetup();
         }
 
@@ -3293,6 +3507,7 @@
             if (srMode !== 'free') {
                 updateSetupDueInfo();
             }
+
         }
 
         function showFlashcardMode() {
@@ -3305,9 +3520,10 @@
             flashcardControls.classList.add('visible');
             cardList.classList.add('visible');
 
+            // Voice-Section ausblenden während Karteikarten-Session
+            document.getElementById('voiceSection').style.display = 'none';
+
             // UI für Karteikarten-Modus anpassen
-            autoSpeakOption.style.display = 'flex';
-            document.getElementById('speakBackOption').style.display = 'flex';
             readModeSelector.style.display = 'none';
             voiceControls.style.display = 'none';
             switchToTextBtn.style.display = 'inline-flex';
@@ -3335,17 +3551,38 @@
 
         function renderCard() {
             const card = cards[currentIndex];
-            const lines = card.displayText.split('\n');
             let grammar = '';
             let mainText = card.displayText;
 
-            if (lines[0]?.trim().startsWith('(') && lines[0].includes(')')) {
-                grammar = lines[0].trim();
-                mainText = lines.slice(1).join('\n').trim();
+            // Extract grammar: (text) at start, but NOT (img:...) or (speak:...)
+            const grammarMatch = mainText.match(/^\((?!img:|speak:)([^)]*)\)\s*/);
+            if (grammarMatch) {
+                grammar = grammarMatch[0].trim();
+                mainText = mainText.substring(grammarMatch[0].length).trim();
             }
 
             grammarRule.textContent = grammar;
             grammarRule.style.display = grammar ? 'block' : 'none';
+
+            // Render images
+            const cardImages = document.getElementById('cardImages');
+            cardImages.innerHTML = '';
+            if (card.images && card.images.length > 0) {
+                card.images.forEach(src => {
+                    const img = document.createElement('img');
+                    img.src = src;
+                    img.alt = '';
+                    img.onerror = function() {
+                        const errDiv = document.createElement('div');
+                        errDiv.className = 'img-error';
+                        errDiv.textContent = t('img_load_error');
+                        this.replaceWith(errDiv);
+                    };
+                    cardImages.appendChild(img);
+                });
+                cardImages.classList.toggle('solo', !mainText);
+            }
+
             questionText.textContent = mainText;
             answerText.textContent = card.answer;
             currentCardEl.textContent = currentIndex + 1;
@@ -3630,6 +3867,8 @@
             document.getElementById('srStats').classList.remove('visible');
             document.getElementById('sessionComplete').classList.remove('visible');
             hideRatingButtons();
+            // Voice-Section wieder einblenden
+            document.getElementById('voiceSection').style.display = 'flex';
             // Zurück zum Setup-Screen
             showFlashcardSetup();
         });
@@ -3700,6 +3939,7 @@
 
         // Apply saved language on load
         applyLanguage(currentLang);
+
     </script>
 </body>
 </html>
