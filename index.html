@@ -732,6 +732,34 @@
             background: rgba(255, 255, 255, 0.03);
         }
 
+        .card-image-wrapper {
+            position: relative;
+            display: inline-block;
+        }
+
+        .card-image-delete {
+            position: absolute;
+            top: 4px;
+            right: 4px;
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            background: rgba(220, 50, 50, 0.85);
+            color: #fff;
+            border: none;
+            font-size: 14px;
+            line-height: 24px;
+            text-align: center;
+            cursor: pointer;
+            opacity: 0;
+            transition: opacity 0.2s ease;
+            padding: 0;
+        }
+
+        .card-image-wrapper:hover .card-image-delete {
+            opacity: 1;
+        }
+
         .flip-hint {
             position: absolute;
             bottom: 20px;
@@ -979,6 +1007,12 @@
             white-space: nowrap;
             overflow: hidden;
             text-overflow: ellipsis;
+        }
+
+        .card-item-img {
+            font-size: 0.85rem;
+            opacity: 0.6;
+            flex-shrink: 0;
         }
 
         .card-item-speak {
@@ -1760,6 +1794,10 @@
                 <button class="btn btn-secondary" id="nextBtn">
                     <span data-i18n="btn_next">Weiter</span> <span class="btn-icon">→</span>
                 </button>
+                <button class="btn btn-secondary" id="addImageBtn">
+                    <span class="btn-icon">📷</span> <span data-i18n="btn_add_image">Bild</span>
+                </button>
+                <input type="file" id="addImageInput" accept="image/*" style="display:none;">
             </div>
             <div class="controls-row" id="sentenceControls" style="display: none;">
                 <button class="btn btn-secondary" id="prevSentenceBtn">
@@ -1928,6 +1966,7 @@
                 btn_next: 'Weiter',
                 btn_prev_sentence: 'Voriger Satz',
                 btn_next_sentence: 'Nächster Satz',
+                btn_add_image: 'Bild',
                 btn_restart_cards: 'Erneut durcharbeiten',
                 btn_shuffle: 'Mischen',
                 btn_main_menu: 'Hauptmenü',
@@ -2040,6 +2079,7 @@
                 btn_next: 'Next',
                 btn_prev_sentence: 'Previous sentence',
                 btn_next_sentence: 'Next sentence',
+                btn_add_image: 'Image',
                 btn_restart_cards: 'Start over',
                 btn_shuffle: 'Shuffle',
                 btn_main_menu: 'Main menu',
@@ -2152,6 +2192,7 @@
                 btn_next: 'Далее',
                 btn_prev_sentence: 'Пред. предложение',
                 btn_next_sentence: 'След. предложение',
+                btn_add_image: 'Фото',
                 btn_restart_cards: 'Пройти заново',
                 btn_shuffle: 'Перемешать',
                 btn_main_menu: 'Главное меню',
@@ -2335,6 +2376,8 @@
         const nextSentenceBtn = document.getElementById('nextSentenceBtn');
         const restartBtn = document.getElementById('restartBtn');
         const shuffleBtn = document.getElementById('shuffleBtn');
+        const addImageBtn = document.getElementById('addImageBtn');
+        const addImageInput = document.getElementById('addImageInput');
         const cardList = document.getElementById('cardList');
         const cardListItems = document.getElementById('cardListItems');
         const speakingIndicator = document.getElementById('speakingIndicator');
@@ -3568,7 +3611,9 @@
             const cardImages = document.getElementById('cardImages');
             cardImages.innerHTML = '';
             if (card.images && card.images.length > 0) {
-                card.images.forEach(src => {
+                card.images.forEach((src, imgIdx) => {
+                    const wrapper = document.createElement('div');
+                    wrapper.className = 'card-image-wrapper';
                     const img = document.createElement('img');
                     img.src = src;
                     img.alt = '';
@@ -3576,9 +3621,20 @@
                         const errDiv = document.createElement('div');
                         errDiv.className = 'img-error';
                         errDiv.textContent = t('img_load_error');
-                        this.replaceWith(errDiv);
+                        wrapper.replaceChild(errDiv, this);
                     };
-                    cardImages.appendChild(img);
+                    const delBtn = document.createElement('button');
+                    delBtn.className = 'card-image-delete';
+                    delBtn.textContent = '✕';
+                    delBtn.addEventListener('click', (e) => {
+                        e.stopPropagation();
+                        cards[currentIndex].images.splice(imgIdx, 1);
+                        renderCard();
+                        renderCardList();
+                    });
+                    wrapper.appendChild(img);
+                    wrapper.appendChild(delBtn);
+                    cardImages.appendChild(wrapper);
                 });
                 cardImages.classList.toggle('solo', !mainText);
             }
@@ -3632,6 +3688,7 @@
                 item.innerHTML = `
                     <span class="card-item-number">${idx + 1}</span>
                     <span class="card-item-text">${text}</span>
+                    ${card.images && card.images.length > 0 ? '<span class="card-item-img" title="🖼">🖼</span>' : ''}
                     ${badgeHtml}
                     <button class="card-item-speak" title="${t('btn_read_aloud')}">🔊</button>
                 `;
@@ -3856,6 +3913,26 @@
             renderCardList();
         });
 
+        addImageBtn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            addImageInput.click();
+        });
+
+        addImageInput.addEventListener('change', (e) => {
+            const file = e.target.files[0];
+            if (!file) return;
+            const reader = new FileReader();
+            reader.onload = (ev) => {
+                const card = cards[currentIndex];
+                if (!card.images) card.images = [];
+                card.images.push(ev.target.result);
+                renderCard();
+                renderCardList();
+            };
+            reader.readAsDataURL(file);
+            addImageInput.value = '';
+        });
+
         document.getElementById('mainMenuBtn').addEventListener('click', () => {
             speechSynthesis.cancel();
             recordSession();
@@ -3864,13 +3941,18 @@
             flashcardControls.classList.remove('visible');
             statsBar.classList.remove('visible');
             cardList.classList.remove('visible');
+            flashcardSetup.style.display = 'none';
             document.getElementById('srStats').classList.remove('visible');
             document.getElementById('sessionComplete').classList.remove('visible');
             hideRatingButtons();
             // Voice-Section wieder einblenden
             document.getElementById('voiceSection').style.display = 'flex';
-            // Zurück zum Setup-Screen
-            showFlashcardSetup();
+            // State zurücksetzen, damit neue Datei geladen werden kann
+            cards = [];
+            texts = [];
+            currentIndex = 0;
+            // Zurück zur Modusauswahl
+            modeSelection.style.display = 'block';
         });
 
         // ============================================
