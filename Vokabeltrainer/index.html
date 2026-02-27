@@ -489,6 +489,24 @@
             color: var(--text-muted);
         }
 
+        /* Word-level highlighting */
+        .word {
+            transition: background 0.15s ease, color 0.3s ease;
+            border-radius: 3px;
+            padding: 1px 0;
+        }
+
+        .word.current-word {
+            background: rgba(232, 179, 65, 0.5);
+            padding: 1px 3px;
+            margin: 0 -3px;
+            border-radius: 3px;
+        }
+
+        .word.spoken-word {
+            color: var(--text-muted);
+        }
+
         /* Text navigation */
         .text-nav {
             display: flex;
@@ -730,6 +748,34 @@
             color: var(--text-muted);
             font-size: 0.85rem;
             background: rgba(255, 255, 255, 0.03);
+        }
+
+        .card-image-wrapper {
+            position: relative;
+            display: inline-block;
+        }
+
+        .card-image-delete {
+            position: absolute;
+            top: 4px;
+            right: 4px;
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            background: rgba(220, 50, 50, 0.85);
+            color: #fff;
+            border: none;
+            font-size: 14px;
+            line-height: 24px;
+            text-align: center;
+            cursor: pointer;
+            opacity: 0;
+            transition: opacity 0.2s ease;
+            padding: 0;
+        }
+
+        .card-image-wrapper:hover .card-image-delete {
+            opacity: 1;
         }
 
         .flip-hint {
@@ -979,6 +1025,12 @@
             white-space: nowrap;
             overflow: hidden;
             text-overflow: ellipsis;
+        }
+
+        .card-item-img {
+            font-size: 0.85rem;
+            opacity: 0.6;
+            flex-shrink: 0;
         }
 
         .card-item-speak {
@@ -1659,6 +1711,15 @@
                     </div>
                 </div>
                 <div class="text-reader-content" id="textReaderContent"></div>
+                <div class="text-nav" id="textSentenceNav" style="display: none;">
+                    <button class="btn btn-secondary btn-sm" id="textPrevSentenceBtn">
+                        <span class="btn-icon">⏮</span> <span data-i18n="btn_prev_sentence">Voriger Satz</span>
+                    </button>
+                    <span class="text-nav-info" id="textSentenceProgress"></span>
+                    <button class="btn btn-secondary btn-sm" id="textNextSentenceBtn">
+                        <span data-i18n="btn_next_sentence">Nächster Satz</span> <span class="btn-icon">⏭</span>
+                    </button>
+                </div>
             </div>
 
             <!-- Text List (nur bei mehreren Texten) -->
@@ -1760,6 +1821,10 @@
                 <button class="btn btn-secondary" id="nextBtn">
                     <span data-i18n="btn_next">Weiter</span> <span class="btn-icon">→</span>
                 </button>
+                <button class="btn btn-secondary" id="addImageBtn">
+                    <span class="btn-icon">📷</span> <span data-i18n="btn_add_image">Bild</span>
+                </button>
+                <input type="file" id="addImageInput" accept="image/*" style="display:none;">
             </div>
             <div class="controls-row" id="sentenceControls" style="display: none;">
                 <button class="btn btn-secondary" id="prevSentenceBtn">
@@ -1928,6 +1993,7 @@
                 btn_next: 'Weiter',
                 btn_prev_sentence: 'Voriger Satz',
                 btn_next_sentence: 'Nächster Satz',
+                btn_add_image: 'Bild',
                 btn_restart_cards: 'Erneut durcharbeiten',
                 btn_shuffle: 'Mischen',
                 btn_main_menu: 'Hauptmenü',
@@ -2040,6 +2106,7 @@
                 btn_next: 'Next',
                 btn_prev_sentence: 'Previous sentence',
                 btn_next_sentence: 'Next sentence',
+                btn_add_image: 'Image',
                 btn_restart_cards: 'Start over',
                 btn_shuffle: 'Shuffle',
                 btn_main_menu: 'Main menu',
@@ -2152,6 +2219,7 @@
                 btn_next: 'Далее',
                 btn_prev_sentence: 'Пред. предложение',
                 btn_next_sentence: 'След. предложение',
+                btn_add_image: 'Фото',
                 btn_restart_cards: 'Пройти заново',
                 btn_shuffle: 'Перемешать',
                 btn_main_menu: 'Главное меню',
@@ -2252,6 +2320,8 @@
         let readMode = 'all';
         let isSpeaking = false;
         let stopRequested = false;
+        let currentWordIndex = -1;
+        let wordBoundarySupported = null; // null=unknown, true/false after first test
         let voices = [];
         let selectedVoice = null;
         let isClassicFormat = false;
@@ -2309,6 +2379,10 @@
         const textSpeakingIndicator = document.getElementById('textSpeakingIndicator');
         const textList = document.getElementById('textList');
         const textListItems = document.getElementById('textListItems');
+        const textSentenceNav = document.getElementById('textSentenceNav');
+        const textPrevSentenceBtn = document.getElementById('textPrevSentenceBtn');
+        const textNextSentenceBtn = document.getElementById('textNextSentenceBtn');
+        const textSentenceProgress = document.getElementById('textSentenceProgress');
 
         // Flashcard Setup Elements
         const flashcardSetup = document.getElementById('flashcardSetup');
@@ -2335,6 +2409,8 @@
         const nextSentenceBtn = document.getElementById('nextSentenceBtn');
         const restartBtn = document.getElementById('restartBtn');
         const shuffleBtn = document.getElementById('shuffleBtn');
+        const addImageBtn = document.getElementById('addImageBtn');
+        const addImageInput = document.getElementById('addImageInput');
         const cardList = document.getElementById('cardList');
         const cardListItems = document.getElementById('cardListItems');
         const speakingIndicator = document.getElementById('speakingIndicator');
@@ -2371,6 +2447,26 @@
         function splitIntoSentences(text) {
             const parts = text.split(/(?<=[.!?])\s+/);
             return parts.filter(s => s.trim().length > 0);
+        }
+
+        function splitIntoWords(sentence) {
+            const tokens = [];
+            const regex = /(\S+)|(\s+)/g;
+            let match;
+            let wordIdx = 0;
+            while ((match = regex.exec(sentence)) !== null) {
+                if (match[1]) {
+                    tokens.push({ text: match[1], isSpace: false, wordIdx: wordIdx++ });
+                } else {
+                    tokens.push({ text: match[2], isSpace: true });
+                }
+            }
+            return tokens;
+        }
+
+        function getCleanedWordCount(sentence) {
+            const cleaned = cleanTextForSpeech(sentence);
+            return cleaned.split(/\s+/).filter(w => w.length > 0).length;
         }
 
         // ============================================
@@ -2519,16 +2615,40 @@
 
         // --- Vocabulary Database (IndexedDB) ---
         let currentSourceFile = '';
+        let lastDirectoryHandle = null;
+
+        async function saveLastDirectory(dirHandle) {
+            try {
+                const db = await openVocabDB();
+                const tx = db.transaction('settings', 'readwrite');
+                tx.objectStore('settings').put({ key: 'lastDirectory', handle: dirHandle });
+            } catch (e) { /* ignore */ }
+        }
+
+        async function loadLastDirectory() {
+            try {
+                const db = await openVocabDB();
+                const tx = db.transaction('settings', 'readonly');
+                const get = tx.objectStore('settings').get('lastDirectory');
+                return new Promise((resolve) => {
+                    get.onsuccess = () => resolve(get.result?.handle || null);
+                    get.onerror = () => resolve(null);
+                });
+            } catch (e) { return null; }
+        }
 
         function openVocabDB() {
             return new Promise((resolve, reject) => {
-                const req = indexedDB.open('vokabeltrainer', 1);
+                const req = indexedDB.open('vokabeltrainer', 2);
                 req.onupgradeneeded = (e) => {
                     const db = e.target.result;
                     if (!db.objectStoreNames.contains('vocabulary')) {
                         const store = db.createObjectStore('vocabulary', { keyPath: 'id' });
                         store.createIndex('source', 'source', { unique: false });
                         store.createIndex('topic', 'topic', { unique: false });
+                    }
+                    if (!db.objectStoreNames.contains('settings')) {
+                        db.createObjectStore('settings', { keyPath: 'key' });
                     }
                 };
                 req.onsuccess = (e) => resolve(e.target.result);
@@ -3110,8 +3230,8 @@
             readMode = 'all';
             readAllBtn.classList.add('active');
             readSentenceBtn.classList.remove('active');
-            textSentenceControls.style.display = 'none';
             sentenceControls.style.display = 'none';
+            textSentenceNav.style.display = 'none';
             if (isTextMode) renderTextContent();
         });
 
@@ -3119,8 +3239,8 @@
             readMode = 'sentence';
             readSentenceBtn.classList.add('active');
             readAllBtn.classList.remove('active');
-            textSentenceControls.style.display = 'flex';
             sentenceControls.style.display = 'flex';
+            textSentenceNav.style.display = 'flex';
             if (isTextMode) renderTextContent();
         });
 
@@ -3193,8 +3313,28 @@
         // ============================================
         // FILE UPLOAD
         // ============================================
+        async function openFileWithPicker() {
+            if (!window.showOpenFilePicker) {
+                fileInput.click();
+                return;
+            }
+            try {
+                const startIn = lastDirectoryHandle || undefined;
+                const [handle] = await window.showOpenFilePicker({
+                    types: [{ description: 'Text', accept: { 'text/plain': ['.txt', '.csv'] } }],
+                    startIn
+                });
+                const file = await handle.getFile();
+                lastDirectoryHandle = handle;
+                saveLastDirectory(handle);
+                processFile(file);
+            } catch (e) {
+                if (e.name !== 'AbortError') console.error(e);
+            }
+        }
+
         uploadSection.addEventListener('click', (e) => {
-            if (e.target !== backToModeBtn) fileInput.click();
+            if (e.target !== backToModeBtn) openFileWithPicker();
         });
         uploadSection.addEventListener('dragover', (e) => {
             e.preventDefault();
@@ -3209,6 +3349,9 @@
         fileInput.addEventListener('change', (e) => {
             if (e.target.files[0]) processFile(e.target.files[0]);
         });
+
+        // Gespeichertes Verzeichnis beim Start laden
+        loadLastDirectory().then(handle => { if (handle) lastDirectoryHandle = handle; });
 
         function processFile(file) {
             currentSourceFile = file.name;
@@ -3319,6 +3462,9 @@
             switchToTextBtn.style.display = 'none';
             switchToCardsBtn.style.display = 'inline-flex';
 
+            // Satz-Navigation ein-/ausblenden je nach Modus
+            textSentenceNav.style.display = readMode === 'sentence' ? 'flex' : 'none';
+
             renderTextContent();
 
             // Text-Liste nur bei mehreren Texten anzeigen
@@ -3344,7 +3490,13 @@
                     cls += ' clickable';
                     if (idx === currentSentenceIndex) cls += ' current';
                 }
-                html += `<span class="${cls}" data-idx="${idx}">${sentence}</span> `;
+                // Wörter in Spans wrappen für Wort-Highlighting
+                const words = splitIntoWords(sentence);
+                const wordSpans = words.map(w => {
+                    if (w.isSpace) return w.text;
+                    return `<span class="word" data-sentence-idx="${idx}" data-word-idx="${w.wordIdx}">${w.text}</span>`;
+                }).join('');
+                html += `<span class="${cls}" data-idx="${idx}">${wordSpans}</span> `;
             });
             textReaderContent.innerHTML = `<div class="text-paragraph">${html}</div>`;
 
@@ -3409,9 +3561,48 @@
                 el.classList.remove('current');
                 if (idx === currentSentenceIndex) {
                     el.classList.add('current');
+                    scrollToElement(el);
                 }
             });
             textReaderProgress.textContent = t('sentence_progress', { current: currentSentenceIndex + 1, total: sentences.length });
+            if (textSentenceNav.style.display !== 'none') {
+                textSentenceProgress.textContent = `${currentSentenceIndex + 1} / ${sentences.length}`;
+            }
+        }
+
+        function highlightWord(sentenceIdx, wordIdx) {
+            const prevWord = document.querySelector('.word.current-word');
+            if (prevWord) {
+                prevWord.classList.remove('current-word');
+                prevWord.classList.add('spoken-word');
+            }
+            const wordEl = document.querySelector(`.word[data-sentence-idx="${sentenceIdx}"][data-word-idx="${wordIdx}"]`);
+            if (wordEl) {
+                wordEl.classList.add('current-word');
+                scrollToElement(wordEl);
+            }
+        }
+
+        function clearWordHighlights() {
+            document.querySelectorAll('.word.current-word, .word.spoken-word').forEach(el => {
+                el.classList.remove('current-word', 'spoken-word');
+            });
+            currentWordIndex = -1;
+        }
+
+        function scrollToElement(element) {
+            const container = textReaderContent;
+            const containerRect = container.getBoundingClientRect();
+            const elementRect = element.getBoundingClientRect();
+            const elementTop = elementRect.top - containerRect.top;
+            const elementBottom = elementRect.bottom - containerRect.top;
+            const containerHeight = container.clientHeight;
+            if (elementTop < 0 || elementBottom > containerHeight) {
+                container.scrollTo({
+                    top: container.scrollTop + elementTop - (containerHeight / 3),
+                    behavior: 'smooth'
+                });
+            }
         }
 
         // ============================================
@@ -3568,7 +3759,9 @@
             const cardImages = document.getElementById('cardImages');
             cardImages.innerHTML = '';
             if (card.images && card.images.length > 0) {
-                card.images.forEach(src => {
+                card.images.forEach((src, imgIdx) => {
+                    const wrapper = document.createElement('div');
+                    wrapper.className = 'card-image-wrapper';
                     const img = document.createElement('img');
                     img.src = src;
                     img.alt = '';
@@ -3576,9 +3769,20 @@
                         const errDiv = document.createElement('div');
                         errDiv.className = 'img-error';
                         errDiv.textContent = t('img_load_error');
-                        this.replaceWith(errDiv);
+                        wrapper.replaceChild(errDiv, this);
                     };
-                    cardImages.appendChild(img);
+                    const delBtn = document.createElement('button');
+                    delBtn.className = 'card-image-delete';
+                    delBtn.textContent = '✕';
+                    delBtn.addEventListener('click', (e) => {
+                        e.stopPropagation();
+                        cards[currentIndex].images.splice(imgIdx, 1);
+                        renderCard();
+                        renderCardList();
+                    });
+                    wrapper.appendChild(img);
+                    wrapper.appendChild(delBtn);
+                    cardImages.appendChild(wrapper);
                 });
                 cardImages.classList.toggle('solo', !mainText);
             }
@@ -3632,6 +3836,7 @@
                 item.innerHTML = `
                     <span class="card-item-number">${idx + 1}</span>
                     <span class="card-item-text">${text}</span>
+                    ${card.images && card.images.length > 0 ? '<span class="card-item-img" title="🖼">🖼</span>' : ''}
                     ${badgeHtml}
                     <button class="card-item-speak" title="${t('btn_read_aloud')}">🔊</button>
                 `;
@@ -3655,16 +3860,53 @@
         // ============================================
         // SPEECH FUNCTIONS
         // ============================================
-        function speak(text, onEnd = null) {
-            speechSynthesis.cancel();
+        function speak(text, onEnd = null, onWordBoundary = null) {
+            if (speechSynthesis.speaking || speechSynthesis.pending) {
+                speechSynthesis.cancel();
+            }
             stopRequested = false;
             if (!text?.trim()) { if (onEnd) onEnd(); return; }
-            
-            const utterance = new SpeechSynthesisUtterance(cleanTextForSpeech(text));
+
+            const cleanedText = cleanTextForSpeech(text);
+            const utterance = new SpeechSynthesisUtterance(cleanedText);
             utterance.rate = parseFloat(speedRange.value);
             utterance.pitch = 1;
             if (selectedVoice) utterance.voice = selectedVoice;
             else utterance.lang = 'ru-RU';
+
+            // Word boundary tracking
+            if (onWordBoundary && wordBoundarySupported !== false) {
+                const cleanedWords = cleanedText.split(/\s+/).filter(w => w.length > 0);
+                const wordPositions = [];
+                let pos = 0;
+                for (const word of cleanedWords) {
+                    const idx = cleanedText.indexOf(word, pos);
+                    wordPositions.push(idx);
+                    pos = idx + word.length;
+                }
+
+                let boundaryFired = false;
+                utterance.onboundary = (event) => {
+                    if (event.name === 'word') {
+                        boundaryFired = true;
+                        if (wordBoundarySupported === null) wordBoundarySupported = true;
+                        const charIdx = event.charIndex;
+                        let wordIdx = wordPositions.findIndex((startPos, i) => {
+                            const endPos = i < wordPositions.length - 1 ? wordPositions[i + 1] : cleanedText.length;
+                            return charIdx >= startPos && charIdx < endPos;
+                        });
+                        if (wordIdx === -1) wordIdx = wordPositions.length - 1;
+                        onWordBoundary(wordIdx);
+                    }
+                };
+
+                // Feature detection: disable for browsers without onboundary
+                if (wordBoundarySupported === null) {
+                    setTimeout(() => {
+                        if (!boundaryFired) wordBoundarySupported = false;
+                    }, 1000);
+                }
+            }
 
             utterance.onstart = () => {
                 isSpeaking = true;
@@ -3736,20 +3978,90 @@
 
         function speakFullText() {
             if (!texts[currentIndex]) return;
-            speak(texts[currentIndex].body);
+            if (sentences.length === 0) return;
+            currentSentenceIndex = 0;
+            clearWordHighlights();
+            // Alle .read-Klassen zurücksetzen
+            document.querySelectorAll('.sentence.read').forEach(el => el.classList.remove('read'));
+            speakSentenceChain();
+        }
+
+        function speakSentenceChain() {
+            if (stopRequested || currentSentenceIndex >= sentences.length) {
+                clearWordHighlights();
+                return;
+            }
+
+            const sentenceIdx = currentSentenceIndex;
+            highlightCurrentSentence();
+
+            // Vorherige Sätze als gelesen markieren
+            document.querySelectorAll('.sentence').forEach((el, idx) => {
+                if (idx < sentenceIdx) {
+                    el.classList.add('read');
+                    el.querySelectorAll('.word').forEach(w => {
+                        w.classList.remove('current-word');
+                        w.classList.add('spoken-word');
+                    });
+                }
+            });
+
+            // Wort-Alignment prüfen
+            const rawWordCount = splitIntoWords(sentences[sentenceIdx]).filter(t => !t.isSpace).length;
+            const cleanedWordCount = getCleanedWordCount(sentences[sentenceIdx]);
+            const canHighlightWords = (rawWordCount === cleanedWordCount) && (wordBoundarySupported !== false);
+
+            const onWordBoundary = canHighlightWords ? (wordIdx) => {
+                highlightWord(sentenceIdx, wordIdx);
+            } : null;
+
+            speak(sentences[sentenceIdx], () => {
+                // Satz als gelesen markieren
+                const sentEl = document.querySelector(`.sentence[data-idx="${sentenceIdx}"]`);
+                if (sentEl) {
+                    sentEl.classList.add('read');
+                    sentEl.querySelectorAll('.word.current-word').forEach(w => {
+                        w.classList.remove('current-word');
+                        w.classList.add('spoken-word');
+                    });
+                }
+                currentSentenceIndex++;
+                if (!stopRequested && currentSentenceIndex < sentences.length) {
+                    setTimeout(speakSentenceChain, 150);
+                } else {
+                    clearWordHighlights();
+                }
+            }, onWordBoundary);
         }
 
         // Einzelnen Satz vorlesen (für Klick-Modus)
         function speakSingleSentence(idx) {
             if (sentences.length === 0 || idx >= sentences.length) return;
             speechSynthesis.cancel();
-            speak(sentences[idx]);
+            clearWordHighlights();
+
+            const rawWordCount = splitIntoWords(sentences[idx]).filter(t => !t.isSpace).length;
+            const cleanedWordCount = getCleanedWordCount(sentences[idx]);
+            const canHighlightWords = (rawWordCount === cleanedWordCount) && (wordBoundarySupported !== false);
+
+            const onWordBoundary = canHighlightWords ? (wordIdx) => {
+                highlightWord(idx, wordIdx);
+            } : null;
+
+            speak(sentences[idx], () => {
+                const sentEl = document.querySelector(`.sentence[data-idx="${idx}"]`);
+                if (sentEl) {
+                    sentEl.querySelectorAll('.word.current-word').forEach(w => {
+                        w.classList.remove('current-word');
+                    });
+                }
+            }, onWordBoundary);
         }
 
         function speakCurrentSentenceText() {
             if (sentences.length === 0) return;
             highlightCurrentSentence();
-            speak(sentences[currentSentenceIndex]);
+            speakSingleSentence(currentSentenceIndex);
         }
 
         // ============================================
@@ -3766,12 +4078,15 @@
         function stopSpeaking() {
             stopRequested = true;
             speechSynthesis.cancel();
+            clearWordHighlights();
         }
 
         function restartText() {
             speechSynthesis.cancel();
+            stopRequested = false;
             currentIndex = 0;
             currentSentenceIndex = 0;
+            clearWordHighlights();
             renderTextContent();
             if (texts.length > 1) renderTextList();
         }
@@ -3780,6 +4095,31 @@
         mainSpeakBtn.addEventListener('click', startSpeaking);
         mainStopBtn.addEventListener('click', stopSpeaking);
         mainRestartBtn.addEventListener('click', restartText);
+
+        // Text-Reader Satz-Navigation
+        textPrevSentenceBtn.addEventListener('click', () => {
+            if (currentSentenceIndex > 0) {
+                currentSentenceIndex--;
+                clearWordHighlights();
+                highlightCurrentSentence();
+                updateTextSentenceNav();
+                speakSingleSentence(currentSentenceIndex);
+            }
+        });
+
+        textNextSentenceBtn.addEventListener('click', () => {
+            if (currentSentenceIndex < sentences.length - 1) {
+                currentSentenceIndex++;
+                clearWordHighlights();
+                highlightCurrentSentence();
+                updateTextSentenceNav();
+                speakSingleSentence(currentSentenceIndex);
+            }
+        });
+
+        function updateTextSentenceNav() {
+            textSentenceProgress.textContent = `${currentSentenceIndex + 1} / ${sentences.length}`;
+        }
 
         // ============================================
         // EVENT LISTENERS - FLASHCARD MODE
@@ -3827,14 +4167,18 @@
         prevSentenceBtn.addEventListener('click', () => {
             if (currentSentenceIndex > 0) {
                 currentSentenceIndex--;
-                speak(sentences[currentSentenceIndex]);
+                clearWordHighlights();
+                highlightCurrentSentence();
+                speakSingleSentence(currentSentenceIndex);
             }
         });
 
         nextSentenceBtn.addEventListener('click', () => {
             if (currentSentenceIndex < sentences.length - 1) {
                 currentSentenceIndex++;
-                speak(sentences[currentSentenceIndex]);
+                clearWordHighlights();
+                highlightCurrentSentence();
+                speakSingleSentence(currentSentenceIndex);
             }
         });
 
@@ -3856,6 +4200,26 @@
             renderCardList();
         });
 
+        addImageBtn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            addImageInput.click();
+        });
+
+        addImageInput.addEventListener('change', (e) => {
+            const file = e.target.files[0];
+            if (!file) return;
+            const reader = new FileReader();
+            reader.onload = (ev) => {
+                const card = cards[currentIndex];
+                if (!card.images) card.images = [];
+                card.images.push(ev.target.result);
+                renderCard();
+                renderCardList();
+            };
+            reader.readAsDataURL(file);
+            addImageInput.value = '';
+        });
+
         document.getElementById('mainMenuBtn').addEventListener('click', () => {
             speechSynthesis.cancel();
             recordSession();
@@ -3864,13 +4228,18 @@
             flashcardControls.classList.remove('visible');
             statsBar.classList.remove('visible');
             cardList.classList.remove('visible');
+            flashcardSetup.style.display = 'none';
             document.getElementById('srStats').classList.remove('visible');
             document.getElementById('sessionComplete').classList.remove('visible');
             hideRatingButtons();
             // Voice-Section wieder einblenden
             document.getElementById('voiceSection').style.display = 'flex';
-            // Zurück zum Setup-Screen
-            showFlashcardSetup();
+            // State zurücksetzen, damit neue Datei geladen werden kann
+            cards = [];
+            texts = [];
+            currentIndex = 0;
+            // Zurück zur Modusauswahl
+            modeSelection.style.display = 'block';
         });
 
         // ============================================
