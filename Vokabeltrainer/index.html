@@ -44,6 +44,7 @@
         header {
             text-align: center;
             margin-bottom: 48px;
+            position: relative;
         }
 
         h1 {
@@ -494,6 +495,49 @@
             transition: background 0.15s ease, color 0.3s ease;
             border-radius: 3px;
             padding: 1px 0;
+        }
+        .word.has-vocab {
+            border-bottom: 1px dotted var(--accent);
+            cursor: help;
+            position: relative;
+            z-index: 2;
+        }
+        .word.has-vocab:hover {
+            background: rgba(232, 179, 65, 0.2);
+        }
+
+        /* Vocabulary Tooltip */
+        .vocab-tooltip {
+            display: none;
+            position: fixed;
+            z-index: 1500;
+            background: var(--bg-card);
+            border: 1px solid var(--accent);
+            border-left: 4px solid var(--accent);
+            border-radius: 8px;
+            padding: 10px 14px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+            max-width: 320px;
+            pointer-events: none;
+            animation: tooltipFadeIn 0.15s ease;
+        }
+        .vocab-tooltip.visible { display: block; }
+        @keyframes tooltipFadeIn { from { opacity: 0; transform: translateY(4px); } to { opacity: 1; transform: translateY(0); } }
+        .vocab-tooltip-word {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.1rem;
+            color: var(--accent);
+            margin-bottom: 4px;
+        }
+        .vocab-tooltip-translation {
+            color: var(--text-primary);
+            font-size: 1rem;
+            margin-bottom: 2px;
+        }
+        .vocab-tooltip-grammar {
+            color: var(--text-muted);
+            font-size: 0.85rem;
+            font-style: italic;
         }
 
         .word.current-word {
@@ -1022,9 +1066,35 @@
             flex: 1;
             font-size: 0.95rem;
             color: var(--text-secondary);
+            display: flex;
+            min-width: 0;
+            gap: 0;
+        }
+
+        .card-item-front {
             white-space: nowrap;
             overflow: hidden;
             text-overflow: ellipsis;
+            min-width: 40%;
+            max-width: 55%;
+            flex-shrink: 0;
+            padding-right: 12px;
+        }
+
+        .card-item-separator {
+            color: var(--text-muted);
+            flex-shrink: 0;
+            padding-right: 12px;
+            opacity: 0.4;
+        }
+
+        .card-item-back {
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            color: var(--text-muted);
+            flex: 1;
+            min-width: 0;
         }
 
         .card-item-img {
@@ -1583,6 +1653,207 @@
             font-weight: 600;
         }
 
+        /* ============================================
+           SETTINGS PANEL
+           ============================================ */
+        .settings-btn {
+            position: absolute;
+            right: 24px;
+            top: 40px;
+            background: transparent;
+            border: 1px solid var(--border);
+            color: var(--text-secondary);
+            padding: 6px 10px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 1.1rem;
+            transition: all 0.2s;
+        }
+        .settings-btn:hover {
+            border-color: var(--accent);
+            color: var(--accent);
+        }
+        .settings-panel {
+            display: none;
+            position: fixed;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: rgba(0, 0, 0, 0.85);
+            z-index: 1000;
+            overflow-y: auto;
+            padding: 40px 24px;
+            animation: fadeIn 0.3s ease;
+        }
+        .settings-panel.visible { display: block; }
+        .settings-panel-inner {
+            max-width: 500px;
+            margin: 60px auto 0;
+        }
+        .settings-panel-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 28px;
+        }
+        .settings-panel-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.8rem;
+            color: var(--accent);
+        }
+        .settings-form {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 28px;
+        }
+        .settings-label {
+            display: block;
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+            margin-bottom: 8px;
+        }
+        .settings-input-group {
+            display: flex;
+            gap: 8px;
+            margin-bottom: 8px;
+        }
+        .settings-input {
+            flex: 1;
+            padding: 10px 14px;
+            background: var(--bg-primary);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            color: var(--text-primary);
+            font-family: 'Source Sans 3', monospace;
+            font-size: 0.95rem;
+        }
+        .settings-input:focus {
+            outline: none;
+            border-color: var(--accent);
+        }
+        .settings-toggle-btn {
+            padding: 8px 12px;
+            background: var(--bg-primary);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            color: var(--text-secondary);
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        .settings-toggle-btn:hover {
+            border-color: var(--accent);
+            color: var(--accent);
+        }
+        .settings-hint {
+            color: var(--text-muted);
+            font-size: 0.85rem;
+            margin-bottom: 20px;
+        }
+
+        /* ============================================
+           GENERATE VOCAB BUTTON
+           ============================================ */
+        .btn-generate {
+            background: linear-gradient(145deg, #2d3a4a 0%, #1a2332 100%);
+            color: var(--accent);
+            border: 1px solid rgba(232, 179, 65, 0.3);
+        }
+        .btn-generate:hover {
+            background: linear-gradient(145deg, #3a4a5d 0%, #2d3a4a 100%);
+            border-color: var(--accent);
+        }
+        .btn-generate.loading {
+            opacity: 0.7;
+            pointer-events: none;
+        }
+        .btn-generate .spinner {
+            display: inline-block;
+            width: 14px;
+            height: 14px;
+            border: 2px solid var(--accent);
+            border-top-color: transparent;
+            border-radius: 50%;
+            animation: spin 0.8s linear infinite;
+        }
+        @keyframes spin { to { transform: rotate(360deg); } }
+
+        /* ============================================
+           VOCABULARY PREVIEW PANEL
+           ============================================ */
+        .vocab-preview-panel {
+            display: none;
+            position: fixed;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: rgba(0, 0, 0, 0.85);
+            z-index: 1000;
+            overflow-y: auto;
+            padding: 40px 24px;
+            animation: fadeIn 0.3s ease;
+        }
+        .vocab-preview-panel.visible { display: block; }
+        .vocab-preview-inner {
+            max-width: 700px;
+            margin: 0 auto;
+        }
+        .vocab-preview-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+        .vocab-preview-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.8rem;
+            color: var(--accent);
+        }
+        .vocab-preview-count {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+        }
+        .vocab-preview-table {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            overflow: hidden;
+            margin-bottom: 20px;
+            max-height: 60vh;
+            overflow-y: auto;
+        }
+        .vocab-preview-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr auto;
+            gap: 12px;
+            padding: 12px 18px;
+            border-bottom: 1px solid var(--border);
+            align-items: center;
+        }
+        .vocab-preview-row:last-child { border-bottom: none; }
+        .vocab-preview-row.header {
+            background: rgba(0,0,0,0.3);
+            font-weight: 600;
+            color: var(--text-secondary);
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            position: sticky;
+            top: 0;
+        }
+        .vocab-preview-row .russian {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.1rem;
+            color: var(--accent);
+        }
+        .vocab-preview-row .translation { color: var(--text-primary); }
+        .vocab-preview-row .grammar {
+            color: var(--text-muted);
+            font-size: 0.85rem;
+            font-style: italic;
+        }
+        .vocab-preview-actions {
+            display: flex;
+            gap: 12px;
+            justify-content: center;
+        }
+
         /* Responsive */
         @media (max-width: 600px) {
             h1 { font-size: 2rem; }
@@ -1597,8 +1868,13 @@
             .setup-card { padding: 32px 24px; }
             .rating-btn { min-width: 75px; padding: 10px 12px; font-size: 0.85rem; }
             .sr-mode-btn { min-width: 100px; padding: 8px 12px; }
+            .settings-btn { right: 12px; top: 20px; }
+            .btn-generate span:not(.btn-icon) { display: none; }
+            .vocab-preview-row { grid-template-columns: 1fr 1fr; }
+            .vocab-preview-row .grammar { grid-column: 1 / -1; }
         }
     </style>
+    <script src="api-key.js"></script>
 </head>
 <body>
     <div class="container">
@@ -1610,6 +1886,7 @@
                 <button class="lang-btn" data-lang="en">EN</button>
                 <button class="lang-btn" data-lang="ru">RU</button>
             </div>
+            <button class="settings-btn" id="settingsBtn" data-i18n-title="btn_settings" title="Einstellungen">&#9881;</button>
         </header>
 
         <!-- Mode Selection -->
@@ -1635,6 +1912,12 @@
             <div class="upload-text" id="uploadText" data-i18n="upload_text">Datei hier ablegen oder klicken</div>
             <div class="upload-hint" id="uploadHint" data-i18n="upload_hint">Unterstützt Quizlet-Dateien und mehrzeilige Formate</div>
             <input type="file" id="fileInput" accept=".txt,.csv">
+            <button class="btn btn-primary" id="continueTextBtn" style="display: none; margin-top: 16px;">
+                <span data-i18n="btn_continue_text">Aktuellen Text weiter lesen</span>
+            </button>
+            <button class="btn btn-primary" id="continueCardsBtn" style="display: none; margin-top: 16px;">
+                <span data-i18n="btn_continue_cards">Aktuelle Karteikarten weiter lernen</span>
+            </button>
             <button class="back-btn" id="backToModeBtn" data-i18n="back_to_selection">← Zurück zur Auswahl</button>
         </div>
 
@@ -1677,12 +1960,12 @@
                 📖 <span data-i18n="switch_to_text">zum Text vorlesen</span>
             </button>
             <button class="mode-switch-btn" id="switchToCardsBtn" style="display: none;" data-i18n-title="switch_to_cards_title" title="Zu Vokabeltrainer wechseln">
-                🎴 <span data-i18n="switch_to_cards">zum Vokabeltrainer</span>
+                🏠 <span data-i18n="switch_to_cards">zum Hauptmenü</span>
             </button>
             <!-- Nur für Texte: Lese-Modus -->
             <div class="read-mode-selector" id="readModeSelector" style="display: none;">
-                <button class="read-mode-btn active" id="readAllBtn" data-i18n-title="read_all_title" title="Ganzen Text vorlesen">📖 <span data-i18n="read_all">Alles</span></button>
-                <button class="read-mode-btn" id="readSentenceBtn" data-i18n-title="read_sentence_title" title="Satzweise vorlesen">📝 <span data-i18n="read_sentence">Satzweise</span></button>
+                <button class="read-mode-btn active" id="readAllBtn" data-i18n-title="read_all_title" title="Ganzen Text vorlesen">📖 <span data-i18n="read_all">ganzer Text</span></button>
+                <button class="read-mode-btn" id="readSentenceBtn" data-i18n-title="read_sentence_title" title="Satzweise vorlesen">📝 <span data-i18n="read_sentence">Satz für Satz</span></button>
             </div>
             <!-- Nur für Texte: Play-Buttons oben -->
             <div class="voice-controls" id="voiceControls" style="display: none;">
@@ -1701,12 +1984,24 @@
         <!-- ============================================
              TEXT READER MODE
              ============================================ -->
+        <!-- Vocabulary Tooltip (fixed position, outside containers) -->
+        <div class="vocab-tooltip" id="vocabTooltip">
+            <div class="vocab-tooltip-word" id="vocabTooltipWord"></div>
+            <div class="vocab-tooltip-translation" id="vocabTooltipTranslation"></div>
+            <div class="vocab-tooltip-grammar" id="vocabTooltipGrammar"></div>
+        </div>
+
         <div class="text-reader-container" id="textReaderContainer">
             <div class="text-reader">
                 <div class="text-reader-header">
                     <span class="text-reader-title" id="textReaderTitle">Text</span>
                     <div class="text-reader-info">
                         <span class="text-reader-progress" id="textReaderProgress"></span>
+                        <button class="btn btn-generate btn-sm" id="generateVocabBtn"
+                                data-i18n-title="btn_generate_vocab_title" title="Vokabeln aus dem Text generieren (KI)">
+                            <span class="btn-icon">&#129302;</span>
+                            <span data-i18n="btn_generate_vocab">Vokabeln generieren</span>
+                        </button>
                         <span class="text-speaking-indicator" id="textSpeakingIndicator">🔊</span>
                     </div>
                 </div>
@@ -1775,6 +2070,9 @@
                     <button class="btn btn-secondary btn-large" id="exportVocabBtn">
                         <span class="btn-icon">&#128203;</span> <span data-i18n="export_vocab">Export (Excel)</span>
                     </button>
+                    <button class="btn btn-secondary btn-large" id="setupBackBtn">
+                        <span class="btn-icon">←</span> <span data-i18n="btn_back_to_menu">Neue Datei / Modus wechseln</span>
+                    </button>
                 </div>
             </div>
         </div>
@@ -1789,6 +2087,59 @@
                 <div class="stats-summary" id="statsSummary"></div>
                 <h3 class="stats-history-title" data-i18n="history">Verlauf</h3>
                 <div class="stats-history" id="statsHistory"></div>
+            </div>
+        </div>
+
+        <!-- ============================================
+             SETTINGS PANEL
+             ============================================ -->
+        <div class="settings-panel" id="settingsPanel">
+            <div class="settings-panel-inner">
+                <div class="settings-panel-header">
+                    <h2 class="settings-panel-title" data-i18n="settings_title">Einstellungen</h2>
+                    <button class="stats-close-btn" id="settingsCloseBtn" data-i18n="close">Schließen</button>
+                </div>
+                <div class="settings-form">
+                    <label class="settings-label" for="apiKeyInput" data-i18n="settings_api_key">Claude API-Schlüssel:</label>
+                    <div class="settings-input-group">
+                        <input type="password" id="apiKeyInput" class="settings-input"
+                               placeholder="sk-ant-api..." data-i18n-placeholder="settings_api_key_placeholder">
+                        <button class="settings-toggle-btn" id="toggleApiKeyBtn">&#128065;</button>
+                    </div>
+                    <p class="settings-hint" data-i18n="settings_api_key_hint">Wird lokal gespeichert, nie an Dritte gesendet.</p>
+                    <button class="btn btn-primary" id="saveSettingsBtn">
+                        <span data-i18n="btn_save_settings">Speichern</span>
+                    </button>
+
+                    <hr style="border-color: var(--border); margin: 20px 0;">
+                    <label class="settings-label" data-i18n="settings_auto_export">Auto-Export Vokabel-JSON:</label>
+                    <p class="settings-hint" id="vocabExportStatus" data-i18n="settings_no_file">Keine Datei gewählt — Vokabeln werden nur im Browser gespeichert.</p>
+                    <button class="btn btn-secondary" id="pickVocabFileBtn">
+                        <span data-i18n="settings_pick_file">Speicherort wählen</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- ============================================
+             VOCABULARY PREVIEW PANEL
+             ============================================ -->
+        <div class="vocab-preview-panel" id="vocabPreviewPanel">
+            <div class="vocab-preview-inner">
+                <div class="vocab-preview-header">
+                    <h2 class="vocab-preview-title" data-i18n="generate_preview_title">Generierte Vokabeln</h2>
+                    <span class="vocab-preview-count" id="vocabPreviewCount"></span>
+                </div>
+                <div class="vocab-preview-table" id="vocabPreviewTable"></div>
+                <div class="vocab-preview-actions">
+                    <button class="btn btn-primary" id="loadGeneratedCardsBtn">
+                        <span class="btn-icon">&#127924;</span>
+                        <span data-i18n="btn_load_as_cards">Vokabeln laden</span>
+                    </button>
+                    <button class="btn btn-secondary" id="cancelPreviewBtn">
+                        <span data-i18n="btn_cancel">Abbrechen</span>
+                    </button>
+                </div>
             </div>
         </div>
 
@@ -1956,12 +2307,12 @@
                 speak_back: 'Rückseite vorlesen',
                 switch_to_text: 'zum Text vorlesen',
                 switch_to_text_title: 'Zu Text vorlesen wechseln',
-                switch_to_cards: 'zum Vokabeltrainer',
-                switch_to_cards_title: 'Zu Vokabeltrainer wechseln',
-                read_all: 'Alles',
+                switch_to_cards: 'zum Hauptmenü',
+                switch_to_cards_title: 'Zum Hauptmenü wechseln',
+                read_all: 'ganzer Text',
                 read_all_title: 'Ganzen Text vorlesen',
-                read_sentence: 'Satzweise',
-                read_sentence_title: 'Satzweise vorlesen',
+                read_sentence: 'Satz für Satz',
+                read_sentence_title: 'Satz für Satz vorlesen',
                 btn_start: 'Start',
                 btn_stop: 'Stopp',
                 btn_restart: 'Von vorne',
@@ -1983,6 +2334,35 @@
                 statistics: 'Statistik',
                 export_vocab: 'Export (Excel)',
                 export_empty: 'Keine Vokabeln gespeichert',
+                btn_back_to_menu: 'Neue Datei / Modus wechseln',
+                btn_generate_vocab: 'Vokabeln generieren',
+                btn_generate_vocab_title: 'Vokabeln aus dem Text automatisch generieren (KI)',
+                generating_vocab: 'Generiere Vokabeln...',
+                generate_error_no_key: 'Bitte zuerst den API-Schlüssel in den Einstellungen eingeben.',
+                generate_error_network: 'Netzwerkfehler. Bitte Internetverbindung prüfen.',
+                generate_error_auth: 'Ungültiger API-Schlüssel. Bitte in den Einstellungen korrigieren.',
+                generate_error_rate_limit: 'Zu viele Anfragen. Bitte kurz warten und erneut versuchen.',
+                generate_error_parse: 'Antwort konnte nicht verarbeitet werden. Bitte erneut versuchen.',
+                generate_error_generic: 'Fehler bei der Vokabelgenerierung: {msg}',
+                generate_preview_title: 'Generierte Vokabeln',
+                generate_preview_count: '{n} Vokabeln gefunden',
+                generate_preview_russian: 'Russisch',
+                generate_preview_translation: 'Übersetzung',
+                generate_preview_grammar: 'Grammatik',
+                btn_load_as_cards: 'Vokabeln laden',
+                btn_cancel: 'Abbrechen',
+                btn_continue_text: 'Aktuellen Text weiter lesen',
+                btn_continue_cards: 'Aktuelle Karteikarten weiter lernen',
+                settings_title: 'Einstellungen',
+                settings_api_key: 'Claude API-Schlüssel:',
+                settings_api_key_placeholder: 'sk-ant-api...',
+                settings_api_key_hint: 'Tipp: API-Key in der Datei api-key.js speichern (wird nicht auf GitHub hochgeladen).',
+                btn_save_settings: 'Speichern',
+                btn_settings: 'Einstellungen',
+                settings_auto_export: 'Auto-Export Vokabel-JSON:',
+                settings_no_file: 'Keine Datei gewählt — Vokabeln werden nur im Browser gespeichert.',
+                settings_file_active: 'Auto-Export aktiv: {name}',
+                settings_pick_file: 'Speicherort wählen',
                 stats_title: 'Lernstatistik',
                 close: 'Schließen',
                 history: 'Verlauf',
@@ -2069,8 +2449,8 @@
                 speak_back: 'Read back side',
                 switch_to_text: 'to text reading',
                 switch_to_text_title: 'Switch to text reading',
-                switch_to_cards: 'to flashcards',
-                switch_to_cards_title: 'Switch to flashcards',
+                switch_to_cards: 'to main menu',
+                switch_to_cards_title: 'Switch to main menu',
                 read_all: 'All',
                 read_all_title: 'Read entire text',
                 read_sentence: 'By sentence',
@@ -2096,6 +2476,35 @@
                 statistics: 'Statistics',
                 export_vocab: 'Export (Excel)',
                 export_empty: 'No vocabulary saved',
+                btn_back_to_menu: 'New file / switch mode',
+                btn_generate_vocab: 'Generate vocabulary',
+                btn_generate_vocab_title: 'Auto-generate vocabulary from text (AI)',
+                generating_vocab: 'Generating vocabulary...',
+                generate_error_no_key: 'Please enter the API key in settings first.',
+                generate_error_network: 'Network error. Please check your internet connection.',
+                generate_error_auth: 'Invalid API key. Please correct it in settings.',
+                generate_error_rate_limit: 'Too many requests. Please wait a moment and try again.',
+                generate_error_parse: 'Could not process the response. Please try again.',
+                generate_error_generic: 'Error generating vocabulary: {msg}',
+                generate_preview_title: 'Generated Vocabulary',
+                generate_preview_count: '{n} vocabulary items found',
+                generate_preview_russian: 'Russian',
+                generate_preview_translation: 'Translation',
+                generate_preview_grammar: 'Grammar',
+                btn_load_as_cards: 'Load vocabulary',
+                btn_cancel: 'Cancel',
+                btn_continue_text: 'Continue reading current text',
+                btn_continue_cards: 'Continue with current flashcards',
+                settings_title: 'Settings',
+                settings_api_key: 'Claude API key:',
+                settings_api_key_placeholder: 'sk-ant-api...',
+                settings_api_key_hint: 'Tip: Store API key in the file api-key.js (excluded from GitHub via .gitignore).',
+                btn_save_settings: 'Save',
+                btn_settings: 'Settings',
+                settings_auto_export: 'Auto-export vocabulary JSON:',
+                settings_no_file: 'No file selected — vocabulary is stored in browser only.',
+                settings_file_active: 'Auto-export active: {name}',
+                settings_pick_file: 'Choose file location',
                 stats_title: 'Learning Statistics',
                 close: 'Close',
                 history: 'History',
@@ -2182,8 +2591,8 @@
                 speak_back: 'Озвучить обратную сторону',
                 switch_to_text: 'к чтению текстов',
                 switch_to_text_title: 'Перейти к чтению текстов',
-                switch_to_cards: 'к карточкам',
-                switch_to_cards_title: 'Перейти к карточкам',
+                switch_to_cards: 'в главное меню',
+                switch_to_cards_title: 'Перейти в главное меню',
                 read_all: 'Всё',
                 read_all_title: 'Прочитать весь текст',
                 read_sentence: 'По предложениям',
@@ -2209,6 +2618,35 @@
                 statistics: 'Статистика',
                 export_vocab: 'Экспорт (Excel)',
                 export_empty: 'Нет сохранённых слов',
+                btn_back_to_menu: 'Новый файл / сменить режим',
+                btn_generate_vocab: 'Создать словарь',
+                btn_generate_vocab_title: 'Создать словарь из текста автоматически (ИИ)',
+                generating_vocab: 'Создаю словарь...',
+                generate_error_no_key: 'Сначала введите API-ключ в настройках.',
+                generate_error_network: 'Ошибка сети. Проверьте подключение к интернету.',
+                generate_error_auth: 'Неверный API-ключ. Исправьте его в настройках.',
+                generate_error_rate_limit: 'Слишком много запросов. Подождите и попробуйте снова.',
+                generate_error_parse: 'Не удалось обработать ответ. Попробуйте ещё раз.',
+                generate_error_generic: 'Ошибка генерации словаря: {msg}',
+                generate_preview_title: 'Созданный словарь',
+                generate_preview_count: 'Найдено {n} слов',
+                generate_preview_russian: 'Русский',
+                generate_preview_translation: 'Перевод',
+                generate_preview_grammar: 'Грамматика',
+                btn_load_as_cards: 'Загрузить слова',
+                btn_cancel: 'Отмена',
+                btn_continue_text: 'Продолжить чтение текста',
+                btn_continue_cards: 'Продолжить с текущими карточками',
+                settings_title: 'Настройки',
+                settings_api_key: 'API-ключ Claude:',
+                settings_api_key_placeholder: 'sk-ant-api...',
+                settings_api_key_hint: 'Совет: сохраните API-ключ в файле api-key.js (не загружается на GitHub).',
+                btn_save_settings: 'Сохранить',
+                btn_settings: 'Настройки',
+                settings_auto_export: 'Автоэкспорт словаря JSON:',
+                settings_no_file: 'Файл не выбран — словарь хранится только в браузере.',
+                settings_file_active: 'Автоэкспорт активен: {name}',
+                settings_pick_file: 'Выбрать файл',
                 stats_title: 'Статистика обучения',
                 close: 'Закрыть',
                 history: 'История',
@@ -2304,6 +2742,12 @@
                 const key = el.getAttribute('data-i18n-title');
                 el.title = t(key);
             });
+
+            // Update all data-i18n-placeholder elements
+            document.querySelectorAll('[data-i18n-placeholder]').forEach(el => {
+                const key = el.getAttribute('data-i18n-placeholder');
+                el.placeholder = t(key);
+            });
         }
 
         // ============================================
@@ -2349,6 +2793,8 @@
         const uploadText = document.getElementById('uploadText');
         const uploadHint = document.getElementById('uploadHint');
         const backToModeBtn = document.getElementById('backToModeBtn');
+        const continueTextBtn = document.getElementById('continueTextBtn');
+        const continueCardsBtn = document.getElementById('continueCardsBtn');
         const fileInput = document.getElementById('fileInput');
         const formatIndicator = document.getElementById('formatIndicator');
         const genderFemaleBtn = document.getElementById('genderFemaleBtn');
@@ -2383,6 +2829,26 @@
         const textPrevSentenceBtn = document.getElementById('textPrevSentenceBtn');
         const textNextSentenceBtn = document.getElementById('textNextSentenceBtn');
         const textSentenceProgress = document.getElementById('textSentenceProgress');
+
+        // Settings & LLM Elements
+        const settingsBtn = document.getElementById('settingsBtn');
+        const settingsPanel = document.getElementById('settingsPanel');
+        const settingsCloseBtn = document.getElementById('settingsCloseBtn');
+        const apiKeyInput = document.getElementById('apiKeyInput');
+        const toggleApiKeyBtn = document.getElementById('toggleApiKeyBtn');
+        const saveSettingsBtn = document.getElementById('saveSettingsBtn');
+        const generateVocabBtn = document.getElementById('generateVocabBtn');
+        const vocabPreviewPanel = document.getElementById('vocabPreviewPanel');
+        const vocabPreviewTable = document.getElementById('vocabPreviewTable');
+        const vocabPreviewCount = document.getElementById('vocabPreviewCount');
+        const loadGeneratedCardsBtn = document.getElementById('loadGeneratedCardsBtn');
+        const cancelPreviewBtn = document.getElementById('cancelPreviewBtn');
+        const pickVocabFileBtn = document.getElementById('pickVocabFileBtn');
+        const vocabExportStatus = document.getElementById('vocabExportStatus');
+        const vocabTooltip = document.getElementById('vocabTooltip');
+        const vocabTooltipWord = document.getElementById('vocabTooltipWord');
+        const vocabTooltipTranslation = document.getElementById('vocabTooltipTranslation');
+        const vocabTooltipGrammar = document.getElementById('vocabTooltipGrammar');
 
         // Flashcard Setup Elements
         const flashcardSetup = document.getElementById('flashcardSetup');
@@ -2617,6 +3083,11 @@
         let currentSourceFile = '';
         let lastDirectoryHandle = null;
 
+        // --- LLM Vocabulary Generation ---
+        let apiKey = '';
+        let isGenerating = false;
+        let generatedVocabMap = {}; // { normalized_word: { russian, translation, grammar } }
+
         async function saveLastDirectory(dirHandle) {
             try {
                 const db = await openVocabDB();
@@ -2683,7 +3154,42 @@
                     added: existing?.added || new Date().toISOString()
                 });
             }
-            return new Promise((resolve, reject) => { tx.oncomplete = resolve; tx.onerror = reject; });
+            await new Promise((resolve, reject) => { tx.oncomplete = resolve; tx.onerror = reject; });
+            // Auto-export after save
+            autoExportJSON().catch(() => {});
+        }
+
+        async function getVocabBySource(source) {
+            if (!source) return [];
+            const db = await openVocabDB();
+            return new Promise((resolve, reject) => {
+                const tx = db.transaction('vocabulary', 'readonly');
+                const idx = tx.objectStore('vocabulary').index('source');
+                const req = idx.getAll(source);
+                req.onsuccess = () => resolve(req.result || []);
+                req.onerror = () => resolve([]);
+            });
+        }
+
+        function dbRecordsToVocabItems(records) {
+            return records.map(r => ({
+                russian: r.front,
+                forms: [],
+                translation: r.back,
+                grammar: r.grammar || ''
+            }));
+        }
+
+        async function loadVocabForSource(source) {
+            const records = await getVocabBySource(source);
+            if (records.length === 0) return;
+            const items = dbRecordsToVocabItems(records);
+            buildVocabMap(items);
+            markVocabWords();
+            // Also load as cards for flashcard mode
+            cards = vocabItemsToCards(items);
+            isClassicFormat = false;
+            isTabFormat = true;
         }
 
         async function getAllCardsFromDB() {
@@ -2722,6 +3228,526 @@
             a.download = `vokabeln_${date}.csv`;
             a.click();
             URL.revokeObjectURL(url);
+        }
+
+        // --- Auto-Export JSON ---
+        let vocabFileHandle = null;
+
+        async function saveVocabFileHandle(handle) {
+            try {
+                const db = await openVocabDB();
+                const tx = db.transaction('settings', 'readwrite');
+                tx.objectStore('settings').put({ key: 'vocabFileHandle', handle });
+            } catch (e) { /* ignore */ }
+        }
+
+        async function loadVocabFileHandle() {
+            try {
+                const db = await openVocabDB();
+                const tx = db.transaction('settings', 'readonly');
+                const get = tx.objectStore('settings').get('vocabFileHandle');
+                return new Promise(r => {
+                    get.onsuccess = () => r(get.result?.handle || null);
+                    get.onerror = () => r(null);
+                });
+            } catch (e) { return null; }
+        }
+
+        async function pickVocabExportFile() {
+            if (!window.showSaveFilePicker) return null;
+            try {
+                const handle = await window.showSaveFilePicker({
+                    suggestedName: 'vokabeln.json',
+                    types: [{ description: 'JSON', accept: { 'application/json': ['.json'] } }]
+                });
+                vocabFileHandle = handle;
+                await saveVocabFileHandle(handle);
+                return handle;
+            } catch (e) { return null; } // user cancelled
+        }
+
+        async function autoExportJSON() {
+            try {
+                // Load handle if not yet loaded
+                if (!vocabFileHandle) {
+                    vocabFileHandle = await loadVocabFileHandle();
+                }
+                if (!vocabFileHandle) return; // no file chosen yet
+
+                // Verify permission
+                const perm = await vocabFileHandle.queryPermission({ mode: 'readwrite' });
+                if (perm !== 'granted') {
+                    const req = await vocabFileHandle.requestPermission({ mode: 'readwrite' });
+                    if (req !== 'granted') return;
+                }
+
+                // Get all vocab from DB
+                const allCards = await getAllCardsFromDB();
+                if (allCards.length === 0) return;
+
+                const json = JSON.stringify(allCards, null, 2);
+                const writable = await vocabFileHandle.createWritable();
+                await writable.write(json);
+                await writable.close();
+            } catch (e) {
+                console.warn('Auto-export JSON failed:', e);
+            }
+        }
+
+        // ============================================
+        // LLM VOCABULARY GENERATION
+        // ============================================
+
+        function loadApiKey() {
+            // Priority: 1. api-key.js file, 2. localStorage
+            if (typeof CLAUDE_API_KEY !== 'undefined' && CLAUDE_API_KEY && CLAUDE_API_KEY !== 'YOUR_API_KEY_HERE') {
+                apiKey = CLAUDE_API_KEY;
+            } else {
+                apiKey = localStorage.getItem('vokabeltrainer_apikey') || '';
+            }
+        }
+
+        function saveApiKey(key) {
+            apiKey = key.trim();
+            localStorage.setItem('vokabeltrainer_apikey', apiKey);
+        }
+
+        function isApiKeyFromFile() {
+            return typeof CLAUDE_API_KEY !== 'undefined' && CLAUDE_API_KEY && CLAUDE_API_KEY !== 'YOUR_API_KEY_HERE';
+        }
+
+        function showSettings() {
+            if (isApiKeyFromFile()) {
+                apiKeyInput.value = '********** (api-key.js)';
+                apiKeyInput.disabled = true;
+                saveSettingsBtn.style.display = 'none';
+                toggleApiKeyBtn.style.display = 'none';
+            } else {
+                apiKeyInput.value = apiKey;
+                apiKeyInput.disabled = false;
+                saveSettingsBtn.style.display = '';
+                toggleApiKeyBtn.style.display = '';
+            }
+            updateVocabExportStatus();
+            settingsPanel.classList.add('visible');
+        }
+
+        function updateVocabExportStatus() {
+            if (vocabFileHandle) {
+                vocabExportStatus.textContent = t('settings_file_active', { name: vocabFileHandle.name });
+                vocabExportStatus.style.color = 'var(--accent)';
+            } else {
+                vocabExportStatus.textContent = t('settings_no_file');
+                vocabExportStatus.style.color = '';
+            }
+        }
+
+        function hideSettings() {
+            settingsPanel.classList.remove('visible');
+        }
+
+        function buildVocabPrompt(text, targetLang) {
+            const langName = { de: 'German', en: 'English', ru: 'Russian' }[targetLang] || 'German';
+
+            const translationInstruction = targetLang === 'ru'
+                ? 'Provide a brief Russian definition or explanation for each word (as if for a Russian learner clarifying meaning).'
+                : `Translate each word/phrase into ${langName}.`;
+
+            const grammarLangInstruction = targetLang === 'de'
+                ? 'Write ALL grammar notes in German (e.g. "unvollendeter Aspekt, 3. Pers. Sg.", "weibl.", "männl.", "Präp. + Genitiv").'
+                : 'Write ALL grammar notes in English (e.g. "imperfective, 3rd pers. sg.", "fem.", "masc.", "prep. + genitive").';
+
+            return `You are a Russian language teaching assistant. Create a complete vocabulary list for the following Russian text. Every single word must be included.
+
+Instructions:
+1. Extract EVERY word from the text — do not skip any word, no matter how basic (including и, в, на, он, она, я, ты, есть, это, etc.).
+2. ${translationInstruction}
+3. For each item, include brief grammar info: noun gender, verb aspect, case requirements for prepositions, etc. ${grammarLangInstruction}
+4. For verbs: give the infinitive form as the "russian" value, but also list the conjugated form(s) appearing in the text in the "forms" array.
+5. For nouns/adjectives: give the dictionary form (nominative singular), and list declined forms from the text in the "forms" array.
+6. If a word appears in multiple forms, create only ONE entry with all forms listed.
+7. IMPORTANT: Also extract ALL multi-word expressions, idioms, collocations, and fixed phrases as SEPARATE entries. Examples:
+   - Prepositional phrases: "в наше время" (in our time), "на самом деле" (actually), "в конце концов" (in the end)
+   - Verb constructions: "у меня есть" (I have), "мне нравится" (I like), "можно сказать" (one could say)
+   - Set expressions: "друг друга" (each other), "так как" (since/because), "то есть" (that is)
+   - Any phrase where the meaning differs from the individual words
+   List these IN ADDITION to the individual words — do not skip the individual words.
+8. Return ONLY a valid JSON array. No markdown, no explanation, no code fences.
+
+JSON format — each element:
+{
+  "russian": "dictionary form of the word",
+  "forms": ["form1_from_text", "form2_from_text"],
+  "translation": "translation in ${langName}",
+  "grammar": "brief grammar note in ${langName}"
+}
+
+Russian text to analyze:
+"""
+${text}
+"""`;
+        }
+
+        function buildMissingWordsPrompt(missingWords, originalText, targetLang) {
+            const langName = { de: 'German', en: 'English', ru: 'Russian' }[targetLang] || 'German';
+
+            const translationInstruction = targetLang === 'ru'
+                ? 'Provide a brief Russian definition or explanation for each word.'
+                : `Translate each word into ${langName}.`;
+
+            const grammarLangInstruction = targetLang === 'de'
+                ? 'Write grammar notes in German.'
+                : 'Write grammar notes in English.';
+
+            return `You are a Russian language teaching assistant. The following Russian words appear in a text but were missed in the initial vocabulary extraction. Provide vocabulary entries for EVERY word listed below — do not skip any, even if they are basic, common, or proper nouns.
+
+Instructions:
+1. ${translationInstruction}
+2. Include brief grammar info. ${grammarLangInstruction}
+3. Give the dictionary form as "russian" and the text form in "forms" array.
+4. For proper nouns (names, company names), still provide an entry with a note in the grammar field.
+5. Return ONLY a valid JSON array. No markdown, no explanation, no code fences.
+
+JSON format for each entry:
+{"russian": "dictionary form", "forms": ["form_from_text"], "translation": "translation", "grammar": "grammar note"}
+
+Original text for context:
+"""
+${originalText}
+"""
+
+Words that MUST be included (${missingWords.length} words):
+${missingWords.join(', ')}`;
+        }
+
+        async function callClaudeAPI(prompt) {
+            const response = await fetch('https://api.anthropic.com/v1/messages', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'x-api-key': apiKey,
+                    'anthropic-version': '2023-06-01',
+                    'anthropic-dangerous-direct-browser-access': 'true'
+                },
+                body: JSON.stringify({
+                    model: 'claude-sonnet-4-20250514',
+                    max_tokens: 16384,
+                    messages: [{ role: 'user', content: prompt }]
+                })
+            });
+
+            if (!response.ok) {
+                if (response.status === 401) throw new Error('AUTH');
+                if (response.status === 429) throw new Error('RATE_LIMIT');
+                const body = await response.text().catch(() => '');
+                throw new Error(`HTTP_${response.status}: ${body.substring(0, 200)}`);
+            }
+
+            const data = await response.json();
+            const content = data.content?.[0]?.text;
+            if (!content) throw new Error('EMPTY_RESPONSE');
+            return content;
+        }
+
+        function parseVocabResponse(responseText) {
+            let jsonStr = responseText.trim();
+
+            // Strip markdown code fences if present
+            const fenceMatch = jsonStr.match(/```(?:json)?\s*([\s\S]*?)```/);
+            if (fenceMatch) {
+                jsonStr = fenceMatch[1].trim();
+            }
+
+            const startIdx = jsonStr.indexOf('[');
+            if (startIdx === -1) throw new Error('PARSE');
+
+            let endIdx = jsonStr.lastIndexOf(']');
+            if (endIdx === -1) {
+                // Truncated response — try to salvage by finding last complete object
+                const lastComplete = jsonStr.lastIndexOf('}');
+                if (lastComplete === -1) throw new Error('PARSE');
+                jsonStr = jsonStr.substring(startIdx, lastComplete + 1) + ']';
+                // Remove trailing comma before the ]
+                jsonStr = jsonStr.replace(/,\s*\]$/, ']');
+            } else {
+                jsonStr = jsonStr.substring(startIdx, endIdx + 1);
+            }
+
+            let items;
+            try {
+                items = JSON.parse(jsonStr);
+            } catch (e) {
+                // Last resort: try removing the last incomplete entry
+                const lastBrace = jsonStr.lastIndexOf('},{');
+                if (lastBrace === -1) throw new Error('PARSE');
+                jsonStr = jsonStr.substring(0, lastBrace + 1) + ']';
+                items = JSON.parse(jsonStr);
+            }
+            if (!Array.isArray(items) || items.length === 0) throw new Error('PARSE');
+
+            return items.filter(item =>
+                item && typeof item.russian === 'string' && item.russian.trim()
+            ).map(item => ({
+                russian: item.russian.trim(),
+                forms: Array.isArray(item.forms) ? item.forms.map(f => f.trim()) : [],
+                translation: (item.translation || '').trim(),
+                grammar: (item.grammar || '').trim()
+            }));
+        }
+
+        function vocabItemsToCards(items) {
+            return items.map(item => {
+                const grammarPrefix = item.grammar ? `(${item.grammar}) ` : '';
+                return {
+                    displayText: grammarPrefix + item.russian,
+                    speakableText: item.russian,
+                    answer: item.translation,
+                    images: []
+                };
+            });
+        }
+
+        function escapeHtml(str) {
+            if (!str) return '';
+            return str.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+        }
+
+        function showVocabPreview(items) {
+            vocabPreviewCount.textContent = t('generate_preview_count', { n: items.length });
+
+            let html = `<div class="vocab-preview-row header">
+                <span>${t('generate_preview_russian')}</span>
+                <span>${t('generate_preview_translation')}</span>
+                <span>${t('generate_preview_grammar')}</span>
+            </div>`;
+
+            items.forEach(item => {
+                html += `<div class="vocab-preview-row">
+                    <span class="russian">${escapeHtml(item.russian)}</span>
+                    <span class="translation">${escapeHtml(item.translation)}</span>
+                    <span class="grammar">${escapeHtml(item.grammar)}</span>
+                </div>`;
+            });
+
+            vocabPreviewTable.innerHTML = html;
+            vocabPreviewPanel.classList.add('visible');
+        }
+
+        function hideVocabPreview() {
+            vocabPreviewPanel.classList.remove('visible');
+        }
+
+        function normalizeWord(w) {
+            return w.toLowerCase().replace(/[.,!?;:«»""''…\-]/g, '').trim();
+        }
+
+        function buildVocabMap(items) {
+            generatedVocabMap = {};
+            // First pass: multi-word phrases (lower priority for single-word lookup)
+            items.forEach(item => {
+                const key = normalizeWord(item.russian);
+                if (key.includes(' ')) {
+                    generatedVocabMap[key] = item;
+                    // Register forms for multi-word phrases too
+                    if (item.forms) {
+                        item.forms.forEach(form => {
+                            const formKey = normalizeWord(form);
+                            if (formKey) generatedVocabMap[formKey] = item;
+                        });
+                    }
+                }
+            });
+            // Second pass: single words (overwrite multi-word entries for individual words)
+            items.forEach(item => {
+                const key = normalizeWord(item.russian);
+                if (!key.includes(' ')) {
+                    generatedVocabMap[key] = item;
+                    if (item.forms) {
+                        item.forms.forEach(form => {
+                            const formKey = normalizeWord(form);
+                            if (formKey) generatedVocabMap[formKey] = item;
+                        });
+                    }
+                }
+            });
+        }
+
+        function lookupVocab(wordText) {
+            const clean = normalizeWord(wordText);
+            if (!clean) return null;
+            return generatedVocabMap[clean] || null;
+        }
+
+        function markVocabWords() {
+            if (Object.keys(generatedVocabMap).length === 0) return;
+            const wordEls = Array.from(document.querySelectorAll('.text-paragraph .word'));
+
+            // First: find multi-word phrase matches (2-4 word sequences)
+            for (let i = 0; i < wordEls.length; i++) {
+                for (let len = 4; len >= 2; len--) {
+                    if (i + len > wordEls.length) continue;
+                    // Only match words in the same sentence
+                    const sentIdx = wordEls[i].dataset.sentenceIdx;
+                    const samesentence = wordEls.slice(i, i + len).every(w => w.dataset.sentenceIdx === sentIdx);
+                    if (!samesentence) continue;
+
+                    const phrase = wordEls.slice(i, i + len).map(w => normalizeWord(w.textContent)).join(' ');
+                    const match = generatedVocabMap[phrase];
+                    if (match) {
+                        for (let j = i; j < i + len; j++) {
+                            wordEls[j].classList.add('has-vocab');
+                            wordEls[j].dataset.vocabRussian = match.russian;
+                            wordEls[j].dataset.vocabTranslation = match.translation;
+                            wordEls[j].dataset.vocabGrammar = match.grammar || '';
+                        }
+                        i += len - 1; // skip matched words
+                        break;
+                    }
+                }
+            }
+
+            // Second: mark remaining single words
+            wordEls.forEach(el => {
+                if (el.classList.contains('has-vocab')) return; // already matched by phrase
+                const match = lookupVocab(el.textContent);
+                if (match) {
+                    el.classList.add('has-vocab');
+                    el.dataset.vocabRussian = match.russian;
+                    el.dataset.vocabTranslation = match.translation;
+                    el.dataset.vocabGrammar = match.grammar || '';
+                }
+            });
+        }
+
+        function getMissingWords() {
+            const wordEls = document.querySelectorAll('.text-paragraph .word');
+            const missing = new Set();
+            wordEls.forEach(el => {
+                if (el.classList.contains('has-vocab')) return;
+                const clean = normalizeWord(el.textContent);
+                if (clean) missing.add(clean);
+            });
+            return Array.from(missing);
+        }
+
+        function showVocabTooltip(wordEl) {
+            vocabTooltipWord.textContent = wordEl.dataset.vocabRussian;
+            vocabTooltipTranslation.textContent = wordEl.dataset.vocabTranslation;
+            const grammar = wordEl.dataset.vocabGrammar;
+            vocabTooltipGrammar.textContent = grammar;
+            vocabTooltipGrammar.style.display = grammar ? 'block' : 'none';
+
+            // Position tooltip using fixed coordinates (viewport-relative)
+            const rect = wordEl.getBoundingClientRect();
+
+            // Show first to measure dimensions
+            vocabTooltip.classList.add('visible');
+            const tooltipRect = vocabTooltip.getBoundingClientRect();
+
+            // Default: above the word
+            let left = rect.left;
+            let top = rect.top - tooltipRect.height - 6;
+
+            // Keep within viewport horizontally
+            if (left + tooltipRect.width > window.innerWidth) {
+                left = window.innerWidth - tooltipRect.width - 8;
+            }
+            if (left < 4) left = 4;
+
+            // If tooltip would go above viewport, show below word instead
+            if (top < 4) {
+                top = rect.bottom + 6;
+            }
+
+            vocabTooltip.style.left = left + 'px';
+            vocabTooltip.style.top = top + 'px';
+        }
+
+        function hideVocabTooltip() {
+            vocabTooltip.classList.remove('visible');
+        }
+
+        async function generateVocabulary() {
+            if (isGenerating) return;
+            if (!apiKey) {
+                alert(t('generate_error_no_key'));
+                showSettings();
+                return;
+            }
+
+            const currentText = texts[currentIndex];
+            if (!currentText || !currentText.body) return;
+
+            isGenerating = true;
+            const btnIcon = generateVocabBtn.querySelector('.btn-icon');
+            const originalIcon = btnIcon.textContent;
+            btnIcon.innerHTML = '<span class="spinner"></span>';
+            generateVocabBtn.classList.add('loading');
+
+            try {
+                const prompt = buildVocabPrompt(currentText.body, currentLang);
+                const responseText = await callClaudeAPI(prompt);
+                let vocabItems = parseVocabResponse(responseText);
+
+                buildVocabMap(vocabItems);
+                markVocabWords();
+
+                // Second pass: find words not covered by the first response
+                const missingWords = getMissingWords();
+                if (missingWords.length > 0) {
+                    try {
+                        const prompt2 = buildMissingWordsPrompt(missingWords, currentText.body, currentLang);
+                        const responseText2 = await callClaudeAPI(prompt2);
+                        const extraItems = parseVocabResponse(responseText2);
+                        if (extraItems.length > 0) {
+                            vocabItems = vocabItems.concat(extraItems);
+                            buildVocabMap(vocabItems);
+                            markVocabWords();
+                        }
+                    } catch (e2) {
+                        console.warn('Second vocab pass failed:', e2);
+                    }
+                }
+
+                generateVocabBtn._pendingItems = vocabItems;
+                showVocabPreview(vocabItems);
+            } catch (err) {
+                let msg;
+                if (err.message === 'AUTH') {
+                    msg = t('generate_error_auth');
+                } else if (err.message === 'RATE_LIMIT') {
+                    msg = t('generate_error_rate_limit');
+                } else if (err.message === 'PARSE' || err.message === 'EMPTY_RESPONSE') {
+                    msg = t('generate_error_parse');
+                } else if (err.name === 'TypeError' && err.message.includes('fetch')) {
+                    msg = t('generate_error_network');
+                } else {
+                    msg = t('generate_error_generic', { msg: err.message });
+                }
+                alert(msg);
+            } finally {
+                isGenerating = false;
+                btnIcon.textContent = originalIcon;
+                generateVocabBtn.classList.remove('loading');
+            }
+        }
+
+        function loadGeneratedCards() {
+            const items = generateVocabBtn._pendingItems;
+            if (!items || items.length === 0) return;
+
+            const generatedCards = vocabItemsToCards(items);
+
+            // Save cards for flashcard mode (available when user switches)
+            // currentSourceFile is already set to the text filename from processFile()
+            cards = generatedCards;
+            isClassicFormat = false;
+            isTabFormat = true;
+
+            saveCardsToDB(cards, currentSourceFile).catch(e => console.warn('DB save error:', e));
+
+            // Stay in text reader — vocab highlights are already active
+            hideVocabPreview();
         }
 
         // --- Interval Formatting ---
@@ -3181,7 +4207,15 @@
         document.getElementById('restartSRBtn').addEventListener('click', restartSRSession);
         document.getElementById('switchToFreeBtn').addEventListener('click', switchToFreeMode);
         document.getElementById('sessionMainMenuBtn').addEventListener('click', () => {
+            speechSynthesis.cancel();
             document.getElementById('sessionComplete').classList.remove('visible');
+            flashcardContainer.classList.remove('visible');
+            flashcardControls.classList.remove('visible');
+            statsBar.classList.remove('visible');
+            cardList.classList.remove('visible');
+            document.getElementById('srStats').classList.remove('visible');
+            hideRatingButtons();
+            document.getElementById('voiceSection').style.display = 'none';
             showFlashcardSetup();
         });
 
@@ -3197,6 +4231,12 @@
         // Export Button
         document.getElementById('exportVocabBtn').addEventListener('click', () => {
             exportVocabularyTSV();
+        });
+
+        // Setup Back Button — zurück zur Modusauswahl
+        document.getElementById('setupBackBtn').addEventListener('click', () => {
+            flashcardSetup.style.display = 'none';
+            modeSelection.style.display = 'block';
         });
 
         // Start Flashcards Button
@@ -3250,25 +4290,30 @@
         modeFlashcardsBtn.addEventListener('click', () => {
             selectedMode = 'flashcards';
             modeSelection.style.display = 'none';
+            uploadSection.style.display = 'block';
+            uploadText.textContent = t('upload_flashcards');
+            uploadHint.textContent = t('upload_flashcards_hint');
+            continueTextBtn.style.display = 'none';
+            // Show "continue" button if cards already loaded
             if (cards.length > 0) {
-                showFlashcardSetup();
+                continueCardsBtn.style.display = 'inline-flex';
             } else {
-                uploadSection.style.display = 'block';
-                uploadText.textContent = t('upload_flashcards');
-                uploadHint.textContent = t('upload_flashcards_hint');
+                continueCardsBtn.style.display = 'none';
             }
         });
 
         modeTextsBtn.addEventListener('click', () => {
             selectedMode = 'texts';
             modeSelection.style.display = 'none';
+            uploadSection.style.display = 'block';
+            uploadText.textContent = t('upload_texts');
+            uploadHint.textContent = t('upload_texts_hint');
+            continueCardsBtn.style.display = 'none';
+            // Show "continue" button if text already loaded
             if (texts.length > 0) {
-                isTextMode = true;
-                showTextMode();
+                continueTextBtn.style.display = 'inline-flex';
             } else {
-                uploadSection.style.display = 'block';
-                uploadText.textContent = t('upload_texts');
-                uploadHint.textContent = t('upload_texts_hint');
+                continueTextBtn.style.display = 'none';
             }
         });
 
@@ -3276,7 +4321,23 @@
             e.stopPropagation();
             selectedMode = null;
             uploadSection.style.display = 'none';
+            continueTextBtn.style.display = 'none';
             modeSelection.style.display = 'block';
+        });
+
+        continueTextBtn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            uploadSection.style.display = 'none';
+            continueTextBtn.style.display = 'none';
+            isTextMode = true;
+            showTextMode();
+        });
+
+        continueCardsBtn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            uploadSection.style.display = 'none';
+            continueCardsBtn.style.display = 'none';
+            showFlashcardSetup();
         });
 
         // Mode Switch Buttons
@@ -3290,10 +4351,12 @@
             flashcardControls.classList.remove('visible');
             cardList.classList.remove('visible');
             textReaderContainer.classList.remove('visible');
+            document.getElementById('voiceSection').style.display = 'none';
             // SR-Elemente ausblenden
             document.getElementById('srStats').classList.remove('visible');
             document.getElementById('sessionComplete').classList.remove('visible');
             hideRatingButtons();
+            hideVocabTooltip();
             // Modus-Auswahl anzeigen
             modeSelection.style.display = 'block';
         }
@@ -3306,8 +4369,10 @@
 
         switchToCardsBtn.addEventListener('click', () => {
             switchToModeSelection();
-            // Direkt Karteikarten-Modus auswählen
-            modeFlashcardsBtn.click();
+            // Wenn Karten geladen sind, direkt zum Setup (Export, Statistik)
+            if (cards.length > 0) {
+                showFlashcardSetup();
+            }
         });
 
         // ============================================
@@ -3474,6 +4539,11 @@
             } else {
                 textList.style.display = 'none';
             }
+
+            // Auto-load saved vocabulary for this text file
+            if (currentSourceFile) {
+                loadVocabForSource(currentSourceFile).catch(() => {});
+            }
         }
 
         function renderTextContent() {
@@ -3523,6 +4593,9 @@
             document.querySelectorAll('.text-list-item').forEach((item, i) => {
                 item.classList.toggle('active', i === currentIndex);
             });
+
+            // Re-apply vocab highlights if available
+            markVocabWords();
         }
 
         function renderTextList() {
@@ -3622,10 +4695,10 @@
                     question = line.substring(0, tabIdx).trim();
                     answer = line.substring(tabIdx + 1).trim();
                 } else {
-                    const lastComma = line.lastIndexOf(',');
-                    if (lastComma === -1) return;
-                    question = line.substring(0, lastComma).trim();
-                    answer = line.substring(lastComma + 1).trim();
+                    const firstComma = line.indexOf(',');
+                    if (firstComma === -1) return;
+                    question = line.substring(0, firstComma).trim();
+                    answer = line.substring(firstComma + 1).trim();
                 }
 
                 if (!question && !answer) return;
@@ -3817,7 +4890,8 @@
             cards.forEach((card, idx) => {
                 const item = document.createElement('div');
                 item.className = 'card-item' + (idx === currentIndex ? ' active' : '');
-                const text = card.speakableText.substring(0, 50) + (card.speakableText.length > 50 ? '...' : '');
+                const frontText = card.speakableText.substring(0, 40) + (card.speakableText.length > 40 ? '…' : '');
+                const backText = card.answer ? card.answer.substring(0, 40) + (card.answer.length > 40 ? '…' : '') : '';
 
                 // SR badge
                 let badgeHtml = '';
@@ -3835,7 +4909,10 @@
 
                 item.innerHTML = `
                     <span class="card-item-number">${idx + 1}</span>
-                    <span class="card-item-text">${text}</span>
+                    <span class="card-item-text">
+                        <span class="card-item-front">${frontText}</span>
+                        ${backText ? '<span class="card-item-separator">│</span><span class="card-item-back">' + backText + '</span>' : ''}
+                    </span>
                     ${card.images && card.images.length > 0 ? '<span class="card-item-img" title="🖼">🖼</span>' : ''}
                     ${badgeHtml}
                     <button class="card-item-speak" title="${t('btn_read_aloud')}">🔊</button>
@@ -4228,18 +5305,16 @@
             flashcardControls.classList.remove('visible');
             statsBar.classList.remove('visible');
             cardList.classList.remove('visible');
-            flashcardSetup.style.display = 'none';
             document.getElementById('srStats').classList.remove('visible');
             document.getElementById('sessionComplete').classList.remove('visible');
             hideRatingButtons();
-            // Voice-Section wieder einblenden
-            document.getElementById('voiceSection').style.display = 'flex';
-            // State zurücksetzen, damit neue Datei geladen werden kann
-            cards = [];
-            texts = [];
-            currentIndex = 0;
-            // Zurück zur Modusauswahl
-            modeSelection.style.display = 'block';
+            document.getElementById('voiceSection').style.display = 'none';
+            // Zurück zum Flashcard-Setup (Export, Statistik etc.)
+            if (cards.length > 0) {
+                showFlashcardSetup();
+            } else {
+                modeSelection.style.display = 'block';
+            }
         });
 
         // ============================================
@@ -4308,6 +5383,52 @@
 
         // Apply saved language on load
         applyLanguage(currentLang);
+
+        // ============================================
+        // SETTINGS & LLM EVENT LISTENERS
+        // ============================================
+        settingsBtn.addEventListener('click', showSettings);
+        settingsCloseBtn.addEventListener('click', hideSettings);
+        toggleApiKeyBtn.addEventListener('click', () => {
+            apiKeyInput.type = apiKeyInput.type === 'password' ? 'text' : 'password';
+        });
+        saveSettingsBtn.addEventListener('click', () => {
+            saveApiKey(apiKeyInput.value);
+            hideSettings();
+        });
+        settingsPanel.addEventListener('click', (e) => {
+            if (e.target === settingsPanel) hideSettings();
+        });
+
+        pickVocabFileBtn.addEventListener('click', async () => {
+            const handle = await pickVocabExportFile();
+            if (handle) {
+                updateVocabExportStatus();
+                autoExportJSON(); // initial export
+            }
+        });
+
+        generateVocabBtn.addEventListener('click', generateVocabulary);
+        loadGeneratedCardsBtn.addEventListener('click', loadGeneratedCards);
+        cancelPreviewBtn.addEventListener('click', hideVocabPreview);
+        vocabPreviewPanel.addEventListener('click', (e) => {
+            if (e.target === vocabPreviewPanel) hideVocabPreview();
+        });
+
+        // Vocabulary hover tooltip (event delegation)
+        textReaderContent.addEventListener('mouseover', (e) => {
+            const wordEl = e.target.closest('.word.has-vocab');
+            if (wordEl) showVocabTooltip(wordEl);
+        });
+        textReaderContent.addEventListener('mouseout', (e) => {
+            const wordEl = e.target.closest('.word.has-vocab');
+            if (wordEl) hideVocabTooltip();
+        });
+        textReaderContent.addEventListener('scroll', hideVocabTooltip);
+
+        // Load API key on startup
+        loadApiKey();
+        loadVocabFileHandle().then(handle => { if (handle) vocabFileHandle = handle; });
 
     </script>
 </body>
