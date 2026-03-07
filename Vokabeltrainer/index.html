@@ -214,6 +214,71 @@
             display: none;
         }
 
+        /* Saved Vocabulary Section */
+        .saved-vocab-section {
+            margin-bottom: 32px;
+        }
+
+        .saved-vocab-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.1rem;
+            color: var(--text-secondary);
+            margin-bottom: 12px;
+            text-align: center;
+        }
+
+        .saved-vocab-list {
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+        }
+
+        .saved-vocab-item {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            padding: 12px 18px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .saved-vocab-item:hover {
+            border-color: var(--accent);
+            background: var(--bg-card-hover);
+        }
+
+        .saved-vocab-item.all-vocab {
+            border-color: var(--accent);
+            background: rgba(232, 179, 65, 0.06);
+        }
+
+        .saved-vocab-item-name {
+            color: var(--text-primary);
+            font-size: 0.95rem;
+        }
+
+        .saved-vocab-item.all-vocab .saved-vocab-item-name {
+            font-weight: 600;
+            color: var(--accent);
+        }
+
+        .saved-vocab-item-count {
+            color: var(--text-muted);
+            font-size: 0.85rem;
+            white-space: nowrap;
+            margin-left: 12px;
+        }
+
+        .saved-vocab-empty {
+            text-align: center;
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            padding: 12px;
+        }
+
         /* Voice Selection */
         .voice-section {
             background: var(--bg-card);
@@ -481,7 +546,8 @@
         }
 
         .sentence.current {
-            background: rgba(232, 179, 65, 0.35);
+            background: rgba(100, 160, 255, 0.30);
+            color: #ffffff;
             padding: 2px 6px;
             margin: 0 -6px;
         }
@@ -541,7 +607,8 @@
         }
 
         .word.current-word {
-            background: rgba(232, 179, 65, 0.5);
+            background: rgba(100, 160, 255, 0.55);
+            color: #ffffff;
             padding: 1px 3px;
             margin: 0 -3px;
             border-radius: 3px;
@@ -1921,11 +1988,17 @@
             <button class="back-btn" id="backToModeBtn" data-i18n="back_to_selection">← Zurück zur Auswahl</button>
         </div>
 
+        <!-- Saved Vocabulary Section (only for flashcard mode) -->
+        <div class="saved-vocab-section" id="savedVocabSection" style="display: none;">
+            <h3 class="saved-vocab-title" data-i18n="saved_vocab_title">Gespeicherte Vokabeln</h3>
+            <div class="saved-vocab-list" id="savedVocabList"></div>
+        </div>
+
         <!-- Format Indicator -->
         <div class="format-indicator" id="formatIndicator"></div>
 
         <!-- Voice Selection -->
-        <div class="voice-section" id="voiceSection">
+        <div class="voice-section" id="voiceSection" style="display: flex;">
             <div class="gender-selector">
                 <button class="gender-btn active" id="genderFemaleBtn" data-i18n-title="voice_female_title" title="Weibliche Stimme">
                     <span>👩</span> <span data-i18n="voice_female">Weiblich</span>
@@ -1947,11 +2020,11 @@
                 <span class="speed-value" id="speedValue">0.9x</span>
             </div>
             <!-- Nur für Karteikarten -->
-            <label class="toggle-option" id="autoSpeakOption">
+            <label class="toggle-option" id="autoSpeakOption" style="display: none;">
                 <input type="checkbox" id="autoSpeak" checked>
                 <span data-i18n="auto_speak">Auto-Vorlesen</span>
             </label>
-            <label class="toggle-option" id="speakBackOption">
+            <label class="toggle-option" id="speakBackOption" style="display: none;">
                 <input type="checkbox" id="speakBack">
                 <span data-i18n="speak_back">Rückseite vorlesen</span>
             </label>
@@ -1959,8 +2032,11 @@
             <button class="mode-switch-btn" id="switchToTextBtn" style="display: none;" data-i18n-title="switch_to_text_title" title="Zu Text vorlesen wechseln">
                 📖 <span data-i18n="switch_to_text">zum Text vorlesen</span>
             </button>
-            <button class="mode-switch-btn" id="switchToCardsBtn" style="display: none;" data-i18n-title="switch_to_cards_title" title="Zu Vokabeltrainer wechseln">
-                🏠 <span data-i18n="switch_to_cards">zum Hauptmenü</span>
+            <button class="mode-switch-btn" id="backToHomeBtn" style="display: none;" data-i18n-title="back_to_home_title" title="Zum Hauptmenü">
+                🏠 <span data-i18n="back_to_home">zum Hauptmenü</span>
+            </button>
+            <button class="mode-switch-btn" id="switchToCardsBtn" style="display: none;" data-i18n-title="switch_to_cards_title" title="Neue Datei laden">
+                📂 <span data-i18n="switch_to_cards">Neue Datei laden</span>
             </button>
             <!-- Nur für Texte: Lese-Modus -->
             <div class="read-mode-selector" id="readModeSelector" style="display: none;">
@@ -2307,8 +2383,10 @@
                 speak_back: 'Rückseite vorlesen',
                 switch_to_text: 'zum Text vorlesen',
                 switch_to_text_title: 'Zu Text vorlesen wechseln',
-                switch_to_cards: 'zum Hauptmenü',
-                switch_to_cards_title: 'Zum Hauptmenü wechseln',
+                back_to_home: 'zum Hauptmenü',
+                back_to_home_title: 'Zum Hauptmenü',
+                switch_to_cards: 'Neue Datei laden',
+                switch_to_cards_title: 'Neue Datei laden',
                 read_all: 'ganzer Text',
                 read_all_title: 'Ganzen Text vorlesen',
                 read_sentence: 'Satz für Satz',
@@ -2421,6 +2499,11 @@
                 stats_day_detail: '{cards} Karten ({newCards} neue) \u00b7 {sessions} Session{plural}',
                 day_names: ['So', 'Mo', 'Di', 'Mi', 'Do', 'Fr', 'Sa'],
                 cards_suffix: 'n',
+                saved_vocab_title: 'Gespeicherte Vokabeln',
+                saved_vocab_all: 'Alle Vokabeln',
+                saved_vocab_cards: '{n} Karten',
+                saved_vocab_empty: 'Noch keine Vokabeln gespeichert.',
+                saved_vocab_delete_confirm: 'Lektion "{name}" wirklich löschen? ({n} Karten)',
             },
             en: {
                 title: 'Learn Russian',
@@ -2449,8 +2532,10 @@
                 speak_back: 'Read back side',
                 switch_to_text: 'to text reading',
                 switch_to_text_title: 'Switch to text reading',
-                switch_to_cards: 'to main menu',
-                switch_to_cards_title: 'Switch to main menu',
+                back_to_home: 'Main menu',
+                back_to_home_title: 'Back to main menu',
+                switch_to_cards: 'Load new file',
+                switch_to_cards_title: 'Load new file',
                 read_all: 'All',
                 read_all_title: 'Read entire text',
                 read_sentence: 'By sentence',
@@ -2563,6 +2648,11 @@
                 stats_day_detail: '{cards} cards ({newCards} new) \u00b7 {sessions} session{plural}',
                 day_names: ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'],
                 cards_suffix: 's',
+                saved_vocab_title: 'Saved Vocabulary',
+                saved_vocab_all: 'All vocabulary',
+                saved_vocab_cards: '{n} cards',
+                saved_vocab_empty: 'No vocabulary saved yet.',
+                saved_vocab_delete_confirm: 'Delete lesson "{name}"? ({n} cards)',
             },
             ru: {
                 title: 'Учим русский',
@@ -2591,8 +2681,10 @@
                 speak_back: 'Озвучить обратную сторону',
                 switch_to_text: 'к чтению текстов',
                 switch_to_text_title: 'Перейти к чтению текстов',
-                switch_to_cards: 'в главное меню',
-                switch_to_cards_title: 'Перейти в главное меню',
+                back_to_home: 'Главное меню',
+                back_to_home_title: 'В главное меню',
+                switch_to_cards: 'Загрузить новый файл',
+                switch_to_cards_title: 'Загрузить новый файл',
                 read_all: 'Всё',
                 read_all_title: 'Прочитать весь текст',
                 read_sentence: 'По предложениям',
@@ -2705,6 +2797,11 @@
                 stats_day_detail: '{cards} карточек ({newCards} новых) \u00b7 {sessions} сесси{plural}',
                 day_names: ['Вс', 'Пн', 'Вт', 'Ср', 'Чт', 'Пт', 'Сб'],
                 cards_suffix: 'ек',
+                saved_vocab_title: 'Сохранённые слова',
+                saved_vocab_all: 'Все слова',
+                saved_vocab_cards: '{n} карточек',
+                saved_vocab_empty: 'Слова ещё не сохранены.',
+                saved_vocab_delete_confirm: 'Удалить урок "{name}"? ({n} карточек)',
             }
         };
 
@@ -2815,6 +2912,7 @@
 
         // Mode Switch Buttons
         const switchToTextBtn = document.getElementById('switchToTextBtn');
+        const backToHomeBtn = document.getElementById('backToHomeBtn');
         const switchToCardsBtn = document.getElementById('switchToCardsBtn');
 
         // Text Reader Elements
@@ -3146,6 +3244,7 @@
                     front: front || card.displayText,
                     back: card.answer,
                     grammar,
+                    forms: card.forms || existing?.forms || [],
                     images: card.images || [],
                     tags: existing?.tags || [],
                     topic: existing?.topic || '',
@@ -3174,7 +3273,7 @@
         function dbRecordsToVocabItems(records) {
             return records.map(r => ({
                 russian: r.front,
-                forms: [],
+                forms: r.forms || [],
                 translation: r.back,
                 grammar: r.grammar || ''
             }));
@@ -3200,6 +3299,99 @@
                 req.onsuccess = () => resolve(req.result);
                 req.onerror = (e) => reject(e.target.error);
             });
+        }
+
+        async function getSourcesFromDB() {
+            const allCards = await getAllCardsFromDB();
+            const sourceMap = {};
+            for (const card of allCards) {
+                const src = card.source || '';
+                if (!sourceMap[src]) sourceMap[src] = 0;
+                sourceMap[src]++;
+            }
+            // Sort by name, put empty-source last
+            return Object.entries(sourceMap)
+                .map(([name, count]) => ({ name, count }))
+                .sort((a, b) => {
+                    if (!a.name) return 1;
+                    if (!b.name) return -1;
+                    return a.name.localeCompare(b.name);
+                });
+        }
+
+        async function renderSavedVocabList() {
+            const list = document.getElementById('savedVocabList');
+            const section = document.getElementById('savedVocabSection');
+            const sources = await getSourcesFromDB();
+            const totalCards = sources.reduce((sum, s) => sum + s.count, 0);
+
+            if (totalCards === 0) {
+                list.innerHTML = `<div class="saved-vocab-empty">${t('saved_vocab_empty')}</div>`;
+                section.style.display = 'block';
+                return;
+            }
+
+            let html = '';
+
+            // "All vocabulary" item
+            html += `<div class="saved-vocab-item all-vocab" data-source="__all__">
+                <span class="saved-vocab-item-name">${t('saved_vocab_all')}</span>
+                <span class="saved-vocab-item-count">${t('saved_vocab_cards', { n: totalCards })}</span>
+            </div>`;
+
+            // Individual sources
+            for (const src of sources) {
+                const displayName = src.name ? src.name.replace(/\.[^.]+$/, '') : '?';
+                html += `<div class="saved-vocab-item" data-source="${src.name.replace(/"/g, '&quot;')}">
+                    <span class="saved-vocab-item-name">${displayName}</span>
+                    <span class="saved-vocab-item-count">${t('saved_vocab_cards', { n: src.count })}</span>
+                </div>`;
+            }
+
+            list.innerHTML = html;
+            section.style.display = 'block';
+
+            // Click handlers
+            list.querySelectorAll('.saved-vocab-item').forEach(item => {
+                item.addEventListener('click', () => {
+                    const source = item.dataset.source;
+                    loadCardsFromDBSource(source);
+                });
+            });
+        }
+
+        async function loadCardsFromDBSource(source) {
+            let records;
+            if (source === '__all__') {
+                records = await getAllCardsFromDB();
+                currentSourceFile = '';
+            } else {
+                records = await getVocabBySource(source);
+                currentSourceFile = source;
+            }
+            if (records.length === 0) return;
+
+            const items = dbRecordsToVocabItems(records);
+            cards = vocabItemsToCards(items);
+            isClassicFormat = false;
+            isTabFormat = true;
+
+            showFlashcardSetup();
+        }
+
+        async function deleteSourceFromDB(source) {
+            const db = await openVocabDB();
+            const tx = db.transaction('vocabulary', 'readwrite');
+            const store = tx.objectStore('vocabulary');
+            const idx = store.index('source');
+            const req = idx.getAll(source);
+            req.onsuccess = () => {
+                for (const record of req.result) {
+                    store.delete(record.id);
+                }
+            };
+            await new Promise((resolve, reject) => { tx.oncomplete = resolve; tx.onerror = reject; });
+            autoExportJSON().catch(() => {});
         }
 
         async function exportVocabularyTSV() {
@@ -3502,6 +3694,7 @@ ${missingWords.join(', ')}`;
                     displayText: grammarPrefix + item.russian,
                     speakableText: item.russian,
                     answer: item.translation,
+                    forms: item.forms || [],
                     images: []
                 };
             });
@@ -4235,8 +4428,7 @@ ${missingWords.join(', ')}`;
 
         // Setup Back Button — zurück zur Modusauswahl
         document.getElementById('setupBackBtn').addEventListener('click', () => {
-            flashcardSetup.style.display = 'none';
-            modeSelection.style.display = 'block';
+            switchToModeSelection();
         });
 
         // Start Flashcards Button
@@ -4290,6 +4482,7 @@ ${missingWords.join(', ')}`;
         modeFlashcardsBtn.addEventListener('click', () => {
             selectedMode = 'flashcards';
             modeSelection.style.display = 'none';
+            document.getElementById('voiceSection').style.display = 'none';
             uploadSection.style.display = 'block';
             uploadText.textContent = t('upload_flashcards');
             uploadHint.textContent = t('upload_flashcards_hint');
@@ -4300,11 +4493,14 @@ ${missingWords.join(', ')}`;
             } else {
                 continueCardsBtn.style.display = 'none';
             }
+            // Show saved vocabulary list
+            renderSavedVocabList();
         });
 
         modeTextsBtn.addEventListener('click', () => {
             selectedMode = 'texts';
             modeSelection.style.display = 'none';
+            document.getElementById('voiceSection').style.display = 'none';
             uploadSection.style.display = 'block';
             uploadText.textContent = t('upload_texts');
             uploadHint.textContent = t('upload_texts_hint');
@@ -4322,6 +4518,10 @@ ${missingWords.join(', ')}`;
             selectedMode = null;
             uploadSection.style.display = 'none';
             continueTextBtn.style.display = 'none';
+            document.getElementById('savedVocabSection').style.display = 'none';
+            document.getElementById('voiceSection').style.display = 'flex';
+            autoSpeakOption.style.display = 'none';
+            document.getElementById('speakBackOption').style.display = 'none';
             modeSelection.style.display = 'block';
         });
 
@@ -4342,16 +4542,30 @@ ${missingWords.join(', ')}`;
 
         // Mode Switch Buttons
         function switchToModeSelection() {
+            stopRequested = true;
             speechSynthesis.cancel();
+            sentences = [];
             selectedMode = null;
             // Alle Modi ausblenden
             flashcardSetup.style.display = 'none';
+            uploadSection.style.display = 'none';
             statsBar.classList.remove('visible');
             flashcardContainer.classList.remove('visible');
             flashcardControls.classList.remove('visible');
             cardList.classList.remove('visible');
             textReaderContainer.classList.remove('visible');
-            document.getElementById('voiceSection').style.display = 'none';
+            // Voice-Section: Basis-Stimmeinstellungen auf Startseite zeigen
+            document.getElementById('voiceSection').style.display = 'flex';
+            readModeSelector.style.display = 'none';
+            voiceControls.style.display = 'none';
+            switchToTextBtn.style.display = 'none';
+            backToHomeBtn.style.display = 'none';
+            switchToCardsBtn.style.display = 'none';
+            autoSpeakOption.style.display = 'none';
+            document.getElementById('speakBackOption').style.display = 'none';
+            continueCardsBtn.style.display = 'none';
+            continueTextBtn.style.display = 'none';
+            document.getElementById('savedVocabSection').style.display = 'none';
             // SR-Elemente ausblenden
             document.getElementById('srStats').classList.remove('visible');
             document.getElementById('sessionComplete').classList.remove('visible');
@@ -4367,11 +4581,26 @@ ${missingWords.join(', ')}`;
             modeTextsBtn.click();
         });
 
+        backToHomeBtn.addEventListener('click', () => {
+            // Kompletter Reset: geladene Daten zurücksetzen
+            cards = [];
+            texts = [];
+            currentIndex = 0;
+            currentSentenceIndex = 0;
+            generatedVocabMap = {};
+            isTextMode = false;
+            reviewQueue = [];
+            currentSourceFile = '';
+            switchToModeSelection();
+        });
+
         switchToCardsBtn.addEventListener('click', () => {
             switchToModeSelection();
-            // Wenn Karten geladen sind, direkt zum Setup (Export, Statistik)
-            if (cards.length > 0) {
-                showFlashcardSetup();
+            // Direkt zum Datei-Upload mit aktuellem Modus
+            if (isTextMode) {
+                modeTextsBtn.click();
+            } else {
+                modeFlashcardsBtn.click();
             }
         });
 
@@ -4399,7 +4628,8 @@ ${missingWords.join(', ')}`;
         }
 
         uploadSection.addEventListener('click', (e) => {
-            if (e.target !== backToModeBtn) openFileWithPicker();
+            if (e.target.closest('#backToModeBtn, #continueTextBtn, #continueCardsBtn')) return;
+            openFileWithPicker();
         });
         uploadSection.addEventListener('dragover', (e) => {
             e.preventDefault();
@@ -4525,6 +4755,7 @@ ${missingWords.join(', ')}`;
             readModeSelector.style.display = 'flex';
             voiceControls.style.display = 'flex';
             switchToTextBtn.style.display = 'none';
+            backToHomeBtn.style.display = 'inline-flex';
             switchToCardsBtn.style.display = 'inline-flex';
 
             // Satz-Navigation ein-/ausblenden je nach Modus
@@ -4763,6 +4994,7 @@ ${missingWords.join(', ')}`;
         function showFlashcardSetup() {
             modeSelection.style.display = 'none';
             uploadSection.style.display = 'none';
+            document.getElementById('savedVocabSection').style.display = 'none';
             flashcardSetup.style.display = 'block';
             setupCardCount.textContent = t('cards_loaded', { n: cards.length });
 
@@ -4791,6 +5023,7 @@ ${missingWords.join(', ')}`;
             readModeSelector.style.display = 'none';
             voiceControls.style.display = 'none';
             switchToTextBtn.style.display = 'inline-flex';
+            backToHomeBtn.style.display = 'inline-flex';
             switchToCardsBtn.style.display = 'none';
 
             if (srMode !== 'free') {
@@ -5298,22 +5531,22 @@ ${missingWords.join(', ')}`;
         });
 
         document.getElementById('mainMenuBtn').addEventListener('click', () => {
-            speechSynthesis.cancel();
             recordSession();
-            // Flashcard-Modus ausblenden
-            flashcardContainer.classList.remove('visible');
-            flashcardControls.classList.remove('visible');
-            statsBar.classList.remove('visible');
-            cardList.classList.remove('visible');
-            document.getElementById('srStats').classList.remove('visible');
-            document.getElementById('sessionComplete').classList.remove('visible');
-            hideRatingButtons();
-            document.getElementById('voiceSection').style.display = 'none';
             // Zurück zum Flashcard-Setup (Export, Statistik etc.)
             if (cards.length > 0) {
+                speechSynthesis.cancel();
+                // Flashcard-Modus ausblenden
+                flashcardContainer.classList.remove('visible');
+                flashcardControls.classList.remove('visible');
+                statsBar.classList.remove('visible');
+                cardList.classList.remove('visible');
+                document.getElementById('srStats').classList.remove('visible');
+                document.getElementById('sessionComplete').classList.remove('visible');
+                hideRatingButtons();
+                document.getElementById('voiceSection').style.display = 'none';
                 showFlashcardSetup();
             } else {
-                modeSelection.style.display = 'block';
+                switchToModeSelection();
             }
         });
 
