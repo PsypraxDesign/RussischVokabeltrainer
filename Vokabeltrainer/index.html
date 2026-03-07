@@ -2253,14 +2253,6 @@
                 </button>
                 <input type="file" id="addImageInput" accept="image/*" style="display:none;">
             </div>
-            <div class="controls-row" id="sentenceControls" style="display: none;">
-                <button class="btn btn-secondary" id="prevSentenceBtn">
-                    <span class="btn-icon">⏮</span> <span data-i18n="btn_prev_sentence">Voriger Satz</span>
-                </button>
-                <button class="btn btn-secondary" id="nextSentenceBtn">
-                    <span data-i18n="btn_next_sentence">Nächster Satz</span> <span class="btn-icon">⏭</span>
-                </button>
-            </div>
             <div class="controls-row">
                 <button class="btn btn-restart" id="restartBtn">
                     <span class="btn-icon">🔄</span> <span data-i18n="btn_restart_cards">Erneut durcharbeiten</span>
@@ -2968,9 +2960,6 @@
         const nextBtn = document.getElementById('nextBtn');
         const speakBtn = document.getElementById('speakBtn');
         const stopBtn = document.getElementById('stopBtn');
-        const sentenceControls = document.getElementById('sentenceControls');
-        const prevSentenceBtn = document.getElementById('prevSentenceBtn');
-        const nextSentenceBtn = document.getElementById('nextSentenceBtn');
         const restartBtn = document.getElementById('restartBtn');
         const shuffleBtn = document.getElementById('shuffleBtn');
         const addImageBtn = document.getElementById('addImageBtn');
@@ -4473,7 +4462,6 @@ ${missingWords.join(', ')}`;
             readMode = 'all';
             readAllBtn.classList.add('active');
             readSentenceBtn.classList.remove('active');
-            sentenceControls.style.display = 'none';
             textSentenceNav.style.display = 'none';
             if (isTextMode) renderTextContent();
         });
@@ -4482,7 +4470,6 @@ ${missingWords.join(', ')}`;
             readMode = 'sentence';
             readSentenceBtn.classList.add('active');
             readAllBtn.classList.remove('active');
-            sentenceControls.style.display = 'flex';
             textSentenceNav.style.display = 'flex';
             if (isTextMode) renderTextContent();
         });
@@ -5483,24 +5470,6 @@ ${missingWords.join(', ')}`;
         stopBtn.addEventListener('click', () => {
             stopRequested = true;
             speechSynthesis.cancel();
-        });
-
-        prevSentenceBtn.addEventListener('click', () => {
-            if (currentSentenceIndex > 0) {
-                currentSentenceIndex--;
-                clearWordHighlights();
-                highlightCurrentSentence();
-                speakSingleSentence(currentSentenceIndex);
-            }
-        });
-
-        nextSentenceBtn.addEventListener('click', () => {
-            if (currentSentenceIndex < sentences.length - 1) {
-                currentSentenceIndex++;
-                clearWordHighlights();
-                highlightCurrentSentence();
-                speakSingleSentence(currentSentenceIndex);
-            }
         });
 
         restartBtn.addEventListener('click', () => {

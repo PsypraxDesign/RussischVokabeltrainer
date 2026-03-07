@@ -1,0 +1,932 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Vokabel-Editor</title>
+<style>
+:root {
+    --bg-primary: #0f1923;
+    --bg-secondary: #1a2332;
+    --bg-card: #243447;
+    --accent: #d4a843;
+    --accent-hover: #e6bc5a;
+    --text-primary: #e8e0d2;
+    --text-secondary: #a09888;
+    --danger: #c0392b;
+    --danger-hover: #e74c3c;
+    --success: #27ae60;
+    --border: #2c3e50;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+    font-family: 'Segoe UI', 'Source Sans 3', sans-serif;
+    background: var(--bg-primary);
+    color: var(--text-primary);
+    min-height: 100vh;
+}
+
+.header {
+    background: var(--bg-secondary);
+    border-bottom: 1px solid var(--border);
+    padding: 16px 24px;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+.header h1 {
+    font-family: 'Playfair Display', Georgia, serif;
+    color: var(--accent);
+    font-size: 1.4em;
+    white-space: nowrap;
+}
+
+.header-controls {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    flex-wrap: wrap;
+    flex: 1;
+}
+
+.btn {
+    padding: 8px 16px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 0.9em;
+    font-weight: 600;
+    transition: background 0.2s;
+}
+
+.btn-accent {
+    background: var(--accent);
+    color: var(--bg-primary);
+}
+.btn-accent:hover { background: var(--accent-hover); }
+
+.btn-danger {
+    background: var(--danger);
+    color: white;
+}
+.btn-danger:hover { background: var(--danger-hover); }
+
+.btn-secondary {
+    background: var(--bg-card);
+    color: var(--text-primary);
+    border: 1px solid var(--border);
+}
+.btn-secondary:hover { background: var(--border); }
+
+.btn:disabled {
+    opacity: 0.4;
+    cursor: not-allowed;
+}
+
+.toolbar {
+    background: var(--bg-secondary);
+    padding: 12px 24px;
+    display: flex;
+    gap: 12px;
+    align-items: center;
+    flex-wrap: wrap;
+    border-bottom: 1px solid var(--border);
+}
+
+.search-box {
+    flex: 1;
+    min-width: 200px;
+    padding: 8px 12px;
+    border-radius: 6px;
+    border: 1px solid var(--border);
+    background: var(--bg-card);
+    color: var(--text-primary);
+    font-size: 0.95em;
+}
+.search-box::placeholder { color: var(--text-secondary); }
+.search-box:focus { outline: none; border-color: var(--accent); }
+
+.filter-select {
+    padding: 8px 12px;
+    border-radius: 6px;
+    border: 1px solid var(--border);
+    background: var(--bg-card);
+    color: var(--text-primary);
+    font-size: 0.9em;
+    max-width: 250px;
+}
+.filter-select:focus { outline: none; border-color: var(--accent); }
+
+.stats {
+    color: var(--text-secondary);
+    font-size: 0.85em;
+    white-space: nowrap;
+}
+
+.table-wrap {
+    overflow: auto;
+    padding: 0 24px 24px;
+    max-height: calc(100vh - 160px);
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 12px;
+}
+
+thead {
+    position: sticky;
+    top: 0;
+    z-index: 10;
+}
+
+th {
+    background: var(--bg-card);
+    color: var(--accent);
+    padding: 10px 12px;
+    text-align: left;
+    font-size: 0.85em;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    border-bottom: 2px solid var(--accent);
+    cursor: pointer;
+    user-select: none;
+    white-space: nowrap;
+}
+th:hover { color: var(--accent-hover); }
+th.sorted-asc::after { content: ' \u25B2'; font-size: 0.7em; }
+th.sorted-desc::after { content: ' \u25BC'; font-size: 0.7em; }
+
+td {
+    padding: 6px 12px;
+    border-bottom: 1px solid var(--border);
+    font-size: 0.9em;
+    vertical-align: top;
+}
+
+tr:hover td { background: rgba(212, 168, 67, 0.05); }
+tr.selected td { background: rgba(212, 168, 67, 0.15); }
+tr.marked-delete td {
+    background: rgba(192, 57, 43, 0.15);
+    text-decoration: line-through;
+    color: var(--text-secondary);
+}
+
+td.cell-russian { font-weight: 600; min-width: 180px; }
+td.cell-translation { min-width: 180px; }
+td.cell-grammar { color: var(--accent); min-width: 120px; }
+td.cell-forms { color: var(--text-secondary); font-size: 0.85em; min-width: 120px; }
+td.cell-source { color: var(--text-secondary); font-size: 0.8em; max-width: 160px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+td.cell-actions { white-space: nowrap; width: 90px; }
+
+td[contenteditable="true"] {
+    outline: none;
+    border: 1px solid transparent;
+    border-radius: 3px;
+    padding: 5px 11px;
+}
+td[contenteditable="true"]:focus {
+    border-color: var(--accent);
+    background: rgba(212, 168, 67, 0.08);
+}
+
+.action-btn {
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 4px 6px;
+    font-size: 1.1em;
+    border-radius: 4px;
+    transition: background 0.15s;
+}
+.action-btn:hover { background: var(--bg-card); }
+.action-btn.delete-btn { color: var(--danger); }
+.action-btn.delete-btn:hover { background: rgba(192, 57, 43, 0.2); }
+.action-btn.restore-btn { color: var(--success); }
+.action-btn.restore-btn:hover { background: rgba(39, 174, 96, 0.2); }
+
+.cb {
+    width: 16px;
+    height: 16px;
+    accent-color: var(--accent);
+    cursor: pointer;
+}
+
+.empty-state {
+    text-align: center;
+    padding: 80px 20px;
+    color: var(--text-secondary);
+}
+.empty-state h2 { color: var(--accent); margin-bottom: 16px; }
+.empty-state p { margin-bottom: 20px; line-height: 1.6; }
+
+.toast {
+    position: fixed;
+    bottom: 24px;
+    right: 24px;
+    padding: 12px 20px;
+    border-radius: 8px;
+    color: white;
+    font-weight: 600;
+    font-size: 0.9em;
+    opacity: 0;
+    transform: translateY(10px);
+    transition: all 0.3s;
+    z-index: 100;
+}
+.toast.show { opacity: 1; transform: translateY(0); }
+.toast.success { background: var(--success); }
+.toast.error { background: var(--danger); }
+
+.pending-bar {
+    background: rgba(192, 57, 43, 0.2);
+    border: 1px solid var(--danger);
+    border-radius: 6px;
+    padding: 8px 16px;
+    display: none;
+    align-items: center;
+    gap: 12px;
+    font-size: 0.9em;
+}
+.pending-bar.visible { display: flex; }
+.pending-count { color: var(--danger); font-weight: 700; }
+</style>
+</head>
+<body>
+
+<div class="header">
+    <h1>Vokabel-Editor</h1>
+    <div class="header-controls">
+        <button class="btn btn-accent" id="btnLoad" title="JSON-Datei laden">Datei laden</button>
+        <button class="btn btn-accent" id="btnSave" disabled title="Bereinigte JSON-Datei speichern">Speichern</button>
+        <button class="btn btn-secondary" id="btnUndo" disabled title="Letzte Aktion rückgängig (Strg+Z)">Rückgängig</button>
+        <div class="pending-bar" id="pendingBar">
+            <span>Zum Löschen markiert: <span class="pending-count" id="pendingCount">0</span></span>
+            <button class="btn btn-danger" id="btnApplyDelete" style="padding:5px 12px; font-size:0.85em;">Endgültig entfernen</button>
+            <button class="btn btn-secondary" id="btnRestoreAll" style="padding:5px 12px; font-size:0.85em;">Alle wiederherstellen</button>
+        </div>
+    </div>
+</div>
+
+<div class="toolbar" id="toolbar" style="display:none;">
+    <input type="text" class="search-box" id="searchBox" placeholder="Suchen (russisch, deutsch, grammatik...)">
+    <select class="filter-select" id="filterSource">
+        <option value="">Alle Quellen</option>
+    </select>
+    <label style="display:flex; align-items:center; gap:6px; font-size:0.85em; color:var(--text-secondary); cursor:pointer;">
+        <input type="checkbox" class="cb" id="cbShowDeleted"> Gelöschte anzeigen
+    </label>
+    <span class="stats" id="stats"></span>
+</div>
+
+<div class="table-wrap" id="tableWrap">
+    <div class="empty-state" id="emptyState">
+        <h2>Vokabel-Editor</h2>
+        <p>Laden Sie Ihre <strong>vokabeln.json</strong> Datei, um Vokabeln zu bearbeiten, zu löschen oder zu bereinigen.<br>
+        Die Datei finden Sie im Ordner <code>Vokabelliste_JSON/</code> oder dort, wo der Auto-Export sie speichert.</p>
+        <button class="btn btn-accent" id="btnLoadEmpty" style="font-size:1.1em; padding: 12px 28px;">JSON-Datei laden</button>
+        <button class="btn btn-secondary" id="btnLoadLast" style="font-size:1.1em; padding: 12px 28px; display:none; margin-top:12px;">Letzte Datei erneut öffnen</button>
+    </div>
+    <table id="vocabTable" style="display:none;">
+        <thead>
+            <tr>
+                <th style="width:36px;"><input type="checkbox" class="cb" id="cbSelectAll" title="Alle auswählen"></th>
+                <th data-col="front">Russisch</th>
+                <th data-col="back">Deutsch</th>
+                <th data-col="grammar">Grammatik</th>
+                <th data-col="forms">Formen</th>
+                <th data-col="source">Quelle</th>
+                <th style="cursor:default;">Aktion</th>
+            </tr>
+        </thead>
+        <tbody id="vocabBody"></tbody>
+    </table>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<input type="file" id="fileInput" accept=".json" style="display:none">
+
+<script>
+let allData = [];
+let filteredIndices = [];
+let deletedSet = new Set();
+let editedMap = {};  // index -> { field: newValue }
+let undoStack = [];
+let sortCol = '';
+let sortAsc = true;
+let currentFile = '';
+let currentFileHandle = null;
+
+const body = document.getElementById('vocabBody');
+const table = document.getElementById('vocabTable');
+const emptyState = document.getElementById('emptyState');
+const toolbar = document.getElementById('toolbar');
+const searchBox = document.getElementById('searchBox');
+const filterSource = document.getElementById('filterSource');
+const stats = document.getElementById('stats');
+const pendingBar = document.getElementById('pendingBar');
+const pendingCount = document.getElementById('pendingCount');
+const cbShowDeleted = document.getElementById('cbShowDeleted');
+const cbSelectAll = document.getElementById('cbSelectAll');
+const toast = document.getElementById('toast');
+const btnSave = document.getElementById('btnSave');
+const btnUndo = document.getElementById('btnUndo');
+
+// --- IndexedDB for file handle ---
+
+function openHandleDB() {
+    return new Promise((resolve, reject) => {
+        const req = indexedDB.open('vokabel_editor', 1);
+        req.onupgradeneeded = () => req.result.createObjectStore('handles');
+        req.onsuccess = () => resolve(req.result);
+        req.onerror = () => reject(req.error);
+    });
+}
+
+async function saveFileHandle(handle) {
+    const db = await openHandleDB();
+    const tx = db.transaction('handles', 'readwrite');
+    tx.objectStore('handles').put(handle, 'lastFile');
+    tx.objectStore('handles').put(handle.name, 'lastFileName');
+    return new Promise(r => { tx.oncomplete = r; });
+}
+
+async function loadFileHandle() {
+    const db = await openHandleDB();
+    return new Promise((resolve) => {
+        const tx = db.transaction('handles', 'readonly');
+        const store = tx.objectStore('handles');
+        const reqHandle = store.get('lastFile');
+        const reqName = store.get('lastFileName');
+        const result = {};
+        reqHandle.onsuccess = () => { result.handle = reqHandle.result; };
+        reqName.onsuccess = () => { result.name = reqName.result; };
+        tx.oncomplete = () => resolve(result);
+        tx.onerror = () => resolve({});
+    });
+}
+
+async function readFromHandle(handle) {
+    const perm = await handle.queryPermission({ mode: 'read' });
+    if (perm !== 'granted') {
+        const req = await handle.requestPermission({ mode: 'read' });
+        if (req !== 'granted') throw new Error('Keine Leseberechtigung');
+    }
+    const file = await handle.getFile();
+    const text = await file.text();
+    const data = JSON.parse(text);
+    if (!Array.isArray(data)) throw new Error('Keine Array-Struktur');
+    return data;
+}
+
+// --- File loading ---
+
+document.getElementById('fileInput').addEventListener('change', e => {
+    const file = e.target.files[0];
+    if (!file) return;
+    currentFile = file.name;
+    const reader = new FileReader();
+    reader.onload = ev => {
+        try {
+            const data = JSON.parse(ev.target.result);
+            if (!Array.isArray(data)) throw new Error('Keine Array-Struktur');
+            loadData(data);
+        } catch (err) {
+            showToast('Fehler beim Laden: ' + err.message, 'error');
+        }
+    };
+    reader.readAsText(file);
+    e.target.value = '';
+});
+
+async function triggerLoad() {
+    // Prefer File System Access API to get a reusable handle
+    if (window.showOpenFilePicker) {
+        try {
+            const [handle] = await window.showOpenFilePicker({
+                types: [{ description: 'JSON', accept: { 'application/json': ['.json'] } }],
+                multiple: false
+            });
+            currentFileHandle = handle;
+            currentFile = handle.name;
+            await saveFileHandle(handle);
+            const data = await readFromHandle(handle);
+            loadData(data);
+            return;
+        } catch (e) {
+            if (e.name === 'AbortError') return;
+        }
+    }
+    // Fallback: hidden file input
+    document.getElementById('fileInput').click();
+}
+
+async function triggerLoadLast() {
+    try {
+        const { handle } = await loadFileHandle();
+        if (!handle) { showToast('Keine gespeicherte Datei gefunden', 'error'); return; }
+        currentFileHandle = handle;
+        currentFile = handle.name;
+        const data = await readFromHandle(handle);
+        loadData(data);
+    } catch (e) {
+        showToast('Fehler: ' + e.message, 'error');
+    }
+}
+
+document.getElementById('btnLoad').addEventListener('click', triggerLoad);
+document.getElementById('btnLoadEmpty').addEventListener('click', triggerLoad);
+document.getElementById('btnLoadLast').addEventListener('click', triggerLoadLast);
+
+// On page load: check for stored file handle and show button
+(async () => {
+    try {
+        const { handle, name } = await loadFileHandle();
+        if (handle) {
+            const btn = document.getElementById('btnLoadLast');
+            btn.textContent = 'Letzte Datei erneut öffnen: ' + (name || handle.name);
+            btn.style.display = '';
+        }
+    } catch (e) { /* ignore */ }
+})();
+
+function loadData(data) {
+    allData = data;
+    deletedSet = new Set();
+    editedMap = {};
+    undoStack = [];
+    sortCol = '';
+    sortAsc = true;
+
+    // Build source filter
+    const sources = new Set();
+    for (const item of allData) {
+        if (item.source) sources.add(item.source);
+    }
+    filterSource.innerHTML = '<option value="">Alle Quellen (' + allData.length + ')</option>';
+    const sorted = [...sources].sort((a, b) => a.localeCompare(b));
+    for (const s of sorted) {
+        const count = allData.filter(d => d.source === s).length;
+        const label = s.replace(/\.[^.]+$/, '');
+        const opt = document.createElement('option');
+        opt.value = s;
+        opt.textContent = label + ' (' + count + ')';
+        filterSource.appendChild(opt);
+    }
+
+    emptyState.style.display = 'none';
+    table.style.display = '';
+    toolbar.style.display = 'flex';
+    btnSave.disabled = false;
+    updateView();
+    showToast(allData.length + ' Vokabeln geladen', 'success');
+}
+
+// --- Filtering & sorting ---
+
+function getVal(item, col) {
+    if (col === 'forms') return (item.forms || []).join(', ');
+    return item[col] || '';
+}
+
+function applyFilters() {
+    const q = searchBox.value.trim().toLowerCase();
+    const src = filterSource.value;
+    const showDel = cbShowDeleted.checked;
+
+    filteredIndices = [];
+    for (let i = 0; i < allData.length; i++) {
+        if (!showDel && deletedSet.has(i)) continue;
+        if (src && allData[i].source !== src) continue;
+        if (q) {
+            const item = allData[i];
+            const edits = editedMap[i] || {};
+            const text = [
+                edits.front ?? item.front,
+                edits.back ?? item.back,
+                edits.grammar ?? item.grammar,
+                (item.forms || []).join(' '),
+                item.source || ''
+            ].join(' ').toLowerCase();
+            if (!text.includes(q)) continue;
+        }
+        filteredIndices.push(i);
+    }
+
+    if (sortCol) {
+        filteredIndices.sort((a, b) => {
+            const ea = editedMap[a] || {};
+            const eb = editedMap[b] || {};
+            const va = (ea[sortCol] ?? getVal(allData[a], sortCol)).toLowerCase();
+            const vb = (eb[sortCol] ?? getVal(allData[b], sortCol)).toLowerCase();
+            const cmp = va.localeCompare(vb, 'ru');
+            return sortAsc ? cmp : -cmp;
+        });
+    }
+}
+
+function updateView() {
+    applyFilters();
+    renderTable();
+    updateStats();
+    updatePending();
+    updateUndo();
+}
+
+function updateStats() {
+    const total = allData.length;
+    const del = deletedSet.size;
+    const shown = filteredIndices.length;
+    const edited = Object.keys(editedMap).length;
+    let s = shown + ' von ' + total + ' angezeigt';
+    if (del > 0) s += ', ' + del + ' zum Löschen markiert';
+    if (edited > 0) s += ', ' + edited + ' bearbeitet';
+    stats.textContent = s;
+}
+
+function updatePending() {
+    const n = deletedSet.size;
+    pendingCount.textContent = n;
+    pendingBar.classList.toggle('visible', n > 0);
+}
+
+function updateUndo() {
+    btnUndo.disabled = undoStack.length === 0;
+}
+
+// --- Rendering ---
+
+function renderTable() {
+    // Virtual rendering: for large lists, only render visible rows
+    // With ~700 entries this is fine as plain DOM
+    const frag = document.createDocumentFragment();
+
+    for (const idx of filteredIndices) {
+        const item = allData[idx];
+        const edits = editedMap[idx] || {};
+        const isDel = deletedSet.has(idx);
+
+        const tr = document.createElement('tr');
+        tr.dataset.idx = idx;
+        if (isDel) tr.classList.add('marked-delete');
+
+        // Checkbox
+        const tdCb = document.createElement('td');
+        const cb = document.createElement('input');
+        cb.type = 'checkbox';
+        cb.className = 'cb';
+        cb.checked = isDel;
+        cb.addEventListener('change', () => toggleDelete(idx));
+        tdCb.appendChild(cb);
+        tr.appendChild(tdCb);
+
+        // Editable cells
+        const fields = ['front', 'back', 'grammar'];
+        const classes = ['cell-russian', 'cell-translation', 'cell-grammar'];
+        for (let f = 0; f < fields.length; f++) {
+            const td = document.createElement('td');
+            td.className = classes[f];
+            td.contentEditable = isDel ? 'false' : 'true';
+            td.textContent = (edits[fields[f]] ?? item[fields[f]]) || '';
+            td.dataset.field = fields[f];
+            td.dataset.idx = idx;
+            td.addEventListener('blur', onCellEdit);
+            tr.appendChild(td);
+        }
+
+        // Forms (read-only)
+        const tdForms = document.createElement('td');
+        tdForms.className = 'cell-forms';
+        tdForms.textContent = (item.forms || []).join(', ');
+        tr.appendChild(tdForms);
+
+        // Source (read-only)
+        const tdSrc = document.createElement('td');
+        tdSrc.className = 'cell-source';
+        tdSrc.textContent = (item.source || '').replace(/\.[^.]+$/, '');
+        tdSrc.title = item.source || '';
+        tr.appendChild(tdSrc);
+
+        // Actions
+        const tdAct = document.createElement('td');
+        tdAct.className = 'cell-actions';
+        if (isDel) {
+            const btnR = document.createElement('button');
+            btnR.className = 'action-btn restore-btn';
+            btnR.innerHTML = '&#x21A9;';
+            btnR.title = 'Wiederherstellen';
+            btnR.addEventListener('click', () => toggleDelete(idx));
+            tdAct.appendChild(btnR);
+        } else {
+            const btnD = document.createElement('button');
+            btnD.className = 'action-btn delete-btn';
+            btnD.innerHTML = '&#x2716;';
+            btnD.title = 'Zum Löschen markieren';
+            btnD.addEventListener('click', () => toggleDelete(idx));
+            tdAct.appendChild(btnD);
+        }
+        tr.appendChild(tdAct);
+
+        frag.appendChild(tr);
+    }
+
+    body.innerHTML = '';
+    body.appendChild(frag);
+    cbSelectAll.checked = false;
+}
+
+// --- Editing ---
+
+function onCellEdit(e) {
+    const td = e.target;
+    const idx = parseInt(td.dataset.idx);
+    const field = td.dataset.field;
+    const newVal = td.textContent.trim();
+    const original = allData[idx][field] || '';
+
+    if (newVal === original) {
+        // Revert edit if same as original
+        if (editedMap[idx]) {
+            delete editedMap[idx][field];
+            if (Object.keys(editedMap[idx]).length === 0) delete editedMap[idx];
+        }
+    } else {
+        if (!editedMap[idx]) editedMap[idx] = {};
+        const oldEdit = editedMap[idx][field];
+        editedMap[idx][field] = newVal;
+        undoStack.push({ type: 'edit', idx, field, prev: oldEdit !== undefined ? oldEdit : null, hadEntry: oldEdit !== undefined });
+    }
+    updateStats();
+    updateUndo();
+}
+
+function toggleDelete(idx) {
+    const wasDel = deletedSet.has(idx);
+    if (wasDel) {
+        deletedSet.delete(idx);
+        undoStack.push({ type: 'restore', idx });
+    } else {
+        deletedSet.add(idx);
+        undoStack.push({ type: 'delete', idx });
+    }
+    updateView();
+}
+
+// --- Bulk operations ---
+
+cbSelectAll.addEventListener('change', () => {
+    const checked = cbSelectAll.checked;
+    for (const idx of filteredIndices) {
+        if (checked) deletedSet.add(idx);
+        else deletedSet.delete(idx);
+    }
+    undoStack.push({ type: 'bulk', action: checked ? 'delete' : 'restore', indices: [...filteredIndices] });
+    updateView();
+});
+
+document.getElementById('btnApplyDelete').addEventListener('click', () => {
+    if (deletedSet.size === 0) return;
+    const n = deletedSet.size;
+    if (!confirm('Wirklich ' + n + ' Vokabeln endgültig entfernen?\nDiese Aktion kann nicht rückgängig gemacht werden.')) return;
+
+    // Remove from highest index first to preserve indices
+    const sorted = [...deletedSet].sort((a, b) => b - a);
+    for (const idx of sorted) {
+        allData.splice(idx, 1);
+    }
+    // Reset state
+    deletedSet = new Set();
+    editedMap = {};
+    undoStack = [];
+
+    // Rebuild source filter
+    const src = filterSource.value;
+    loadSourceFilter();
+    filterSource.value = src;
+
+    updateView();
+    showToast(n + ' Vokabeln entfernt', 'success');
+});
+
+document.getElementById('btnRestoreAll').addEventListener('click', () => {
+    undoStack.push({ type: 'bulk', action: 'restore', indices: [...deletedSet] });
+    deletedSet = new Set();
+    updateView();
+});
+
+function loadSourceFilter() {
+    const sources = new Set();
+    for (const item of allData) {
+        if (item.source) sources.add(item.source);
+    }
+    const current = filterSource.value;
+    filterSource.innerHTML = '<option value="">Alle Quellen (' + allData.length + ')</option>';
+    const sorted = [...sources].sort((a, b) => a.localeCompare(b));
+    for (const s of sorted) {
+        const count = allData.filter(d => d.source === s).length;
+        const label = s.replace(/\.[^.]+$/, '');
+        const opt = document.createElement('option');
+        opt.value = s;
+        opt.textContent = label + ' (' + count + ')';
+        filterSource.appendChild(opt);
+    }
+    // Restore selection if still valid
+    if ([...filterSource.options].some(o => o.value === current)) {
+        filterSource.value = current;
+    }
+}
+
+// --- Undo ---
+
+btnUndo.addEventListener('click', undo);
+
+function undo() {
+    if (undoStack.length === 0) return;
+    const action = undoStack.pop();
+
+    if (action.type === 'delete') {
+        deletedSet.delete(action.idx);
+    } else if (action.type === 'restore') {
+        deletedSet.add(action.idx);
+    } else if (action.type === 'edit') {
+        if (action.hadEntry) {
+            if (!editedMap[action.idx]) editedMap[action.idx] = {};
+            editedMap[action.idx][action.field] = action.prev;
+        } else {
+            if (editedMap[action.idx]) {
+                delete editedMap[action.idx][action.field];
+                if (Object.keys(editedMap[action.idx]).length === 0) delete editedMap[action.idx];
+            }
+        }
+    } else if (action.type === 'bulk') {
+        if (action.action === 'delete') {
+            for (const idx of action.indices) deletedSet.delete(idx);
+        } else {
+            for (const idx of action.indices) deletedSet.add(idx);
+        }
+    }
+    updateView();
+}
+
+// --- Sorting ---
+
+document.querySelectorAll('th[data-col]').forEach(th => {
+    th.addEventListener('click', () => {
+        const col = th.dataset.col;
+        if (sortCol === col) {
+            sortAsc = !sortAsc;
+        } else {
+            sortCol = col;
+            sortAsc = true;
+        }
+        document.querySelectorAll('th').forEach(t => t.classList.remove('sorted-asc', 'sorted-desc'));
+        th.classList.add(sortAsc ? 'sorted-asc' : 'sorted-desc');
+        updateView();
+    });
+});
+
+// --- Search & filter ---
+
+let searchTimer;
+searchBox.addEventListener('input', () => {
+    clearTimeout(searchTimer);
+    searchTimer = setTimeout(updateView, 200);
+});
+filterSource.addEventListener('change', updateView);
+cbShowDeleted.addEventListener('change', updateView);
+
+// --- Save ---
+
+btnSave.addEventListener('click', saveFile);
+
+function buildExportData() {
+    const result = [];
+    for (let i = 0; i < allData.length; i++) {
+        if (deletedSet.has(i)) continue;
+        const item = { ...allData[i] };
+        const edits = editedMap[i];
+        if (edits) {
+            for (const [k, v] of Object.entries(edits)) {
+                item[k] = v;
+            }
+        }
+        result.push(item);
+    }
+    return result;
+}
+
+async function saveFile() {
+    const data = buildExportData();
+
+    // Try reusing existing file handle (same file, no dialog)
+    if (currentFileHandle) {
+        try {
+            const perm = await currentFileHandle.queryPermission({ mode: 'readwrite' });
+            if (perm !== 'granted') {
+                const req = await currentFileHandle.requestPermission({ mode: 'readwrite' });
+                if (req !== 'granted') throw new Error('Keine Schreibberechtigung');
+            }
+            const writable = await currentFileHandle.createWritable();
+            await writable.write(JSON.stringify(data, null, 2));
+            await writable.close();
+            showToast(data.length + ' Vokabeln in ' + currentFile + ' gespeichert', 'success');
+            return;
+        } catch (e) {
+            if (e.name === 'AbortError') return;
+            // Fall through to save picker
+        }
+    }
+
+    // File System Access API: save picker
+    if (window.showSaveFilePicker) {
+        try {
+            const handle = await window.showSaveFilePicker({
+                suggestedName: currentFile || 'vokabeln.json',
+                types: [{ description: 'JSON', accept: { 'application/json': ['.json'] } }]
+            });
+            currentFileHandle = handle;
+            currentFile = handle.name;
+            await saveFileHandle(handle);
+            const writable = await handle.createWritable();
+            await writable.write(JSON.stringify(data, null, 2));
+            await writable.close();
+            showToast(data.length + ' Vokabeln gespeichert', 'success');
+            return;
+        } catch (e) {
+            if (e.name === 'AbortError') return;
+        }
+    }
+
+    // Fallback: download
+    const json = JSON.stringify(data, null, 2);
+    const blob = new Blob([json], { type: 'application/json' });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = currentFile || 'vokabeln.json';
+    a.click();
+    URL.revokeObjectURL(url);
+    showToast(data.length + ' Vokabeln gespeichert', 'success');
+}
+
+// --- Keyboard shortcuts ---
+
+document.addEventListener('keydown', e => {
+    if (e.ctrlKey && e.key === 'z') {
+        // Don't intercept undo inside editable cells
+        if (document.activeElement?.contentEditable === 'true') return;
+        e.preventDefault();
+        undo();
+    }
+    if (e.ctrlKey && e.key === 's') {
+        e.preventDefault();
+        if (!btnSave.disabled) saveFile();
+    }
+    if (e.ctrlKey && e.key === 'f') {
+        e.preventDefault();
+        searchBox.focus();
+        searchBox.select();
+    }
+});
+
+// --- Toast ---
+
+function showToast(msg, type) {
+    toast.textContent = msg;
+    toast.className = 'toast ' + type;
+    requestAnimationFrame(() => toast.classList.add('show'));
+    setTimeout(() => toast.classList.remove('show'), 2500);
+}
+
+// --- Drag & drop ---
+
+document.body.addEventListener('dragover', e => { e.preventDefault(); e.dataTransfer.dropEffect = 'copy'; });
+document.body.addEventListener('drop', e => {
+    e.preventDefault();
+    const file = e.dataTransfer.files[0];
+    if (!file || !file.name.endsWith('.json')) {
+        showToast('Bitte eine .json Datei laden', 'error');
+        return;
+    }
+    currentFile = file.name;
+    const reader = new FileReader();
+    reader.onload = ev => {
+        try {
+            const data = JSON.parse(ev.target.result);
+            if (!Array.isArray(data)) throw new Error('Keine Array-Struktur');
+            loadData(data);
+        } catch (err) {
+            showToast('Fehler: ' + err.message, 'error');
+        }
+    };
+    reader.readAsText(file);
+});
+</script>
+</body>
+</html>
