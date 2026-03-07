@@ -16,20 +16,24 @@ Beide Funktionen nutzen die Sprachausgabe Ihres Browsers, um Ihnen die korrekte 
 ## 1. So starten Sie die App
 
 1. Öffnen Sie die Datei `index.html` in einem modernen Browser (Chrome, Edge oder Firefox).
-2. Auf dem Startbildschirm sehen Sie zwei große Schaltflächen:
-   - **Karteikarten** (das Kartensymbol)
-   - **Texte vorlesen** (das Buchsymbol)
+2. Auf dem Startbildschirm sehen Sie:
+   - Zwei große Schaltflächen: **Karteikarten** (das Kartensymbol) und **Texte vorlesen** (das Buchsymbol)
+   - Darunter die **Stimmeinstellungen**: Wählen Sie bereits hier Geschlecht, Stimme und Tempo für die Sprachausgabe -- diese Einstellungen gelten für beide Modi.
 3. Oben rechts können Sie die **Sprache der Benutzeroberfläche** umschalten: **DE** (Deutsch), **EN** (Englisch) oder **RU** (Russisch).
 
 ---
 
 ## 2. Karteikarten -- Vokabeln lernen
 
-### 2.1 Datei laden
+### 2.1 Vokabeln laden
 
-Klicken Sie auf **Karteikarten** und laden Sie eine Textdatei mit Ihren Vokabeln. Sie können die Datei entweder per **Drag & Drop** in den Bereich ziehen oder durch **Klick** die Datei auswählen. Die App merkt sich den zuletzt verwendeten Ordner, sodass der Dateidialog beim nächsten Mal dort wieder öffnet (Chrome/Edge).
+Klicken Sie auf **Karteikarten**. Sie haben nun zwei Möglichkeiten:
 
-Die App erkennt automatisch, welches Format Ihre Datei hat (siehe Abschnitt 3).
+**Neue Datei laden:** Laden Sie eine Textdatei mit Ihren Vokabeln. Sie können die Datei entweder per **Drag & Drop** in den Bereich ziehen oder durch **Klick** die Datei auswählen. Die App merkt sich den zuletzt verwendeten Ordner, sodass der Dateidialog beim nächsten Mal dort wieder öffnet (Chrome/Edge). Die App erkennt automatisch, welches Format Ihre Datei hat (siehe Abschnitt 3).
+
+**Gespeicherte Vokabeln laden:** Unterhalb des Datei-Upload-Bereichs sehen Sie die Liste Ihrer **gespeicherten Vokabeln** aus früheren Sitzungen (siehe Abschnitt 6). Sie können:
+- **Alle Vokabeln** laden -- Ihre gesamte Vokabelsammlung als Karteikarten
+- **Eine einzelne Lektion** laden -- klicken Sie auf den Titel (z.B. "Im Restaurant", "Antonyme"), um nur die Vokabeln dieser Lektion zu lernen
 
 ### 2.2 Einstellungen vor dem Start
 
@@ -39,8 +43,6 @@ Nach dem Laden erscheint ein Einstellungsbildschirm:
   - *Frei* -- Blättern Sie selbst durch die Karten
   - *SM-2* -- Klassisches Wiederholungssystem (wie SuperMemo)
   - *FSRS* -- Modernes, optimiertes Wiederholungssystem
-- **Stimme** -- Wählen Sie eine männliche oder weibliche Stimme
-- **Tempo** -- Passen Sie die Sprechgeschwindigkeit an (langsamer = einfacher zum Mithören)
 - **Auto-Vorlesen** -- Die Vorderseite wird automatisch vorgelesen
 - **Rückseite vorlesen** -- Auch die deutsche Übersetzung wird vorgelesen
 
@@ -203,8 +205,8 @@ Der Fortschritt wird automatisch im Browser gespeichert. Wenn Sie dieselbe Datei
 2. Laden Sie eine Textdatei (Fließtext auf Russisch).
 3. Der Text wird in einem hübschen Lesefenster angezeigt.
 4. Wählen Sie den Lesemodus:
-   - **Alles** -- Der gesamte Text wird Satz für Satz vorgelesen. Der aktuelle Satz wird goldfarben hervorgehoben, und das gerade gesprochene **Wort wird einzeln markiert** (goldener Hintergrund), sodass Sie Wort für Wort mitlesen können. Bereits gelesene Sätze und Wörter werden leicht ausgegraut.
-   - **Satzweise** -- Jeder Satz wird einzeln vorgelesen; klicken Sie auf einen Satz, um ihn zu hören. Auch hier wird das aktuelle Wort markiert. Über die Navigationsleiste (**⏮ Voriger Satz** / **⏭ Nächster Satz**) können Sie zwischen Sätzen wechseln.
+   - **ganzer Text** -- Der gesamte Text wird Satz für Satz vorgelesen. Der aktuelle Satz wird goldfarben hervorgehoben, und das gerade gesprochene **Wort wird einzeln markiert** (goldener Hintergrund), sodass Sie Wort für Wort mitlesen können. Bereits gelesene Sätze und Wörter werden leicht ausgegraut.
+   - **Satz für Satz** -- Jeder Satz wird einzeln vorgelesen; klicken Sie auf einen Satz, um ihn zu hören. Auch hier wird das aktuelle Wort markiert. Über die Navigationsleiste (**⏮ Voriger Satz** / **⏭ Nächster Satz**) können Sie zwischen Sätzen wechseln.
 5. Der Text **scrollt automatisch** mit, damit das aktuelle Wort immer im sichtbaren Bereich bleibt.
 
 ### Mehrere Texte in einer Datei
@@ -217,11 +219,20 @@ Wenn Ihre Datei mehrere Absätze oder Dialogteile enthält, werden diese als sep
 
 ### Automatisches Sammeln
 
-Jedes Mal, wenn Sie eine Vokabeldatei laden, werden die Karten automatisch in einer **Datenbank** im Browser gespeichert. Die Datenbank wächst mit jeder neuen Datei, die Sie laden -- ohne Duplikate.
+Jedes Mal, wenn Sie eine Vokabeldatei laden oder Vokabeln per KI generieren lassen, werden die Karten automatisch in einer **Datenbank** im Browser gespeichert. Die Datenbank wächst mit jeder neuen Datei -- ohne Duplikate. Jede Vokabel merkt sich, aus welcher Quelldatei (Lektion) sie stammt.
+
+### Gespeicherte Vokabeln laden und lernen
+
+Wenn Sie im Hauptmenü auf **Karteikarten** klicken, sehen Sie unterhalb des Datei-Upload-Bereichs Ihre **gespeicherten Vokabeln**:
+
+- **Alle Vokabeln (N Karten)** -- Lädt Ihre gesamte Vokabelsammlung als Karteikarten. Ideal für gemischtes Wiederholen.
+- **Einzelne Lektionen** -- Jede Datei, die Sie jemals geladen haben, erscheint als eigener Eintrag mit Kartenzähler. Klicken Sie auf eine Lektion, um nur deren Vokabeln zu lernen.
+
+So können Sie gezielt bestimmte Themen wiederholen, ohne die Originaldatei erneut laden zu müssen. Der Lernfortschritt (Spaced Repetition) bleibt dabei erhalten.
 
 ### Export für Excel
 
-Klicken Sie im Einstellungsbildschirm auf **Export (Excel)**, um Ihre gesamte Vokabelsammlung als TSV-Datei herunterzuladen (Tab-getrennte Werte). Diese Datei können Sie direkt in Excel oder Google Sheets öffnen.
+Klicken Sie im Einstellungsbildschirm auf **Export (Excel)**, um Ihre gesamte Vokabelsammlung als CSV-Datei herunterzuladen. Diese Datei können Sie direkt in Excel oder Google Sheets öffnen.
 
 Die Exportdatei enthält folgende Spalten:
 - Russisch
@@ -231,7 +242,9 @@ Die Exportdatei enthält folgende Spalten:
 - Grammatik
 - Quelle (der Dateiname, aus dem die Vokabel stammt)
 
-So haben Sie immer eine vollständige Übersicht über alles, was Sie je gelernt haben.
+### Auto-Export als JSON
+
+In den **Einstellungen** (Zahnrad-Symbol oben rechts) können Sie einen Speicherort für eine JSON-Datei wählen. Die App exportiert dann bei jeder Änderung automatisch Ihre gesamte Vokabelsammlung in diese Datei. So haben Sie immer ein aktuelles Backup.
 
 ---
 

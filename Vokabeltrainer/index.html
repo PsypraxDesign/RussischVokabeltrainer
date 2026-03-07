@@ -3677,9 +3677,20 @@ ${missingWords.join(', ')}`;
             }
             if (!Array.isArray(items) || items.length === 0) throw new Error('PARSE');
 
-            return items.filter(item =>
-                item && typeof item.russian === 'string' && item.russian.trim()
-            ).map(item => ({
+            return items.filter(item => {
+                if (!item || typeof item.russian !== 'string') return false;
+                const r = item.russian.trim();
+                if (!r) return false;
+                // Filter out punctuation-only entries (-, --, ...)
+                if (/^[\-–—.,:;!?…]+$/.test(r)) return false;
+                // Filter out entries that are too long (whole sentences/paragraphs)
+                // A reasonable vocabulary entry (including multi-word phrases) should be under 120 chars
+                if (r.length > 120) return false;
+                // Filter out entries with too many words (max ~8 for idiomatic phrases)
+                const wordCount = r.split(/\s+/).length;
+                if (wordCount > 8) return false;
+                return true;
+            }).map(item => ({
                 russian: item.russian.trim(),
                 forms: Array.isArray(item.forms) ? item.forms.map(f => f.trim()) : [],
                 translation: (item.translation || '').trim(),

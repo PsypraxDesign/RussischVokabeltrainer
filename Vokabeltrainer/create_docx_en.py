@@ -62,25 +62,43 @@ doc.add_paragraph(
 # --- 1 ---
 doc.add_heading('1. Getting Started', level=1)
 doc.add_paragraph('Open the file index.html in a modern browser (Chrome, Edge, or Firefox).', style='List Number')
-doc.add_paragraph('On the start screen you will see two large buttons: Flashcards and Read Texts.', style='List Number')
-doc.add_paragraph('At the top you can switch the interface language: DE (German), EN (English), or RU (Russian).', style='List Number')
+doc.add_paragraph(
+    'On the start screen you will see:'
+    , style='List Number')
+doc.add_paragraph('Two large buttons: Flashcards (the card icon) and Read Texts (the book icon)', style='List Bullet 2')
+doc.add_paragraph('Below them the voice settings: Choose gender, voice, and speed for speech output here — these settings apply to both modes.', style='List Bullet 2')
+doc.add_paragraph('At the top right you can switch the interface language: DE (German), EN (English), or RU (Russian).', style='List Number')
 
 # --- 2 ---
 doc.add_heading('2. Flashcards — Learning Vocabulary', level=1)
 
-doc.add_heading('2.1 Loading a File', level=2)
+doc.add_heading('2.1 Loading Vocabulary', level=2)
 doc.add_paragraph(
-    'Click on Flashcards and load a text file with your vocabulary. '
+    'Click on Flashcards. You now have two options:'
+)
+p = doc.add_paragraph()
+r = p.add_run('Load a new file: ')
+r.bold = True
+p.add_run(
+    'Load a text file with your vocabulary. '
     'You can either drag & drop the file into the upload area or click to select it. '
     'The app remembers the last folder you used, so the file dialog opens there next time (Chrome/Edge). '
     'The app automatically detects which format your file uses (see Section 3).'
 )
+p = doc.add_paragraph()
+r = p.add_run('Load saved vocabulary: ')
+r.bold = True
+p.add_run(
+    'Below the file upload area you will see the list of your saved vocabulary '
+    'from previous sessions (see Section 6). You can:'
+)
+doc.add_paragraph('Load all vocabulary — your entire vocabulary collection as flashcards', style='List Bullet')
+doc.add_paragraph('Load a single lesson — click on the title (e.g. "At the Restaurant", "Antonyms") '
+                   'to learn only the vocabulary from that lesson', style='List Bullet')
 
 doc.add_heading('2.2 Settings Before Starting', level=2)
 doc.add_paragraph('After loading, a settings screen appears:')
 doc.add_paragraph('Learning mode — Choose between Free, SM-2, or FSRS (see Section 4)', style='List Bullet')
-doc.add_paragraph('Voice — Select a male or female voice', style='List Bullet')
-doc.add_paragraph('Speed — Adjust the speech rate (slower = easier to follow)', style='List Bullet')
 doc.add_paragraph('Auto-read — The front side is read aloud automatically', style='List Bullet')
 doc.add_paragraph('Read back side — The translation is also read aloud', style='List Bullet')
 doc.add_paragraph('Click Start Flashcards to begin.')
@@ -208,16 +226,40 @@ doc.add_paragraph(
 )
 
 # --- 6 ---
-doc.add_heading('6. The Vocabulary Database', level=1)
+doc.add_heading('6. The Vocabulary Database — Your Growing Word Bank', level=1)
+
+doc.add_heading('Automatic Collection', level=2)
 doc.add_paragraph(
-    'Every time you load a vocabulary file, the cards are automatically saved in a database in your browser. '
-    'The database grows with each new file — without duplicates.'
+    'Every time you load a vocabulary file or generate vocabulary via AI, the cards are automatically saved in a '
+    'database in your browser. The database grows with each new file — without duplicates. '
+    'Each vocabulary item remembers which source file (lesson) it came from.'
 )
+
+doc.add_heading('Loading and Learning Saved Vocabulary', level=2)
 doc.add_paragraph(
-    'Click Export (Excel) to download your entire vocabulary collection as a TSV file. '
+    'When you click Flashcards on the main menu, you will see your saved vocabulary below the file upload area:'
+)
+doc.add_paragraph('All vocabulary (N cards) — Loads your entire vocabulary collection as flashcards. Ideal for mixed review.', style='List Bullet')
+doc.add_paragraph('Individual lessons — Each file you have ever loaded appears as its own entry with a card counter. '
+                   'Click on a lesson to learn only its vocabulary.', style='List Bullet')
+doc.add_paragraph(
+    'This way you can review specific topics without reloading the original file. '
+    'Your learning progress (Spaced Repetition) is preserved.'
+)
+
+doc.add_heading('Export for Excel', level=2)
+doc.add_paragraph(
+    'Click Export (Excel) on the settings screen to download your entire vocabulary collection as a CSV file. '
     'You can open this file directly in Excel or Google Sheets.'
 )
 doc.add_paragraph('The export file contains: Russian, German, Topic, Category, Grammar, and Source (filename).')
+
+doc.add_heading('Auto-Export as JSON', level=2)
+doc.add_paragraph(
+    'In the Settings (gear icon at the top right) you can choose a save location for a JSON file. '
+    'The app then automatically exports your entire vocabulary collection to this file whenever it changes. '
+    'This gives you an always up-to-date backup.'
+)
 
 # --- 7 ---
 doc.add_heading('7. Keyboard Shortcuts', level=1)
@@ -430,6 +472,6 @@ r.bold = True
 r.font.size = Pt(14)
 p.alignment = WD_ALIGN_PARAGRAPH.CENTER
 
-output_path = r'C:\Users\klaus\Documents\Russisch\Vokabeltrainer\User_Guide_EN.docx'
+output_path = r'C:\Users\klaus\Desktop\Russisch\Vokabeltrainer\User_Guide_EN.docx'
 doc.save(output_path)
 print(f'Word document saved: {output_path}')

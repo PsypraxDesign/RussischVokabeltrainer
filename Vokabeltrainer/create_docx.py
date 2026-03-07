@@ -63,25 +63,43 @@ doc.add_paragraph(
 # --- 1 ---
 doc.add_heading('1. So starten Sie die App', level=1)
 doc.add_paragraph('Öffnen Sie die Datei index.html in einem modernen Browser (Chrome, Edge oder Firefox).', style='List Number')
-doc.add_paragraph('Auf dem Startbildschirm sehen Sie zwei große Schaltflächen: Karteikarten und Texte vorlesen.', style='List Number')
-doc.add_paragraph('Oben können Sie die Sprache der Benutzeroberfläche umschalten: DE (Deutsch), EN (Englisch) oder RU (Russisch).', style='List Number')
+doc.add_paragraph(
+    'Auf dem Startbildschirm sehen Sie:'
+    , style='List Number')
+doc.add_paragraph('Zwei große Schaltflächen: Karteikarten (das Kartensymbol) und Texte vorlesen (das Buchsymbol)', style='List Bullet 2')
+doc.add_paragraph('Darunter die Stimmeinstellungen: Wählen Sie bereits hier Geschlecht, Stimme und Tempo für die Sprachausgabe — diese Einstellungen gelten für beide Modi.', style='List Bullet 2')
+doc.add_paragraph('Oben rechts können Sie die Sprache der Benutzeroberfläche umschalten: DE (Deutsch), EN (Englisch) oder RU (Russisch).', style='List Number')
 
 # --- 2 ---
 doc.add_heading('2. Karteikarten — Vokabeln lernen', level=1)
 
-doc.add_heading('2.1 Datei laden', level=2)
+doc.add_heading('2.1 Vokabeln laden', level=2)
 doc.add_paragraph(
-    'Klicken Sie auf Karteikarten und laden Sie eine Textdatei mit Ihren Vokabeln. '
+    'Klicken Sie auf Karteikarten. Sie haben nun zwei Möglichkeiten:'
+)
+p = doc.add_paragraph()
+r = p.add_run('Neue Datei laden: ')
+r.bold = True
+p.add_run(
+    'Laden Sie eine Textdatei mit Ihren Vokabeln. '
     'Sie können die Datei entweder per Drag & Drop in den Bereich ziehen oder durch Klick die Datei auswählen. '
     'Die App merkt sich den zuletzt verwendeten Ordner, sodass der Dateidialog beim nächsten Mal dort wieder öffnet (Chrome/Edge). '
     'Die App erkennt automatisch, welches Format Ihre Datei hat (siehe Abschnitt 3).'
 )
+p = doc.add_paragraph()
+r = p.add_run('Gespeicherte Vokabeln laden: ')
+r.bold = True
+p.add_run(
+    'Unterhalb des Datei-Upload-Bereichs sehen Sie die Liste Ihrer gespeicherten Vokabeln '
+    'aus früheren Sitzungen (siehe Abschnitt 6). Sie können:'
+)
+doc.add_paragraph('Alle Vokabeln laden — Ihre gesamte Vokabelsammlung als Karteikarten', style='List Bullet')
+doc.add_paragraph('Eine einzelne Lektion laden — klicken Sie auf den Titel (z.B. "Im Restaurant", "Antonyme"), '
+                   'um nur die Vokabeln dieser Lektion zu lernen', style='List Bullet')
 
 doc.add_heading('2.2 Einstellungen vor dem Start', level=2)
 doc.add_paragraph('Nach dem Laden erscheint ein Einstellungsbildschirm:')
 doc.add_paragraph('Lernmodus — Wählen Sie zwischen Frei, SM-2 oder FSRS (siehe Abschnitt 4)', style='List Bullet')
-doc.add_paragraph('Stimme — Wählen Sie eine männliche oder weibliche Stimme', style='List Bullet')
-doc.add_paragraph('Tempo — Passen Sie die Sprechgeschwindigkeit an (langsamer = einfacher zum Mithören)', style='List Bullet')
 doc.add_paragraph('Auto-Vorlesen — Die Vorderseite wird automatisch vorgelesen', style='List Bullet')
 doc.add_paragraph('Rückseite vorlesen — Auch die deutsche Übersetzung wird vorgelesen', style='List Bullet')
 doc.add_paragraph('Klicken Sie auf Karteikarten starten, um zu beginnen.')
@@ -202,23 +220,47 @@ doc.add_heading('5. Texte vorlesen — Hörverstehen trainieren', level=1)
 doc.add_paragraph('Klicken Sie auf Texte vorlesen und laden Sie eine Textdatei (Fließtext auf Russisch).', style='List Number')
 doc.add_paragraph('Der Text wird in einem Lesefenster angezeigt.', style='List Number')
 doc.add_paragraph('Wählen Sie den Lesemodus:', style='List Number')
-doc.add_paragraph('Alles — Der Text wird Satz für Satz vorgelesen. Das aktuell gesprochene Wort wird goldfarben markiert (Wort-für-Wort-Cursor). Bereits gelesene Sätze und Wörter werden ausgegraut.', style='List Bullet 2')
-doc.add_paragraph('Satzweise — Jeder Satz wird einzeln vorgelesen; klicken Sie auf einen Satz, um ihn zu hören. Auch hier wird das aktuelle Wort markiert. Mit den Buttons ⏮ Voriger Satz / ⏭ Nächster Satz navigieren Sie zwischen den Sätzen.', style='List Bullet 2')
+doc.add_paragraph('ganzer Text — Der Text wird Satz für Satz vorgelesen. Das aktuell gesprochene Wort wird goldfarben markiert (Wort-für-Wort-Cursor). Bereits gelesene Sätze und Wörter werden ausgegraut.', style='List Bullet 2')
+doc.add_paragraph('Satz für Satz — Jeder Satz wird einzeln vorgelesen; klicken Sie auf einen Satz, um ihn zu hören. Auch hier wird das aktuelle Wort markiert. Mit den Buttons ⏮ Voriger Satz / ⏭ Nächster Satz navigieren Sie zwischen den Sätzen.', style='List Bullet 2')
 doc.add_paragraph(
     'Der Text scrollt automatisch mit, damit das aktuelle Wort immer im sichtbaren Bereich bleibt.'
 )
 
 # --- 6 ---
-doc.add_heading('6. Die Vokabel-Datenbank', level=1)
+doc.add_heading('6. Die Vokabel-Datenbank — Ihr wachsender Wortschatz', level=1)
+
+doc.add_heading('Automatisches Sammeln', level=2)
 doc.add_paragraph(
-    'Jedes Mal, wenn Sie eine Vokabeldatei laden, werden die Karten automatisch in einer Datenbank im Browser gespeichert. '
-    'Die Datenbank wächst mit jeder neuen Datei — ohne Duplikate.'
+    'Jedes Mal, wenn Sie eine Vokabeldatei laden oder Vokabeln per KI generieren lassen, werden die Karten automatisch in einer '
+    'Datenbank im Browser gespeichert. Die Datenbank wächst mit jeder neuen Datei — ohne Duplikate. '
+    'Jede Vokabel merkt sich, aus welcher Quelldatei (Lektion) sie stammt.'
 )
+
+doc.add_heading('Gespeicherte Vokabeln laden und lernen', level=2)
 doc.add_paragraph(
-    'Klicken Sie auf Export (Excel), um Ihre gesamte Vokabelsammlung als TSV-Datei herunterzuladen. '
+    'Wenn Sie im Hauptmenü auf Karteikarten klicken, sehen Sie unterhalb des Datei-Upload-Bereichs Ihre gespeicherten Vokabeln:'
+)
+doc.add_paragraph('Alle Vokabeln (N Karten) — Lädt Ihre gesamte Vokabelsammlung als Karteikarten. Ideal für gemischtes Wiederholen.', style='List Bullet')
+doc.add_paragraph('Einzelne Lektionen — Jede Datei, die Sie jemals geladen haben, erscheint als eigener Eintrag mit Kartenzähler. '
+                   'Klicken Sie auf eine Lektion, um nur deren Vokabeln zu lernen.', style='List Bullet')
+doc.add_paragraph(
+    'So können Sie gezielt bestimmte Themen wiederholen, ohne die Originaldatei erneut laden zu müssen. '
+    'Der Lernfortschritt (Spaced Repetition) bleibt dabei erhalten.'
+)
+
+doc.add_heading('Export für Excel', level=2)
+doc.add_paragraph(
+    'Klicken Sie im Einstellungsbildschirm auf Export (Excel), um Ihre gesamte Vokabelsammlung als CSV-Datei herunterzuladen. '
     'Diese Datei können Sie direkt in Excel oder Google Sheets öffnen.'
 )
 doc.add_paragraph('Die Exportdatei enthält: Russisch, Deutsch, Thema, Kategorie, Grammatik und Quelle (Dateiname).')
+
+doc.add_heading('Auto-Export als JSON', level=2)
+doc.add_paragraph(
+    'In den Einstellungen (Zahnrad-Symbol oben rechts) können Sie einen Speicherort für eine JSON-Datei wählen. '
+    'Die App exportiert dann bei jeder Änderung automatisch Ihre gesamte Vokabelsammlung in diese Datei. '
+    'So haben Sie immer ein aktuelles Backup.'
+)
 
 # --- 7 ---
 doc.add_heading('7. Tastenkürzel', level=1)
@@ -434,6 +476,6 @@ r.font.size = Pt(14)
 p.alignment = WD_ALIGN_PARAGRAPH.CENTER
 
 # Speichern
-output_path = r'C:\Users\klaus\Documents\Russisch\Vokabeltrainer\Gebrauchsanweisung.docx'
+output_path = r'C:\Users\klaus\Desktop\Russisch\Vokabeltrainer\Gebrauchsanweisung.docx'
 doc.save(output_path)
 print(f'Word-Dokument gespeichert: {output_path}')
