@@ -8,7 +8,12 @@ Russian vocabulary trainer — a browser app for learning Russian with flashcard
 
 ## Architecture
 
-### Main App: `index.html` (~6000 lines)
+### Main App: `index.html` (4942 lines) + `js/` modules
+
+Die Logik liegt seit dem Umbau vom 25.05.2026 groesstenteils in `js/`
+(zusammen 1774 Zeilen), nicht mehr in `index.html`. Geladen wird in dieser
+Reihenfolge: `i18n.js`, `sr.js`, `tts.js`, `db.js`, `conjugation.js`,
+`declension.js`, `claude-model.js`, `ai-vocab.js`, `parser.js`.
 
 | Section | Lines (approx.) | Content |
 |---------|-----------------|---------|
@@ -17,7 +22,7 @@ Russian vocabulary trainer — a browser app for learning Russian with flashcard
 | i18n translations | 1980–2500 | `translations` object with ~140 keys × 3 languages (de/en/ru), including conjugation and declension labels |
 | JavaScript | 2500–6000 | All logic: parsing, SR algorithms, TTS, rendering, IndexedDB, conjugation/declension display |
 
-### Vocabulary Editor: `vokabel_editor.html` (~1800 lines)
+### Vocabulary Editor: `vokabel_editor.html` (2684 lines)
 
 Separate single-file app for editing the JSON vocabulary database:
 - Load/save `vokabeln.json` via File System Access API
@@ -125,14 +130,28 @@ Separate single-file app for editing the JSON vocabulary database:
 ## Development Notes
 
 - **No build step** — edit HTML files, refresh browser
-- **Puppeteer tests** in `tests/` (e.g. `test_navigation.js`, 118 tests), run with `node tests/test_navigation.js`
+- **Puppeteer tests** in `tests/`: `test_navigation.js`, `test_editor.js`,
+  `test_classification.js`, `test_sr.js`, `test_speech_click.js`,
+  `test_speech_debug.js`. Aufruf einzeln, z. B. `node tests/test_navigation.js`.
+- **Modelltest ohne Netz**: `node tests/test_claude_model.js` (12 Tests).
 - **Dev scripts** in `tools/` (docx generators `create_docx*.py`, `dedupe_vokabeln.js`); documentation in `docs/`, media in `media/`, standalone learning pages in `lesematerial/`
 - **No package manager for app** — `package.json` exists only for Puppeteer test dependencies
 - External dependency: Google Fonts (Playfair Display, Source Sans 3) loaded via CDN
 - The app was renamed from `vokabeltrainer.html` to `index.html` for GitHub Pages
-- SVG vocabulary illustration sets live in `Vokabel_Textdateien/testbilder/`, `bilder_familie/`, `bilder_antonyme/`
-- Sample vocabulary files (`.txt`) are in `Vokabel_Textdateien/`
-- `api-key.js` (not committed) provides `ANTHROPIC_API_KEY` for conjugation generation
+- SVG vocabulary illustration sets live in `Vokabel_Texte_Input/testbilder/`, `bilder_familie/`, `bilder_antonyme/`
+- Sample vocabulary files (`.txt`) are in `Vokabel_Texte_Input/`
+- `api-key.js` liefert `CLAUDE_API_KEY`. Die Datei ist per `.gitignore`
+  ausgenommen und wird bewusst nicht versioniert. Alternativ laesst sich der
+  Schluessel im Editor eintragen (`localStorage`).
+- **Modellkennung**: nur in `js/claude-model.js` (`CLAUDE_MODEL_FALLBACK`).
+  `resolveClaudeModel()` prueft vor dem Aufruf gegen die Models-API, ob das
+  Modell noch existiert, und weicht sonst auf das neueste `claude-sonnet-*`
+  aus. Anlass: die Abschaltung von `claude-sonnet-4-20250514` am 15.06.2026.
+- `aussprache_trainer.html` (2481 Zeilen) ist eine eigenstaendige App fuer
+  Aussprachetraining ueber Microsoft Azure Speech; der Schluessel wird im
+  Formular eingegeben und in `localStorage` gehalten.
+- `lesematerial/` enthaelt eigenstaendige Lernseiten (`grammatik_*.html`,
+  `StarWarsEnglish.html`).
 - App runs on Microsoft Edge (best Russian TTS voice support)
 
 ## Conventions

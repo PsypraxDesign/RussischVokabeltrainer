@@ -22,10 +22,10 @@ function showDeclensionModal() {
 
     let html = '';
     if (d.noun && d.noun !== card.speakableText.replace(/\u0301/g, '')) {
-        html += '<p class="conj-aspect"><strong>' + t('decl_noun') + ':</strong> ' + d.noun + '</p>';
+        html += '<p class="conj-aspect"><strong>' + t('decl_noun') + ':</strong> ' + escapeHtml(d.noun) + '</p>';
     }
     html += '<p class="conj-aspect"><strong>' + t('decl_gender') + ':</strong> ' +
-        (genderLabels[d.gender] || d.gender || '—') +
+        escapeHtml(genderLabels[d.gender] || d.gender || '—') +
         ' &nbsp;|&nbsp; ' + (d.animate ? t('decl_animate') : t('decl_inanimate')) + '</p>';
 
     // Singular
@@ -33,7 +33,7 @@ function showDeclensionModal() {
         html += '<table><thead><tr><th colspan="2">' + t('decl_singular') + '</th></tr></thead><tbody>';
         for (const c of caseKeys) {
             if (d.singular[c] !== undefined) {
-                html += '<tr><td class="conj-person">' + (caseLabels[c] || c) + '</td><td>' + d.singular[c] + '</td></tr>';
+                html += '<tr><td class="conj-person">' + escapeHtml(caseLabels[c] || c) + '</td><td>' + escapeHtml(d.singular[c]) + '</td></tr>';
             }
         }
         html += '</tbody></table>';
@@ -44,7 +44,7 @@ function showDeclensionModal() {
         html += '<table><thead><tr><th colspan="2">' + t('decl_plural') + '</th></tr></thead><tbody>';
         for (const c of caseKeys) {
             if (d.plural[c] !== undefined) {
-                html += '<tr><td class="conj-person">' + (caseLabels[c] || c) + '</td><td>' + d.plural[c] + '</td></tr>';
+                html += '<tr><td class="conj-person">' + escapeHtml(caseLabels[c] || c) + '</td><td>' + escapeHtml(d.plural[c]) + '</td></tr>';
             }
         }
         html += '</tbody></table>';

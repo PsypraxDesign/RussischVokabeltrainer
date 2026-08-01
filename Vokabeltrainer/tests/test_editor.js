@@ -911,7 +911,7 @@ async function testSelectAll(page) {
 // MAIN
 // ============================================
 (async () => {
-    const browser = await puppeteer.launch({ headless: 'new' });
+    const browser = await puppeteer.launch({ headless: true });
     const page = await browser.newPage();
     page.on('console', msg => {
         if (msg.type() === 'error') console.log('    [console.error]', msg.text());

@@ -2768,7 +2768,7 @@
             for (const src of sources) {
                 const displayName = src.name ? src.name.replace(/\.[^.]+$/, '') : '?';
                 html += `<div class="saved-vocab-item" data-source="${src.name.replace(/"/g, '&quot;')}">
-                    <span class="saved-vocab-item-name">${displayName}</span>
+                    <span class="saved-vocab-item-name">${escapeHtml(displayName)}</span>
                     <span class="saved-vocab-item-count">${t('saved_vocab_cards', { n: src.count })}</span>
                     <button class="saved-vocab-delete" data-delete-source="${src.name.replace(/"/g, '&quot;')}" data-count="${src.count}" title="${t('btn_delete') || 'Löschen'}">🗑</button>
                 </div>`;
@@ -2888,6 +2888,7 @@
             });
         }
 
+        // H-3: haertet gegen HTML-Injektion aus Dateien und LLM-Antworten.
         function escapeHtml(str) {
             if (!str) return '';
             return str.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
@@ -3906,6 +3907,9 @@
         // parseTexts moved to js/parser.js
 
         function showTextMode() {
+            // H-7: currentIndex zeigt beim Moduswechsel womoeglich noch auf eine
+            // Karteikarte -- im Textmodus ist das ein Index ausserhalb von texts[].
+            if (currentIndex < 0 || currentIndex >= texts.length) currentIndex = 0;
             modeSelection.style.display = 'none';
             uploadSection.style.display = 'none';
             textReaderContainer.classList.add('visible');
@@ -3946,7 +3950,9 @@
         }
 
         function renderTextContent() {
+            if (currentIndex < 0 || currentIndex >= texts.length) currentIndex = 0;   // H-7
             const text = texts[currentIndex];
+            if (!text) return;
             sentences = splitIntoSentences(text.body);
 
             textReaderTitle.textContent = text.title || t('text_fallback', { n: currentIndex + 1 });
@@ -3962,8 +3968,8 @@
                 // Wörter in Spans wrappen für Wort-Highlighting
                 const words = splitIntoWords(sentence);
                 const wordSpans = words.map(w => {
-                    if (w.isSpace) return w.text;
-                    return `<span class="word" data-sentence-idx="${idx}" data-word-idx="${w.wordIdx}">${w.text}</span>`;
+                    if (w.isSpace) return escapeHtml(w.text);
+                    return `<span class="word" data-sentence-idx="${idx}" data-word-idx="${w.wordIdx}">${escapeHtml(w.text)}</span>`;
                 }).join('');
                 html += `<span class="${cls}" data-idx="${idx}">${wordSpans}</span> `;
             });
@@ -4005,7 +4011,7 @@
                 const title = text.title || t('text_fallback', { n: idx + 1 });
                 item.innerHTML = `
                     <span class="text-list-item-number">${idx + 1}</span>
-                    <span class="text-list-item-title">${title}</span>
+                    <span class="text-list-item-title">${escapeHtml(title)}</span>
                     <button class="text-list-item-btn" title="${t('btn_read_aloud')}">🔊</button>
                 `;
                 item.addEventListener('click', (e) => {
@@ -4285,8 +4291,8 @@
             cards.forEach((card, idx) => {
                 const item = document.createElement('div');
                 item.className = 'card-item' + (idx === currentIndex ? ' active' : '');
-                const frontText = card.speakableText.substring(0, 40) + (card.speakableText.length > 40 ? '…' : '');
-                const backText = card.answer ? card.answer.substring(0, 40) + (card.answer.length > 40 ? '…' : '') : '';
+                const frontText = escapeHtml(card.speakableText.substring(0, 40) + (card.speakableText.length > 40 ? '…' : ''));
+                const backText = card.answer ? escapeHtml(card.answer.substring(0, 40) + (card.answer.length > 40 ? '…' : '')) : '';
 
                 // SR badge
                 let badgeHtml = '';
@@ -4372,11 +4378,18 @@
                     }
                 };
 
-                // Feature detection: disable for browsers without onboundary
+                // M-19: Frueher lief die Frist ab dem Einreihen der Aeusserung.
+                // Startet die Sprachausgabe langsam (erste Nutzung, Stimme wird
+                // nachgeladen), war die Sekunde vorbei, bevor ueberhaupt gesprochen
+                // wurde -- die Worthervorhebung blieb dann dauerhaft aus. Jetzt
+                // laeuft die Frist ab dem tatsaechlichen Sprechbeginn und ist
+                // grosszuegiger bemessen.
                 if (wordBoundarySupported === null) {
-                    setTimeout(() => {
-                        if (!boundaryFired) wordBoundarySupported = false;
-                    }, 1000);
+                    utterance.addEventListener('start', () => {
+                        setTimeout(() => {
+                            if (!boundaryFired) wordBoundarySupported = false;
+                        }, 3000);
+                    });
                 }
             }
 

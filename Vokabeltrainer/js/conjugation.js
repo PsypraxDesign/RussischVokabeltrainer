@@ -16,10 +16,10 @@ function showConjugationModal() {
     const aspectLabels = { 'НСВ': t('conj_aspect_nsv'), 'СВ': t('conj_aspect_sv') };
     let html = '';
     if (c.verb && c.verb !== card.speakableText.replace(/\u0301/g, '')) {
-        html += '<p class="conj-aspect"><strong>' + t('conj_infinitive') + ':</strong> ' + c.verb + '</p>';
+        html += '<p class="conj-aspect"><strong>' + t('conj_infinitive') + ':</strong> ' + escapeHtml(c.verb) + '</p>';
     }
     html += '<p class="conj-aspect"><strong>' + t('conj_aspect') + ':</strong> ' +
-        (aspectLabels[c.aspect] || c.aspect || '—');
+        escapeHtml(aspectLabels[c.aspect] || c.aspect || '—');
     if (c.aspect_partner) html += ' &nbsp;|&nbsp; <strong>' + t('conj_partner') + ':</strong> ' + c.aspect_partner;
     html += '</p>';
 
@@ -27,7 +27,7 @@ function showConjugationModal() {
     if (c.present) {
         html += '<table><thead><tr><th colspan="2">' + t('conj_present') + '</th></tr></thead><tbody>';
         for (const [person, form] of Object.entries(c.present)) {
-            html += '<tr><td class="conj-person">' + person + '</td><td>' + form + '</td></tr>';
+            html += '<tr><td class="conj-person">' + escapeHtml(person) + '</td><td>' + escapeHtml(form) + '</td></tr>';
         }
         html += '</tbody></table>';
     }
@@ -36,7 +36,7 @@ function showConjugationModal() {
     if (c.future) {
         html += '<table><thead><tr><th colspan="2">' + t('conj_future') + '</th></tr></thead><tbody>';
         for (const [person, form] of Object.entries(c.future)) {
-            html += '<tr><td class="conj-person">' + person + '</td><td>' + form + '</td></tr>';
+            html += '<tr><td class="conj-person">' + escapeHtml(person) + '</td><td>' + escapeHtml(form) + '</td></tr>';
         }
         html += '</tbody></table>';
     }
@@ -46,7 +46,7 @@ function showConjugationModal() {
         const pastLabels = { 'м': t('conj_past_m'), 'ж': t('conj_past_f'), 'ср': t('conj_past_n'), 'мн': t('conj_past_pl') };
         html += '<table><thead><tr><th colspan="2">' + t('conj_past') + '</th></tr></thead><tbody>';
         for (const [key, form] of Object.entries(c.past)) {
-            html += '<tr><td class="conj-person">' + (pastLabels[key] || key) + '</td><td>' + form + '</td></tr>';
+            html += '<tr><td class="conj-person">' + escapeHtml(pastLabels[key] || key) + '</td><td>' + escapeHtml(form) + '</td></tr>';
         }
         html += '</tbody></table>';
     }
@@ -55,7 +55,7 @@ function showConjugationModal() {
     if (c.imperative) {
         html += '<table><thead><tr><th colspan="2">' + t('conj_imperative') + '</th></tr></thead><tbody>';
         for (const [person, form] of Object.entries(c.imperative)) {
-            html += '<tr><td class="conj-person">' + person + '</td><td>' + form + '</td></tr>';
+            html += '<tr><td class="conj-person">' + escapeHtml(person) + '</td><td>' + escapeHtml(form) + '</td></tr>';
         }
         html += '</tbody></table>';
     }
@@ -68,7 +68,7 @@ function showConjugationModal() {
     if (extras.length) {
         html += '<table><thead><tr><th colspan="2">' + t('conj_other') + '</th></tr></thead><tbody>';
         for (const [label, form] of extras) {
-            html += '<tr><td class="conj-person">' + label + '</td><td>' + form + '</td></tr>';
+            html += '<tr><td class="conj-person">' + escapeHtml(label) + '</td><td>' + escapeHtml(form) + '</td></tr>';
         }
         html += '</tbody></table>';
     }

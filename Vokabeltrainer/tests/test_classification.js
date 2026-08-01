@@ -13,10 +13,24 @@ const EDITOR_URL = 'file:///' + path.resolve(__dirname, '..', 'vokabel_editor.ht
 const VOCAB_PATH = path.resolve(__dirname, '..', 'Vokabelliste_JSON', 'vokabeln.json');
 
 (async () => {
-    const vocabData = JSON.parse(fs.readFileSync(VOCAB_PATH, 'utf-8'));
+    if (!fs.existsSync(VOCAB_PATH)) {
+        console.error(`ERROR: Vocabulary file not found: ${VOCAB_PATH}`);
+        console.error('This test requires Vokabelliste_JSON/vokabeln.json. Aborting.');
+        process.exit(1);
+    }
+    let vocabData;
+    try {
+        vocabData = JSON.parse(fs.readFileSync(VOCAB_PATH, 'utf-8'));
+    } catch (e) {
+        console.error(`ERROR: Could not read/parse ${VOCAB_PATH}: ${e.message}`);
+        process.exit(1);
+    }
     console.log(`Loaded ${vocabData.length} vocabulary items from vokabeln.json\n`);
 
-    const browser = await puppeteer.launch({ headless: 'new' });
+    // Tracks whether any BUG / mismatch was reported, so CI actually fails.
+    let problemsFound = 0;
+
+    const browser = await puppeteer.launch({ headless: true });
     const page = await browser.newPage();
     await page.goto(EDITOR_URL, { waitUntil: 'domcontentloaded' });
 
@@ -54,6 +68,7 @@ const VOCAB_PATH = path.resolve(__dirname, '..', 'Vokabelliste_JSON', 'vokabeln.
 
     // Report items classified as both (should never happen)
     if (both.length > 0) {
+        problemsFound += both.length;
         console.log(`\n=== BUG: Classified as BOTH verb and noun ===`);
         for (const r of both) {
             console.log(`  "${r.front}" | "${r.back}" | grammar: "${r.grammar}"`);
@@ -63,6 +78,7 @@ const VOCAB_PATH = path.resolve(__dirname, '..', 'Vokabelliste_JSON', 'vokabeln.
     // Report verbs that have declension data (mismatch)
     const verbsWithDecl = results.filter(r => r.isVerb && r.hasDeclension);
     if (verbsWithDecl.length > 0) {
+        problemsFound += verbsWithDecl.length;
         console.log(`\n=== Mismatch: classified as verb but has declension data ===`);
         for (const r of verbsWithDecl) {
             console.log(`  "${r.front}" | "${r.back}" | grammar: "${r.grammar}"`);
@@ -72,6 +88,7 @@ const VOCAB_PATH = path.resolve(__dirname, '..', 'Vokabelliste_JSON', 'vokabeln.
     // Report nouns that have conjugation data (mismatch)
     const nounsWithConj = results.filter(r => r.isNoun && r.hasConjugation);
     if (nounsWithConj.length > 0) {
+        problemsFound += nounsWithConj.length;
         console.log(`\n=== Mismatch: classified as noun but has conjugation data ===`);
         for (const r of nounsWithConj) {
             console.log(`  "${r.front}" | "${r.back}" | grammar: "${r.grammar}"`);
@@ -81,6 +98,7 @@ const VOCAB_PATH = path.resolve(__dirname, '..', 'Vokabelliste_JSON', 'vokabeln.
     // Report items with conjugation data but NOT classified as verb
     const conjNotVerb = results.filter(r => r.hasConjugation && !r.isVerb);
     if (conjNotVerb.length > 0) {
+        problemsFound += conjNotVerb.length;
         console.log(`\n=== Has conjugation data but NOT classified as verb ===`);
         for (const r of conjNotVerb) {
             console.log(`  "${r.front}" | "${r.back}" | grammar: "${r.grammar}"`);
@@ -90,6 +108,7 @@ const VOCAB_PATH = path.resolve(__dirname, '..', 'Vokabelliste_JSON', 'vokabeln.
     // Report items with declension data but NOT classified as noun
     const declNotNoun = results.filter(r => r.hasDeclension && !r.isNoun);
     if (declNotNoun.length > 0) {
+        problemsFound += declNotNoun.length;
         console.log(`\n=== Has declension data but NOT classified as noun ===`);
         for (const r of declNotNoun) {
             console.log(`  "${r.front}" | "${r.back}" | grammar: "${r.grammar}"`);
@@ -104,6 +123,7 @@ const VOCAB_PATH = path.resolve(__dirname, '..', 'Vokabelliste_JSON', 'vokabeln.
                g.includes('männl') || g.includes('weibl') || g.includes('sächl');
     });
     if (suspiciousVerbs.length > 0) {
+        problemsFound += suspiciousVerbs.length;
         console.log(`\n=== Suspicious: classified as verb but grammar suggests otherwise ===`);
         for (const r of suspiciousVerbs) {
             console.log(`  "${r.front}" | "${r.back}" | grammar: "${r.grammar}"`);
@@ -118,6 +138,7 @@ const VOCAB_PATH = path.resolve(__dirname, '..', 'Vokabelliste_JSON', 'vokabeln.
                g.includes('prädikat') || g.includes('modal');
     });
     if (suspiciousNouns.length > 0) {
+        problemsFound += suspiciousNouns.length;
         console.log(`\n=== Suspicious: classified as noun but grammar suggests otherwise ===`);
         for (const r of suspiciousNouns) {
             console.log(`  "${r.front}" | "${r.back}" | grammar: "${r.grammar}"`);
@@ -131,5 +152,14 @@ const VOCAB_PATH = path.resolve(__dirname, '..', 'Vokabelliste_JSON', 'vokabeln.
     }
 
     await browser.close();
-    console.log('\nDone.');
-})();
+
+    if (problemsFound > 0) {
+        console.log(`\nDone. ${problemsFound} classification problem(s) / mismatch(es) found.`);
+        process.exit(1);
+    }
+    console.log('\nDone. No classification problems found.');
+    process.exit(0);
+})().catch((err) => {
+    console.error('FATAL:', err);
+    process.exit(1);
+});

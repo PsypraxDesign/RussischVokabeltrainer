@@ -1,3 +1,8 @@
+> **ARCHIVIERT — VERALTET.** Dieser Bericht beschreibt einen frueheren
+> Stand und wird nicht mehr gepflegt. Massgeblich sind `CLAUDE.md` im
+> Projektwurzelverzeichnis und `PRUEFBERICHT_2026-06-12.md`.
+> Die Datei bleibt als Vorgeschichte erhalten.
+
 # Arbeitsbericht: Vokabeltrainer Russisch
 
 ## Projektübersicht
