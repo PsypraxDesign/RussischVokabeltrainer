@@ -1,0 +1,24 @@
+(img:Vokabel_Texte_Input/bilder_antonyme/bolshoy.svg)большо́й,groß
+(img:Vokabel_Texte_Input/bilder_antonyme/malenkiy.svg)ма́ленький,klein
+(img:Vokabel_Texte_Input/bilder_antonyme/bystryy.svg)бы́стрый,schnell
+(img:Vokabel_Texte_Input/bilder_antonyme/medlennyy.svg)ме́дленный,langsam
+(img:Vokabel_Texte_Input/bilder_antonyme/molodoy.svg)молодо́й,jung
+(img:Vokabel_Texte_Input/bilder_antonyme/staryy.svg)ста́рый (Alter),alt (Alter)
+(img:Vokabel_Texte_Input/bilder_antonyme/goryachiy.svg)горя́чий,heiß
+(img:Vokabel_Texte_Input/bilder_antonyme/kholodnyy.svg)холо́дный,kalt
+(img:Vokabel_Texte_Input/bilder_antonyme/vysokiy.svg)высо́кий,hoch / groß (Größe)
+(img:Vokabel_Texte_Input/bilder_antonyme/nizkiy.svg)ни́зкий,niedrig / klein (Größe)
+(img:Vokabel_Texte_Input/bilder_antonyme/dlinnyy.svg)дли́нный,lang
+(img:Vokabel_Texte_Input/bilder_antonyme/korotkiy.svg)коро́ткий,kurz
+(img:Vokabel_Texte_Input/bilder_antonyme/shirokiy.svg)широ́кий,breit
+(img:Vokabel_Texte_Input/bilder_antonyme/uzkiy.svg)у́зкий,schmal / eng
+(img:Vokabel_Texte_Input/bilder_antonyme/tyazholyy.svg)тяжёлый,schwer
+(img:Vokabel_Texte_Input/bilder_antonyme/lyogkiy.svg)лёгкий,leicht
+(img:Vokabel_Texte_Input/bilder_antonyme/vesyolyy.svg)весёлый,fröhlich / lustig
+(img:Vokabel_Texte_Input/bilder_antonyme/grustnyy.svg)гру́стный,traurig
+(img:Vokabel_Texte_Input/bilder_antonyme/silnyy.svg)си́льный,stark
+(img:Vokabel_Texte_Input/bilder_antonyme/slabyy.svg)сла́бый,schwach
+(img:Vokabel_Texte_Input/bilder_antonyme/svetlyy.svg)све́тлый,hell
+(img:Vokabel_Texte_Input/bilder_antonyme/tyomnyy.svg)тёмный,dunkel
+(img:Vokabel_Texte_Input/bilder_antonyme/novyy.svg)но́вый,neu
+(img:Vokabel_Texte_Input/bilder_antonyme/staryy_ding.svg)ста́рый (Ding),alt (Gegenstand)

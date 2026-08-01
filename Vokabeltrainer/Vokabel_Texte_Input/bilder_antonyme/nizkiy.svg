@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" width="200" height="200">
+  <rect width="200" height="200" fill="#1a2332" rx="12"/>
+  <!-- Großer Mensch (blass) -->
+  <circle cx="55" cy="42" r="16" fill="#FDBCB4" opacity="0.35"/>
+  <rect x="43" y="58" width="24" height="60" rx="4" fill="#3498db" opacity="0.35"/>
+  <rect x="40" y="118" width="12" height="35" rx="3" fill="#2c3e50" opacity="0.35"/>
+  <rect x="58" y="118" width="12" height="35" rx="3" fill="#2c3e50" opacity="0.35"/>
+  <!-- Kleiner Mensch (prominent) -->
+  <circle cx="140" cy="90" r="18" fill="#FDBCB4"/>
+  <circle cx="134" cy="87" r="3" fill="#2c3e50"/>
+  <circle cx="146" cy="87" r="3" fill="#2c3e50"/>
+  <path d="M 134,96 Q 140,101 146,96" stroke="#c0392b" stroke-width="1.5" fill="none"/>
+  <rect x="128" y="108" width="24" height="32" rx="4" fill="#e74c3c"/>
+  <rect x="126" y="140" width="11" height="15" rx="3" fill="#2c3e50"/>
+  <rect x="143" y="140" width="11" height="15" rx="3" fill="#2c3e50"/>
+  <rect x="126" y="152" width="11" height="4" rx="2" fill="#7f8c8d"/>
+  <rect x="143" y="152" width="11" height="4" rx="2" fill="#7f8c8d"/>
+  <!-- Maßstrich kurz -->
+  <line x1="105" y1="88" x2="105" y2="155" stroke="#a0aec0" stroke-width="1" stroke-dasharray="3,3" opacity="0.5"/>
+  <text x="100" y="178" text-anchor="middle" fill="#e8b341" font-size="14" font-weight="bold" font-family="sans-serif">низкий</text>
+</svg>

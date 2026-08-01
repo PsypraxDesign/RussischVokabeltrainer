@@ -1,0 +1,12 @@
+(img:Vokabel_Texte_Input/testbilder/dom.svg)дом,Haus
+(img:Vokabel_Texte_Input/testbilder/shkola.svg)шко́ла,Schule
+(img:Vokabel_Texte_Input/testbilder/restoran.svg)рестора́н,Restaurant
+(img:Vokabel_Texte_Input/testbilder/kniga.svg)кни́га,Buch
+(img:Vokabel_Texte_Input/testbilder/koshka.svg)ко́шка,Katze
+(img:Vokabel_Texte_Input/testbilder/sobaka.svg)соба́ка,Hund
+(img:Vokabel_Texte_Input/testbilder/derevo.svg)де́рево,Baum
+(img:Vokabel_Texte_Input/testbilder/solntse.svg)со́лнце,Sonne
+(img:Vokabel_Texte_Input/testbilder/koshka.svg)(img:Vokabel_Texte_Input/testbilder/sobaka.svg)ко́шка и соба́ка,Katze und Hund
+(img:Vokabel_Texte_Input/testbilder/dom.svg),Haus (nur Bild)
+(img:nicht_vorhanden.png)те́ст,Test (fehlerhaftes Bild)
+здра́вствуйте,Guten Tag (ohne Bild)

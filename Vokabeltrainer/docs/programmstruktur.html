@@ -1,0 +1,1644 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vokabeltrainer — Programmstruktur</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Source+Sans+3:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-primary: #0a0e14;
+            --bg-secondary: #111822;
+            --bg-card: #1a2332;
+            --bg-card-hover: #243044;
+            --accent: #e8b341;
+            --accent-dim: rgba(232, 179, 65, 0.15);
+            --accent-glow: rgba(232, 179, 65, 0.25);
+            --blue: #6496ff;
+            --blue-dim: rgba(100, 150, 255, 0.15);
+            --green: #48bb78;
+            --green-dim: rgba(72, 187, 120, 0.15);
+            --red: #f56565;
+            --red-dim: rgba(245, 101, 101, 0.15);
+            --purple: #b794f6;
+            --purple-dim: rgba(183, 148, 246, 0.15);
+            --cyan: #4fd1c5;
+            --cyan-dim: rgba(79, 209, 197, 0.15);
+            --orange: #ed8936;
+            --orange-dim: rgba(237, 137, 54, 0.15);
+            --text-primary: #f0f0f0;
+            --text-secondary: #a0aec0;
+            --text-muted: #5a6a7d;
+            --border: #2d3e50;
+            --border-light: #3a4f65;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Source Sans 3', sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        /* ── Header ───────────────────────────────── */
+        .hero {
+            text-align: center;
+            padding: 60px 24px 40px;
+            position: relative;
+            overflow: hidden;
+        }
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: -40%;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 800px;
+            height: 800px;
+            background: radial-gradient(circle, rgba(232,179,65,0.08) 0%, transparent 60%);
+            pointer-events: none;
+        }
+        .hero h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.6rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, var(--text-primary), var(--accent));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 8px;
+        }
+        .hero .subtitle {
+            color: var(--text-secondary);
+            font-size: 1.15rem;
+            font-weight: 300;
+        }
+
+        /* ── Navigation Tabs ──────────────────────── */
+        .tab-bar {
+            display: flex;
+            justify-content: center;
+            gap: 4px;
+            padding: 0 24px;
+            margin-bottom: 40px;
+            flex-wrap: wrap;
+        }
+        .tab-btn {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            color: var(--text-secondary);
+            padding: 10px 20px;
+            border-radius: 8px;
+            font-family: 'Source Sans 3', sans-serif;
+            font-size: 0.95rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        .tab-btn:hover {
+            background: var(--bg-card-hover);
+            color: var(--text-primary);
+        }
+        .tab-btn.active {
+            background: var(--accent-dim);
+            border-color: var(--accent);
+            color: var(--accent);
+        }
+
+        /* ── Section Container ────────────────────── */
+        .section {
+            display: none;
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 24px 60px;
+            animation: fadeIn 0.35s ease;
+        }
+        .section.active { display: block; }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(12px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .section-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.8rem;
+            margin-bottom: 8px;
+            color: var(--text-primary);
+        }
+        .section-desc {
+            color: var(--text-secondary);
+            margin-bottom: 32px;
+            font-size: 1.05rem;
+            line-height: 1.6;
+        }
+
+        /* ── Flowchart ────────────────────────────── */
+        .flow-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0;
+        }
+
+        .flow-node {
+            position: relative;
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 14px;
+            padding: 20px 28px;
+            text-align: center;
+            min-width: 240px;
+            max-width: 340px;
+            transition: all 0.25s;
+        }
+        .flow-node:hover {
+            border-color: var(--accent);
+            box-shadow: 0 0 20px var(--accent-glow);
+            transform: translateY(-2px);
+        }
+        .flow-node .node-icon {
+            font-size: 1.6rem;
+            margin-bottom: 6px;
+        }
+        .flow-node .node-title {
+            font-weight: 600;
+            font-size: 1.05rem;
+            margin-bottom: 4px;
+        }
+        .flow-node .node-sub {
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+        }
+
+        .flow-node.start {
+            background: var(--accent-dim);
+            border-color: var(--accent);
+        }
+        .flow-node.flash {
+            background: var(--green-dim);
+            border-color: var(--green);
+        }
+        .flow-node.text {
+            background: var(--blue-dim);
+            border-color: var(--blue);
+        }
+        .flow-node.sr {
+            background: var(--purple-dim);
+            border-color: var(--purple);
+        }
+        .flow-node.storage {
+            background: var(--cyan-dim);
+            border-color: var(--cyan);
+        }
+        .flow-node.end {
+            background: var(--orange-dim);
+            border-color: var(--orange);
+        }
+
+        .flow-arrow {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            color: var(--text-muted);
+            font-size: 0.8rem;
+            padding: 4px 0;
+        }
+        .flow-arrow .arrow-line {
+            width: 2px;
+            height: 20px;
+            background: var(--border-light);
+        }
+        .flow-arrow .arrow-head {
+            width: 0;
+            height: 0;
+            border-left: 6px solid transparent;
+            border-right: 6px solid transparent;
+            border-top: 8px solid var(--border-light);
+        }
+        .flow-arrow .arrow-label {
+            margin-top: 2px;
+            color: var(--text-muted);
+            font-size: 0.78rem;
+            font-style: italic;
+        }
+
+        .flow-branch {
+            display: flex;
+            gap: 40px;
+            align-items: flex-start;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        .flow-branch-col {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0;
+        }
+        .branch-header {
+            font-weight: 600;
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            padding: 6px 16px;
+            border-radius: 20px;
+            margin-bottom: 8px;
+        }
+        .branch-header.green { background: var(--green-dim); color: var(--green); }
+        .branch-header.blue { background: var(--blue-dim); color: var(--blue); }
+
+        .flow-fork {
+            display: flex;
+            align-items: center;
+            gap: 0;
+            margin: 4px 0;
+        }
+        .fork-line {
+            height: 2px;
+            width: 60px;
+            background: var(--border-light);
+        }
+        .fork-dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: var(--border-light);
+            flex-shrink: 0;
+        }
+
+        /* ── Screen Map ───────────────────────────── */
+        .screen-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 16px;
+        }
+        .screen-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 20px;
+            transition: all 0.25s;
+            position: relative;
+            overflow: hidden;
+        }
+        .screen-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+        }
+        .screen-card:hover {
+            border-color: var(--border-light);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 24px rgba(0,0,0,0.3);
+        }
+        .screen-card .card-id {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.78rem;
+            color: var(--text-muted);
+            margin-bottom: 8px;
+        }
+        .screen-card .card-name {
+            font-weight: 600;
+            font-size: 1.05rem;
+            margin-bottom: 6px;
+        }
+        .screen-card .card-desc {
+            font-size: 0.88rem;
+            color: var(--text-secondary);
+            line-height: 1.5;
+        }
+        .screen-card .card-features {
+            margin-top: 10px;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 5px;
+        }
+        .screen-card .tag {
+            font-size: 0.72rem;
+            padding: 3px 8px;
+            border-radius: 4px;
+            font-weight: 500;
+        }
+
+        .screen-card.cat-main::before { background: var(--accent); }
+        .screen-card.cat-flash::before { background: var(--green); }
+        .screen-card.cat-text::before { background: var(--blue); }
+        .screen-card.cat-sr::before { background: var(--purple); }
+        .screen-card.cat-ui::before { background: var(--cyan); }
+
+        .tag.t-accent { background: var(--accent-dim); color: var(--accent); }
+        .tag.t-green { background: var(--green-dim); color: var(--green); }
+        .tag.t-blue { background: var(--blue-dim); color: var(--blue); }
+        .tag.t-purple { background: var(--purple-dim); color: var(--purple); }
+        .tag.t-cyan { background: var(--cyan-dim); color: var(--cyan); }
+        .tag.t-orange { background: var(--orange-dim); color: var(--orange); }
+
+        /* ── Data Flow ────────────────────────────── */
+        .data-flow {
+            display: flex;
+            flex-direction: column;
+            gap: 24px;
+        }
+        .data-layer {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 14px;
+            padding: 24px;
+            position: relative;
+        }
+        .data-layer .layer-label {
+            position: absolute;
+            top: -11px;
+            left: 20px;
+            background: var(--bg-primary);
+            padding: 0 10px;
+            font-weight: 600;
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 0.06em;
+        }
+        .data-layer .layer-items {
+            display: flex;
+            gap: 16px;
+            flex-wrap: wrap;
+        }
+        .data-item {
+            flex: 1;
+            min-width: 200px;
+            background: var(--bg-secondary);
+            border-radius: 10px;
+            padding: 16px;
+            border: 1px solid var(--border);
+        }
+        .data-item .item-key {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.82rem;
+            margin-bottom: 6px;
+            word-break: break-all;
+        }
+        .data-item .item-val {
+            font-size: 0.88rem;
+            color: var(--text-secondary);
+            line-height: 1.5;
+        }
+        .layer-label.accent { color: var(--accent); }
+        .layer-label.green { color: var(--green); }
+        .layer-label.blue { color: var(--blue); }
+        .layer-label.purple { color: var(--purple); }
+        .layer-label.cyan { color: var(--cyan); }
+
+        .data-arrow-row {
+            display: flex;
+            justify-content: center;
+        }
+        .data-arrow-down {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .data-arrow-down .line { width: 2px; height: 14px; background: var(--border-light); }
+        .data-arrow-down .head {
+            width: 0; height: 0;
+            border-left: 6px solid transparent;
+            border-right: 6px solid transparent;
+            border-top: 8px solid var(--border-light);
+        }
+
+        /* ── Function Map ─────────────────────────── */
+        .func-group {
+            margin-bottom: 28px;
+        }
+        .func-group-title {
+            font-weight: 600;
+            font-size: 1.1rem;
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .func-group-title .dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            flex-shrink: 0;
+        }
+        .func-table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        .func-table th {
+            text-align: left;
+            font-size: 0.78rem;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 0.06em;
+            padding: 8px 12px;
+            border-bottom: 1px solid var(--border);
+        }
+        .func-table td {
+            padding: 10px 12px;
+            border-bottom: 1px solid rgba(45,62,80,0.4);
+            font-size: 0.9rem;
+            vertical-align: top;
+        }
+        .func-table tr:hover td {
+            background: rgba(255,255,255,0.02);
+        }
+        .func-name {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.84rem;
+            color: var(--accent);
+        }
+        .func-desc {
+            color: var(--text-secondary);
+        }
+
+        /* ── Keyboard shortcuts ───────────────────── */
+        .kbd-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+            gap: 12px;
+        }
+        .kbd-item {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            padding: 12px 16px;
+        }
+        .kbd-key {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.82rem;
+            background: var(--bg-secondary);
+            border: 1px solid var(--border-light);
+            border-radius: 6px;
+            padding: 4px 10px;
+            min-width: 60px;
+            text-align: center;
+            color: var(--accent);
+            white-space: nowrap;
+        }
+        .kbd-action {
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+        }
+
+        /* ── Architecture Diagram ─────────────────── */
+        .arch-diagram {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+        .arch-row {
+            display: flex;
+            gap: 16px;
+            flex-wrap: wrap;
+        }
+        .arch-block {
+            flex: 1;
+            min-width: 200px;
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 20px;
+            position: relative;
+        }
+        .arch-block .block-title {
+            font-weight: 600;
+            font-size: 1rem;
+            margin-bottom: 4px;
+        }
+        .arch-block .block-lines {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.78rem;
+            color: var(--text-muted);
+            margin-bottom: 8px;
+        }
+        .arch-block .block-desc {
+            font-size: 0.88rem;
+            color: var(--text-secondary);
+            line-height: 1.5;
+        }
+        .arch-block .block-dot {
+            position: absolute;
+            top: 12px;
+            right: 12px;
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+        }
+        .block-list {
+            list-style: none;
+            margin-top: 8px;
+        }
+        .block-list li {
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+            padding: 3px 0;
+            padding-left: 14px;
+            position: relative;
+        }
+        .block-list li::before {
+            content: '›';
+            position: absolute;
+            left: 0;
+            color: var(--text-muted);
+        }
+
+        /* ── SR Comparison ────────────────────────── */
+        .sr-compare {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+        .sr-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 14px;
+            padding: 24px;
+            position: relative;
+            overflow: hidden;
+        }
+        .sr-card::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0;
+            height: 3px;
+        }
+        .sr-card.sm2::before { background: var(--green); }
+        .sr-card.fsrs::before { background: var(--purple); }
+        .sr-card .sr-name {
+            font-weight: 700;
+            font-size: 1.2rem;
+            margin-bottom: 4px;
+        }
+        .sr-card .sr-sub {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            margin-bottom: 14px;
+        }
+        .sr-param {
+            display: flex;
+            justify-content: space-between;
+            padding: 8px 0;
+            border-bottom: 1px solid rgba(45,62,80,0.3);
+            font-size: 0.9rem;
+        }
+        .sr-param:last-child { border: none; }
+        .sr-param .param-key { color: var(--text-secondary); }
+        .sr-param .param-val {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.84rem;
+        }
+
+        /* ── i18n ─────────────────────────────────── */
+        .i18n-flow {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin-bottom: 24px;
+        }
+        .i18n-step {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            padding: 14px 20px;
+            text-align: center;
+            min-width: 160px;
+        }
+        .i18n-step .step-title {
+            font-weight: 600;
+            font-size: 0.95rem;
+            margin-bottom: 4px;
+        }
+        .i18n-step .step-sub {
+            font-size: 0.82rem;
+            color: var(--text-secondary);
+        }
+        .i18n-arrow {
+            color: var(--text-muted);
+            font-size: 1.4rem;
+        }
+        .i18n-example {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            overflow: hidden;
+        }
+        .i18n-example-header {
+            background: rgba(232,179,65,0.08);
+            padding: 10px 16px;
+            font-weight: 600;
+            font-size: 0.9rem;
+            border-bottom: 1px solid var(--border);
+        }
+        .i18n-example-body {
+            padding: 16px;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.82rem;
+            line-height: 1.8;
+            color: var(--text-secondary);
+        }
+        .i18n-example-body .key { color: var(--accent); }
+        .i18n-example-body .str { color: var(--green); }
+        .i18n-example-body .comment { color: var(--text-muted); font-style: italic; }
+
+        /* ── Legend ────────────────────────────────── */
+        .legend {
+            display: flex;
+            gap: 16px;
+            flex-wrap: wrap;
+            margin-bottom: 24px;
+            padding: 14px 20px;
+            background: var(--bg-card);
+            border-radius: 10px;
+            border: 1px solid var(--border);
+        }
+        .legend-item {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+        }
+        .legend-dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+        }
+
+        /* ── Responsive ───────────────────────────── */
+        @media (max-width: 700px) {
+            .hero h1 { font-size: 1.8rem; }
+            .tab-btn { padding: 8px 14px; font-size: 0.85rem; }
+            .section { padding: 0 16px 40px; }
+            .screen-grid { grid-template-columns: 1fr; }
+            .sr-compare { grid-template-columns: 1fr; }
+            .flow-branch { flex-direction: column; gap: 20px; }
+            .fork-line { display: none; }
+            .arch-row { flex-direction: column; }
+        }
+    </style>
+</head>
+<body>
+
+<!-- ═══════════════════════════════════════════ HEADER ═══ -->
+<div class="hero">
+    <h1>Vokabeltrainer — Programmstruktur</h1>
+    <p class="subtitle">Architektur und Funktionsweise der Russisch-Lern-App</p>
+</div>
+
+<!-- ═══════════════════════════════════════════ TABS ════ -->
+<div class="tab-bar" id="tabBar">
+    <button class="tab-btn active" data-tab="flow">Benutzerfluss</button>
+    <button class="tab-btn" data-tab="arch">Architektur</button>
+    <button class="tab-btn" data-tab="screens">Bildschirme</button>
+    <button class="tab-btn" data-tab="data">Datenfluss</button>
+    <button class="tab-btn" data-tab="sr">Spaced Repetition</button>
+    <button class="tab-btn" data-tab="funcs">Funktionen</button>
+    <button class="tab-btn" data-tab="i18n">Sprachen</button>
+    <button class="tab-btn" data-tab="keys">Tastatur</button>
+</div>
+
+<!-- ═══════════════════════════════════ 1. BENUTZERFLUSS ═══ -->
+<div class="section active" id="sec-flow">
+    <h2 class="section-title">Benutzerfluss</h2>
+    <p class="section-desc">
+        Der komplette Weg durch die App — vom Start bis zur Lerneinheit.
+    </p>
+
+    <div class="legend">
+        <div class="legend-item"><div class="legend-dot" style="background:var(--accent)"></div> Start / Navigation</div>
+        <div class="legend-item"><div class="legend-dot" style="background:var(--green)"></div> Karteikarten</div>
+        <div class="legend-item"><div class="legend-dot" style="background:var(--blue)"></div> Textmodus</div>
+        <div class="legend-item"><div class="legend-dot" style="background:var(--purple)"></div> Spaced Repetition</div>
+        <div class="legend-item"><div class="legend-dot" style="background:var(--cyan)"></div> Speicher</div>
+        <div class="legend-item"><div class="legend-dot" style="background:var(--orange)"></div> Abschluss</div>
+    </div>
+
+    <div class="flow-container">
+        <!-- START -->
+        <div class="flow-node start">
+            <div class="node-icon">🏠</div>
+            <div class="node-title">App Start</div>
+            <div class="node-sub">index.html öffnen — Modus wählen</div>
+        </div>
+
+        <div class="flow-arrow">
+            <div class="arrow-line"></div>
+            <div class="arrow-head"></div>
+        </div>
+
+        <!-- FILE UPLOAD -->
+        <div class="flow-node start">
+            <div class="node-icon">📁</div>
+            <div class="node-title">Datei laden</div>
+            <div class="node-sub">Drag & Drop oder Datei-Dialog (.txt)</div>
+        </div>
+
+        <div class="flow-arrow">
+            <div class="arrow-line"></div>
+            <div class="arrow-head"></div>
+            <div class="arrow-label">detectFormat() → Auto-Erkennung</div>
+        </div>
+
+        <!-- BRANCH -->
+        <div class="flow-fork">
+            <div class="fork-line"></div>
+            <div class="fork-dot"></div>
+            <div class="fork-line"></div>
+        </div>
+
+        <div class="flow-branch">
+            <!-- Flashcard branch -->
+            <div class="flow-branch-col">
+                <div class="branch-header green">Karteikarten-Modus</div>
+
+                <div class="flow-node flash">
+                    <div class="node-icon">⚙️</div>
+                    <div class="node-title">Setup-Bildschirm</div>
+                    <div class="node-sub">Lernmodus wählen: Frei / SM-2 / FSRS<br>Statistiken anzeigen, Export</div>
+                </div>
+
+                <div class="flow-arrow">
+                    <div class="arrow-line"></div>
+                    <div class="arrow-head"></div>
+                </div>
+
+                <div class="flow-node flash">
+                    <div class="node-icon">🃏</div>
+                    <div class="node-title">Karteikarte anzeigen</div>
+                    <div class="node-sub">3D-Flip: Vorderseite ↔ Rückseite<br>TTS-Aussprache, Bilder, Grammatik</div>
+                </div>
+
+                <div class="flow-arrow">
+                    <div class="arrow-line"></div>
+                    <div class="arrow-head"></div>
+                    <div class="arrow-label">SR-Modus?</div>
+                </div>
+
+                <div class="flow-node sr">
+                    <div class="node-icon">⭐</div>
+                    <div class="node-title">Bewertung (1–4)</div>
+                    <div class="node-sub">Nochmal / Schwer / Gut / Leicht<br>Intervall-Vorschau pro Stufe</div>
+                </div>
+
+                <div class="flow-arrow">
+                    <div class="arrow-line"></div>
+                    <div class="arrow-head"></div>
+                </div>
+
+                <div class="flow-node storage">
+                    <div class="node-icon">💾</div>
+                    <div class="node-title">Daten speichern</div>
+                    <div class="node-sub">SR-Daten → localStorage<br>Vokabeln → IndexedDB</div>
+                </div>
+
+                <div class="flow-arrow">
+                    <div class="arrow-line"></div>
+                    <div class="arrow-head"></div>
+                </div>
+
+                <div class="flow-node end">
+                    <div class="node-icon">🎉</div>
+                    <div class="node-title">Sitzung abgeschlossen</div>
+                    <div class="node-sub">Statistik anzeigen<br>Neu starten / Frei üben / Menü</div>
+                </div>
+            </div>
+
+            <!-- Text branch -->
+            <div class="flow-branch-col">
+                <div class="branch-header blue">Text-Modus</div>
+
+                <div class="flow-node text">
+                    <div class="node-icon">📖</div>
+                    <div class="node-title">Text anzeigen</div>
+                    <div class="node-sub">Russischer Text mit Satz-Erkennung<br>Vokabel-Markierungen</div>
+                </div>
+
+                <div class="flow-arrow">
+                    <div class="arrow-line"></div>
+                    <div class="arrow-head"></div>
+                </div>
+
+                <div class="flow-node text">
+                    <div class="node-icon">🔊</div>
+                    <div class="node-title">Vorlesen</div>
+                    <div class="node-sub">Ganzer Text oder Satz für Satz<br>Wort-Highlighting in Echtzeit</div>
+                </div>
+
+                <div class="flow-arrow">
+                    <div class="arrow-line"></div>
+                    <div class="arrow-head"></div>
+                </div>
+
+                <div class="flow-node text">
+                    <div class="node-icon">📝</div>
+                    <div class="node-title">Vokabeln nachschlagen</div>
+                    <div class="node-sub">Tooltip bei Hover über bekannte Wörter<br>Vokabeln aus IndexedDB laden</div>
+                </div>
+
+                <div class="flow-arrow">
+                    <div class="arrow-line"></div>
+                    <div class="arrow-head"></div>
+                </div>
+
+                <div class="flow-node text">
+                    <div class="node-icon">🤖</div>
+                    <div class="node-title">KI-Vokabeln generieren</div>
+                    <div class="node-sub">Claude API: Unbekannte Wörter<br>aus dem Text extrahieren</div>
+                </div>
+
+                <div class="flow-arrow">
+                    <div class="arrow-line"></div>
+                    <div class="arrow-head"></div>
+                </div>
+
+                <div class="flow-node storage">
+                    <div class="node-icon">💾</div>
+                    <div class="node-title">Vokabeln speichern</div>
+                    <div class="node-sub">Generierte Vokabeln → IndexedDB<br>Optional: TSV-Export</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- ═══════════════════════════════════ 2. ARCHITEKTUR ═══ -->
+<div class="section" id="sec-arch">
+    <h2 class="section-title">Architektur</h2>
+    <p class="section-desc">
+        Alles lebt in einer einzigen HTML-Datei (~4000 Zeilen). Kein Build-System, keine Frameworks, kein Server.
+    </p>
+
+    <div class="arch-diagram">
+        <!-- Row 1: Single file -->
+        <div class="arch-row">
+            <div class="arch-block" style="flex: 1; border-color: var(--accent);">
+                <div class="block-dot" style="background: var(--accent);"></div>
+                <div class="block-title" style="color: var(--accent);">index.html</div>
+                <div class="block-lines">~4000 Zeilen · Einzeldatei-Architektur</div>
+                <div class="block-desc">Gesamte App in einer Datei: Styles, Markup, Übersetzungen und Logik.</div>
+            </div>
+        </div>
+
+        <!-- Row 2: Three layers -->
+        <div class="arch-row">
+            <div class="arch-block">
+                <div class="block-dot" style="background: var(--green);"></div>
+                <div class="block-title">CSS</div>
+                <div class="block-lines">Zeile 8–1580</div>
+                <ul class="block-list">
+                    <li>Dark Theme mit Gold-Akzenten</li>
+                    <li>CSS Custom Properties (Theming)</li>
+                    <li>3D-Kartenflip-Animation</li>
+                    <li>Responsive (Breakpoint: 600px)</li>
+                    <li>Radial-Gradient Hintergrund</li>
+                </ul>
+            </div>
+
+            <div class="arch-block">
+                <div class="block-dot" style="background: var(--blue);"></div>
+                <div class="block-title">HTML</div>
+                <div class="block-lines">Zeile 1585–1900</div>
+                <ul class="block-list">
+                    <li>~16 Bildschirme (display: none/block)</li>
+                    <li>data-i18n Attribute für Sprachen</li>
+                    <li>Drag & Drop Upload-Zone</li>
+                    <li>Voice/Speed-Steuerung</li>
+                    <li>Rating-Buttons (1–4)</li>
+                </ul>
+            </div>
+
+            <div class="arch-block">
+                <div class="block-dot" style="background: var(--purple);"></div>
+                <div class="block-title">JavaScript</div>
+                <div class="block-lines">Zeile 2245–4027</div>
+                <ul class="block-list">
+                    <li>~60 DOM-Referenzen (getElementById)</li>
+                    <li>Parsing (Tab, Komma, Advanced, Text)</li>
+                    <li>SM-2 und FSRS-4.5 Algorithmen</li>
+                    <li>Web Speech API (TTS)</li>
+                    <li>IndexedDB + localStorage</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Row 3: Translations -->
+        <div class="arch-row">
+            <div class="arch-block">
+                <div class="block-dot" style="background: var(--cyan);"></div>
+                <div class="block-title">i18n-Übersetzungen</div>
+                <div class="block-lines">Zeile 1904–2245</div>
+                <div class="block-desc">~100 Schlüssel × 3 Sprachen (Deutsch, Englisch, Russisch). Objekt-basiertes Lookup mit Platzhalter-Substitution.</div>
+            </div>
+
+            <div class="arch-block">
+                <div class="block-dot" style="background: var(--orange);"></div>
+                <div class="block-title">Externe Abhängigkeiten</div>
+                <div class="block-lines">Nur CDN-Fonts</div>
+                <ul class="block-list">
+                    <li>Google Fonts: Playfair Display</li>
+                    <li>Google Fonts: Source Sans 3</li>
+                    <li>Web Speech API (Browser-nativ)</li>
+                    <li>IndexedDB (Browser-nativ)</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Row 4: State -->
+        <div class="arch-row">
+            <div class="arch-block" style="flex: 1;">
+                <div class="block-dot" style="background: var(--accent);"></div>
+                <div class="block-title">Globaler Zustand</div>
+                <div class="block-lines">Zentrale Variablen</div>
+                <div style="display: flex; flex-wrap: wrap; gap: 8px; margin-top: 8px;">
+                    <span class="tag t-green">cards[]</span>
+                    <span class="tag t-green">currentIndex</span>
+                    <span class="tag t-blue">texts[]</span>
+                    <span class="tag t-blue">sentences[]</span>
+                    <span class="tag t-purple">srData{}</span>
+                    <span class="tag t-purple">reviewQueue[]</span>
+                    <span class="tag t-accent">currentMode</span>
+                    <span class="tag t-accent">currentLang</span>
+                    <span class="tag t-cyan">selectedVoice</span>
+                    <span class="tag t-cyan">isSpeaking</span>
+                    <span class="tag t-orange">sessionStats</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- ═══════════════════════════════════ 3. BILDSCHIRME ═══ -->
+<div class="section" id="sec-screens">
+    <h2 class="section-title">Bildschirme</h2>
+    <p class="section-desc">
+        Die App hat ~16 Ansichten, die per CSS-Visibility (display: none/block) umgeschaltet werden.
+    </p>
+
+    <div class="screen-grid">
+        <!-- Main screens -->
+        <div class="screen-card cat-main">
+            <div class="card-id">#modeSelection</div>
+            <div class="card-name">Modus-Auswahl</div>
+            <div class="card-desc">Startbildschirm: Wahl zwischen Karteikarten und Texte vorlesen.</div>
+            <div class="card-features">
+                <span class="tag t-accent">Startseite</span>
+            </div>
+        </div>
+
+        <div class="screen-card cat-main">
+            <div class="card-id">#uploadSection</div>
+            <div class="card-name">Datei-Upload</div>
+            <div class="card-desc">Drag & Drop Zone für .txt-Dateien. Automatische Formaterkennung.</div>
+            <div class="card-features">
+                <span class="tag t-accent">Drag & Drop</span>
+                <span class="tag t-accent">Auto-Detect</span>
+            </div>
+        </div>
+
+        <!-- Flashcard screens -->
+        <div class="screen-card cat-flash">
+            <div class="card-id">#flashcardSetup</div>
+            <div class="card-name">Karteikarten-Setup</div>
+            <div class="card-desc">Lernmodus wählen (Frei/SM-2/FSRS), Statistiken, Export, neue Karten-Limit.</div>
+            <div class="card-features">
+                <span class="tag t-green">3 Lernmodi</span>
+                <span class="tag t-green">Export</span>
+            </div>
+        </div>
+
+        <div class="screen-card cat-flash">
+            <div class="card-id">#flashcardContainer</div>
+            <div class="card-name">Karteikarte (3D-Flip)</div>
+            <div class="card-desc">Interaktive Karte mit Vorder-/Rückseite, Grammatik-Tags und Bildern.</div>
+            <div class="card-features">
+                <span class="tag t-green">3D Animation</span>
+                <span class="tag t-green">TTS</span>
+                <span class="tag t-green">Bilder</span>
+            </div>
+        </div>
+
+        <div class="screen-card cat-flash">
+            <div class="card-id">#flashcardControls</div>
+            <div class="card-name">Steuerung</div>
+            <div class="card-desc">Vor/Zurück, Mischen, Neustart, Vorlesen, Auto-Vorlesen Checkbox.</div>
+            <div class="card-features">
+                <span class="tag t-green">Navigation</span>
+            </div>
+        </div>
+
+        <div class="screen-card cat-sr">
+            <div class="card-id">#ratingContainer</div>
+            <div class="card-name">Bewertungs-Buttons</div>
+            <div class="card-desc">4 Rating-Buttons mit Intervall-Vorschau. Nur im SR-Modus sichtbar.</div>
+            <div class="card-features">
+                <span class="tag t-purple">SM-2</span>
+                <span class="tag t-purple">FSRS</span>
+            </div>
+        </div>
+
+        <div class="screen-card cat-sr">
+            <div class="card-id">#srStats</div>
+            <div class="card-name">SR-Statistiken</div>
+            <div class="card-desc">Fällig / Neu / Fertig — Echtzeit-Fortschrittsanzeige während der Sitzung.</div>
+            <div class="card-features">
+                <span class="tag t-purple">Live-Counter</span>
+            </div>
+        </div>
+
+        <div class="screen-card cat-sr">
+            <div class="card-id">#sessionComplete</div>
+            <div class="card-name">Sitzung abgeschlossen</div>
+            <div class="card-desc">"Alle Karten gelernt!" — Ergebnis-Statistik mit Optionen zum Weitermachen.</div>
+            <div class="card-features">
+                <span class="tag t-purple">Ergebnis</span>
+                <span class="tag t-orange">Neustart</span>
+            </div>
+        </div>
+
+        <div class="screen-card cat-flash">
+            <div class="card-id">#cardList</div>
+            <div class="card-name">Kartenliste</div>
+            <div class="card-desc">Scrollbare Seitenleiste mit allen Karten. SR-Badges zeigen Status.</div>
+            <div class="card-features">
+                <span class="tag t-green">Übersicht</span>
+                <span class="tag t-purple">Badges</span>
+            </div>
+        </div>
+
+        <!-- Text screens -->
+        <div class="screen-card cat-text">
+            <div class="card-id">#textReaderContainer</div>
+            <div class="card-name">Text-Reader</div>
+            <div class="card-desc">Russischer Text mit Satz- und Wort-Highlighting während des Vorlesens.</div>
+            <div class="card-features">
+                <span class="tag t-blue">Highlighting</span>
+                <span class="tag t-blue">Auto-Scroll</span>
+            </div>
+        </div>
+
+        <div class="screen-card cat-text">
+            <div class="card-id">#textSentenceNav</div>
+            <div class="card-name">Satz-Navigation</div>
+            <div class="card-desc">Vor/Zurück-Buttons für den Satz-für-Satz-Lesemodus.</div>
+            <div class="card-features">
+                <span class="tag t-blue">Satz-Modus</span>
+            </div>
+        </div>
+
+        <div class="screen-card cat-text">
+            <div class="card-id">#vocabTooltip</div>
+            <div class="card-name">Vokabel-Tooltip</div>
+            <div class="card-desc">Schwebendes Popup bei Hover über bekannte Wörter — zeigt Übersetzung.</div>
+            <div class="card-features">
+                <span class="tag t-blue">Hover</span>
+                <span class="tag t-cyan">IndexedDB</span>
+            </div>
+        </div>
+
+        <!-- UI screens -->
+        <div class="screen-card cat-ui">
+            <div class="card-id">#voiceSection</div>
+            <div class="card-name">Stimmen-Steuerung</div>
+            <div class="card-desc">Stimme wählen (männlich/weiblich), Geschwindigkeit einstellen (0.5–1.5×).</div>
+            <div class="card-features">
+                <span class="tag t-cyan">TTS</span>
+                <span class="tag t-cyan">Geschlecht</span>
+            </div>
+        </div>
+
+        <div class="screen-card cat-ui">
+            <div class="card-id">#statsPanel</div>
+            <div class="card-name">Statistik-Panel</div>
+            <div class="card-desc">Verlauf aller Lernsitzungen mit Streak-Berechnung und Dauer.</div>
+            <div class="card-features">
+                <span class="tag t-cyan">Verlauf</span>
+                <span class="tag t-cyan">Streak</span>
+            </div>
+        </div>
+
+        <div class="screen-card cat-ui">
+            <div class="card-id">#settingsPanel</div>
+            <div class="card-name">Einstellungen</div>
+            <div class="card-desc">Claude API-Key eingeben, Auto-Export aktivieren, Daten verwalten.</div>
+            <div class="card-features">
+                <span class="tag t-cyan">API Key</span>
+                <span class="tag t-cyan">Export</span>
+            </div>
+        </div>
+
+        <div class="screen-card cat-ui">
+            <div class="card-id">#vocabPreviewPanel</div>
+            <div class="card-name">Vokabel-Vorschau</div>
+            <div class="card-desc">Vorschau der KI-generierten Vokabeln vor dem Speichern.</div>
+            <div class="card-features">
+                <span class="tag t-cyan">KI</span>
+                <span class="tag t-cyan">Vorschau</span>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- ═══════════════════════════════════ 4. DATENFLUSS ═══ -->
+<div class="section" id="sec-data">
+    <h2 class="section-title">Datenfluss</h2>
+    <p class="section-desc">
+        Vom Datei-Upload über die Verarbeitung bis zur dauerhaften Speicherung.
+    </p>
+
+    <!-- Input Layer -->
+    <div class="data-flow">
+        <div class="data-layer">
+            <div class="layer-label accent">1. Eingabe</div>
+            <div class="layer-items">
+                <div class="data-item">
+                    <div class="item-key" style="color: var(--green);">Tab-getrennt</div>
+                    <div class="item-val">front\tback — Quizlet-kompatibel</div>
+                </div>
+                <div class="data-item">
+                    <div class="item-key" style="color: var(--green);">Komma-getrennt</div>
+                    <div class="item-val">Trennung am letzten Komma</div>
+                </div>
+                <div class="data-item">
+                    <div class="item-key" style="color: var(--green);">Advanced</div>
+                    <div class="item-val">(Grammatik), (img:path), (speak:text)</div>
+                </div>
+                <div class="data-item">
+                    <div class="item-key" style="color: var(--blue);">Nur Text</div>
+                    <div class="item-val">Russischer Fließtext → Lesemodus</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="data-arrow-row">
+            <div class="data-arrow-down">
+                <div class="line"></div>
+                <div class="head"></div>
+            </div>
+        </div>
+
+        <!-- Parsing Layer -->
+        <div class="data-layer">
+            <div class="layer-label green">2. Parsing</div>
+            <div class="layer-items">
+                <div class="data-item">
+                    <div class="item-key" style="color: var(--accent);">detectFormat(content)</div>
+                    <div class="item-val">Erkennt automatisch: 'tab' | 'comma' | 'advanced' | 'text'</div>
+                </div>
+                <div class="data-item">
+                    <div class="item-key" style="color: var(--accent);">parseCards(content)</div>
+                    <div class="item-val">→ cards[] = [{displayText, speakableText, answer, images, grammar}]</div>
+                </div>
+                <div class="data-item">
+                    <div class="item-key" style="color: var(--accent);">parseTexts(content)</div>
+                    <div class="item-val">→ texts[] = [{title, body}] + splitIntoSentences()</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="data-arrow-row">
+            <div class="data-arrow-down">
+                <div class="line"></div>
+                <div class="head"></div>
+            </div>
+        </div>
+
+        <!-- Runtime State -->
+        <div class="data-layer">
+            <div class="layer-label blue">3. Laufzeit-Zustand</div>
+            <div class="layer-items">
+                <div class="data-item">
+                    <div class="item-key" style="color: var(--green);">Karteikarten-Objekt</div>
+                    <div class="item-val">
+                        <code>{displayText, speakableText, answer, images[], grammar}</code><br>
+                        ID: Content-Hash via getCardId()
+                    </div>
+                </div>
+                <div class="data-item">
+                    <div class="item-key" style="color: var(--purple);">SR-Datensatz</div>
+                    <div class="item-val">
+                        <code>{iterations, easiness, interval, difficulty, stability, nextReview, lastReview, algorithm}</code>
+                    </div>
+                </div>
+                <div class="data-item">
+                    <div class="item-key" style="color: var(--orange);">Session</div>
+                    <div class="item-val">
+                        <code>{date, duration, cardsReviewed, newCards, algorithm}</code>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="data-arrow-row">
+            <div class="data-arrow-down">
+                <div class="line"></div>
+                <div class="head"></div>
+            </div>
+        </div>
+
+        <!-- Persistence Layer -->
+        <div class="data-layer">
+            <div class="layer-label purple">4. Persistenz</div>
+            <div class="layer-items">
+                <div class="data-item">
+                    <div class="item-key" style="color: var(--cyan);">localStorage</div>
+                    <div class="item-val">
+                        <strong>vokabeltrainer_sr</strong> — SR-Daten (JSON)<br>
+                        <strong>vokabeltrainer_history</strong> — Verlauf (Array)<br>
+                        <strong>vokabeltrainer_lang</strong> — Sprache (de/en/ru)
+                    </div>
+                </div>
+                <div class="data-item">
+                    <div class="item-key" style="color: var(--cyan);">IndexedDB</div>
+                    <div class="item-val">
+                        <strong>vokabeltrainer</strong> → vocabulary Store<br>
+                        Kumulative Datenbank, dedupliziert per Content-Hash
+                    </div>
+                </div>
+                <div class="data-item">
+                    <div class="item-key" style="color: var(--cyan);">Datei-Export</div>
+                    <div class="item-val">
+                        <strong>TSV-Export</strong> — Tab-getrennte Vokabelliste<br>
+                        Optional: Auto-Export via File System Access API
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- ═══════════════════════════════ 5. SPACED REPETITION ═══ -->
+<div class="section" id="sec-sr">
+    <h2 class="section-title">Spaced Repetition</h2>
+    <p class="section-desc">
+        Zwei Algorithmen stehen zur Verfügung — der klassische SM-2 und der moderne FSRS-4.5.
+    </p>
+
+    <div class="sr-compare">
+        <!-- SM-2 -->
+        <div class="sr-card sm2">
+            <div class="sr-name" style="color: var(--green);">SM-2</div>
+            <div class="sr-sub">SuperMemo 2 — Klassischer Algorithmus (1987)</div>
+
+            <div class="sr-param">
+                <span class="param-key">Bewertung</span>
+                <span class="param-val">1–4 → Qualität 0–5</span>
+            </div>
+            <div class="sr-param">
+                <span class="param-key">Ease Factor</span>
+                <span class="param-val">min. 1.3, Start: 2.5</span>
+            </div>
+            <div class="sr-param">
+                <span class="param-key">Intervall-Berechnung</span>
+                <span class="param-val">interval × easiness</span>
+            </div>
+            <div class="sr-param">
+                <span class="param-key">Bei "Nochmal"</span>
+                <span class="param-val">Reset auf 1 Tag</span>
+            </div>
+            <div class="sr-param">
+                <span class="param-key">Funktionen</span>
+                <span class="param-val" style="color: var(--green);">sm2Review()<br>sm2PredictInterval()</span>
+            </div>
+            <div class="sr-param">
+                <span class="param-key">Formel</span>
+                <span class="param-val" style="font-size: 0.75rem;">EF' = EF + 0.1 - (5-q)(0.08 + (5-q)·0.02)</span>
+            </div>
+        </div>
+
+        <!-- FSRS -->
+        <div class="sr-card fsrs">
+            <div class="sr-name" style="color: var(--purple);">FSRS-4.5</div>
+            <div class="sr-sub">Free Spaced Repetition Scheduler — Modern (2023)</div>
+
+            <div class="sr-param">
+                <span class="param-key">Bewertung</span>
+                <span class="param-val">1–4 (Forget/Hard/Good/Easy)</span>
+            </div>
+            <div class="sr-param">
+                <span class="param-key">Difficulty</span>
+                <span class="param-val">Skala 1–10</span>
+            </div>
+            <div class="sr-param">
+                <span class="param-key">Stability</span>
+                <span class="param-val">Retentions-Stabilität</span>
+            </div>
+            <div class="sr-param">
+                <span class="param-key">Retrievability</span>
+                <span class="param-val">0.9^(days/stability)</span>
+            </div>
+            <div class="sr-param">
+                <span class="param-key">Funktionen</span>
+                <span class="param-val" style="color: var(--purple);">fsrsReview()<br>fsrsPredictInterval()</span>
+            </div>
+            <div class="sr-param">
+                <span class="param-key">Gewichte</span>
+                <span class="param-val" style="font-size: 0.75rem;">17 Default-Parameter [0.4, 0.6, 2.4, ...]</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Queue flow -->
+    <h3 style="margin-top: 36px; margin-bottom: 16px; font-size: 1.1rem;">Sitzungs-Ablauf</h3>
+    <div class="flow-container">
+        <div class="flow-node sr" style="max-width: 400px;">
+            <div class="node-title">buildReviewQueue()</div>
+            <div class="node-sub">
+                1. Fällige Karten sammeln (nextReview ≤ jetzt)<br>
+                2. Nach Überfälligkeit sortieren<br>
+                3. Neue Karten hinzufügen (max. N)<br>
+                4. Queue = [...fällig, ...neu]
+            </div>
+        </div>
+
+        <div class="flow-arrow"><div class="arrow-line"></div><div class="arrow-head"></div></div>
+
+        <div class="flow-node flash" style="max-width: 400px;">
+            <div class="node-title">Karte anzeigen + umdrehen</div>
+            <div class="node-sub">Nutzer sieht Vorderseite → klickt → Rückseite + Rating-Buttons erscheinen</div>
+        </div>
+
+        <div class="flow-arrow"><div class="arrow-line"></div><div class="arrow-head"></div></div>
+
+        <div class="flow-node sr" style="max-width: 400px;">
+            <div class="node-title">rateCard(grade)</div>
+            <div class="node-sub">
+                Bewertung 1–4 verarbeiten<br>
+                sm2Review() oder fsrsReview() aufrufen<br>
+                Bei Note 1: Karte ans Ende der Queue<br>
+                Nächste Karte oder Sitzung beenden
+            </div>
+        </div>
+
+        <div class="flow-arrow"><div class="arrow-line"></div><div class="arrow-head"></div></div>
+
+        <div class="flow-node storage" style="max-width: 400px;">
+            <div class="node-title">Speichern</div>
+            <div class="node-sub">
+                srData → localStorage nach jeder Bewertung<br>
+                Session-Statistik → vokabeltrainer_history
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- ═══════════════════════════════════ 6. FUNKTIONEN ═══ -->
+<div class="section" id="sec-funcs">
+    <h2 class="section-title">Wichtige Funktionen</h2>
+    <p class="section-desc">
+        Übersicht der zentralen Funktionen, gruppiert nach Aufgabenbereich.
+    </p>
+
+    <!-- Navigation -->
+    <div class="func-group">
+        <div class="func-group-title"><div class="dot" style="background: var(--accent);"></div> Bildschirm-Navigation</div>
+        <table class="func-table">
+            <thead><tr><th>Funktion</th><th>Beschreibung</th></tr></thead>
+            <tbody>
+                <tr><td class="func-name">switchToModeSelection()</td><td class="func-desc">Zurück zum Startbildschirm — alle anderen Screens ausblenden</td></tr>
+                <tr><td class="func-name">showFlashcardSetup()</td><td class="func-desc">Setup-Bildschirm mit Lernmodus-Wahl anzeigen</td></tr>
+                <tr><td class="func-name">showFlashcardMode()</td><td class="func-desc">In den aktiven Karteikarten-Modus wechseln</td></tr>
+                <tr><td class="func-name">showTextMode()</td><td class="func-desc">Text-Reader starten und Text rendern</td></tr>
+                <tr><td class="func-name">showSessionComplete()</td><td class="func-desc">Abschluss-Bildschirm mit Ergebnis-Statistik</td></tr>
+            </tbody>
+        </table>
+    </div>
+
+    <!-- Parsing -->
+    <div class="func-group">
+        <div class="func-group-title"><div class="dot" style="background: var(--green);"></div> Datei-Verarbeitung</div>
+        <table class="func-table">
+            <thead><tr><th>Funktion</th><th>Beschreibung</th></tr></thead>
+            <tbody>
+                <tr><td class="func-name">processFile(file)</td><td class="func-desc">Datei einlesen und Format erkennen</td></tr>
+                <tr><td class="func-name">detectFormat(content)</td><td class="func-desc">Auto-Erkennung: 'tab' | 'comma' | 'advanced' | 'text'</td></tr>
+                <tr><td class="func-name">parseCards(content)</td><td class="func-desc">Vokabel-Zeilen zu Karten-Objekten parsen</td></tr>
+                <tr><td class="func-name">parseTexts(content)</td><td class="func-desc">Text in Abschnitte {title, body} aufteilen</td></tr>
+                <tr><td class="func-name">splitIntoSentences(text)</td><td class="func-desc">Regex-Split an .!? — für Satz-Modus</td></tr>
+            </tbody>
+        </table>
+    </div>
+
+    <!-- Rendering -->
+    <div class="func-group">
+        <div class="func-group-title"><div class="dot" style="background: var(--blue);"></div> Anzeige & Rendering</div>
+        <table class="func-table">
+            <thead><tr><th>Funktion</th><th>Beschreibung</th></tr></thead>
+            <tbody>
+                <tr><td class="func-name">renderCard()</td><td class="func-desc">Aktuelle Karte darstellen (Vorder-/Rückseite, Bilder, Grammatik)</td></tr>
+                <tr><td class="func-name">renderCardList()</td><td class="func-desc">Kartenliste mit SR-Status-Badges rendern</td></tr>
+                <tr><td class="func-name">renderTextContent()</td><td class="func-desc">Text mit Satz-Spans und Vokabel-Markup darstellen</td></tr>
+                <tr><td class="func-name">highlightCurrentSentence()</td><td class="func-desc">Aktuellen Satz hervorheben + Auto-Scroll</td></tr>
+                <tr><td class="func-name">highlightWord()</td><td class="func-desc">Aktuelles Wort hervorheben (TTS-Boundary)</td></tr>
+            </tbody>
+        </table>
+    </div>
+
+    <!-- TTS -->
+    <div class="func-group">
+        <div class="func-group-title"><div class="dot" style="background: var(--cyan);"></div> Text-to-Speech</div>
+        <table class="func-table">
+            <thead><tr><th>Funktion</th><th>Beschreibung</th></tr></thead>
+            <tbody>
+                <tr><td class="func-name">speak(text, onEnd, onWord)</td><td class="func-desc">Haupt-TTS-Funktion mit Callbacks für Wort-Boundaries</td></tr>
+                <tr><td class="func-name">speakFullText()</td><td class="func-desc">Ganzen Text vorlesen mit Satz-Verkettung</td></tr>
+                <tr><td class="func-name">speakSingleSentence(idx)</td><td class="func-desc">Einzelnen Satz vorlesen (Klick-Modus)</td></tr>
+                <tr><td class="func-name">cleanTextForSpeech(text)</td><td class="func-desc">Interpunktion und Akzente für TTS entfernen</td></tr>
+                <tr><td class="func-name">loadVoices() / updateVoiceSelect()</td><td class="func-desc">System-Stimmen laden und nach Geschlecht filtern</td></tr>
+            </tbody>
+        </table>
+    </div>
+
+    <!-- SR -->
+    <div class="func-group">
+        <div class="func-group-title"><div class="dot" style="background: var(--purple);"></div> Spaced Repetition</div>
+        <table class="func-table">
+            <thead><tr><th>Funktion</th><th>Beschreibung</th></tr></thead>
+            <tbody>
+                <tr><td class="func-name">getCardId(card)</td><td class="func-desc">Content-Hash für stabile Karten-ID (über Datei-Reloads hinweg)</td></tr>
+                <tr><td class="func-name">sm2Review(data, quality)</td><td class="func-desc">SM-2 Algorithmus: EF + Intervall aktualisieren</td></tr>
+                <tr><td class="func-name">fsrsReview(data, grade)</td><td class="func-desc">FSRS-4.5: Difficulty + Stability aktualisieren</td></tr>
+                <tr><td class="func-name">buildReviewQueue()</td><td class="func-desc">Wiederholungs-Queue aufbauen (fällig + neu, max N)</td></tr>
+                <tr><td class="func-name">rateCard(grade)</td><td class="func-desc">Bewertung verarbeiten, Queue voranschreiten, bei 1 erneut einreihen</td></tr>
+                <tr><td class="func-name">countCardStatuses()</td><td class="func-desc">{due, new, learned} für Status-Anzeige zählen</td></tr>
+            </tbody>
+        </table>
+    </div>
+
+    <!-- Storage -->
+    <div class="func-group">
+        <div class="func-group-title"><div class="dot" style="background: var(--orange);"></div> Speicherung & Export</div>
+        <table class="func-table">
+            <thead><tr><th>Funktion</th><th>Beschreibung</th></tr></thead>
+            <tbody>
+                <tr><td class="func-name">saveCardsToDB()</td><td class="func-desc">Vokabeln in IndexedDB speichern (dedupliziert per Hash)</td></tr>
+                <tr><td class="func-name">exportVocabularyTSV()</td><td class="func-desc">Gesamte Datenbank als TSV-Datei exportieren</td></tr>
+                <tr><td class="func-name">recordSession()</td><td class="func-desc">Sitzungs-Ergebnis im Verlauf speichern</td></tr>
+                <tr><td class="func-name">loadHistory() / saveHistory()</td><td class="func-desc">Verlauf aus/in localStorage laden/schreiben</td></tr>
+                <tr><td class="func-name">renderStatistics()</td><td class="func-desc">Statistik-Panel mit Streak und Zeitangaben rendern</td></tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<!-- ═══════════════════════════════════ 7. i18n ═══ -->
+<div class="section" id="sec-i18n">
+    <h2 class="section-title">Internationalisierung (i18n)</h2>
+    <p class="section-desc">
+        Dreisprachige Benutzeroberfläche mit objekt-basiertem Übersetzungssystem.
+    </p>
+
+    <!-- Flow -->
+    <div class="i18n-flow">
+        <div class="i18n-step">
+            <div class="step-title">translations{}</div>
+            <div class="step-sub">~100 Keys × 3 Sprachen</div>
+        </div>
+        <div class="i18n-arrow">→</div>
+        <div class="i18n-step">
+            <div class="step-title">t(key, params)</div>
+            <div class="step-sub">Lookup + {Platzhalter}</div>
+        </div>
+        <div class="i18n-arrow">→</div>
+        <div class="i18n-step">
+            <div class="step-title">applyLanguage()</div>
+            <div class="step-sub">DOM-Update via data-i18n</div>
+        </div>
+        <div class="i18n-arrow">→</div>
+        <div class="i18n-step">
+            <div class="step-title">localStorage</div>
+            <div class="step-sub">vokabeltrainer_lang</div>
+        </div>
+    </div>
+
+    <!-- Example -->
+    <div class="i18n-example">
+        <div class="i18n-example-header">Beispiel: Übersetzungs-Schlüssel</div>
+        <div class="i18n-example-body">
+            <span class="key">btn_start</span>: {<br>
+            &nbsp;&nbsp;<span class="key">de</span>: <span class="str">"Lernen starten"</span>,<br>
+            &nbsp;&nbsp;<span class="key">en</span>: <span class="str">"Start learning"</span>,<br>
+            &nbsp;&nbsp;<span class="key">ru</span>: <span class="str">"Начать обучение"</span><br>
+            },<br><br>
+            <span class="key">card_count</span>: {<br>
+            &nbsp;&nbsp;<span class="key">de</span>: <span class="str">"Karte {current} von {total}"</span>, <span class="comment">// Platzhalter</span><br>
+            &nbsp;&nbsp;<span class="key">en</span>: <span class="str">"Card {current} of {total}"</span>,<br>
+            &nbsp;&nbsp;<span class="key">ru</span>: <span class="str">"Карточка {current} из {total}"</span><br>
+            }<br><br>
+            <span class="comment">// Im HTML:</span><br>
+            &lt;button <span class="key">data-i18n</span>=<span class="str">"btn_start"</span>&gt;...&lt;/button&gt;<br><br>
+            <span class="comment">// Im JavaScript:</span><br>
+            label.textContent = <span class="key">t</span>(<span class="str">'card_count'</span>, {<span class="key">current</span>: 5, <span class="key">total</span>: 20});
+        </div>
+    </div>
+
+    <div style="display: flex; gap: 16px; margin-top: 20px; flex-wrap: wrap;">
+        <div class="arch-block" style="flex: 1; min-width: 200px;">
+            <div class="block-dot" style="background: var(--accent);"></div>
+            <div class="block-title">🇩🇪 Deutsch</div>
+            <div class="block-desc">Standard-Sprache. Alle UI-Texte und Tooltips.</div>
+        </div>
+        <div class="arch-block" style="flex: 1; min-width: 200px;">
+            <div class="block-dot" style="background: var(--blue);"></div>
+            <div class="block-title">🇬🇧 English</div>
+            <div class="block-desc">Vollständige Übersetzung aller Oberflächen-Texte.</div>
+        </div>
+        <div class="arch-block" style="flex: 1; min-width: 200px;">
+            <div class="block-dot" style="background: var(--red);"></div>
+            <div class="block-title">🇷🇺 Русский</div>
+            <div class="block-desc">Russische UI — ideal für fortgeschrittene Lerner.</div>
+        </div>
+    </div>
+</div>
+
+<!-- ═══════════════════════════════════ 8. TASTATUR ═══ -->
+<div class="section" id="sec-keys">
+    <h2 class="section-title">Tastaturkürzel</h2>
+    <p class="section-desc">
+        Schnelle Navigation ohne Maus — verschiedene Kürzel je nach aktivem Modus.
+    </p>
+
+    <h3 style="margin-bottom: 14px; font-size: 1rem; color: var(--green);">Karteikarten-Modus</h3>
+    <div class="kbd-grid" style="margin-bottom: 24px;">
+        <div class="kbd-item">
+            <span class="kbd-key">Space</span>
+            <span class="kbd-action">Karte umdrehen</span>
+        </div>
+        <div class="kbd-item">
+            <span class="kbd-key">← →</span>
+            <span class="kbd-action">Vorherige / Nächste Karte (Frei-Modus)</span>
+        </div>
+        <div class="kbd-item">
+            <span class="kbd-key">1 2 3 4</span>
+            <span class="kbd-action">Bewertung: Nochmal / Schwer / Gut / Leicht</span>
+        </div>
+        <div class="kbd-item">
+            <span class="kbd-key">Enter</span>
+            <span class="kbd-action">Vorlesen starten / stoppen</span>
+        </div>
+        <div class="kbd-item">
+            <span class="kbd-key">Escape</span>
+            <span class="kbd-action">Vorlesen stoppen</span>
+        </div>
+        <div class="kbd-item">
+            <span class="kbd-key">Home</span>
+            <span class="kbd-action">Neustart</span>
+        </div>
+    </div>
+
+    <h3 style="margin-bottom: 14px; font-size: 1rem; color: var(--blue);">Text-Modus</h3>
+    <div class="kbd-grid">
+        <div class="kbd-item">
+            <span class="kbd-key">Enter</span>
+            <span class="kbd-action">Vorlesen starten / stoppen</span>
+        </div>
+        <div class="kbd-item">
+            <span class="kbd-key">Escape</span>
+            <span class="kbd-action">Vorlesen stoppen</span>
+        </div>
+        <div class="kbd-item">
+            <span class="kbd-key">↑ ↓</span>
+            <span class="kbd-action">Text scrollen</span>
+        </div>
+        <div class="kbd-item">
+            <span class="kbd-key">Home</span>
+            <span class="kbd-action">Neustart</span>
+        </div>
+    </div>
+</div>
+
+<!-- ═══════════════════════════════════ SCRIPT ═══ -->
+<script>
+    // Tab switching
+    const tabBar = document.getElementById('tabBar');
+    tabBar.addEventListener('click', (e) => {
+        const btn = e.target.closest('.tab-btn');
+        if (!btn) return;
+        const tabId = btn.dataset.tab;
+
+        // Update tabs
+        tabBar.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+
+        // Update sections
+        document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+        const target = document.getElementById('sec-' + tabId);
+        if (target) target.classList.add('active');
+    });
+</script>
+
+</body>
+</html>

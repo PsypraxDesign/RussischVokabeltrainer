@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" width="200" height="200">
+  <rect width="200" height="200" fill="#1a2332" rx="12"/>
+  <!-- Haare -->
+  <ellipse cx="100" cy="56" rx="34" ry="18" fill="#2c3e50"/>
+  <rect x="66" y="48" width="68" height="14" rx="5" fill="#2c3e50"/>
+  <!-- Gesicht -->
+  <circle cx="100" cy="72" r="32" fill="#FDBCB4"/>
+  <!-- Augen -->
+  <ellipse cx="88" cy="68" rx="3.5" ry="4" fill="#2c3e50"/>
+  <ellipse cx="112" cy="68" rx="3.5" ry="4" fill="#2c3e50"/>
+  <circle cx="89" cy="67" r="1.3" fill="white"/>
+  <circle cx="113" cy="67" r="1.3" fill="white"/>
+  <!-- Augenbrauen -->
+  <line x1="82" y1="61" x2="94" y2="62" stroke="#2c3e50" stroke-width="2.5" stroke-linecap="round"/>
+  <line x1="106" y1="62" x2="118" y2="61" stroke="#2c3e50" stroke-width="2.5" stroke-linecap="round"/>
+  <!-- Nase -->
+  <path d="M 100,70 L 96,78 L 104,78" stroke="#E8A090" stroke-width="1.5" fill="none" stroke-linecap="round"/>
+  <!-- Mund -->
+  <path d="M 93,84 Q 100,88 107,84" stroke="#c0392b" stroke-width="1.8" fill="none" stroke-linecap="round"/>
+  <!-- Körper / Anzug -->
+  <path d="M 60,106 Q 55,100 48,145 L 48,170 L 152,170 L 152,145 Q 145,100 140,106" fill="#34495e"/>
+  <path d="M 60,106 Q 100,124 140,106" fill="#34495e"/>
+  <!-- Hemd + Krawatte -->
+  <polygon points="90,106 100,125 110,106" fill="white"/>
+  <polygon points="97,112 100,170 103,112" fill="#e74c3c"/>
+  <polygon points="96,112 100,118 104,112" fill="#c0392b"/>
+  <text x="100" y="192" text-anchor="middle" fill="#f5f5f5" font-size="14" font-family="sans-serif">мужчина</text>
+</svg>

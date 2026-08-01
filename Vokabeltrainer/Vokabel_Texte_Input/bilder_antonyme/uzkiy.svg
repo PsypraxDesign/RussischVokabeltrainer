@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" width="200" height="200">
+  <rect width="200" height="200" fill="#1a2332" rx="12"/>
+  <!-- Enge Gasse -->
+  <!-- Wände links -->
+  <rect x="20" y="30" width="55" height="130" fill="#4a5568"/>
+  <rect x="22" y="40" width="12" height="16" rx="2" fill="#85C1E9" opacity="0.4"/>
+  <rect x="22" y="65" width="12" height="16" rx="2" fill="#85C1E9" opacity="0.4"/>
+  <rect x="22" y="90" width="12" height="16" rx="2" fill="#85C1E9" opacity="0.4"/>
+  <rect x="40" y="45" width="12" height="16" rx="2" fill="#85C1E9" opacity="0.3"/>
+  <rect x="40" y="70" width="12" height="16" rx="2" fill="#85C1E9" opacity="0.3"/>
+  <rect x="40" y="95" width="12" height="16" rx="2" fill="#85C1E9" opacity="0.3"/>
+  <rect x="58" y="50" width="12" height="16" rx="2" fill="#85C1E9" opacity="0.3"/>
+  <rect x="58" y="75" width="12" height="16" rx="2" fill="#85C1E9" opacity="0.3"/>
+  <!-- Wände rechts -->
+  <rect x="125" y="30" width="55" height="130" fill="#4a5568"/>
+  <rect x="130" y="40" width="12" height="16" rx="2" fill="#85C1E9" opacity="0.4"/>
+  <rect x="130" y="65" width="12" height="16" rx="2" fill="#85C1E9" opacity="0.4"/>
+  <rect x="130" y="90" width="12" height="16" rx="2" fill="#85C1E9" opacity="0.4"/>
+  <rect x="148" y="45" width="12" height="16" rx="2" fill="#85C1E9" opacity="0.3"/>
+  <rect x="148" y="70" width="12" height="16" rx="2" fill="#85C1E9" opacity="0.3"/>
+  <rect x="148" y="95" width="12" height="16" rx="2" fill="#85C1E9" opacity="0.3"/>
+  <!-- Enge Gasse Boden -->
+  <rect x="75" y="30" width="50" height="130" fill="#2d3e50"/>
+  <!-- Schmaler Pfeil -->
+  <line x1="85" y1="140" x2="115" y2="140" stroke="#e8b341" stroke-width="2"/>
+  <polygon points="89,136 80,140 89,144" fill="#e8b341"/>
+  <polygon points="111,136 120,140 111,144" fill="#e8b341"/>
+  <text x="100" y="185" text-anchor="middle" fill="#e8b341" font-size="14" font-weight="bold" font-family="sans-serif">узкий</text>
+</svg>

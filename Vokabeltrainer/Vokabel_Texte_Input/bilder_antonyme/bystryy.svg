@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" width="200" height="200">
+  <rect width="200" height="200" fill="#1a2332" rx="12"/>
+  <!-- Schneller Hase -->
+  <ellipse cx="120" cy="90" rx="35" ry="25" fill="#bdc3c7"/>
+  <!-- Ohren -->
+  <ellipse cx="138" cy="50" rx="6" ry="22" fill="#bdc3c7" transform="rotate(-10,138,50)"/>
+  <ellipse cx="152" cy="52" rx="6" ry="20" fill="#bdc3c7" transform="rotate(5,152,52)"/>
+  <ellipse cx="138" cy="50" rx="3" ry="15" fill="#F4978E" opacity="0.5" transform="rotate(-10,138,50)"/>
+  <ellipse cx="152" cy="52" rx="3" ry="13" fill="#F4978E" opacity="0.5" transform="rotate(5,152,52)"/>
+  <!-- Kopf -->
+  <circle cx="145" cy="80" r="16" fill="#bdc3c7"/>
+  <circle cx="150" cy="76" r="3" fill="#2c3e50"/>
+  <circle cx="151" cy="75" r="1.2" fill="white"/>
+  <ellipse cx="155" cy="82" rx="3" ry="2" fill="#F4978E"/>
+  <!-- Beine (Lauf) -->
+  <line x1="100" y1="110" x2="80" y2="130" stroke="#bdc3c7" stroke-width="6" stroke-linecap="round"/>
+  <line x1="130" y1="110" x2="155" y2="125" stroke="#bdc3c7" stroke-width="6" stroke-linecap="round"/>
+  <!-- Schwanz -->
+  <circle cx="85" cy="85" r="8" fill="#ecf0f1"/>
+  <!-- Geschwindigkeitslinien -->
+  <line x1="30" y1="75" x2="65" y2="75" stroke="#e8b341" stroke-width="2" stroke-linecap="round" opacity="0.8"/>
+  <line x1="40" y1="88" x2="70" y2="88" stroke="#e8b341" stroke-width="2" stroke-linecap="round" opacity="0.6"/>
+  <line x1="35" y1="100" x2="68" y2="100" stroke="#e8b341" stroke-width="2" stroke-linecap="round" opacity="0.4"/>
+  <line x1="45" y1="112" x2="72" y2="112" stroke="#e8b341" stroke-width="2" stroke-linecap="round" opacity="0.3"/>
+  <text x="100" y="178" text-anchor="middle" fill="#e8b341" font-size="14" font-weight="bold" font-family="sans-serif">быстрый</text>
+</svg>

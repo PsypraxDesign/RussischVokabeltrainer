@@ -1,0 +1,439 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Russian: Star Wars (v4 - Safe Mode)</title>
+    
+    <script>
+        window.onerror = function(msg, url, line) {
+            var errorBox = document.getElementById('critical-error');
+            if(errorBox) {
+                errorBox.style.display = 'block';
+                errorBox.innerHTML = "<strong>System Error:</strong> " + msg + "<br>Line: " + line;
+            }
+        };
+    </script>
+
+    <style>
+        body { font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; background: #1a1a1d; margin: 0; display: flex; flex-direction: column; align-items: center; min-height: 100vh; user-select: none; color: #ecf0f1; }
+        
+        /* Navigation */
+        .nav-bar { background: #000; width: 100%; padding: 1rem 0; box-shadow: 0 4px 10px rgba(255, 232, 31, 0.2); display: flex; justify-content: center; gap: 15px; position: sticky; top: 0; z-index: 100; border-bottom: 2px solid #ffe81f; }
+        .nav-btn { background: #333; border: 1px solid #ffe81f; padding: 10px 20px; border-radius: 4px; font-weight: 600; color: #ffe81f; cursor: pointer; transition: all 0.2s; font-size: 1rem; text-transform: uppercase; letter-spacing: 1px; }
+        .nav-btn.active { background: #ffe81f; color: #000; transform: scale(1.05); box-shadow: 0 0 10px #ffe81f; } 
+        
+        .content-area { width: 95%; max-width: 650px; margin-top: 2rem; padding-bottom: 3rem; }
+        .section { display: none; }
+        .section.active { display: block; animation: fadeIn 0.5s; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+        
+        h2 { color: #ffe81f; border-bottom: 2px solid #ffe81f; margin-top: 0; font-size: 1.8rem; display: inline-block; padding-bottom: 10px; text-transform: uppercase; letter-spacing: 2px; }
+        
+        .card { background: #2c2c2c; padding: 2.5rem; border-radius: 8px; box-shadow: 0 4px 20px rgba(0,0,0,0.5); text-align: center; min-height: 350px; display: flex; flex-direction: column; justify-content: center; align-items: center; border: 1px solid #444; }
+        
+        /* Buttons */
+        .btn-action { background: #2980b9; color: white; border: none; padding: 12px; border-radius: 4px; width: 100%; font-size: 1rem; margin: 15px 0; cursor: pointer; font-weight: bold; }
+        .btn-blue { background: #3498db; }
+        .btn-stop { background: #c0392b; }
+        
+        /* Story Text */
+        .story-text-block { font-size: 1.5rem; line-height: 2; color: #ddd; text-align: left; margin-bottom: 20px; }
+        .word { cursor: pointer; border-bottom: 1px dotted #ffe81f; transition: all 0.2s; border-radius: 4px; padding: 0 2px; }
+        .word:hover { background-color: #ffe81f; color: #000; }
+        .current-sentence { background-color: #333; border-left: 3px solid #ffe81f; padding-left: 5px; transition: background 0.3s; } 
+
+        /* INLINE DICTIONARY BOX */
+        .dictionary-box { 
+            background: #111; border: 1px solid #ffe81f; border-left: 5px solid #ffe81f;
+            padding: 15px; border-radius: 4px; color: #fff; margin: 10px 0;
+            text-align: center; box-shadow: 0 0 15px rgba(255, 232, 31, 0.2);
+            animation: slideOpen 0.3s ease-out; display: none;
+        }
+        .dictionary-box.active { display: block; }
+        @keyframes slideOpen { from { opacity: 0; transform: translateY(-10px); height: 0; padding: 0; margin: 0; } to { opacity: 1; transform: translateY(0); height: auto; padding: 15px; margin: 10px 0; } }
+
+        select.drill-select { width: 100%; padding: 12px; font-size: 1rem; border-radius: 4px; border: 2px solid #ffe81f; background: #000; margin-bottom: 20px; cursor: pointer; outline: none; color: #ffe81f; font-weight: 500; }
+        .big-text { font-size: 2.5rem; font-weight: bold; color: #ffe81f; margin: 15px 0; line-height: 1.2; font-style: normal; text-shadow: 0 0 5px rgba(255, 232, 31, 0.3); }
+        .answer-text { font-size: 2.2rem; font-weight: bold; color: #2ecc71; margin-bottom: 15px; line-height: 1.2; font-style: normal; } 
+        .sub-hint { font-size: 1.1rem; color: #aaa; font-style: italic; margin-bottom: 15px; } 
+        .hidden { display: none !important; }
+        .btn-row { display: flex; gap: 10px; width: 100%; margin-top:10px; }
+        .btn-wrong { background: #c0392b; color: white; flex: 1; padding: 12px; border: none; border-radius: 4px; cursor: pointer; font-size: 1rem; }
+        .btn-correct { background: #27ae60; color: white; flex: 1; padding: 12px; border: none; border-radius: 4px; cursor: pointer; font-size: 1rem; }
+        .grammar-box { background: #222; border-left: 5px solid #3498db; padding: 15px; text-align: left; margin-top:15px; font-size: 1rem; color: #ddd; line-height: 1.5; width: 100%; box-sizing: border-box; }
+        
+        #critical-error { display:none; background:#e74c3c; color:white; padding:20px; width:90%; margin:20px auto; border-radius:8px; font-family:monospace; }
+    </style>
+</head>
+<body>
+
+    <div id="critical-error"></div>
+
+    <div class="nav-bar">
+        <button class="nav-btn active" onclick="switchTab('story')">Episode IV</button>
+        <button class="nav-btn" onclick="switchTab('vocab')">Vocab</button>
+        <button class="nav-btn" onclick="switchTab('drill')">Training</button>
+    </div>
+
+    <div class="content-area">
+        <div id="section-story" class="section active">
+            <div class="story-container card" style="text-align: left; border: none; background: transparent; padding: 0;">
+                <div class="card">
+                    <h2 style="font-size: 2rem;">A New Hope</h2>
+                    <div style="color:#aaa; margin-bottom:15px; font-style:italic;">Давным-давно в далёкой галактике...</div>
+                    <button id="btn-story-play" class="btn-action btn-blue" onclick="toggleStoryRead()">▶️ Read Aloud</button>
+                    <div id="story-text-container" class="story-text-block">Loading... (Please enable JS)</div>
+                    <div id="dict-info" class="dictionary-box">
+                        <b id="dict-term" style="font-size:1.4rem; display:block; margin-bottom:5px;">...</b>
+                        <span id="dict-trans" style="color:#ffe81f; font-weight:bold; font-size:1.2rem;">...</span>
+                    </div>
+                    <div id="dict-placeholder" style="color:#666; font-style: italic; margin-top:20px; text-align:center;">Click on a word to translate.</div>
+                </div>
+            </div>
+        </div>
+
+        <div id="section-vocab" class="section">
+            <div class="card">
+                <h2>Galactic Vocabulary</h2>
+                <button class="btn-action btn-blue" onclick="toggleVocabMode()" style="font-size:0.9rem; padding:8px; width:auto; margin-bottom: 20px;">Switch Mode ⇄</button>
+                <div id="vocab-display" style="width:100%;">
+                    <div class="big-text" id="vocab-question">...</div>
+                    <div class="sub-hint" id="vocab-hint">...</div>
+                    <div id="vocab-answer-block" class="hidden">
+                        <div class="answer-text" id="vocab-answer-text">...</div>
+                        <button class="btn-action btn-blue" onclick="speakCurrentVocabAnswer()">🔊 Listen</button>
+                    </div>
+                    <button class="btn-action" id="btn-vocab-reveal" onclick="vocabReveal()">Show Answer</button>
+                    <div class="btn-row hidden" id="vocab-controls">
+                        <button class="btn-wrong" onclick="vocabRate(false)">Repeat</button>
+                        <button class="btn-correct" onclick="vocabRate(true)">Got it</button>
+                    </div>
+                </div>
+                <div id="vocab-done" class="hidden"><div style="font-size:3rem">🚀</div><h3>Training Complete!</h3><button class="btn-action" onclick="location.reload()">Restart</button></div>
+            </div>
+        </div>
+
+        <div id="section-drill" class="section">
+            <div class="card">
+                <h2>Jedi Training</h2>
+                <select id="drill-selector" class="drill-select" onchange="changeDrillCategory()">
+                    <option value="who">1. Who was what? (Instrumental)</option>
+                    <option value="goodbad">2. Good and Evil (Adjectives)</option>
+                    <option value="plot">3. The Plot</option>
+                </select>
+                <div id="drill-display" style="width:100%;">
+                    <div style="font-size:1.6rem; margin-bottom:20px; line-height: 1.4;" id="drill-question">...</div>
+                    <button class="btn-action btn-blue" onclick="toggleDrillGrammar()" style="font-size:0.9rem; padding:8px; width:auto;">💡 Show Rule</button>
+                    <div id="drill-grammar-box" class="grammar-box hidden">...</div>
+                    <button class="btn-action" id="btn-drill-reveal" onclick="drillReveal()">Check</button>
+                    <div id="drill-controls" class="hidden">
+                        <div style="color:#2ecc71; font-weight:bold; margin:15px 0; font-size:1.4rem;">Correct: <span id="drill-answer-show"></span></div>
+                         <button class="btn-action btn-blue" onclick="speakCurrentDrill()">🔊 Listen</button>
+                        <div class="btn-row">
+                            <button class="btn-wrong" onclick="drillRate(false)">Wrong</button>
+                            <button class="btn-correct" onclick="drillRate(true)">Right</button>
+                        </div>
+                    </div>
+                </div>
+                <div id="drill-done" class="hidden"><div style="font-size:3rem">🎖️</div><h3>The Force is strong with you!</h3><button class="btn-action" onclick="changeDrillCategory()">Again</button></div>
+            </div>
+        </div>
+    </div>
+
+<script>
+    // --- DATA ---
+    const sentences = [
+        "Давным-давно в далёкой галактике...", "Была гражданская война.", "Злая Империя хотела контролировать всё.",
+        "У них было страшное оружие: Звезда Смерти.", "Но повстанцы украли планы.", "Принцесса Лея спрятала планы в дроида R2-D2.",
+        "Дарт Вейдер поймал принцессу.", "Он был очень злой и носил чёрную маску.", "На планете Татуин жил парень Люк Скайуокер.",
+        "Люк был фермером, но хотел стать пилотом.", "Он купил дроидов и нашел сообщение.", "Потом он встретил старика Оби-Вана Кеноби.",
+        "Оби-Ван был джедаем.", "Он дал Люку световой меч.", "Оби-Ван сказал: «Сила будет с тобой».", "Они наняли пилота Хана Соло.",
+        "У Хана был быстрый корабль «Сокол».", "Вместе они спасли принцессу.", "В конце Люк уничтожил Звезду Смерти.",
+        "Это была большая победа.", "Да пребудет с вами Сила!"
+    ];
+
+    const dictionary = {
+        "Давным-давно": { t: "A long time ago" }, "далёкой": { t: "far away" }, "галактике": { t: "galaxy" },
+        "Была": { t: "There was" }, "гражданская": { t: "civil" }, "война": { t: "war" },
+        "Злая": { t: "Evil" }, "Империя": { t: "Empire" }, "хотела": { t: "wanted" }, "контролировать": { t: "to control" },
+        "всё": { t: "everything" }, "У": { t: "At/By" }, "них": { t: "them" }, "было": { t: "was/had" },
+        "страшное": { t: "terrible" }, "оружие": { t: "weapon" }, "Звезда": { t: "Star" }, "Смерти": { t: "of Death" },
+        "Но": { t: "But" }, "повстанцы": { t: "rebels" }, "украли": { t: "stole" }, "планы": { t: "plans" },
+        "Принцесса": { t: "Princess" }, "спрятала": { t: "hid" }, "в": { t: "in" }, "дроида": { t: "droid" },
+        "поймал": { t: "caught/captured" }, "Он": { t: "He" }, "очень": { t: "very" }, "злой": { t: "evil/angry" },
+        "носил": { t: "wore" }, "чёрную": { t: "black" }, "маску": { t: "mask" }, "На": { t: "On" },
+        "планете": { t: "planet" }, "жил": { t: "lived" }, "парень": { t: "guy/boy" }, "фермером": { t: "farmer (Instr.)" },
+        "стать": { t: "become" }, "пилотом": { t: "pilot (Instr.)" }, "купил": { t: "bought" }, "нашел": { t: "found" },
+        "сообщение": { t: "message" }, "Потом": { t: "Then" }, "встретил": { t: "met" }, "старика": { t: "old man" },
+        "джедаем": { t: "Jedi (Instr.)" }, "дал": { t: "gave" }, "Люку": { t: "to Luke" }, "световой": { t: "light-" },
+        "меч": { t: "sword" }, "сказал": { t: "said" }, "Сила": { t: "The Force" }, "будет": { t: "will be" },
+        "с": { t: "with" }, "тобой": { t: "you" }, "наняли": { t: "hired" }, "быстрый": { t: "fast" }, "корабль": { t: "ship" },
+        "Сокол": { t: "Falcon" }, "Вместе": { t: "Together" }, "спасли": { t: "saved" }, "В": { t: "At" },
+        "конце": { t: "the end" }, "уничтожил": { t: "destroyed" }, "большая": { t: "big" }, "победа": { t: "victory" },
+        "Да": { t: "May" }, "пребудет": { t: "be" }, "вами": { t: "you" }
+    };
+
+    const vocabData = [
+        { r: "Сила", d: "The Force" }, { r: "Империя", d: "The Empire" }, { r: "джедай", d: "Jedi" },
+        { r: "световой меч", d: "Lightsaber" }, { r: "звезда", d: "Star" }, { r: "корабль", d: "Ship" },
+        { r: "дроид", d: "Droid" }, { r: "война", d: "War" }, { r: "повстанец", d: "Rebel" },
+        { r: "злой", d: "Evil" }, { r: "смелый", d: "Brave" }, { r: "чёрный", d: "Black" },
+        { r: "отец", d: "Father" }, { r: "пилот", d: "Pilot" }, { r: "галактика", d: "Galaxy" }
+    ];
+
+    const drillSets = {
+        'who': [
+            { q: "Люк был (farmer) ___.", a: "фермером", rule: "Instrumental case (past): фермер -> фермером." },
+            { q: "Оби-Ван был (Jedi) ___.", a: "джедаем", rule: "Instrumental: джедай -> джедаем." },
+            { q: "Дарт Вейдер был (father) ___.", a: "отцом", rule: "Instrumental: отец -> отцом." },
+            { q: "Хан Соло был (pilot) ___.", a: "пилотом", rule: "Instrumental: пилот -> пилотом." },
+            { q: "Лея была (princess) ___.", a: "принцессой", rule: "Feminine Instrumental: принцесса -> принцессой." },
+            { q: "Империя была (problem) ___.", a: "проблемой", rule: "Feminine Instrumental: проблема -> проблемой." }
+        ],
+        'goodbad': [
+            { q: "Империя не добрая, она ___.", a: "злая", rule: "Evil (zlaya)." },
+            { q: "Дарт Вейдер носит ___ маску.", a: "чёрную", rule: "Black (chyornuyu - Accusative)." },
+            { q: "Люк не старый, он ___.", a: "молодой", rule: "Young (molodoy)." },
+            { q: "Оби-Ван не молодой, он ___.", a: "старый", rule: "Old (stary)." },
+            { q: "Корабль Хана очень ___.", a: "быстрый", rule: "Fast (bystry)." }
+        ],
+        'plot': [
+            { q: "Что уничтожил Люк? ___.", a: "Звезду Смерти", rule: "The Death Star (Accusative)." },
+            { q: "Что дал Оби-Ван Люку? ___.", a: "световой меч", rule: "A lightsaber." },
+            { q: "Кого они спасли? ___.", a: "принцессу", rule: "The Princess (Accusative)." },
+            { q: "Где были планы? В ___.", a: "дроиде", rule: "In the droid (Prepositional)." },
+            { q: "Кто отец Люка? ___.", a: "Дарт Вейдер", rule: "Darth Vader (but we learn that later!)." }
+        ]
+    };
+
+    let vDeck = [...vocabData]; let vCurr = null; let vMode = 'DR'; 
+    let dDeck = []; let dCurr = null;
+    let currentSentenceIndex = 0; let isReadingStory = false;
+
+    // --- SOUND EFFECTS ---
+    function playSciFiSound(type) {
+        try {
+            const ctx = new (window.AudioContext || window.webkitAudioContext)();
+            const osc = ctx.createOscillator();
+            const gain = ctx.createGain();
+            osc.connect(gain); gain.connect(ctx.destination);
+            if (type === 'open') {
+                osc.type = 'sine'; osc.frequency.setValueAtTime(200, ctx.currentTime);
+                osc.frequency.exponentialRampToValueAtTime(800, ctx.currentTime + 0.15);
+                gain.gain.setValueAtTime(0.1, ctx.currentTime); gain.gain.linearRampToValueAtTime(0, ctx.currentTime + 0.15);
+                osc.start(); osc.stop(ctx.currentTime + 0.15);
+            } else {
+                osc.type = 'sine'; osc.frequency.setValueAtTime(600, ctx.currentTime);
+                osc.frequency.exponentialRampToValueAtTime(200, ctx.currentTime + 0.1);
+                gain.gain.setValueAtTime(0.1, ctx.currentTime); gain.gain.linearRampToValueAtTime(0, ctx.currentTime + 0.1);
+                osc.start(); osc.stop(ctx.currentTime + 0.1);
+            }
+        } catch(e) {}
+    }
+
+    // --- SMART VOICE SELECTOR (ANTI-IRINA) ---
+    function speak(txt, lang='ru-RU', callback=null) {
+        window.speechSynthesis.cancel();
+        let c = txt.replace(/<[^>]*>/g,"").replace(/\(.*\)/g,"");
+        let m = new SpeechSynthesisUtterance(c);
+        m.lang = lang; m.rate = 0.9;
+        
+        let voices = window.speechSynthesis.getVoices();
+        // Suche gezielt nach Google-Stimmen
+        let googleVoice = voices.find(v => v.lang.includes(lang.replace('-RU','')) && v.name.includes("Google"));
+        
+        if(googleVoice) {
+            m.voice = googleVoice;
+        }
+        
+        if(callback) m.onend = callback;
+        window.speechSynthesis.speak(m);
+    }
+
+    // --- INIT ---
+    window.speechSynthesis.onvoiceschanged = function() {
+        console.log("Stimmen geladen:", window.speechSynthesis.getVoices().length);
+    };
+
+    function initStory() {
+        let container = document.getElementById('story-text-container');
+        let html = "";
+        sentences.forEach((s, i) => {
+            html += `<span id="sentence-${i}" class="sentence-wrapper">`;
+            s.split(" ").forEach(w => {
+                let clean = w.replace(/[.,!?;:«»]/g, "").replace(/['"]/g, "");
+                html += `<span class='word' onclick='lookup("${clean}", this)'>${w}</span> `;
+            });
+            html += `</span> `;
+        });
+        container.innerHTML = html;
+    }
+
+    function toggleStoryRead() {
+        if(isReadingStory) stopStoryRead(); else { isReadingStory=true; document.getElementById('btn-story-play').innerText="⏹️ Stop"; document.getElementById('btn-story-play').classList.add('btn-stop'); readNextSentence(); }
+    }
+    
+    function stopStoryRead() {
+        isReadingStory=false; window.speechSynthesis.cancel();
+        let btn = document.getElementById('btn-story-play');
+        btn.innerText = (currentSentenceIndex>0 && currentSentenceIndex<sentences.length) ? "▶️ Resume" : "▶️ Read Aloud";
+        btn.classList.remove('btn-stop');
+        highlightSentence(-1);
+        let dictBox = document.getElementById('dict-info');
+        if(dictBox.classList.contains('active')) { dictBox.classList.remove('active'); playSciFiSound('close'); }
+    }
+
+    function readNextSentence() {
+        if(!isReadingStory) return;
+        let dictBox = document.getElementById('dict-info');
+        if(dictBox.classList.contains('active')) { dictBox.classList.remove('active'); }
+        if(currentSentenceIndex>=sentences.length) { stopStoryRead(); currentSentenceIndex=0; return; }
+        highlightSentence(currentSentenceIndex);
+        speak(sentences[currentSentenceIndex], 'ru-RU', ()=>{ if(isReadingStory){ currentSentenceIndex++; readNextSentence(); }});
+    }
+
+    function highlightSentence(idx) {
+        for(let i=0; i<sentences.length; i++) { let el = document.getElementById(`sentence-${i}`); if(el) el.classList.remove('current-sentence'); }
+        if(idx>=0) { let el = document.getElementById(`sentence-${idx}`); if(el) { el.classList.add('current-sentence'); el.scrollIntoView({behavior:"smooth", block:"center"}); } }
+    }
+
+    function lookup(term, el) {
+        if(isReadingStory) stopStoryRead();
+        let entry = dictionary[term];
+        let dictBox = document.getElementById('dict-info');
+        let dictPlaceholder = document.getElementById('dict-placeholder');
+        let parentSentence = el.closest('span[id^="sentence-"]');
+        if(parentSentence) { parentSentence.after(dictBox); }
+
+        if(entry) {
+            document.getElementById('dict-term').innerText = term;
+            document.getElementById('dict-trans').innerText = entry.t;
+            speak(term);
+        } else {
+            document.getElementById('dict-term').innerText = term;
+            document.getElementById('dict-trans').innerText = "?";
+            speak(term);
+        }
+        dictPlaceholder.style.display = 'none';
+        if (!dictBox.classList.contains('active')) { dictBox.classList.add('active'); playSciFiSound('open'); }
+    }
+
+    // --- STANDARD FUNCTIONS (Uncompressed for safety) ---
+    function loadVocab() {
+        if(vDeck.length===0) { 
+            document.getElementById('vocab-done').classList.remove('hidden'); 
+            document.getElementById('vocab-display').classList.add('hidden'); 
+            return; 
+        }
+        vCurr = vDeck[Math.floor(Math.random()*vDeck.length)];
+        let q, a, hint;
+        if(vMode==='DR') { 
+            q=vCurr.d; a=vCurr.r; hint="Translate to Russian"; 
+        } else { 
+            q=vCurr.r; a=vCurr.d; hint="Translate to English"; 
+        }
+        document.getElementById('vocab-question').innerText = q;
+        document.getElementById('vocab-hint').innerText = hint;
+        document.getElementById('vocab-answer-text').innerText = a;
+        document.getElementById('vocab-answer-block').classList.add('hidden');
+        document.getElementById('btn-vocab-reveal').classList.remove('hidden');
+        document.getElementById('vocab-controls').classList.add('hidden');
+        
+        if(document.getElementById('section-vocab').classList.contains('active')) { 
+            if(vMode==='DR') speak(q, 'en-US'); else speak(q, 'ru-RU'); 
+        }
+    }
+
+    function vocabReveal() {
+        document.getElementById('vocab-answer-block').classList.remove('hidden');
+        document.getElementById('btn-vocab-reveal').classList.add('hidden');
+        document.getElementById('vocab-controls').classList.remove('hidden');
+        speakCurrentVocabAnswer();
+    }
+
+    function speakCurrentVocabAnswer() { 
+        if(vMode==='DR') speak(vCurr.r, 'ru-RU'); else speak(vCurr.d, 'en-US'); 
+    }
+
+    function vocabRate(ok) { 
+        if(ok) vDeck=vDeck.filter(i=>i!==vCurr); 
+        loadVocab(); 
+    }
+
+    function toggleVocabMode() { 
+        vMode=(vMode==='DR'?'RD':'DR'); 
+        loadVocab(); 
+    }
+
+    function changeDrillCategory() {
+        let cat = document.getElementById('drill-selector').value;
+        if(drillSets[cat]) { 
+            dDeck = [...drillSets[cat]]; 
+            document.getElementById('drill-done').classList.add('hidden'); 
+            document.getElementById('drill-display').classList.remove('hidden'); 
+            loadDrill(); 
+        }
+    }
+
+    function loadDrill() {
+        if(dDeck.length===0) { 
+            document.getElementById('drill-display').classList.add('hidden'); 
+            document.getElementById('drill-done').classList.remove('hidden'); 
+            return; 
+        }
+        dCurr = dDeck[Math.floor(Math.random()*dDeck.length)];
+        document.getElementById('drill-question').innerHTML = dCurr.q.replace("___", "___");
+        document.getElementById('drill-grammar-box').innerHTML = dCurr.rule;
+        document.getElementById('drill-grammar-box').classList.add('hidden');
+        document.getElementById('btn-drill-reveal').classList.remove('hidden');
+        document.getElementById('drill-controls').classList.add('hidden');
+    }
+
+    function drillReveal() {
+        document.getElementById('drill-question').innerHTML = dCurr.q.replace("___", `<span style='color:#2ecc71'>${dCurr.a}</span>`);
+        document.getElementById('btn-drill-reveal').classList.add('hidden');
+        document.getElementById('drill-controls').classList.remove('hidden');
+        speakCurrentDrill();
+    }
+
+    function speakCurrentDrill() { 
+        speak(dCurr.q.replace("___", dCurr.a)); 
+    }
+
+    function drillRate(ok) { 
+        if(ok) dDeck=dDeck.filter(i=>i!==dCurr); 
+        loadDrill(); 
+    }
+
+    function toggleDrillGrammar() { 
+        document.getElementById('drill-grammar-box').classList.toggle('hidden'); 
+    }
+
+    function switchTab(id) {
+        document.querySelectorAll('.section').forEach(e=>e.classList.remove('active'));
+        document.getElementById('section-'+id).classList.add('active');
+        document.querySelectorAll('.nav-btn').forEach(b=>b.classList.remove('active'));
+        if(id=='story') document.querySelector('button[onclick*="story"]').classList.add('active');
+        if(id=='vocab') document.querySelector('button[onclick*="vocab"]').classList.add('active');
+        if(id=='drill') document.querySelector('button[onclick*="drill"]').classList.add('active');
+        window.speechSynthesis.cancel();
+        isReadingStory=false;
+        
+        if(id==='vocab') loadVocab();
+        if(id==='drill') changeDrillCategory();
+    }
+    
+    // START
+    document.addEventListener("DOMContentLoaded", function() {
+        try {
+            initStory();
+            loadVocab();
+            changeDrillCategory();
+        } catch(e) {
+            alert("Startup Error: " + e);
+        }
+    });
+</script>
+</body>
+</html>

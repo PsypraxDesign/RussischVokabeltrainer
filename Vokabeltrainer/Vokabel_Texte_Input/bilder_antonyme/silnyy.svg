@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" width="200" height="200">
+  <rect width="200" height="200" fill="#1a2332" rx="12"/>
+  <!-- Muskulöser Arm / Bizeps -->
+  <!-- Oberarm -->
+  <path d="M 45,130 Q 40,100 55,80 Q 65,65 80,60 Q 95,55 100,65 Q 105,75 95,85 Q 85,95 80,100 Q 70,115 75,130 Z" fill="#FDBCB4"/>
+  <!-- Bizeps-Wölbung -->
+  <path d="M 55,80 Q 50,65 65,58 Q 80,52 90,60" fill="#FDBCB4"/>
+  <!-- Hand/Faust -->
+  <ellipse cx="95" cy="67" rx="14" ry="11" fill="#FDBCB4"/>
+  <line x1="88" y1="62" x2="88" y2="72" stroke="#E8A090" stroke-width="1"/>
+  <line x1="93" y1="60" x2="93" y2="70" stroke="#E8A090" stroke-width="1"/>
+  <line x1="98" y1="60" x2="98" y2="70" stroke="#E8A090" stroke-width="1"/>
+  <!-- Muskellinien -->
+  <path d="M 60,78 Q 55,70 62,62" stroke="#E8A090" stroke-width="1.5" fill="none"/>
+  <path d="M 65,100 Q 60,90 68,85" stroke="#E8A090" stroke-width="1" fill="none"/>
+  <!-- Kraft-Linien -->
+  <line x1="110" y1="50" x2="125" y2="42" stroke="#e8b341" stroke-width="2" stroke-linecap="round"/>
+  <line x1="112" y1="65" x2="128" y2="62" stroke="#e8b341" stroke-width="2" stroke-linecap="round"/>
+  <line x1="108" y1="38" x2="118" y2="28" stroke="#e8b341" stroke-width="2" stroke-linecap="round"/>
+  <!-- Stern -->
+  <polygon points="150,55 153,64 162,64 155,70 158,80 150,74 142,80 145,70 138,64 147,64" fill="#e8b341" opacity="0.6"/>
+  <text x="100" y="178" text-anchor="middle" fill="#e8b341" font-size="14" font-weight="bold" font-family="sans-serif">сильный</text>
+</svg>

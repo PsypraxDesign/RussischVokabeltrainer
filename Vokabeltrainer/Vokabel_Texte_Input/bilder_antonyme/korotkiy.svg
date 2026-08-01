@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" width="200" height="200">
+  <rect width="200" height="200" fill="#1a2332" rx="12"/>
+  <!-- Kurzer Wagen -->
+  <rect x="70" y="75" width="60" height="30" rx="6" fill="#3498db"/>
+  <!-- Fenster -->
+  <rect x="78" y="80" width="14" height="15" rx="2" fill="#85C1E9"/>
+  <rect x="98" y="80" width="14" height="15" rx="2" fill="#85C1E9"/>
+  <rect x="118" y="80" width="8" height="15" rx="2" fill="#85C1E9"/>
+  <!-- Dach -->
+  <rect x="70" y="72" width="60" height="5" rx="2" fill="#2980b9"/>
+  <!-- Räder -->
+  <circle cx="85" cy="110" r="6" fill="#2c3e50"/>
+  <circle cx="115" cy="110" r="6" fill="#2c3e50"/>
+  <!-- Pfeil kurz -->
+  <line x1="80" y1="135" x2="120" y2="135" stroke="#e8b341" stroke-width="2" stroke-linecap="round"/>
+  <polygon points="116,131 124,135 116,139" fill="#e8b341"/>
+  <polygon points="84,131 76,135 84,139" fill="#e8b341"/>
+  <text x="100" y="178" text-anchor="middle" fill="#e8b341" font-size="14" font-weight="bold" font-family="sans-serif">короткий</text>
+</svg>

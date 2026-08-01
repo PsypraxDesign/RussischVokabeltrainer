@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" width="200" height="200">
+  <rect width="200" height="200" fill="#1a2332" rx="12"/>
+  <!-- Junger Baum (Setzling) rechts, prominent -->
+  <rect x="95" y="95" width="10" height="55" fill="#8B6914"/>
+  <!-- Blätter (frisch, hellgrün) -->
+  <circle cx="100" cy="72" r="28" fill="#2ecc71"/>
+  <circle cx="80" cy="62" r="18" fill="#27ae60"/>
+  <circle cx="120" cy="62" r="18" fill="#27ae60"/>
+  <circle cx="100" cy="50" r="16" fill="#2ecc71"/>
+  <!-- Kleine Blüten -->
+  <circle cx="85" cy="55" r="4" fill="#f8c8dc"/>
+  <circle cx="115" cy="58" r="3.5" fill="#f8c8dc"/>
+  <circle cx="100" cy="43" r="3" fill="#f8c8dc"/>
+  <circle cx="78" cy="70" r="3" fill="#f8c8dc"/>
+  <!-- Gras -->
+  <rect x="20" y="148" width="160" height="22" rx="5" fill="#1a5e2a" opacity="0.5"/>
+  <!-- Sonne -->
+  <circle cx="165" cy="35" r="14" fill="#f1c40f" opacity="0.7"/>
+  <line x1="165" y1="15" x2="165" y2="8" stroke="#f1c40f" stroke-width="2" stroke-linecap="round" opacity="0.5"/>
+  <line x1="180" y1="22" x2="186" y2="18" stroke="#f1c40f" stroke-width="2" stroke-linecap="round" opacity="0.5"/>
+  <line x1="185" y1="35" x2="192" y2="35" stroke="#f1c40f" stroke-width="2" stroke-linecap="round" opacity="0.5"/>
+  <text x="100" y="185" text-anchor="middle" fill="#e8b341" font-size="14" font-weight="bold" font-family="sans-serif">молодой</text>
+</svg>

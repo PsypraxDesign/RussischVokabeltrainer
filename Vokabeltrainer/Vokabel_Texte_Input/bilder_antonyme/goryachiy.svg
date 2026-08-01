@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" width="200" height="200">
+  <rect width="200" height="200" fill="#1a2332" rx="12"/>
+  <!-- Sonne / Hitze -->
+  <circle cx="100" cy="80" r="35" fill="#e74c3c"/>
+  <circle cx="100" cy="80" r="28" fill="#f39c12"/>
+  <circle cx="100" cy="80" r="20" fill="#f1c40f"/>
+  <!-- Strahlen -->
+  <line x1="100" y1="30" x2="100" y2="18" stroke="#e74c3c" stroke-width="4" stroke-linecap="round"/>
+  <line x1="100" y1="132" x2="100" y2="144" stroke="#e74c3c" stroke-width="4" stroke-linecap="round"/>
+  <line x1="48" y1="80" x2="36" y2="80" stroke="#e74c3c" stroke-width="4" stroke-linecap="round"/>
+  <line x1="152" y1="80" x2="164" y2="80" stroke="#e74c3c" stroke-width="4" stroke-linecap="round"/>
+  <line x1="63" y1="43" x2="55" y2="35" stroke="#e74c3c" stroke-width="3" stroke-linecap="round"/>
+  <line x1="137" y1="43" x2="145" y2="35" stroke="#e74c3c" stroke-width="3" stroke-linecap="round"/>
+  <line x1="63" y1="117" x2="55" y2="125" stroke="#e74c3c" stroke-width="3" stroke-linecap="round"/>
+  <line x1="137" y1="117" x2="145" y2="125" stroke="#e74c3c" stroke-width="3" stroke-linecap="round"/>
+  <!-- Hitzewellen -->
+  <path d="M 75,140 Q 80,135 85,140 Q 90,145 95,140" stroke="#e74c3c" stroke-width="2" fill="none" opacity="0.6"/>
+  <path d="M 105,145 Q 110,140 115,145 Q 120,150 125,145" stroke="#e74c3c" stroke-width="2" fill="none" opacity="0.5"/>
+  <!-- Thermometer -->
+  <rect x="165" y="50" width="10" height="80" rx="5" fill="#ecf0f1"/>
+  <rect x="167" y="55" width="6" height="50" fill="#e74c3c"/>
+  <circle cx="170" cy="120" r="8" fill="#e74c3c"/>
+  <text x="100" y="178" text-anchor="middle" fill="#e8b341" font-size="13" font-weight="bold" font-family="sans-serif">горячий</text>
+</svg>

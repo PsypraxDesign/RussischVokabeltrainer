@@ -1,0 +1,88 @@
+пить чай,Tee trinken
+лимон,die Zitrone
+сахар,der Zucker
+солнце,die Sonne
+вставать (встаёт),aufstehen / aufgehen (Sonne)
+восток,der Osten
+на востоке,im Osten
+клуб,der Club / Verein
+ди-джей,der DJ
+университет,die Universität
+планировать,planen
+ужин,das Abendessen
+обсуждать (несов.) / обсудить (сов.),besprechen / diskutieren
+последние новости,die neuesten Nachrichten
+утром,morgens
+после работы,nach der Arbeit
+бегать,laufen / joggen
+парк,der Park
+супермаркет,der Supermarkt
+продукты,Lebensmittel
+покупать (несов.) / купить (сов.),kaufen
+бар,die Bar
+коктейль,der Cocktail
+спортзал,die Sporthalle / das Fitnessstudio
+спорт,der Sport
+заниматься спортом,Sport treiben
+ванная,das Badezimmer
+душ,die Dusche
+кино,das Kino
+фильм,der Film
+стадион,das Stadion
+футбол,der Fußball
+играть в футбол,Fußball spielen
+домой,nach Hause
+квартира,die Wohnung
+концерт,das Konzert
+классическая музыка,die klassische Musik
+декрет,der Mutterschutz / die Elternzeit
+в декрете,im Mutterschutz / in Elternzeit
+беспорядок,die Unordnung / das Chaos
+общаться,sich unterhalten / kommunizieren
+жаворонок,die Lerche / der Frühaufsteher
+сова,die Eule / die Nachteule
+маленькие дети,kleine Kinder
+сын,der Sohn
+школа,die Schule
+ходить в школу,zur Schule gehen
+жизнь,das Leben
+женщина,die Frau
+продуктивно,produktiv
+предпочитать,bevorzugen / vorziehen
+спать,schlafen
+рано,früh
+вечером,abends
+двор,der Hof
+мама,die Mama
+машина,das Auto
+финансовые проблемы,finanzielle Probleme
+семья,die Familie
+рабочий день,der Arbeitstag
+начинаться,beginnen / anfangen
+заканчиваться,enden / aufhören
+стирка,die Wäsche (waschen)
+уборка,das Putzen / die Reinigung
+готовка,das Kochen
+музей,das Museum
+урок,die Unterrichtsstunde
+длиться,dauern
+минута,die Minute
+рыбалка,das Angeln
+ходить на рыбалку,angeln gehen
+очередь,die Schlange / die Warteschlange
+стоять в очереди,in der Schlange stehen
+ненавидеть,hassen
+сейчас,jetzt
+который час?,Wie spät ist es?
+бриться,sich rasieren
+краситься,sich schminken
+ужинать,zu Abend essen
+летит время,die Zeit fliegt / wie die Zeit vergeht
+планы рухнули,die Pläne sind geplatzt / zusammengebrochen
+сова или жаворонок?,Eule oder Lerche? (Nachtmensch oder Frühaufsteher?)
+в доме всегда беспорядок,zu Hause herrscht immer Chaos
+это работа 24/7,das ist ein 24/7-Job
+Сколько сейчас времени?,Wie spät ist es jetzt?
+Во сколько вы встаёте?,Um wie viel Uhr stehen Sie auf?
+Во сколько вы ужинаете?,Um wie viel Uhr essen Sie zu Abend?
+Что вы делаете после ужина?,Was machen Sie nach dem Abendessen?

@@ -1,0 +1,36 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" width="200" height="200">
+  <rect width="200" height="200" fill="#1a2332" rx="12"/>
+  <!-- Haare (Zöpfe) -->
+  <ellipse cx="100" cy="64" rx="32" ry="32" fill="#D4A03C"/>
+  <ellipse cx="68" cy="78" rx="10" ry="20" fill="#D4A03C"/>
+  <ellipse cx="132" cy="78" rx="10" ry="20" fill="#D4A03C"/>
+  <!-- Zöpfe -->
+  <rect x="60" y="80" width="10" height="35" rx="5" fill="#D4A03C"/>
+  <rect x="130" y="80" width="10" height="35" rx="5" fill="#D4A03C"/>
+  <!-- Haarbänder -->
+  <circle cx="65" cy="82" r="4" fill="#e74c3c"/>
+  <circle cx="135" cy="82" r="4" fill="#e74c3c"/>
+  <!-- Gesicht -->
+  <circle cx="100" cy="74" r="26" fill="#FDBCB4"/>
+  <!-- Augen (groß, kindlich) -->
+  <ellipse cx="90" cy="70" rx="4.5" ry="5" fill="#2c3e50"/>
+  <ellipse cx="110" cy="70" rx="4.5" ry="5" fill="#2c3e50"/>
+  <circle cx="91.5" cy="69" r="2" fill="white"/>
+  <circle cx="111.5" cy="69" r="2" fill="white"/>
+  <!-- Wimpern -->
+  <line x1="85" y1="66" x2="87" y2="68" stroke="#2c3e50" stroke-width="1.2" stroke-linecap="round"/>
+  <line x1="115" y1="66" x2="113" y2="68" stroke="#2c3e50" stroke-width="1.2" stroke-linecap="round"/>
+  <!-- Lächeln -->
+  <path d="M 92,82 Q 100,90 108,82" stroke="#c0392b" stroke-width="2" fill="none" stroke-linecap="round"/>
+  <!-- Wangen -->
+  <circle cx="82" cy="78" r="5" fill="#F4978E" opacity="0.5"/>
+  <circle cx="118" cy="78" r="5" fill="#F4978E" opacity="0.5"/>
+  <!-- Körper / Kleid -->
+  <path d="M 72,100 Q 68,98 55,145 L 55,170 L 145,170 L 145,145 Q 132,98 128,100" fill="#e91e63"/>
+  <path d="M 72,100 Q 100,112 128,100" fill="#e91e63"/>
+  <!-- Blümchen auf Kleid -->
+  <circle cx="90" cy="135" r="4" fill="#f48fb1"/>
+  <circle cx="110" cy="145" r="4" fill="#f48fb1"/>
+  <circle cx="95" cy="155" r="4" fill="#f48fb1"/>
+  <text x="100" y="192" text-anchor="middle" fill="#f5f5f5" font-size="14" font-family="sans-serif">дочь</text>
+</svg>

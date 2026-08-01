@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" width="200" height="200">
+  <rect width="200" height="200" fill="#1a2332" rx="12"/>
+  <!-- Haare (kurzer Bob) -->
+  <ellipse cx="100" cy="64" rx="38" ry="36" fill="#B71C1C"/>
+  <ellipse cx="66" cy="74" rx="10" ry="18" fill="#B71C1C"/>
+  <ellipse cx="134" cy="74" rx="10" ry="18" fill="#B71C1C"/>
+  <!-- Gesicht -->
+  <circle cx="100" cy="72" r="30" fill="#FDBCB4"/>
+  <!-- Augen -->
+  <ellipse cx="89" cy="68" rx="4" ry="4.5" fill="#2c3e50"/>
+  <ellipse cx="111" cy="68" rx="4" ry="4.5" fill="#2c3e50"/>
+  <circle cx="90" cy="67" r="1.5" fill="white"/>
+  <circle cx="112" cy="67" r="1.5" fill="white"/>
+  <!-- Wimpern -->
+  <line x1="84" y1="64" x2="86" y2="66" stroke="#2c3e50" stroke-width="1.3" stroke-linecap="round"/>
+  <line x1="116" y1="64" x2="114" y2="66" stroke="#2c3e50" stroke-width="1.3" stroke-linecap="round"/>
+  <!-- Lächeln -->
+  <path d="M 92,82 Q 100,89 108,82" stroke="#c0392b" stroke-width="2" fill="none" stroke-linecap="round"/>
+  <!-- Wangen -->
+  <circle cx="80" cy="78" r="5" fill="#F4978E" opacity="0.5"/>
+  <circle cx="120" cy="78" r="5" fill="#F4978E" opacity="0.5"/>
+  <!-- Körper / Bluse -->
+  <path d="M 64,104 Q 58,100 52,142 L 52,170 L 148,170 L 148,142 Q 142,100 136,104" fill="#f39c12"/>
+  <path d="M 64,104 Q 100,118 136,104" fill="#f39c12"/>
+  <!-- Kragen rund -->
+  <ellipse cx="100" cy="106" rx="18" ry="6" fill="#f1c40f"/>
+  <text x="100" y="192" text-anchor="middle" fill="#f5f5f5" font-size="14" font-family="sans-serif">тётя</text>
+</svg>

@@ -1,0 +1,15 @@
+
+
+
+Это верно,Das stimmt
+Это правда,Das ist wahr
+Верно,Richtig
+Точно,Genau
+Всё правильно,Alles korrekt
+
+Это неверно,Das ist nicht korrekt
+Это неправда,Das ist nicht wahr
+Это не так,Das stimmt nicht
+Это не соответствует действительности,Das entspricht nicht den Tatsachen
+Да нет не правда,Nee das stimmt nicht (salopp)
+

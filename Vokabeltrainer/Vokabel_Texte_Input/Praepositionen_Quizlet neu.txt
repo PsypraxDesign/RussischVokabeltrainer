@@ -1,0 +1,32 @@
+(в + Akkusativ - Richtung: wohin?)\n"Я иду в школу.",Ich gehe in die Schule.
+(в + Akkusativ - Richtung: wohin?)\n"Она идёт в магазин.",Sie geht in den Laden.
+(в + Akkusativ - Richtung: wohin?)\n"Мы идём в ресторан.",Wir gehen ins Restaurant.
+(в + Akkusativ - Richtung: wohin?)\n"Он идёт в музей.",Er geht ins Museum.
+(в + Akkusativ - Richtung: wohin?)\n"Дети идут в парк.",Die Kinder gehen in den Park.
+(в + Akkusativ - Richtung: wohin?)\n"Я иду в театр.",Ich gehe ins Theater.
+(в + Akkusativ - Richtung: wohin?)\n"Она идёт в библиотеку.",Sie geht in die Bibliothek.
+(в + Akkusativ - Richtung: wohin?)\n"Мы едем в Москву.",Wir fahren nach Moskau.
+(в + Präpositiv - Ort: wo?)\n"Я работаю в офисе.",Ich arbeite im Büro.
+(в + Präpositiv - Ort: wo?)\n"Она живёт в Берлине.",Sie lebt in Berlin.
+(в + Präpositiv - Ort: wo?)\n"Мы обедаем в кафе.",Wir essen im Café zu Mittag.
+(в + Präpositiv - Ort: wo?)\n"Он учится в университете.",Er studiert an der Universität.
+(в + Präpositiv - Ort: wo?)\n"Дети играют в саду.",Die Kinder spielen im Garten.
+(на + Akkusativ - Richtung: wohin?)\n"Я иду на работу.",Ich gehe zur Arbeit.
+(на + Akkusativ - Richtung: wohin?)\n"Она идёт на урок.",Sie geht zum Unterricht.
+(на + Akkusativ - Richtung: wohin?)\n"Мы идём на выставку.",Wir gehen zur Ausstellung.
+(на + Akkusativ - Richtung: wohin?)\n"Он идёт на тренировку.",Er geht zum Training.
+(на + Akkusativ - Richtung: wohin?)\n"Я еду на вокзал.",Ich fahre zum Bahnhof.
+(на + Akkusativ - Richtung: wohin?)\n"Дети идут на концерт.",Die Kinder gehen zum Konzert.
+(на + Präpositiv - Ort: wo?)\n"Я на работе.",Ich bin auf der Arbeit.
+(на + Präpositiv - Ort: wo?)\n"Книга лежит на столе.",Das Buch liegt auf dem Tisch.
+(на + Präpositiv - Ort: wo?)\n"Мы на уроке.",Wir sind im Unterricht.
+(после + Genitiv - zeitlich: nach)\n"После завтрака я иду на работу.",Nach dem Frühstück gehe ich zur Arbeit.
+(после + Genitiv - zeitlich: nach)\n"После урока я иду домой.",Nach dem Unterricht gehe ich nach Hause.
+(после + Genitiv - zeitlich: nach)\n"После работы я отдыхаю.",Nach der Arbeit ruhe ich mich aus.
+(после + Genitiv - zeitlich: nach)\n"После фильма я иду спать.",Nach dem Film gehe ich schlafen.
+(после + Genitiv - zeitlich: nach)\n"После тренировки я пью воду.",Nach dem Training trinke ich Wasser.
+(после + Genitiv - zeitlich: nach)\n"После обеда я читаю книгу.",Nach dem Mittagessen lese ich ein Buch.
+(во время + Genitiv - zeitlich: während)\n"Во время завтрака я читаю газету.",Während des Frühstücks lese ich Zeitung.
+(во время + Genitiv - zeitlich: während)\n"Во время урока я слушаю учителя.",Während des Unterrichts höre ich dem Lehrer zu.
+(во время + Genitiv - zeitlich: während)\n"Во время обеда мы разговариваем.",Während des Mittagessens unterhalten wir uns.
+(во время + Genitiv - zeitlich: während)\n"Во время работы я пью кофе.",Während der Arbeit trinke ich Kaffee.

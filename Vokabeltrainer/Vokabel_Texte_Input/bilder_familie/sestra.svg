@@ -1,0 +1,35 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" width="200" height="200">
+  <rect width="200" height="200" fill="#1a2332" rx="12"/>
+  <!-- Haare (lang, glatt) -->
+  <ellipse cx="100" cy="64" rx="34" ry="34" fill="#6D4C41"/>
+  <ellipse cx="70" cy="80" rx="12" ry="28" fill="#6D4C41"/>
+  <ellipse cx="130" cy="80" rx="12" ry="28" fill="#6D4C41"/>
+  <!-- Gesicht -->
+  <circle cx="100" cy="72" r="26" fill="#FDBCB4"/>
+  <!-- Augen -->
+  <ellipse cx="91" cy="68" rx="4" ry="4.5" fill="#2c3e50"/>
+  <ellipse cx="109" cy="68" rx="4" ry="4.5" fill="#2c3e50"/>
+  <circle cx="92" cy="67" r="1.8" fill="white"/>
+  <circle cx="110" cy="67" r="1.8" fill="white"/>
+  <!-- Wimpern -->
+  <line x1="86" y1="64" x2="88" y2="66" stroke="#2c3e50" stroke-width="1.3" stroke-linecap="round"/>
+  <line x1="114" y1="64" x2="112" y2="66" stroke="#2c3e50" stroke-width="1.3" stroke-linecap="round"/>
+  <!-- Lächeln -->
+  <path d="M 92,80 Q 100,88 108,80" stroke="#c0392b" stroke-width="2" fill="none" stroke-linecap="round"/>
+  <!-- Wangen -->
+  <circle cx="82" cy="76" r="5" fill="#F4978E" opacity="0.5"/>
+  <circle cx="118" cy="76" r="5" fill="#F4978E" opacity="0.5"/>
+  <!-- Haarband -->
+  <path d="M 72,52 Q 100,42 128,52" stroke="#9b59b6" stroke-width="4" fill="none" stroke-linecap="round"/>
+  <!-- Schleife -->
+  <ellipse cx="115" cy="48" rx="7" ry="5" fill="#9b59b6"/>
+  <ellipse cx="125" cy="48" rx="7" ry="5" fill="#9b59b6"/>
+  <circle cx="120" cy="48" r="3" fill="#8e44ad"/>
+  <!-- Körper / Bluse -->
+  <path d="M 70,100 Q 66,96 58,140 L 58,170 L 142,170 L 142,140 Q 134,96 130,100" fill="#9b59b6"/>
+  <path d="M 70,100 Q 100,112 130,100" fill="#9b59b6"/>
+  <!-- Kragen -->
+  <ellipse cx="88" cy="103" rx="8" ry="5" fill="#af7ac5"/>
+  <ellipse cx="112" cy="103" rx="8" ry="5" fill="#af7ac5"/>
+  <text x="100" y="192" text-anchor="middle" fill="#f5f5f5" font-size="14" font-family="sans-serif">сестра</text>
+</svg>

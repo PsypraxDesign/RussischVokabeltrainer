@@ -1,0 +1,55 @@
+# ═══════════════════════════════════════════════════════════════
+#  Repo-Wurzel ist Desktop\Russisch — versioniert wird nur der
+#  Vokabeltrainer.
+# ═══════════════════════════════════════════════════════════════
+# Die Wurzel enthaelt rund 1 GB Lernmaterial (Musik 529 MB,
+# RussischInteraktiv 254 MB, Lehrbuecher_PDF 78 MB, Videos 61 MB)
+# und mit RussischTrainer_local_LLM ein eigenstaendiges Projekt.
+# Nichts davon gehoert in dieses Repository.
+#
+# Deshalb: erst alles ausschliessen, dann gezielt freigeben.
+# Soll ein weiterer Ordner dazukommen, hier "!/Ordnername/"
+# ergaenzen.
+
+/*
+!/.gitignore
+!/Vokabeltrainer/
+
+# ═══════════════════════════════════════════════════════════════
+#  SCHLUESSEL — NIEMALS VERSIONIEREN
+# ═══════════════════════════════════════════════════════════════
+# Aus einer Git-Historie bekommt man einen Schluessel nicht mehr
+# sauber heraus. Neue Schluesseldatei? Erst hier eintragen, dann
+# anlegen.
+
+Vokabeltrainer/api-key.js
+Vokabeltrainer/aussprachetrainer_MS-Azure_key.txt
+
+# Sicherheitsnetz fuer kuenftige Schluesseldateien
+*api-key*
+*_key.txt
+*-key.txt
+*.key
+.env
+.env.*
+
+# ═══════════════════════════════════════════════════════════════
+#  Abhaengigkeiten und Erzeugtes
+# ═══════════════════════════════════════════════════════════════
+# node_modules: 51 MB, 4.375 Dateien. Wird aus package.json per
+# "npm install" wiederhergestellt und gehoert nicht ins Repo.
+node_modules/
+
+# Sicherungskopien, die Git ueberfluessig macht
+*.bak
+Vokabeltrainer/backup_index/
+
+# ═══════════════════════════════════════════════════════════════
+#  Betriebssystem und Editor
+# ═══════════════════════════════════════════════════════════════
+Thumbs.db
+desktop.ini
+.DS_Store
+*~
+.vscode/
+.idea/

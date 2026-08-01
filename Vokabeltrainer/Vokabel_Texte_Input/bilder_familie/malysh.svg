@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" width="200" height="200">
+  <rect width="200" height="200" fill="#1a2332" rx="12"/>
+  <!-- Decke/Wickel -->
+  <ellipse cx="100" cy="120" rx="45" ry="50" fill="#85C1E9"/>
+  <ellipse cx="100" cy="115" rx="40" ry="42" fill="#AED6F1"/>
+  <!-- Gesicht -->
+  <circle cx="100" cy="78" r="28" fill="#FDBCB4"/>
+  <!-- Häubchen -->
+  <path d="M 72,72 Q 72,48 100,45 Q 128,48 128,72" fill="#AED6F1"/>
+  <path d="M 72,72 Q 72,50 100,47 Q 128,50 128,72" fill="none" stroke="#85C1E9" stroke-width="2"/>
+  <!-- Augen (riesig, baby) -->
+  <ellipse cx="90" cy="75" rx="6" ry="6.5" fill="#2c3e50"/>
+  <ellipse cx="110" cy="75" rx="6" ry="6.5" fill="#2c3e50"/>
+  <circle cx="92" cy="73" r="2.5" fill="white"/>
+  <circle cx="112" cy="73" r="2.5" fill="white"/>
+  <!-- Mund (klein, offen) -->
+  <ellipse cx="100" cy="90" rx="4" ry="3" fill="#e74c3c"/>
+  <!-- Wangen -->
+  <circle cx="80" cy="82" r="5" fill="#F4978E" opacity="0.5"/>
+  <circle cx="120" cy="82" r="5" fill="#F4978E" opacity="0.5"/>
+  <!-- Händchen -->
+  <circle cx="65" cy="110" r="8" fill="#FDBCB4"/>
+  <circle cx="135" cy="110" r="8" fill="#FDBCB4"/>
+  <text x="100" y="192" text-anchor="middle" fill="#f5f5f5" font-size="14" font-family="sans-serif">малыш</text>
+</svg>

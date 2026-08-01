@@ -1,0 +1,34 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" width="200" height="200">
+  <rect width="200" height="200" fill="#1a2332" rx="12"/>
+  <!-- Haare (grau) -->
+  <ellipse cx="100" cy="65" rx="36" ry="38" fill="#bdc3c7"/>
+  <ellipse cx="72" cy="78" rx="10" ry="18" fill="#bdc3c7"/>
+  <ellipse cx="128" cy="78" rx="10" ry="18" fill="#bdc3c7"/>
+  <!-- Gesicht -->
+  <circle cx="100" cy="72" r="30" fill="#FDBCB4"/>
+  <!-- Brille -->
+  <circle cx="88" cy="68" r="10" stroke="#e8b341" stroke-width="2" fill="none"/>
+  <circle cx="112" cy="68" r="10" stroke="#e8b341" stroke-width="2" fill="none"/>
+  <line x1="98" y1="68" x2="102" y2="68" stroke="#e8b341" stroke-width="2"/>
+  <line x1="78" y1="66" x2="72" y2="63" stroke="#e8b341" stroke-width="2"/>
+  <line x1="122" y1="66" x2="128" y2="63" stroke="#e8b341" stroke-width="2"/>
+  <!-- Augen hinter Brille -->
+  <circle cx="88" cy="68" r="3" fill="#2c3e50"/>
+  <circle cx="112" cy="68" r="3" fill="#2c3e50"/>
+  <circle cx="89" cy="67" r="1" fill="white"/>
+  <circle cx="113" cy="67" r="1" fill="white"/>
+  <!-- Lächeln mit Fältchen -->
+  <path d="M 90,82 Q 100,90 110,82" stroke="#c0392b" stroke-width="1.8" fill="none" stroke-linecap="round"/>
+  <line x1="78" y1="78" x2="75" y2="82" stroke="#E8A090" stroke-width="1" stroke-linecap="round"/>
+  <line x1="122" y1="78" x2="125" y2="82" stroke="#E8A090" stroke-width="1" stroke-linecap="round"/>
+  <!-- Wangen -->
+  <circle cx="80" cy="78" r="4" fill="#F4978E" opacity="0.4"/>
+  <circle cx="120" cy="78" r="4" fill="#F4978E" opacity="0.4"/>
+  <!-- Körper / Strickjacke -->
+  <path d="M 65,104 Q 58,100 52,145 L 52,170 L 148,170 L 148,145 Q 142,100 135,104" fill="#8e44ad"/>
+  <path d="M 65,104 Q 100,118 135,104" fill="#8e44ad"/>
+  <!-- Brosche -->
+  <circle cx="100" cy="112" r="4" fill="#e8b341"/>
+  <circle cx="100" cy="112" r="2" fill="#f39c12"/>
+  <text x="100" y="192" text-anchor="middle" fill="#f5f5f5" font-size="14" font-family="sans-serif">бабушка</text>
+</svg>

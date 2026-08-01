@@ -1,0 +1,841 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ехать / ездить — Grammatikübung</title>
+<style>
+:root {
+    --bg-primary: #1a1a2e;
+    --bg-secondary: #16213e;
+    --bg-card: #1e2a4a;
+    --accent: #d4a843;
+    --accent-dim: #b8922f;
+    --correct: #4caf50;
+    --wrong: #e74c3c;
+    --text-primary: #e0e0e0;
+    --text-secondary: #a0a0a0;
+}
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Source+Sans+3:wght@400;600;700&display=swap');
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+    font-family: 'Source Sans 3', 'Segoe UI', sans-serif;
+    background: var(--bg-primary);
+    color: var(--text-primary);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-bottom: 40px;
+}
+h1 {
+    font-family: 'Playfair Display', serif;
+    color: var(--accent);
+    font-size: 2rem;
+    margin: 30px 0 6px;
+    text-align: center;
+}
+.subtitle {
+    color: var(--text-secondary);
+    font-size: 0.95rem;
+    margin-bottom: 18px;
+    text-align: center;
+}
+
+/* Tab nav */
+.tab-nav {
+    display: flex;
+    gap: 0;
+    border-radius: 10px;
+    overflow: hidden;
+    border: 2px solid var(--accent-dim);
+    margin-bottom: 22px;
+}
+.tab-btn {
+    padding: 10px 22px;
+    border: none;
+    background: var(--bg-secondary);
+    color: var(--text-secondary);
+    font-size: 0.95rem;
+    cursor: pointer;
+    font-family: inherit;
+    transition: all 0.2s;
+}
+.tab-btn.active {
+    background: var(--accent);
+    color: var(--bg-primary);
+    font-weight: 700;
+}
+.tab-btn:hover:not(.active) { background: var(--bg-card); color: var(--text-primary); }
+
+/* Rule box */
+.rule-box {
+    background: var(--bg-secondary);
+    border: 1px solid var(--accent-dim);
+    border-radius: 12px;
+    padding: 16px 22px;
+    margin: 0 20px 22px;
+    max-width: 720px;
+    width: calc(100% - 40px);
+    font-size: 0.92rem;
+    line-height: 1.65;
+}
+.rule-box .rule-title {
+    color: var(--accent);
+    font-weight: 700;
+    margin-bottom: 8px;
+    font-size: 1rem;
+}
+.rule-box .rule-cols {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+}
+.rule-box .rule-col strong { color: #fff; }
+.rule-box .rule-col .verb { color: var(--accent); font-weight: 700; }
+
+/* Card */
+.exercise-card {
+    background: var(--bg-card);
+    border-radius: 16px;
+    padding: 28px 30px;
+    max-width: 720px;
+    width: calc(100% - 40px);
+    margin: 0 20px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+}
+.exercise-card.hidden { display: none; }
+.ex-title {
+    color: var(--accent);
+    font-size: 1.15rem;
+    font-weight: 700;
+    margin-bottom: 4px;
+}
+.ex-instruction {
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+    margin-bottom: 18px;
+}
+
+/* Conjugation tables (3a) */
+.conj-tables {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 18px;
+    margin-bottom: 14px;
+}
+.conj-table {
+    background: var(--bg-secondary);
+    border-radius: 10px;
+    padding: 14px;
+}
+.conj-verb {
+    text-align: center;
+    color: var(--accent);
+    font-weight: 700;
+    font-size: 1.2rem;
+    margin-bottom: 10px;
+}
+.conj-row {
+    display: grid;
+    grid-template-columns: 40px 1fr;
+    align-items: center;
+    gap: 8px;
+    padding: 5px 0;
+    font-size: 1.05rem;
+}
+.conj-row .pronoun { color: var(--text-secondary); font-weight: 600; }
+.conj-row .form { color: #fff; }
+.conj-input {
+    background: var(--bg-primary);
+    border: 2px solid var(--accent-dim);
+    border-radius: 6px;
+    padding: 5px 8px;
+    color: var(--accent);
+    font-size: 1rem;
+    font-family: inherit;
+    width: 100%;
+    max-width: 130px;
+}
+.conj-input:focus { outline: none; border-color: var(--accent); }
+.conj-input.correct { border-color: var(--correct); color: var(--correct); }
+.conj-input.wrong { border-color: var(--wrong); color: var(--wrong); }
+.past-line {
+    margin-top: 10px;
+    padding-top: 8px;
+    border-top: 1px solid #2a3a5c;
+    font-size: 0.85rem;
+    color: var(--text-secondary);
+}
+.past-line strong { color: var(--accent); }
+
+/* Fill-in (3b) */
+.sentence-line {
+    font-size: 1.15rem;
+    line-height: 1.9;
+    margin-bottom: 12px;
+}
+.fill-input {
+    background: var(--bg-primary);
+    border: none;
+    border-bottom: 3px solid var(--accent);
+    color: var(--accent);
+    font-size: 1.1rem;
+    font-family: inherit;
+    font-weight: 700;
+    padding: 2px 8px;
+    width: 130px;
+    text-align: center;
+}
+.fill-input:focus { outline: none; border-bottom-color: #fff; }
+.fill-input.correct { border-bottom-color: var(--correct); color: var(--correct); }
+.fill-input.wrong { border-bottom-color: var(--wrong); color: var(--wrong); }
+.q-num { color: var(--text-secondary); margin-right: 6px; }
+
+/* Matching (4A) */
+.matching-intro {
+    background: var(--bg-secondary);
+    border-radius: 10px;
+    padding: 12px 16px;
+    margin-bottom: 16px;
+    font-size: 0.92rem;
+    color: var(--text-secondary);
+}
+.transport-block {
+    background: var(--bg-secondary);
+    border-radius: 10px;
+    padding: 14px 16px;
+    margin-bottom: 12px;
+}
+.transport-name {
+    color: var(--accent);
+    font-weight: 700;
+    font-size: 1.15rem;
+    margin-bottom: 10px;
+}
+.chip-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+.chip {
+    padding: 6px 14px;
+    border-radius: 18px;
+    border: 2px solid var(--accent-dim);
+    background: var(--bg-card);
+    color: var(--text-primary);
+    font-size: 0.92rem;
+    cursor: pointer;
+    font-family: inherit;
+    transition: all 0.2s;
+}
+.chip:hover { background: var(--accent-dim); color: #fff; }
+.chip.selected {
+    background: var(--accent);
+    color: var(--bg-primary);
+    font-weight: 600;
+    border-color: var(--accent);
+}
+.chip.correct {
+    background: rgba(76, 175, 80, 0.25);
+    border-color: var(--correct);
+    color: var(--correct);
+}
+.chip.wrong {
+    background: rgba(231, 76, 60, 0.25);
+    border-color: var(--wrong);
+    color: var(--wrong);
+}
+.chip.missed {
+    border-color: var(--correct);
+    color: var(--correct);
+    border-style: dashed;
+}
+.chip:disabled { cursor: default; }
+
+/* Buttons */
+.btn-row {
+    display: flex;
+    gap: 12px;
+    margin-top: 18px;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+.btn {
+    padding: 10px 26px;
+    border-radius: 8px;
+    border: none;
+    background: var(--accent);
+    color: var(--bg-primary);
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    font-family: inherit;
+    transition: all 0.2s;
+}
+.btn:hover { background: var(--accent-dim); }
+.btn.secondary {
+    background: var(--bg-secondary);
+    color: var(--text-primary);
+    border: 2px solid var(--accent-dim);
+}
+.btn.secondary:hover { background: var(--accent-dim); color: #fff; }
+
+.feedback {
+    margin-top: 14px;
+    text-align: center;
+    font-weight: 600;
+    min-height: 24px;
+}
+.feedback.correct { color: var(--correct); }
+.feedback.wrong { color: var(--wrong); }
+
+.score-bar {
+    margin-top: 14px;
+    text-align: center;
+    color: var(--text-secondary);
+    font-size: 0.95rem;
+}
+.score-bar strong { color: var(--accent); }
+
+/* Russian virtual keyboard */
+.ru-keyboard {
+    display: none;
+    position: fixed;
+    bottom: 0; left: 0; right: 0;
+    background: var(--bg-secondary);
+    border-top: 2px solid var(--accent);
+    box-shadow: 0 -4px 20px rgba(0,0,0,0.5);
+    padding: 8px 12px 12px;
+    z-index: 1000;
+}
+.ru-keyboard.visible { display: block; }
+.ru-kb-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: var(--text-secondary);
+    font-size: 0.85em;
+    margin-bottom: 6px;
+    padding: 0 4px;
+}
+.ru-kb-close {
+    background: none; border: none; color: var(--text-secondary);
+    font-size: 1.5em; cursor: pointer; line-height: 1; padding: 0 6px;
+}
+.ru-kb-close:hover { color: var(--wrong); }
+.ru-kb-rows { display: flex; flex-direction: column; gap: 5px; align-items: center; }
+.ru-kb-row { display: flex; gap: 4px; justify-content: center; }
+.ru-kb-row button {
+    min-width: 38px; height: 38px;
+    background: var(--bg-card); color: var(--text-primary);
+    border: 1px solid var(--accent-dim); border-radius: 5px;
+    font-size: 1em; font-family: inherit; cursor: pointer;
+    transition: all 0.1s; padding: 0 8px;
+}
+.ru-kb-row button:hover {
+    background: var(--accent); color: var(--bg-primary); border-color: var(--accent);
+}
+.ru-kb-row button:active { transform: scale(0.95); }
+.ru-kb-row button.ru-kb-wide { min-width: 44px; }
+.ru-kb-row button.ru-kb-space { min-width: 220px; }
+.ru-kb-row button.ru-kb-mod { min-width: 70px; color: var(--accent); font-size: 0.85em; }
+.ru-keyboard.shift .ru-kb-row button[data-k]:not(.ru-kb-wide):not(.ru-kb-space) { text-transform: uppercase; }
+#ruKbShift.active { background: var(--accent); color: var(--bg-primary); }
+@media (max-width: 600px) {
+    .ru-kb-row button { min-width: 28px; height: 34px; padding: 0 4px; font-size: 0.9em; }
+    .ru-kb-row button.ru-kb-mod { min-width: 52px; }
+    .ru-kb-row button.ru-kb-space { min-width: 140px; }
+}
+
+.back-link { margin-top: 30px; text-align: center; }
+.back-link a { color: var(--accent); text-decoration: none; font-size: 0.9rem; }
+.back-link a:hover { text-decoration: underline; }
+
+@media (max-width: 600px) {
+    h1 { font-size: 1.5rem; }
+    .conj-tables { grid-template-columns: 1fr; }
+    .rule-box .rule-cols { grid-template-columns: 1fr; }
+    .exercise-card { padding: 20px; }
+    .sentence-line { font-size: 1rem; }
+    .fill-input { width: 110px; font-size: 1rem; }
+    .tab-btn { padding: 8px 14px; font-size: 0.85rem; }
+}
+</style>
+</head>
+<body>
+
+<h1>ехать / ездить</h1>
+<p class="subtitle">Грамматика 5.3 — Точка Ру А1, стр. 116–117</p>
+
+<div class="rule-box">
+    <div class="rule-title">Regel: ехать vs. ездить</div>
+    <div class="rule-cols">
+        <div class="rule-col">
+            <p><span class="verb">ехать →</span> einmalige Bewegung</p>
+            <p>• <strong>сейчас</strong> (Prozess)</p>
+            <p>• <strong>план</strong> (сегодня, завтра, в понедельник…)</p>
+            <p>• Tagesablauf (typischer Tag)</p>
+            <p>• Vergangenheit: <strong>parallele</strong> Handlungen</p>
+        </div>
+        <div class="rule-col">
+            <p><span class="verb">ездить ←→</span> wiederholt / hin & zurück</p>
+            <p>• <strong>каждый день, обычно, часто, иногда, редко, никогда, регулярно</strong></p>
+            <p>• любить, обожать, ненавидеть + Inf.</p>
+            <p>• Vergangenheit: war dort und kam zurück</p>
+        </div>
+    </div>
+</div>
+
+<div class="tab-nav">
+    <button class="tab-btn active" onclick="showTab(0)">3 A — Tabellen</button>
+    <button class="tab-btn" onclick="showTab(1)">3 Б — Lücken</button>
+    <button class="tab-btn" onclick="showTab(2)">4 A — Transport</button>
+</div>
+
+<!-- ========== Übung 3 A ========== -->
+<div class="exercise-card" id="card0">
+    <div class="ex-title">3 А &middot; Заполните таблицы</div>
+    <div class="ex-instruction">Trage die fehlenden Formen von <strong>ехать</strong> und <strong>ездить</strong> ein.</div>
+
+    <div class="conj-tables">
+        <div class="conj-table">
+            <div class="conj-verb">ехать</div>
+            <div class="conj-row"><span class="pronoun">я</span><input class="conj-input" data-verb="ехать" data-form="еду" placeholder="..."></div>
+            <div class="conj-row"><span class="pronoun">ты</span><span class="form">е́дешь</span></div>
+            <div class="conj-row"><span class="pronoun">он</span><input class="conj-input" data-verb="ехать" data-form="едет" placeholder="..."></div>
+            <div class="conj-row"><span class="pronoun">мы</span><span class="form">е́дем</span></div>
+            <div class="conj-row"><span class="pronoun">вы</span><span class="form">е́дете</span></div>
+            <div class="conj-row"><span class="pronoun">они</span><input class="conj-input" data-verb="ехать" data-form="едут" placeholder="..."></div>
+            <div class="past-line"><strong>past:</strong> е́хал (m), е́хала (f), е́хало (n), е́хали (pl)</div>
+        </div>
+        <div class="conj-table">
+            <div class="conj-verb">ездить</div>
+            <div class="conj-row"><span class="pronoun">я</span><input class="conj-input" data-verb="ездить" data-form="езжу" placeholder="..."></div>
+            <div class="conj-row"><span class="pronoun">ты</span><span class="form">е́здишь</span></div>
+            <div class="conj-row"><span class="pronoun">он</span><input class="conj-input" data-verb="ездить" data-form="ездит" placeholder="..."></div>
+            <div class="conj-row"><span class="pronoun">мы</span><span class="form">е́здим</span></div>
+            <div class="conj-row"><span class="pronoun">вы</span><span class="form">е́здите</span></div>
+            <div class="conj-row"><span class="pronoun">они</span><span class="form">е́здят</span></div>
+            <div class="past-line"><strong>past:</strong> е́здил (m), е́здила (f), е́здило (n), е́здили (pl)</div>
+        </div>
+    </div>
+
+    <div class="feedback" id="feedback0"></div>
+    <div class="btn-row">
+        <button class="btn" onclick="checkConj()">Prüfen</button>
+        <button class="btn secondary" onclick="resetConj()">Zurücksetzen</button>
+        <button class="btn secondary" onclick="solveConj()">Lösung zeigen</button>
+    </div>
+</div>
+
+<!-- ========== Übung 3 Б ========== -->
+<div class="exercise-card hidden" id="card1">
+    <div class="ex-title">3 Б &middot; Напишите ехать или ездить в правильной форме</div>
+    <div class="ex-instruction">Setze die korrekte Form von <em>ехать</em> oder <em>ездить</em> ein. <kbd>Enter</kbd> zum Prüfen, <kbd>Tab</kbd> für nächstes Feld.</div>
+    <div id="fillContainer"></div>
+
+    <div class="feedback" id="feedback1"></div>
+    <div class="score-bar" id="score1"></div>
+    <div class="btn-row">
+        <button class="btn" onclick="checkFill()">Prüfen</button>
+        <button class="btn secondary" onclick="resetFill()">Zurücksetzen</button>
+        <button class="btn secondary" onclick="solveFill()">Lösung zeigen</button>
+    </div>
+</div>
+
+<!-- ========== Übung 4 A ========== -->
+<div class="exercise-card hidden" id="card2">
+    <div class="ex-title">4 А &middot; Соедините виды транспорта и их характеристики</div>
+    <div class="ex-instruction">Klicke alle Eigenschaften an, die zum jeweiligen Verkehrsmittel passen. Mehrere Antworten möglich.</div>
+    <div class="matching-intro">
+        Verfügbare Eigenschaften: <em>красиво, удобно, много народу, популярный вид транспорта, дорого, недорого, дёшево, медленно, шумно, комфортно, пробки, полезно, быстро</em>
+    </div>
+    <div id="matchContainer"></div>
+
+    <div class="feedback" id="feedback2"></div>
+    <div class="score-bar" id="score2"></div>
+    <div class="btn-row">
+        <button class="btn" onclick="checkMatch()">Prüfen</button>
+        <button class="btn secondary" onclick="resetMatch()">Zurücksetzen</button>
+        <button class="btn secondary" onclick="solveMatch()">Lösung zeigen</button>
+    </div>
+</div>
+
+<div class="ru-keyboard" id="ruKeyboard">
+    <div class="ru-kb-header">
+        <span>Russische Tastatur</span>
+        <button class="ru-kb-close" id="ruKbClose" title="Schließen">×</button>
+    </div>
+    <div class="ru-kb-rows">
+        <div class="ru-kb-row">
+            <button data-k="ё">ё</button><button data-k="1">1</button><button data-k="2">2</button><button data-k="3">3</button><button data-k="4">4</button><button data-k="5">5</button><button data-k="6">6</button><button data-k="7">7</button><button data-k="8">8</button><button data-k="9">9</button><button data-k="0">0</button><button data-k="-">-</button>
+        </div>
+        <div class="ru-kb-row">
+            <button data-k="й">й</button><button data-k="ц">ц</button><button data-k="у">у</button><button data-k="к">к</button><button data-k="е">е</button><button data-k="н">н</button><button data-k="г">г</button><button data-k="ш">ш</button><button data-k="щ">щ</button><button data-k="з">з</button><button data-k="х">х</button><button data-k="ъ">ъ</button>
+        </div>
+        <div class="ru-kb-row">
+            <button data-k="ф">ф</button><button data-k="ы">ы</button><button data-k="в">в</button><button data-k="а">а</button><button data-k="п">п</button><button data-k="р">р</button><button data-k="о">о</button><button data-k="л">л</button><button data-k="д">д</button><button data-k="ж">ж</button><button data-k="э">э</button>
+        </div>
+        <div class="ru-kb-row">
+            <button data-k="я">я</button><button data-k="ч">ч</button><button data-k="с">с</button><button data-k="м">м</button><button data-k="и">и</button><button data-k="т">т</button><button data-k="ь">ь</button><button data-k="б">б</button><button data-k="ю">ю</button><button data-k="." class="ru-kb-wide">.</button><button data-k="," class="ru-kb-wide">,</button>
+        </div>
+        <div class="ru-kb-row">
+            <button id="ruKbShift" class="ru-kb-mod">⇧ Shift</button><button data-k="́" title="Betonung (Akzent)">◌́</button><button data-k=" " class="ru-kb-space">Leertaste</button><button data-k="?">?</button><button data-k="!">!</button><button id="ruKbBack" class="ru-kb-mod">⌫</button>
+        </div>
+    </div>
+</div>
+
+<div class="back-link">
+    <a href="index.html">← Zurück zum Vokabeltrainer</a>
+</div>
+
+<script>
+// ============================================
+// Akzent-Helfer (entferne Betonungszeichen für Vergleich)
+// ============================================
+function normalize(s) {
+    return (s || '').toLowerCase().replace(/[\u0301́]/g, '').replace(/ё/g, 'е').trim();
+}
+
+// ============================================
+// Tabs
+// ============================================
+function showTab(idx) {
+    document.querySelectorAll('.tab-btn').forEach((b, i) => b.classList.toggle('active', i === idx));
+    document.querySelectorAll('.exercise-card').forEach((c, i) => c.classList.toggle('hidden', i !== idx));
+}
+
+// ============================================
+// Übung 3 A — Konjugation
+// ============================================
+function checkConj() {
+    let allCorrect = true;
+    let total = 0, correct = 0;
+    document.querySelectorAll('#card0 .conj-input').forEach(inp => {
+        total++;
+        const expected = normalize(inp.dataset.form);
+        const got = normalize(inp.value);
+        inp.classList.remove('correct', 'wrong');
+        if (got === expected) {
+            inp.classList.add('correct');
+            correct++;
+        } else {
+            inp.classList.add('wrong');
+            allCorrect = false;
+        }
+    });
+    const fb = document.getElementById('feedback0');
+    if (allCorrect) {
+        fb.textContent = '✓ Alle richtig!';
+        fb.className = 'feedback correct';
+        speakRu('я еду, ты едешь, он едет, мы едем, вы едете, они едут');
+    } else {
+        fb.textContent = correct + ' von ' + total + ' richtig';
+        fb.className = 'feedback wrong';
+    }
+}
+function resetConj() {
+    document.querySelectorAll('#card0 .conj-input').forEach(inp => {
+        inp.value = '';
+        inp.classList.remove('correct', 'wrong');
+    });
+    document.getElementById('feedback0').textContent = '';
+}
+function solveConj() {
+    document.querySelectorAll('#card0 .conj-input').forEach(inp => {
+        inp.value = inp.dataset.form;
+        inp.classList.remove('wrong');
+        inp.classList.add('correct');
+    });
+    document.getElementById('feedback0').textContent = 'Lösung angezeigt';
+    document.getElementById('feedback0').className = 'feedback';
+}
+
+// ============================================
+// Übung 3 Б — Lückentext
+// ============================================
+// Einige Sätze akzeptieren mehrere Antworten (z.B. "поедем" oder "едем")
+const fillExercises = [
+    { num: 1,  pre: 'За́втра мы',                          post: 'на по́езде в Санкт-Петербу́рг.',         answers: ['едем', 'поедем'] },
+    { num: 2,  pre: 'Я никогда́ не',                       post: 'на такси́, потому́ что э́то до́рого.',     answers: ['езжу'] },
+    { num: 3,  pre: 'Моя́ жена́ ка́ждый день',              post: 'в сало́н красоты́.',                   answers: ['ездит'] },
+    { num: 4,  pre: '— Куда́ ты',                         post: '? — Домо́й.',                          answers: ['едешь'] },
+    { num: 5,  pre: '— Вы опя́ть',                        post: 'в о́тпуск?',                           answers: ['едете', 'поедете'] },
+    { num: 6,  pre: '— Мы не',                            post: 'в о́тпуск уже́ год.',                   answers: ['ездили'] },
+    { num: 7,  pre: 'Вчера́ я',                           post: 'на да́чу на электри́чке.',              answers: ['ездил', 'ездила'] },
+    { num: 8,  pre: 'Когда́ я вчера́',                      post: 'на да́чу, я чита́л журна́л.',             answers: ['ехал', 'ехала'] },
+    { num: 9,  pre: 'Мой друг сли́шком бы́стро',           post: 'на мотоци́кле, э́то о́чень опа́сно.',     answers: ['ездит'] },
+    { num: 10, pre: 'В Москве́ я не люблю́',               post: 'на маши́не, потому́ что в го́роде про́бки.', answers: ['ездить'] },
+    { num: 11, pre: 'В Евро́пе мно́гие лю́ди',              post: 'на рабо́ту на велосипе́де.',             answers: ['ездят'] },
+];
+
+function buildFill() {
+    const container = document.getElementById('fillContainer');
+    container.innerHTML = '';
+    fillExercises.forEach((ex, i) => {
+        const div = document.createElement('div');
+        div.className = 'sentence-line';
+        div.innerHTML = '<span class="q-num">' + ex.num + ')</span>' +
+            escapeHtml(ex.pre) + ' <input class="fill-input" data-idx="' + i + '" autocomplete="off"> ' +
+            escapeHtml(ex.post);
+        container.appendChild(div);
+    });
+    // Enter prüft, Tab springt automatisch
+    container.querySelectorAll('.fill-input').forEach(inp => {
+        inp.addEventListener('keydown', (e) => {
+            if (e.key === 'Enter') { e.preventDefault(); checkFill(); }
+        });
+    });
+}
+function checkFill() {
+    let total = 0, correct = 0;
+    document.querySelectorAll('#fillContainer .fill-input').forEach(inp => {
+        total++;
+        const idx = parseInt(inp.dataset.idx, 10);
+        const ex = fillExercises[idx];
+        const got = normalize(inp.value);
+        inp.classList.remove('correct', 'wrong');
+        if (got && ex.answers.some(a => normalize(a) === got)) {
+            inp.classList.add('correct');
+            correct++;
+        } else {
+            inp.classList.add('wrong');
+        }
+    });
+    const fb = document.getElementById('feedback1');
+    fb.textContent = correct === total ? '✓ Alle richtig!' : correct + ' von ' + total + ' richtig';
+    fb.className = 'feedback ' + (correct === total ? 'correct' : 'wrong');
+    document.getElementById('score1').innerHTML = '<strong>' + correct + '</strong> / ' + total;
+}
+function resetFill() {
+    document.querySelectorAll('#fillContainer .fill-input').forEach(inp => {
+        inp.value = '';
+        inp.classList.remove('correct', 'wrong');
+    });
+    document.getElementById('feedback1').textContent = '';
+    document.getElementById('score1').textContent = '';
+}
+function solveFill() {
+    document.querySelectorAll('#fillContainer .fill-input').forEach(inp => {
+        const idx = parseInt(inp.dataset.idx, 10);
+        inp.value = fillExercises[idx].answers[0];
+        inp.classList.remove('wrong');
+        inp.classList.add('correct');
+    });
+    document.getElementById('feedback1').textContent = 'Lösung angezeigt';
+    document.getElementById('feedback1').className = 'feedback';
+}
+
+// ============================================
+// Übung 4 A — Matching
+// ============================================
+const characteristics = [
+    'красиво', 'удобно', 'много народу', 'популярный вид транспорта',
+    'дорого', 'недорого', 'дёшево', 'медленно', 'шумно',
+    'комфортно', 'пробки', 'полезно', 'быстро'
+];
+// Antworten gemäss PDF (Pfeile auf S. 117)
+const transportAnswers = {
+    'метро́':       ['удобно', 'много народу', 'популярный вид транспорта', 'недорого', 'шумно', 'быстро'],
+    'трамва́й':     ['много народу', 'недорого', 'медленно'],
+    'такси́':       ['дорого', 'быстро', 'комфортно', 'удобно'],
+    'автомоби́ль':  ['удобно', 'быстро', 'комфортно', 'пробки'],
+    'ходи́ть пешко́м': ['дёшево', 'медленно', 'полезно', 'красиво']
+};
+
+let matchSelections = {};
+
+function buildMatch() {
+    const container = document.getElementById('matchContainer');
+    container.innerHTML = '';
+    matchSelections = {};
+    Object.keys(transportAnswers).forEach(transport => {
+        matchSelections[transport] = new Set();
+        const block = document.createElement('div');
+        block.className = 'transport-block';
+        block.innerHTML = '<div class="transport-name">' + transport + '</div>';
+        const row = document.createElement('div');
+        row.className = 'chip-row';
+        characteristics.forEach(ch => {
+            const btn = document.createElement('button');
+            btn.className = 'chip';
+            btn.textContent = ch;
+            btn.dataset.transport = transport;
+            btn.dataset.char = ch;
+            btn.addEventListener('click', () => {
+                if (btn.disabled) return;
+                if (matchSelections[transport].has(ch)) {
+                    matchSelections[transport].delete(ch);
+                    btn.classList.remove('selected');
+                } else {
+                    matchSelections[transport].add(ch);
+                    btn.classList.add('selected');
+                }
+            });
+            row.appendChild(btn);
+        });
+        block.appendChild(row);
+        container.appendChild(block);
+    });
+}
+function checkMatch() {
+    let correctChips = 0, wrongChips = 0, missedChips = 0, totalCorrect = 0;
+    Object.keys(transportAnswers).forEach(transport => {
+        const correctSet = new Set(transportAnswers[transport]);
+        totalCorrect += correctSet.size;
+        const selected = matchSelections[transport];
+        document.querySelectorAll('.chip[data-transport="' + cssEscape(transport) + '"]').forEach(btn => {
+            const ch = btn.dataset.char;
+            const isSel = selected.has(ch);
+            const isCor = correctSet.has(ch);
+            btn.classList.remove('selected');
+            btn.disabled = true;
+            if (isSel && isCor) { btn.classList.add('correct'); correctChips++; }
+            else if (isSel && !isCor) { btn.classList.add('wrong'); wrongChips++; }
+            else if (!isSel && isCor) { btn.classList.add('missed'); missedChips++; }
+        });
+    });
+    const fb = document.getElementById('feedback2');
+    if (wrongChips === 0 && missedChips === 0) {
+        fb.textContent = '✓ Perfekt!';
+        fb.className = 'feedback correct';
+    } else {
+        fb.textContent = correctChips + ' richtig, ' + wrongChips + ' falsch, ' + missedChips + ' fehlend';
+        fb.className = 'feedback wrong';
+    }
+    document.getElementById('score2').innerHTML = '<strong>' + correctChips + '</strong> / ' + totalCorrect + ' richtig zugeordnet';
+}
+function resetMatch() {
+    buildMatch();
+    document.getElementById('feedback2').textContent = '';
+    document.getElementById('score2').textContent = '';
+}
+function solveMatch() {
+    buildMatch();
+    Object.keys(transportAnswers).forEach(transport => {
+        transportAnswers[transport].forEach(ch => {
+            const btn = document.querySelector('.chip[data-transport="' + cssEscape(transport) + '"][data-char="' + cssEscape(ch) + '"]');
+            if (btn) btn.classList.add('correct');
+        });
+        document.querySelectorAll('.chip[data-transport="' + cssEscape(transport) + '"]').forEach(b => b.disabled = true);
+    });
+    document.getElementById('feedback2').textContent = 'Lösung angezeigt';
+    document.getElementById('feedback2').className = 'feedback';
+}
+
+function cssEscape(s) {
+    return s.replace(/["\\]/g, '\\$&');
+}
+function escapeHtml(s) {
+    const d = document.createElement('div');
+    d.textContent = s;
+    return d.innerHTML;
+}
+
+// ============================================
+// TTS
+// ============================================
+function speakRu(text) {
+    if (!window.speechSynthesis) return;
+    const u = new SpeechSynthesisUtterance(text);
+    u.lang = 'ru-RU';
+    u.rate = 0.9;
+    const v = speechSynthesis.getVoices().find(v => v.lang.startsWith('ru'));
+    if (v) u.voice = v;
+    speechSynthesis.speak(u);
+}
+if (window.speechSynthesis) speechSynthesis.getVoices();
+
+// ============================================
+// Russian virtual keyboard (für <input>-Felder)
+// ============================================
+(function() {
+    const kb = document.getElementById('ruKeyboard');
+    const kbClose = document.getElementById('ruKbClose');
+    const kbShift = document.getElementById('ruKbShift');
+    const kbBack = document.getElementById('ruKbBack');
+    let lastInput = null;
+    let lastStart = 0, lastEnd = 0;
+    let shiftOn = false;
+
+    function isTarget(el) {
+        return el && (el.classList.contains('fill-input') || el.classList.contains('conj-input'));
+    }
+    function saveCaret() {
+        if (!lastInput) return;
+        lastStart = lastInput.selectionStart ?? lastInput.value.length;
+        lastEnd = lastInput.selectionEnd ?? lastInput.value.length;
+    }
+    function insertText(text) {
+        if (!lastInput) return;
+        lastInput.focus();
+        const v = lastInput.value;
+        lastInput.value = v.slice(0, lastStart) + text + v.slice(lastEnd);
+        const pos = lastStart + text.length;
+        lastInput.setSelectionRange(pos, pos);
+        lastStart = lastEnd = pos;
+        lastInput.dispatchEvent(new Event('input', { bubbles: true }));
+    }
+    function backspace() {
+        if (!lastInput) return;
+        lastInput.focus();
+        const v = lastInput.value;
+        if (lastStart === lastEnd && lastStart > 0) {
+            lastInput.value = v.slice(0, lastStart - 1) + v.slice(lastEnd);
+            const pos = lastStart - 1;
+            lastInput.setSelectionRange(pos, pos);
+            lastStart = lastEnd = pos;
+        } else if (lastStart !== lastEnd) {
+            lastInput.value = v.slice(0, lastStart) + v.slice(lastEnd);
+            lastInput.setSelectionRange(lastStart, lastStart);
+            lastEnd = lastStart;
+        }
+        lastInput.dispatchEvent(new Event('input', { bubbles: true }));
+    }
+
+    document.addEventListener('focusin', (e) => {
+        if (isTarget(e.target)) {
+            lastInput = e.target;
+            saveCaret();
+            kb.classList.add('visible');
+        }
+    });
+    document.addEventListener('selectionchange', () => {
+        if (document.activeElement && isTarget(document.activeElement)) {
+            lastInput = document.activeElement;
+            saveCaret();
+        }
+    });
+    // Buttons dürfen Fokus nicht stehlen
+    kb.addEventListener('mousedown', (e) => e.preventDefault());
+
+    kb.querySelectorAll('button[data-k]').forEach(btn => {
+        btn.addEventListener('click', () => {
+            let ch = btn.dataset.k;
+            if (shiftOn && ch.length === 1 && ch !== ' ' && ch !== '\u0301') ch = ch.toUpperCase();
+            insertText(ch);
+            if (shiftOn) {
+                shiftOn = false;
+                kb.classList.remove('shift');
+                kbShift.classList.remove('active');
+            }
+        });
+    });
+    kbShift.addEventListener('click', () => {
+        shiftOn = !shiftOn;
+        kb.classList.toggle('shift', shiftOn);
+        kbShift.classList.toggle('active', shiftOn);
+    });
+    kbBack.addEventListener('click', backspace);
+    kbClose.addEventListener('click', () => kb.classList.remove('visible'));
+})();
+
+// ============================================
+// Init
+// ============================================
+buildFill();
+buildMatch();
+</script>
+</body>
+</html>

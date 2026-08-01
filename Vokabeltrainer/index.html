@@ -272,6 +272,24 @@
             margin-left: 12px;
         }
 
+        .saved-vocab-delete {
+            background: none;
+            border: none;
+            color: var(--text-muted);
+            cursor: pointer;
+            font-size: 1.1rem;
+            padding: 4px 8px;
+            border-radius: 6px;
+            transition: all 0.2s ease;
+            margin-left: 8px;
+            flex-shrink: 0;
+        }
+
+        .saved-vocab-delete:hover {
+            color: #e74c3c;
+            background: rgba(231, 76, 60, 0.1);
+        }
+
         .saved-vocab-empty {
             text-align: center;
             color: var(--text-muted);
@@ -1887,7 +1905,7 @@
         }
         .vocab-preview-row {
             display: grid;
-            grid-template-columns: 1fr 1fr auto;
+            grid-template-columns: 2fr 2fr 3fr;
             gap: 12px;
             padding: 12px 18px;
             border-bottom: 1px solid var(--border);
@@ -1939,6 +1957,75 @@
             .btn-generate span:not(.btn-icon) { display: none; }
             .vocab-preview-row { grid-template-columns: 1fr 1fr; }
             .vocab-preview-row .grammar { grid-column: 1 / -1; }
+        }
+
+        /* Conjugation button on flashcard back */
+        .conj-toggle-btn {
+            background: transparent;
+            border: 1px solid var(--accent);
+            color: var(--accent);
+            padding: 6px 16px;
+            border-radius: 20px;
+            cursor: pointer;
+            font-size: 0.85em;
+            font-weight: 600;
+            margin-top: 10px;
+            transition: background 0.2s;
+        }
+        .conj-toggle-btn:hover { background: rgba(212, 168, 67, 0.15); }
+
+        /* Conjugation modal */
+        .conj-modal-overlay {
+            position: fixed; inset: 0;
+            background: rgba(0,0,0,0.7);
+            display: flex; align-items: center; justify-content: center;
+            z-index: 300;
+            opacity: 0; pointer-events: none;
+            transition: opacity 0.2s;
+        }
+        .conj-modal-overlay.visible { opacity: 1; pointer-events: auto; }
+        .conj-modal {
+            background: var(--bg-secondary, #1a2332);
+            border: 1px solid #2c3e50;
+            border-radius: 16px;
+            padding: 28px;
+            max-width: 520px; width: 92%;
+            max-height: 80vh; overflow-y: auto;
+            position: relative;
+        }
+        .conj-modal-close {
+            position: absolute; top: 12px; right: 16px;
+            background: none; border: none;
+            color: #a09888; font-size: 1.6em;
+            cursor: pointer;
+        }
+        .conj-modal-close:hover { color: #e8e0d2; }
+        .conj-modal-title {
+            color: var(--accent);
+            font-family: 'Playfair Display', Georgia, serif;
+            font-size: 1.3em;
+            margin-bottom: 6px;
+        }
+        .conj-modal .conj-aspect {
+            color: #a09888; font-size: 0.9em; margin-bottom: 16px;
+        }
+        .conj-modal table {
+            width: 100%; border-collapse: collapse; margin-bottom: 14px;
+        }
+        .conj-modal th {
+            background: rgba(212, 168, 67, 0.1);
+            color: var(--accent);
+            padding: 6px 10px; text-align: left;
+            font-size: 0.8em; text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        .conj-modal td {
+            padding: 5px 10px;
+            border-bottom: 1px solid rgba(255,255,255,0.06);
+            font-size: 0.95em;
+        }
+        .conj-modal .conj-person {
+            width: 120px; color: #a09888;
         }
     </style>
     <script src="api-key.js"></script>
@@ -2193,6 +2280,9 @@
                     <button class="btn btn-secondary" id="pickVocabFileBtn">
                         <span data-i18n="settings_pick_file">Speicherort wählen</span>
                     </button>
+                    <button class="btn btn-primary" id="exportNowBtn" style="margin-top: 8px;">
+                        <span data-i18n="settings_export_now">💾 Jetzt in JSON exportieren</span>
+                    </button>
                 </div>
             </div>
         </div>
@@ -2209,8 +2299,7 @@
                 <div class="vocab-preview-table" id="vocabPreviewTable"></div>
                 <div class="vocab-preview-actions">
                     <button class="btn btn-primary" id="loadGeneratedCardsBtn">
-                        <span class="btn-icon">&#127924;</span>
-                        <span data-i18n="btn_load_as_cards">Vokabeln laden</span>
+                        <span data-i18n="btn_load_as_cards">💾 In Vokabelliste speichern</span>
                     </button>
                     <button class="btn btn-secondary" id="cancelPreviewBtn">
                         <span data-i18n="btn_cancel">Abbrechen</span>
@@ -2260,6 +2349,9 @@
                 <button class="btn btn-secondary" id="shuffleBtn">
                     <span class="btn-icon">🔀</span> <span data-i18n="btn_shuffle">Mischen</span>
                 </button>
+                <button class="btn btn-secondary" id="directionBtn" data-i18n-title="btn_direction_title" title="Abfragerichtung umschalten">
+                    <span class="btn-icon">⇄</span> <span data-i18n="btn_direction">Richtung</span>
+                </button>
                 <button class="btn btn-secondary" id="mainMenuBtn">
                     <span class="btn-icon">←</span> <span data-i18n="btn_main_menu">Hauptmenü</span>
                 </button>
@@ -2268,16 +2360,18 @@
 
         <div class="flashcard-container" id="flashcardContainer">
             <div class="flashcard" id="flashcard">
-                <div class="flashcard-face flashcard-front">
-                    <span class="card-label" data-i18n="lang_russian">Russisch</span>
+                <div class="flashcard-face flashcard-front" id="flashcardFront">
+                    <span class="card-label" id="frontLabel" data-i18n="lang_russian">Russisch</span>
                     <span class="speaking-indicator" id="speakingIndicator">🔊</span>
                     <div class="grammar-rule" id="grammarRule"></div>
                     <div class="card-images" id="cardImages"></div>
                     <div class="card-text card-text-ru" id="questionText"></div>
+                    <button class="conj-toggle-btn" id="conjToggleBtn" style="display:none;" data-i18n="btn_conjugation">Konjugation</button>
+                    <button class="conj-toggle-btn" id="declToggleBtn" style="display:none;" data-i18n="btn_declension">Deklination</button>
                     <span class="flip-hint" data-i18n="flip_hint">Klicken zum Umdrehen</span>
                 </div>
-                <div class="flashcard-face flashcard-back">
-                    <span class="card-label" data-i18n="lang_german">Deutsch</span>
+                <div class="flashcard-face flashcard-back" id="flashcardBack">
+                    <span class="card-label" id="backLabel" data-i18n="lang_german">Deutsch</span>
                     <div class="card-text card-text-de" id="answerText"></div>
                     <span class="flip-hint" data-i18n="flip_hint">Klicken zum Umdrehen</span>
                 </div>
@@ -2343,461 +2437,43 @@
         </div>
     </div>
 
+    <!-- Conjugation Modal -->
+    <div class="conj-modal-overlay" id="conjModalOverlay">
+        <div class="conj-modal">
+            <button class="conj-modal-close" id="conjModalClose">&times;</button>
+            <h3 class="conj-modal-title" id="conjModalTitle"></h3>
+            <div class="conj-modal-body" id="conjModalBody"></div>
+        </div>
+    </div>
+
+    <!-- Declension Modal -->
+    <div class="conj-modal-overlay" id="declModalOverlay">
+        <div class="conj-modal">
+            <button class="conj-modal-close" id="declModalClose">&times;</button>
+            <h3 class="conj-modal-title" id="declModalTitle"></h3>
+            <div class="conj-modal-body" id="declModalBody"></div>
+        </div>
+    </div>
+
+    <!-- Externe JS-Module -->
+    <script src="js/i18n.js"></script>
+    <script src="js/sr.js"></script>
+    <script src="js/tts.js"></script>
+    <script src="js/db.js"></script>
+    <script src="js/conjugation.js"></script>
+    <script src="js/declension.js"></script>
+    <script src="js/ai-vocab.js"></script>
+    <script src="js/parser.js"></script>
+
     <script>
         // ============================================
         // INTERNATIONALIZATION (i18n)
+        // translations object loaded from js/i18n.js
         // ============================================
-        const translations = {
-            de: {
-                title: 'Russisch Lernen',
-                subtitle: 'Karteikarten & Texte mit Sprachausgabe',
-                mode_title: 'Was möchtest du lernen?',
-                mode_flashcards: 'Karteikarten',
-                mode_flashcards_desc: 'Vokabeln mit Vorder- und Rückseite',
-                mode_texts: 'Texte vorlesen',
-                mode_texts_desc: 'Längere Texte im scrollbaren Fenster',
-                upload_text: 'Datei hier ablegen oder klicken',
-                upload_hint: 'Unterstützt Quizlet-Dateien und mehrzeilige Formate',
-                upload_flashcards: 'Karteikarten-Datei hier ablegen oder klicken',
-                upload_flashcards_hint: 'Unterstützt Quizlet-Dateien (Russisch, Deutsch pro Zeile)',
-                upload_texts: 'Text-Datei hier ablegen oder klicken',
-                upload_texts_hint: 'Russische Texte zum Vorlesen und Mitlesen',
-                back_to_selection: '← Zurück zur Auswahl',
-                voice_female: 'Weiblich',
-                voice_male: 'Männlich',
-                voice_female_title: 'Weibliche Stimme',
-                voice_male_title: 'Männliche Stimme',
-                voice_label: 'Stimme:',
-                voice_loading: 'Lädt Stimmen...',
-                voice_none: 'Keine russischen Stimmen',
-                speed_label: 'Tempo:',
-                auto_speak: 'Auto-Vorlesen',
-                speak_back: 'Rückseite vorlesen',
-                switch_to_text: 'zum Text vorlesen',
-                switch_to_text_title: 'Zu Text vorlesen wechseln',
-                back_to_home: 'zum Hauptmenü',
-                back_to_home_title: 'Zum Hauptmenü',
-                switch_to_cards: 'Neue Datei laden',
-                switch_to_cards_title: 'Neue Datei laden',
-                read_all: 'ganzer Text',
-                read_all_title: 'Ganzen Text vorlesen',
-                read_sentence: 'Satz für Satz',
-                read_sentence_title: 'Satz für Satz vorlesen',
-                btn_start: 'Start',
-                btn_stop: 'Stopp',
-                btn_restart: 'Von vorne',
-                all_texts: 'Alle Texte',
-                setup_title: 'Karteikarten bereit',
-                cards_loaded: '{n} Karteikarten geladen',
-                learn_mode_label: 'Lernmodus:',
-                sr_free: 'Frei',
-                sr_free_desc: 'Selbst durchblättern',
-                sr_sm2_desc: 'Klassisch (SuperMemo)',
-                sr_fsrs_desc: 'Modern (optimiert)',
-                due: 'Fällig',
-                new: 'Neu',
-                learned: 'Gelernt',
-                max_new_cards: 'Max. neue Karten:',
-                reset_progress: 'Lernfortschritt zurücksetzen',
-                reset_confirm: 'Lernfortschritt für alle Karten zurücksetzen?',
-                start_flashcards: 'Karteikarten starten',
-                statistics: 'Statistik',
-                export_vocab: 'Export (Excel)',
-                export_empty: 'Keine Vokabeln gespeichert',
-                btn_back_to_menu: 'Neue Datei / Modus wechseln',
-                btn_generate_vocab: 'Vokabeln generieren',
-                btn_generate_vocab_title: 'Vokabeln aus dem Text automatisch generieren (KI)',
-                generating_vocab: 'Generiere Vokabeln...',
-                generate_error_no_key: 'Bitte zuerst den API-Schlüssel in den Einstellungen eingeben.',
-                generate_error_network: 'Netzwerkfehler. Bitte Internetverbindung prüfen.',
-                generate_error_auth: 'Ungültiger API-Schlüssel. Bitte in den Einstellungen korrigieren.',
-                generate_error_rate_limit: 'Zu viele Anfragen. Bitte kurz warten und erneut versuchen.',
-                generate_error_parse: 'Antwort konnte nicht verarbeitet werden. Bitte erneut versuchen.',
-                generate_error_generic: 'Fehler bei der Vokabelgenerierung: {msg}',
-                generate_preview_title: 'Generierte Vokabeln',
-                generate_preview_count: '{n} Vokabeln gefunden',
-                generate_preview_russian: 'Russisch',
-                generate_preview_translation: 'Übersetzung',
-                generate_preview_grammar: 'Grammatik',
-                btn_load_as_cards: 'Vokabeln laden',
-                btn_cancel: 'Abbrechen',
-                btn_continue_text: 'Aktuellen Text weiter lesen',
-                btn_continue_cards: 'Aktuelle Karteikarten weiter lernen',
-                settings_title: 'Einstellungen',
-                settings_api_key: 'Claude API-Schlüssel:',
-                settings_api_key_placeholder: 'sk-ant-api...',
-                settings_api_key_hint: 'Tipp: API-Key in der Datei api-key.js speichern (wird nicht auf GitHub hochgeladen).',
-                btn_save_settings: 'Speichern',
-                btn_settings: 'Einstellungen',
-                settings_auto_export: 'Auto-Export Vokabel-JSON:',
-                settings_no_file: 'Keine Datei gewählt — Vokabeln werden nur im Browser gespeichert.',
-                settings_file_active: 'Auto-Export aktiv: {name}',
-                settings_pick_file: 'Speicherort wählen',
-                stats_title: 'Lernstatistik',
-                close: 'Schließen',
-                history: 'Verlauf',
-                card: 'Karte',
-                total: 'Gesamt',
-                btn_prev: 'Zurück',
-                btn_speak: 'Vorlesen',
-                btn_next: 'Weiter',
-                btn_prev_sentence: 'Voriger Satz',
-                btn_next_sentence: 'Nächster Satz',
-                btn_add_image: 'Bild',
-                btn_restart_cards: 'Erneut durcharbeiten',
-                btn_shuffle: 'Mischen',
-                btn_main_menu: 'Hauptmenü',
-                lang_russian: 'Russisch',
-                lang_german: 'Deutsch',
-                flip_hint: 'Klicken zum Umdrehen',
-                img_load_error: 'Bild nicht geladen',
-                rating_again: 'Nochmal',
-                rating_hard: 'Schwer',
-                rating_good: 'Gut',
-                rating_easy: 'Leicht',
-                done: 'Erledigt',
-                session_complete_title: 'Alle Karten für heute gelernt!',
-                session_summary: 'Du hast {reviewed} Karte{plural} wiederholt{new_part}.',
-                session_summary_new: ', davon {n} neue',
-                session_reviewed: 'Wiederholt',
-                session_new: 'Neue',
-                session_again: 'Nochmal',
-                no_cards_due: 'Keine Karten fällig. Komm später wieder!',
-                no_cards_alert: 'Keine Karten fällig und keine neuen Karten. Komm später wieder!',
-                btn_practice_again: 'Nochmal üben',
-                btn_free_browse: 'Frei durchblättern',
-                all_cards: 'Alle Karten',
-                badge_new: 'Neu',
-                badge_due: 'Fällig',
-                text_fallback: 'Text {n}',
-                click_sentence: 'Klicke auf einen Satz',
-                sentence_progress: 'Satz {current} von {total}',
-                btn_read_aloud: 'Vorlesen',
-                interval_less_1day: '< 1 Tag',
-                interval_1day: '1 Tag',
-                interval_days: '{n} Tage',
-                interval_months: '{n} Mon.',
-                interval_years: '{n} J.',
-                duration_sec: '{n} Sek.',
-                duration_min: '{m} Min.',
-                duration_min_sec: '{m} Min. {s} Sek.',
-                duration_hr_min: '{h} Std. {m} Min.',
-                stats_no_sessions: 'Noch keine Lernsessions aufgezeichnet.',
-                stats_streak: 'Tage Streak',
-                stats_days: 'Lerntage',
-                stats_cards_total: 'Karten gesamt',
-                stats_avg_session: '\u2205 pro Session',
-                stats_time_total: 'Lernzeit gesamt',
-                stats_day_detail: '{cards} Karten ({newCards} neue) \u00b7 {sessions} Session{plural}',
-                day_names: ['So', 'Mo', 'Di', 'Mi', 'Do', 'Fr', 'Sa'],
-                cards_suffix: 'n',
-                saved_vocab_title: 'Gespeicherte Vokabeln',
-                saved_vocab_all: 'Alle Vokabeln',
-                saved_vocab_cards: '{n} Karten',
-                saved_vocab_empty: 'Noch keine Vokabeln gespeichert.',
-                saved_vocab_delete_confirm: 'Lektion "{name}" wirklich löschen? ({n} Karten)',
-            },
-            en: {
-                title: 'Learn Russian',
-                subtitle: 'Flashcards & Texts with Speech',
-                mode_title: 'What do you want to learn?',
-                mode_flashcards: 'Flashcards',
-                mode_flashcards_desc: 'Vocabulary with front and back',
-                mode_texts: 'Read texts aloud',
-                mode_texts_desc: 'Longer texts in a scrollable window',
-                upload_text: 'Drop file here or click',
-                upload_hint: 'Supports Quizlet files and multiline formats',
-                upload_flashcards: 'Drop flashcard file here or click',
-                upload_flashcards_hint: 'Supports Quizlet files (Russian, German per line)',
-                upload_texts: 'Drop text file here or click',
-                upload_texts_hint: 'Russian texts for reading and listening',
-                back_to_selection: '\u2190 Back to selection',
-                voice_female: 'Female',
-                voice_male: 'Male',
-                voice_female_title: 'Female voice',
-                voice_male_title: 'Male voice',
-                voice_label: 'Voice:',
-                voice_loading: 'Loading voices...',
-                voice_none: 'No Russian voices',
-                speed_label: 'Speed:',
-                auto_speak: 'Auto-read',
-                speak_back: 'Read back side',
-                switch_to_text: 'to text reading',
-                switch_to_text_title: 'Switch to text reading',
-                back_to_home: 'Main menu',
-                back_to_home_title: 'Back to main menu',
-                switch_to_cards: 'Load new file',
-                switch_to_cards_title: 'Load new file',
-                read_all: 'All',
-                read_all_title: 'Read entire text',
-                read_sentence: 'By sentence',
-                read_sentence_title: 'Read sentence by sentence',
-                btn_start: 'Start',
-                btn_stop: 'Stop',
-                btn_restart: 'Restart',
-                all_texts: 'All texts',
-                setup_title: 'Flashcards ready',
-                cards_loaded: '{n} flashcards loaded',
-                learn_mode_label: 'Learning mode:',
-                sr_free: 'Free',
-                sr_free_desc: 'Browse freely',
-                sr_sm2_desc: 'Classic (SuperMemo)',
-                sr_fsrs_desc: 'Modern (optimized)',
-                due: 'Due',
-                new: 'New',
-                learned: 'Learned',
-                max_new_cards: 'Max new cards:',
-                reset_progress: 'Reset learning progress',
-                reset_confirm: 'Reset learning progress for all cards?',
-                start_flashcards: 'Start flashcards',
-                statistics: 'Statistics',
-                export_vocab: 'Export (Excel)',
-                export_empty: 'No vocabulary saved',
-                btn_back_to_menu: 'New file / switch mode',
-                btn_generate_vocab: 'Generate vocabulary',
-                btn_generate_vocab_title: 'Auto-generate vocabulary from text (AI)',
-                generating_vocab: 'Generating vocabulary...',
-                generate_error_no_key: 'Please enter the API key in settings first.',
-                generate_error_network: 'Network error. Please check your internet connection.',
-                generate_error_auth: 'Invalid API key. Please correct it in settings.',
-                generate_error_rate_limit: 'Too many requests. Please wait a moment and try again.',
-                generate_error_parse: 'Could not process the response. Please try again.',
-                generate_error_generic: 'Error generating vocabulary: {msg}',
-                generate_preview_title: 'Generated Vocabulary',
-                generate_preview_count: '{n} vocabulary items found',
-                generate_preview_russian: 'Russian',
-                generate_preview_translation: 'Translation',
-                generate_preview_grammar: 'Grammar',
-                btn_load_as_cards: 'Load vocabulary',
-                btn_cancel: 'Cancel',
-                btn_continue_text: 'Continue reading current text',
-                btn_continue_cards: 'Continue with current flashcards',
-                settings_title: 'Settings',
-                settings_api_key: 'Claude API key:',
-                settings_api_key_placeholder: 'sk-ant-api...',
-                settings_api_key_hint: 'Tip: Store API key in the file api-key.js (excluded from GitHub via .gitignore).',
-                btn_save_settings: 'Save',
-                btn_settings: 'Settings',
-                settings_auto_export: 'Auto-export vocabulary JSON:',
-                settings_no_file: 'No file selected — vocabulary is stored in browser only.',
-                settings_file_active: 'Auto-export active: {name}',
-                settings_pick_file: 'Choose file location',
-                stats_title: 'Learning Statistics',
-                close: 'Close',
-                history: 'History',
-                card: 'Card',
-                total: 'Total',
-                btn_prev: 'Back',
-                btn_speak: 'Read aloud',
-                btn_next: 'Next',
-                btn_prev_sentence: 'Previous sentence',
-                btn_next_sentence: 'Next sentence',
-                btn_add_image: 'Image',
-                btn_restart_cards: 'Start over',
-                btn_shuffle: 'Shuffle',
-                btn_main_menu: 'Main menu',
-                lang_russian: 'Russian',
-                lang_german: 'German',
-                flip_hint: 'Click to flip',
-                img_load_error: 'Image not loaded',
-                rating_again: 'Again',
-                rating_hard: 'Hard',
-                rating_good: 'Good',
-                rating_easy: 'Easy',
-                done: 'Done',
-                session_complete_title: 'All cards done for today!',
-                session_summary: 'You reviewed {reviewed} card{plural}{new_part}.',
-                session_summary_new: ', including {n} new',
-                session_reviewed: 'Reviewed',
-                session_new: 'New',
-                session_again: 'Again',
-                no_cards_due: 'No cards due. Come back later!',
-                no_cards_alert: 'No cards due and no new cards. Come back later!',
-                btn_practice_again: 'Practice again',
-                btn_free_browse: 'Browse freely',
-                all_cards: 'All cards',
-                badge_new: 'New',
-                badge_due: 'Due',
-                text_fallback: 'Text {n}',
-                click_sentence: 'Click on a sentence',
-                sentence_progress: 'Sentence {current} of {total}',
-                btn_read_aloud: 'Read aloud',
-                interval_less_1day: '< 1 day',
-                interval_1day: '1 day',
-                interval_days: '{n} days',
-                interval_months: '{n} mo.',
-                interval_years: '{n} yr.',
-                duration_sec: '{n} sec.',
-                duration_min: '{m} min.',
-                duration_min_sec: '{m} min. {s} sec.',
-                duration_hr_min: '{h} hr. {m} min.',
-                stats_no_sessions: 'No learning sessions recorded yet.',
-                stats_streak: 'Day streak',
-                stats_days: 'Study days',
-                stats_cards_total: 'Total cards',
-                stats_avg_session: '\u2205 per session',
-                stats_time_total: 'Total study time',
-                stats_day_detail: '{cards} cards ({newCards} new) \u00b7 {sessions} session{plural}',
-                day_names: ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'],
-                cards_suffix: 's',
-                saved_vocab_title: 'Saved Vocabulary',
-                saved_vocab_all: 'All vocabulary',
-                saved_vocab_cards: '{n} cards',
-                saved_vocab_empty: 'No vocabulary saved yet.',
-                saved_vocab_delete_confirm: 'Delete lesson "{name}"? ({n} cards)',
-            },
-            ru: {
-                title: 'Учим русский',
-                subtitle: 'Карточки и тексты с озвучиванием',
-                mode_title: 'Что ты хочешь изучать?',
-                mode_flashcards: 'Карточки',
-                mode_flashcards_desc: 'Словарь с лицевой и обратной стороной',
-                mode_texts: 'Чтение текстов',
-                mode_texts_desc: 'Длинные тексты в прокручиваемом окне',
-                upload_text: 'Перетащите файл сюда или нажмите',
-                upload_hint: 'Поддержка файлов Quizlet и многострочных форматов',
-                upload_flashcards: 'Перетащите файл карточек сюда или нажмите',
-                upload_flashcards_hint: 'Поддержка файлов Quizlet (русский, немецкий в строке)',
-                upload_texts: 'Перетащите текстовый файл сюда или нажмите',
-                upload_texts_hint: 'Русские тексты для чтения и прослушивания',
-                back_to_selection: '\u2190 Назад к выбору',
-                voice_female: 'Женский',
-                voice_male: 'Мужской',
-                voice_female_title: 'Женский голос',
-                voice_male_title: 'Мужской голос',
-                voice_label: 'Голос:',
-                voice_loading: 'Загрузка голосов...',
-                voice_none: 'Нет русских голосов',
-                speed_label: 'Темп:',
-                auto_speak: 'Авто-озвучивание',
-                speak_back: 'Озвучить обратную сторону',
-                switch_to_text: 'к чтению текстов',
-                switch_to_text_title: 'Перейти к чтению текстов',
-                back_to_home: 'Главное меню',
-                back_to_home_title: 'В главное меню',
-                switch_to_cards: 'Загрузить новый файл',
-                switch_to_cards_title: 'Загрузить новый файл',
-                read_all: 'Всё',
-                read_all_title: 'Прочитать весь текст',
-                read_sentence: 'По предложениям',
-                read_sentence_title: 'Читать по предложениям',
-                btn_start: 'Старт',
-                btn_stop: 'Стоп',
-                btn_restart: 'Сначала',
-                all_texts: 'Все тексты',
-                setup_title: 'Карточки готовы',
-                cards_loaded: '{n} карточек загружено',
-                learn_mode_label: 'Режим обучения:',
-                sr_free: 'Свободный',
-                sr_free_desc: 'Листать самому',
-                sr_sm2_desc: 'Классический (SuperMemo)',
-                sr_fsrs_desc: 'Современный (оптимизир.)',
-                due: 'К повтору',
-                new: 'Новые',
-                learned: 'Выучено',
-                max_new_cards: 'Макс. новых карточек:',
-                reset_progress: 'Сбросить прогресс',
-                reset_confirm: 'Сбросить прогресс обучения для всех карточек?',
-                start_flashcards: 'Начать карточки',
-                statistics: 'Статистика',
-                export_vocab: 'Экспорт (Excel)',
-                export_empty: 'Нет сохранённых слов',
-                btn_back_to_menu: 'Новый файл / сменить режим',
-                btn_generate_vocab: 'Создать словарь',
-                btn_generate_vocab_title: 'Создать словарь из текста автоматически (ИИ)',
-                generating_vocab: 'Создаю словарь...',
-                generate_error_no_key: 'Сначала введите API-ключ в настройках.',
-                generate_error_network: 'Ошибка сети. Проверьте подключение к интернету.',
-                generate_error_auth: 'Неверный API-ключ. Исправьте его в настройках.',
-                generate_error_rate_limit: 'Слишком много запросов. Подождите и попробуйте снова.',
-                generate_error_parse: 'Не удалось обработать ответ. Попробуйте ещё раз.',
-                generate_error_generic: 'Ошибка генерации словаря: {msg}',
-                generate_preview_title: 'Созданный словарь',
-                generate_preview_count: 'Найдено {n} слов',
-                generate_preview_russian: 'Русский',
-                generate_preview_translation: 'Перевод',
-                generate_preview_grammar: 'Грамматика',
-                btn_load_as_cards: 'Загрузить слова',
-                btn_cancel: 'Отмена',
-                btn_continue_text: 'Продолжить чтение текста',
-                btn_continue_cards: 'Продолжить с текущими карточками',
-                settings_title: 'Настройки',
-                settings_api_key: 'API-ключ Claude:',
-                settings_api_key_placeholder: 'sk-ant-api...',
-                settings_api_key_hint: 'Совет: сохраните API-ключ в файле api-key.js (не загружается на GitHub).',
-                btn_save_settings: 'Сохранить',
-                btn_settings: 'Настройки',
-                settings_auto_export: 'Автоэкспорт словаря JSON:',
-                settings_no_file: 'Файл не выбран — словарь хранится только в браузере.',
-                settings_file_active: 'Автоэкспорт активен: {name}',
-                settings_pick_file: 'Выбрать файл',
-                stats_title: 'Статистика обучения',
-                close: 'Закрыть',
-                history: 'История',
-                card: 'Карточка',
-                total: 'Всего',
-                btn_prev: 'Назад',
-                btn_speak: 'Озвучить',
-                btn_next: 'Далее',
-                btn_prev_sentence: 'Пред. предложение',
-                btn_next_sentence: 'След. предложение',
-                btn_add_image: 'Фото',
-                btn_restart_cards: 'Пройти заново',
-                btn_shuffle: 'Перемешать',
-                btn_main_menu: 'Главное меню',
-                lang_russian: 'Русский',
-                lang_german: 'Немецкий',
-                flip_hint: 'Нажмите, чтобы перевернуть',
-                img_load_error: 'Изображение не загружено',
-                rating_again: 'Снова',
-                rating_hard: 'Трудно',
-                rating_good: 'Хорошо',
-                rating_easy: 'Легко',
-                done: 'Готово',
-                session_complete_title: 'Все карточки на сегодня изучены!',
-                session_summary: 'Вы повторили {reviewed} карточ{plural}{new_part}.',
-                session_summary_new: ', из них {n} новых',
-                session_reviewed: 'Повторено',
-                session_new: 'Новые',
-                session_again: 'Снова',
-                no_cards_due: 'Нет карточек к повтору. Возвращайтесь позже!',
-                no_cards_alert: 'Нет карточек к повтору и нет новых. Возвращайтесь позже!',
-                btn_practice_again: 'Повторить ещё',
-                btn_free_browse: 'Свободный просмотр',
-                all_cards: 'Все карточки',
-                badge_new: 'Новая',
-                badge_due: 'К повтору',
-                text_fallback: 'Текст {n}',
-                click_sentence: 'Нажмите на предложение',
-                sentence_progress: 'Предложение {current} из {total}',
-                btn_read_aloud: 'Озвучить',
-                interval_less_1day: '< 1 дня',
-                interval_1day: '1 день',
-                interval_days: '{n} дн.',
-                interval_months: '{n} мес.',
-                interval_years: '{n} г.',
-                duration_sec: '{n} сек.',
-                duration_min: '{m} мин.',
-                duration_min_sec: '{m} мин. {s} сек.',
-                duration_hr_min: '{h} ч. {m} мин.',
-                stats_no_sessions: 'Сессий обучения ещё не было.',
-                stats_streak: 'Дней подряд',
-                stats_days: 'Дней учёбы',
-                stats_cards_total: 'Всего карточек',
-                stats_avg_session: '\u2205 за сессию',
-                stats_time_total: 'Всего время учёбы',
-                stats_day_detail: '{cards} карточек ({newCards} новых) \u00b7 {sessions} сесси{plural}',
-                day_names: ['Вс', 'Пн', 'Вт', 'Ср', 'Чт', 'Пт', 'Сб'],
-                cards_suffix: 'ек',
-                saved_vocab_title: 'Сохранённые слова',
-                saved_vocab_all: 'Все слова',
-                saved_vocab_cards: '{n} карточек',
-                saved_vocab_empty: 'Слова ещё не сохранены.',
-                saved_vocab_delete_confirm: 'Удалить урок "{name}"? ({n} карточек)',
-            }
-        };
 
         let currentLang = localStorage.getItem('vokabeltrainer_lang') || 'de';
+        // Query direction: 'ru2other' (Russian -> DE/EN, default) or 'other2ru' (DE/EN -> Russian)
+        let queryDirection = localStorage.getItem('vokabeltrainer_direction') || 'ru2other';
 
         function t(key, params) {
             let text = (translations[currentLang] && translations[currentLang][key]) || translations['de'][key] || key;
@@ -2869,8 +2545,7 @@
         let sessionStartTime = 0;
 
         // Bekannte russische Stimmen nach Geschlecht
-        const femaleVoiceNames = ['irina', 'svetlana', 'maria', 'anna', 'elena', 'natasha', 'olga', 'female', 'женский'];
-        const maleVoiceNames = ['pavel', 'dmitri', 'dmitry', 'alexander', 'sergei', 'sergey', 'boris', 'ivan', 'male', 'мужской'];
+        // femaleVoiceNames + maleVoiceNames moved to js/tts.js
 
         // ============================================
         // DOM ELEMENTS
@@ -2953,6 +2628,16 @@
         const grammarRule = document.getElementById('grammarRule');
         const questionText = document.getElementById('questionText');
         const answerText = document.getElementById('answerText');
+        const conjToggleBtn = document.getElementById('conjToggleBtn');
+        const conjModalOverlay = document.getElementById('conjModalOverlay');
+        const conjModalClose = document.getElementById('conjModalClose');
+        const conjModalTitle = document.getElementById('conjModalTitle');
+        const conjModalBody = document.getElementById('conjModalBody');
+        const declToggleBtn = document.getElementById('declToggleBtn');
+        const declModalOverlay = document.getElementById('declModalOverlay');
+        const declModalClose = document.getElementById('declModalClose');
+        const declModalTitle = document.getElementById('declModalTitle');
+        const declModalBody = document.getElementById('declModalBody');
         const currentCardEl = document.getElementById('currentCard');
         const totalCardsEl = document.getElementById('totalCards');
         const flashcardControls = document.getElementById('flashcardControls');
@@ -2968,66 +2653,16 @@
         const cardListItems = document.getElementById('cardListItems');
         const speakingIndicator = document.getElementById('speakingIndicator');
 
-        // ============================================
-        // UTILITY FUNCTIONS
-        // ============================================
-        function cleanTextForSpeech(text) {
-            if (!text) return '';
-            let cleaned = text.replace(/\([^)]*\)/g, '');
-            cleaned = cleaned.replace(/\//g, ', ');
-            cleaned = cleaned.normalize('NFD');
-            cleaned = cleaned.replace(/[\u0300\u0301]/g, '');
-            cleaned = cleaned.normalize('NFC');
-            const accentedMap = {
-                'а́': 'а', 'а̀': 'а', 'е́': 'е', 'ѐ': 'е',
-                'и́': 'и', 'ѝ': 'и', 'о́': 'о', 'о̀': 'о',
-                'у́': 'у', 'у̀': 'у', 'ы́': 'ы', 'ы̀': 'ы',
-                'э́': 'э', 'э̀': 'э', 'ю́': 'ю', 'ю̀': 'ю',
-                'я́': 'я', 'я̀': 'я', 'ё́': 'ё', 'ё̀': 'ё',
-                'А́': 'А', 'Е́': 'Е', 'И́': 'И', 'О́': 'О',
-                'У́': 'У', 'Ы́': 'Ы', 'Э́': 'Э', 'Ю́': 'Ю',
-                'Я́': 'Я', 'Ё́': 'Ё'
-            };
-            for (const [accented, plain] of Object.entries(accentedMap)) {
-                cleaned = cleaned.split(accented).join(plain);
-            }
-            cleaned = cleaned.replace(/[ˈˊˋ´`ʹʼ]/g, '');
-            cleaned = cleaned.replace(/,\s*,/g, ',');
-            cleaned = cleaned.replace(/\s+/g, ' ').trim();
-            return cleaned;
-        }
-
-        function splitIntoSentences(text) {
-            const parts = text.split(/(?<=[.!?])\s+/);
-            return parts.filter(s => s.trim().length > 0);
-        }
-
-        function splitIntoWords(sentence) {
-            const tokens = [];
-            const regex = /(\S+)|(\s+)/g;
-            let match;
-            let wordIdx = 0;
-            while ((match = regex.exec(sentence)) !== null) {
-                if (match[1]) {
-                    tokens.push({ text: match[1], isSpace: false, wordIdx: wordIdx++ });
-                } else {
-                    tokens.push({ text: match[2], isSpace: true });
-                }
-            }
-            return tokens;
-        }
-
-        function getCleanedWordCount(sentence) {
-            const cleaned = cleanTextForSpeech(sentence);
-            return cleaned.split(/\s+/).filter(w => w.length > 0).length;
-        }
+        // TTS helpers (cleanTextForSpeech, splitIntoSentences, splitIntoWords, getCleanedWordCount) moved to js/tts.js
 
         // ============================================
         // SPACED REPETITION ALGORITHMS
         // ============================================
 
         // --- Card ID (hash of content) ---
-        function getCardId(card) {
+        // Richtungsunabhaengige Inhalts-ID — wird fuer IndexedDB-Storage benutzt,
+        // damit dieselbe Karte nicht zweimal (einmal pro Richtung) gespeichert wird.
+        function getCardContentHash(card) {
             const str = (card.speakableText || card.displayText) + '|' + card.answer;
             let hash = 0;
             for (let i = 0; i < str.length; i++) {
@@ -3035,6 +2670,13 @@
                 hash = hash & hash;
             }
             return 'c_' + Math.abs(hash).toString(36);
+        }
+        // Richtungsabhaengige SR-ID — Forward (ru->de) bleibt unveraendert
+        // (Backward-kompatibel zu bestehenden SR-Daten), Reverse (de->ru)
+        // bekommt eigenen Namespace, damit jede Richtung eigene SR-Statistik hat.
+        function getCardId(card) {
+            const base = getCardContentHash(card);
+            return queryDirection === 'other2ru' ? base + '_rev' : base;
         }
 
         // --- localStorage ---
@@ -3069,102 +2711,7 @@
             };
         }
 
-        // --- SM-2 Algorithm ---
-        function sm2Review(data, quality) {
-            // quality: 0-5
-            if (quality >= 3) {
-                if (data.iterations === 0) data.interval = 1;
-                else if (data.iterations === 1) data.interval = 6;
-                else data.interval = Math.round(data.interval * data.easiness);
-                data.iterations++;
-                data.easiness = Math.max(1.3,
-                    data.easiness + (0.1 - (5 - quality) * (0.08 + (5 - quality) * 0.02)));
-            } else {
-                data.iterations = 0;
-                data.interval = 1;
-            }
-            data.lastReview = Date.now();
-            data.nextReview = Date.now() + data.interval * 24 * 60 * 60 * 1000;
-            data.algorithm = 'sm2';
-            return data;
-        }
-
-        // Predict SM-2 interval for a given quality
-        function sm2PredictInterval(data, quality) {
-            const d = JSON.parse(JSON.stringify(data));
-            if (quality >= 3) {
-                if (d.iterations === 0) return 1;
-                if (d.iterations === 1) return 6;
-                return Math.round(d.interval * d.easiness);
-            }
-            return 1;
-        }
-
-        // --- FSRS Algorithm (simplified with default weights) ---
-        const FSRS_W = [0.4, 0.6, 2.4, 5.8, 4.93, 0.94, 0.86, 0.01, 1.49, 0.14, 0.94, 2.18, 0.05, 0.34, 1.26, 0.29, 2.61];
-
-        function fsrsInitStability(grade) {
-            return Math.max(0.1, FSRS_W[grade - 1]);
-        }
-
-        function fsrsInitDifficulty(grade) {
-            return Math.min(10, Math.max(1, FSRS_W[4] - (grade - 3) * FSRS_W[5]));
-        }
-
-        function fsrsRetrievability(elapsedDays, stability) {
-            return Math.pow(0.9, elapsedDays / stability);
-        }
-
-        function fsrsNextDifficulty(d, grade) {
-            const newD = d - FSRS_W[6] * (grade - 3);
-            return Math.min(10, Math.max(1, FSRS_W[5] * FSRS_W[4] + (1 - FSRS_W[5]) * newD));
-        }
-
-        function fsrsNextStability(d, s, r, grade) {
-            if (grade === 1) {
-                // Forget stability
-                return FSRS_W[11] * Math.pow(d, -FSRS_W[12]) *
-                    (Math.pow(s + 1, FSRS_W[13]) - 1) *
-                    Math.exp((1 - r) * FSRS_W[14]);
-            }
-            const hardPenalty = grade === 2 ? FSRS_W[15] : 1;
-            const easyBonus = grade === 4 ? FSRS_W[16] : 1;
-            return s * (1 + Math.exp(FSRS_W[8]) *
-                (11 - d) * Math.pow(s, -FSRS_W[9]) *
-                (Math.exp((1 - r) * FSRS_W[10]) - 1) *
-                hardPenalty * easyBonus);
-        }
-
-        function fsrsReview(data, grade) {
-            // grade: 1 (Again), 2 (Hard), 3 (Good), 4 (Easy)
-            if (data.reps === 0) {
-                data.difficulty = fsrsInitDifficulty(grade);
-                data.stability = fsrsInitStability(grade);
-            } else {
-                const elapsed = Math.max(0, (Date.now() - data.lastReview) / (1000 * 60 * 60 * 24));
-                const r = fsrsRetrievability(elapsed, data.stability);
-                data.difficulty = fsrsNextDifficulty(data.difficulty, grade);
-                data.stability = fsrsNextStability(data.difficulty, data.stability, r, grade);
-            }
-            data.reps++;
-            data.interval = Math.max(1, Math.round(data.stability));
-            data.lastReview = Date.now();
-            data.nextReview = Date.now() + data.interval * 24 * 60 * 60 * 1000;
-            data.algorithm = 'fsrs';
-            return data;
-        }
-
-        // Predict FSRS interval for a given grade
-        function fsrsPredictInterval(data, grade) {
-            if (data.reps === 0) {
-                return Math.max(1, Math.round(fsrsInitStability(grade)));
-            }
-            const elapsed = Math.max(0, (Date.now() - data.lastReview) / (1000 * 60 * 60 * 24));
-            const r = fsrsRetrievability(elapsed, data.stability);
-            const d = fsrsNextDifficulty(data.difficulty, grade);
-            const s = fsrsNextStability(d, data.stability, r, grade);
-            return Math.max(1, Math.round(s));
-        }
+        // SM-2 + FSRS algorithms moved to js/sr.js
 
         // --- Vocabulary Database (IndexedDB) ---
         let currentSourceFile = '';
@@ -3174,99 +2721,6 @@
         let apiKey = '';
         let isGenerating = false;
         let generatedVocabMap = {}; // { normalized_word: { russian, translation, grammar } }
-
-        async function saveLastDirectory(dirHandle) {
-            try {
-                const db = await openVocabDB();
-                const tx = db.transaction('settings', 'readwrite');
-                tx.objectStore('settings').put({ key: 'lastDirectory', handle: dirHandle });
-            } catch (e) { /* ignore */ }
-        }
-
-        async function loadLastDirectory() {
-            try {
-                const db = await openVocabDB();
-                const tx = db.transaction('settings', 'readonly');
-                const get = tx.objectStore('settings').get('lastDirectory');
-                return new Promise((resolve) => {
-                    get.onsuccess = () => resolve(get.result?.handle || null);
-                    get.onerror = () => resolve(null);
-                });
-            } catch (e) { return null; }
-        }
-
-        function openVocabDB() {
-            return new Promise((resolve, reject) => {
-                const req = indexedDB.open('vokabeltrainer', 2);
-                req.onupgradeneeded = (e) => {
-                    const db = e.target.result;
-                    if (!db.objectStoreNames.contains('vocabulary')) {
-                        const store = db.createObjectStore('vocabulary', { keyPath: 'id' });
-                        store.createIndex('source', 'source', { unique: false });
-                        store.createIndex('topic', 'topic', { unique: false });
-                    }
-                    if (!db.objectStoreNames.contains('settings')) {
-                        db.createObjectStore('settings', { keyPath: 'key' });
-                    }
-                };
-                req.onsuccess = (e) => resolve(e.target.result);
-                req.onerror = (e) => reject(e.target.error);
-            });
-        }
-
-        async function saveCardsToDB(cardsList, source) {
-            const db = await openVocabDB();
-            const tx = db.transaction('vocabulary', 'readwrite');
-            const store = tx.objectStore('vocabulary');
-            for (const card of cardsList) {
-                const id = getCardId(card);
-                const existing = await new Promise(r => { const req = store.get(id); req.onsuccess = () => r(req.result); req.onerror = () => r(null); });
-                let front = card.displayText;
-                let grammar = '';
-                const gm = front.match(/^\((?!img:|speak:)([^)]*)\)\s*/);
-                if (gm) {
-                    grammar = gm[1];
-                    front = front.substring(gm[0].length);
-                }
-                store.put({
-                    id,
-                    front: front || card.displayText,
-                    back: card.answer,
-                    grammar,
-                    forms: card.forms || existing?.forms || [],
-                    images: card.images || [],
-                    tags: existing?.tags || [],
-                    topic: existing?.topic || '',
-                    category: existing?.category || '',
-                    source: source || existing?.source || '',
-                    added: existing?.added || new Date().toISOString()
-                });
-            }
-            await new Promise((resolve, reject) => { tx.oncomplete = resolve; tx.onerror = reject; });
-            // Auto-export after save
-            autoExportJSON().catch(() => {});
-        }
-
-        async function getVocabBySource(source) {
-            if (!source) return [];
-            const db = await openVocabDB();
-            return new Promise((resolve, reject) => {
-                const tx = db.transaction('vocabulary', 'readonly');
-                const idx = tx.objectStore('vocabulary').index('source');
-                const req = idx.getAll(source);
-                req.onsuccess = () => resolve(req.result || []);
-                req.onerror = () => resolve([]);
-            });
-        }
-
-        function dbRecordsToVocabItems(records) {
-            return records.map(r => ({
-                russian: r.front,
-                forms: r.forms || [],
-                translation: r.back,
-                grammar: r.grammar || ''
-            }));
-        }
 
         async function loadVocabForSource(source) {
             const records = await getVocabBySource(source);
@@ -3278,34 +2732,6 @@
             cards = vocabItemsToCards(items);
             isClassicFormat = false;
             isTabFormat = true;
-        }
-
-        async function getAllCardsFromDB() {
-            const db = await openVocabDB();
-            return new Promise((resolve, reject) => {
-                const tx = db.transaction('vocabulary', 'readonly');
-                const req = tx.objectStore('vocabulary').getAll();
-                req.onsuccess = () => resolve(req.result);
-                req.onerror = (e) => reject(e.target.error);
-            });
-        }
-
-        async function getSourcesFromDB() {
-            const allCards = await getAllCardsFromDB();
-            const sourceMap = {};
-            for (const card of allCards) {
-                const src = card.source || '';
-                if (!sourceMap[src]) sourceMap[src] = 0;
-                sourceMap[src]++;
-            }
-            // Sort by name, put empty-source last
-            return Object.entries(sourceMap)
-                .map(([name, count]) => ({ name, count }))
-                .sort((a, b) => {
-                    if (!a.name) return 1;
-                    if (!b.name) return -1;
-                    return a.name.localeCompare(b.name);
-                });
         }
 
         async function renderSavedVocabList() {
@@ -3334,6 +2760,7 @@
                 html += `<div class="saved-vocab-item" data-source="${src.name.replace(/"/g, '&quot;')}">
                     <span class="saved-vocab-item-name">${displayName}</span>
                     <span class="saved-vocab-item-count">${t('saved_vocab_cards', { n: src.count })}</span>
+                    <button class="saved-vocab-delete" data-delete-source="${src.name.replace(/"/g, '&quot;')}" data-count="${src.count}" title="${t('btn_delete') || 'Löschen'}">🗑</button>
                 </div>`;
             }
 
@@ -3342,9 +2769,23 @@
 
             // Click handlers
             list.querySelectorAll('.saved-vocab-item').forEach(item => {
-                item.addEventListener('click', () => {
+                item.addEventListener('click', (e) => {
+                    if (e.target.closest('.saved-vocab-delete')) return;
                     const source = item.dataset.source;
                     loadCardsFromDBSource(source);
+                });
+            });
+
+            // Delete handlers
+            list.querySelectorAll('.saved-vocab-delete').forEach(btn => {
+                btn.addEventListener('click', async (e) => {
+                    e.stopPropagation();
+                    const source = btn.dataset.deleteSource;
+                    const count = btn.dataset.count;
+                    const displayName = source.replace(/\.[^.]+$/, '') || '?';
+                    if (!confirm(t('saved_vocab_delete_confirm', { name: displayName, n: count }))) return;
+                    await deleteSourceFromDB(source);
+                    renderSavedVocabList();
                 });
             });
         }
@@ -3366,113 +2807,6 @@
             isTabFormat = true;
 
             showFlashcardSetup();
-        }
-
-        async function deleteSourceFromDB(source) {
-            const db = await openVocabDB();
-            const tx = db.transaction('vocabulary', 'readwrite');
-            const store = tx.objectStore('vocabulary');
-            const idx = store.index('source');
-            const req = idx.getAll(source);
-            req.onsuccess = () => {
-                for (const record of req.result) {
-                    store.delete(record.id);
-                }
-            };
-            await new Promise((resolve, reject) => { tx.oncomplete = resolve; tx.onerror = reject; });
-            autoExportJSON().catch(() => {});
-        }
-
-        async function exportVocabularyTSV() {
-            const allCards = await getAllCardsFromDB();
-            if (allCards.length === 0) {
-                alert(t('export_empty'));
-                return;
-            }
-            const header = 'Russisch;Deutsch;Thema;Kategorie;Grammatik;Quelle';
-            const rows = allCards.map(c => {
-                const fields = [c.front, c.back, c.topic, c.category, c.grammar, c.source];
-                return fields.map(f => {
-                    const clean = (f || '').replace(/\n/g, ' ');
-                    if (clean.includes(';') || clean.includes('"')) {
-                        return '"' + clean.replace(/"/g, '""') + '"';
-                    }
-                    return clean;
-                }).join(';');
-            });
-            const csv = '\uFEFF' + header + '\n' + rows.join('\n');
-            const blob = new Blob([csv], { type: 'text/csv;charset=utf-8' });
-            const url = URL.createObjectURL(blob);
-            const a = document.createElement('a');
-            const date = new Date().toISOString().slice(0, 10);
-            a.href = url;
-            a.download = `vokabeln_${date}.csv`;
-            a.click();
-            URL.revokeObjectURL(url);
-        }
-
-        // --- Auto-Export JSON ---
-        let vocabFileHandle = null;
-
-        async function saveVocabFileHandle(handle) {
-            try {
-                const db = await openVocabDB();
-                const tx = db.transaction('settings', 'readwrite');
-                tx.objectStore('settings').put({ key: 'vocabFileHandle', handle });
-            } catch (e) { /* ignore */ }
-        }
-
-        async function loadVocabFileHandle() {
-            try {
-                const db = await openVocabDB();
-                const tx = db.transaction('settings', 'readonly');
-                const get = tx.objectStore('settings').get('vocabFileHandle');
-                return new Promise(r => {
-                    get.onsuccess = () => r(get.result?.handle || null);
-                    get.onerror = () => r(null);
-                });
-            } catch (e) { return null; }
-        }
-
-        async function pickVocabExportFile() {
-            if (!window.showSaveFilePicker) return null;
-            try {
-                const handle = await window.showSaveFilePicker({
-                    suggestedName: 'vokabeln.json',
-                    types: [{ description: 'JSON', accept: { 'application/json': ['.json'] } }]
-                });
-                vocabFileHandle = handle;
-                await saveVocabFileHandle(handle);
-                return handle;
-            } catch (e) { return null; } // user cancelled
-        }
-
-        async function autoExportJSON() {
-            try {
-                // Load handle if not yet loaded
-                if (!vocabFileHandle) {
-                    vocabFileHandle = await loadVocabFileHandle();
-                }
-                if (!vocabFileHandle) return; // no file chosen yet
-
-                // Verify permission
-                const perm = await vocabFileHandle.queryPermission({ mode: 'readwrite' });
-                if (perm !== 'granted') {
-                    const req = await vocabFileHandle.requestPermission({ mode: 'readwrite' });
-                    if (req !== 'granted') return;
-                }
-
-                // Get all vocab from DB
-                const allCards = await getAllCardsFromDB();
-                if (allCards.length === 0) return;
-
-                const json = JSON.stringify(allCards, null, 2);
-                const writable = await vocabFileHandle.createWritable();
-                await writable.write(json);
-                await writable.close();
-            } catch (e) {
-                console.warn('Auto-export JSON failed:', e);
-            }
         }
 
         // ============================================
@@ -3527,165 +2861,7 @@
             settingsPanel.classList.remove('visible');
         }
 
-        function buildVocabPrompt(text, targetLang) {
-            const langName = { de: 'German', en: 'English', ru: 'Russian' }[targetLang] || 'German';
-
-            const translationInstruction = targetLang === 'ru'
-                ? 'Provide a brief Russian definition or explanation for each word (as if for a Russian learner clarifying meaning).'
-                : `Translate each word/phrase into ${langName}.`;
-
-            const grammarLangInstruction = targetLang === 'de'
-                ? 'Write ALL grammar notes in German (e.g. "unvollendeter Aspekt, 3. Pers. Sg.", "weibl.", "männl.", "Präp. + Genitiv").'
-                : 'Write ALL grammar notes in English (e.g. "imperfective, 3rd pers. sg.", "fem.", "masc.", "prep. + genitive").';
-
-            return `You are a Russian language teaching assistant. Create a complete vocabulary list for the following Russian text. Every single word must be included.
-
-Instructions:
-1. Extract EVERY word from the text — do not skip any word, no matter how basic (including и, в, на, он, она, я, ты, есть, это, etc.).
-2. ${translationInstruction}
-3. For each item, include brief grammar info: noun gender, verb aspect, case requirements for prepositions, etc. ${grammarLangInstruction}
-4. For verbs: give the infinitive form as the "russian" value, but also list the conjugated form(s) appearing in the text in the "forms" array.
-5. For nouns/adjectives: give the dictionary form (nominative singular), and list declined forms from the text in the "forms" array.
-6. If a word appears in multiple forms, create only ONE entry with all forms listed.
-7. IMPORTANT: Also extract ALL multi-word expressions, idioms, collocations, and fixed phrases as SEPARATE entries. Examples:
-   - Prepositional phrases: "в наше время" (in our time), "на самом деле" (actually), "в конце концов" (in the end)
-   - Verb constructions: "у меня есть" (I have), "мне нравится" (I like), "можно сказать" (one could say)
-   - Set expressions: "друг друга" (each other), "так как" (since/because), "то есть" (that is)
-   - Any phrase where the meaning differs from the individual words
-   List these IN ADDITION to the individual words — do not skip the individual words.
-8. Return ONLY a valid JSON array. No markdown, no explanation, no code fences.
-
-JSON format — each element:
-{
-  "russian": "dictionary form of the word",
-  "forms": ["form1_from_text", "form2_from_text"],
-  "translation": "translation in ${langName}",
-  "grammar": "brief grammar note in ${langName}"
-}
-
-Russian text to analyze:
-"""
-${text}
-"""`;
-        }
-
-        function buildMissingWordsPrompt(missingWords, originalText, targetLang) {
-            const langName = { de: 'German', en: 'English', ru: 'Russian' }[targetLang] || 'German';
-
-            const translationInstruction = targetLang === 'ru'
-                ? 'Provide a brief Russian definition or explanation for each word.'
-                : `Translate each word into ${langName}.`;
-
-            const grammarLangInstruction = targetLang === 'de'
-                ? 'Write grammar notes in German.'
-                : 'Write grammar notes in English.';
-
-            return `You are a Russian language teaching assistant. The following Russian words appear in a text but were missed in the initial vocabulary extraction. Provide vocabulary entries for EVERY word listed below — do not skip any, even if they are basic, common, or proper nouns.
-
-Instructions:
-1. ${translationInstruction}
-2. Include brief grammar info. ${grammarLangInstruction}
-3. Give the dictionary form as "russian" and the text form in "forms" array.
-4. For proper nouns (names, company names), still provide an entry with a note in the grammar field.
-5. Return ONLY a valid JSON array. No markdown, no explanation, no code fences.
-
-JSON format for each entry:
-{"russian": "dictionary form", "forms": ["form_from_text"], "translation": "translation", "grammar": "grammar note"}
-
-Original text for context:
-"""
-${originalText}
-"""
-
-Words that MUST be included (${missingWords.length} words):
-${missingWords.join(', ')}`;
-        }
-
-        async function callClaudeAPI(prompt) {
-            const response = await fetch('https://api.anthropic.com/v1/messages', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                    'x-api-key': apiKey,
-                    'anthropic-version': '2023-06-01',
-                    'anthropic-dangerous-direct-browser-access': 'true'
-                },
-                body: JSON.stringify({
-                    model: 'claude-sonnet-4-20250514',
-                    max_tokens: 16384,
-                    messages: [{ role: 'user', content: prompt }]
-                })
-            });
-
-            if (!response.ok) {
-                if (response.status === 401) throw new Error('AUTH');
-                if (response.status === 429) throw new Error('RATE_LIMIT');
-                const body = await response.text().catch(() => '');
-                throw new Error(`HTTP_${response.status}: ${body.substring(0, 200)}`);
-            }
-
-            const data = await response.json();
-            const content = data.content?.[0]?.text;
-            if (!content) throw new Error('EMPTY_RESPONSE');
-            return content;
-        }
-
-        function parseVocabResponse(responseText) {
-            let jsonStr = responseText.trim();
-
-            // Strip markdown code fences if present
-            const fenceMatch = jsonStr.match(/```(?:json)?\s*([\s\S]*?)```/);
-            if (fenceMatch) {
-                jsonStr = fenceMatch[1].trim();
-            }
-
-            const startIdx = jsonStr.indexOf('[');
-            if (startIdx === -1) throw new Error('PARSE');
-
-            let endIdx = jsonStr.lastIndexOf(']');
-            if (endIdx === -1) {
-                // Truncated response — try to salvage by finding last complete object
-                const lastComplete = jsonStr.lastIndexOf('}');
-                if (lastComplete === -1) throw new Error('PARSE');
-                jsonStr = jsonStr.substring(startIdx, lastComplete + 1) + ']';
-                // Remove trailing comma before the ]
-                jsonStr = jsonStr.replace(/,\s*\]$/, ']');
-            } else {
-                jsonStr = jsonStr.substring(startIdx, endIdx + 1);
-            }
-
-            let items;
-            try {
-                items = JSON.parse(jsonStr);
-            } catch (e) {
-                // Last resort: try removing the last incomplete entry
-                const lastBrace = jsonStr.lastIndexOf('},{');
-                if (lastBrace === -1) throw new Error('PARSE');
-                jsonStr = jsonStr.substring(0, lastBrace + 1) + ']';
-                items = JSON.parse(jsonStr);
-            }
-            if (!Array.isArray(items) || items.length === 0) throw new Error('PARSE');
-
-            return items.filter(item => {
-                if (!item || typeof item.russian !== 'string') return false;
-                const r = item.russian.trim();
-                if (!r) return false;
-                // Filter out punctuation-only entries (-, --, ...)
-                if (/^[\-–—.,:;!?…]+$/.test(r)) return false;
-                // Filter out entries that are too long (whole sentences/paragraphs)
-                // A reasonable vocabulary entry (including multi-word phrases) should be under 120 chars
-                if (r.length > 120) return false;
-                // Filter out entries with too many words (max ~8 for idiomatic phrases)
-                const wordCount = r.split(/\s+/).length;
-                if (wordCount > 8) return false;
-                return true;
-            }).map(item => ({
-                russian: item.russian.trim(),
-                forms: Array.isArray(item.forms) ? item.forms.map(f => f.trim()) : [],
-                translation: (item.translation || '').trim(),
-                grammar: (item.grammar || '').trim()
-            }));
-        }
+        // buildVocabPrompt, buildMissingWordsPrompt, callClaudeAPI, parseVocabResponse moved to js/ai-vocab.js
 
         function vocabItemsToCards(items) {
             return items.map(item => {
@@ -3695,7 +2871,9 @@ ${missingWords.join(', ')}`;
                     speakableText: item.russian,
                     answer: item.translation,
                     forms: item.forms || [],
-                    images: []
+                    images: item.images || [],
+                    conjugation: item.conjugation || null,
+                    declension: item.declension || null
                 };
             });
         }
@@ -3893,7 +3071,15 @@ ${missingWords.join(', ')}`;
                         const responseText2 = await callClaudeAPI(prompt2);
                         const extraItems = parseVocabResponse(responseText2);
                         if (extraItems.length > 0) {
-                            vocabItems = vocabItems.concat(extraItems);
+                            // Merge with dedup by normalized russian
+                            const existingKeys = new Set(vocabItems.map(it => it.russian.replace(/́/g, '').toLowerCase().trim()));
+                            for (const it of extraItems) {
+                                const k = it.russian.replace(/́/g, '').toLowerCase().trim();
+                                if (!existingKeys.has(k)) {
+                                    vocabItems.push(it);
+                                    existingKeys.add(k);
+                                }
+                            }
                             buildVocabMap(vocabItems);
                             markVocabWords();
                         }
@@ -3925,7 +3111,7 @@ ${missingWords.join(', ')}`;
             }
         }
 
-        function loadGeneratedCards() {
+        async function loadGeneratedCards() {
             const items = generateVocabBtn._pendingItems;
             if (!items || items.length === 0) return;
 
@@ -3937,7 +3123,15 @@ ${missingWords.join(', ')}`;
             isClassicFormat = false;
             isTabFormat = true;
 
-            saveCardsToDB(cards, currentSourceFile).catch(e => console.warn('DB save error:', e));
+            try {
+                await saveCardsToDB(cards, currentSourceFile);
+                // Also sync to vokabeln.json file if a file handle is available
+                await autoExportJSON();
+                alert(t('save_success', { n: generatedCards.length }));
+            } catch (e) {
+                console.error('DB save error:', e);
+                alert(t('save_error', { msg: e.message || e }));
+            }
 
             // Stay in text reader — vocab highlights are already active
             hideVocabPreview();
@@ -3945,8 +3139,15 @@ ${missingWords.join(', ')}`;
 
         // --- Interval Formatting ---
         function formatInterval(days) {
-            if (days < 1) return t('interval_less_1day');
-            if (days === 1) return t('interval_1day');
+            if (days < 1 / 24) {
+                const minutes = Math.max(1, Math.round(days * 1440));
+                return t('interval_minutes', { n: minutes });
+            }
+            if (days < 1) {
+                const hours = Math.max(1, Math.round(days * 24));
+                return t('interval_hours', { n: hours });
+            }
+            if (Math.round(days) === 1) return t('interval_1day');
             if (days < 30) return t('interval_days', { n: Math.round(days) });
             if (days < 365) return t('interval_months', { n: (Math.round(days / 30 * 10) / 10) });
             return t('interval_years', { n: (Math.round(days / 365 * 10) / 10) });
@@ -4058,7 +3259,7 @@ ${missingWords.join(', ')}`;
                 currentIndex = reviewQueue[reviewQueueIndex];
                 renderCard();
                 updateSRStats();
-                if (autoSpeakCheckbox.checked) {
+                if (autoSpeakCheckbox.checked && queryDirection === 'ru2other') {
                     setTimeout(() => speak(cards[currentIndex].speakableText), 300);
                 }
             } else {
@@ -4111,7 +3312,7 @@ ${missingWords.join(', ')}`;
                 document.getElementById('srStats').classList.add('visible');
                 renderCard();
                 updateSRStats();
-                if (autoSpeakCheckbox.checked) {
+                if (autoSpeakCheckbox.checked && queryDirection === 'ru2other') {
                     setTimeout(() => speak(cards[currentIndex].speakableText), 300);
                 }
             } else {
@@ -4255,13 +3456,7 @@ ${missingWords.join(', ')}`;
         // ============================================
         // VOICE LOADING
         // ============================================
-        function getVoiceGender(voice) {
-            const nameLower = voice.name.toLowerCase();
-            if (femaleVoiceNames.some(n => nameLower.includes(n))) return 'female';
-            if (maleVoiceNames.some(n => nameLower.includes(n))) return 'male';
-            // Standard: Unbekannte als weiblich behandeln (häufiger)
-            return 'unknown';
-        }
+        // getVoiceGender moved to js/tts.js
 
         function loadVoices() {
             voices = speechSynthesis.getVoices();
@@ -4446,7 +3641,7 @@ ${missingWords.join(', ')}`;
             }
             sessionStartTime = Date.now();
             showFlashcardMode();
-            if (autoSpeakCheckbox.checked) {
+            if (autoSpeakCheckbox.checked && queryDirection === 'ru2other') {
                 setTimeout(() => speak(cards[currentIndex].speakableText), 300);
             }
         });
@@ -4653,15 +3848,7 @@ ${missingWords.join(', ')}`;
             reader.readAsText(file);
         }
 
-        function detectFormat(content) {
-            const lines = content.split('\n').filter(line => line.trim());
-            const linesWithTab = lines.filter(line => line.includes('\t')).length;
-            if (linesWithTab / lines.length > 0.5) return 'tab';
-            let linesWithComma = lines.filter(line => line.includes(',')).length;
-            if (linesWithComma / lines.length < 0.5) return 'text';
-            if (content.includes('\\n') || content.includes('"')) return 'advanced';
-            return 'classic';
-        }
+        // detectFormat moved to js/parser.js
 
         function parseContent(content) {
             // Verwende den vom Benutzer gewählten Modus
@@ -4687,53 +3874,7 @@ ${missingWords.join(', ')}`;
         // ============================================
         // TEXT MODE
         // ============================================
-        function parseTexts(content) {
-            texts = [];
-
-            // Versuche zuerst, nach klaren Trennern zu splitten (doppelte Leerzeilen oder Titel)
-            const titlePattern = /^(Урок|Задание|Текст|Глава|Часть|Раздел|\d+\.)/i;
-            let blocks = content.split(/\n\n+/).filter(b => b.trim());
-
-            // Wenn wir nur einen Block haben oder sehr viele kleine Blöcke,
-            // versuche nach Titeln zu splitten
-            if (blocks.length === 1 || blocks.every(b => b.length < 100)) {
-                blocks = content.split(/\n(?=Урок|Задание|Текст|Глава|Часть|Раздел|\d+\.)/i).filter(b => b.trim());
-            }
-
-            blocks.forEach((block, idx) => {
-                const lines = block.trim().split('\n');
-                let title = '';
-                let body = block.trim();
-
-                // Prüfe, ob die erste Zeile ein Titel ist
-                if (lines[0].match(titlePattern) || (lines[0].length < 60 && lines.length > 1)) {
-                    title = lines[0].trim();
-                    body = lines.slice(1).join('\n').trim();
-                }
-
-                // Falls kein Body nach dem Titel übrig ist, nimm den ganzen Block
-                if (!body && block.trim()) {
-                    body = block.trim();
-                    title = '';
-                }
-
-                if (body) {
-                    texts.push({
-                        title: title || t('text_fallback', { n: idx + 1 }),
-                        body: body
-                    });
-                }
-            });
-
-            // Fallback: Gesamten Inhalt als einen Text behandeln
-            if (texts.length === 0) {
-                texts = [{ title: t('text_fallback', { n: 1 }), body: content.trim() }];
-            }
-
-            currentIndex = 0;
-            currentSentenceIndex = 0;
-            showTextMode();
-        }
+        // parseTexts moved to js/parser.js
 
         function showTextMode() {
             modeSelection.style.display = 'none';
@@ -4910,84 +4051,7 @@ ${missingWords.join(', ')}`;
         // ============================================
         // FLASHCARD MODE
         // ============================================
-        function parseCards(content) {
-            const lines = content.split('\n').filter(line => line.trim());
-            cards = [];
-
-            lines.forEach(line => {
-                let question, answer;
-
-                // Split: tab-separated or last-comma
-                if (isTabFormat) {
-                    const tabIdx = line.indexOf('\t');
-                    if (tabIdx === -1) return;
-                    question = line.substring(0, tabIdx).trim();
-                    answer = line.substring(tabIdx + 1).trim();
-                } else {
-                    const firstComma = line.indexOf(',');
-                    if (firstComma === -1) return;
-                    question = line.substring(0, firstComma).trim();
-                    answer = line.substring(firstComma + 1).trim();
-                }
-
-                if (!question && !answer) return;
-
-                // Extract (img:...) tags — also support legacy [img:...]
-                const images = [];
-                const imgRegex = /(?:\(img:([^)]+)\)|\[img:([^\]]+)\])/g;
-                let imgMatch;
-                while ((imgMatch = imgRegex.exec(question)) !== null) {
-                    images.push((imgMatch[1] || imgMatch[2]).trim());
-                }
-                question = question.replace(imgRegex, '').trim();
-
-                // Extract (speak:...) tag
-                let speakOverride = null;
-                const speakMatch = question.match(/\(speak:([^)]+)\)/);
-                if (speakMatch) {
-                    speakOverride = speakMatch[1].trim();
-                    question = question.replace(speakMatch[0], '').trim();
-                }
-
-                let displayText = question;
-                let speakableText;
-
-                if (!isClassicFormat && !isTabFormat) {
-                    // Legacy advanced format: \n and "quotes"
-                    question = question.replace(/\\n/g, '\n');
-                    displayText = question;
-                    const quotes = question.match(/"([^"]+)"/g);
-                    if (quotes) {
-                        speakableText = quotes.map(m => m.replace(/"/g, '')).join(' ');
-                    }
-                    displayText = question.replace(/"/g, '');
-                }
-
-                // Determine speakable text
-                if (speakOverride) {
-                    speakableText = speakOverride;
-                } else if (!speakableText) {
-                    // Strip grammar (text) from start for speech
-                    let text = displayText;
-                    if (text.match(/^\((?!img:|speak:)[^)]*\)/)) {
-                        text = text.replace(/^\([^)]*\)\s*/, '');
-                    }
-                    speakableText = text;
-                }
-
-                // Allow image-only cards (no text, just image)
-                if (question || images.length > 0) {
-                    cards.push({ displayText: displayText || '', speakableText: speakableText || '', answer: answer || '', images });
-                }
-            });
-
-            currentIndex = 0;
-
-            // Save to IndexedDB (cumulative, no duplicates)
-            saveCardsToDB(cards, currentSourceFile).catch(e => console.warn('DB save error:', e));
-
-            showFlashcardSetup();
-        }
+        // parseCards moved to js/parser.js
 
         function showFlashcardSetup() {
             modeSelection.style.display = 'none';
@@ -5056,6 +4120,33 @@ ${missingWords.join(', ')}`;
                 mainText = mainText.substring(grammarMatch[0].length).trim();
             }
 
+            // If verb has conjugation data, show infinitive and correct grammar
+            if (card.conjugation && card.conjugation.verb) {
+                const conj = card.conjugation;
+                const words = mainText.replace(/́/g, '').trim().split(/\s+/);
+                const infinitive = conj.verb.replace(/́/g, '').toLowerCase();
+                // Only replace if single word and it differs from infinitive
+                if (words.length === 1 && words[0].toLowerCase() !== infinitive) {
+                    mainText = conj.verb;
+                }
+                // Replace grammar with German label
+                const aspectDE = conj.aspect === 'СВ' ? 'vollendet' : conj.aspect === 'НСВ' ? 'unvollendet' : '';
+                grammar = aspectDE ? '(Verb, ' + aspectDE + ')' : '(Verb)';
+            }
+
+            // If noun has declension data, show nominative and correct grammar
+            if (card.declension && card.declension.noun) {
+                const decl = card.declension;
+                const words = mainText.replace(/́/g, '').trim().split(/\s+/);
+                const nominative = decl.noun.replace(/́/g, '').toLowerCase();
+                if (words.length === 1 && words[0].toLowerCase() !== nominative) {
+                    mainText = decl.noun;
+                }
+                const genderLabels = { 'м': 'männl.', 'ж': 'weibl.', 'ср': 'sächl.' };
+                const genderDE = genderLabels[decl.gender] || '';
+                grammar = genderDE ? '(Subst., ' + genderDE + ')' : '(Subst.)';
+            }
+
             grammarRule.textContent = grammar;
             grammarRule.style.display = grammar ? 'block' : 'none';
 
@@ -5091,14 +4182,52 @@ ${missingWords.join(', ')}`;
                 cardImages.classList.toggle('solo', !mainText);
             }
 
-            questionText.textContent = mainText;
-            answerText.textContent = card.answer;
+            // Query direction: swap front/back content so Russian appears on the
+            // answer side when querying other language -> Russian.
+            const frontFace = document.getElementById('flashcardFront');
+            const backFace = document.getElementById('flashcardBack');
+            const frontLabel = document.getElementById('frontLabel');
+            const backLabel = document.getElementById('backLabel');
+            const reverse = queryDirection === 'other2ru';
+            const frontHint = frontFace.querySelector('.flip-hint');
+            const backHint = backFace.querySelector('.flip-hint');
+            if (reverse) {
+                questionText.textContent = card.answer;
+                answerText.textContent = mainText;
+                frontLabel.textContent = t('lang_german');
+                backLabel.textContent = t('lang_russian');
+                frontLabel.setAttribute('data-i18n', 'lang_german');
+                backLabel.setAttribute('data-i18n', 'lang_russian');
+                // Move hint elements (grammar, images, conj/decl buttons) to back
+                // so they don't give away the answer on the front.
+                backFace.insertBefore(grammarRule, answerText);
+                backFace.insertBefore(cardImages, answerText);
+                backFace.insertBefore(conjToggleBtn, backHint);
+                backFace.insertBefore(declToggleBtn, backHint);
+            } else {
+                questionText.textContent = mainText;
+                answerText.textContent = card.answer;
+                frontLabel.textContent = t('lang_russian');
+                backLabel.textContent = t('lang_german');
+                frontLabel.setAttribute('data-i18n', 'lang_russian');
+                backLabel.setAttribute('data-i18n', 'lang_german');
+                frontFace.insertBefore(grammarRule, questionText);
+                frontFace.insertBefore(cardImages, questionText);
+                frontFace.insertBefore(conjToggleBtn, frontHint);
+                frontFace.insertBefore(declToggleBtn, frontHint);
+            }
+            conjToggleBtn.style.display = card.conjugation ? '' : 'none';
+            declToggleBtn.style.display = card.declension ? '' : 'none';
             currentCardEl.textContent = currentIndex + 1;
 
             flashcard.classList.remove('flipped');
             hideRatingButtons();
 
-            sentences = splitIntoSentences(card.speakableText);
+            // Use base form for TTS only if single-word conjugated/declined form
+            let speakText = card.speakableText;
+            if (card.conjugation && card.conjugation.verb && mainText === card.conjugation.verb) speakText = card.conjugation.verb;
+            else if (card.declension && card.declension.noun && mainText === card.declension.noun) speakText = card.declension.noun;
+            sentences = splitIntoSentences(speakText);
             currentSentenceIndex = 0;
 
             if (srMode !== 'free') {
@@ -5154,7 +4283,7 @@ ${missingWords.join(', ')}`;
                         speechSynthesis.cancel();
                         currentIndex = idx;
                         renderCard();
-                        if (autoSpeakCheckbox.checked) speak(cards[currentIndex].speakableText);
+                        if (autoSpeakCheckbox.checked && queryDirection === 'ru2other') speak(cards[currentIndex].speakableText);
                     }
                 });
                 item.querySelector('.card-item-speak').addEventListener('click', (e) => {
@@ -5376,6 +4505,7 @@ ${missingWords.join(', ')}`;
         // EVENT LISTENERS - TEXT MODE
         // ============================================
         function startSpeaking() {
+            stopRequested = false;
             if (readMode === 'sentence') {
                 speakCurrentSentenceText();
             } else {
@@ -5442,8 +4572,15 @@ ${missingWords.join(', ')}`;
                 hideRatingButtons();
             }
             // Speak back side when flipping to answer
-            if (!wasFlipped && speakBackCheckbox.checked && cards.length > 0) {
-                setTimeout(() => speakAnswer(cards[currentIndex].answer), 400);
+            if (!wasFlipped && cards.length > 0) {
+                if (queryDirection === 'other2ru') {
+                    // Back is Russian → speak Russian on flip if auto-speak enabled
+                    if (autoSpeakCheckbox.checked) {
+                        setTimeout(() => speak(cards[currentIndex].speakableText), 400);
+                    }
+                } else if (speakBackCheckbox.checked) {
+                    setTimeout(() => speakAnswer(cards[currentIndex].answer), 400);
+                }
             }
         });
 
@@ -5452,7 +4589,7 @@ ${missingWords.join(', ')}`;
                 speechSynthesis.cancel();
                 currentIndex--;
                 renderCard();
-                if (autoSpeakCheckbox.checked) speak(cards[currentIndex].speakableText);
+                if (autoSpeakCheckbox.checked && queryDirection === 'ru2other') speak(cards[currentIndex].speakableText);
             }
         });
 
@@ -5461,7 +4598,7 @@ ${missingWords.join(', ')}`;
                 speechSynthesis.cancel();
                 currentIndex++;
                 renderCard();
-                if (autoSpeakCheckbox.checked) speak(cards[currentIndex].speakableText);
+                if (autoSpeakCheckbox.checked && queryDirection === 'ru2other') speak(cards[currentIndex].speakableText);
             }
         });
 
@@ -5477,6 +4614,28 @@ ${missingWords.join(', ')}`;
             currentIndex = 0;
             renderCard();
             renderCardList();
+        });
+
+        const directionBtn = document.getElementById('directionBtn');
+        directionBtn.addEventListener('click', () => {
+            queryDirection = queryDirection === 'ru2other' ? 'other2ru' : 'ru2other';
+            localStorage.setItem('vokabeltrainer_direction', queryDirection);
+            speechSynthesis.cancel();
+            if (cards.length > 0) {
+                // Card-IDs haengen von queryDirection ab — Review-Queue und
+                // SR-State muessen neu aufgebaut werden, sonst zeigen die
+                // Rating-Buttons Intervalle aus der vorigen Richtung.
+                if (srMode !== 'free') {
+                    loadSRData();
+                    buildReviewQueue();
+                    if (reviewQueue.length > 0) {
+                        reviewQueueIndex = 0;
+                        currentIndex = reviewQueue[0];
+                    }
+                }
+                renderCard();
+                renderCardList();
+            }
         });
 
         shuffleBtn.addEventListener('click', () => {
@@ -5531,6 +4690,32 @@ ${missingWords.join(', ')}`;
         });
 
         // ============================================
+        // CONJUGATION MODAL
+        // showConjugationModal moved to js/conjugation.js
+        // ============================================
+        conjToggleBtn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            showConjugationModal();
+        });
+        conjModalClose.addEventListener('click', () => conjModalOverlay.classList.remove('visible'));
+        conjModalOverlay.addEventListener('click', (e) => {
+            if (e.target === conjModalOverlay) conjModalOverlay.classList.remove('visible');
+        });
+
+        // ============================================
+        // DECLENSION MODAL
+        // showDeclensionModal moved to js/declension.js
+        // ============================================
+        declToggleBtn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            showDeclensionModal();
+        });
+        declModalClose.addEventListener('click', () => declModalOverlay.classList.remove('visible'));
+        declModalOverlay.addEventListener('click', (e) => {
+            if (e.target === declModalOverlay) declModalOverlay.classList.remove('visible');
+        });
+
+        // ============================================
         // KEYBOARD NAVIGATION
         // ============================================
         document.addEventListener('keydown', (e) => {
@@ -5577,7 +4762,13 @@ ${missingWords.join(', ')}`;
                         else speakBtn.click();
                         break;
                     case 'Escape':
-                        stopBtn.click();
+                        if (conjModalOverlay.classList.contains('visible')) {
+                            conjModalOverlay.classList.remove('visible');
+                        } else if (declModalOverlay.classList.contains('visible')) {
+                            declModalOverlay.classList.remove('visible');
+                        } else {
+                            stopBtn.click();
+                        }
                         break;
                     case 'Home':
                         if (srMode === 'free') restartBtn.click();
@@ -5621,6 +4812,35 @@ ${missingWords.join(', ')}`;
             }
         });
 
+        // Manual export button
+        document.getElementById('exportNowBtn').addEventListener('click', async () => {
+            try {
+                if (!vocabFileHandle) {
+                    vocabFileHandle = await loadVocabFileHandle();
+                }
+                if (!vocabFileHandle) {
+                    // No file chosen yet — prompt user
+                    const handle = await pickVocabExportFile();
+                    if (!handle) return;
+                    updateVocabExportStatus();
+                }
+                const allCards = await getAllCardsFromDB();
+                await autoExportJSON();
+                alert(t('export_success', { n: allCards.length, name: vocabFileHandle.name }));
+            } catch (e) {
+                console.error('Export error:', e);
+                alert(t('export_failed', { msg: e.message || e }));
+            }
+        });
+
+        // Auto-save when tab becomes hidden (closing/switching)
+        document.addEventListener('visibilitychange', () => {
+            if (document.visibilityState === 'hidden' && vocabFileHandle) {
+                // Best-effort save — may not complete if browser closes immediately
+                autoExportJSON().catch(() => {});
+            }
+        });
+
         generateVocabBtn.addEventListener('click', generateVocabulary);
         loadGeneratedCardsBtn.addEventListener('click', loadGeneratedCards);
         cancelPreviewBtn.addEventListener('click', hideVocabPreview);
@@ -5641,7 +4861,27 @@ ${missingWords.join(', ')}`;
 
         // Load API key on startup
         loadApiKey();
-        loadVocabFileHandle().then(handle => { if (handle) vocabFileHandle = handle; });
+
+        // Force user to pick a vocabulary save file on first startup
+        (async () => {
+            const handle = await loadVocabFileHandle();
+            if (handle) {
+                vocabFileHandle = handle;
+                updateVocabExportStatus();
+                return;
+            }
+            // No file chosen yet — force the user to pick one
+            alert(t('startup_pick_file_required') || 'Bitte wähle eine Speicherdatei für deine Vokabeln (vokabeln.json). Ohne diese Datei werden Änderungen nur im Browser gespeichert und gehen bei Datenverlust verloren.');
+            try {
+                const newHandle = await pickVocabExportFile();
+                if (newHandle) {
+                    updateVocabExportStatus();
+                    autoExportJSON();
+                }
+            } catch (e) {
+                console.warn('User cancelled file picker on startup:', e);
+            }
+        })();
 
     </script>
 </body>

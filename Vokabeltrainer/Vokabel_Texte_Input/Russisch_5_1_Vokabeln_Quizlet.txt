@@ -1,0 +1,127 @@
+час,Stunde (1; 21; 31...)
+часа́,Stunden (2; 3; 4; 22...)
+часо́в,Stunden (5-20; 25-30...)
+мину́та,Minute (1; 21; 31...)
+мину́ты,Minuten (2; 3; 4)
+мину́т,Minuten (5-20)
+по́лдень,Mittag
+по́лночь,Mitternacht
+Ско́лько вре́мени?,Wie viel Uhr ist es?
+Кото́рый час?,Wie spät ist es?
+Во ско́лько?,Um wie viel Uhr?
+идти́,gehen (zu Fuß)
+я иду́,ich gehe
+ты идёшь,du gehst
+он/она́ идёт,er/sie geht
+мы идём,wir gehen
+вы идёте,ihr geht / Sie gehen
+они́ иду́т,sie gehen
+Вре́мя идёт.,Die Zeit vergeht.
+Вре́мя бежи́т.,Die Zeit rennt.
+Вре́мя лети́т.,Die Zeit fliegt.
+куда́?,wohin?
+в теа́тр,ins Theater
+в рестора́н,ins Restaurant
+в шко́лу,in die Schule
+в кафе́,ins Café
+в кино́,ins Kino
+в бар,in die Bar
+в оте́ль,ins Hotel
+в музе́й,ins Museum
+в магази́н,in den Laden
+в офис,ins Büro
+в центр,ins Zentrum
+в бассе́йн,ins Schwimmbad
+в парк,in den Park
+в го́ры,in die Berge
+на рабо́ту,zur Arbeit
+на уро́к,zum Unterricht
+на спекта́кль,zur Vorstellung
+на ле́кцию,zur Vorlesung
+на дискоте́ку,in die Disco
+на фильм,zum Film
+на ры́нок,auf den Markt
+на вокза́л,zum Bahnhof
+на по́чту,zur Post
+на стадио́н,ins Stadion
+на трениро́вку,zum Training
+на репети́цию,zur Probe
+на йо́гу,zum Yoga
+на футбо́л,zum Fußball
+на вы́ставку,zur Ausstellung
+одева́ться,sich anziehen
+бри́ться,sich rasieren
+кра́ситься,sich schminken
+занима́ться,sich beschäftigen mit
+я одева́юсь,ich ziehe mich an
+я бре́юсь,ich rasiere mich
+я кра́шусь,ich schminke mich
+я занима́юсь,ich beschäftige mich
+до,vor (+ Genitiv)
+по́сле,nach (+ Genitiv)
+во вре́мя,während (+ Genitiv)
+до у́жина,vor dem Abendessen
+по́сле трениро́вки,nach dem Training
+во вре́мя за́втрака,während des Frühstücks
+быть (Futur),werden (sein)
+я бу́ду,ich werde
+ты бу́дешь,du wirst
+он/она́ бу́дет,er/sie wird
+мы бу́дем,wir werden
+вы бу́дете,ihr werdet / Sie werden
+они́ бу́дут,sie werden
+за́втра,morgen
+послеза́втра,übermorgen
+в выходны́е,am Wochenende
+сего́дня ве́чером,heute Abend
+встава́ть,aufstehen
+встава́ть ра́но,früh aufstehen
+встава́ть по́здно,spät aufstehen
+принима́ть ва́нну,ein Bad nehmen
+принима́ть душ,duschen
+за́втракать,frühstücken
+обе́дать,zu Mittag essen
+у́жинать,zu Abend essen
+гото́вить,kochen
+гото́вить у́жин,Abendessen kochen
+гото́вить обе́д,Mittagessen kochen
+приходи́ть с рабо́ты,von der Arbeit kommen
+занима́ться спо́ртом,Sport treiben
+смотре́ть телеви́зор,fernsehen
+чита́ть,lesen
+чита́ть газе́ту,Zeitung lesen
+чита́ть но́вости,Nachrichten lesen
+убира́ть кварти́ру,die Wohnung aufräumen
+покупа́ть проду́кты,Lebensmittel einkaufen
+идти́ спать,schlafen gehen
+идти́ домо́й,nach Hause gehen
+пить чай,Tee trinken
+кури́ть,rauchen
+спать,schlafen
+изуча́ть ру́сский язы́к,Russisch lernen
+за́втрак,Frühstück
+обе́д,Mittagessen
+у́жин,Abendessen
+душ,Dusche
+ва́нна,Badewanne / Bad
+трениро́вка,Training
+рабо́та,Arbeit
+репети́ция,Probe
+спекта́кль,Vorstellung / Theaterstück
+премье́ра,Premiere
+теа́тр,Theater
+Большо́й теа́тр,Bolschoi-Theater
+начина́ться,anfangen / beginnen
+зака́нчиваться,enden / aufhören
+ро́вно,genau / pünktlich
+по́здно,spät
+ра́но,früh
+бы́стро,schnell
+ме́дленно,langsam
+до́ма,zu Hause
+дие́та,Diät
+сиде́ть на дие́те,Diät machen
+распоря́док дня,Tagesablauf
+сова́,Eule
+жа́воронок,Lerche
+Ты сова́ или жа́воронок?,Bist du eine Eule oder eine Lerche?

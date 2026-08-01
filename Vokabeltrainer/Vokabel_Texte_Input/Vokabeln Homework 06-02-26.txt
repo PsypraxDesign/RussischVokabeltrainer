@@ -1,0 +1,125 @@
+(в + Akkusativ - Richtung: wohin?)\n"идти в школу", in die Schule gehen
+
+"Моя внучка Тея идёт в школу с восьми часов до тринадцати часов.", Meine Enkeltochter Thea geht von acht Uhr bis dreizehn Uhr in die Schule.
+
+(в + Akkusativ - Richtung: wohin?)\n"идти в музей", ins Museum gehen
+
+"В воскресенье в четырнадцать часов я иду в музей.", Am Sonntag um vierzehn Uhr gehe ich ins Museum.
+
+(в + Akkusativ - Richtung: wohin?)\n"идти в спортзал", ins Fitnessstudio gehen
+
+"В воскресенье в двенадцать часов и в среду в четырнадцать часов я иду в спортзал.", Sonntags um 12:00 Uhr und Mittwochs um 14:00 Uhr gehe ich in den Gym.
+
+(в + Akkusativ - Richtung: wohin?)\n"идти в ресторан", ins Restaurant gehen
+
+"Мы с коллегой идём в ресторан с тринадцати часов до тринадцати часов тридцати минут.", Meine Kollegin und ich gehen mittags von 13:00 bis 13:30 ins Restaurant.
+
+(на + Akkusativ - Richtung: wohin? bei Institutionen/Kursen)\n"идти на работу", zur Arbeit gehen
+
+"В восемь часов тридцать пять минут я иду на работу.", Um 8:35 Uhr gehe ich zur Arbeit.
+
+(на + Akkusativ - Richtung: wohin? bei Institutionen/Kursen)\n"идти на русский", zum Russischunterricht gehen
+
+"В десять часов я иду на русский.", Um zehn Uhr gehe ich zum Russisch.
+
+(Adverb - Richtung: wohin?)\n"идти домой", nach Hause gehen
+
+"Я прихожу с работы домой вечером в восемнадцать часов тридцать минут.", Ich komme nach der Arbeit abends um 18:30 Uhr nach Hause.
+
+(с + Genitiv - Herkunft: woher?)\n"приходить с работы", von der Arbeit kommen
+
+"Обычно я прихожу с работы в восемнадцать часов.", Normalerweise komme ich um achtzehn Uhr von der Arbeit.
+
+(Akkusativ - direktes Objekt)\n"убирать квартиру", die Wohnung aufräumen / putzen
+
+"В субботу в пятнадцать часов я убираю квартиру.", Ich putze die Wohnung samstags um 15:00 Uhr.
+
+(Akkusativ - direktes Objekt)\n"смотреть телевизор", fernsehen
+
+"Обычно вечером я смотрю телевизор с двадцати часов до двадцати четырёх часов.", Normalerweise schaue ich abends von 20:00 bis 24:00 Uhr fern.
+
+(Akkusativ - direktes Objekt)\n"смотреть новости в Интернете", Nachrichten im Internet schauen
+
+"С семи часов до восьми часов я смотрю новости в Интернете.", Von 7:00 bis 8:00 Uhr schaue ich mir die Nachrichten im Internet an.
+
+(Akkusativ - direktes Objekt)\n"стирать одежду", Kleidung waschen
+
+"В воскресенье в восемнадцать часов я стираю джинсы.", Am Sonntag um 18:00 Uhr wasche ich meine Jeans.
+
+(Akkusativ - direktes Objekt)\n"покупать продукты", Lebensmittel kaufen
+
+"В двадцать часов я иду покупать продукты.", Normalerweise gehe ich Samstagabend um 8:00 Uhr abends in den Supermarkt um Lebensmittel einzukaufen.
+
+(Akkusativ - direktes Objekt)\n"пить кофе", Kaffee trinken
+
+"В семь часов утра я пью кофе.", Um 7:00 Uhr morgens trinke ich Kaffee.
+
+(Akkusativ - direktes Objekt)\n"читать газету", Zeitung lesen
+
+"Утром я не читаю газету.", Ich lese morgens keine Zeitung.
+
+(Akkusativ - direktes Objekt)\n"изучать русский язык", die russische Sprache lernen
+
+"В субботу в десять часов утра я изучаю русский язык.", Ich lerne die russische Sprache am Samstag um 10:00 Uhr vormittag.
+
+(Akkusativ - direktes Objekt)\n"готовить ужин", das Abendessen kochen
+
+"В двадцать часов я готовлю ужин.", Ich koche mein Abendsessen um 20:00 Uhr.
+
+(Verb - Tätigkeit)\n"ужинать", zu Abend essen
+
+"В двадцать часов тридцать минут я ужинаю.", Ich esse um halb neun zu Abend.
+
+(Reflexives Verb auf -ся)\n"одеваться", sich anziehen
+
+"В восемь часов тридцать минут я одеваюсь.", Um 8:30 ziehe ich mich an.
+
+(Reflexives Verb auf -ся)\n"краситься", sich schminken
+
+"Моя жена красится в семь часов утра.", Meine Frau schminkt sich um 7:00 Uhr.
+
+(Akkusativ - direktes Objekt)\n"надевать пижаму", den Schlafanzug anziehen
+
+"В двадцать два часа тридцать минут я надеваю пижаму.", Um halb elf ziehe ich meinen Pyjama an.
+
+(Verb - Tätigkeit)\n"вставать", aufstehen
+
+"В шесть часов тридцать минут я встаю.", Ich stehe um 6:30 auf.
+
+(Verb - Tätigkeit)\n"идти спать", schlafen gehen
+
+"В полночь я иду спать.", Um Mitternacht gehe ich schlafen.
+
+(Verb - Tätigkeit)\n"спать", schlafen
+
+"Я сплю с ноля часов до семи часов.", Ich schlafe von 00:00 Uhr bis 7:00 Uhr.
+
+(Verb - Tätigkeit)\n"принимать душ", duschen
+
+"В восемь часов пятнадцать минут я принимаю душ.", Um 8:15 dusche ich.
+
+(Präposition + Präpositiv - Zustand)\n"в декрете", in Elternzeit / Mutterschaftsurlaub
+
+"многие", viele
+
+"планы рухнули", Pläne sind gescheitert
+
+"беспорядок", Unordnung / Chaos
+
+"длиться", dauern
+
+"ожидать", erwarten
+
+"терять мотивацию", die Motivation verlieren
+
+"всё равно", egal / trotzdem
+
+"общаться / общение", kommunizieren / Kommunikation
+
+"ждать", warten
+
+(в + Akkusativ - Zeitpunkt)\n"в десять часов", um zehn Uhr
+
+(с + Genitiv ... до + Genitiv - Zeitraum)\n"с семи до восьми", von sieben bis acht
+
+(Adverb - zeitliche Abfolge)\n"сначала ... а потом", zuerst ... und dann

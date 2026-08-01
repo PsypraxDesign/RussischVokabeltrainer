@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" width="200" height="200">
+  <rect width="200" height="200" fill="#1a2332" rx="12"/>
+  <!-- Feder -->
+  <path d="M 60,140 Q 100,30 150,50" stroke="#AED6F1" stroke-width="2" fill="none"/>
+  <!-- Federkörper -->
+  <path d="M 60,140 Q 80,110 90,85 Q 95,72 100,62 Q 108,48 120,42 Q 135,38 150,50
+           Q 138,42 125,48 Q 112,55 105,68 Q 98,80 92,95 Q 85,115 60,140 Z" fill="#AED6F1" opacity="0.6"/>
+  <path d="M 60,140 Q 80,110 90,85 Q 95,72 100,62 Q 108,48 120,42 Q 135,38 150,50
+           Q 130,45 115,55 Q 105,65 98,80 Q 90,100 60,140 Z" fill="#85C1E9" opacity="0.4"/>
+  <!-- Mittelrippe -->
+  <path d="M 60,140 Q 100,50 150,50" stroke="#5DADE2" stroke-width="1.5" fill="none"/>
+  <!-- Seitenlinien -->
+  <line x1="78" y1="108" x2="90" y2="100" stroke="#85C1E9" stroke-width="0.8" opacity="0.6"/>
+  <line x1="84" y1="95" x2="98" y2="85" stroke="#85C1E9" stroke-width="0.8" opacity="0.6"/>
+  <line x1="90" y1="82" x2="108" y2="70" stroke="#85C1E9" stroke-width="0.8" opacity="0.6"/>
+  <line x1="97" y1="70" x2="118" y2="56" stroke="#85C1E9" stroke-width="0.8" opacity="0.6"/>
+  <!-- Aufwärtspfeile (Leichtigkeit) -->
+  <line x1="40" y1="90" x2="40" y2="60" stroke="#48bb78" stroke-width="2" stroke-linecap="round" opacity="0.5"/>
+  <polygon points="35,64 40,54 45,64" fill="#48bb78" opacity="0.5"/>
+  <line x1="160" y1="100" x2="160" y2="75" stroke="#48bb78" stroke-width="2" stroke-linecap="round" opacity="0.4"/>
+  <polygon points="155,79 160,69 165,79" fill="#48bb78" opacity="0.4"/>
+  <text x="100" y="178" text-anchor="middle" fill="#e8b341" font-size="14" font-weight="bold" font-family="sans-serif">лёгкий</text>
+</svg>

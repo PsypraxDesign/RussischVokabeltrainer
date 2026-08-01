@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" width="200" height="200">
+  <rect width="200" height="200" fill="#1a2332" rx="12"/>
+  <!-- Langer Zug / Schlange -->
+  <rect x="15" y="75" width="170" height="30" rx="6" fill="#e74c3c"/>
+  <!-- Fenster -->
+  <rect x="22" y="80" width="14" height="15" rx="2" fill="#85C1E9"/>
+  <rect x="42" y="80" width="14" height="15" rx="2" fill="#85C1E9"/>
+  <rect x="62" y="80" width="14" height="15" rx="2" fill="#85C1E9"/>
+  <rect x="82" y="80" width="14" height="15" rx="2" fill="#85C1E9"/>
+  <rect x="102" y="80" width="14" height="15" rx="2" fill="#85C1E9"/>
+  <rect x="122" y="80" width="14" height="15" rx="2" fill="#85C1E9"/>
+  <rect x="142" y="80" width="14" height="15" rx="2" fill="#85C1E9"/>
+  <rect x="162" y="80" width="14" height="15" rx="2" fill="#85C1E9"/>
+  <!-- Dach -->
+  <rect x="15" y="72" width="170" height="5" rx="2" fill="#c0392b"/>
+  <!-- Räder -->
+  <circle cx="30" cy="110" r="6" fill="#2c3e50"/>
+  <circle cx="60" cy="110" r="6" fill="#2c3e50"/>
+  <circle cx="90" cy="110" r="6" fill="#2c3e50"/>
+  <circle cx="120" cy="110" r="6" fill="#2c3e50"/>
+  <circle cx="150" cy="110" r="6" fill="#2c3e50"/>
+  <circle cx="175" cy="110" r="6" fill="#2c3e50"/>
+  <!-- Pfeil lang -->
+  <line x1="30" y1="135" x2="170" y2="135" stroke="#e8b341" stroke-width="2" stroke-linecap="round"/>
+  <polygon points="166,131 174,135 166,139" fill="#e8b341"/>
+  <polygon points="34,131 26,135 34,139" fill="#e8b341"/>
+  <text x="100" y="178" text-anchor="middle" fill="#e8b341" font-size="14" font-weight="bold" font-family="sans-serif">длинный</text>
+</svg>

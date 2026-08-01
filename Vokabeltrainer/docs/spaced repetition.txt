@@ -1,0 +1,54 @@
+
+1. SM-2 (SuperMemo-2) programmieren
+SM-2 ist deterministisch und basiert auf drei Werten: der Wiederholungszahl ($n$), dem Easiness-Factor ($EF$) und dem Intervall ($I$).
+Die Logik:
+1. Start: $n=0, EF=2.5, I=0$.
+2. Bewertung ($q$): Der Nutzer gibt Feedback von 0 (gar nicht gewusst) bis 5 (perfekt).
+3. Berechnung:
+o Wenn $q \ge 3$:
+* Falls $n=0: I=1$
+* Falls $n=1: I=6$
+* Falls $n>1: I = I_{alt} \cdot EF$
+* $EF = EF + (0.1 - (5-q) \cdot (0.08 + (5-q) \cdot 0.02))$
+o Wenn $q < 3$: $n=0, I=1$ (Karte wird neu gelernt).
+Beispiel-Code:
+Python
+class SM2Card:
+    def __init__(self):
+        self.iterations = 0
+        self.easiness = 2.5
+        self.interval = 0
+
+    def review(self, quality):
+        if quality >= 3:
+            if self.iterations == 0:
+                self.interval = 1
+            elif self.iterations == 1:
+                self.interval = 6
+            else:
+                self.interval = round(self.interval * self.easiness)
+            
+            self.iterations += 1
+            # EF-Update (darf nicht unter 1.3 sinken)
+            self.easiness = max(1.3, self.easiness + (0.1 - (5 - quality) * (0.08 + (5 - quality) * 0.02)))
+        else:
+            self.iterations = 0
+            self.interval = 1
+            
+        return self.interval
+
+2. FSRS (Free Spaced Repetition Scheduler)
+FSRS zu programmieren ist deutlich komplexer, da es auf dem DSR-Modell basiert:
+* Difficulty (Schwierigkeit)
+* Stability (Stabilität – wie lange man es ohne Wiederholung weiß)
+* Retrievability (Abrufbarkeit – die aktuelle Wahrscheinlichkeit, es zu wissen)
+Die mathematische Kernformel:
+Die Abrufbarkeit $R$ berechnet sich nach der Zeit $t$ und der Stabilität $S$:
+$$R = 0.9^{\frac{t}{S}}$$
+Die Herausforderung beim Coden:
+FSRS nutzt 17 Parameter (Gewichte), um die Stabilität und Schwierigkeit nach jeder Antwort zu aktualisieren. Ein einfacher "Hard-Coded" Ansatz sieht so aus:
+1. Initialisierung: Wenn du eine Karte das erste Mal siehst, werden $S$ und $D$ basierend auf deiner ersten Antwort gesetzt.
+2. Update-Funktion: Bei jeder Wiederholung wird die neue Stabilität berechnet:
+o $S_{neu} = S_{alt} \cdot (\text{Faktor basierend auf } D, R \text{ und dem Rating})$.
+3. Optimierung: FSRS ist deshalb so stark, weil es diese 17 Gewichte mittels Stochastic Gradient Descent an dein tatsächliches Lernverhalten anpassen kann.
+Für eine eigene App: Die meisten Entwickler implementieren FSRS nicht von Grund auf selbst, sondern nutzen die FSRS-Library (z.B. in Rust, JS oder Python), da die mathematische Kalibrierung sehr fehleranfällig ist.
