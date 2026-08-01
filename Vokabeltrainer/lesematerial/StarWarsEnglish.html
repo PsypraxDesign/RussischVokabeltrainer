@@ -10,7 +10,15 @@
             var errorBox = document.getElementById('critical-error');
             if(errorBox) {
                 errorBox.style.display = 'block';
-                errorBox.innerHTML = "<strong>System Error:</strong> " + msg + "<br>Line: " + line;
+                // Build via DOM/textContent so the (untrusted) error message
+                // cannot inject HTML (self-XSS).
+                errorBox.textContent = '';
+                var label = document.createElement('strong');
+                label.textContent = 'System Error:';
+                errorBox.appendChild(label);
+                errorBox.appendChild(document.createTextNode(' ' + msg));
+                errorBox.appendChild(document.createElement('br'));
+                errorBox.appendChild(document.createTextNode('Line: ' + line));
             }
         };
     </script>

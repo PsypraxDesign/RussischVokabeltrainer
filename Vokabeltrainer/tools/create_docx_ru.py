@@ -1,4 +1,6 @@
 """Создаёт руководство пользователя как документ Word (русская версия)."""
+import os
+import sys
 from docx import Document
 from docx.shared import Pt, Cm, RGBColor
 from docx.enum.text import WD_ALIGN_PARAGRAPH
@@ -623,6 +625,13 @@ r.bold = True
 r.font.size = Pt(14)
 p.alignment = WD_ALIGN_PARAGRAPH.CENTER
 
-output_path = r'C:\Users\klaus\Desktop\Russisch\Vokabeltrainer\docs\Руководство_RU.docx'
-doc.save(output_path)
+# M-26: Pfad relativ zum Skript statt fest verdrahtet -- das Projekt
+# laesst sich damit verschieben, ohne die Skripte anzufassen.
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+output_path = os.path.join(BASE_DIR, '..', 'docs', 'Руководство_RU.docx')
+try:
+    doc.save(output_path)
+except Exception as e:
+    print('FEHLER: Word-Dokument konnte nicht gespeichert werden (%s): %s' % (output_path, e), file=sys.stderr)
+    sys.exit(1)
 print(f'Документ Word сохранён: {output_path}')

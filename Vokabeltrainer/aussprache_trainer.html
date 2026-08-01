@@ -1537,7 +1537,7 @@ function giveFeedback(pronScore, accuracyScore, wordsData) {
                 var tip = getPhonemeTip(ch);
                 if (tip) {
                     html += '<div class="fb-tip" style="padding-left:32px;font-size:13px;color:var(--text-secondary);">' +
-                        '<strong>' + ch.toUpperCase() + '</strong>: ' + escapeHtml(tip) + '</div>';
+                        '<strong>' + escapeHtml(ch.toUpperCase()) + '</strong>: ' + escapeHtml(tip) + '</div>';
                 }
             });
 
@@ -1545,7 +1545,7 @@ function giveFeedback(pronScore, accuracyScore, wordsData) {
             var comboTip = phonemeTips[combo];
             if (comboTip) {
                 html += '<div class="fb-tip" style="padding-left:32px;font-size:13px;color:var(--accent);">' +
-                    'Kombination <strong>' + combo.toUpperCase() + '</strong>: ' + escapeHtml(comboTip) + '</div>';
+                    'Kombination <strong>' + escapeHtml(combo.toUpperCase()) + '</strong>: ' + escapeHtml(comboTip) + '</div>';
             }
         });
     }
@@ -1592,6 +1592,7 @@ function startRecording() {
     audioContext = new (window.AudioContext || window.webkitAudioContext)();
 
     sourceNode = audioContext.createMediaStreamSource(micStream);
+    // TODO: migrate to AudioWorklet (createScriptProcessor is deprecated)
     processorNode = audioContext.createScriptProcessor(4096, 1, 1);
 
     processorNode.onaudioprocess = function(e) {
@@ -1616,13 +1617,39 @@ function startRecording() {
     }, 5000);
 }
 
+// Idempotent / null-safe teardown of an active recording.
+// Stops the recording, disconnects/closes the audio graph and clears the
+// auto-stop timeout. Pass stopMic=true to also release the microphone stream.
+function cleanupRecording(stopMic) {
+    isRecording = false;
+    if (recordTimeout) { clearTimeout(recordTimeout); recordTimeout = null; }
+    if (processorNode) {
+        processorNode.onaudioprocess = null;
+        try { processorNode.disconnect(); } catch (e) {}
+        processorNode = null;
+    }
+    if (sourceNode) {
+        try { sourceNode.disconnect(); } catch (e) {}
+        sourceNode = null;
+    }
+    if (audioContext) {
+        try { audioContext.close(); } catch (e) {}
+        audioContext = null;
+    }
+    if (stopMic && micStream) {
+        micStream.getTracks().forEach(function(t) { t.stop(); });
+        micStream = null;
+    }
+}
+
 function stopRecording() {
     if (!isRecording) return;
     clearTimeout(recordTimeout);
+    recordTimeout = null;
     isRecording = false;
 
     // Disconnect audio nodes
-    if (processorNode) { processorNode.disconnect(); processorNode = null; }
+    if (processorNode) { processorNode.onaudioprocess = null; processorNode.disconnect(); processorNode = null; }
     if (sourceNode) { sourceNode.disconnect(); sourceNode = null; }
 
     document.getElementById('micBtn').classList.remove('recording');
@@ -2007,6 +2034,15 @@ function sendForAssessment(audioBlob) {
     var region = document.getElementById('apiRegion').value.trim();
     var referenceText = words[currentIdx].text;
 
+    // Validate region — it is interpolated into the request URL. A value
+    // containing '/', '.' etc. could redirect the API key to a foreign host.
+    if (!/^[a-z0-9]+$/.test(region)) {
+        showError('Ungültige Azure-Region. Nur Kleinbuchstaben und Ziffern erlaubt (z. B. "westeurope").');
+        document.getElementById('micLabel').textContent = 'Region prüfen — nochmal versuchen';
+        document.getElementById('spinner').style.display = 'none';
+        return;
+    }
+
     var pronConfig = {
         ReferenceText: referenceText,
         GradingSystem: 'HundredMark',
@@ -2102,7 +2138,7 @@ function processResult(data) {
             row.innerHTML = '<span class="word-detail-text">' + escapeHtml(wordText) + '</span>' +
                 '<span class="word-detail-score ' + getScoreClass(wordAccuracy) + '">' + wordAccuracy + '</span>';
             if (errorType !== 'None') {
-                row.innerHTML += '<span class="word-detail-error">' + translateError(errorType) + '</span>';
+                row.innerHTML += '<span class="word-detail-error">' + escapeHtml(translateError(errorType)) + '</span>';
             }
             wordDetailsEl.appendChild(row);
         }
@@ -2216,6 +2252,7 @@ function processResult(data) {
 
     // Store result
     results.push({
+        idx: currentIdx,
         word: words[currentIdx].text,
         translation: words[currentIdx].translation,
         score: pronScore,
@@ -2310,6 +2347,8 @@ function nextWord() {
 
 function skipWord() {
     speechSynthesis.cancel();
+    // Tear down any in-progress recording (keep mic alive for remaining words)
+    cleanupRecording(false);
     currentIdx++;
     if (currentIdx >= words.length) {
         showResultsScreen();
@@ -2319,9 +2358,15 @@ function skipWord() {
 }
 
 function retryWord() {
-    // Remove last result if it was for this word
-    if (results.length > 0 && results[results.length - 1].word === words[currentIdx].text) {
-        results.pop();
+    // Tear down any in-progress recording (keep mic alive)
+    cleanupRecording(false);
+    // Remove the result for THIS word (by stable index, not word text —
+    // duplicate words would otherwise drop the wrong entry).
+    for (var i = results.length - 1; i >= 0; i--) {
+        if (results[i].idx === currentIdx) {
+            results.splice(i, 1);
+            break;
+        }
     }
     renderWord();
 }
@@ -2364,11 +2409,8 @@ function restartTraining() {
 }
 
 function backToSetup() {
-    // Release microphone
-    if (micStream) {
-        micStream.getTracks().forEach(function(t) { t.stop(); });
-        micStream = null;
-    }
+    // Tear down any active recording and release the microphone
+    cleanupRecording(true);
     document.getElementById('resultsScreen').style.display = 'none';
     document.getElementById('exerciseScreen').style.display = 'none';
     document.getElementById('setupScreen').style.display = 'block';
@@ -2378,12 +2420,20 @@ function backToSetup() {
 // Keyboard shortcuts
 // ============================================================
 document.addEventListener('keydown', function(e) {
+    // Ignore shortcuts while typing in form fields (API key/region, word list)
+    if (e.target.matches('input, select, textarea')) return;
     // Only when exercise screen is visible
     if (document.getElementById('exerciseScreen').style.display === 'none') return;
 
-    if (e.key === ' ' && !isRecording && !document.getElementById('micBtn').classList.contains('disabled')) {
-        e.preventDefault();
-        toggleRecording();
+    if (e.key === ' ') {
+        // Space toggles recording: start, or stop an in-progress recording
+        if (isRecording) {
+            e.preventDefault();
+            stopRecording();
+        } else if (!document.getElementById('micBtn').classList.contains('disabled')) {
+            e.preventDefault();
+            toggleRecording();
+        }
     }
     if (e.key === 'Enter') {
         e.preventDefault();
