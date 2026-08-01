@@ -2218,7 +2218,7 @@
                     </div>
                     <div class="setup-new-limit" id="setupNewLimit" style="display: none;">
                         <label class="setup-due-stat" for="maxNewCardsInput" data-i18n="max_new_cards">Max. neue Karten:</label>
-                        <input type="number" id="maxNewCardsInput" min="1" value="20">
+                        <input type="number" id="maxNewCardsInput" min="0" value="20">
                     </div>
                     <button class="setup-reset-btn" id="setupResetBtn" style="display: none;" data-i18n="reset_progress">Lernfortschritt zurücksetzen</button>
                 </div>
@@ -2480,7 +2480,9 @@
             let text = (translations[currentLang] && translations[currentLang][key]) || translations['de'][key] || key;
             if (params) {
                 Object.entries(params).forEach(([k, v]) => {
-                    text = text.replace(new RegExp('\\{' + k + '\\}', 'g'), v);
+                    // N-5: Funktions-Replacer, damit $&, $', $` und $1 im Wert
+                    // nicht als Ersetzungsmuster interpretiert werden.
+                    text = text.replace(new RegExp('\\{' + k + '\\}', 'g'), () => String(v));
                 });
             }
             return text;
@@ -2689,7 +2691,14 @@
         }
 
         function saveSRData() {
-            localStorage.setItem('vokabeltrainer_sr', JSON.stringify(srData));
+            // N-3: Ist der localStorage voll oder gesperrt (privater Modus),
+            // warf setItem bisher mitten im Bewertungsablauf -- die Karte blieb
+            // haengen. Lieber den Lernstand dieser Runde verlieren als die App.
+            try {
+                localStorage.setItem('vokabeltrainer_sr', JSON.stringify(srData));
+            } catch (e) {
+                console.warn('Lernstand konnte nicht gespeichert werden:', e);
+            }
         }
 
         function resetSRData() {
@@ -3173,7 +3182,12 @@
             // Sort due by most overdue first
             dueCards.sort((a, b) => b.overdue - a.overdue);
 
-            const maxNew = parseInt(document.getElementById('maxNewCardsInput').value) || newCards.length;
+            // M-12: "|| newCards.length" machte aus einer 0 (bewusst keine neuen
+            // Karten) und aus einem leeren Feld "alle neuen Karten". Jetzt ist
+            // 0 wirklich 0 und ein ungueltiger Wert faellt auf 20 zurueck.
+            let maxNew = parseInt(document.getElementById('maxNewCardsInput').value, 10);
+            if (isNaN(maxNew)) maxNew = 20;
+            if (maxNew < 0) maxNew = 0;
             reviewQueue = [
                 ...dueCards.map(d => d.idx),
                 ...newCards.slice(0, maxNew)
@@ -3261,7 +3275,7 @@
                 renderCard();
                 updateSRStats();
                 if (autoSpeakCheckbox.checked && queryDirection === 'ru2other') {
-                    setTimeout(() => speak(cards[currentIndex].speakableText), 300);
+                    setTimeout(() => speak(cards[currentIndex].displaySpeakText || cards[currentIndex].speakableText), 300);
                 }
             } else {
                 showSessionComplete();
@@ -3304,6 +3318,7 @@
 
         function restartSRSession() {
             document.getElementById('sessionComplete').classList.remove('visible');
+            sessionStartTime = Date.now();   // M-11: sonst zaehlt die zweite Runde nicht
             loadSRData();
             buildReviewQueue();
             if (reviewQueue.length > 0) {
@@ -3314,7 +3329,7 @@
                 renderCard();
                 updateSRStats();
                 if (autoSpeakCheckbox.checked && queryDirection === 'ru2other') {
-                    setTimeout(() => speak(cards[currentIndex].speakableText), 300);
+                    setTimeout(() => speak(cards[currentIndex].displaySpeakText || cards[currentIndex].speakableText), 300);
                 }
             } else {
                 document.getElementById('sessionComplete').classList.add('visible');
@@ -3343,7 +3358,11 @@
         }
 
         function saveHistory(history) {
-            localStorage.setItem('vokabeltrainer_history', JSON.stringify(history));
+            try {   // N-3, siehe saveSRData
+                localStorage.setItem('vokabeltrainer_history', JSON.stringify(history));
+            } catch (e) {
+                console.warn('Sitzungsverlauf konnte nicht gespeichert werden:', e);
+            }
         }
 
         function recordSession() {
@@ -3629,6 +3648,12 @@
 
         // Start Flashcards Button
         startFlashcardsBtn.addEventListener('click', () => {
+            // H-8: Ohne Karten fuehrte der Start in eine leere Ansicht ohne
+            // jede Rueckmeldung -- es sah aus, als sei die App kaputt.
+            if (cards.length === 0) {
+                alert(t('no_cards_loaded'));
+                return;
+            }
             if (srMode !== 'free') {
                 loadSRData();
                 buildReviewQueue();
@@ -3643,7 +3668,7 @@
             sessionStartTime = Date.now();
             showFlashcardMode();
             if (autoSpeakCheckbox.checked && queryDirection === 'ru2other') {
-                setTimeout(() => speak(cards[currentIndex].speakableText), 300);
+                setTimeout(() => speak(cards[currentIndex].displaySpeakText || cards[currentIndex].speakableText), 300);
             }
         });
 
@@ -4233,6 +4258,10 @@
             let speakText = card.speakableText;
             if (card.conjugation && card.conjugation.verb && mainText === card.conjugation.verb) speakText = card.conjugation.verb;
             else if (card.declension && card.declension.noun && mainText === card.declension.noun) speakText = card.declension.noun;
+            // M-20: Bisher blieb speakText lokal -- Vorlese-Knopf und
+            // Auto-Vorlesen benutzten weiter die konjugierte Form, waehrend
+            // die Karte den Infinitiv zeigte. Jetzt am Kartenobjekt merken.
+            card.displaySpeakText = speakText;
             sentences = splitIntoSentences(speakText);
             currentSentenceIndex = 0;
 
@@ -4289,7 +4318,7 @@
                         speechSynthesis.cancel();
                         currentIndex = idx;
                         renderCard();
-                        if (autoSpeakCheckbox.checked && queryDirection === 'ru2other') speak(cards[currentIndex].speakableText);
+                        if (autoSpeakCheckbox.checked && queryDirection === 'ru2other') speak(cards[currentIndex].displaySpeakText || cards[currentIndex].speakableText);
                     }
                 });
                 item.querySelector('.card-item-speak').addEventListener('click', (e) => {
@@ -4398,7 +4427,10 @@
             const utterance = new SpeechSynthesisUtterance(text);
             utterance.rate = parseFloat(speedRange.value);
             utterance.pitch = 1;
-            utterance.lang = 'de-DE';
+            // N-9: Die Rueckseite in der eingestellten Oberflaechensprache lesen,
+            // nicht fest auf Deutsch.
+            const langMap = { de: 'de-DE', en: 'en-US', ru: 'ru-RU' };
+            utterance.lang = langMap[currentLang] || 'de-DE';
 
             utterance.onstart = () => {
                 isSpeaking = true;
@@ -4582,7 +4614,7 @@
                 if (queryDirection === 'other2ru') {
                     // Back is Russian → speak Russian on flip if auto-speak enabled
                     if (autoSpeakCheckbox.checked) {
-                        setTimeout(() => speak(cards[currentIndex].speakableText), 400);
+                        setTimeout(() => speak(cards[currentIndex].displaySpeakText || cards[currentIndex].speakableText), 400);
                     }
                 } else if (speakBackCheckbox.checked) {
                     setTimeout(() => speakAnswer(cards[currentIndex].answer), 400);
@@ -4595,7 +4627,7 @@
                 speechSynthesis.cancel();
                 currentIndex--;
                 renderCard();
-                if (autoSpeakCheckbox.checked && queryDirection === 'ru2other') speak(cards[currentIndex].speakableText);
+                if (autoSpeakCheckbox.checked && queryDirection === 'ru2other') speak(cards[currentIndex].displaySpeakText || cards[currentIndex].speakableText);
             }
         });
 
@@ -4604,11 +4636,11 @@
                 speechSynthesis.cancel();
                 currentIndex++;
                 renderCard();
-                if (autoSpeakCheckbox.checked && queryDirection === 'ru2other') speak(cards[currentIndex].speakableText);
+                if (autoSpeakCheckbox.checked && queryDirection === 'ru2other') speak(cards[currentIndex].displaySpeakText || cards[currentIndex].speakableText);
             }
         });
 
-        speakBtn.addEventListener('click', () => speak(cards[currentIndex].speakableText));
+        speakBtn.addEventListener('click', () => speak(cards[currentIndex].displaySpeakText || cards[currentIndex].speakableText));
         
         stopBtn.addEventListener('click', () => {
             stopRequested = true;
@@ -4725,6 +4757,9 @@
         // KEYBOARD NAVIGATION
         // ============================================
         document.addEventListener('keydown', (e) => {
+            // M-13: In Eingabefeldern nicht mitlesen. Sonst blaettert die
+            // Leertaste die Karte um, waehrend man den API-Key tippt.
+            if (e.target.matches('input, select, textarea') || e.target.isContentEditable) return;
             if (isTextMode) {
                 switch(e.key) {
                     case 'ArrowUp':
