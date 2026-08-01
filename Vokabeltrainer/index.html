@@ -3349,7 +3349,7 @@
         function recordSession() {
             if (sessionStartTime === 0 || sessionStats.reviewed === 0) return;
             const duration = Math.round((Date.now() - sessionStartTime) / 1000);
-            const today = new Date().toISOString().slice(0, 10);
+            const today = localDateKey();   // M-14: lokaler Tag, nicht UTC
             const entry = {
                 date: today,
                 duration: duration,
@@ -3366,8 +3366,8 @@
         function calculateStreak(history) {
             if (history.length === 0) return 0;
             const uniqueDays = [...new Set(history.map(h => h.date))].sort().reverse();
-            const today = new Date().toISOString().slice(0, 10);
-            const yesterday = new Date(Date.now() - 86400000).toISOString().slice(0, 10);
+            const today = localDateKey();   // M-14: lokaler Tag, nicht UTC
+            const yesterday = localDateKey(Date.now() - 86400000);   // M-14
 
             // Streak muss heute oder gestern begonnen haben
             if (uniqueDays[0] !== today && uniqueDays[0] !== yesterday) return 0;
@@ -3852,6 +3852,9 @@
         // detectFormat moved to js/parser.js
 
         function parseContent(content) {
+            // M-15: Zeilenenden vereinheitlichen (CRLF/CR -> LF). Ohne das
+            // erkennt die Block- und Worttrennung Windows-Dateien nicht.
+            content = content.replace(/\r\n/g, '\n').replace(/\r/g, '\n');
             // Verwende den vom Benutzer gewählten Modus
             isTextMode = selectedMode === 'texts';
 
@@ -4115,10 +4118,12 @@
             let mainText = card.displayText;
 
             // Extract grammar: (text) at start, but NOT (img:...) or (speak:...)
-            const grammarMatch = mainText.match(/^\((?!img:|speak:)([^)]*)\)\s*/);
+            // M-18: ueber extractGrammarPrefix statt [^)]* -- die Regex bricht
+            // bei geschachtelten Klammern mitten im Praefix ab.
+            const grammarMatch = extractGrammarPrefix(mainText);
             if (grammarMatch) {
-                grammar = grammarMatch[0].trim();
-                mainText = mainText.substring(grammarMatch[0].length).trim();
+                grammar = '(' + grammarMatch.grammar + ')';
+                mainText = grammarMatch.rest.trim();
             }
 
             // If verb has conjugation data, show infinitive and correct grammar

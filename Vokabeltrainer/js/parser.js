@@ -6,9 +6,33 @@
 //   - isTabFormat, isClassicFormat
 //   - t(key, params), showTextMode(), showFlashcardSetup(), saveCardsToDB()
 
+// --- Grammatik-Praefix (M-18) ---
+// Frueher per Regex /^\(([^)]*)\)/ — das bricht bei geschachtelten Klammern:
+// "(Verb (perfektiv)) слово" lieferte nur "Verb (perfektiv" zurueck.
+// Jetzt Klammern zaehlen statt Muster raten.
+function extractGrammarPrefix(text) {
+    if (!text || text[0] !== '(') return null;
+    if (/^\((?:img:|speak:)/.test(text)) return null;
+    let depth = 0;
+    let end = -1;
+    for (let i = 0; i < text.length; i++) {
+        const ch = text[i];
+        if (ch === '(') depth++;
+        else if (ch === ')') {
+            depth--;
+            if (depth === 0) { end = i; break; }
+        }
+    }
+    if (end === -1) return null;
+    const grammar = text.substring(1, end);
+    const rest = text.substring(end + 1).replace(/^\s*/, '');
+    return { grammar, rest };
+}
+
 // --- Format-Erkennung ---
 function detectFormat(content) {
     const lines = content.split('\n').filter(line => line.trim());
+    if (lines.length === 0) return 'text';   // H-8: sonst Division durch 0
     const linesWithTab = lines.filter(line => line.includes('\t')).length;
     if (linesWithTab / lines.length > 0.5) return 'tab';
     let linesWithComma = lines.filter(line => line.includes(',')).length;
@@ -88,10 +112,12 @@ function parseCards(content) {
             question = line.substring(0, tabIdx).trim();
             answer = line.substring(tabIdx + 1).trim();
         } else {
-            const firstComma = line.indexOf(',');
-            if (firstComma === -1) return;
-            question = line.substring(0, firstComma).trim();
-            answer = line.substring(firstComma + 1).trim();
+            // M-16: am LETZTEN Komma trennen. Die Vokabel selbst darf Kommas
+            // enthalten ("вот, пожалуйста"); die Uebersetzung steht hinten.
+            const lastComma = line.lastIndexOf(',');
+            if (lastComma === -1) return;
+            question = line.substring(0, lastComma).trim();
+            answer = line.substring(lastComma + 1).trim();
         }
 
         if (!question && !answer) return;
@@ -137,8 +163,9 @@ function parseCards(content) {
         } else if (!speakableText) {
             // Strip grammar (text) from start for speech
             let text = displayText;
-            if (text.match(/^\((?!img:|speak:)[^)]*\)/)) {
-                text = text.replace(/^\([^)]*\)\s*/, '');
+            const gp = extractGrammarPrefix(text);   // M-18
+            if (gp) {
+                text = gp.rest;
             }
             speakableText = text;
         }

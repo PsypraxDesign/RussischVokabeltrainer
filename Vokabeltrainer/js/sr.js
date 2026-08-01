@@ -2,6 +2,28 @@
 // Wird vor dem Hauptscript in index.html geladen.
 // Reine Algorithmen ohne DOM- oder State-Abhaengigkeiten.
 
+// --- Faelligkeit auf Tagesgrenzen (M-14) ---
+// Frueher: Date.now() + Tage * 86400000. Das ist ein rollendes 24-Stunden-
+// Fenster — wer abends lernt, bekommt die Karte am Folgetag erst abends
+// wieder. Faelligkeiten gehoeren auf den lokalen Tagesbeginn.
+function dueTimestampForDays(intervalDays) {
+    const d = new Date();
+    d.setHours(0, 0, 0, 0);
+    d.setDate(d.getDate() + Math.max(1, Math.round(intervalDays)));
+    return d.getTime();
+}
+
+// Tagesschluessel aus der lokalen Zeit, nicht aus UTC (M-14). toISOString()
+// liefert den UTC-Tag; in Mitteleuropa zaehlt damit alles vor 01:00/02:00
+// zum Vortag — Streak und Tagesstatistik brechen scheinbar grundlos ab.
+function localDateKey(ts) {
+    const d = ts === undefined ? new Date() : new Date(ts);
+    const y = d.getFullYear();
+    const m = String(d.getMonth() + 1).padStart(2, '0');
+    const day = String(d.getDate()).padStart(2, '0');
+    return y + '-' + m + '-' + day;
+}
+
 // --- SM-2 Algorithm ---
 function sm2Review(data, quality) {
     // quality: 0-5
@@ -17,7 +39,7 @@ function sm2Review(data, quality) {
         data.interval = 1;
     }
     data.lastReview = Date.now();
-    data.nextReview = Date.now() + data.interval * 24 * 60 * 60 * 1000;
+    data.nextReview = dueTimestampForDays(data.interval);
     data.algorithm = 'sm2';
     return data;
 }
@@ -95,7 +117,7 @@ function fsrsReview(data, grade) {
     data.reps++;
     data.interval = Math.max(1, Math.round(data.stability));
     data.lastReview = Date.now();
-    data.nextReview = Date.now() + data.interval * 24 * 60 * 60 * 1000;
+    data.nextReview = dueTimestampForDays(data.interval);
     data.algorithm = 'fsrs';
     return data;
 }

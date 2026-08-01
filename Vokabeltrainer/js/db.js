@@ -62,10 +62,11 @@ async function saveCardsToDB(cardsList, source) {
         const existing = await new Promise(r => { const req = store.get(id); req.onsuccess = () => r(req.result); req.onerror = () => r(null); });
         let front = card.displayText;
         let grammar = '';
-        const gm = front.match(/^\((?!img:|speak:)([^)]*)\)\s*/);
+        // M-18: geschachtelte Klammern korrekt behandeln
+        const gm = extractGrammarPrefix(front);
         if (gm) {
-            grammar = gm[1];
-            front = front.substring(gm[0].length);
+            grammar = gm.grammar;
+            front = gm.rest;
         }
         store.put({
             id,
