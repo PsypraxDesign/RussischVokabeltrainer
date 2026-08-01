@@ -295,6 +295,12 @@ td[contenteditable="true"]:focus {
 .action-btn.restore-btn { color: var(--success); }
 .action-btn.restore-btn:hover { background: rgba(39, 174, 96, 0.2); }
 
+.cb {
+    width: 16px;
+    height: 16px;
+    accent-color: var(--accent);
+    cursor: pointer;
+}
 
 .empty-state {
     text-align: center;
@@ -397,6 +403,7 @@ td.cell-conj { white-space: nowrap; width: 80px; text-align: center; }
         <button class="btn btn-secondary" id="btnNormalize" disabled title="Wörter auf Wörterbuchform bringen (Nom.Sg. / Infinitiv) und Grammatik korrigieren">📖 Normalisieren</button>
         <button class="btn btn-secondary" id="btnCleanupMetadata" disabled title="JSON-Feldnamen wie 'id: ...', 'front: ...', 'Род.: ...' aus Vokabelliste und IndexedDB entfernen" style="color:var(--danger);">🧹 Müll löschen</button>
         <span class="progress-info" id="conjProgress"></span>
+        <button class="btn btn-danger" id="btnAbort" style="display:none; padding:5px 12px; font-size:0.85em;" title="Laufenden KI-Lauf abbrechen">Abbrechen</button>
         <div class="pending-bar" id="pendingBar">
             <span>Zum Löschen markiert: <span class="pending-count" id="pendingCount">0</span></span>
             <button class="btn btn-danger" id="btnApplyDelete" style="padding:5px 12px; font-size:0.85em;">Endgültig entfernen</button>
@@ -431,6 +438,7 @@ td.cell-conj { white-space: nowrap; width: 80px; text-align: center; }
     <table id="vocabTable" style="display:none;">
         <thead>
             <tr>
+                <th style="width:36px;"><input type="checkbox" class="cb" id="cbSelectAll" title="Alle auswählen"></th>
                 <th data-col="front">Russisch</th>
                 <th data-col="back">Deutsch</th>
                 <th data-col="grammar">Grammatik</th>
@@ -503,6 +511,11 @@ let currentFileHandle = null;
 let apiKey = '';
 let conjAbort = false;
 let batchRunning = false;
+let saving = false;  // serialize concurrent save attempts (N-16)
+let dataDirty = false;  // bulk results written to allData but not yet saved (M-4)
+
+// Escape dynamic values before inserting into innerHTML (H-4)
+const escapeHtml = s => String(s).replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
 
 const body = document.getElementById('vocabBody');
 const table = document.getElementById('vocabTable');
@@ -514,6 +527,7 @@ const stats = document.getElementById('stats');
 const pendingBar = document.getElementById('pendingBar');
 const pendingCount = document.getElementById('pendingCount');
 const cbShowDeleted = document.getElementById('cbShowDeleted');
+const cbSelectAll = document.getElementById('cbSelectAll');
 const toast = document.getElementById('toast');
 const btnSave = document.getElementById('btnSave');
 const btnUndo = document.getElementById('btnUndo');
@@ -526,7 +540,21 @@ const btnStressAll = document.getElementById('btnStressAll');
 const btnClassify = document.getElementById('btnClassify');
 const btnStressReset = document.getElementById('btnStressReset');
 const conjProgress = document.getElementById('conjProgress');
+const btnAbort = document.getElementById('btnAbort');
 const apiKeyInput = document.getElementById('apiKeyInput');
+
+// Show/hide the "Abbrechen" button for running bulk operations (M-7)
+function showAbort(show) {
+    if (btnAbort) btnAbort.style.display = show ? '' : 'none';
+}
+if (btnAbort) {
+    btnAbort.addEventListener('click', () => {
+        conjAbort = true;
+        btnAbort.disabled = true;
+        conjProgress.textContent = 'Abbruch angefordert …';
+        setTimeout(() => { btnAbort.disabled = false; }, 100);
+    });
+}
 const conjModal = document.getElementById('conjModal');
 const conjModalClose = document.getElementById('conjModalClose');
 const conjModalTitle = document.getElementById('conjModalTitle');
@@ -595,6 +623,10 @@ document.getElementById('fileInput').addEventListener('change', e => {
     const file = e.target.files[0];
     if (!file) return;
     currentFile = file.name;
+    // No reusable handle from this path — clear stale handles so we don't
+    // silently overwrite a previously opened file (K-2 / M-1).
+    currentFileHandle = null;
+    csvFileHandle = null;
     const reader = new FileReader();
     reader.onload = ev => {
         try {
@@ -619,6 +651,7 @@ async function triggerLoad() {
             });
             currentFileHandle = handle;
             currentFile = handle.name;
+            csvFileHandle = null;
             await saveFileHandle(handle);
             const data = await readFromHandle(handle);
             loadData(data);
@@ -632,14 +665,18 @@ async function triggerLoad() {
 }
 
 async function triggerLoadLast() {
+    let handle, name;
     try {
         const { handle, name } = await loadFileHandle();
         if (handle) {
-            // Have a file handle — try to reopen directly
-            currentFileHandle = handle;
-            currentFile = handle.name;
+            // K-2: Erst lesen und parsen, dann den Handle uebernehmen. Andersherum
+            // zeigt currentFileHandle bereits auf die neue Datei, waehrend im Editor
+            // noch die alten Daten stehen -- ein Speichern wuerde sie ueberschreiben.
             const data = await readFromHandle(handle);
             loadData(data);
+            currentFileHandle = handle;
+            csvFileHandle = null;
+            currentFile = handle.name;
         } else {
             // No handle — open file picker (user knows which file from the button label)
             showToast('Bitte «' + name + '» erneut auswählen', 'success');
@@ -647,6 +684,28 @@ async function triggerLoadLast() {
         }
     } catch (e) {
         showToast('Fehler: ' + e.message + ' — bitte Datei erneut auswählen', 'error');
+        await triggerLoad();
+        return;
+    }
+    if (handle) {
+        // Have a file handle — try to reopen and parse it directly.
+        let data;
+        try {
+            data = await readFromHandle(handle);
+        } catch (e) {
+            // Corrupt JSON or lost permission: show a clear error and do NOT
+            // silently re-open a file dialog (N-13). Leave the stored handle
+            // untouched so the user can retry once the file is fixed.
+            showToast('Datei «' + handle.name + '» konnte nicht gelesen werden: ' + e.message, 'error');
+            return;
+        }
+        currentFileHandle = handle;
+        currentFile = handle.name;
+        csvFileHandle = null;
+        loadData(data);
+    } else {
+        // No handle — open file picker (user knows which file from the button label)
+        showToast('Bitte «' + name + '» erneut auswählen', 'success');
         await triggerLoad();
     }
 }
@@ -673,6 +732,7 @@ function loadData(data) {
     deletedSet = new Set();
     editedMap = {};
     undoStack = [];
+    dataDirty = false;
     sortCol = '';
     sortAsc = true;
 
@@ -796,6 +856,16 @@ function renderTable() {
         tr.dataset.idx = idx;
         if (isDel) tr.classList.add('marked-delete');
 
+        // Checkbox
+        const tdCb = document.createElement('td');
+        const cb = document.createElement('input');
+        cb.type = 'checkbox';
+        cb.className = 'cb';
+        cb.checked = isDel;
+        cb.addEventListener('change', () => toggleDelete(idx));
+        tdCb.appendChild(cb);
+        tr.appendChild(tdCb);
+
         // Editable cells
         const fields = ['front', 'back', 'grammar'];
         const classes = ['cell-russian', 'cell-translation', 'cell-grammar'];
@@ -913,6 +983,7 @@ function renderTable() {
 
     body.innerHTML = '';
     body.appendChild(frag);
+    cbSelectAll.checked = false;
 }
 
 // --- Editing ---
@@ -955,10 +1026,37 @@ function toggleDelete(idx) {
 
 // --- Bulk operations ---
 
+cbSelectAll.addEventListener('change', () => {
+    if (batchRunning) {
+        // Don't change the deletion set while a bulk run holds array indices (K-3)
+        cbSelectAll.checked = !cbSelectAll.checked;
+        showToast('Während eines KI-Laufs nicht möglich', 'error');
+        return;
+    }
+    const checked = cbSelectAll.checked;
+    for (const idx of filteredIndices) {
+        if (checked) deletedSet.add(idx);
+        else deletedSet.delete(idx);
+    }
+    undoStack.push({ type: 'bulk', action: checked ? 'delete' : 'restore', indices: [...filteredIndices] });
+    updateView();
+});
+
 document.getElementById('btnApplyDelete').addEventListener('click', () => {
+    if (batchRunning) {
+        // Splicing the array now would corrupt the index mapping of an in-flight bulk run (K-3)
+        showToast('Während eines KI-Laufs nicht möglich', 'error');
+        return;
+    }
     if (deletedSet.size === 0) return;
     const n = deletedSet.size;
     if (!confirm('Wirklich ' + n + ' Vokabeln endgültig entfernen?\nDiese Aktion kann nicht rückgängig gemacht werden.')) return;
+
+    // Warn before discarding unsaved cell edits (M-3)
+    const editCount = Object.keys(editedMap).length;
+    if (editCount > 0) {
+        if (!confirm(editCount + ' nicht gespeicherte Bearbeitung(en) gehen dabei verloren.\nTrotzdem fortfahren?')) return;
+    }
 
     // Remove from highest index first to preserve indices
     const sorted = [...deletedSet].sort((a, b) => b - a);
@@ -1147,6 +1245,16 @@ function buildExportData() {
 }
 
 async function saveFile() {
+    if (saving) return; // serialize double Ctrl+S (N-16)
+
+    // Warn before permanently dropping entries marked for deletion (H-5)
+    const deletedCount = deletedSet.size;
+    if (deletedCount > 0) {
+        if (!confirm(deletedCount + ' zum Löschen markierte Vokabel(n) werden beim Speichern endgültig aus der Datei entfernt.\nTrotzdem speichern?')) return;
+    }
+
+    saving = true;
+    try {
     const data = buildExportData();
     let saved = false;
 
@@ -1199,12 +1307,19 @@ async function saveFile() {
         URL.revokeObjectURL(url);
     }
 
+    const removedNote = deletedCount > 0 ? ', ' + deletedCount + ' entfernt' : '';
+    dataDirty = false; // contents written to disk (M-4)
+
     // Sync conjugation data to index.html's IndexedDB
     try {
         const synced = await syncConjugationToDB(data);
-        showToast(data.length + ' Vokabeln gespeichert' + (synced > 0 ? ', ' + synced + ' Konj./Dekl./Betonung synchronisiert' : ''), 'success');
+        showToast(data.length + ' Vokabeln gespeichert' + removedNote + (synced > 0 ? ', ' + synced + ' Konj./Dekl./Betonung synchronisiert' : ''), 'success');
     } catch (e) {
-        showToast(data.length + ' Vokabeln gespeichert (DB-Sync fehlgeschlagen)', 'success');
+        // Only the DB sync failed; the file was still written (N-17a).
+        showToast(data.length + ' Vokabeln gespeichert' + removedNote + ' — DB-Sync fehlgeschlagen', 'error');
+    }
+    } finally {
+        saving = false;
     }
 }
 
@@ -1226,7 +1341,12 @@ async function exportCSV() {
             item.source || ''
         ];
         return fields.map(f => {
-            const clean = (f || '').replace(/\n/g, ' ');
+            let clean = (f || '').replace(/\n/g, ' ');
+            // CSV formula-injection mitigation: neutralize leading =, +, -, @
+            // so spreadsheets don't execute the field as a formula (N-15).
+            if (/^[=+\-@]/.test(clean)) {
+                clean = "'" + clean;
+            }
             if (clean.includes(';') || clean.includes('"')) {
                 return '"' + clean.replace(/"/g, '""') + '"';
             }
@@ -1289,10 +1409,14 @@ async function exportCSV() {
 // --- Sync conjugation to index.html's IndexedDB ---
 
 async function syncConjugationToDB(data) {
-    // Open the same DB that index.html uses
+    // Open the same DB that index.html uses. Do NOT force a version number:
+    // if index.html later bumps the schema (v3+), forcing v2 here would throw a
+    // VersionError and the sync would silently fail forever (N-17b). Opening
+    // without a version uses whatever version currently exists.
     const db = await new Promise((resolve, reject) => {
-        const req = indexedDB.open('vokabeltrainer', 2);
+        const req = indexedDB.open('vokabeltrainer');
         req.onupgradeneeded = (e) => {
+            // Only fires when the DB does not exist yet (created at version 1).
             const db = e.target.result;
             if (!db.objectStoreNames.contains('vocabulary')) {
                 const store = db.createObjectStore('vocabulary', { keyPath: 'id' });
@@ -1307,6 +1431,10 @@ async function syncConjugationToDB(data) {
         req.onerror = (e) => reject(e.target.error);
     });
 
+    if (!db.objectStoreNames.contains('vocabulary')) {
+        db.close();
+        throw new Error('vocabulary-Store nicht vorhanden');
+    }
     const tx = db.transaction('vocabulary', 'readwrite');
     const store = tx.objectStore('vocabulary');
     let synced = 0;
@@ -1324,6 +1452,13 @@ async function syncConjugationToDB(data) {
             if (item.declension) existing.declension = item.declension;
             if (item.stress) existing.stress = item.stress;
             if (item.wordType) existing.wordType = item.wordType;
+            // TODO (N-17c): Edits to front/back are not reliably propagated.
+            // The trainer keys records by a content hash of front/back, so an
+            // edited word produces a NEW id and won't be found here at all.
+            // Updating the stored fields when the id still matches is harmless;
+            // a full fix requires re-hashing/migrating the trainer record id.
+            if (item.front) existing.front = item.front;
+            if (item.back) existing.back = item.back;
             store.put(existing);
             synced++;
         }
@@ -1379,6 +1514,16 @@ const WORD_TYPE_COLORS = {
 function wordTypeLabel(wt) { return WORD_TYPE_LABELS[wt] || wt; }
 function wordTypeColor(wt) { return WORD_TYPE_COLORS[wt] || 'var(--text-secondary)'; }
 
+// Lightweight LLM-result validation before persisting (M-6)
+function isValidConjugation(c) {
+    return !!c && typeof c === 'object' && !Array.isArray(c) &&
+        (typeof c.verb === 'string' || c.present || c.future || c.past || c.imperative);
+}
+function isValidDeclension(d) {
+    return !!d && typeof d === 'object' && !Array.isArray(d) &&
+        (typeof d.noun === 'string' || d.singular || d.plural);
+}
+
 function buildClassifyPrompt(items) {
     const entries = items.map(it => ({ front: it.front, back: it.back, grammar: it.grammar || '' }));
     return `Bestimme die Wortart für die folgenden russischen Vokabeln. Antworte NUR mit einem JSON-Array, kein anderer Text.
@@ -1418,6 +1563,7 @@ async function classifyAllWords() {
     if (batchRunning) return;
     conjAbort = false;
     batchRunning = true;
+    showAbort(true);
     const items = [];
     for (const i of filteredIndices) {
         if (deletedSet.has(i)) continue;
@@ -1427,12 +1573,14 @@ async function classifyAllWords() {
 
     if (items.length === 0) {
         batchRunning = false;
+    showAbort(false);
         showToast('Keine Vokabeln in der angezeigten Auswahl ohne Wortart', 'error');
         return;
     }
 
     if (!getApiKey()) {
         batchRunning = false;
+    showAbort(false);
         showToast('Bitte API-Key eingeben', 'error');
         return;
     }
@@ -1455,13 +1603,17 @@ async function classifyAllWords() {
                 const match = batch.find(n => {
                     return n.front.replace(/́/g, '').toLowerCase() === frontLower;
                 });
-                if (match && result.wordType) {
+                // Only accept a wordType from the known allowed set; an invented
+                // value would make the entry invisible to the heuristics (M-6).
+                if (match && result.wordType && WORD_TYPE_LABELS.hasOwnProperty(result.wordType)) {
                     allData[match.idx].wordType = result.wordType;
                     done++;
                 }
             }
         } catch (e) {
             showToast('Fehler bei Batch: ' + e.message, 'error');
+            // Fatal auth error: stop the whole run instead of retrying per batch (M-7a)
+            if (/API-Key/i.test(e.message)) { conjAbort = true; break; }
         }
 
         conjProgress.textContent = done + ' / ' + items.length;
@@ -1472,9 +1624,11 @@ async function classifyAllWords() {
     }
 
     batchRunning = false;
+    showAbort(false);
     btnClassify.disabled = false;
     conjProgress.textContent = '';
     updateView();
+    if (done > 0) dataDirty = true;
     const missed = items.length - done;
     if (missed > 0) {
         showToast(done + ' Wortarten bestimmt, ' + missed + ' fehlgeschlagen', 'error');
@@ -1494,7 +1648,7 @@ const VERB_GRAMMAR_HINTS = ['глагол', 'verb', 'НСВ', 'СВ', 'несо�
 // Note: 'pl.' and 'plural' removed — they match "3. Pers. Pl." in verb grammar fields
 const NON_VERB_GRAMMAR = ['subst', 'adj', 'adv', 'pron', 'präp', 'interj', 'konjunk', 'partikel', 'modal', 'kopula', 'besitz', 'eigenname', 'существ', 'прилаг', 'наречие', 'местоим', 'предлог', 'noun', 'wortverbindung'];
 // Common non-verb words that match verb endings
-const NON_VERB_WORDS = ['дочь', 'мать', 'ночь', 'полночь', 'помощь', 'вещь', 'речь', 'печь', 'молодежь', 'рожь', 'ложь', 'мышь', 'тушь', 'бровь', 'кровь', 'любовь', 'морковь', 'церковь', 'дети', 'опять', 'кстати', 'почти', 'впереди', 'сзади', 'нести'];
+const NON_VERB_WORDS = ['дочь', 'мать', 'ночь', 'полночь', 'помощь', 'вещь', 'речь', 'печь', 'молодежь', 'рожь', 'ложь', 'мышь', 'тушь', 'бровь', 'кровь', 'любовь', 'морковь', 'церковь', 'дети', 'опять', 'кстати', 'почти', 'впереди', 'сзади'];
 
 function isVerb(item) {
     // AI classification takes priority
@@ -1507,7 +1661,7 @@ function isVerb(item) {
     const word = front.split(/\s+/)[0].toLowerCase();
     if (!word) return false;
     if (NON_VERB_WORDS.includes(word)) return false;
-    return /[аеиоуыэюя](ть|ться)$/.test(word) || /[аеиоуыэюя]?(ти|тись|чь|чься)$/.test(word);
+    return /[аеиоуыэюя](ть|ться)$/.test(word) || /[аеиоуыэюя](ти|тись|чь|чься)$/.test(word);
 }
 
 async function callClaudeAPI(prompt, retries) {
@@ -1536,8 +1690,10 @@ async function callClaudeAPI(prompt, retries) {
     if (!response.ok) {
         if (response.status === 401) throw new Error('Ungültiger API-Key');
         if (response.status === 429 && retries > 0) {
-            // Read retry-after header, default 30s
-            const wait = parseInt(response.headers.get('retry-after') || '30', 10);
+            // Read retry-after header, default 30s. A non-numeric (e.g. HTTP-date)
+            // value would parse to NaN → no wait; fall back to 5s in that case (N-14).
+            let wait = parseInt(response.headers.get('retry-after') || '30', 10);
+            if (!Number.isFinite(wait) || wait <= 0) wait = 5;
             conjProgress.textContent = (conjProgress.textContent.split('|')[0].trim()) + ' | Rate-Limit, warte ' + wait + 's...';
             await new Promise(r => setTimeout(r, wait * 1000));
             return callClaudeAPI(prompt, retries - 1);
@@ -1551,6 +1707,11 @@ async function callClaudeAPI(prompt, retries) {
         throw new Error('API-Fehler ' + response.status);
     }
     const data = await response.json();
+    // Truncated responses contain partial/invalid JSON — treat as a failure
+    // rather than silently persisting garbage (M-6).
+    if (data.stop_reason === 'max_tokens') {
+        throw new Error('Antwort abgeschnitten (max_tokens) — Batch verkleinern');
+    }
     return data.content?.[0]?.text || '';
 }
 
@@ -1590,8 +1751,9 @@ async function generateConjugation(idx, btnEl) {
         const verb = item.front.replace(/́/g, '').trim();
         const text = await callClaudeAPI(buildConjPrompt([verb]));
         const parsed = parseConjResponse(text);
-        if (parsed.length === 0) throw new Error('Keine Konjugation erhalten');
+        if (parsed.length === 0 || !isValidConjugation(parsed[0])) throw new Error('Keine Konjugation erhalten');
         item.conjugation = parsed[0];
+        dataDirty = true;
         updateView();
         showToast('Konjugation für «' + item.front + '» erzeugt', 'success');
     } catch (e) {
@@ -1605,6 +1767,7 @@ async function generateAllConjugations() {
     if (batchRunning) return;
     conjAbort = false;
     batchRunning = true;
+    showAbort(true);
     const verbs = [];
     for (const i of filteredIndices) {
         if (deletedSet.has(i)) continue;
@@ -1615,12 +1778,14 @@ async function generateAllConjugations() {
 
     if (verbs.length === 0) {
         batchRunning = false;
+    showAbort(false);
         showToast('Keine Verben ohne Konjugation in der angezeigten Auswahl', 'error');
         return;
     }
 
     if (!getApiKey()) {
         batchRunning = false;
+    showAbort(false);
         showToast('Bitte API-Key eingeben', 'error');
         return;
     }
@@ -1642,26 +1807,24 @@ async function generateAllConjugations() {
 
             // Match results back to entries
             for (const conj of parsed) {
+                if (!isValidConjugation(conj)) continue;
                 const inputLower = (conj.input || '').replace(/́/g, '').toLowerCase();
                 const verbLower = (conj.verb || '').replace(/́/g, '').toLowerCase();
+                // Match on the full normalized word, never on a shared prefix:
+                // a 3-char prefix would assign e.g. посмотреть to поставить (M-10).
                 let match = batch.find(v => {
-                    const vLower = v.verb.toLowerCase();
+                    const vLower = v.verb.replace(/́/g, '').toLowerCase();
                     return vLower === inputLower || vLower === verbLower;
                 });
-                // Fallback: partial match (conjugated form shares stem with infinitive)
-                if (!match) {
-                    match = batch.find(v => {
-                        const vLower = v.verb.toLowerCase();
-                        return !allData[v.idx].conjugation && (vLower.startsWith(verbLower.slice(0, 3)) || verbLower.startsWith(vLower.slice(0, 3)));
-                    });
-                }
                 if (match) {
                     allData[match.idx].conjugation = conj;
                     done++;
                 } else {
-                    // Fallback: match by position if only one unmatched remains
+                    // Last-resort fallback: match by position only if exactly one
+                    // unmatched entry remains and counts line up.
                     const unmatched = batch.filter(v => !allData[v.idx].conjugation);
                     if (unmatched.length === 1 && parsed.length === batch.length) {
+                        console.warn('Konjugation: positionsbasierter Fallback für', unmatched[0].verb, '(kein exakter Treffer für', conj.input || conj.verb, ')');
                         allData[unmatched[0].idx].conjugation = conj;
                         done++;
                     }
@@ -1669,6 +1832,8 @@ async function generateAllConjugations() {
             }
         } catch (e) {
             showToast('Fehler bei Batch: ' + e.message, 'error');
+            // Fatal auth error: stop the whole run instead of retrying per batch (M-7a)
+            if (/API-Key/i.test(e.message)) { conjAbort = true; break; }
             // Continue with next batch
         }
 
@@ -1681,16 +1846,18 @@ async function generateAllConjugations() {
     }
 
     batchRunning = false;
+    showAbort(false);
     btnConjAll.disabled = false;
     conjProgress.textContent = '';
     updateView();
+    if (done > 0) dataDirty = true;
     const missed = verbs.length - done;
     if (missed > 0) {
         const missedWords = verbs.filter(v => !allData[v.idx].conjugation).map(v => v.verb);
         console.warn('Fehlende Konjugationen:', missedWords);
         showToast(done + ' Konjugationen erzeugt, ' + missed + ' fehlgeschlagen (erneut versuchen)', 'error');
     } else {
-        showToast('Für alle fehlenden ' + done + ' Konjugationen erzeugt', 'success');
+        showToast(done + ' Konjugationen erzeugt', 'success');
     }
 }
 
@@ -1725,15 +1892,15 @@ function showConjugation(idx) {
     // Aspect info
     const aspectLabels = { 'НСВ': 'НСВ — unvollendet', 'СВ': 'СВ — vollendet' };
     html += '<p style="margin-bottom:12px; color:var(--text-secondary);">';
-    html += '<strong>Aspekt:</strong> ' + (aspectLabels[c.aspect] || c.aspect || '—');
-    if (c.aspect_partner) html += ' &nbsp;|&nbsp; <strong>Aspektpartner:</strong> ' + c.aspect_partner;
+    html += '<strong>Aspekt:</strong> ' + escapeHtml(aspectLabels[c.aspect] || c.aspect || '—');
+    if (c.aspect_partner) html += ' &nbsp;|&nbsp; <strong>Aspektpartner:</strong> ' + escapeHtml(c.aspect_partner);
     html += '</p>';
 
     // Present
     if (c.present) {
         html += '<table><thead><tr><th colspan="2">Präsens</th></tr></thead><tbody>';
         for (const [person, form] of Object.entries(c.present)) {
-            html += '<tr><td style="width:120px; color:var(--text-secondary);">' + person + '</td><td>' + form + '</td></tr>';
+            html += '<tr><td style="width:120px; color:var(--text-secondary);">' + escapeHtml(person) + '</td><td>' + escapeHtml(form) + '</td></tr>';
         }
         html += '</tbody></table>';
     }
@@ -1742,7 +1909,7 @@ function showConjugation(idx) {
     if (c.future) {
         html += '<table><thead><tr><th colspan="2">Futur</th></tr></thead><tbody>';
         for (const [person, form] of Object.entries(c.future)) {
-            html += '<tr><td style="width:120px; color:var(--text-secondary);">' + person + '</td><td>' + form + '</td></tr>';
+            html += '<tr><td style="width:120px; color:var(--text-secondary);">' + escapeHtml(person) + '</td><td>' + escapeHtml(form) + '</td></tr>';
         }
         html += '</tbody></table>';
     }
@@ -1752,7 +1919,7 @@ function showConjugation(idx) {
         const pastLabels = { 'м': 'он — männlich', 'ж': 'она — weiblich', 'ср': 'оно — sächlich', 'мн': 'они — Plural' };
         html += '<table><thead><tr><th colspan="2">Vergangenheit</th></tr></thead><tbody>';
         for (const [key, form] of Object.entries(c.past)) {
-            html += '<tr><td style="width:120px; color:var(--text-secondary);">' + (pastLabels[key] || key) + '</td><td>' + form + '</td></tr>';
+            html += '<tr><td style="width:120px; color:var(--text-secondary);">' + escapeHtml(pastLabels[key] || key) + '</td><td>' + escapeHtml(form) + '</td></tr>';
         }
         html += '</tbody></table>';
     }
@@ -1761,7 +1928,7 @@ function showConjugation(idx) {
     if (c.imperative) {
         html += '<table><thead><tr><th colspan="2">Imperativ</th></tr></thead><tbody>';
         for (const [person, form] of Object.entries(c.imperative)) {
-            html += '<tr><td style="width:120px; color:var(--text-secondary);">' + person + '</td><td>' + form + '</td></tr>';
+            html += '<tr><td style="width:120px; color:var(--text-secondary);">' + escapeHtml(person) + '</td><td>' + escapeHtml(form) + '</td></tr>';
         }
         html += '</tbody></table>';
     }
@@ -1774,7 +1941,7 @@ function showConjugation(idx) {
     if (extras.length) {
         html += '<table><thead><tr><th colspan="2">Weitere Formen</th></tr></thead><tbody>';
         for (const [label, form] of extras) {
-            html += '<tr><td style="width:120px; color:var(--text-secondary);">' + label + '</td><td>' + form + '</td></tr>';
+            html += '<tr><td style="width:120px; color:var(--text-secondary);">' + escapeHtml(label) + '</td><td>' + escapeHtml(form) + '</td></tr>';
         }
         html += '</tbody></table>';
     }
@@ -1807,8 +1974,13 @@ function isNoun(item) {
     const grammar = (item.grammar || '').toLowerCase();
     if (STRONG_NOUN_HINTS.some(h => grammar.includes(h.toLowerCase()))) return true;
     if (NON_NOUN_GRAMMAR.some(h => grammar.includes(h.toLowerCase()))) return false;
-    // Weak noun hints (gender/number) — only if no exclusion matched
-    if (WEAK_NOUN_HINTS.some(h => grammar.includes(h.toLowerCase()))) return true;
+    // Person markers (e.g. "3. Pers. Pl.") belong to verb conjugation; the 'pl.'
+    // weak hint must not classify such verb entries as nouns (M-9).
+    const hasPersonMarker = /pers\./.test(grammar);
+    // Weak noun hints (gender/number) — only if no exclusion matched and it's
+    // not a verb person marker. Gender hints (männl./weibl./sächl.) are reliable
+    // even for noun stems that resemble verb endings (e.g. weibl. "кровать").
+    if (!hasPersonMarker && WEAK_NOUN_HINTS.some(h => grammar.includes(h.toLowerCase()))) return true;
     // If it's a verb, not a noun
     if (isVerb(item)) return false;
     // Heuristic: entries without grammar that are 1-2 words and not verbs
@@ -1818,13 +1990,15 @@ function isNoun(item) {
     if (words.length === 0 || words.length > 2) return false;
     const word = words[0].toLowerCase();
     if (!word) return false;
-    // Check German translation for noun indicators (articles, prepositions with articles)
-    const back = (item.back || '').toLowerCase();
-    if (/\b(der|die|das|ein|eine|zum|zur|ins|im|am)\b/.test(back)) return true;
+    // Check German translation for noun indicators — only for single-word
+    // translations, where a leading article reliably marks a noun. Multi-word
+    // translations like "im Voraus" / "ein wenig" must not qualify (M-9).
+    const back = (item.back || '').trim();
+    const backWords = back.split(/\s+/);
+    if (backWords.length === 2 && /^(der|die|das|ein|eine)$/i.test(backWords[0]) && /^[A-ZÄÖÜ]/.test(backWords[1])) return true;
     // Preposition + noun phrases (на почту, в школу, из дома, etc.)
     if (words.length === 2 && /^(в|на|из|к|у|о|от|до|за|по|при|без|для|про|под|над|перед|между|через|около|после|вокруг)$/i.test(words[0])) return true;
-    // Single Russian word without grammar: likely a noun if not a verb
-    if (words.length === 1 && grammar === '') return true;
+    // A single bare word with no grammar is NOT assumed to be a noun (M-9)
     return false;
 }
 
@@ -1863,8 +2037,9 @@ async function generateDeclension(idx, btnEl) {
         const noun = item.front.replace(/́/g, '').trim();
         const text = await callClaudeAPI(buildDeclPrompt([noun]));
         const parsed = parseConjResponse(text);
-        if (parsed.length === 0) throw new Error('Keine Deklination erhalten');
+        if (parsed.length === 0 || !isValidDeclension(parsed[0])) throw new Error('Keine Deklination erhalten');
         item.declension = parsed[0];
+        dataDirty = true;
         updateView();
         showToast('Deklination für «' + item.front + '» erzeugt', 'success');
     } catch (e) {
@@ -1878,6 +2053,7 @@ async function generateAllDeclensions() {
     if (batchRunning) return;
     conjAbort = false;
     batchRunning = true;
+    showAbort(true);
     const nouns = [];
     for (const i of filteredIndices) {
         if (deletedSet.has(i)) continue;
@@ -1888,12 +2064,14 @@ async function generateAllDeclensions() {
 
     if (nouns.length === 0) {
         batchRunning = false;
+    showAbort(false);
         showToast('Keine Nomen ohne Deklination in der angezeigten Auswahl', 'error');
         return;
     }
 
     if (!getApiKey()) {
         batchRunning = false;
+    showAbort(false);
         showToast('Bitte API-Key eingeben', 'error');
         return;
     }
@@ -1913,25 +2091,21 @@ async function generateAllDeclensions() {
             const parsed = parseConjResponse(text);
 
             for (const decl of parsed) {
+                if (!isValidDeclension(decl)) continue;
                 const inputLower = (decl.input || '').replace(/́/g, '').toLowerCase();
                 const nounLower = (decl.noun || '').replace(/́/g, '').toLowerCase();
+                // Match on the full normalized word, never on a shared prefix (M-10).
                 let match = batch.find(n => {
-                    const nLower = n.noun.toLowerCase();
+                    const nLower = n.noun.replace(/́/g, '').toLowerCase();
                     return nLower === inputLower || nLower === nounLower;
                 });
-                // Fallback: partial match (e.g. declined form contains the noun stem)
-                if (!match) {
-                    match = batch.find(n => {
-                        const nLower = n.noun.toLowerCase();
-                        return !allData[n.idx].declension && (nLower.startsWith(nounLower.slice(0, 3)) || nounLower.startsWith(nLower.slice(0, 3)));
-                    });
-                }
                 if (match) {
                     allData[match.idx].declension = decl;
                     done++;
                 } else {
                     const unmatched = batch.filter(n => !allData[n.idx].declension);
                     if (unmatched.length === 1 && parsed.length === batch.length) {
+                        console.warn('Deklination: positionsbasierter Fallback für', unmatched[0].noun, '(kein exakter Treffer für', decl.input || decl.noun, ')');
                         allData[unmatched[0].idx].declension = decl;
                         done++;
                     }
@@ -1939,6 +2113,8 @@ async function generateAllDeclensions() {
             }
         } catch (e) {
             showToast('Fehler bei Batch: ' + e.message, 'error');
+            // Fatal auth error: stop the whole run instead of retrying per batch (M-7a)
+            if (/API-Key/i.test(e.message)) { conjAbort = true; break; }
         }
 
         conjProgress.textContent = done + ' / ' + nouns.length;
@@ -1949,16 +2125,18 @@ async function generateAllDeclensions() {
     }
 
     batchRunning = false;
+    showAbort(false);
     btnDeclAll.disabled = false;
     conjProgress.textContent = '';
     updateView();
+    if (done > 0) dataDirty = true;
     const missed = nouns.length - done;
     if (missed > 0) {
         const missedWords = nouns.filter(n => !allData[n.idx].declension).map(n => n.noun);
         console.warn('Fehlende Deklinationen:', missedWords);
         showToast(done + ' Deklinationen erzeugt, ' + missed + ' fehlgeschlagen (erneut versuchen)', 'error');
     } else {
-        showToast('Für alle fehlenden ' + done + ' Deklinationen erzeugt', 'success');
+        showToast(done + ' Deklinationen erzeugt', 'success');
     }
 }
 
@@ -1974,7 +2152,7 @@ function showDeclension(idx) {
 
     let html = '';
     html += '<p style="color:var(--text-secondary); font-size:0.9em; margin-bottom:16px;">';
-    html += '<strong>Genus:</strong> ' + (genderLabels[d.gender] || d.gender || '—');
+    html += '<strong>Genus:</strong> ' + escapeHtml(genderLabels[d.gender] || d.gender || '—');
     html += ' &nbsp;|&nbsp; ' + (d.animate ? 'belebt' : 'unbelebt');
     html += '</p>';
 
@@ -1982,7 +2160,7 @@ function showDeclension(idx) {
         html += '<table><thead><tr><th colspan="2">Singular</th></tr></thead><tbody>';
         for (const c of caseKeys) {
             if (d.singular[c] !== undefined) {
-                html += '<tr><td style="width:120px; color:var(--text-secondary);">' + c + '</td><td>' + d.singular[c] + '</td></tr>';
+                html += '<tr><td style="width:120px; color:var(--text-secondary);">' + escapeHtml(c) + '</td><td>' + escapeHtml(d.singular[c]) + '</td></tr>';
             }
         }
         html += '</tbody></table>';
@@ -1992,7 +2170,7 @@ function showDeclension(idx) {
         html += '<table><thead><tr><th colspan="2">Plural</th></tr></thead><tbody>';
         for (const c of caseKeys) {
             if (d.plural[c] !== undefined) {
-                html += '<tr><td style="width:120px; color:var(--text-secondary);">' + c + '</td><td>' + d.plural[c] + '</td></tr>';
+                html += '<tr><td style="width:120px; color:var(--text-secondary);">' + escapeHtml(c) + '</td><td>' + escapeHtml(d.plural[c]) + '</td></tr>';
             }
         }
         html += '</tbody></table>';
@@ -2045,6 +2223,7 @@ async function generateSingleStress(idx, btn) {
         const parsed = parseConjResponse(text);
         if (parsed.length > 0) {
             allData[idx].stress = parsed[0];
+            dataDirty = true;
             updateView();
             showToast('Betonung für «' + word + '» erzeugt', 'success');
         }
@@ -2059,6 +2238,7 @@ async function generateAllStress() {
     if (batchRunning) return;
     conjAbort = false;
     batchRunning = true;
+    showAbort(true);
     const items = [];
     for (const i of filteredIndices) {
         if (deletedSet.has(i)) continue;
@@ -2070,12 +2250,14 @@ async function generateAllStress() {
 
     if (items.length === 0) {
         batchRunning = false;
+    showAbort(false);
         showToast('Keine Vokabeln in der angezeigten Auswahl ohne Betonung', 'error');
         return;
     }
 
     if (!getApiKey()) {
         batchRunning = false;
+    showAbort(false);
         showToast('Bitte API-Key eingeben', 'error');
         return;
     }
@@ -2131,6 +2313,8 @@ async function generateAllStress() {
             }
         } catch (e) {
             showToast('Fehler bei Batch: ' + e.message, 'error');
+            // Fatal auth error: stop the whole run instead of retrying per batch (M-7a)
+            if (/API-Key/i.test(e.message)) { conjAbort = true; break; }
         }
 
         conjProgress.textContent = done + ' / ' + items.length;
@@ -2141,14 +2325,16 @@ async function generateAllStress() {
     }
 
     batchRunning = false;
+    showAbort(false);
     btnStressAll.disabled = false;
     conjProgress.textContent = '';
     updateView();
+    if (done > 0) dataDirty = true;
     const missed = items.length - done;
     if (missed > 0) {
         showToast(done + ' Betonungen erzeugt, ' + missed + ' fehlgeschlagen (erneut versuchen)', 'error');
     } else {
-        showToast('Für alle fehlenden ' + done + ' Betonungen erzeugt', 'success');
+        showToast(done + ' Betonungen erzeugt', 'success');
     }
 }
 
@@ -2207,8 +2393,10 @@ async function normalizeVocabulary() {
     if (batchRunning) return;
     conjAbort = false;
     batchRunning = true;
+    showAbort(true);
     if (!getApiKey()) {
         batchRunning = false;
+    showAbort(false);
         showToast('Bitte API-Key eingeben', 'error');
         return;
     }
@@ -2221,6 +2409,8 @@ async function normalizeVocabulary() {
     }
 
     if (candidates.length === 0) {
+        batchRunning = false;
+    showAbort(false);
         showToast('Keine Vokabeln zum Normalisieren', 'error');
         return;
     }
@@ -2265,6 +2455,8 @@ async function normalizeVocabulary() {
             }
         } catch (e) {
             showToast('Fehler bei Batch: ' + e.message, 'error');
+            // Fatal auth error: stop the whole run instead of retrying per batch (M-7a)
+            if (/API-Key/i.test(e.message)) { conjAbort = true; break; }
         }
 
         const done = Math.min(b + batch.length, candidates.length);
@@ -2276,6 +2468,7 @@ async function normalizeVocabulary() {
     }
 
     batchRunning = false;
+    showAbort(false);
     btnNormalize.disabled = false;
     btnConjAll.disabled = false;
     btnDeclAll.disabled = false;
@@ -2283,6 +2476,7 @@ async function normalizeVocabulary() {
     btnClassify.disabled = false;
     conjProgress.textContent = '';
     updateView();
+    if (changed > 0) dataDirty = true;
     showToast(changed + ' Vokabeln korrigiert (von ' + candidates.length + ' geprüft)', changed > 0 ? 'success' : 'error');
 }
 
@@ -2348,6 +2542,10 @@ document.body.addEventListener('drop', e => {
         return;
     }
     currentFile = file.name;
+    // No reusable handle from drag&drop — clear stale handles so we don't
+    // silently overwrite a previously opened file (K-2 / M-1).
+    currentFileHandle = null;
+    csvFileHandle = null;
     const reader = new FileReader();
     reader.onload = ev => {
         try {
@@ -2361,6 +2559,18 @@ document.body.addEventListener('drop', e => {
     reader.readAsText(file);
 });
 
+// --- Unsaved-changes warning (M-4) ---
+window.addEventListener('beforeunload', e => {
+    const hasUnsaved =
+        Object.keys(editedMap).length > 0 ||  // edited cells not yet saved
+        deletedSet.size > 0 ||                // entries marked for deletion
+        dataDirty ||                          // bulk results written to allData but not saved
+        batchRunning;                         // an API bulk run is still in progress
+    if (hasUnsaved) {
+        e.preventDefault();
+        e.returnValue = '';
+    }
+});
 // --- Russian virtual keyboard ---
 (function() {
     const kb = document.getElementById('ruKeyboard');
