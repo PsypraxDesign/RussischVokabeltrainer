@@ -87,6 +87,11 @@ ${missingWords.join(', ')}`;
 
 // --- HTTP-Aufruf an Claude API ---
 async function callClaudeAPI(prompt) {
+    // Modellkennung zentral aus js/claude-model.js, mit Verfügbarkeitsprüfung.
+    // Faellt das Modul aus, wird die feste Kennung benutzt — nie blockieren.
+    const model = (typeof resolveClaudeModel === 'function')
+        ? await resolveClaudeModel(apiKey)
+        : 'claude-sonnet-5';
     const response = await fetch('https://api.anthropic.com/v1/messages', {
         method: 'POST',
         headers: {
@@ -96,7 +101,7 @@ async function callClaudeAPI(prompt) {
             'anthropic-dangerous-direct-browser-access': 'true'
         },
         body: JSON.stringify({
-            model: 'claude-sonnet-5',
+            model: model,
             max_tokens: 16384,
             messages: [{ role: 'user', content: prompt }]
         })
