@@ -15,6 +15,11 @@
             --text-primary: #f5f5f5;
             --text-secondary: #a0aec0;
             --text-muted: #6b7a90;
+            /* bereits vorgelesener Text: zurueckgenommen, aber klar lesbar
+               (--text-muted war dafuer zu dunkel, besonders auf dem blauen
+               Band des aktuellen Satzes) */
+            --text-read: #b6c2d4;
+            --reading-band: rgba(96, 165, 250, 0.26);
             --success: #48bb78;
             --border: #2d3e50;
         }
@@ -563,15 +568,23 @@
             margin: 0 -6px;
         }
 
+        .sentence.read {
+            color: var(--text-read);
+        }
+
+        /* Nach .read stehen, damit ein erneut angesteuerter Satz das Band
+           behaelt (gleiche Spezifitaet — die spaetere Regel gewinnt). */
         .sentence.current {
-            background: rgba(100, 160, 255, 0.30);
+            background: var(--reading-band);
             color: #ffffff;
             padding: 2px 6px;
             margin: 0 -6px;
         }
 
-        .sentence.read {
-            color: var(--text-muted);
+        /* Im aktuellen Satz bleiben auch schon gesprochene Woerter hell —
+           sonst steht gedaempftes Grau auf dem blauen Band. */
+        .sentence.current .word.spoken-word {
+            color: #e8eef8;
         }
 
         /* Word-level highlighting */
@@ -581,13 +594,17 @@
             padding: 1px 0;
         }
         .word.has-vocab {
-            border-bottom: 1px dotted var(--accent);
-            cursor: help;
+            /* dezent: bei vielen Treffern wird der Text sonst unruhig */
+            border-bottom: 1px dotted rgba(232, 179, 65, 0.5);
+            /* anklickbar: zeigt den Eintrag und liest die Vokabel vor */
+            cursor: pointer;
             position: relative;
             z-index: 2;
         }
         .word.has-vocab:hover {
-            background: rgba(232, 179, 65, 0.2);
+            background: rgba(232, 179, 65, 0.22);
+            border-bottom-color: var(--accent);
+            color: #ffffff;
         }
 
         /* Vocabulary Tooltip */
@@ -624,16 +641,19 @@
             font-style: italic;
         }
 
+        /* Wort, das gerade gesprochen wird: Gold mit dunkler Schrift — das
+           hebt sich auch auf dem blauen Satzband klar ab. */
         .word.current-word {
-            background: rgba(100, 160, 255, 0.55);
-            color: #ffffff;
+            background: var(--accent);
+            color: #14181f;
             padding: 1px 3px;
             margin: 0 -3px;
             border-radius: 3px;
+            border-bottom-color: transparent;
         }
 
         .word.spoken-word {
-            color: var(--text-muted);
+            color: var(--text-read);
         }
 
         /* Text navigation */
@@ -839,6 +859,22 @@
 
         .card-text-de {
             color: var(--success);
+        }
+
+        /* Die russische Vokabel ist anklickbar und wird dann erneut vorgelesen.
+           Bewusst zurueckhaltend: nur Zeiger und ein leichter Schimmer beim
+           Ueberfahren, das Kartenlayout bleibt unveraendert. */
+        .card-text.card-vocab {
+            cursor: pointer;
+            border-radius: 8px;
+            padding: 2px 10px;
+            margin: 0 -10px;
+            transition: background 0.15s ease, text-shadow 0.15s ease;
+        }
+
+        .card-text.card-vocab:hover {
+            background: rgba(232, 179, 65, 0.12);
+            text-shadow: 0 0 18px var(--accent-glow);
         }
 
         .card-images {
@@ -1067,6 +1103,15 @@
         .btn-restart:hover {
             background: linear-gradient(145deg, #3a5d4e 0%, #2d4a3e 100%);
             border-color: var(--success);
+        }
+
+        /* Start-Knopf, solange er "Weiter" bedeutet: pulsiert kurz auffaellig */
+        .btn.resuming {
+            animation: resumePulse 1.6s ease-in-out 3;
+        }
+        @keyframes resumePulse {
+            0%, 100% { box-shadow: 0 0 0 0 var(--accent-glow); }
+            50%      { box-shadow: 0 0 0 6px rgba(232, 179, 65, 0); }
         }
 
         .btn:disabled {
@@ -2065,7 +2110,7 @@
             <div class="upload-icon">📂</div>
             <div class="upload-text" id="uploadText" data-i18n="upload_text">Datei hier ablegen oder klicken</div>
             <div class="upload-hint" id="uploadHint" data-i18n="upload_hint">Unterstützt Quizlet-Dateien und mehrzeilige Formate</div>
-            <input type="file" id="fileInput" accept=".txt,.csv">
+            <input type="file" id="fileInput" accept=".txt,.csv,.docx">
             <button class="btn btn-primary" id="continueTextBtn" style="display: none; margin-top: 16px;">
                 <span data-i18n="btn_continue_text">Aktuellen Text weiter lesen</span>
             </button>
@@ -2133,7 +2178,7 @@
             <!-- Nur für Texte: Play-Buttons oben -->
             <div class="voice-controls" id="voiceControls" style="display: none;">
                 <button class="btn btn-primary btn-sm" id="mainSpeakBtn">
-                    <span class="btn-icon">▶</span> <span data-i18n="btn_start">Start</span>
+                    <span class="btn-icon">▶</span> <span id="mainSpeakLabel" data-i18n="btn_start">Start</span>
                 </button>
                 <button class="btn btn-stop btn-sm" id="mainStopBtn" style="display: none;">
                     <span class="btn-icon">⏹</span> <span data-i18n="btn_stop">Stopp</span>
@@ -2464,6 +2509,7 @@
     <script src="js/declension.js"></script>
     <script src="js/claude-model.js"></script>
     <script src="js/ai-vocab.js"></script>
+    <script src="js/docx.js"></script>
     <script src="js/parser.js"></script>
 
     <script>
@@ -2533,6 +2579,12 @@
         let isSpeaking = false;
         let stopRequested = false;
         let currentWordIndex = -1;
+        // Zaehler fuer die laufende Vorlese-Kette. Wird erhoeht, sobald etwas
+        // die Kette unterbricht (z. B. Klick auf eine Wörterbuch-Vokabel) —
+        // die alte Kette erkennt daran, dass sie nicht weiterlaufen darf.
+        let speechSession = 0;
+        let chainRunning = false;    // Gesamttext wird gerade Satz fuer Satz vorgelesen
+        let resumeAvailable = false; // unterbrochen — "Weiter" liest ab currentSentenceIndex
         let wordBoundarySupported = null; // null=unknown, true/false after first test
         let voices = [];
         let selectedVoice = null;
@@ -2571,6 +2623,7 @@
         const readModeSelector = document.getElementById('readModeSelector');
         const voiceControls = document.getElementById('voiceControls');
         const mainSpeakBtn = document.getElementById('mainSpeakBtn');
+        const mainSpeakLabel = document.getElementById('mainSpeakLabel');
         const mainStopBtn = document.getElementById('mainStopBtn');
         const mainRestartBtn = document.getElementById('mainRestartBtn');
         const speedRange = document.getElementById('speedRange');
@@ -3049,6 +3102,28 @@
             vocabTooltip.classList.remove('visible');
         }
 
+        // Klick auf eine Vokabel aus dem Wörterbuch: Eintrag zeigen und
+        // ausschliesslich das russische Wort vorlesen (keine Uebersetzung).
+        // Eine laufende Vorlese-Kette wird dabei abgekoppelt, damit sie nicht
+        // gleich darueber spricht.
+        function speakVocabWord(wordEl) {
+            const russian = (wordEl.dataset.vocabRussian || wordEl.textContent || '').trim();
+            if (!russian) return;
+            speechSession++;
+            const current = document.querySelector('.word.current-word');
+            if (current) {
+                current.classList.remove('current-word');
+                current.classList.add('spoken-word');
+            }
+            // Lief gerade der Gesamttext, merken wir die Stelle: der Start-Knopf
+            // heisst danach "Weiter" und liest bei diesem Satz weiter.
+            if (chainRunning) {
+                chainRunning = false;
+                setResumePoint(true);
+            }
+            speak(russian);
+        }
+
         async function generateVocabulary() {
             if (isGenerating) return;
             if (!apiKey) {
@@ -3107,6 +3182,8 @@
                     msg = t('generate_error_auth');
                 } else if (err.message === 'RATE_LIMIT') {
                     msg = t('generate_error_rate_limit');
+                } else if (err.message === 'TRUNCATED') {
+                    msg = t('generate_error_truncated');
                 } else if (err.message === 'PARSE' || err.message === 'EMPTY_RESPONSE') {
                     msg = t('generate_error_parse');
                 } else if (err.name === 'TypeError' && err.message.includes('fetch')) {
@@ -3835,7 +3912,13 @@
             try {
                 const startIn = lastDirectoryHandle || undefined;
                 const [handle] = await window.showOpenFilePicker({
-                    types: [{ description: 'Text', accept: { 'text/plain': ['.txt', '.csv'] } }],
+                    types: [{
+                        description: t('file_type_desc'),
+                        accept: {
+                            'text/plain': ['.txt', '.csv'],
+                            'application/vnd.openxmlformats-officedocument.wordprocessingml.document': ['.docx']
+                        }
+                    }],
                     startIn
                 });
                 const file = await handle.getFile();
@@ -3868,11 +3951,22 @@
         // Gespeichertes Verzeichnis beim Start laden
         loadLastDirectory().then(handle => { if (handle) lastDirectoryHandle = handle; });
 
-        function processFile(file) {
+        async function processFile(file) {
             currentSourceFile = file.name;
-            const reader = new FileReader();
-            reader.onload = (e) => parseContent(e.target.result);
-            reader.readAsText(file);
+            let content;
+            try {
+                // readFileAsText (js/docx.js) packt .docx aus, alles andere
+                // wird als UTF-8-Text gelesen.
+                content = await readFileAsText(file);
+            } catch (e) {
+                alert(e.message || String(e));
+                return;
+            }
+            if (!content || !content.trim()) {
+                alert(t('file_empty', { name: file.name }));
+                return;
+            }
+            parseContent(content);
         }
 
         // detectFormat moved to js/parser.js
@@ -3954,6 +4048,9 @@
             const text = texts[currentIndex];
             if (!text) return;
             sentences = splitIntoSentences(text.body);
+            // Neu aufgebaut (anderer Text, anderer Lese-Modus): nichts fortzusetzen
+            chainRunning = false;
+            setResumePoint(false);
 
             textReaderTitle.textContent = text.title || t('text_fallback', { n: currentIndex + 1 });
 
@@ -4257,6 +4354,21 @@
             declToggleBtn.style.display = card.declension ? '' : 'none';
             currentCardEl.textContent = currentIndex + 1;
 
+            // Die Seite mit der russischen Vokabel anklickbar machen (erneut
+            // vorlesen). Je nach Abfragerichtung ist das die Vorder- oder die
+            // Rueckseite; reine Bildkarten haben keinen Text zum Vorlesen.
+            const vocabEl = reverse ? answerText : questionText;
+            const otherEl = reverse ? questionText : answerText;
+            otherEl.classList.remove('card-vocab');
+            otherEl.removeAttribute('title');
+            if (mainText) {
+                vocabEl.classList.add('card-vocab');
+                vocabEl.title = t('card_speak_again');
+            } else {
+                vocabEl.classList.remove('card-vocab');
+                vocabEl.removeAttribute('title');
+            }
+
             flashcard.classList.remove('flipped');
             hideRatingButtons();
 
@@ -4468,6 +4580,7 @@
             if (!texts[currentIndex]) return;
             if (sentences.length === 0) return;
             currentSentenceIndex = 0;
+            setResumePoint(false);
             clearWordHighlights();
             // Alle .read-Klassen zurücksetzen
             document.querySelectorAll('.sentence.read').forEach(el => el.classList.remove('read'));
@@ -4476,10 +4589,14 @@
 
         function speakSentenceChain() {
             if (stopRequested || currentSentenceIndex >= sentences.length) {
+                chainRunning = false;
+                if (currentSentenceIndex >= sentences.length) setResumePoint(false);
                 clearWordHighlights();
                 return;
             }
 
+            chainRunning = true;
+            const session = speechSession;
             const sentenceIdx = currentSentenceIndex;
             highlightCurrentSentence();
 
@@ -4504,6 +4621,8 @@
             } : null;
 
             speak(sentences[sentenceIdx], () => {
+                // Kette wurde zwischendurch unterbrochen (z. B. Vokabel-Klick)
+                if (session !== speechSession) return;
                 // Satz als gelesen markieren
                 const sentEl = document.querySelector(`.sentence[data-idx="${sentenceIdx}"]`);
                 if (sentEl) {
@@ -4515,8 +4634,14 @@
                 }
                 currentSentenceIndex++;
                 if (!stopRequested && currentSentenceIndex < sentences.length) {
-                    setTimeout(speakSentenceChain, 150);
+                    setTimeout(() => {
+                        if (session !== speechSession) return;
+                        speakSentenceChain();
+                    }, 150);
                 } else {
+                    chainRunning = false;
+                    // Text zu Ende gelesen: nichts mehr fortzusetzen
+                    if (currentSentenceIndex >= sentences.length) setResumePoint(false);
                     clearWordHighlights();
                 }
             }, onWordBoundary);
@@ -4555,26 +4680,75 @@
         // ============================================
         // EVENT LISTENERS - TEXT MODE
         // ============================================
+
+        // Merkt (oder loescht) die Stelle, an der das Vorlesen unterbrochen
+        // wurde, und stellt den Start-Knopf auf "Weiter" um. Nur beim
+        // Gesamttext noetig — im Satzweise-Modus liest der Start-Knopf ohnehin
+        // beim aktuellen Satz weiter.
+        function setResumePoint(active) {
+            resumeAvailable = !!active && readMode === 'all'
+                && sentences.length > 0 && currentSentenceIndex < sentences.length;
+            updateSpeakButton();
+            if (resumeAvailable) {
+                textReaderProgress.textContent = t('paused_at', {
+                    current: currentSentenceIndex + 1,
+                    total: sentences.length
+                });
+            }
+        }
+
+        function updateSpeakButton() {
+            const key = resumeAvailable ? 'btn_resume' : 'btn_start';
+            mainSpeakLabel.setAttribute('data-i18n', key);
+            mainSpeakLabel.textContent = t(key);
+            if (resumeAvailable) {
+                mainSpeakBtn.setAttribute('data-i18n-title', 'btn_resume_title');
+                mainSpeakBtn.title = t('btn_resume_title');
+            } else {
+                mainSpeakBtn.removeAttribute('data-i18n-title');
+                mainSpeakBtn.title = '';
+            }
+            mainSpeakBtn.classList.toggle('resuming', resumeAvailable);
+        }
+
         function startSpeaking() {
             stopRequested = false;
             if (readMode === 'sentence') {
                 speakCurrentSentenceText();
+            } else if (resumeAvailable) {
+                resumeReading();
             } else {
                 speakFullText();
             }
         }
 
+        // Weiterlesen ab dem unterbrochenen Satz (dieser wird ganz wiederholt).
+        function resumeReading() {
+            setResumePoint(false);
+            stopRequested = false;
+            speechSession++; // evtl. noch wartende Timer der alten Kette abkoppeln
+            speakSentenceChain();
+        }
+
         function stopSpeaking() {
             stopRequested = true;
             speechSynthesis.cancel();
+            if (chainRunning) {
+                chainRunning = false;
+                speechSession++;
+                setResumePoint(true);
+            }
             clearWordHighlights();
         }
 
         function restartText() {
             speechSynthesis.cancel();
             stopRequested = false;
+            chainRunning = false;
+            speechSession++;
             currentIndex = 0;
             currentSentenceIndex = 0;
+            setResumePoint(false);
             clearWordHighlights();
             renderTextContent();
             if (texts.length > 1) renderTextList();
@@ -4613,6 +4787,17 @@
         // ============================================
         // EVENT LISTENERS - FLASHCARD MODE
         // ============================================
+        // Klick auf die russische Vokabel: erneut vorlesen statt umdrehen.
+        // Capture-Phase, weil der Umdreh-Listener direkt an #flashcard haengt
+        // und stopPropagation() sonst zu spaet kaeme.
+        flashcard.addEventListener('click', (e) => {
+            if (!e.target.closest('.card-vocab')) return;
+            e.stopPropagation();
+            const card = cards[currentIndex];
+            if (!card) return;
+            speak(card.displaySpeakText || card.speakableText);
+        }, true);
+
         flashcard.addEventListener('click', () => {
             const wasFlipped = flashcard.classList.contains('flipped');
             flashcard.classList.toggle('flipped');
@@ -4912,6 +5097,21 @@
             if (wordEl) hideVocabTooltip();
         });
         textReaderContent.addEventListener('scroll', hideVocabTooltip);
+
+        // Klick auf eine Vokabel: Eintrag zeigen (auch ohne Maus-Hover, z. B.
+        // auf dem Tablet) und das russische Wort vorlesen. In der Capture-Phase,
+        // damit der Klick nicht vorher beim Satz landet — der Satz-Handler haengt
+        // direkt an `.sentence.clickable` und wuerde sonst den ganzen Satz vorlesen.
+        textReaderContent.addEventListener('click', (e) => {
+            const wordEl = e.target.closest('.word.has-vocab');
+            if (!wordEl) return;
+            e.stopPropagation();
+            showVocabTooltip(wordEl);
+            speakVocabWord(wordEl);
+        }, true);
+
+        // Tipp-Geraete kennen kein mouseout: Klick daneben schliesst den Eintrag.
+        document.addEventListener('click', () => hideVocabTooltip());
 
         // Load API key on startup
         loadApiKey();

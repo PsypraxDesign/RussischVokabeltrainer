@@ -86,6 +86,18 @@ ${missingWords.join(', ')}`;
 }
 
 // --- HTTP-Aufruf an Claude API ---
+//
+// Zwei Fallstricke, die am 16.08.2026 die Vokabelgenerierung lahmgelegt haben:
+//
+//  1. Seit Claude Sonnet 5 ist "extended thinking" eingeschaltet, sobald das
+//     Feld `thinking` fehlt. Das Denken zaehlt gegen `max_tokens`. Bei einem
+//     laengeren Text ging so das gesamte Budget ins Denken (16384 Tokens,
+//     ueber zwei Minuten Laufzeit) und es kam gar kein Text zurueck.
+//     Fuer eine reine Extraktionsaufgabe bringt Denken nichts — deshalb
+//     ausdruecklich `thinking: {type: 'disabled'}`.
+//  2. Die Antwort ist eine Liste von Bloecken. `content[0]` ist bei
+//     eingeschaltetem Denken ein Thinking-Block, nicht der Text. Deshalb den
+//     ersten Block vom Typ "text" suchen statt blind den ersten zu nehmen.
 async function callClaudeAPI(prompt) {
     // Modellkennung zentral aus js/claude-model.js, mit Verfügbarkeitsprüfung.
     // Faellt das Modul aus, wird die feste Kennung benutzt — nie blockieren.
@@ -102,7 +114,8 @@ async function callClaudeAPI(prompt) {
         },
         body: JSON.stringify({
             model: model,
-            max_tokens: 16384,
+            max_tokens: 32000,
+            thinking: { type: 'disabled' },
             messages: [{ role: 'user', content: prompt }]
         })
     });
@@ -115,9 +128,54 @@ async function callClaudeAPI(prompt) {
     }
 
     const data = await response.json();
-    const content = data.content?.[0]?.text;
-    if (!content) throw new Error('EMPTY_RESPONSE');
+    const blocks = Array.isArray(data.content) ? data.content : [];
+    const content = blocks.find(b => b && b.type === 'text' && b.text)?.text;
+    if (!content) {
+        // Kein Text: entweder Budget im Denken verbraucht oder abgeschnitten.
+        if (data.stop_reason === 'max_tokens') throw new Error('TRUNCATED');
+        throw new Error('EMPTY_RESPONSE');
+    }
     return content;
+}
+
+// --- Abgeschnittene Antwort retten ---
+//
+// Wird das Token-Budget mitten in der Liste erreicht, fehlt das schliessende
+// "]". Frueher wurde dann am letzten "]" bzw. am Muster "},{" geschnitten —
+// beides geht schief, sobald die Eintraege ein "forms"-Array enthalten oder
+// die Antwort eingerueckt ist. Deshalb hier ein echter Klammerzaehler, der
+// Zeichenketten und Escapes beachtet und alle vollstaendigen Objekte einsammelt.
+function salvageJsonObjects(text) {
+    const objekte = [];
+    let tiefe = 0;
+    let start = -1;
+    let imString = false;
+    let escaped = false;
+
+    for (let i = 0; i < text.length; i++) {
+        const c = text[i];
+        if (imString) {
+            if (escaped) escaped = false;
+            else if (c === '\\') escaped = true;
+            else if (c === '"') imString = false;
+            continue;
+        }
+        if (c === '"') { imString = true; continue; }
+        if (c === '{') { if (tiefe === 0) start = i; tiefe++; continue; }
+        if (c === '}') {
+            tiefe--;
+            if (tiefe === 0 && start !== -1) {
+                try {
+                    objekte.push(JSON.parse(text.substring(start, i + 1)));
+                } catch (e) {
+                    /* einzelnes kaputtes Objekt ueberspringen */
+                }
+                start = -1;
+            }
+            if (tiefe < 0) tiefe = 0;   // Streuklammer im Fliesstext
+        }
+    }
+    return objekte;
 }
 
 // --- Antwort parsen, filtern und deduplizieren ---
@@ -132,29 +190,20 @@ function parseVocabResponse(responseText) {
 
     const startIdx = jsonStr.indexOf('[');
     if (startIdx === -1) throw new Error('PARSE');
+    jsonStr = jsonStr.substring(startIdx);
 
-    let endIdx = jsonStr.lastIndexOf(']');
-    if (endIdx === -1) {
-        // Truncated response — try to salvage by finding last complete object
-        const lastComplete = jsonStr.lastIndexOf('}');
-        if (lastComplete === -1) throw new Error('PARSE');
-        jsonStr = jsonStr.substring(startIdx, lastComplete + 1) + ']';
-        // Remove trailing comma before the ]
-        jsonStr = jsonStr.replace(/,\s*\]$/, ']');
-    } else {
-        jsonStr = jsonStr.substring(startIdx, endIdx + 1);
+    let items = null;
+    const endIdx = jsonStr.lastIndexOf(']');
+    if (endIdx > 0) {
+        try {
+            const geparst = JSON.parse(jsonStr.substring(0, endIdx + 1));
+            if (Array.isArray(geparst)) items = geparst;
+        } catch (e) {
+            /* unvollstaendig — unten retten */
+        }
     }
-
-    let items;
-    try {
-        items = JSON.parse(jsonStr);
-    } catch (e) {
-        // Last resort: try removing the last incomplete entry
-        const lastBrace = jsonStr.lastIndexOf('},{');
-        if (lastBrace === -1) throw new Error('PARSE');
-        jsonStr = jsonStr.substring(0, lastBrace + 1) + ']';
-        items = JSON.parse(jsonStr);
-    }
+    // Abgeschnittene oder anderweitig kaputte Liste: vollstaendige Objekte retten.
+    if (!items) items = salvageJsonObjects(jsonStr);
     if (!Array.isArray(items) || items.length === 0) throw new Error('PARSE');
 
     const filtered = items.filter(item => {

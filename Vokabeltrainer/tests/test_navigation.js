@@ -31,12 +31,50 @@ function assert(condition, message) {
     }
 }
 
+// Wartet, bis ein Element seine Position ueber mehrere Frames haelt.
+// Die App rendert Teile des Setup-Screens erst nach dem IndexedDB-Lookup
+// (gespeicherte Vokabeln, Lernfortschritt) — dabei rutschen die Buttons
+// darunter nach unten.
+async function waitForStableBox(page, selector) {
+    await page.waitForFunction((sel) => {
+        const el = document.querySelector(sel);
+        if (!el) return false;
+        const y = Math.round(el.getBoundingClientRect().top);
+        if (!window.__boxWatch) window.__boxWatch = {};
+        const prev = window.__boxWatch[sel];
+        window.__boxWatch[sel] = { y, count: (prev && prev.y === y) ? prev.count + 1 : 0 };
+        return window.__boxWatch[sel].count >= 5;
+    }, { polling: 'raf', timeout: 5000 }, selector);
+    await page.evaluate((sel) => { if (window.__boxWatch) delete window.__boxWatch[sel]; }, selector);
+}
+
+// page.click() misst die Position, scrollt hin und klickt erst danach.
+// Verschiebt sich das Ziel dazwischen, scheitert der Klick mit
+// "Node is either not clickable or not an Element" — genau das passierte
+// reproduzierbar in Test 4, sobald IndexedDB durch die vorherigen Tests
+// gefuellt war. Deshalb: Layout beruhigen lassen und notfalls erneut versuchen.
+async function clickStable(page, selector) {
+    await page.waitForSelector(selector, { visible: true, timeout: 5000 });
+    let lastError;
+    for (let attempt = 0; attempt < 5; attempt++) {
+        try {
+            await waitForStableBox(page, selector);
+            await page.click(selector);
+            return;
+        } catch (e) {
+            lastError = e;
+            await new Promise(r => setTimeout(r, 150));
+        }
+    }
+    throw new Error(`Klick auf ${selector} fehlgeschlagen: ${lastError && lastError.message}`);
+}
+
 async function uploadContent(page, content, mode) {
     // Click mode button
     if (mode === 'flashcards') {
-        await page.click('#modeFlashcards');
+        await clickStable(page, '#modeFlashcards');
     } else {
-        await page.click('#modeTexts');
+        await clickStable(page, '#modeTexts');
     }
     await page.waitForSelector('#uploadSection', { visible: true });
 
@@ -128,22 +166,22 @@ async function testBasicNavigation(page) {
     assert(visible, 'Mode selection visible on start');
 
     // Click flashcards
-    await page.click('#modeFlashcards');
+    await clickStable(page, '#modeFlashcards');
     const uploadVis = await getUploadVisible(page);
     assert(uploadVis, 'Upload section visible after clicking flashcards');
 
     // Click back to mode selection
-    await page.click('#backToModeBtn');
+    await clickStable(page, '#backToModeBtn');
     const modeVis = await getModeSelectionVisible(page);
     assert(modeVis, 'Mode selection visible after clicking back');
 
     // Click texts
-    await page.click('#modeTexts');
+    await clickStable(page, '#modeTexts');
     const uploadVis2 = await getUploadVisible(page);
     assert(uploadVis2, 'Upload section visible after clicking texts');
 
     // Back again
-    await page.click('#backToModeBtn');
+    await clickStable(page, '#backToModeBtn');
     await verifyModeSelectionClean(page, 'After back-to-mode');
 }
 
@@ -162,7 +200,7 @@ async function testTextModeToHome(page) {
     assert(textVisible, 'Text reader visible after loading text');
 
     // Click "back to home" button
-    await page.click('#backToHomeBtn');
+    await clickStable(page, '#backToHomeBtn');
 
     // Verify clean mode selection
     await verifyModeSelectionClean(page, 'After back-to-home from text');
@@ -181,7 +219,7 @@ async function testTextModeToHome(page) {
     assert(dataReset.isTextMode === false, 'isTextMode reset');
 
     // Now click flashcards — should work
-    await page.click('#modeFlashcards');
+    await clickStable(page, '#modeFlashcards');
     const uploadVis = await getUploadVisible(page);
     assert(uploadVis, 'Upload visible after clicking flashcards');
 
@@ -191,8 +229,8 @@ async function testTextModeToHome(page) {
     assert(continueVis === 'none', 'No continue-cards button shown');
 
     // Go back and try texts
-    await page.click('#backToModeBtn');
-    await page.click('#modeTexts');
+    await clickStable(page, '#backToModeBtn');
+    await clickStable(page, '#modeTexts');
     const uploadVis2 = await getUploadVisible(page);
     assert(uploadVis2, 'Upload visible after clicking texts');
 
@@ -201,7 +239,7 @@ async function testTextModeToHome(page) {
     assert(continueTextVis === 'none', 'No continue-text button shown');
 
     // Reset for next test
-    await page.click('#backToModeBtn');
+    await clickStable(page, '#backToModeBtn');
 }
 
 // ============================================
@@ -219,7 +257,7 @@ async function testFlashcardModeToHome(page) {
     assert(setupVisible, 'Flashcard setup visible after loading cards');
 
     // Start flashcards
-    await page.click('#startFlashcardsBtn');
+    await clickStable(page, '#startFlashcardsBtn');
 
     // Flashcard container should be visible
     const fcVisible = await page.evaluate(() =>
@@ -228,26 +266,26 @@ async function testFlashcardModeToHome(page) {
 
     // In flashcard mode, voiceSection is hidden, so use mainMenuBtn
     // mainMenuBtn goes to flashcard setup (cards > 0)
-    await page.click('#mainMenuBtn');
+    await clickStable(page, '#mainMenuBtn');
 
     const setupVis2 = await page.evaluate(() =>
         document.getElementById('flashcardSetup').style.display === 'block');
     assert(setupVis2, 'Flashcard setup visible after mainMenuBtn');
 
     // Now click setupBackBtn to go to mode selection
-    await page.click('#setupBackBtn');
+    await clickStable(page, '#setupBackBtn');
 
     // Verify clean mode selection
     await verifyModeSelectionClean(page, 'After setupBackBtn from flashcards');
     await verifyButtonsClickable(page, 'After setupBackBtn from flashcards');
 
     // Click texts — should work
-    await page.click('#modeTexts');
+    await clickStable(page, '#modeTexts');
     const uploadVis = await getUploadVisible(page);
     assert(uploadVis, 'Upload visible after clicking texts');
 
     // Reset
-    await page.click('#backToModeBtn');
+    await clickStable(page, '#backToModeBtn');
 }
 
 // ============================================
@@ -264,19 +302,19 @@ async function testFlashcardSetupBack(page) {
     assert(setupVisible, 'Flashcard setup visible');
 
     // Click setup back button
-    await page.click('#setupBackBtn');
+    await clickStable(page, '#setupBackBtn');
 
     // Verify clean mode selection state
     await verifyModeSelectionClean(page, 'After setupBackBtn');
     await verifyButtonsClickable(page, 'After setupBackBtn');
 
     // Mode buttons should work
-    await page.click('#modeFlashcards');
+    await clickStable(page, '#modeFlashcards');
     const uploadVis = await getUploadVisible(page);
     assert(uploadVis, 'Upload visible after clicking flashcards post-setup-back');
 
     // Reset
-    await page.click('#backToModeBtn');
+    await clickStable(page, '#backToModeBtn');
 }
 
 // ============================================
@@ -287,7 +325,7 @@ async function testMainMenuBtnFallback(page) {
 
     // Load flashcards, start, then simulate cards=[] via evaluate
     await uploadContent(page, SAMPLE_CARDS, 'flashcards');
-    await page.click('#startFlashcardsBtn');
+    await clickStable(page, '#startFlashcardsBtn');
 
     // Clear cards and click mainMenuBtn via evaluate (since button is in flashcard controls)
     await page.evaluate(() => {
@@ -310,7 +348,7 @@ async function testNoGhostSpeech(page) {
     await uploadContent(page, SAMPLE_TEXT, 'texts');
 
     // Check stopRequested after back to home
-    await page.click('#backToHomeBtn');
+    await clickStable(page, '#backToHomeBtn');
 
     const stopState = await page.evaluate(() => ({
         stopRequested: stopRequested,
@@ -328,12 +366,12 @@ async function testRapidNavigation(page) {
 
     for (let i = 0; i < 5; i++) {
         // Flashcards path
-        await page.click('#modeFlashcards');
-        await page.click('#backToModeBtn');
+        await clickStable(page, '#modeFlashcards');
+        await clickStable(page, '#backToModeBtn');
 
         // Texts path
-        await page.click('#modeTexts');
-        await page.click('#backToModeBtn');
+        await clickStable(page, '#modeTexts');
+        await clickStable(page, '#backToModeBtn');
     }
 
     // After rapid cycling, mode selection should be clean
@@ -341,11 +379,11 @@ async function testRapidNavigation(page) {
     await verifyButtonsClickable(page, 'After rapid cycling');
 
     // Buttons should still work
-    await page.click('#modeFlashcards');
+    await clickStable(page, '#modeFlashcards');
     const uploadVis = await getUploadVisible(page);
     assert(uploadVis, 'Upload still works after rapid cycling');
 
-    await page.click('#backToModeBtn');
+    await clickStable(page, '#backToModeBtn');
 }
 
 // ============================================
@@ -361,19 +399,19 @@ async function testFullRoundTrip(page) {
     assert(textVis, 'Round-trip: text reader visible');
 
     // 2. Back to home
-    await page.click('#backToHomeBtn');
+    await clickStable(page, '#backToHomeBtn');
     await verifyModeSelectionClean(page, 'Round-trip: after text→home');
 
     // 3. Load flashcards
     await uploadContent(page, SAMPLE_CARDS, 'flashcards');
-    await page.click('#startFlashcardsBtn');
+    await clickStable(page, '#startFlashcardsBtn');
     const fcVis = await page.evaluate(() =>
         document.getElementById('flashcardContainer').classList.contains('visible'));
     assert(fcVis, 'Round-trip: flashcard container visible');
 
     // 4. Back to home (mainMenuBtn → setup → setupBackBtn)
-    await page.click('#mainMenuBtn');
-    await page.click('#setupBackBtn');
+    await clickStable(page, '#mainMenuBtn');
+    await clickStable(page, '#setupBackBtn');
     await verifyModeSelectionClean(page, 'Round-trip: after cards→home');
 
     // 5. Load text again
@@ -383,7 +421,7 @@ async function testFullRoundTrip(page) {
     assert(textVis2, 'Round-trip: text reader visible again');
 
     // 6. Final back to home
-    await page.click('#backToHomeBtn');
+    await clickStable(page, '#backToHomeBtn');
     await verifyModeSelectionClean(page, 'Round-trip: final state clean');
     await verifyButtonsClickable(page, 'Round-trip: final state');
 }
@@ -401,7 +439,7 @@ async function testSavedVocabList(page) {
     await page.evaluate(() => { switchToModeSelection(); });
 
     // Click flashcards again
-    await page.click('#modeFlashcards');
+    await clickStable(page, '#modeFlashcards');
 
     // Wait for async renderSavedVocabList to finish
     await page.waitForSelector('#savedVocabSection[style*="block"]', { timeout: 3000 });
@@ -440,7 +478,7 @@ async function testLoadFromSavedVocab(page) {
     await page.evaluate(() => { switchToModeSelection(); });
 
     // Click flashcards
-    await page.click('#modeFlashcards');
+    await clickStable(page, '#modeFlashcards');
     await page.waitForSelector('#savedVocabSection[style*="block"]', { timeout: 3000 });
 
     // Click "All vocabulary" via evaluate (element may need scrolling)
@@ -474,13 +512,13 @@ async function testSavedVocabNotInTextMode(page) {
     console.log('\n--- Test 11: Saved vocab not shown in text mode ---');
 
     // Click texts mode
-    await page.click('#modeTexts');
+    await clickStable(page, '#modeTexts');
 
     const savedVis = await page.evaluate(() =>
         document.getElementById('savedVocabSection').style.display);
     assert(savedVis === 'none', 'Saved vocab section hidden in text mode');
 
-    await page.click('#backToModeBtn');
+    await clickStable(page, '#backToModeBtn');
 }
 
 // ============================================
@@ -505,7 +543,7 @@ async function testMultipleSources(page) {
     });
 
     // Navigate to flashcards
-    await page.click('#modeFlashcards');
+    await clickStable(page, '#modeFlashcards');
     await page.waitForSelector('#savedVocabSection[style*="block"]', { timeout: 3000 });
 
     const items = await page.evaluate(() => {
@@ -552,18 +590,18 @@ async function testSavedVocabHiddenAfterBack(page) {
     console.log('\n--- Test 13: Saved vocab section hidden after navigation ---');
 
     // Go to flashcards (savedVocabSection visible)
-    await page.click('#modeFlashcards');
+    await clickStable(page, '#modeFlashcards');
     await page.waitForSelector('#savedVocabSection[style*="block"]', { timeout: 3000 });
 
     // Back to mode selection
-    await page.click('#backToModeBtn');
+    await clickStable(page, '#backToModeBtn');
 
     const savedVis = await page.evaluate(() =>
         document.getElementById('savedVocabSection').style.display);
     assert(savedVis === 'none', 'Saved vocab hidden after backToModeBtn');
 
     // Also verify via switchToModeSelection
-    await page.click('#modeFlashcards');
+    await clickStable(page, '#modeFlashcards');
     await page.waitForSelector('#savedVocabSection[style*="block"]', { timeout: 3000 });
 
     await page.evaluate(() => { switchToModeSelection(); });
@@ -587,6 +625,17 @@ async function main() {
 
     const page = await browser.newPage();
     await page.setViewport({ width: 1200, height: 800 });
+
+    // Der Startup-Hinweis zur Speicherdatei ist ein alert(). Es erscheint
+    // asynchron (nach dem IndexedDB-Lookup) und blockiert dann jedes laufende
+    // page.evaluate() bis zum Protokoll-Timeout -- je nach Zeitpunkt brach der
+    // Testlauf mal nach 2, mal nach 29 Zusicherungen ab. Handler muss vor dem
+    // ersten goto() haengen.
+    const dialogs = [];
+    page.on('dialog', async dialog => {
+        dialogs.push(dialog.message());
+        await dialog.dismiss();
+    });
 
     // Collect console errors
     const consoleErrors = [];

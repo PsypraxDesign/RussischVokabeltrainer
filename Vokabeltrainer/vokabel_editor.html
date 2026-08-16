@@ -1684,6 +1684,10 @@ async function callClaudeAPI(prompt, retries) {
         body: JSON.stringify({
             model: model,
             max_tokens: 8192,
+            // Ohne dieses Feld denkt Claude seit Sonnet 5 von sich aus, und das
+            // Denken zaehlt gegen max_tokens — das Budget kann komplett dafuer
+            // draufgehen, ohne dass Text zurueckkommt (siehe CLAUDE.md).
+            thinking: { type: 'disabled' },
             messages: [{ role: 'user', content: prompt }]
         })
     });
@@ -1712,7 +1716,9 @@ async function callClaudeAPI(prompt, retries) {
     if (data.stop_reason === 'max_tokens') {
         throw new Error('Antwort abgeschnitten (max_tokens) — Batch verkleinern');
     }
-    return data.content?.[0]?.text || '';
+    // Die Antwort ist eine Liste von Bloecken; den ersten Textblock nehmen.
+    const bloecke = Array.isArray(data.content) ? data.content : [];
+    return bloecke.find(b => b && b.type === 'text' && b.text)?.text || '';
 }
 
 function buildConjPrompt(verbs) {
