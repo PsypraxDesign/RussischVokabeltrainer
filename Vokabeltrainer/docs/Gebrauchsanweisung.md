@@ -275,6 +275,33 @@ Der Fortschritt wird automatisch im Browser gespeichert. Wenn Sie dieselbe Datei
 
 Wenn Ihre Datei mehrere Absätze oder Dialogteile enthält, werden diese als separate Texte angezeigt. Sie können in der Liste unterhalb des Lesefensters zwischen den Texten wechseln.
 
+### Bekannte Vokabeln im Text (gepunktet unterstrichen)
+
+Alle Wörter und Wendungen, die schon in Ihrer **Vokabelliste** stehen -- aus **irgendeiner** Lektion, nicht nur aus diesem Text --, sind im Lesetext **gepunktet unterstrichen**. Betonungszeichen spielen dabei keine Rolle (*кварти́ра* in der Liste findet *квартира* im Text).
+
+- **Mauszeiger darüber** zeigt Wörterbuchform, Übersetzung und Grammatik.
+- **Klick darauf** zeigt dasselbe und liest das russische Wort vor.
+- Wendungen aus 2 bis 4 Wörtern (z. B. *на метро*) werden als Ganzes erkannt.
+- Stehen dieselben Wörter in mehreren Lektionen, gilt die Übersetzung aus der Lektion dieses Texts.
+
+### Wort oder Wortgruppe markieren -- nachschlagen
+
+Markieren Sie mit der Maus ein beliebiges Wort (**Doppelklick**) oder eine Wortgruppe (**Ziehen**). Es öffnet sich ein Kästchen mit Wörterbuchform, Übersetzung und Grammatik:
+
+- Steht der Ausdruck in Ihrer Vokabelliste, erscheint die Antwort sofort (*„aus deiner Vokabelliste"*).
+- Sonst übersetzt **Claude** den Ausdruck passend zum Satz, in dem er steht (*„von Claude übersetzt"*). Dafür ist der Claude-API-Schlüssel nötig (siehe Kapitel 9). Während Claude arbeitet, läuft ein Lichtstreif über den markierten Ausdruck.
+- **🔊** liest die Wörterbuchform vor.
+- **➕ In Vokabelliste** speichert ein Ergebnis von Claude als Vokabel dieses Texts. Es ist danach im Text unterstrichen und steht bei den Karteikarten dieser Lektion.
+- Schließen: **Escape**, Klick daneben, oder einfach neu markieren.
+
+Markiert werden können bis zu 12 Wörter. Für ganze Texte ist der Knopf **🤖 Vokabeln generieren** gedacht.
+
+### Stimmen und Sprachausgabe
+
+Im Auswahlfeld **Stimme** stehen zuerst die **Azure-Stimmen** (☁️ Светлана, Дария, Дмитрий), sofern ein Azure-Schlüssel eingerichtet ist (Einstellungen ⚙ oder `api-key.js`, derselbe Schlüssel wie im Aussprachetrainer). Danach folgen die Stimmen des Browsers und von Windows.
+
+Spricht eine Stimme nicht -- zum Beispiel weil ein Online-Dienst ausgefallen ist --, erscheint unten ein **roter Hinweis** mit dem Grund. Der Knopf heißt dann **„Weiter"** und liest nach dem Wechsel der Stimme an derselben Stelle weiter.
+
 ---
 
 ## 6. Die Vokabel-Datenbank -- Ihr wachsender Wortschatz
@@ -304,9 +331,25 @@ Die Exportdatei enthält folgende Spalten:
 - Grammatik
 - Quelle (der Dateiname, aus dem die Vokabel stammt)
 
-### Auto-Export als JSON
+### Die Vokabelliste `vokabeln.json` -- das Original
 
-In den **Einstellungen** (Zahnrad-Symbol oben rechts) können Sie einen Speicherort für eine JSON-Datei wählen. Die App exportiert dann bei jeder Änderung automatisch Ihre gesamte Vokabelsammlung in diese Datei. So haben Sie immer ein aktuelles Backup.
+Ihre Vokabeln stehen in der Datei **`vokabeln.json`** (Ordner `Vokabelliste_JSON`). Diese Datei ist das **Original**: Der Trainer liest sie beim Start ein, und alles, was Sie im Trainer speichern (neue Lektion, markierte Vokabel, gelöschte Lektion), trägt er dort ein -- ohne den Rest der Datei anzutasten. Änderungen aus dem Vokabel-Editor übernimmt der Trainer, sobald Sie in sein Fenster zurückkehren.
+
+**Die Leiste unter der Überschrift** zeigt, wenn etwas fehlt:
+
+- **„📂 Vokabelliste wählen"** -- noch keine Datei gewählt. Wählen Sie `vokabeln.json` im Ordner `Vokabelliste_JSON`.
+- **„🔗 Verbinden"** -- nach einem Neustart von Edge braucht der Browser einmal Ihre Erlaubnis für die Datei. Ein Klick genügt. Was Sie in der Zwischenzeit gespeichert haben, wartet und wird dann eingetragen.
+- **Rote Leiste** -- die Datei ließ sich nicht lesen (z. B. beschädigt). Die App überschreibt sie dann **nicht**.
+
+In den **Einstellungen** (Zahnrad) finden Sie denselben Stand sowie **„🔄 Jetzt mit Datei abgleichen"**.
+
+### Der Lernstand `lernstand.json`
+
+Ihr Lernfortschritt (welche Karte wann wieder dran ist, Ihr Lernverlauf) liegt zunächst nur im Browser. Damit er das Löschen der Browserdaten übersteht, sichert die App ihn in der Datei **`lernstand.json`** -- einmal anlegen über **„💾 lernstand.json anlegen"** in der Leiste oder in den Einstellungen; der Dialog öffnet sich im Ordner der Vokabelliste. Danach wird der Lernstand nach jeder Bewertung automatisch gesichert. Gibt es die Datei schon (z. B. nach dem Löschen der Browserdaten), führt die App beide Stände zusammen: pro Karte gilt der zuletzt bewertete.
+
+Hinweis: Wenn Sie im Editor die Übersetzung einer Karte ändern, beginnt deren Lernstand von vorn.
+
+**Die JSON-Datei ist keine Lektion.** Sie wird im Vokabel-Editor geöffnet, nicht im Trainer geladen -- der Trainer lehnt `.json`-Dateien deshalb ab. (Am 06.04.2026 war sie versehentlich als Text importiert worden; jede Zeile wurde zur „Vokabel“, über 10.000 Stück.) Sollte sich solcher Datenmüll (Einträge wie `id: …`, `front: …`, `Род.: …`) je wieder einschleichen: im Vokabel-Editor die Liste öffnen und **🧹 Müll löschen** klicken. Das bereinigt die Liste und die Datenbank des Trainers zugleich.
 
 ---
 

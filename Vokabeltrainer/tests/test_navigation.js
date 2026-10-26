@@ -12,6 +12,7 @@
  */
 
 const puppeteer = require('puppeteer');
+const { isolatePage } = require('./helpers/offline');
 const path = require('path');
 
 const INDEX_URL = 'file:///' + path.resolve(__dirname, '..', 'index.html').replace(/\\/g, '/');
@@ -624,6 +625,8 @@ async function main() {
     });
 
     const page = await browser.newPage();
+
+    await isolatePage(page);   // kein Netz, keine echten Schluessel
     await page.setViewport({ width: 1200, height: 800 });
 
     // Der Startup-Hinweis zur Speicherdatei ist ein alert(). Es erscheint

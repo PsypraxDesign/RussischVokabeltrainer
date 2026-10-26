@@ -641,6 +641,103 @@
             font-style: italic;
         }
 
+        /* Markiertes Wort / markierte Wortgruppe nachschlagen */
+        .selection-popup {
+            display: none;
+            position: fixed;
+            z-index: 1600;
+            background: var(--bg-card);
+            border: 1px solid var(--accent);
+            border-left: 4px solid var(--accent);
+            border-radius: 8px;
+            padding: 12px 14px 10px;
+            box-shadow: 0 6px 24px rgba(0, 0, 0, 0.55);
+            width: max-content;
+            max-width: min(360px, calc(100vw - 16px));
+            animation: tooltipFadeIn 0.15s ease;
+        }
+        .selection-popup.visible { display: block; }
+        .selection-popup-word {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.15rem;
+            color: var(--accent);
+            margin-bottom: 4px;
+        }
+        .selection-popup-translation {
+            color: var(--text-primary);
+            font-size: 1rem;
+            margin-bottom: 2px;
+        }
+        .selection-popup-grammar {
+            color: var(--text-muted);
+            font-size: 0.85rem;
+            font-style: italic;
+        }
+        .selection-popup-message {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+        }
+        .selection-popup-footer {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            margin-top: 10px;
+            padding-top: 8px;
+            border-top: 1px solid var(--border);
+        }
+        .selection-popup-source {
+            flex: 1;
+            color: var(--text-muted);
+            font-size: 0.75rem;
+        }
+        .selection-popup-btn {
+            background: transparent;
+            border: 1px solid var(--border);
+            border-radius: 6px;
+            color: var(--text-primary);
+            font-size: 0.8rem;
+            padding: 4px 8px;
+            cursor: pointer;
+            white-space: nowrap;
+        }
+        .selection-popup-btn:hover:not(:disabled) { border-color: var(--accent); color: var(--accent); }
+        .selection-popup-btn:disabled { opacity: 0.6; cursor: default; }
+        /* Warten auf Claude: ein Lichtstreif laeuft ueber den markierten
+           Ausdruck, darunter "Claude übersetzt" mit huepfenden Punkten. */
+        .selection-popup-loading { display: none; }
+        .selection-popup.loading .selection-popup-loading { display: block; }
+        .selection-popup.loading .selection-popup-result,
+        .selection-popup.loading .selection-popup-footer { display: none; }
+        .selection-scan {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.15rem;
+            background: linear-gradient(90deg, var(--text-muted) 0%, var(--text-muted) 35%,
+                var(--accent) 50%, var(--text-muted) 65%, var(--text-muted) 100%);
+            background-size: 300% 100%;
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            animation: selectionScan 1.4s linear infinite;
+            margin-bottom: 6px;
+        }
+        @keyframes selectionScan { from { background-position: 100% 0; } to { background-position: 0% 0; } }
+        .selection-loading-label { color: var(--text-secondary); font-size: 0.85rem; }
+        .selection-dots i {
+            display: inline-block;
+            width: 4px; height: 4px;
+            margin-left: 3px;
+            border-radius: 50%;
+            background: var(--accent);
+            animation: selectionDot 1s ease-in-out infinite;
+        }
+        .selection-dots i:nth-child(2) { animation-delay: 0.15s; }
+        .selection-dots i:nth-child(3) { animation-delay: 0.3s; }
+        @keyframes selectionDot { 0%, 100% { transform: translateY(0); opacity: 0.4; } 50% { transform: translateY(-4px); opacity: 1; } }
+        @media (prefers-reduced-motion: reduce) {
+            .selection-scan, .selection-dots i { animation: none; }
+            .selection-scan { color: var(--accent); background: none; }
+        }
+
         /* Wort, das gerade gesprochen wird: Gold mit dunkler Schrift — das
            hebt sich auch auf dem blauen Satzband klar ab. */
         .word.current-word {
@@ -1873,6 +1970,55 @@
             border-color: var(--accent);
             color: var(--accent);
         }
+        /* Hinweis, wenn eine Stimme nicht spricht (statt stumm zu bleiben) */
+        .tts-notice {
+            position: fixed;
+            left: 50%;
+            bottom: 24px;
+            transform: translateX(-50%);
+            max-width: min(560px, calc(100vw - 32px));
+            padding: 12px 16px;
+            background: var(--bg-card);
+            border: 1px solid #e57373;
+            border-left: 4px solid #e57373;
+            border-radius: 8px;
+            color: var(--text-primary);
+            font-size: 0.95rem;
+            line-height: 1.4;
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.45);
+            z-index: 3000;
+            cursor: pointer;
+            display: none;
+        }
+        .tts-notice.visible { display: block; }
+        .tts-notice.info { border-color: var(--success); border-left-color: var(--success); }
+
+        /* Verbindung zu vokabeln.json / lernstand.json (js/file-sync.js) */
+        .file-sync-bar {
+            display: none;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 10px 14px;
+            margin: 0 0 18px;
+            padding: 10px 14px;
+            background: rgba(232, 179, 65, 0.08);
+            border: 1px solid var(--accent);
+            border-radius: 10px;
+            color: var(--text-primary);
+            font-size: 0.95rem;
+        }
+        .file-sync-bar.visible { display: flex; }
+        .file-sync-bar.error { border-color: #e57373; background: rgba(229, 115, 115, 0.08); }
+        .file-sync-text { flex: 1 1 280px; }
+        .file-sync-dismiss {
+            background: transparent;
+            border: none;
+            color: var(--text-muted);
+            font-size: 0.85rem;
+            cursor: pointer;
+            text-decoration: underline;
+        }
+
         .settings-hint {
             color: var(--text-muted);
             font-size: 0.85rem;
@@ -2088,6 +2234,12 @@
             <button class="settings-btn" id="settingsBtn" data-i18n-title="btn_settings" title="Einstellungen">&#9881;</button>
         </header>
 
+        <div class="file-sync-bar" id="fileSyncBar" role="status">
+            <span class="file-sync-text" id="fileSyncText"></span>
+            <button class="btn btn-primary btn-sm" id="fileSyncAction"></button>
+            <button class="file-sync-dismiss" id="fileSyncDismiss" data-i18n="file_sync_dismiss">Ausblenden</button>
+        </div>
+
         <!-- Mode Selection -->
         <div class="mode-selection" id="modeSelection">
             <h2 class="mode-title" data-i18n="mode_title">Was möchtest du lernen?</h2>
@@ -2199,6 +2351,24 @@
             <div class="vocab-tooltip-grammar" id="vocabTooltipGrammar"></div>
         </div>
 
+        <div class="selection-popup" id="selectionPopup" role="dialog" aria-live="polite">
+            <div class="selection-popup-loading">
+                <div class="selection-scan" id="selectionPopupScan"></div>
+                <span class="selection-loading-label" data-i18n="selection_loading">Claude übersetzt</span><span class="selection-dots"><i></i><i></i><i></i></span>
+            </div>
+            <div class="selection-popup-result">
+                <div class="selection-popup-word" id="selectionPopupWord"></div>
+                <div class="selection-popup-translation" id="selectionPopupTranslation"></div>
+                <div class="selection-popup-grammar" id="selectionPopupGrammar"></div>
+                <div class="selection-popup-message" id="selectionPopupMessage"></div>
+            </div>
+            <div class="selection-popup-footer" id="selectionPopupFooter">
+                <span class="selection-popup-source" id="selectionPopupSource"></span>
+                <button class="selection-popup-btn" id="selectionSpeakBtn" data-i18n-title="selection_speak_title" title="Wörterbuchform vorlesen">🔊</button>
+                <button class="selection-popup-btn" id="selectionSaveBtn" data-i18n="selection_save">➕ In Vokabelliste</button>
+            </div>
+        </div>
+
         <div class="text-reader-container" id="textReaderContainer">
             <div class="text-reader">
                 <div class="text-reader-header">
@@ -2301,6 +2471,8 @@
         <!-- ============================================
              SETTINGS PANEL
              ============================================ -->
+        <div class="tts-notice" id="ttsNotice" role="alert"></div>
+
         <div class="settings-panel" id="settingsPanel">
             <div class="settings-panel-inner">
                 <div class="settings-panel-header">
@@ -2320,13 +2492,38 @@
                     </button>
 
                     <hr style="border-color: var(--border); margin: 20px 0;">
+                    <label class="settings-label" for="azureKeyInput" data-i18n="settings_azure_title">Azure-Sprachausgabe (russische Stimmen):</label>
+                    <div class="settings-input-group">
+                        <input type="password" id="azureKeyInput" class="settings-input"
+                               placeholder="Azure Speech Key" data-i18n-placeholder="settings_azure_key_placeholder"
+                               autocomplete="off" data-bwignore data-lpignore="true" data-1p-ignore data-form-type="other">
+                        <button class="settings-toggle-btn" id="toggleAzureKeyBtn">&#128065;</button>
+                    </div>
+                    <div class="settings-input-group">
+                        <input type="text" id="azureRegionInput" class="settings-input"
+                               placeholder="germanywestcentral" data-i18n-placeholder="settings_azure_region_placeholder"
+                               autocomplete="off" data-bwignore data-lpignore="true" data-1p-ignore data-form-type="other">
+                    </div>
+                    <p class="settings-hint" id="azureStatus" data-i18n="settings_azure_hint">Stimmen Светлана, Дария, Дмитрий über Microsoft Azure.</p>
+                    <button class="btn btn-primary" id="saveAzureBtn">
+                        <span data-i18n="btn_save_settings">Speichern</span>
+                    </button>
+
+                    <hr style="border-color: var(--border); margin: 20px 0;">
                     <label class="settings-label" data-i18n="settings_auto_export">Auto-Export Vokabel-JSON:</label>
                     <p class="settings-hint" id="vocabExportStatus" data-i18n="settings_no_file">Keine Datei gewählt — Vokabeln werden nur im Browser gespeichert.</p>
                     <button class="btn btn-secondary" id="pickVocabFileBtn">
                         <span data-i18n="settings_pick_file">Speicherort wählen</span>
                     </button>
                     <button class="btn btn-primary" id="exportNowBtn" style="margin-top: 8px;">
-                        <span data-i18n="settings_export_now">💾 Jetzt in JSON exportieren</span>
+                        <span data-i18n="settings_export_now">🔄 Jetzt mit Datei abgleichen</span>
+                    </button>
+
+                    <hr style="border-color: var(--border); margin: 20px 0;">
+                    <label class="settings-label" data-i18n="settings_progress_file">Lernstand (lernstand.json):</label>
+                    <p class="settings-hint" id="progressFileStatus" data-i18n="settings_progress_none">Keine Datei gewählt — der Lernstand liegt nur im Browser.</p>
+                    <button class="btn btn-secondary" id="pickProgressFileBtn">
+                        <span data-i18n="settings_progress_pick">Speicherort wählen</span>
                     </button>
                 </div>
             </div>
@@ -2394,8 +2591,8 @@
                 <button class="btn btn-secondary" id="shuffleBtn">
                     <span class="btn-icon">🔀</span> <span data-i18n="btn_shuffle">Mischen</span>
                 </button>
-                <button class="btn btn-secondary" id="directionBtn" data-i18n-title="btn_direction_title" title="Abfragerichtung umschalten">
-                    <span class="btn-icon">⇄</span> <span data-i18n="btn_direction">Richtung</span>
+                <button class="btn btn-secondary" id="directionBtn" data-i18n-title="btn_direction_title_ru2other" title="Vorderseite: Russisch. Klicken für Deutsch → Russisch.">
+                    <span class="btn-icon">⇄</span> <span id="directionLabel" data-i18n="btn_direction_ru2other">RU → DE</span>
                 </button>
                 <button class="btn btn-secondary" id="mainMenuBtn">
                     <span class="btn-icon">←</span> <span data-i18n="btn_main_menu">Hauptmenü</span>
@@ -2504,13 +2701,17 @@
     <script src="js/i18n.js"></script>
     <script src="js/sr.js"></script>
     <script src="js/tts.js"></script>
+    <script src="js/azure-tts.js"></script>
+    <script src="js/vocab-junk.js"></script>
     <script src="js/db.js"></script>
+    <script src="js/file-sync.js"></script>
     <script src="js/conjugation.js"></script>
     <script src="js/declension.js"></script>
     <script src="js/claude-model.js"></script>
     <script src="js/ai-vocab.js"></script>
     <script src="js/docx.js"></script>
     <script src="js/parser.js"></script>
+    <script src="js/selection-lookup.js"></script>
 
     <script>
         // ============================================
@@ -2658,6 +2859,12 @@
         const apiKeyInput = document.getElementById('apiKeyInput');
         const toggleApiKeyBtn = document.getElementById('toggleApiKeyBtn');
         const saveSettingsBtn = document.getElementById('saveSettingsBtn');
+        const azureKeyInput = document.getElementById('azureKeyInput');
+        const azureRegionInput = document.getElementById('azureRegionInput');
+        const toggleAzureKeyBtn = document.getElementById('toggleAzureKeyBtn');
+        const saveAzureBtn = document.getElementById('saveAzureBtn');
+        const azureStatus = document.getElementById('azureStatus');
+        const ttsNotice = document.getElementById('ttsNotice');
         const generateVocabBtn = document.getElementById('generateVocabBtn');
         const vocabPreviewPanel = document.getElementById('vocabPreviewPanel');
         const vocabPreviewTable = document.getElementById('vocabPreviewTable');
@@ -2670,6 +2877,16 @@
         const vocabTooltipWord = document.getElementById('vocabTooltipWord');
         const vocabTooltipTranslation = document.getElementById('vocabTooltipTranslation');
         const vocabTooltipGrammar = document.getElementById('vocabTooltipGrammar');
+        const selectionPopup = document.getElementById('selectionPopup');
+        const selectionPopupScan = document.getElementById('selectionPopupScan');
+        const selectionPopupWord = document.getElementById('selectionPopupWord');
+        const selectionPopupTranslation = document.getElementById('selectionPopupTranslation');
+        const selectionPopupGrammar = document.getElementById('selectionPopupGrammar');
+        const selectionPopupMessage = document.getElementById('selectionPopupMessage');
+        const selectionPopupFooter = document.getElementById('selectionPopupFooter');
+        const selectionPopupSource = document.getElementById('selectionPopupSource');
+        const selectionSpeakBtn = document.getElementById('selectionSpeakBtn');
+        const selectionSaveBtn = document.getElementById('selectionSaveBtn');
 
         // Flashcard Setup Elements
         const flashcardSetup = document.getElementById('flashcardSetup');
@@ -2752,6 +2969,7 @@
             } catch (e) {
                 console.warn('Lernstand konnte nicht gespeichert werden:', e);
             }
+            scheduleProgressSave();   // lernstand.json (js/file-sync.js)
         }
 
         function resetSRData() {
@@ -2785,16 +3003,23 @@
         let isGenerating = false;
         let generatedVocabMap = {}; // { normalized_word: { russian, translation, grammar } }
 
-        async function loadVocabForSource(source) {
-            const records = await getVocabBySource(source);
-            if (records.length === 0) return;
-            const items = dbRecordsToVocabItems(records);
-            buildVocabMap(items);
+        // Woerterbuch fuer den Lesetext: alle gespeicherten Vokabeln aller
+        // Lektionen; die des aktuellen Texts haben Vorrang (zuletzt eingetragen).
+        // Frueher nur die Vokabeln mit demselben Dateinamen — ein neuer Text
+        // blieb dann ganz ohne Markierung, obwohl die Woerter laengst bekannt waren.
+        async function loadVocabForText(source) {
+            const all = (await getAllCardsFromDB())
+                .filter(r => !isJunkVocabRecord(r) && r.front && r.back);
+            const own = all.filter(r => source && r.source === source);
+            const others = all.filter(r => !source || r.source !== source);
+            buildVocabMap(dbRecordsToVocabItems(others.concat(own)));
             markVocabWords();
-            // Also load as cards for flashcard mode
-            cards = vocabItemsToCards(items);
-            isClassicFormat = false;
-            isTabFormat = true;
+            // Karteikarten bleiben die Vokabeln dieses Texts
+            if (own.length > 0) {
+                cards = vocabItemsToCards(dbRecordsToVocabItems(own));
+                isClassicFormat = false;
+                isTabFormat = true;
+            }
         }
 
         async function renderSavedVocabList() {
@@ -2847,7 +3072,8 @@
                     const count = btn.dataset.count;
                     const displayName = source.replace(/\.[^.]+$/, '') || '?';
                     if (!confirm(t('saved_vocab_delete_confirm', { name: displayName, n: count }))) return;
-                    await deleteSourceFromDB(source);
+                    const result = await deleteSourceFromDB(source);
+                    if (result === 'pending') showTtsNotice(t('file_sync_saved_pending'), 'info');
                     renderSavedVocabList();
                 });
             });
@@ -2906,19 +3132,160 @@
                 saveSettingsBtn.style.display = '';
                 toggleApiKeyBtn.style.display = '';
             }
+            showAzureSettings();
             updateVocabExportStatus();
             settingsPanel.classList.add('visible');
         }
 
+        function showAzureSettings() {
+            const cfg = getAzureConfig();
+            if (cfg.fromFile) {
+                azureKeyInput.value = '********** (api-key.js)';
+                azureKeyInput.disabled = true;
+                azureRegionInput.value = cfg.region;
+                azureRegionInput.disabled = true;
+                saveAzureBtn.style.display = 'none';
+                toggleAzureKeyBtn.style.display = 'none';
+            } else {
+                azureKeyInput.value = cfg.key;
+                azureKeyInput.disabled = false;
+                azureRegionInput.value = cfg.region;
+                azureRegionInput.disabled = false;
+                saveAzureBtn.style.display = '';
+                toggleAzureKeyBtn.style.display = '';
+            }
+            updateAzureStatus();
+        }
+
+        function updateAzureStatus() {
+            const active = isAzureConfigured();
+            azureStatus.textContent = t(active ? 'settings_azure_active' : 'settings_azure_hint');
+            azureStatus.style.color = active ? 'var(--accent)' : '';
+        }
+
         function updateVocabExportStatus() {
-            if (vocabFileHandle) {
-                vocabExportStatus.textContent = t('settings_file_active', { name: vocabFileHandle.name });
+            const name = vocabFileHandle ? vocabFileHandle.name : '';
+            if (vocabFileHandle && vocabSyncState === 'synced') {
+                vocabExportStatus.textContent = t('settings_file_active', { name });
                 vocabExportStatus.style.color = 'var(--accent)';
+            } else if (vocabFileHandle) {
+                vocabExportStatus.textContent = vocabSyncState === 'error'
+                    ? t('file_sync_error', { msg: vocabSyncError })
+                    : t('file_sync_disconnected', { name });
+                vocabExportStatus.style.color = '#e57373';
             } else {
                 vocabExportStatus.textContent = t('settings_no_file');
                 vocabExportStatus.style.color = '';
             }
+            const progressStatus = document.getElementById('progressFileStatus');
+            const pname = progressFileHandle ? progressFileHandle.name : '';
+            if (progressFileHandle && progressSyncState === 'synced') {
+                progressStatus.textContent = t('settings_progress_active', { name: pname });
+                progressStatus.style.color = 'var(--accent)';
+            } else if (progressFileHandle) {
+                progressStatus.textContent = progressSyncState === 'error'
+                    ? t('progress_sync_error') : t('progress_sync_disconnected', { name: pname });
+                progressStatus.style.color = '#e57373';
+            } else {
+                progressStatus.textContent = t('settings_progress_none');
+                progressStatus.style.color = '';
+            }
         }
+
+        // ============================================
+        // VERBINDUNG ZU vokabeln.json / lernstand.json
+        // ============================================
+        // Die Leiste unter dem Kopf zeigt, was fehlt, und bietet den einen
+        // Klick an, den der Browser fuer die Dateiberechtigung braucht.
+        const fileSyncBar = document.getElementById('fileSyncBar');
+        const fileSyncText = document.getElementById('fileSyncText');
+        const fileSyncAction = document.getElementById('fileSyncAction');
+        const fileSyncDismiss = document.getElementById('fileSyncDismiss');
+        let fileSyncActionHandler = null;
+
+        function progressHintDismissed() {
+            try { return localStorage.getItem('vokabeltrainer_progress_hint') === 'dismissed'; }
+            catch (e) { return false; }
+        }
+
+        async function pickAndConnectVocabFile() {
+            const handle = await pickVocabExportFile();
+            if (handle) await connectVocabFile(true);
+        }
+
+        async function pickAndConnectProgressFile() {
+            const handle = await pickProgressFile();
+            if (handle) await connectProgressFile(true);
+        }
+
+        async function connectAllFiles() {
+            await connectVocabFile(true);
+            if (progressFileHandle || await loadProgressFileHandle()) await connectProgressFile(true);
+        }
+
+        async function renderFileSyncBar() {
+            let text = '', action = null, label = '', dismissable = false, isError = false;
+            if (vocabSyncState === 'none') {
+                text = t('file_sync_none');
+                label = t('file_sync_btn_pick');
+                action = pickAndConnectVocabFile;
+            } else if (vocabSyncState === 'disconnected') {
+                const n = await countPendingVocabChanges();
+                text = t('file_sync_disconnected', { name: vocabFileHandle ? vocabFileHandle.name : 'vokabeln.json' })
+                    + (n > 0 ? ' ' + t('file_sync_pending', { n }) : '');
+                label = t('file_sync_btn_connect');
+                action = connectAllFiles;
+            } else if (vocabSyncState === 'error') {
+                text = t('file_sync_error', { msg: vocabSyncError });
+                label = t('file_sync_btn_retry');
+                action = connectAllFiles;
+                isError = true;
+            } else if (progressSyncState === 'disconnected') {
+                text = t('progress_sync_disconnected', { name: progressFileHandle ? progressFileHandle.name : 'lernstand.json' });
+                label = t('progress_sync_btn_connect');
+                action = () => connectProgressFile(true);
+            } else if (progressSyncState === 'error') {
+                text = t('progress_sync_error');
+                label = t('file_sync_btn_retry');
+                action = () => connectProgressFile(true);
+                isError = true;
+            } else if (progressSyncState === 'none' && !progressHintDismissed()) {
+                text = t('progress_sync_none');
+                label = t('progress_sync_btn_create');
+                action = pickAndConnectProgressFile;
+                dismissable = true;
+            }
+            fileSyncActionHandler = action;
+            fileSyncText.textContent = text;
+            fileSyncAction.textContent = label;
+            fileSyncDismiss.style.display = dismissable ? '' : 'none';
+            fileSyncBar.classList.toggle('error', isError);
+            fileSyncBar.classList.toggle('visible', !!action);
+        }
+
+        fileSyncAction.addEventListener('click', () => {
+            if (fileSyncActionHandler) fileSyncActionHandler();
+        });
+        fileSyncDismiss.addEventListener('click', () => {
+            try { localStorage.setItem('vokabeltrainer_progress_hint', 'dismissed'); } catch (e) { /* egal */ }
+            renderFileSyncBar();
+        });
+
+        fileSyncHooks.onStateChange = () => {
+            renderFileSyncBar();
+            updateVocabExportStatus();
+        };
+        // Datenbank wurde aus der Datei ersetzt (Start, Editor hat gespeichert):
+        // sichtbare Listen und das Woerterbuch im Lesetext neu aufbauen
+        fileSyncHooks.onVocabReloaded = () => {
+            if (textReaderContainer.classList.contains('visible')) {
+                loadVocabForText(currentSourceFile).catch(() => {});
+            }
+            if (document.getElementById('savedVocabSection').style.display === 'block') {
+                renderSavedVocabList();
+            }
+        };
+        fileSyncHooks.onProgressMerged = () => loadSRData();
 
         function hideSettings() {
             settingsPanel.classList.remove('visible');
@@ -2943,8 +3310,8 @@
 
         // H-3: haertet gegen HTML-Injektion aus Dateien und LLM-Antworten.
         function escapeHtml(str) {
-            if (!str) return '';
-            return str.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+            if (str === null || str === undefined || str === '') return '';
+            return String(str).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
         }
 
         function showVocabPreview(items) {
@@ -2970,10 +3337,16 @@
 
         function hideVocabPreview() {
             vocabPreviewPanel.classList.remove('visible');
+            // Waehrend der Vorschau galten nur die frisch erzeugten Vokabeln
+            if (textReaderContainer.classList.contains('visible')) {
+                loadVocabForText(currentSourceFile).catch(() => {});
+            }
         }
 
         function normalizeWord(w) {
-            return w.toLowerCase().replace(/[.,!?;:«»""''…\-]/g, '').trim();
+            return w.toLowerCase()
+                .replace(/[\u0300\u0301]/g, '')   // Betonungszeichen
+                .replace(/[.,!?;:«»""''…\-]/g, '').trim();
         }
 
         function buildVocabMap(items) {
@@ -3014,8 +3387,14 @@
         }
 
         function markVocabWords() {
-            if (Object.keys(generatedVocabMap).length === 0) return;
             const wordEls = Array.from(document.querySelectorAll('.text-paragraph .word'));
+            wordEls.forEach(el => {
+                el.classList.remove('has-vocab');
+                delete el.dataset.vocabRussian;
+                delete el.dataset.vocabTranslation;
+                delete el.dataset.vocabGrammar;
+            });
+            if (Object.keys(generatedVocabMap).length === 0) return;
 
             // First: find multi-word phrase matches (2-4 word sequences)
             for (let i = 0; i < wordEls.length; i++) {
@@ -3102,12 +3481,177 @@
             vocabTooltip.classList.remove('visible');
         }
 
+        // ============================================
+        // MARKIEREN MIT DER MAUS: Wort/Wortgruppe nachschlagen
+        // ============================================
+        // Zuerst in der Vokabelliste (generatedVocabMap = alle Lektionen),
+        // sonst fragt Claude mit dem Satz als Zusammenhang. Ergebnisse von
+        // Claude lassen sich in die Vokabelliste uebernehmen.
+        let selectionLookupToken = 0;
+        let selectionResult = null;     // { russian, translation, grammar, expression, fromList }
+        let selectionAnchorRect = null;
+        const selectionCache = new Map();
+
+        function normalizeExpression(expr) {
+            return expr.split(/\s+/).map(normalizeWord).filter(Boolean).join(' ');
+        }
+
+        function positionSelectionPopup() {
+            const rect = selectionAnchorRect;
+            if (!rect) return;
+            const box = selectionPopup.getBoundingClientRect();
+            let left = rect.left;
+            if (left + box.width > window.innerWidth - 8) left = window.innerWidth - box.width - 8;
+            if (left < 8) left = 8;
+            // Unter der Markierung, sonst darueber
+            let top = rect.bottom + 8;
+            if (top + box.height > window.innerHeight - 8) top = rect.top - box.height - 8;
+            if (top < 8) top = 8;
+            selectionPopup.style.left = left + 'px';
+            selectionPopup.style.top = top + 'px';
+        }
+
+        function hideSelectionPopup() {
+            selectionLookupToken++;   // laufende Claude-Antwort verwerfen
+            selectionPopup.classList.remove('visible', 'loading');
+            selectionResult = null;
+        }
+
+        function renderSelectionResult(result, fromList) {
+            selectionResult = { ...result, fromList };
+            selectionPopup.classList.remove('loading');
+            selectionPopupWord.textContent = result.russian;
+            selectionPopupTranslation.textContent = result.translation;
+            selectionPopupGrammar.textContent = result.grammar || '';
+            selectionPopupGrammar.style.display = result.grammar ? 'block' : 'none';
+            selectionPopupMessage.style.display = 'none';
+            selectionPopupFooter.style.display = 'flex';
+            selectionPopupSource.textContent = t(fromList ? 'selection_from_list' : 'selection_from_claude');
+            selectionSaveBtn.style.display = fromList ? 'none' : '';
+            selectionSaveBtn.disabled = false;
+            selectionSaveBtn.textContent = t('selection_save');
+            positionSelectionPopup();
+        }
+
+        function renderSelectionMessage(expression, message) {
+            selectionResult = null;
+            selectionPopup.classList.remove('loading');
+            selectionPopupWord.textContent = expression;
+            selectionPopupTranslation.textContent = '';
+            selectionPopupGrammar.style.display = 'none';
+            selectionPopupMessage.textContent = message;
+            selectionPopupMessage.style.display = 'block';
+            selectionPopupFooter.style.display = 'none';
+            positionSelectionPopup();
+        }
+
+        function selectionErrorMessage(err) {
+            const m = (err && err.message) || '';
+            if (m === 'AUTH') return t('generate_error_auth');
+            if (m === 'RATE_LIMIT') return t('generate_error_rate_limit');
+            if (m === 'PARSE' || m === 'EMPTY_RESPONSE' || m === 'TRUNCATED') return t('generate_error_parse');
+            if (err && err.name === 'TypeError') return t('generate_error_network');
+            return t('generate_error_generic', { msg: m });
+        }
+
+        async function showSelectionLookup(expression, sentence, rect) {
+            const token = ++selectionLookupToken;
+            selectionAnchorRect = rect;
+            hideVocabTooltip();
+            selectionPopup.classList.add('visible');
+
+            const norm = normalizeExpression(expression);
+            const known = generatedVocabMap[norm];
+            if (known && known.translation) {
+                renderSelectionResult({
+                    russian: known.russian, translation: known.translation,
+                    grammar: known.grammar || '', expression
+                }, true);
+                return;
+            }
+
+            const cacheKey = currentLang + '|' + norm + '|' + sentence;
+            if (selectionCache.has(cacheKey)) {
+                renderSelectionResult({ ...selectionCache.get(cacheKey), expression }, false);
+                return;
+            }
+            if (!apiKey) {
+                renderSelectionMessage(expression, t('selection_no_key'));
+                return;
+            }
+
+            selectionPopupScan.textContent = expression;
+            selectionPopupFooter.style.display = 'none';   // nicht die Fusszeile des vorigen Treffers
+            selectionPopup.classList.add('loading');
+            positionSelectionPopup();
+            try {
+                const answer = await callClaudeAPI(buildSelectionPrompt(expression, sentence, currentLang));
+                if (token !== selectionLookupToken) return;   // inzwischen geschlossen/neu markiert
+                const result = parseSelectionResponse(answer);
+                selectionCache.set(cacheKey, result);
+                renderSelectionResult({ ...result, expression }, false);
+            } catch (err) {
+                if (token !== selectionLookupToken) return;
+                renderSelectionMessage(expression, t('selection_error', { msg: selectionErrorMessage(err) }));
+            }
+        }
+
+        // Liefert true, wenn eine Markierung im Lesetext nachgeschlagen wird.
+        function handleTextSelection() {
+            const sel = window.getSelection();
+            if (!sel || sel.isCollapsed || sel.rangeCount === 0) return false;
+            const range = sel.getRangeAt(0);
+            if (!textReaderContent.contains(range.commonAncestorContainer)) return false;
+            const expression = cleanSelectionText(sel.toString());
+            if (!expression) return false;
+            // Gleiche Markierung, Kaestchen schon offen: nichts neu anfragen
+            if (selectionPopup.classList.contains('visible')
+                && selectionPopupWord.dataset.expression === expression) return true;
+            selectionPopupWord.dataset.expression = expression;
+            const startEl = range.startContainer.nodeType === 1
+                ? range.startContainer : range.startContainer.parentElement;
+            const sentenceEl = startEl && startEl.closest('.sentence');
+            const sentence = sentenceEl ? sentenceEl.textContent.trim() : expression;
+            showSelectionLookup(expression, sentence, range.getBoundingClientRect());
+            return true;
+        }
+
+        function selectionIsActiveInText() {
+            const sel = window.getSelection();
+            return !!(sel && !sel.isCollapsed && sel.rangeCount > 0
+                && textReaderContent.contains(sel.getRangeAt(0).commonAncestorContainer)
+                && cleanSelectionText(sel.toString()));
+        }
+
+        async function saveSelectionToVocab() {
+            const r = selectionResult;
+            if (!r || r.fromList) return;
+            selectionSaveBtn.disabled = true;
+            // Die Form aus dem Text als "forms", damit sie im Text markiert wird
+            const forms = normalizeExpression(r.expression) !== normalizeExpression(r.russian) ? [r.expression] : [];
+            const item = { russian: r.russian, translation: r.translation, grammar: r.grammar || '', forms };
+            try {
+                const result = await saveCardsToDB(vocabItemsToCards([item]), currentSourceFile);
+                if (result === 'pending') showTtsNotice(t('file_sync_saved_pending'), 'info');
+                await loadVocabForText(currentSourceFile);
+                selectionResult.fromList = true;
+                selectionSaveBtn.textContent = t('selection_saved');
+            } catch (e) {
+                selectionSaveBtn.disabled = false;
+                showTtsNotice(t('save_error', { msg: e.message || e }));
+            }
+        }
+
         // Klick auf eine Vokabel aus dem Wörterbuch: Eintrag zeigen und
         // ausschliesslich das russische Wort vorlesen (keine Uebersetzung).
         // Eine laufende Vorlese-Kette wird dabei abgekoppelt, damit sie nicht
         // gleich darueber spricht.
         function speakVocabWord(wordEl) {
-            const russian = (wordEl.dataset.vocabRussian || wordEl.textContent || '').trim();
+            speakDictionaryForm(wordEl.dataset.vocabRussian || wordEl.textContent || '');
+        }
+
+        function speakDictionaryForm(text) {
+            const russian = (text || '').trim();
             if (!russian) return;
             speechSession++;
             const current = document.querySelector('.word.current-word');
@@ -3212,10 +3756,10 @@
             isTabFormat = true;
 
             try {
-                await saveCardsToDB(cards, currentSourceFile);
-                // Also sync to vokabeln.json file if a file handle is available
-                await autoExportJSON();
-                alert(t('save_success', { n: generatedCards.length }));
+                // Traegt die Vokabeln auch in vokabeln.json ein (js/file-sync.js)
+                const result = await saveCardsToDB(cards, currentSourceFile);
+                alert(t('save_success', { n: generatedCards.length })
+                    + (result === 'pending' ? '\n\n' + t('file_sync_saved_pending') : ''));
             } catch (e) {
                 console.error('DB save error:', e);
                 alert(t('save_error', { msg: e.message || e }));
@@ -3441,6 +3985,7 @@
             } catch (e) {
                 console.warn('Sitzungsverlauf konnte nicht gespeichert werden:', e);
             }
+            scheduleProgressSave();
         }
 
         function recordSession() {
@@ -3561,28 +4106,30 @@
             updateVoiceSelect();
         }
 
-        function updateVoiceSelect() {
+        // Russische Stimmen fuer das gewaehlte Geschlecht. Azure-Stimmen
+        // (js/azure-tts.js) stehen vorn, sobald ein Schluessel eingerichtet
+        // ist — die Browser-Stimmen haengen an Diensten, die ausfallen koennen.
+        function getFilteredVoices() {
             const russianVoices = voices.filter(v => v.lang.startsWith('ru'));
+            const allVoices = (isAzureConfigured() ? AZURE_VOICES : []).concat(russianVoices);
+            const filtered = allVoices.filter(v => {
+                const gender = getVoiceGender(v);
+                return selectedGender === 'female'
+                    ? gender === 'female' || gender === 'unknown'
+                    : gender === 'male';
+            });
+            // Falls keine Stimmen für das Geschlecht, zeige alle
+            return filtered.length > 0 ? filtered : allVoices;
+        }
+
+        function updateVoiceSelect() {
+            const filteredVoices = getFilteredVoices();
             voiceSelect.innerHTML = '';
 
-            if (russianVoices.length === 0) {
-                voiceSelect.innerHTML = '<option value="">' + t('voice_none') + '</option>';
-                return;
-            }
-
-            // Filtere nach gewähltem Geschlecht
-            let filteredVoices = russianVoices.filter(v => {
-                const gender = getVoiceGender(v);
-                if (selectedGender === 'female') {
-                    return gender === 'female' || gender === 'unknown';
-                } else {
-                    return gender === 'male';
-                }
-            });
-
-            // Falls keine Stimmen für das Geschlecht, zeige alle
             if (filteredVoices.length === 0) {
-                filteredVoices = russianVoices;
+                voiceSelect.innerHTML = '<option value="">' + t('voice_none') + '</option>';
+                selectedVoice = null;
+                return;
             }
 
             filteredVoices.forEach((voice, index) => {
@@ -3590,15 +4137,22 @@
                 option.value = index;
                 const gender = getVoiceGender(voice);
                 const genderIcon = gender === 'female' ? '👩' : gender === 'male' ? '👨' : '🎙️';
-                option.textContent = `${genderIcon} ${voice.name}`;
-                if (voice.name.includes('Microsoft')) option.textContent += ' ⭐';
+                if (voice.azure) {
+                    option.textContent = `${genderIcon} ${voice.label} (Azure) ☁️`;
+                } else {
+                    option.textContent = `${genderIcon} ${voice.name}`;
+                    if (voice.name.includes('Microsoft')) option.textContent += ' ⭐';
+                }
                 option.dataset.voiceName = voice.name;
                 voiceSelect.appendChild(option);
             });
 
-            // Wähle bevorzugte Stimme (Microsoft bevorzugt)
-            const msVoiceIdx = filteredVoices.findIndex(v => v.name.includes('Microsoft'));
-            voiceSelect.selectedIndex = msVoiceIdx >= 0 ? msVoiceIdx : 0;
+            // Bisherige Wahl behalten, sonst Azure, sonst Microsoft bevorzugen
+            const prevName = selectedVoice && selectedVoice.name;
+            let idx = filteredVoices.findIndex(v => v.name === prevName);
+            if (idx < 0) idx = filteredVoices.findIndex(v => v.azure);
+            if (idx < 0) idx = filteredVoices.findIndex(v => v.name.includes('Microsoft'));
+            voiceSelect.selectedIndex = idx >= 0 ? idx : 0;
             selectedVoice = filteredVoices[voiceSelect.selectedIndex];
         }
 
@@ -3606,17 +4160,7 @@
         loadVoices();
 
         voiceSelect.addEventListener('change', () => {
-            const russianVoices = voices.filter(v => v.lang.startsWith('ru'));
-            let filteredVoices = russianVoices.filter(v => {
-                const gender = getVoiceGender(v);
-                if (selectedGender === 'female') {
-                    return gender === 'female' || gender === 'unknown';
-                } else {
-                    return gender === 'male';
-                }
-            });
-            if (filteredVoices.length === 0) filteredVoices = russianVoices;
-            selectedVoice = filteredVoices[voiceSelect.selectedIndex];
+            selectedVoice = getFilteredVoices()[voiceSelect.selectedIndex] || null;
         });
 
         // Gender Toggle (für Text-Modus)
@@ -3693,7 +4237,7 @@
         document.getElementById('restartSRBtn').addEventListener('click', restartSRSession);
         document.getElementById('switchToFreeBtn').addEventListener('click', switchToFreeMode);
         document.getElementById('sessionMainMenuBtn').addEventListener('click', () => {
-            speechSynthesis.cancel();
+            cancelSpeech();
             document.getElementById('sessionComplete').classList.remove('visible');
             flashcardContainer.classList.remove('visible');
             flashcardControls.classList.remove('visible');
@@ -3758,6 +4302,7 @@
         // READ MODE TOGGLE
         // ============================================
         readAllBtn.addEventListener('click', () => {
+            abortReading();
             readMode = 'all';
             readAllBtn.classList.add('active');
             readSentenceBtn.classList.remove('active');
@@ -3766,6 +4311,7 @@
         });
 
         readSentenceBtn.addEventListener('click', () => {
+            abortReading();
             readMode = 'sentence';
             readSentenceBtn.classList.add('active');
             readAllBtn.classList.remove('active');
@@ -3839,8 +4385,8 @@
 
         // Mode Switch Buttons
         function switchToModeSelection() {
-            stopRequested = true;
-            speechSynthesis.cancel();
+            recordSession();   // abgebrochene Lernrunde trotzdem verbuchen
+            abortReading();
             sentences = [];
             selectedMode = null;
             // Alle Modi ausblenden
@@ -3868,6 +4414,7 @@
             document.getElementById('sessionComplete').classList.remove('visible');
             hideRatingButtons();
             hideVocabTooltip();
+            hideSelectionPopup();
             // Modus-Auswahl anzeigen
             modeSelection.style.display = 'block';
         }
@@ -3952,6 +4499,10 @@
         loadLastDirectory().then(handle => { if (handle) lastDirectoryHandle = handle; });
 
         async function processFile(file) {
+            if (/\.json$/i.test(file.name)) {
+                alert(t('file_json_refused', { name: file.name }));
+                return;
+            }
             currentSourceFile = file.name;
             let content;
             try {
@@ -4037,10 +4588,8 @@
                 textList.style.display = 'none';
             }
 
-            // Auto-load saved vocabulary for this text file
-            if (currentSourceFile) {
-                loadVocabForSource(currentSourceFile).catch(() => {});
-            }
+            // Woerterbuch laden: alle Lektionen, dieser Text mit Vorrang
+            loadVocabForText(currentSourceFile).catch(() => {});
         }
 
         function renderTextContent() {
@@ -4113,7 +4662,7 @@
                 `;
                 item.addEventListener('click', (e) => {
                     if (!e.target.classList.contains('text-list-item-btn')) {
-                        speechSynthesis.cancel();
+                        abortReading();
                         currentIndex = idx;
                         currentSentenceIndex = 0;
                         renderTextContent();
@@ -4122,6 +4671,8 @@
                 // Lautsprecher-Button: Text vorlesen
                 item.querySelector('.text-list-item-btn').addEventListener('click', (e) => {
                     e.stopPropagation();
+                    abortReading();
+                    stopRequested = false;
                     currentIndex = idx;
                     currentSentenceIndex = 0;
                     renderTextContent();
@@ -4433,7 +4984,7 @@
                 item.addEventListener('click', (e) => {
                     if (!e.target.classList.contains('card-item-speak')) {
                         if (srMode !== 'free') return; // No free navigation in SR mode
-                        speechSynthesis.cancel();
+                        cancelSpeech();
                         currentIndex = idx;
                         renderCard();
                         if (autoSpeakCheckbox.checked && queryDirection === 'ru2other') speak(cards[currentIndex].displaySpeakText || cards[currentIndex].speakableText);
@@ -4450,14 +5001,83 @@
         // ============================================
         // SPEECH FUNCTIONS
         // ============================================
-        function speak(text, onEnd = null, onWordBoundary = null) {
-            if (speechSynthesis.speaking || speechSynthesis.pending) {
-                speechSynthesis.cancel();
+        // Bricht jede laufende Sprachausgabe ab — Browser-Stimme wie Azure.
+        function cancelSpeech() {
+            speechSynthesis.cancel();
+            stopAzureSpeech();
+        }
+
+        function setSpeakingUi(active) {
+            isSpeaking = active;
+            speakingIndicator.classList.toggle('active', active);
+            textSpeakingIndicator.classList.toggle('active', active);
+            // Karteikarten-Buttons
+            speakBtn.style.display = active ? 'none' : 'flex';
+            stopBtn.style.display = active ? 'flex' : 'none';
+            // Text-Buttons oben
+            mainSpeakBtn.style.display = active ? 'none' : 'flex';
+            mainStopBtn.style.display = active ? 'flex' : 'none';
+        }
+
+        // Frueher blieb die App bei einer ausgefallenen Stimme einfach stumm
+        // (Edge-Online-Stimmen: "synthesis-failed"). Jetzt sagt sie es.
+        let ttsNoticeTimer = null;
+        function showTtsNotice(message, kind) {
+            ttsNotice.textContent = message;
+            ttsNotice.classList.toggle('info', kind === 'info');
+            ttsNotice.classList.add('visible');
+            clearTimeout(ttsNoticeTimer);
+            ttsNoticeTimer = setTimeout(() => ttsNotice.classList.remove('visible'), 10000);
+        }
+        ttsNotice.addEventListener('click', () => ttsNotice.classList.remove('visible'));
+
+        // Stimme ausgefallen: Hinweis zeigen, laufende Vorlese-Kette anhalten
+        // und — wie beim Stopp-Knopf — die Stelle fuer "Weiter" merken.
+        function handleSpeechFailure(message) {
+            setSpeakingUi(false);
+            showTtsNotice(message);
+            if (chainRunning) {
+                chainRunning = false;
+                speechSession++;
+                setResumePoint(true);
             }
+        }
+
+        function azureFailureMessage(err) {
+            const reasonKey = {
+                auth: 'tts_azure_reason_auth',
+                quota: 'tts_azure_reason_quota',
+                network: 'tts_azure_reason_network',
+                config: 'tts_azure_reason_config'
+            }[err && err.code] || null;
+            const reason = reasonKey ? t(reasonKey) : (err && err.message) || '?';
+            return t('tts_azure_failed', { reason });
+        }
+
+        function speakWithAzure(cleanedText, voice, onEnd, onWordBoundary) {
+            playAzureSpeech(cleanedText, voice.name, parseFloat(speedRange.value), {
+                words: onWordBoundary ? cleanedText.split(/\s+/).filter(w => w.length > 0) : null,
+                onWord: onWordBoundary,
+                onStart: () => setSpeakingUi(true),
+                onEnd: () => {
+                    setSpeakingUi(false);
+                    if (onEnd && !stopRequested) onEnd();
+                },
+                onCancel: () => setSpeakingUi(false),
+                onError: (err) => handleSpeechFailure(azureFailureMessage(err))
+            });
+        }
+
+        function speak(text, onEnd = null, onWordBoundary = null) {
+            cancelSpeech();
             stopRequested = false;
             if (!text?.trim()) { if (onEnd) onEnd(); return; }
 
             const cleanedText = cleanTextForSpeech(text);
+            if (selectedVoice && selectedVoice.azure) {
+                speakWithAzure(cleanedText, selectedVoice, onEnd, onWordBoundary);
+                return;
+            }
             const utterance = new SpeechSynthesisUtterance(cleanedText);
             utterance.rate = parseFloat(speedRange.value);
             utterance.pitch = 1;
@@ -4505,48 +5125,30 @@
                 }
             }
 
-            utterance.onstart = () => {
-                isSpeaking = true;
-                speakingIndicator.classList.add('active');
-                textSpeakingIndicator.classList.add('active');
-                // Karteikarten-Buttons
-                speakBtn.style.display = 'none';
-                stopBtn.style.display = 'flex';
-                // Text-Buttons oben
-                mainSpeakBtn.style.display = 'none';
-                mainStopBtn.style.display = 'flex';
-            };
+            utterance.onstart = () => setSpeakingUi(true);
 
             utterance.onend = () => {
-                isSpeaking = false;
-                speakingIndicator.classList.remove('active');
-                textSpeakingIndicator.classList.remove('active');
-                // Karteikarten-Buttons
-                speakBtn.style.display = 'flex';
-                stopBtn.style.display = 'none';
-                // Text-Buttons oben
-                mainSpeakBtn.style.display = 'flex';
-                mainStopBtn.style.display = 'none';
+                setSpeakingUi(false);
                 if (onEnd && !stopRequested) onEnd();
             };
 
-            utterance.onerror = () => {
-                isSpeaking = false;
-                speakingIndicator.classList.remove('active');
-                textSpeakingIndicator.classList.remove('active');
-                // Karteikarten-Buttons
-                speakBtn.style.display = 'flex';
-                stopBtn.style.display = 'none';
-                // Text-Buttons oben
-                mainSpeakBtn.style.display = 'flex';
-                mainStopBtn.style.display = 'none';
+            utterance.onerror = (event) => {
+                // "interrupted"/"canceled" = eigener Abbruch, kein Fehler
+                if (event && event.error && event.error !== 'interrupted' && event.error !== 'canceled') {
+                    handleSpeechFailure(t('tts_browser_failed', {
+                        voice: selectedVoice ? selectedVoice.name : 'ru-RU',
+                        error: event.error
+                    }));
+                } else {
+                    setSpeakingUi(false);
+                }
             };
 
             speechSynthesis.speak(utterance);
         }
 
         function speakAnswer(text) {
-            speechSynthesis.cancel();
+            cancelSpeech();
             if (!text?.trim()) return;
 
             const utterance = new SpeechSynthesisUtterance(text);
@@ -4620,6 +5222,12 @@
                 highlightWord(sentenceIdx, wordIdx);
             } : null;
 
+            // Azure: naechsten Satz schon holen, damit keine Pause entsteht
+            if (selectedVoice && selectedVoice.azure && sentenceIdx + 1 < sentences.length) {
+                prefetchAzureAudio(cleanTextForSpeech(sentences[sentenceIdx + 1]),
+                    selectedVoice.name, parseFloat(speedRange.value));
+            }
+
             speak(sentences[sentenceIdx], () => {
                 // Kette wurde zwischendurch unterbrochen (z. B. Vokabel-Klick)
                 if (session !== speechSession) return;
@@ -4650,7 +5258,7 @@
         // Einzelnen Satz vorlesen (für Klick-Modus)
         function speakSingleSentence(idx) {
             if (sentences.length === 0 || idx >= sentences.length) return;
-            speechSynthesis.cancel();
+            cancelSpeech();
             clearWordHighlights();
 
             const rawWordCount = splitIntoWords(sentences[idx]).filter(t => !t.isSpace).length;
@@ -4730,9 +5338,20 @@
             speakSentenceChain();
         }
 
+        // Laufende Vorlese-Kette endgueltig beenden — bei Wechsel von Text,
+        // Lesemodus oder Ansicht. cancelSpeech() allein reicht nicht: je nach
+        // Browser feuert danach onend, und die Kette liest weiter (Review M1).
+        function abortReading() {
+            stopRequested = true;
+            speechSession++;
+            chainRunning = false;
+            cancelSpeech();
+            clearWordHighlights();
+        }
+
         function stopSpeaking() {
             stopRequested = true;
-            speechSynthesis.cancel();
+            cancelSpeech();
             if (chainRunning) {
                 chainRunning = false;
                 speechSession++;
@@ -4742,7 +5361,7 @@
         }
 
         function restartText() {
-            speechSynthesis.cancel();
+            cancelSpeech();
             stopRequested = false;
             chainRunning = false;
             speechSession++;
@@ -4822,7 +5441,7 @@
 
         prevBtn.addEventListener('click', () => {
             if (currentIndex > 0) {
-                speechSynthesis.cancel();
+                cancelSpeech();
                 currentIndex--;
                 renderCard();
                 if (autoSpeakCheckbox.checked && queryDirection === 'ru2other') speak(cards[currentIndex].displaySpeakText || cards[currentIndex].speakableText);
@@ -4831,7 +5450,7 @@
 
         nextBtn.addEventListener('click', () => {
             if (currentIndex < cards.length - 1) {
-                speechSynthesis.cancel();
+                cancelSpeech();
                 currentIndex++;
                 renderCard();
                 if (autoSpeakCheckbox.checked && queryDirection === 'ru2other') speak(cards[currentIndex].displaySpeakText || cards[currentIndex].speakableText);
@@ -4842,32 +5461,59 @@
         
         stopBtn.addEventListener('click', () => {
             stopRequested = true;
-            speechSynthesis.cancel();
+            cancelSpeech();
         });
 
         restartBtn.addEventListener('click', () => {
-            speechSynthesis.cancel();
+            cancelSpeech();
             currentIndex = 0;
             renderCard();
             renderCardList();
         });
 
         const directionBtn = document.getElementById('directionBtn');
+
+        // Der Knopf zeigt die aktive Richtung an. Ohne diese Anzeige ist der
+        // Zustand unsichtbar — und er ueberlebt in localStorage jede Sitzung,
+        // sodass die Karten scheinbar grundlos auf Deutsch starten.
+        // data-i18n wird mitgesetzt, damit ein Sprachwechsel (applyLanguage)
+        // die richtige Beschriftung behaelt.
+        function updateDirectionButton() {
+            const labelKey = queryDirection === 'ru2other' ? 'btn_direction_ru2other' : 'btn_direction_other2ru';
+            const titleKey = queryDirection === 'ru2other' ? 'btn_direction_title_ru2other' : 'btn_direction_title_other2ru';
+            const label = document.getElementById('directionLabel');
+            if (label) {
+                label.textContent = t(labelKey);
+                label.setAttribute('data-i18n', labelKey);
+            }
+            directionBtn.title = t(titleKey);
+            directionBtn.setAttribute('data-i18n-title', titleKey);
+        }
+
         directionBtn.addEventListener('click', () => {
             queryDirection = queryDirection === 'ru2other' ? 'other2ru' : 'ru2other';
             localStorage.setItem('vokabeltrainer_direction', queryDirection);
-            speechSynthesis.cancel();
+            updateDirectionButton();
+            cancelSpeech();
             if (cards.length > 0) {
                 // Card-IDs haengen von queryDirection ab — Review-Queue und
                 // SR-State muessen neu aufgebaut werden, sonst zeigen die
                 // Rating-Buttons Intervalle aus der vorigen Richtung.
                 if (srMode !== 'free') {
+                    // Bisherige Runde verbuchen, bevor buildReviewQueue die
+                    // Statistik zuruecksetzt (Review H3)
+                    recordSession();
+                    sessionStartTime = Date.now();
                     loadSRData();
                     buildReviewQueue();
-                    if (reviewQueue.length > 0) {
-                        reviewQueueIndex = 0;
-                        currentIndex = reviewQueue[0];
+                    if (reviewQueue.length === 0) {
+                        // In dieser Richtung ist nichts faellig — sonst zeigte
+                        // die Karte auf einen leeren Platz und Bewerten stuerzte ab
+                        showSessionComplete();
+                        return;
                     }
+                    reviewQueueIndex = 0;
+                    currentIndex = reviewQueue[0];
                 }
                 renderCard();
                 renderCardList();
@@ -4875,7 +5521,7 @@
         });
 
         shuffleBtn.addEventListener('click', () => {
-            speechSynthesis.cancel();
+            cancelSpeech();
             for (let i = cards.length - 1; i > 0; i--) {
                 const j = Math.floor(Math.random() * (i + 1));
                 [cards[i], cards[j]] = [cards[j], cards[i]];
@@ -4909,7 +5555,7 @@
             recordSession();
             // Zurück zum Flashcard-Setup (Export, Statistik etc.)
             if (cards.length > 0) {
-                speechSynthesis.cancel();
+                cancelSpeech();
                 // Flashcard-Modus ausblenden
                 flashcardContainer.classList.remove('visible');
                 flashcardControls.classList.remove('visible');
@@ -4971,6 +5617,10 @@
                         else startSpeaking();
                         break;
                     case 'Escape':
+                        if (selectionPopup.classList.contains('visible')) {
+                            hideSelectionPopup();
+                            break;
+                        }
                         stopSpeaking();
                         break;
                     case 'Home':
@@ -5026,6 +5676,7 @@
 
         // Apply saved language on load
         applyLanguage(currentLang);
+        updateDirectionButton();
 
         // ============================================
         // SETTINGS & LLM EVENT LISTENERS
@@ -5042,41 +5693,43 @@
         settingsPanel.addEventListener('click', (e) => {
             if (e.target === settingsPanel) hideSettings();
         });
-
-        pickVocabFileBtn.addEventListener('click', async () => {
-            const handle = await pickVocabExportFile();
-            if (handle) {
-                updateVocabExportStatus();
-                autoExportJSON(); // initial export
+        toggleAzureKeyBtn.addEventListener('click', () => {
+            azureKeyInput.type = azureKeyInput.type === 'password' ? 'text' : 'password';
+        });
+        saveAzureBtn.addEventListener('click', () => {
+            const region = azureRegionInput.value.trim().toLowerCase();
+            if (azureKeyInput.value.trim() && !isValidAzureRegion(region)) {
+                azureStatus.textContent = t('settings_azure_region_invalid');
+                azureStatus.style.color = '#e57373';
+                return;
             }
+            saveAzureConfig(azureKeyInput.value, region);
+            updateAzureStatus();
+            updateVoiceSelect();   // Azure-Stimmen sofort in der Liste
         });
 
-        // Manual export button
+        pickVocabFileBtn.addEventListener('click', pickAndConnectVocabFile);
+        document.getElementById('pickProgressFileBtn').addEventListener('click', pickAndConnectProgressFile);
+
+        // Von Hand abgleichen: Datei lesen, Wartendes eintragen, Datenbank erneuern
         document.getElementById('exportNowBtn').addEventListener('click', async () => {
-            try {
-                if (!vocabFileHandle) {
-                    vocabFileHandle = await loadVocabFileHandle();
-                }
-                if (!vocabFileHandle) {
-                    // No file chosen yet — prompt user
-                    const handle = await pickVocabExportFile();
-                    if (!handle) return;
-                    updateVocabExportStatus();
-                }
-                const allCards = await getAllCardsFromDB();
-                await autoExportJSON();
-                alert(t('export_success', { n: allCards.length, name: vocabFileHandle.name }));
-            } catch (e) {
-                console.error('Export error:', e);
-                alert(t('export_failed', { msg: e.message || e }));
+            if (!vocabFileHandle) vocabFileHandle = await loadVocabFileHandle();
+            if (!vocabFileHandle) { await pickAndConnectVocabFile(); return; }
+            if (await connectVocabFile(true)) {
+                const n = (await getAllCardsFromDB()).length;
+                showTtsNotice(t('file_sync_synced', { n, name: vocabFileHandle.name }), 'info');
             }
         });
 
-        // Auto-save when tab becomes hidden (closing/switching)
+        // Fensterwechsel: Lernstand sofort sichern; beim Zurueckkommen die
+        // Vokabelliste neu einlesen, falls der Editor sie inzwischen geaendert hat.
+        // (Frueher wurde hier die ganze Datenbank in die Datei geschrieben —
+        // das drehte Aenderungen aus dem Editor zurueck.)
         document.addEventListener('visibilitychange', () => {
-            if (document.visibilityState === 'hidden' && vocabFileHandle) {
-                // Best-effort save — may not complete if browser closes immediately
-                autoExportJSON().catch(() => {});
+            if (document.visibilityState === 'hidden') {
+                flushProgressSave();
+            } else {
+                reloadVocabFileIfChanged().catch(() => {});
             }
         });
 
@@ -5089,6 +5742,7 @@
 
         // Vocabulary hover tooltip (event delegation)
         textReaderContent.addEventListener('mouseover', (e) => {
+            if (selectionPopup.classList.contains('visible')) return;
             const wordEl = e.target.closest('.word.has-vocab');
             if (wordEl) showVocabTooltip(wordEl);
         });
@@ -5103,6 +5757,11 @@
         // damit der Klick nicht vorher beim Satz landet — der Satz-Handler haengt
         // direkt an `.sentence.clickable` und wuerde sonst den ganzen Satz vorlesen.
         textReaderContent.addEventListener('click', (e) => {
+            // Klick am Ende einer Markierung: nur nachschlagen (siehe mouseup)
+            if (selectionIsActiveInText()) {
+                e.stopPropagation();
+                return;
+            }
             const wordEl = e.target.closest('.word.has-vocab');
             if (!wordEl) return;
             e.stopPropagation();
@@ -5113,28 +5772,52 @@
         // Tipp-Geraete kennen kein mouseout: Klick daneben schliesst den Eintrag.
         document.addEventListener('click', () => hideVocabTooltip());
 
+        // Markieren mit der Maus (oder dem Finger): nach dem Loslassen nachschlagen.
+        // setTimeout, damit die Auswahl beim Doppelklick schon steht.
+        textReaderContent.addEventListener('mouseup', () => setTimeout(handleTextSelection, 0));
+        textReaderContent.addEventListener('touchend', () => setTimeout(handleTextSelection, 50));
+        document.addEventListener('selectionchange', () => {
+            // Auswahl aufgehoben (z. B. Klick daneben): Kaestchen zu,
+            // ausser es wird gerade darin geklickt
+            if (!selectionPopup.classList.contains('visible')) return;
+            const sel = window.getSelection();
+            if (sel && sel.isCollapsed && !selectionPopup.matches(':hover')) hideSelectionPopup();
+        });
+        document.addEventListener('mousedown', (e) => {
+            if (selectionPopup.classList.contains('visible') && !selectionPopup.contains(e.target)
+                && !textReaderContent.contains(e.target)) hideSelectionPopup();
+        });
+        // Beim Scrollen (auch dem automatischen beim Vorlesen) mitwandern
+        window.addEventListener('scroll', () => {
+            if (!selectionPopup.classList.contains('visible')) return;
+            const sel = window.getSelection();
+            if (!sel || sel.rangeCount === 0 || sel.isCollapsed) return;
+            selectionAnchorRect = sel.getRangeAt(0).getBoundingClientRect();
+            positionSelectionPopup();
+        }, { capture: true, passive: true });
+        // Klicks im Kaestchen sollen die Markierung nicht aufheben
+        selectionPopup.addEventListener('mousedown', (e) => e.preventDefault());
+        selectionSpeakBtn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            if (selectionResult) speakDictionaryForm(selectionResult.russian);
+        });
+        selectionSaveBtn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            saveSelectionToVocab();
+        });
+
         // Load API key on startup
         loadApiKey();
 
-        // Force user to pick a vocabulary save file on first startup
+        // Beim Start mit vokabeln.json und lernstand.json verbinden. Ohne
+        // Berechtigung (nach einem Browser-Neustart) zeigt die Leiste oben
+        // den Knopf "Verbinden" — der Browser verlangt dafuer einen Klick.
+        // Frueher kam hier ein Pflicht-Dialog mit Dateiauswahl, die ohne Klick
+        // ohnehin nicht oeffnen durfte.
         (async () => {
-            const handle = await loadVocabFileHandle();
-            if (handle) {
-                vocabFileHandle = handle;
-                updateVocabExportStatus();
-                return;
-            }
-            // No file chosen yet — force the user to pick one
-            alert(t('startup_pick_file_required') || 'Bitte wähle eine Speicherdatei für deine Vokabeln (vokabeln.json). Ohne diese Datei werden Änderungen nur im Browser gespeichert und gehen bei Datenverlust verloren.');
-            try {
-                const newHandle = await pickVocabExportFile();
-                if (newHandle) {
-                    updateVocabExportStatus();
-                    autoExportJSON();
-                }
-            } catch (e) {
-                console.warn('User cancelled file picker on startup:', e);
-            }
+            await connectVocabFile(false);
+            await connectProgressFile(false);
+            renderFileSyncBar();
         })();
 
     </script>

@@ -64,6 +64,8 @@ So können Sie in Ruhe mehrere Einträge markieren, bevor Sie sie endgültig lö
 
 ### 2.3 Rückgängig
 
+**Trainer und Editor gleichzeitig offen?** Kein Problem: Hat der Trainer die Datei geändert, während der Editor offen war (z. B. eine neue Lektion gespeichert), übernimmt der Editor diese Einträge beim Speichern, statt sie zu überschreiben. Nur wenn beide denselben Eintrag geändert haben, gilt die Fassung des Editors.
+
 Mit **Rückgängig** (oder Strg+Z) können Sie die letzte Bearbeitung widerrufen. Das funktioniert für Textänderungen und Löschmarkierungen.
 
 ---

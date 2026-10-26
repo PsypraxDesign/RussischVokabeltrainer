@@ -12,6 +12,7 @@
 // Aufruf: node tests/test_vocab_click.js
 
 const puppeteer = require('puppeteer');
+const { isolatePage } = require('./helpers/offline');
 const path = require('path');
 
 let passed = 0;
@@ -39,6 +40,7 @@ const VOCAB = [
         args: ['--allow-file-access-from-files', '--no-sandbox']
     });
     const page = await browser.newPage();
+    await isolatePage(page);   // kein Netz, keine echten Schluessel
 
     // Muss VOR dem ersten goto() haengen: der Startup-Alert zur Speicherdatei
     // blockiert sonst jedes page.evaluate() bis zum Protokoll-Timeout.

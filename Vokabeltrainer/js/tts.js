@@ -3,8 +3,11 @@
 // Reine Hilfsfunktionen ohne DOM-Abhaengigkeiten.
 
 // --- Voice-Namen fuer Geschlechtserkennung ---
-const femaleVoiceNames = ['irina', 'svetlana', 'maria', 'anna', 'elena', 'natasha', 'olga', 'female', 'женский'];
-const maleVoiceNames = ['pavel', 'dmitri', 'dmitry', 'alexander', 'sergei', 'sergey', 'boris', 'ivan', 'male', 'мужской'];
+// Edge benennt seine Online-Stimmen inzwischen kyrillisch ("Microsoft Светлана Online").
+const femaleVoiceNames = ['irina', 'svetlana', 'dariya', 'maria', 'anna', 'elena', 'natasha', 'olga', 'female', 'женский',
+    'ирина', 'светлана', 'дария', 'дарья', 'мария', 'анна', 'елена', 'наташа', 'ольга'];
+const maleVoiceNames = ['pavel', 'dmitri', 'dmitry', 'alexander', 'sergei', 'sergey', 'boris', 'ivan', 'male', 'мужской',
+    'павел', 'дмитрий', 'александр', 'сергей', 'борис', 'иван'];
 
 // --- Text-Bereinigung fuer Sprachausgabe ---
 // Entfernt Klammer-Inhalte, Akzente, Sonderzeichen
@@ -64,6 +67,7 @@ function getCleanedWordCount(sentence) {
 
 // --- Voice-Geschlecht erraten anhand des Namens ---
 function getVoiceGender(voice) {
+    if (voice.gender) return voice.gender;   // Azure-Stimmen (js/azure-tts.js)
     const nameLower = voice.name.toLowerCase();
     if (femaleVoiceNames.some(n => nameLower.includes(n))) return 'female';
     if (maleVoiceNames.some(n => nameLower.includes(n))) return 'male';

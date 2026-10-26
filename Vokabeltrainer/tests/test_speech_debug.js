@@ -1,5 +1,6 @@
 // Diagnose-Test fuer Text-to-Speech im Text-Reader
 const puppeteer = require('puppeteer');
+const { isolatePage } = require('./helpers/offline');
 const path = require('path');
 
 (async () => {
@@ -8,6 +9,7 @@ const path = require('path');
         args: ['--allow-file-access-from-files', '--no-sandbox']
     });
     const page = await browser.newPage();
+    await isolatePage(page);   // kein Netz, keine echten Schluessel
 
     const consoleMessages = [];
     page.on('console', msg => consoleMessages.push(`[${msg.type()}] ${msg.text()}`));

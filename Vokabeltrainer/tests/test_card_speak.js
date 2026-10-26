@@ -10,6 +10,7 @@
 // Aufruf: node tests/test_card_speak.js
 
 const puppeteer = require('puppeteer');
+const { isolatePage } = require('./helpers/offline');
 const path = require('path');
 
 let passed = 0;
@@ -33,6 +34,7 @@ const CARDS = 'работать\tarbeiten\nначинать\tanfangen';
         args: ['--allow-file-access-from-files', '--no-sandbox']
     });
     const page = await browser.newPage();
+    await isolatePage(page);   // kein Netz, keine echten Schluessel
 
     // Muss VOR dem ersten goto() haengen (Startup-Alert zur Speicherdatei).
     page.on('dialog', async dialog => { await dialog.dismiss(); });

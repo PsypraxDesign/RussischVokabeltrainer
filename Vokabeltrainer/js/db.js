@@ -55,6 +55,7 @@ async function saveCardsToDB(cardsList, source) {
     const db = await openVocabDB();
     const tx = db.transaction('vocabulary', 'readwrite');
     const store = tx.objectStore('vocabulary');
+    const written = [];
     for (const card of cardsList) {
         // Richtungsunabhaengige ID, sonst entstehen Dubletten beim Speichern
         // in unterschiedlichen Abfragerichtungen.
@@ -68,7 +69,7 @@ async function saveCardsToDB(cardsList, source) {
             grammar = gm.grammar;
             front = gm.rest;
         }
-        store.put({
+        const record = {
             id,
             front: front || card.displayText,
             back: card.answer,
@@ -84,9 +85,17 @@ async function saveCardsToDB(cardsList, source) {
             declension: card.declension || existing?.declension || null,
             stress: card.stress || existing?.stress || null,
             wordType: card.wordType || existing?.wordType || null
-        });
+        };
+        store.put(record);
+        written.push(record);
     }
     await new Promise((resolve, reject) => { tx.oncomplete = resolve; tx.onerror = reject; });
+    // vokabeln.json ist massgeblich: Aenderung in die Datei eintragen
+    // (js/file-sync.js). Liefert 'saved', 'pending' oder 'db-only'.
+    if (typeof persistVocabChanges === 'function' && written.length > 0) {
+        return persistVocabChanges({ upserts: written });
+    }
+    return 'db-only';
 }
 
 async function getVocabBySource(source) {
@@ -148,12 +157,18 @@ async function deleteSourceFromDB(source) {
     const store = tx.objectStore('vocabulary');
     const idx = store.index('source');
     const req = idx.getAll(source);
+    const deletedIds = [];
     req.onsuccess = () => {
         for (const record of req.result) {
             store.delete(record.id);
+            deletedIds.push(record.id);
         }
     };
     await new Promise((resolve, reject) => { tx.oncomplete = resolve; tx.onerror = reject; });
+    if (typeof persistVocabChanges === 'function' && deletedIds.length > 0) {
+        return persistVocabChanges({ deleteIds: deletedIds });
+    }
+    return 'db-only';
 }
 
 async function exportVocabularyTSV() {
@@ -219,30 +234,6 @@ async function pickVocabExportFile() {
     } catch (e) { return null; } // user cancelled
 }
 
-async function autoExportJSON() {
-    try {
-        // Load handle if not yet loaded
-        if (!vocabFileHandle) {
-            vocabFileHandle = await loadVocabFileHandle();
-        }
-        if (!vocabFileHandle) return; // no file chosen yet
-
-        // Verify permission
-        const perm = await vocabFileHandle.queryPermission({ mode: 'readwrite' });
-        if (perm !== 'granted') {
-            const req = await vocabFileHandle.requestPermission({ mode: 'readwrite' });
-            if (req !== 'granted') return;
-        }
-
-        // Get all vocab from DB
-        const allCards = await getAllCardsFromDB();
-        if (allCards.length === 0) return;
-
-        const json = JSON.stringify(allCards, null, 2);
-        const writable = await vocabFileHandle.createWritable();
-        await writable.write(json);
-        await writable.close();
-    } catch (e) {
-        console.warn('Auto-export JSON failed:', e);
-    }
-}
+// autoExportJSON() entfiel am 25.10.2026: Es schrieb die komplette IndexedDB
+// in die Datei und drehte damit Aenderungen aus dem Editor zurueck. Der
+// Abgleich steht jetzt in js/file-sync.js (Datei massgeblich).

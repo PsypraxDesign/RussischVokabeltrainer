@@ -12,6 +12,7 @@
  */
 
 const puppeteer = require('puppeteer');
+const { isolatePage } = require('./helpers/offline');
 const path = require('path');
 const fs = require('fs');
 const zlib = require('zlib');
@@ -178,6 +179,7 @@ async function readInPage(page, name, buffer) {
         args: ['--no-sandbox', '--disable-setuid-sandbox']
     });
     const page = await browser.newPage();
+    await isolatePage(page);   // kein Netz, keine echten Schluessel
     const pageErrors = [];
     page.on('pageerror', err => pageErrors.push(err.message));
     // Der Startup-Hinweis zur Speicherdatei ist ein alert() und wuerde

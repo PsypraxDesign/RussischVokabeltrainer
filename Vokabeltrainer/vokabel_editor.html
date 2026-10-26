@@ -6,6 +6,7 @@
 <title>Vokabel-Editor</title>
 <script src="api-key.js"></script>
 <script src="js/claude-model.js"></script>
+<script src="js/vocab-junk.js"></script>
 <style>
 :root {
     --bg-primary: #0f1923;
@@ -500,6 +501,12 @@ td.cell-conj { white-space: nowrap; width: 80px; text-align: center; }
 
 <script>
 let allData = [];
+// Stand der Datei beim Laden — damit beim Speichern erkennbar ist, was der
+// Trainer inzwischen in die Datei geschrieben hat (seit 25.10.2026 ist
+// vokabeln.json massgeblich, der Trainer traegt neue Vokabeln dort ein).
+let lastReadStamp = 0;            // lastModified aus readFromHandle()
+let loadedFileStamp = 0;          // lastModified der Datei beim Laden/Speichern
+let loadedSnapshot = new Map();   // id -> JSON des Eintrags beim Laden/Speichern
 let filteredIndices = [];
 let deletedSet = new Set();
 let editedMap = {};  // index -> { field: newValue }
@@ -614,7 +621,56 @@ async function readFromHandle(handle) {
     const text = await file.text();
     const data = JSON.parse(text);
     if (!Array.isArray(data)) throw new Error('Keine Array-Struktur');
+    lastReadStamp = file.lastModified;
     return data;
+}
+
+function rememberFileState(data, stamp) {
+    loadedFileStamp = stamp;
+    loadedSnapshot = new Map(data.filter(r => r && r.id).map(r => [r.id, JSON.stringify(r)]));
+}
+
+// Hat jemand (der Trainer) die Datei seit dem Laden geaendert? Dann:
+//  - neue Eintraege von dort uebernehmen,
+//  - dort geloeschte Eintraege nicht wiederbeleben,
+//  - dort geaenderte Eintraege uebernehmen, sofern der Editor sie nicht
+//    selbst geaendert hat (sonst gewinnt der Editor).
+// Vorher ueberschrieb der Editor die Datei mit dem Stand beim Laden.
+async function mergeExternalChanges(data) {
+    const none = { data, added: 0, removed: 0, updated: 0 };
+    if (!currentFileHandle || !loadedFileStamp) return none;
+    const file = await currentFileHandle.getFile();
+    if (file.lastModified === loadedFileStamp) return none;
+    let current;
+    try { current = JSON.parse(await file.text()); } catch (e) { return none; }
+    if (!Array.isArray(current)) return none;
+
+    const currentById = new Map(current.filter(r => r && r.id).map(r => [r.id, r]));
+    const changedHere = (r) => !loadedSnapshot.has(r.id) || loadedSnapshot.get(r.id) !== JSON.stringify(r);
+    let added = 0, removed = 0, updated = 0;
+    const result = [];
+    for (const r of data) {
+        if (!r || !r.id || !loadedSnapshot.has(r.id)) { result.push(r); continue; }
+        const external = currentById.get(r.id);
+        if (!external) {
+            if (changedHere(r)) result.push(r); else removed++;
+            continue;
+        }
+        if (!changedHere(r) && JSON.stringify(external) !== loadedSnapshot.get(r.id)) {
+            result.push(external);
+            updated++;
+        } else {
+            result.push(r);
+        }
+    }
+    const known = new Set(result.map(r => r && r.id));
+    for (const r of current) {
+        if (r && r.id && !loadedSnapshot.has(r.id) && !known.has(r.id)) {
+            result.push(r);
+            added++;
+        }
+    }
+    return { data: result, added, removed, updated };
 }
 
 // --- File loading ---
@@ -627,6 +683,7 @@ document.getElementById('fileInput').addEventListener('change', e => {
     // silently overwrite a previously opened file (K-2 / M-1).
     currentFileHandle = null;
     csvFileHandle = null;
+    lastReadStamp = 0;   // ohne Handle kein Abgleich beim Speichern
     const reader = new FileReader();
     reader.onload = ev => {
         try {
@@ -729,6 +786,8 @@ document.getElementById('btnLoadLast').addEventListener('click', triggerLoadLast
 
 function loadData(data) {
     allData = data;
+    rememberFileState(data, lastReadStamp);
+    lastReadStamp = 0;
     deletedSet = new Set();
     editedMap = {};
     undoStack = [];
@@ -1084,40 +1143,76 @@ document.getElementById('btnRestoreAll').addEventListener('click', () => {
 });
 
 // --- Cleanup of JSON-field metadata entries (e.g. "id: c_xxx", "front: ...", "Род.: ...") ---
-const METADATA_FIELD_PATTERN = /^\s*(id|front|back|input|verb|noun|grammar|forms?|source|translation|aspect|aspect_partner|gender|animate|stress|wordtype|conjugation|declension|present|past|future|imperative|participle_active|participle_passive|gerund|singular|plural|им|род|дат|вин|тв|пр|я|ты|вы|мы|он|она|оно|они|м|ж|ср|мн)\.?\s*:\s/i;
+// Erkennung: isJunkVocabRecord() in js/vocab-junk.js (gemeinsam mit index.html).
+
+// Muell in der IndexedDB des Trainers — unabhaengig davon, ob er noch in
+// der geladenen JSON-Datei steht (die kann schon bereinigt sein).
+function openTrainerDB() {
+    return new Promise((resolve, reject) => {
+        const req = indexedDB.open('vokabeltrainer');
+        req.onsuccess = (e) => resolve(e.target.result);
+        req.onerror = (e) => reject(e.target.error);
+    });
+}
+
+async function countJunkInTrainerDB() {
+    try {
+        const db = await openTrainerDB();
+        if (!db.objectStoreNames.contains('vocabulary')) { db.close(); return 0; }
+        const all = await new Promise((resolve, reject) => {
+            const req = db.transaction('vocabulary', 'readonly').objectStore('vocabulary').getAll();
+            req.onsuccess = () => resolve(req.result || []);
+            req.onerror = (e) => reject(e.target.error);
+        });
+        db.close();
+        return all.filter(isJunkVocabRecord).length;
+    } catch (e) {
+        console.warn('IndexedDB read failed:', e);
+        return 0;
+    }
+}
+
+async function deleteJunkFromTrainerDB() {
+    const db = await openTrainerDB();
+    if (!db.objectStoreNames.contains('vocabulary')) { db.close(); return 0; }
+    let deleted = 0;
+    const tx = db.transaction('vocabulary', 'readwrite');
+    const req = tx.objectStore('vocabulary').openCursor();
+    req.onsuccess = () => {
+        const cursor = req.result;
+        if (!cursor) return;
+        if (isJunkVocabRecord(cursor.value)) { cursor.delete(); deleted++; }
+        cursor.continue();
+    };
+    await new Promise((r, rej) => { tx.oncomplete = r; tx.onerror = () => rej(tx.error); });
+    db.close();
+    return deleted;
+}
 
 async function cleanupMetadataEntries() {
     if (batchRunning) return;
     const matches = [];
     for (let i = 0; i < allData.length; i++) {
-        const front = (allData[i].front || '').trim();
-        if (METADATA_FIELD_PATTERN.test(front)) {
-            matches.push({ idx: i, id: allData[i].id, front });
+        if (isJunkVocabRecord(allData[i])) {
+            matches.push({ idx: i, id: allData[i].id, front: (allData[i].front || '').trim() });
         }
     }
-    if (matches.length === 0) {
+    const dbJunk = await countJunkInTrainerDB();
+    if (matches.length === 0 && dbJunk === 0) {
         showToast('Keine Müll-Einträge gefunden', 'success');
         return;
     }
 
     const preview = matches.slice(0, 12).map(m => '• ' + m.front).join('\n');
     const more = matches.length > 12 ? '\n... und ' + (matches.length - 12) + ' weitere' : '';
-    if (!confirm(matches.length + ' Müll-Einträge gefunden:\n\n' + preview + more + '\n\nAlle endgültig aus JSON UND IndexedDB löschen?\nDiese Aktion kann nicht rückgängig gemacht werden.')) return;
+    if (!confirm(matches.length + ' Müll-Einträge in der Vokabelliste, ' + dbJunk + ' in der Datenbank des Trainers'
+        + (preview ? ':\n\n' + preview + more : '.')
+        + '\n\nAlle endgültig aus JSON UND IndexedDB löschen?\nDiese Aktion kann nicht rückgängig gemacht werden.')) return;
 
     // Delete from IndexedDB (same DB as index.html uses)
     let dbDeleted = 0;
     try {
-        const db = await new Promise((resolve, reject) => {
-            const req = indexedDB.open('vokabeltrainer', 2);
-            req.onsuccess = (e) => resolve(e.target.result);
-            req.onerror = (e) => reject(e.target.error);
-        });
-        const tx = db.transaction('vocabulary', 'readwrite');
-        const store = tx.objectStore('vocabulary');
-        for (const m of matches) {
-            if (m.id) { store.delete(m.id); dbDeleted++; }
-        }
-        await new Promise((r, rej) => { tx.oncomplete = r; tx.onerror = rej; });
+        dbDeleted = await deleteJunkFromTrainerDB();
     } catch (e) {
         console.warn('IndexedDB delete failed:', e);
     }
@@ -1135,7 +1230,8 @@ async function cleanupMetadataEntries() {
 
     loadSourceFilter();
     updateView();
-    showToast(matches.length + ' Müll-Einträge entfernt (' + dbDeleted + ' aus IndexedDB). Jetzt "Speichern" klicken, um JSON zu aktualisieren.', 'success');
+    showToast(matches.length + ' Müll-Einträge aus der Liste, ' + dbDeleted + ' aus der Trainer-Datenbank entfernt.'
+        + (matches.length > 0 ? ' Jetzt "Speichern" klicken, um JSON zu aktualisieren.' : ''), 'success');
 }
 
 btnCleanupMetadata.addEventListener('click', () => {
@@ -1255,8 +1351,9 @@ async function saveFile() {
 
     saving = true;
     try {
-    const data = buildExportData();
+    let data = buildExportData();
     let saved = false;
+    let merge = { added: 0, removed: 0, updated: 0 };
 
     // Try reusing existing file handle (same file, no dialog)
     if (currentFileHandle) {
@@ -1266,6 +1363,8 @@ async function saveFile() {
                 const req = await currentFileHandle.requestPermission({ mode: 'readwrite' });
                 if (req !== 'granted') throw new Error('Keine Schreibberechtigung');
             }
+            merge = await mergeExternalChanges(data);
+            data = merge.data;
             const writable = await currentFileHandle.createWritable();
             await writable.write(JSON.stringify(data, null, 2));
             await writable.close();
@@ -1307,7 +1406,17 @@ async function saveFile() {
         URL.revokeObjectURL(url);
     }
 
-    const removedNote = deletedCount > 0 ? ', ' + deletedCount + ' entfernt' : '';
+    let removedNote = deletedCount > 0 ? ', ' + deletedCount + ' entfernt' : '';
+    const fromTrainer = merge.added + merge.removed + merge.updated;
+    if (fromTrainer > 0) {
+        // Ansicht auf den zusammengefuehrten Stand bringen
+        loadData(data);
+        removedNote += ' — aus der Datei übernommen: ' + merge.added + ' neu, '
+            + merge.updated + ' geändert, ' + merge.removed + ' entfernt';
+    }
+    if (saved && currentFileHandle) {
+        try { rememberFileState(data, (await currentFileHandle.getFile()).lastModified); } catch (e) { /* egal */ }
+    }
     dataDirty = false; // contents written to disk (M-4)
 
     // Sync conjugation data to index.html's IndexedDB
@@ -2552,6 +2661,7 @@ document.body.addEventListener('drop', e => {
     // silently overwrite a previously opened file (K-2 / M-1).
     currentFileHandle = null;
     csvFileHandle = null;
+    lastReadStamp = 0;   // ohne Handle kein Abgleich beim Speichern
     const reader = new FileReader();
     reader.onload = ev => {
         try {

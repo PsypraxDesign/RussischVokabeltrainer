@@ -20,7 +20,8 @@ function showConjugationModal() {
     }
     html += '<p class="conj-aspect"><strong>' + t('conj_aspect') + ':</strong> ' +
         escapeHtml(aspectLabels[c.aspect] || c.aspect || '—');
-    if (c.aspect_partner) html += ' &nbsp;|&nbsp; <strong>' + t('conj_partner') + ':</strong> ' + c.aspect_partner;
+    // escapeHtml: das Feld stammt aus einer KI-Antwort bzw. aus vokabeln.json (Review M5)
+    if (c.aspect_partner) html += ' &nbsp;|&nbsp; <strong>' + t('conj_partner') + ':</strong> ' + escapeHtml(c.aspect_partner);
     html += '</p>';
 
     // Present

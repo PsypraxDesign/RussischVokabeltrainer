@@ -182,7 +182,14 @@ function parseCards(content) {
     currentIndex = 0;
 
     // Save to IndexedDB (cumulative, no duplicates)
-    saveCardsToDB(cards, currentSourceFile).catch(e => console.warn('DB save error:', e));
+    // ...und in vokabeln.json (js/file-sync.js); ohne Verbindung wartet es
+    saveCardsToDB(cards, currentSourceFile)
+        .then(result => {
+            if (result === 'pending' && typeof showTtsNotice === 'function') {
+                showTtsNotice(t('file_sync_saved_pending'), 'info');
+            }
+        })
+        .catch(e => console.warn('DB save error:', e));
 
     showFlashcardSetup();
 }

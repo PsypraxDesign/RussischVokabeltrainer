@@ -1,0 +1,2176 @@
+[
+  {
+    "id": "c_p9pq5x",
+    "front": "крепость",
+    "back": "Festung, Burg",
+    "grammar": "Substantiv, weibl.",
+    "forms": [],
+    "images": [],
+    "tags": [
+      "3.1",
+      "Haus",
+      "Moebel"
+    ],
+    "topic": "Mein Haus - meine Burg",
+    "category": "Tochka Ru A1",
+    "source": "Tochka Ru A1 3.1 (S. 48-53)",
+    "added": "2026-08-30T00:00:00.000Z",
+    "conjugation": null,
+    "declension": null,
+    "stress": {
+      "input": "крепость",
+      "stressed": "кре́пость",
+      "pos": 1,
+      "total": 2
+    },
+    "wordType": null
+  },
+  {
+    "id": "c_1qgwpy",
+    "front": "комната",
+    "back": "Zimmer, Raum",
+    "grammar": "Substantiv, weibl.",
+    "forms": [
+      "комнаты"
+    ],
+    "images": [],
+    "tags": [
+      "3.1",
+      "Haus",
+      "Moebel"
+    ],
+    "topic": "Mein Haus - meine Burg",
+    "category": "Tochka Ru A1",
+    "source": "Tochka Ru A1 3.1 (S. 48-53)",
+    "added": "2026-08-30T00:00:00.000Z",
+    "conjugation": null,
+    "declension": null,
+    "stress": {
+      "input": "комната",
+      "stressed": "ко́мната",
+      "pos": 1,
+      "total": 3
+    },
+    "wordType": null
+  },
+  {
+    "id": "c_ki9qi7",
+    "front": "Мой дом — моя крепость.",
+    "back": "Mein Haus ist meine Burg.",
+    "grammar": "feste Wendung",
+    "forms": [],
+    "images": [],
+    "tags": [
+      "3.1",
+      "Haus",
+      "Moebel"
+    ],
+    "topic": "Mein Haus - meine Burg",
+    "category": "Tochka Ru A1",
+    "source": "Tochka Ru A1 3.1 (S. 48-53)",
+    "added": "2026-08-30T00:00:00.000Z",
+    "conjugation": null,
+    "declension": null,
+    "stress": {
+      "input": "Мой дом — моя крепость.",
+      "stressed": "Мой дом — моя́ кре́пость.",
+      "pos": 2,
+      "total": 2
+    },
+    "wordType": null
+  },
+  {
+    "id": "c_5selac",
+    "front": "спальня",
+    "back": "Schlafzimmer",
+    "grammar": "Substantiv, weibl.",
+    "forms": [
+      "в спальне"
+    ],
+    "images": [],
+    "tags": [
+      "3.1",
+      "Haus",
+      "Moebel"
+    ],
+    "topic": "Mein Haus - meine Burg",
+    "category": "Tochka Ru A1",
+    "source": "Tochka Ru A1 3.1 (S. 48-53)",
+    "added": "2026-08-30T00:00:00.000Z",
+    "conjugation": null,
+    "declension": null,
+    "stress": {
+      "input": "спальня",
+      "stressed": "спа́льня",
+      "pos": 1,
+      "total": 2
+    },
+    "wordType": null
+  },
+  {
+    "id": "c_ubnbga",
+    "front": "гостиная",
+    "back": "Wohnzimmer",
+    "grammar": "Substantiv, weibl. (adjektivisch)",
+    "forms": [
+      "в гостиной"
+    ],
+    "images": [],
+    "tags": [
+      "3.1",
+      "Haus",
+      "Moebel"
+    ],
+    "topic": "Mein Haus - meine Burg",
+    "category": "Tochka Ru A1",
+    "source": "Tochka Ru A1 3.1 (S. 48-53)",
+    "added": "2026-08-30T00:00:00.000Z",
+    "conjugation": null,
+    "declension": null,
+    "stress": {
+      "input": "гостиная",
+      "stressed": "гости́ная",
+      "pos": 2,
+      "total": 4
+    },
+    "wordType": null
+  },
+  {
+    "id": "c_fozyga",
+    "front": "столовая",
+    "back": "Esszimmer",
+    "grammar": "Substantiv, weibl. (adjektivisch)",
+    "forms": [
+      "в столовой"
+    ],
+    "images": [],
+    "tags": [
+      "3.1",
+      "Haus",
+      "Moebel"
+    ],
+    "topic": "Mein Haus - meine Burg",
+    "category": "Tochka Ru A1",
+    "source": "Tochka Ru A1 3.1 (S. 48-53)",
+    "added": "2026-08-30T00:00:00.000Z",
+    "conjugation": null,
+    "declension": null,
+    "stress": {
+      "input": "столовая",
+      "stressed": "столо́вая",
+      "pos": 2,
+      "total": 4
+    },
+    "wordType": null
+  },
+  {
+    "id": "c_wjivcx",
+    "front": "кухня",
+    "back": "Küche",
+    "grammar": "Substantiv, weibl.",
+    "forms": [
+      "на кухне"
+    ],
+    "images": [],
+    "tags": [
+      "3.1",
+      "Haus",
+      "Moebel"
+    ],
+    "topic": "Mein Haus - meine Burg",
+    "category": "Tochka Ru A1",
+    "source": "Tochka Ru A1 3.1 (S. 48-53)",
+    "added": "2026-08-30T00:00:00.000Z",
+    "conjugation": null,
+    "declension": null,
+    "stress": {
+      "input": "кухня",
+      "stressed": "ку́хня",
+      "pos": 1,
+      "total": 2
+    },
+    "wordType": null
+  },
+  {
+    "id": "c_abjdeo",
+    "front": "детская",
+    "back": "Kinderzimmer",
+    "grammar": "Substantiv, weibl. (adjektivisch)",
+    "forms": [
+      "в детской"
+    ],
+    "images": [],
+    "tags": [
+      "3.1",
+      "Haus",
+      "Moebel"
+    ],
+    "topic": "Mein Haus - meine Burg",
+    "category": "Tochka Ru A1",
+    "source": "Tochka Ru A1 3.1 (S. 48-53)",
+    "added": "2026-08-30T00:00:00.000Z",
+    "conjugation": null,
+    "declension": null,
+    "stress": {
+      "input": "детская",
+      "stressed": "де́тская",
+      "pos": 1,
+      "total": 3
+    },
+    "wordType": null
+  },
+  {
+    "id": "c_8qzcbw",
+    "front": "кабинет",
+    "back": "Arbeitszimmer, Büro",
+    "grammar": "Substantiv, männl.",
+    "forms": [
+      "в кабинете"
+    ],
+    "images": [],
+    "tags": [
+      "3.1",
+      "Haus",
+      "Moebel"
+    ],
+    "topic": "Mein Haus - meine Burg",
+    "category": "Tochka Ru A1",
+    "source": "Tochka Ru A1 3.1 (S. 48-53)",
+    "added": "2026-08-30T00:00:00.000Z",
+    "conjugation": null,
+    "declension": null,
+    "stress": {
+      "input": "кабинет",
+      "stressed": "кабине́т",
+      "pos": 3,
+      "total": 3
+    },
+    "wordType": null
+  },
+  {
+    "id": "c_umldmt",
+    "front": "коридор",
+    "back": "Flur, Korridor",
+    "grammar": "Substantiv, männl.",
+    "forms": [
+      "в коридоре"
+    ],
+    "images": [],
+    "tags": [
+      "3.1",
+      "Haus",
+      "Moebel"
+    ],
+    "topic": "Mein Haus - meine Burg",
+    "category": "Tochka Ru A1",
+    "source": "Tochka Ru A1 3.1 (S. 48-53)",
+    "added": "2026-08-30T00:00:00.000Z",
+    "conjugation": null,
+    "declension": null,
+    "stress": {
+      "input": "коридор",
+      "stressed": "коридо́р",
+      "pos": 3,
+      "total": 3
+    },
+    "wordType": null
+  },
+  {
+    "id": "c_tsiawv",
+    "front": "туалет",
+    "back": "Toilette",
+    "grammar": "Substantiv, männl.",
+    "forms": [
+      "в туалете"
+    ],
+    "images": [],
+    "tags": [
+      "3.1",
+      "Haus",
+      "Moebel"
+    ],
+    "topic": "Mein Haus - meine Burg",
+    "category": "Tochka Ru A1",
+    "source": "Tochka Ru A1 3.1 (S. 48-53)",
+    "added": "2026-08-30T00:00:00.000Z",
+    "conjugation": null,
+    "declension": null,
+    "stress": {
+      "input": "туалет",
+      "stressed": "туале́т",
+      "pos": 3,
+      "total": 3
+    },
+    "wordType": null
+  },
+  {
+    "id": "c_pzosdg",
+    "front": "балкон",
+    "back": "Balkon",
+    "grammar": "Substantiv, männl.",
+    "forms": [
+      "на балконе",
+      "нет балкона"
+    ],
+    "images": [],
+    "tags": [
+      "3.1",
+      "Haus",
+      "Moebel"
+    ],
+    "topic": "Mein Haus - meine Burg",
+    "category": "Tochka Ru A1",
+    "source": "Tochka Ru A1 3.1 (S. 48-53)",
+    "added": "2026-08-30T00:00:00.000Z",
+    "conjugation": null,
+    "declension": null,
+    "stress": {
+      "input": "балкон",
+      "stressed": "балко́н",
+      "pos": 2,
+      "total": 2
+    },
+    "wordType": null
+  },
+  {
+    "id": "c_cp2vc5",
+    "front": "терраса",
+    "back": "Terrasse",
+    "grammar": "Substantiv, weibl.",
+    "forms": [
+      "на террасе"
+    ],
+    "images": [],
+    "tags": [
+      "3.1",
+      "Haus",
+      "Moebel"
+    ],
+    "topic": "Mein Haus - meine Burg",
+    "category": "Tochka Ru A1",
+    "source": "Tochka Ru A1 3.1 (S. 48-53)",
+    "added": "2026-08-30T00:00:00.000Z",
+    "conjugation": null,
+    "declension": null,
+    "stress": {
+      "input": "терраса",
+      "stressed": "терра́са",
+      "pos": 2,
+      "total": 3
+    },
+    "wordType": null
+  },
+  {
+    "id": "c_v0dioq",
+    "front": "гараж",
+    "back": "Garage",
+    "grammar": "Substantiv, männl.",
+    "forms": [
+      "в гараже"
+    ],
+    "images": [],
+    "tags": [
+      "3.1",
+      "Haus",
+      "Moebel"
+    ],
+    "topic": "Mein Haus - meine Burg",
+    "category": "Tochka Ru A1",
+    "source": "Tochka Ru A1 3.1 (S. 48-53)",
+    "added": "2026-08-30T00:00:00.000Z",
+    "conjugation": null,
+    "declension": null,
+    "stress": {
+      "input": "гараж",
+      "stressed": "гара́ж",
+      "pos": 2,
+      "total": 2
+    },
+    "wordType": null
+  },
+  {
+    "id": "c_fmx8lg",
+    "front": "сад",
+    "back": "Garten",
+    "grammar": "Substantiv, männl.",
+    "forms": [
+      "в саду"
+    ],
+    "images": [],
+    "tags": [
+      "3.1",
+      "Haus",
+      "Moebel"
+    ],
+    "topic": "Mein Haus - meine Burg",
+    "category": "Tochka Ru A1",
+    "source": "Tochka Ru A1 3.1 (S. 48-53)",
+    "added": "2026-08-30T00:00:00.000Z",
+    "conjugation": null,
+    "declension": null,
+    "stress": {
+      "input": "сад",
+      "stressed": "сад",
+      "pos": 1,
+      "total": 1
+    },
+    "wordType": null
+  },
+  {
+    "id": "c_4xgs7h",
+    "front": "бассейн",
+    "back": "Schwimmbad, Pool",
+    "grammar": "Substantiv, männl.",
+    "forms": [
+      "в бассейне"
+    ],
+    "images": [],
+    "tags": [
+      "3.1",
+      "Haus",
+      "Moebel"
+    ],
+    "topic": "Mein Haus - meine Burg",
+    "category": "Tochka Ru A1",
+    "source": "Tochka Ru A1 3.1 (S. 48-53)",
+    "added": "2026-08-30T00:00:00.000Z",
+    "conjugation": null,
+    "declension": null,
+    "stress": {
+      "input": "бассейн",
+      "stressed": "бассе́йн",
+      "pos": 2,
+      "total": 2
+    },
+    "wordType": null
+  },
+  {
+    "id": "c_i3nhki",
+    "front": "мебель",
+    "back": "Möbel",
+    "grammar": "Substantiv, weibl. (Singular)",
+    "forms": [],
+    "images": [],
+    "tags": [
+      "3.1",
+      "Haus",
+      "Moebel"
+    ],
+    "topic": "Mein Haus - meine Burg",
+    "category": "Tochka Ru A1",
+    "source": "Tochka Ru A1 3.1 (S. 48-53)",
+    "added": "2026-08-30T00:00:00.000Z",
+    "conjugation": null,
+    "declension": null,
+    "stress": {
+      "input": "мебель",
+      "stressed": "ме́бель",
+      "pos": 1,
+      "total": 2
+    },
+    "wordType": null
+  },
+  {
+    "id": "c_104bsy",
+    "front": "диван",
+    "back": "Sofa, Couch",
+    "grammar": "Substantiv, männl.",
+    "forms": [
+      "на диване"
+    ],
+    "images": [],
+    "tags": [
+      "3.1",
+      "Haus",
+      "Moebel"
+    ],
+    "topic": "Mein Haus - meine Burg",
+    "category": "Tochka Ru A1",
+    "source": "Tochka Ru A1 3.1 (S. 48-53)",
+    "added": "2026-08-30T00:00:00.000Z",
+    "conjugation": null,
+    "declension": null,
+    "stress": {
+      "input": "диван",
+      "stressed": "дива́н",
+      "pos": 2,
+      "total": 2
+    },
+    "wordType": null
+  },
+  {
+    "id": "c_xknvgg",
+    "front": "кресло",
+    "back": "Sessel",
+    "grammar": "Substantiv, sächl.",
+    "forms": [
+      "в кресле"
+    ],
+    "images": [],
+    "tags": [
+      "3.1",
+      "Haus",
+      "Moebel"
+    ],
+    "topic": "Mein Haus - meine Burg",
+    "category": "Tochka Ru A1",
+    "source": "Tochka Ru A1 3.1 (S. 48-53)",
+    "added": "2026-08-30T00:00:00.000Z",
+    "conjugation": null,
+    "declension": null,
+    "stress": {
+      "input": "кресло",
+      "stressed": "кре́сло",
+      "pos": 1,
+      "total": 2
+    },
+    "wordType": null
+  },
+  {
+    "id": "c_dniusr",
+    "front": "стул",
+    "back": "Stuhl",
+    "grammar": "Substantiv, männl.",
+    "forms": [
+      "на стуле",
+      "стулья"
+    ],
+    "images": [],
+    "tags": [
+      "3.1",
+      "Haus",
+      "Moebel"
+    ],
+    "topic": "Mein Haus - meine Burg",
+    "category": "Tochka Ru A1",
+    "source": "Tochka Ru A1 3.1 (S. 48-53)",
+    "added": "2026-08-30T00:00:00.000Z",
+    "conjugation": null,
+    "declension": null,
+    "stress": {
+      "input": "стул",
+      "stressed": "стул",
+      "pos": 1,
+      "total": 1
+    },
+    "wordType": null
+  },
+  {
+    "id": "c_he3fmn",
+    "front": "кровать",
+    "back": "Bett",
+    "grammar": "Substantiv, weibl.",
+    "forms": [
+      "в/на кровати"
+    ],
+    "images": [],
+    "tags": [
+      "3.1",
+      "Haus",
+      "Moebel"
+    ],
+    "topic": "Mein Haus - meine Burg",
+    "category": "Tochka Ru A1",
+    "source": "Tochka Ru A1 3.1 (S. 48-53)",
+    "added": "2026-08-30T00:00:00.000Z",
+    "conjugation": null,
+    "declension": null,
+    "stress": {
+      "input": "кровать",
+      "stressed": "крова́ть",
+      "pos": 2,
+      "total": 2
+    },
+    "wordType": null
+  },
+  {
+    "id": "c_e3jhoy",
+    "front": "шкаф",
+    "back": "Schrank",
+    "grammar": "Substantiv, männl.",
+    "forms": [
+      "в шкафу"
+    ],
+    "images": [],
+    "tags": [
+      "3.1",
+      "Haus",
+      "Moebel"
+    ],
+    "topic": "Mein Haus - meine Burg",
+    "category": "Tochka Ru A1",
+    "source": "Tochka Ru A1 3.1 (S. 48-53)",
+    "added": "2026-08-30T00:00:00.000Z",
+    "conjugation": null,
+    "declension": null,
+    "stress": {
+      "input": "шкаф",
+      "stressed": "шкаф",
+      "pos": 1,
+      "total": 1
+    },
+    "wordType": null
+  },
+  {
+    "id": "c_j6c79a",
+    "front": "комод",
+    "back": "Kommode",
+    "grammar": "Substantiv, männl.",
+    "forms": [
+      "на комоде"
+    ],
+    "images": [],
+    "tags": [
+      "3.1",
+      "Haus",
+      "Moebel"
+    ],
+    "topic": "Mein Haus - meine Burg",
+    "category": "Tochka Ru A1",
+    "source": "Tochka Ru A1 3.1 (S. 48-53)",
+    "added": "2026-08-30T00:00:00.000Z",
+    "conjugation": null,
+    "declension": null,
+    "stress": {
+      "input": "комод",
+      "stressed": "комо́д",
+      "pos": 2,
+      "total": 2
+    },
+    "wordType": null
+  },
+  {
+    "id": "c_nbf4im",
+    "front": "ковёр",
+    "back": "Teppich",
+    "grammar": "Substantiv, männl.",
+    "forms": [
+      "на ковре"
+    ],
+    "images": [],
+    "tags": [
+      "3.1",
+      "Haus",
+      "Moebel"
+    ],
+    "topic": "Mein Haus - meine Burg",
+    "category": "Tochka Ru A1",
+    "source": "Tochka Ru A1 3.1 (S. 48-53)",
+    "added": "2026-08-30T00:00:00.000Z",
+    "conjugation": null,
+    "declension": null,
+    "stress": {
+      "input": "ковёр",
+      "stressed": "ковёр",
+      "pos": 2,
+      "total": 2
+    },
+    "wordType": null
+  },
+  {
+    "id": "c_lxftzo",
+    "front": "зеркало",
+    "back": "Spiegel",
+    "grammar": "Substantiv, sächl.",
+    "forms": [
+      "в зеркале"
+    ],
+    "images": [],
+    "tags": [
+      "3.1",
+      "Haus",
+      "Moebel"
+    ],
+    "topic": "Mein Haus - meine Burg",
+    "category": "Tochka Ru A1",
+    "source": "Tochka Ru A1 3.1 (S. 48-53)",
+    "added": "2026-08-30T00:00:00.000Z",
+    "conjugation": null,
+    "declension": null,
+    "stress": {
+      "input": "зеркало",
+      "stressed": "зе́ркало",
+      "pos": 1,
+      "total": 3
+    },
+    "wordType": null
+  },
+  {
+    "id": "c_f53f61",
+    "front": "люстра",
+    "back": "Kronleuchter, Deckenlampe",
+    "grammar": "Substantiv, weibl.",
+    "forms": [],
+    "images": [],
+    "tags": [
+      "3.1",
+      "Haus",
+      "Moebel"
+    ],
+    "topic": "Mein Haus - meine Burg",
+    "category": "Tochka Ru A1",
+    "source": "Tochka Ru A1 3.1 (S. 48-53)",
+    "added": "2026-08-30T00:00:00.000Z",
+    "conjugation": null,
+    "declension": null,
+    "stress": {
+      "input": "люстра",
+      "stressed": "лю́стра",
+      "pos": 1,
+      "total": 2
+    },
+    "wordType": null
+  },
+  {
+    "id": "c_pym8mj",
+    "front": "камин",
+    "back": "Kamin",
+    "grammar": "Substantiv, männl.",
+    "forms": [],
+    "images": [],
+    "tags": [
+      "3.1",
+      "Haus",
+      "Moebel"
+    ],
+    "topic": "Mein Haus - meine Burg",
+    "category": "Tochka Ru A1",
+    "source": "Tochka Ru A1 3.1 (S. 48-53)",
+    "added": "2026-08-30T00:00:00.000Z",
+    "conjugation": null,
+    "declension": null,
+    "stress": {
+      "input": "камин",
+      "stressed": "ками́н",
+      "pos": 2,
+      "total": 2
+    },
+    "wordType": null
+  },
+  {
+    "id": "c_do7g5p",
+    "front": "батарея",
+    "back": "Heizkörper",
+    "grammar": "Substantiv, weibl.",
+    "forms": [
+      "на батарее"
+    ],
+    "images": [],
+    "tags": [
+      "3.1",
+      "Haus",
+      "Moebel"
+    ],
+    "topic": "Mein Haus - meine Burg",
+    "category": "Tochka Ru A1",
+    "source": "Tochka Ru A1 3.1 (S. 48-53)",
+    "added": "2026-08-30T00:00:00.000Z",
+    "conjugation": null,
+    "declension": null,
+    "stress": {
+      "input": "батарея",
+      "stressed": "батаре́я",
+      "pos": 3,
+      "total": 4
+    },
+    "wordType": null
+  },
+  {
+    "id": "c_cas73d",
+    "front": "пианино",
+    "back": "Klavier",
+    "grammar": "Substantiv, sächl. (unveränderlich)",
+    "forms": [
+      "на пианино"
+    ],
+    "images": [],
+    "tags": [
+      "3.1",
+      "Haus",
+      "Moebel"
+    ],
+    "topic": "Mein Haus - meine Burg",
+    "category": "Tochka Ru A1",
+    "source": "Tochka Ru A1 3.1 (S. 48-53)",
+    "added": "2026-08-30T00:00:00.000Z",
+    "conjugation": null,
+    "declension": null,
+    "stress": {
+      "input": "пианино",
+      "stressed": "пиани́но",
+      "pos": 3,
+      "total": 4
+    },
+    "wordType": null
+  },
+  {
+    "id": "c_dymwcd",
+    "front": "рояль",
+    "back": "Flügel (Klavier)",
+    "grammar": "Substantiv, männl.",
+    "forms": [
+      "на рояле"
+    ],
+    "images": [],
+    "tags": [
+      "3.1",
+      "Haus",
+      "Moebel"
+    ],
+    "topic": "Mein Haus - meine Burg",
+    "category": "Tochka Ru A1",
+    "source": "Tochka Ru A1 3.1 (S. 48-53)",
+    "added": "2026-08-30T00:00:00.000Z",
+    "conjugation": null,
+    "declension": null,
+    "stress": {
+      "input": "рояль",
+      "stressed": "роя́ль",
+      "pos": 2,
+      "total": 2
+    },
+    "wordType": null
+  },
+  {
+    "id": "c_qqb53s",
+    "front": "растение",
+    "back": "Pflanze",
+    "grammar": "Substantiv, sächl.",
+    "forms": [],
+    "images": [],
+    "tags": [
+      "3.1",
+      "Haus",
+      "Moebel"
+    ],
+    "topic": "Mein Haus - meine Burg",
+    "category": "Tochka Ru A1",
+    "source": "Tochka Ru A1 3.1 (S. 48-53)",
+    "added": "2026-08-30T00:00:00.000Z",
+    "conjugation": null,
+    "declension": null,
+    "stress": {
+      "input": "растение",
+      "stressed": "расте́ние",
+      "pos": 2,
+      "total": 4
+    },
+    "wordType": null
+  },
+  {
+    "id": "c_bafjc2",
+    "front": "ваза",
+    "back": "Vase",
+    "grammar": "Substantiv, weibl.",
+    "forms": [
+      "в вазе"
+    ],
+    "images": [],
+    "tags": [
+      "3.1",
+      "Haus",
+      "Moebel"
+    ],
+    "topic": "Mein Haus - meine Burg",
+    "category": "Tochka Ru A1",
+    "source": "Tochka Ru A1 3.1 (S. 48-53)",
+    "added": "2026-08-30T00:00:00.000Z",
+    "conjugation": null,
+    "declension": null,
+    "stress": {
+      "input": "ваза",
+      "stressed": "ва́за",
+      "pos": 1,
+      "total": 2
+    },
+    "wordType": null
+  },
+  {
+    "id": "c_m23xbz",
+    "front": "холодильник",
+    "back": "Kühlschrank",
+    "grammar": "Substantiv, männl.",
+    "forms": [
+      "в холодильнике"
+    ],
+    "images": [],
+    "tags": [
+      "3.1",
+      "Haus",
+      "Moebel"
+    ],
+    "topic": "Mein Haus - meine Burg",
+    "category": "Tochka Ru A1",
+    "source": "Tochka Ru A1 3.1 (S. 48-53)",
+    "added": "2026-08-30T00:00:00.000Z",
+    "conjugation": null,
+    "declension": null,
+    "stress": {
+      "input": "холодильник",
+      "stressed": "холоди́льник",
+      "pos": 3,
+      "total": 4
+    },
+    "wordType": null
+  },
+  {
+    "id": "c_b1yjep",
+    "front": "плита",
+    "back": "Herd",
+    "grammar": "Substantiv, weibl.",
+    "forms": [
+      "на плите"
+    ],
+    "images": [],
+    "tags": [
+      "3.1",
+      "Haus",
+      "Moebel"
+    ],
+    "topic": "Mein Haus - meine Burg",
+    "category": "Tochka Ru A1",
+    "source": "Tochka Ru A1 3.1 (S. 48-53)",
+    "added": "2026-08-30T00:00:00.000Z",
+    "conjugation": null,
+    "declension": null,
+    "stress": {
+      "input": "плита",
+      "stressed": "плита́",
+      "pos": 2,
+      "total": 2
+    },
+    "wordType": null
+  },
+  {
+    "id": "c_ocilww",
+    "front": "пол",
+    "back": "Fußboden",
+    "grammar": "Substantiv, männl.",
+    "forms": [
+      "на полу"
+    ],
+    "images": [],
+    "tags": [
+      "3.1",
+      "Haus",
+      "Moebel"
+    ],
+    "topic": "Mein Haus - meine Burg",
+    "category": "Tochka Ru A1",
+    "source": "Tochka Ru A1 3.1 (S. 48-53)",
+    "added": "2026-08-30T00:00:00.000Z",
+    "conjugation": null,
+    "declension": null,
+    "stress": {
+      "input": "пол",
+      "stressed": "пол",
+      "pos": 1,
+      "total": 1
+    },
+    "wordType": null
+  },
+  {
+    "id": "c_d01m2i",
+    "front": "лестница",
+    "back": "Treppe",
+    "grammar": "Substantiv, weibl.",
+    "forms": [
+      "на лестнице"
+    ],
+    "images": [],
+    "tags": [
+      "3.1",
+      "Haus",
+      "Moebel"
+    ],
+    "topic": "Mein Haus - meine Burg",
+    "category": "Tochka Ru A1",
+    "source": "Tochka Ru A1 3.1 (S. 48-53)",
+    "added": "2026-08-30T00:00:00.000Z",
+    "conjugation": null,
+    "declension": null,
+    "stress": {
+      "input": "лестница",
+      "stressed": "ле́стница",
+      "pos": 1,
+      "total": 3
+    },
+    "wordType": null
+  },
+  {
+    "id": "c_2xmg6b",
+    "front": "Добро пожаловать!",
+    "back": "Herzlich willkommen!",
+    "grammar": "feste Wendung",
+    "forms": [],
+    "images": [],
+    "tags": [
+      "3.1",
+      "Haus",
+      "Moebel"
+    ],
+    "topic": "Mein Haus - meine Burg",
+    "category": "Tochka Ru A1",
+    "source": "Tochka Ru A1 3.1 (S. 48-53)",
+    "added": "2026-08-30T00:00:00.000Z",
+    "conjugation": null,
+    "declension": null,
+    "stress": {
+      "input": "Добро пожаловать!",
+      "stressed": "Добро́ пожа́ловать!",
+      "pos": 2,
+      "total": 2
+    },
+    "wordType": null
+  },
+  {
+    "id": "c_4w36uz",
+    "front": "там",
+    "back": "dort",
+    "grammar": "Adverb",
+    "forms": [],
+    "images": [],
+    "tags": [
+      "3.1",
+      "Haus",
+      "Moebel"
+    ],
+    "topic": "Mein Haus - meine Burg",
+    "category": "Tochka Ru A1",
+    "source": "Tochka Ru A1 3.1 (S. 48-53)",
+    "added": "2026-08-30T00:00:00.000Z",
+    "conjugation": null,
+    "declension": null,
+    "stress": {
+      "input": "там",
+      "stressed": "там",
+      "pos": 1,
+      "total": 1
+    },
+    "wordType": null
+  },
+  {
+    "id": "c_gnnhgq",
+    "front": "слева",
+    "back": "links",
+    "grammar": "Adverb",
+    "forms": [],
+    "images": [],
+    "tags": [
+      "3.1",
+      "Haus",
+      "Moebel"
+    ],
+    "topic": "Mein Haus - meine Burg",
+    "category": "Tochka Ru A1",
+    "source": "Tochka Ru A1 3.1 (S. 48-53)",
+    "added": "2026-08-30T00:00:00.000Z",
+    "conjugation": null,
+    "declension": null,
+    "stress": {
+      "input": "слева",
+      "stressed": "сле́ва",
+      "pos": 1,
+      "total": 2
+    },
+    "wordType": null
+  },
+  {
+    "id": "c_nr1vnu",
+    "front": "место",
+    "back": "Platz, Ort",
+    "grammar": "Substantiv, sächl.",
+    "forms": [
+      "на месте"
+    ],
+    "images": [],
+    "tags": [
+      "3.1",
+      "Haus",
+      "Moebel"
+    ],
+    "topic": "Mein Haus - meine Burg",
+    "category": "Tochka Ru A1",
+    "source": "Tochka Ru A1 3.1 (S. 48-53)",
+    "added": "2026-08-30T00:00:00.000Z",
+    "conjugation": null,
+    "declension": null,
+    "stress": {
+      "input": "место",
+      "stressed": "ме́сто",
+      "pos": 1,
+      "total": 2
+    },
+    "wordType": null
+  },
+  {
+    "id": "c_k9wcca",
+    "front": "черепаха",
+    "back": "Schildkröte",
+    "grammar": "Substantiv, weibl.",
+    "forms": [],
+    "images": [],
+    "tags": [
+      "3.1",
+      "Haus",
+      "Moebel"
+    ],
+    "topic": "Mein Haus - meine Burg",
+    "category": "Tochka Ru A1",
+    "source": "Tochka Ru A1 3.1 (S. 48-53)",
+    "added": "2026-08-30T00:00:00.000Z",
+    "conjugation": null,
+    "declension": null,
+    "stress": {
+      "input": "черепаха",
+      "stressed": "черепа́ха",
+      "pos": 3,
+      "total": 4
+    },
+    "wordType": null
+  },
+  {
+    "id": "c_m7y5fd",
+    "front": "говорить по скайпу",
+    "back": "über Skype sprechen",
+    "grammar": "feste Wendung",
+    "forms": [],
+    "images": [],
+    "tags": [
+      "3.1",
+      "Haus",
+      "Moebel"
+    ],
+    "topic": "Mein Haus - meine Burg",
+    "category": "Tochka Ru A1",
+    "source": "Tochka Ru A1 3.1 (S. 48-53)",
+    "added": "2026-08-30T00:00:00.000Z",
+    "conjugation": null,
+    "declension": null,
+    "stress": {
+      "input": "говорить по скайпу",
+      "stressed": "говори́ть по ска́йпу",
+      "pos": 3,
+      "total": 3
+    },
+    "wordType": null
+  },
+  {
+    "id": "c_74fv8",
+    "front": "петь",
+    "back": "singen",
+    "grammar": "unvollendeter Aspekt",
+    "forms": [
+      "я пою",
+      "ты поёшь",
+      "они поют"
+    ],
+    "images": [],
+    "tags": [
+      "3.1",
+      "Haus",
+      "Moebel"
+    ],
+    "topic": "Mein Haus - meine Burg",
+    "category": "Tochka Ru A1",
+    "source": "Tochka Ru A1 3.1 (S. 48-53)",
+    "added": "2026-08-30T00:00:00.000Z",
+    "conjugation": null,
+    "declension": null,
+    "stress": {
+      "input": "петь",
+      "stressed": "петь",
+      "pos": 1,
+      "total": 1
+    },
+    "wordType": null
+  },
+  {
+    "id": "c_7l3bx2",
+    "front": "еда",
+    "back": "Essen, Speise",
+    "grammar": "Substantiv, weibl.",
+    "forms": [],
+    "images": [],
+    "tags": [
+      "3.1",
+      "Haus",
+      "Moebel"
+    ],
+    "topic": "Mein Haus - meine Burg",
+    "category": "Tochka Ru A1",
+    "source": "Tochka Ru A1 3.1 (S. 48-53)",
+    "added": "2026-08-30T00:00:00.000Z",
+    "conjugation": null,
+    "declension": null,
+    "stress": {
+      "input": "еда",
+      "stressed": "еда́",
+      "pos": 2,
+      "total": 2
+    },
+    "wordType": null
+  },
+  {
+    "id": "c_7jihnp",
+    "front": "фрукт",
+    "back": "Obst, Frucht",
+    "grammar": "Substantiv, männl.",
+    "forms": [
+      "фрукты"
+    ],
+    "images": [],
+    "tags": [
+      "3.1",
+      "Haus",
+      "Moebel"
+    ],
+    "topic": "Mein Haus - meine Burg",
+    "category": "Tochka Ru A1",
+    "source": "Tochka Ru A1 3.1 (S. 48-53)",
+    "added": "2026-08-30T00:00:00.000Z",
+    "conjugation": null,
+    "declension": null,
+    "stress": {
+      "input": "фрукт",
+      "stressed": "фрукт",
+      "pos": 1,
+      "total": 1
+    },
+    "wordType": null
+  },
+  {
+    "id": "c_3x4mki",
+    "front": "виноград",
+    "back": "Weintrauben",
+    "grammar": "Substantiv, männl.",
+    "forms": [],
+    "images": [],
+    "tags": [
+      "3.1",
+      "Haus",
+      "Moebel"
+    ],
+    "topic": "Mein Haus - meine Burg",
+    "category": "Tochka Ru A1",
+    "source": "Tochka Ru A1 3.1 (S. 48-53)",
+    "added": "2026-08-30T00:00:00.000Z",
+    "conjugation": null,
+    "declension": null,
+    "stress": {
+      "input": "виноград",
+      "stressed": "виногра́д",
+      "pos": 3,
+      "total": 3
+    },
+    "wordType": null
+  },
+  {
+    "id": "c_neanef",
+    "front": "сладкий",
+    "back": "süß",
+    "grammar": "Adjektiv, männl.",
+    "forms": [],
+    "images": [],
+    "tags": [
+      "3.1",
+      "Haus",
+      "Moebel"
+    ],
+    "topic": "Mein Haus - meine Burg",
+    "category": "Tochka Ru A1",
+    "source": "Tochka Ru A1 3.1 (S. 48-53)",
+    "added": "2026-08-30T00:00:00.000Z",
+    "conjugation": null,
+    "declension": null,
+    "stress": {
+      "input": "сладкий",
+      "stressed": "сла́дкий",
+      "pos": 1,
+      "total": 2
+    },
+    "wordType": null
+  },
+  {
+    "id": "c_jshms9",
+    "front": "гора",
+    "back": "Berg",
+    "grammar": "Substantiv, weibl.",
+    "forms": [
+      "на горе"
+    ],
+    "images": [],
+    "tags": [
+      "3.1",
+      "Haus",
+      "Moebel"
+    ],
+    "topic": "Mein Haus - meine Burg",
+    "category": "Tochka Ru A1",
+    "source": "Tochka Ru A1 3.1 (S. 48-53)",
+    "added": "2026-08-30T00:00:00.000Z",
+    "conjugation": null,
+    "declension": null,
+    "stress": {
+      "input": "гора",
+      "stressed": "гора́",
+      "pos": 2,
+      "total": 2
+    },
+    "wordType": null
+  },
+  {
+    "id": "c_xxcpeg",
+    "front": "расти",
+    "back": "wachsen",
+    "grammar": "unvollendeter Aspekt",
+    "forms": [
+      "он растёт"
+    ],
+    "images": [],
+    "tags": [
+      "3.1",
+      "Haus",
+      "Moebel"
+    ],
+    "topic": "Mein Haus - meine Burg",
+    "category": "Tochka Ru A1",
+    "source": "Tochka Ru A1 3.1 (S. 48-53)",
+    "added": "2026-08-30T00:00:00.000Z",
+    "conjugation": null,
+    "declension": null,
+    "stress": {
+      "input": "расти",
+      "stressed": "расти́",
+      "pos": 2,
+      "total": 2
+    },
+    "wordType": null
+  },
+  {
+    "id": "c_85h2ty",
+    "front": "фотография",
+    "back": "Foto, Fotografie",
+    "grammar": "Substantiv, weibl.",
+    "forms": [],
+    "images": [],
+    "tags": [
+      "3.1",
+      "Haus",
+      "Moebel"
+    ],
+    "topic": "Mein Haus - meine Burg",
+    "category": "Tochka Ru A1",
+    "source": "Tochka Ru A1 3.1 (S. 48-53)",
+    "added": "2026-08-30T00:00:00.000Z",
+    "conjugation": null,
+    "declension": null,
+    "stress": {
+      "input": "фотография",
+      "stressed": "фотогра́фия",
+      "pos": 3,
+      "total": 5
+    },
+    "wordType": null
+  },
+  {
+    "id": "c_lfac0g",
+    "front": "девушка",
+    "back": "junges Mädchen, junge Frau",
+    "grammar": "Substantiv, weibl.",
+    "forms": [],
+    "images": [],
+    "tags": [
+      "3.1",
+      "Haus",
+      "Moebel"
+    ],
+    "topic": "Mein Haus - meine Burg",
+    "category": "Tochka Ru A1",
+    "source": "Tochka Ru A1 3.1 (S. 48-53)",
+    "added": "2026-08-30T00:00:00.000Z",
+    "conjugation": null,
+    "declension": null,
+    "stress": {
+      "input": "девушка",
+      "stressed": "де́вушка",
+      "pos": 1,
+      "total": 3
+    },
+    "wordType": null
+  },
+  {
+    "id": "c_rxwu6s",
+    "front": "дочь",
+    "back": "Tochter",
+    "grammar": "Substantiv, weibl.",
+    "forms": [],
+    "images": [],
+    "tags": [
+      "3.1",
+      "Haus",
+      "Moebel"
+    ],
+    "topic": "Mein Haus - meine Burg",
+    "category": "Tochka Ru A1",
+    "source": "Tochka Ru A1 3.1 (S. 48-53)",
+    "added": "2026-08-30T00:00:00.000Z",
+    "conjugation": null,
+    "declension": null,
+    "stress": {
+      "input": "дочь",
+      "stressed": "дочь",
+      "pos": 1,
+      "total": 1
+    },
+    "wordType": null
+  },
+  {
+    "id": "c_wzedkf",
+    "front": "пижама",
+    "back": "Schlafanzug",
+    "grammar": "Substantiv, weibl.",
+    "forms": [],
+    "images": [],
+    "tags": [
+      "3.1",
+      "Haus",
+      "Moebel"
+    ],
+    "topic": "Mein Haus - meine Burg",
+    "category": "Tochka Ru A1",
+    "source": "Tochka Ru A1 3.1 (S. 48-53)",
+    "added": "2026-08-30T00:00:00.000Z",
+    "conjugation": null,
+    "declension": null,
+    "stress": {
+      "input": "пижама",
+      "stressed": "пижа́ма",
+      "pos": 2,
+      "total": 3
+    },
+    "wordType": null
+  },
+  {
+    "id": "c_10m9oe",
+    "front": "аэропорт",
+    "back": "Flughafen",
+    "grammar": "Substantiv, männl.",
+    "forms": [
+      "в аэропорту"
+    ],
+    "images": [],
+    "tags": [
+      "3.1",
+      "Haus",
+      "Moebel"
+    ],
+    "topic": "Mein Haus - meine Burg",
+    "category": "Tochka Ru A1",
+    "source": "Tochka Ru A1 3.1 (S. 48-53)",
+    "added": "2026-08-30T00:00:00.000Z",
+    "conjugation": null,
+    "declension": null,
+    "stress": {
+      "input": "аэропорт",
+      "stressed": "аэропо́рт",
+      "pos": 4,
+      "total": 4
+    },
+    "wordType": null
+  },
+  {
+    "id": "c_ee5rtq",
+    "front": "пилот",
+    "back": "Pilot",
+    "grammar": "Substantiv, männl.",
+    "forms": [],
+    "images": [],
+    "tags": [
+      "3.1",
+      "Haus",
+      "Moebel"
+    ],
+    "topic": "Mein Haus - meine Burg",
+    "category": "Tochka Ru A1",
+    "source": "Tochka Ru A1 3.1 (S. 48-53)",
+    "added": "2026-08-30T00:00:00.000Z",
+    "conjugation": null,
+    "declension": null,
+    "stress": {
+      "input": "пилот",
+      "stressed": "пило́т",
+      "pos": 2,
+      "total": 2
+    },
+    "wordType": null
+  },
+  {
+    "id": "c_5wc46m",
+    "front": "гулять",
+    "back": "spazieren gehen",
+    "grammar": "unvollendeter Aspekt",
+    "forms": [
+      "собака гуляет"
+    ],
+    "images": [],
+    "tags": [
+      "3.1",
+      "Haus",
+      "Moebel"
+    ],
+    "topic": "Mein Haus - meine Burg",
+    "category": "Tochka Ru A1",
+    "source": "Tochka Ru A1 3.1 (S. 48-53)",
+    "added": "2026-08-30T00:00:00.000Z",
+    "conjugation": null,
+    "declension": null,
+    "stress": {
+      "input": "гулять",
+      "stressed": "гуля́ть",
+      "pos": 2,
+      "total": 2
+    },
+    "wordType": null
+  },
+  {
+    "id": "c_vnzmfq",
+    "front": "находиться",
+    "back": "sich befinden",
+    "grammar": "unvollendeter Aspekt",
+    "forms": [
+      "они находятся"
+    ],
+    "images": [],
+    "tags": [
+      "3.1",
+      "Haus",
+      "Moebel"
+    ],
+    "topic": "Mein Haus - meine Burg",
+    "category": "Tochka Ru A1",
+    "source": "Tochka Ru A1 3.1 (S. 48-53)",
+    "added": "2026-08-30T00:00:00.000Z",
+    "conjugation": null,
+    "declension": null,
+    "stress": {
+      "input": "находиться",
+      "stressed": "находи́ться",
+      "pos": 3,
+      "total": 4
+    },
+    "wordType": null
+  },
+  {
+    "id": "c_y9zshw",
+    "front": "угадывать",
+    "back": "erraten",
+    "grammar": "unvollendeter Aspekt",
+    "forms": [
+      "они угадывают"
+    ],
+    "images": [],
+    "tags": [
+      "3.1",
+      "Haus",
+      "Moebel"
+    ],
+    "topic": "Mein Haus - meine Burg",
+    "category": "Tochka Ru A1",
+    "source": "Tochka Ru A1 3.1 (S. 48-53)",
+    "added": "2026-08-30T00:00:00.000Z",
+    "conjugation": null,
+    "declension": null,
+    "stress": {
+      "input": "угадывать",
+      "stressed": "уга́дывать",
+      "pos": 2,
+      "total": 4
+    },
+    "wordType": null
+  },
+  {
+    "id": "c_gnxt1z",
+    "front": "загадать",
+    "back": "sich etwas ausdenken (Rätsel aufgeben)",
+    "grammar": "vollendeter Aspekt",
+    "forms": [
+      "загадайте"
+    ],
+    "images": [],
+    "tags": [
+      "3.1",
+      "Haus",
+      "Moebel"
+    ],
+    "topic": "Mein Haus - meine Burg",
+    "category": "Tochka Ru A1",
+    "source": "Tochka Ru A1 3.1 (S. 48-53)",
+    "added": "2026-08-30T00:00:00.000Z",
+    "conjugation": null,
+    "declension": null,
+    "stress": {
+      "input": "загадать",
+      "stressed": "загада́ть",
+      "pos": 3,
+      "total": 3
+    },
+    "wordType": null
+  },
+  {
+    "id": "c_8tlaoy",
+    "front": "неправильно",
+    "back": "falsch, nicht richtig",
+    "grammar": "Adverb",
+    "forms": [],
+    "images": [],
+    "tags": [
+      "3.1",
+      "Haus",
+      "Moebel"
+    ],
+    "topic": "Mein Haus - meine Burg",
+    "category": "Tochka Ru A1",
+    "source": "Tochka Ru A1 3.1 (S. 48-53)",
+    "added": "2026-08-30T00:00:00.000Z",
+    "conjugation": null,
+    "declension": null,
+    "stress": {
+      "input": "неправильно",
+      "stressed": "непра́вильно",
+      "pos": 2,
+      "total": 4
+    },
+    "wordType": null
+  },
+  {
+    "id": "c_5g2asy",
+    "front": "может быть",
+    "back": "vielleicht",
+    "grammar": "feste Wendung",
+    "forms": [],
+    "images": [],
+    "tags": [
+      "3.1",
+      "Haus",
+      "Moebel"
+    ],
+    "topic": "Mein Haus - meine Burg",
+    "category": "Tochka Ru A1",
+    "source": "Tochka Ru A1 3.1 (S. 48-53)",
+    "added": "2026-08-30T00:00:00.000Z",
+    "conjugation": null,
+    "declension": null,
+    "stress": {
+      "input": "может быть",
+      "stressed": "мо́жет быть",
+      "pos": 1,
+      "total": 2
+    },
+    "wordType": null
+  },
+  {
+    "id": "c_nawbyz",
+    "front": "какой?",
+    "back": "welcher? was für ein?",
+    "grammar": "Fragewort, männl.",
+    "forms": [
+      "какая?",
+      "какое?",
+      "какие?"
+    ],
+    "images": [],
+    "tags": [
+      "3.1",
+      "Haus",
+      "Moebel"
+    ],
+    "topic": "Mein Haus - meine Burg",
+    "category": "Tochka Ru A1",
+    "source": "Tochka Ru A1 3.1 (S. 48-53)",
+    "added": "2026-08-30T00:00:00.000Z",
+    "conjugation": null,
+    "declension": null,
+    "stress": {
+      "input": "какой?",
+      "stressed": "како́й?",
+      "pos": 2,
+      "total": 2
+    },
+    "wordType": null
+  },
+  {
+    "id": "c_47uvgb",
+    "front": "партнёр",
+    "back": "Partner",
+    "grammar": "Substantiv, männl.",
+    "forms": [],
+    "images": [],
+    "tags": [
+      "3.1",
+      "Haus",
+      "Moebel"
+    ],
+    "topic": "Mein Haus - meine Burg",
+    "category": "Tochka Ru A1",
+    "source": "Tochka Ru A1 3.1 (S. 48-53)",
+    "added": "2026-08-30T00:00:00.000Z",
+    "conjugation": null,
+    "declension": null,
+    "stress": {
+      "input": "партнёр",
+      "stressed": "партнёр",
+      "pos": 2,
+      "total": 2
+    },
+    "wordType": null
+  },
+  {
+    "id": "c_q3bmv4",
+    "front": "журнал",
+    "back": "Zeitschrift",
+    "grammar": "Substantiv, männl.",
+    "forms": [],
+    "images": [],
+    "tags": [
+      "3.1",
+      "Haus",
+      "Moebel"
+    ],
+    "topic": "Mein Haus - meine Burg",
+    "category": "Tochka Ru A1",
+    "source": "Tochka Ru A1 3.1 (S. 48-53)",
+    "added": "2026-08-30T00:00:00.000Z",
+    "conjugation": null,
+    "declension": null,
+    "stress": {
+      "input": "журнал",
+      "stressed": "журна́л",
+      "pos": 2,
+      "total": 2
+    },
+    "wordType": null
+  },
+  {
+    "id": "c_n3xecp",
+    "front": "актёр",
+    "back": "Schauspieler",
+    "grammar": "Substantiv, männl.",
+    "forms": [
+      "актриса"
+    ],
+    "images": [],
+    "tags": [
+      "3.1",
+      "Haus",
+      "Moebel"
+    ],
+    "topic": "Mein Haus - meine Burg",
+    "category": "Tochka Ru A1",
+    "source": "Tochka Ru A1 3.1 (S. 48-53)",
+    "added": "2026-08-30T00:00:00.000Z",
+    "conjugation": null,
+    "declension": null,
+    "stress": {
+      "input": "актёр",
+      "stressed": "актёр",
+      "pos": 2,
+      "total": 2
+    },
+    "wordType": null
+  },
+  {
+    "id": "c_wo1q4k",
+    "front": "спортсмен",
+    "back": "Sportler",
+    "grammar": "Substantiv, männl.",
+    "forms": [],
+    "images": [],
+    "tags": [
+      "3.1",
+      "Haus",
+      "Moebel"
+    ],
+    "topic": "Mein Haus - meine Burg",
+    "category": "Tochka Ru A1",
+    "source": "Tochka Ru A1 3.1 (S. 48-53)",
+    "added": "2026-08-30T00:00:00.000Z",
+    "conjugation": null,
+    "declension": null,
+    "stress": {
+      "input": "спортсмен",
+      "stressed": "спортсме́н",
+      "pos": 2,
+      "total": 2
+    },
+    "wordType": null
+  },
+  {
+    "id": "c_jhsbq3",
+    "front": "магазин",
+    "back": "Geschäft, Laden",
+    "grammar": "Substantiv, männl.",
+    "forms": [
+      "в магазине"
+    ],
+    "images": [],
+    "tags": [
+      "3.1",
+      "Haus",
+      "Moebel"
+    ],
+    "topic": "Mein Haus - meine Burg",
+    "category": "Tochka Ru A1",
+    "source": "Tochka Ru A1 3.1 (S. 48-53)",
+    "added": "2026-08-30T00:00:00.000Z",
+    "conjugation": null,
+    "declension": null,
+    "stress": {
+      "input": "магазин",
+      "stressed": "магази́н",
+      "pos": 3,
+      "total": 3
+    },
+    "wordType": null
+  },
+  {
+    "id": "c_6k5rv5",
+    "front": "интервью",
+    "back": "Interview",
+    "grammar": "Substantiv, sächl. (unveränderlich)",
+    "forms": [],
+    "images": [],
+    "tags": [
+      "3.1",
+      "Haus",
+      "Moebel"
+    ],
+    "topic": "Mein Haus - meine Burg",
+    "category": "Tochka Ru A1",
+    "source": "Tochka Ru A1 3.1 (S. 48-53)",
+    "added": "2026-08-30T00:00:00.000Z",
+    "conjugation": null,
+    "declension": null,
+    "stress": {
+      "input": "интервью",
+      "stressed": "интервью́",
+      "pos": 3,
+      "total": 3
+    },
+    "wordType": null
+  },
+  {
+    "id": "c_topywj",
+    "front": "презентация",
+    "back": "Präsentation",
+    "grammar": "Substantiv, weibl.",
+    "forms": [],
+    "images": [],
+    "tags": [
+      "3.1",
+      "Haus",
+      "Moebel"
+    ],
+    "topic": "Mein Haus - meine Burg",
+    "category": "Tochka Ru A1",
+    "source": "Tochka Ru A1 3.1 (S. 48-53)",
+    "added": "2026-08-30T00:00:00.000Z",
+    "conjugation": null,
+    "declension": null,
+    "stress": {
+      "input": "презентация",
+      "stressed": "презента́ция",
+      "pos": 3,
+      "total": 5
+    },
+    "wordType": null
+  },
+  {
+    "id": "c_9ocy89",
+    "front": "рассказать",
+    "back": "erzählen",
+    "grammar": "vollendeter Aspekt",
+    "forms": [
+      "расскажите"
+    ],
+    "images": [],
+    "tags": [
+      "3.1",
+      "Haus",
+      "Moebel"
+    ],
+    "topic": "Mein Haus - meine Burg",
+    "category": "Tochka Ru A1",
+    "source": "Tochka Ru A1 3.1 (S. 48-53)",
+    "added": "2026-08-30T00:00:00.000Z",
+    "conjugation": null,
+    "declension": null,
+    "stress": {
+      "input": "рассказать",
+      "stressed": "рассказа́ть",
+      "pos": 3,
+      "total": 3
+    },
+    "wordType": null
+  },
+  {
+    "id": "c_w8ztyu",
+    "front": "скороговорка",
+    "back": "Zungenbrecher",
+    "grammar": "Substantiv, weibl.",
+    "forms": [],
+    "images": [],
+    "tags": [
+      "3.1",
+      "Haus",
+      "Moebel"
+    ],
+    "topic": "Mein Haus - meine Burg",
+    "category": "Tochka Ru A1",
+    "source": "Tochka Ru A1 3.1 (S. 48-53)",
+    "added": "2026-08-30T00:00:00.000Z",
+    "conjugation": null,
+    "declension": null,
+    "stress": {
+      "input": "скороговорка",
+      "stressed": "скорогово́рка",
+      "pos": 4,
+      "total": 5
+    },
+    "wordType": null
+  },
+  {
+    "id": "c_a4czp3",
+    "front": "Посмотрите на картинку.",
+    "back": "Schauen Sie sich das Bild an.",
+    "grammar": "feste Wendung",
+    "forms": [],
+    "images": [],
+    "tags": [
+      "3.1",
+      "Haus",
+      "Moebel"
+    ],
+    "topic": "Mein Haus - meine Burg",
+    "category": "Tochka Ru A1",
+    "source": "Tochka Ru A1 3.1 (S. 48-53)",
+    "added": "2026-08-30T00:00:00.000Z",
+    "conjugation": null,
+    "declension": null,
+    "stress": {
+      "input": "Посмотрите на картинку.",
+      "stressed": "Посмотри́те на карти́нку.",
+      "pos": 3,
+      "total": 4
+    },
+    "wordType": null
+  },
+  {
+    "id": "c_6lkizq",
+    "front": "Прочитайте.",
+    "back": "Lesen Sie.",
+    "grammar": "feste Wendung",
+    "forms": [],
+    "images": [],
+    "tags": [
+      "3.1",
+      "Haus",
+      "Moebel"
+    ],
+    "topic": "Mein Haus - meine Burg",
+    "category": "Tochka Ru A1",
+    "source": "Tochka Ru A1 3.1 (S. 48-53)",
+    "added": "2026-08-30T00:00:00.000Z",
+    "conjugation": null,
+    "declension": null,
+    "stress": {
+      "input": "Прочитайте.",
+      "stressed": "Прочита́йте.",
+      "pos": 3,
+      "total": 4
+    },
+    "wordType": null
+  },
+  {
+    "id": "c_gejl2j",
+    "front": "Послушайте текст.",
+    "back": "Hören Sie den Text an.",
+    "grammar": "feste Wendung",
+    "forms": [],
+    "images": [],
+    "tags": [
+      "3.1",
+      "Haus",
+      "Moebel"
+    ],
+    "topic": "Mein Haus - meine Burg",
+    "category": "Tochka Ru A1",
+    "source": "Tochka Ru A1 3.1 (S. 48-53)",
+    "added": "2026-08-30T00:00:00.000Z",
+    "conjugation": null,
+    "declension": null,
+    "stress": {
+      "input": "Послушайте текст.",
+      "stressed": "Послу́шайте текст.",
+      "pos": 2,
+      "total": 4
+    },
+    "wordType": null
+  },
+  {
+    "id": "c_1jtdre",
+    "front": "Проверьте.",
+    "back": "Überprüfen Sie.",
+    "grammar": "feste Wendung",
+    "forms": [],
+    "images": [],
+    "tags": [
+      "3.1",
+      "Haus",
+      "Moebel"
+    ],
+    "topic": "Mein Haus - meine Burg",
+    "category": "Tochka Ru A1",
+    "source": "Tochka Ru A1 3.1 (S. 48-53)",
+    "added": "2026-08-30T00:00:00.000Z",
+    "conjugation": null,
+    "declension": null,
+    "stress": {
+      "input": "Проверьте.",
+      "stressed": "Прове́рьте.",
+      "pos": 2,
+      "total": 3
+    },
+    "wordType": null
+  },
+  {
+    "id": "c_zh234n",
+    "front": "Заполните пропуски.",
+    "back": "Füllen Sie die Lücken aus.",
+    "grammar": "feste Wendung",
+    "forms": [],
+    "images": [],
+    "tags": [
+      "3.1",
+      "Haus",
+      "Moebel"
+    ],
+    "topic": "Mein Haus - meine Burg",
+    "category": "Tochka Ru A1",
+    "source": "Tochka Ru A1 3.1 (S. 48-53)",
+    "added": "2026-08-30T00:00:00.000Z",
+    "conjugation": null,
+    "declension": null,
+    "stress": {
+      "input": "Заполните пропуски.",
+      "stressed": "Запо́лните про́пуски.",
+      "pos": 2,
+      "total": 4
+    },
+    "wordType": null
+  },
+  {
+    "id": "c_3s6hqh",
+    "front": "Отвечайте на вопросы.",
+    "back": "Beantworten Sie die Fragen.",
+    "grammar": "feste Wendung",
+    "forms": [],
+    "images": [],
+    "tags": [
+      "3.1",
+      "Haus",
+      "Moebel"
+    ],
+    "topic": "Mein Haus - meine Burg",
+    "category": "Tochka Ru A1",
+    "source": "Tochka Ru A1 3.1 (S. 48-53)",
+    "added": "2026-08-30T00:00:00.000Z",
+    "conjugation": null,
+    "declension": null,
+    "stress": {
+      "input": "Отвечайте на вопросы.",
+      "stressed": "Отвеча́йте на вопро́сы.",
+      "pos": 3,
+      "total": 4
+    },
+    "wordType": null
+  },
+  {
+    "id": "c_j79aus",
+    "front": "Работайте в парах.",
+    "back": "Arbeiten Sie in Paaren.",
+    "grammar": "feste Wendung",
+    "forms": [],
+    "images": [],
+    "tags": [
+      "3.1",
+      "Haus",
+      "Moebel"
+    ],
+    "topic": "Mein Haus - meine Burg",
+    "category": "Tochka Ru A1",
+    "source": "Tochka Ru A1 3.1 (S. 48-53)",
+    "added": "2026-08-30T00:00:00.000Z",
+    "conjugation": null,
+    "declension": null,
+    "stress": {
+      "input": "Работайте в парах.",
+      "stressed": "Рабо́тайте в па́рах.",
+      "pos": 2,
+      "total": 4
+    },
+    "wordType": null
+  },
+  {
+    "id": "c_f89cc4",
+    "front": "Спрашивайте друг друга.",
+    "back": "Fragen Sie einander.",
+    "grammar": "feste Wendung",
+    "forms": [],
+    "images": [],
+    "tags": [
+      "3.1",
+      "Haus",
+      "Moebel"
+    ],
+    "topic": "Mein Haus - meine Burg",
+    "category": "Tochka Ru A1",
+    "source": "Tochka Ru A1 3.1 (S. 48-53)",
+    "added": "2026-08-30T00:00:00.000Z",
+    "conjugation": null,
+    "declension": null,
+    "stress": {
+      "input": "Спрашивайте друг друга.",
+      "stressed": "Спра́шивайте друг дру́га.",
+      "pos": 1,
+      "total": 4
+    },
+    "wordType": null
+  },
+  {
+    "id": "c_et8slz",
+    "front": "Напишите ответы.",
+    "back": "Schreiben Sie die Antworten.",
+    "grammar": "feste Wendung",
+    "forms": [],
+    "images": [],
+    "tags": [
+      "3.1",
+      "Haus",
+      "Moebel"
+    ],
+    "topic": "Mein Haus - meine Burg",
+    "category": "Tochka Ru A1",
+    "source": "Tochka Ru A1 3.1 (S. 48-53)",
+    "added": "2026-08-30T00:00:00.000Z",
+    "conjugation": null,
+    "declension": null,
+    "stress": {
+      "input": "Напишите ответы.",
+      "stressed": "Напиши́те отве́ты.",
+      "pos": 3,
+      "total": 4
+    },
+    "wordType": null
+  }
+]

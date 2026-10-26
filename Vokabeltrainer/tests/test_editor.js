@@ -9,6 +9,7 @@
  */
 
 const puppeteer = require('puppeteer');
+const { isolatePage } = require('./helpers/offline');
 const path = require('path');
 
 const EDITOR_URL = 'file:///' + path.resolve(__dirname, '..', 'vokabel_editor.html').replace(/\\/g, '/');
@@ -913,6 +914,7 @@ async function testSelectAll(page) {
 (async () => {
     const browser = await puppeteer.launch({ headless: true });
     const page = await browser.newPage();
+    await isolatePage(page);   // kein Netz, keine echten Schluessel
     page.on('console', msg => {
         if (msg.type() === 'error') console.log('    [console.error]', msg.text());
     });

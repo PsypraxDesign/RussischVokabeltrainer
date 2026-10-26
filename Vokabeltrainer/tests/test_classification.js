@@ -6,6 +6,7 @@
  */
 
 const puppeteer = require('puppeteer');
+const { isolatePage } = require('./helpers/offline');
 const path = require('path');
 const fs = require('fs');
 
@@ -32,6 +33,7 @@ const VOCAB_PATH = path.resolve(__dirname, '..', 'Vokabelliste_JSON', 'vokabeln.
 
     const browser = await puppeteer.launch({ headless: true });
     const page = await browser.newPage();
+    await isolatePage(page);   // kein Netz, keine echten Schluessel
     await page.goto(EDITOR_URL, { waitUntil: 'domcontentloaded' });
 
     // Inject vocab data and classify each item

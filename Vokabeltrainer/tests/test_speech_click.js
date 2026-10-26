@@ -1,5 +1,6 @@
 // Klickt "Vorlesen" und faengt jede Exception ein
 const puppeteer = require('puppeteer');
+const { isolatePage } = require('./helpers/offline');
 const path = require('path');
 
 (async () => {
@@ -8,6 +9,7 @@ const path = require('path');
         args: ['--allow-file-access-from-files', '--no-sandbox']
     });
     const page = await browser.newPage();
+    await isolatePage(page);   // kein Netz, keine echten Schluessel
 
     page.on('console', msg => console.log(`[CONSOLE ${msg.type()}]`, msg.text()));
     page.on('pageerror', err => console.log('[PAGE ERROR]', err.message));
