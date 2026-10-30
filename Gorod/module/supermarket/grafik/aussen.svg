@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 260" role="img" aria-label="Supermarkt von außen">
+  <rect x="10" y="90" width="300" height="170" fill="#f4efe6"/>
+  <rect x="4" y="80" width="312" height="14" fill="#3f8f5f"/>
+  <rect x="40" y="40" width="240" height="40" rx="8" fill="#3f8f5f"/>
+  <text x="160" y="67" text-anchor="middle" font-family="Manrope, sans-serif" font-size="17" font-weight="800" fill="#fff" letter-spacing="1.5">СУПЕРМАРКЕТ</text>
+  <!-- Markise -->
+  <g>
+    <path d="M14 94 H306 L300 118 H20 Z" fill="#fbfbfb"/>
+    <path d="M20 118 Q34 128 48 118 Q62 128 76 118 Q90 128 104 118 Q118 128 132 118 Q146 128 160 118 Q174 128 188 118 Q202 128 216 118 Q230 128 244 118 Q258 128 272 118 Q286 128 300 118" fill="#3f8f5f"/>
+    <path d="M48 94 L44 118 M104 94 L100 118 M160 94 V118 M216 94 L220 118 M272 94 L276 118" stroke="#3f8f5f" stroke-width="12" opacity="0.85"/>
+  </g>
+  <!-- Schaufenster mit Obst -->
+  <rect x="26" y="140" width="96" height="90" fill="#bfe0ee"/>
+  <rect x="198" y="140" width="96" height="90" fill="#bfe0ee"/>
+  <g><circle cx="48" cy="212" r="9" fill="#c8302a"/><circle cx="66" cy="214" r="9" fill="#f2d046"/><circle cx="84" cy="212" r="9" fill="#e5483a"/><circle cx="57" cy="198" r="9" fill="#3f8f5f"/><circle cx="75" cy="198" r="9" fill="#c8302a"/></g>
+  <g><rect x="214" y="190" width="18" height="32" fill="#fbfbfb" stroke="#c9d3d9"/><rect x="214" y="200" width="18" height="8" fill="#2b5fa8"/><rect x="240" y="186" width="18" height="36" fill="#f08a2c"/><rect x="266" y="194" width="18" height="28" fill="#2f6b4f"/></g>
+  <!-- Schiebetür -->
+  <rect x="134" y="140" width="52" height="120" fill="#7fb3cf"/>
+  <path d="M160 140 V260" stroke="#f4efe6" stroke-width="3"/>
+  <rect x="134" y="132" width="52" height="8" fill="#3f8f5f"/>
+  <rect x="0" y="254" width="320" height="6" fill="#c9c1b2"/>
+</svg>

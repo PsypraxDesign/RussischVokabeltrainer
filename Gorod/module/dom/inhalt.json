@@ -1,0 +1,1008 @@
+{
+ "uebersicht": "Ganzes Haus",
+ "raeume": [
+  {
+   "id": "cherdak",
+   "ru": "черда́к",
+   "de": "der Dachboden",
+   "wo": "на чердаке́",
+   "wo_de": "auf dem Dachboden",
+   "etage": "под кры́шей",
+   "etage_de": "unter dem Dach",
+   "ansicht": [
+    306,
+    -268,
+    988,
+    238
+   ],
+   "schild": [
+    690,
+    -178
+   ],
+   "hinweis": "Wie die Küche: на чердаке́ – auf dem Dachboden."
+  },
+  {
+   "id": "sportzal",
+   "ru": "спортза́л",
+   "de": "der Fitnessraum",
+   "wo": "в спортза́ле",
+   "wo_de": "im Fitnessraum",
+   "etage_nr": 3,
+   "ansicht": [
+    300,
+    -20,
+    340,
+    230
+   ],
+   "hinweis": "спорт + зал (Saal).",
+   "etage": "на тре́тьем этаже́",
+   "etage_de": "im 2. Obergeschoss"
+  },
+  {
+   "id": "zimniy_sad",
+   "ru": "зи́мний сад",
+   "de": "der Wintergarten",
+   "wo": "в зи́мнем саду́",
+   "wo_de": "im Wintergarten",
+   "etage_nr": 3,
+   "ansicht": [
+    640,
+    -20,
+    330,
+    230
+   ],
+   "hinweis": "Wie сад: в саду́ – mit Adjektiv в зи́мнем саду́.",
+   "etage": "на тре́тьем этаже́",
+   "etage_de": "im 2. Obergeschoss"
+  },
+  {
+   "id": "masterskaya",
+   "ru": "мастерска́я",
+   "de": "das Atelier",
+   "wo": "в мастерско́й",
+   "wo_de": "im Atelier",
+   "etage_nr": 3,
+   "ansicht": [
+    970,
+    -20,
+    330,
+    230
+   ],
+   "hinweis": "Ein Adjektiv als Nomen wie ва́нная – deshalb в мастерско́й.",
+   "etage": "на тре́тьем этаже́",
+   "etage_de": "im 2. Obergeschoss"
+  },
+  {
+   "id": "spalnya",
+   "ru": "спа́льня",
+   "de": "das Schlafzimmer",
+   "wo": "в спа́льне",
+   "wo_de": "im Schlafzimmer",
+   "etage": "на второ́м этаже́",
+   "etage_de": "im 1. Obergeschoss",
+   "ansicht": [
+    300,
+    220,
+    280,
+    230
+   ],
+   "etage_nr": 2
+  },
+  {
+   "id": "detskaya",
+   "ru": "де́тская",
+   "de": "das Kinderzimmer",
+   "wo": "в де́тской",
+   "wo_de": "im Kinderzimmer",
+   "etage": "на второ́м этаже́",
+   "etage_de": "im 1. Obergeschoss",
+   "ansicht": [
+    580,
+    220,
+    230,
+    230
+   ],
+   "hinweis": "де́тская ist eigentlich ein Adjektiv (де́тская ко́мната) – deshalb в де́тской.",
+   "etage_nr": 2
+  },
+  {
+   "id": "vannaya",
+   "ru": "ва́нная",
+   "de": "das Badezimmer",
+   "wo": "в ва́нной",
+   "wo_de": "im Bad",
+   "etage": "на второ́м этаже́",
+   "etage_de": "im 1. Obergeschoss",
+   "ansicht": [
+    810,
+    220,
+    220,
+    230
+   ],
+   "hinweis": "ва́нная ist ein Adjektiv (ва́нная ко́мната) – deshalb в ва́нной.",
+   "etage_nr": 2
+  },
+  {
+   "id": "kabinet",
+   "ru": "кабине́т",
+   "de": "das Arbeitszimmer",
+   "wo": "в кабине́те",
+   "wo_de": "im Arbeitszimmer",
+   "etage": "на второ́м этаже́",
+   "etage_de": "im 1. Obergeschoss",
+   "ansicht": [
+    1030,
+    220,
+    270,
+    230
+   ],
+   "etage_nr": 2
+  },
+  {
+   "id": "prikhozhaya",
+   "ru": "прихо́жая",
+   "de": "der Flur",
+   "wo": "в прихо́жей",
+   "wo_de": "im Flur",
+   "etage": "на пе́рвом этаже́",
+   "etage_de": "im Erdgeschoss",
+   "ansicht": [
+    300,
+    460,
+    180,
+    230
+   ],
+   "etage_nr": 1
+  },
+  {
+   "id": "gostinaya",
+   "ru": "гости́ная",
+   "de": "das Wohnzimmer",
+   "wo": "в гости́ной",
+   "wo_de": "im Wohnzimmer",
+   "etage": "на пе́рвом этаже́",
+   "etage_de": "im Erdgeschoss",
+   "ansicht": [
+    480,
+    460,
+    340,
+    230
+   ],
+   "etage_nr": 1
+  },
+  {
+   "id": "stolovaya",
+   "ru": "столо́вая",
+   "de": "das Esszimmer",
+   "wo": "в столо́вой",
+   "wo_de": "im Esszimmer",
+   "etage": "на пе́рвом этаже́",
+   "etage_de": "im Erdgeschoss",
+   "ansicht": [
+    820,
+    460,
+    230,
+    230
+   ],
+   "etage_nr": 1
+  },
+  {
+   "id": "kukhnya",
+   "ru": "ку́хня",
+   "de": "die Küche",
+   "wo": "на ку́хне",
+   "wo_de": "in der Küche",
+   "etage": "на пе́рвом этаже́",
+   "etage_de": "im Erdgeschoss",
+   "ansicht": [
+    1050,
+    460,
+    250,
+    230
+   ],
+   "hinweis": "Ausnahme: на ку́хне, nicht в ку́хне.",
+   "etage_nr": 1
+  },
+  {
+   "id": "podval",
+   "ru": "подва́л",
+   "de": "der Keller",
+   "wo": "в подва́ле",
+   "wo_de": "im Keller",
+   "etage": "под до́мом",
+   "etage_de": "unter dem Haus",
+   "ansicht": [
+    300,
+    712,
+    600,
+    180
+   ]
+  },
+  {
+   "id": "sauna",
+   "ru": "са́уна",
+   "de": "die Sauna",
+   "wo": "в са́уне",
+   "wo_de": "in der Sauna",
+   "etage": "в подва́ле",
+   "etage_de": "im Keller",
+   "ansicht": [
+    900,
+    712,
+    400,
+    180
+   ],
+   "hinweis": "Die russische Sauna heißt ба́ня."
+  },
+  {
+   "id": "garazh",
+   "ru": "гара́ж",
+   "de": "die Garage",
+   "wo": "в гараже́",
+   "wo_de": "in der Garage",
+   "etage": "ря́дом с до́мом",
+   "etage_de": "neben dem Haus",
+   "ansicht": [
+    1310,
+    490,
+    250,
+    200
+   ],
+   "hinweis": "Die Betonung wandert: гара́ж → в гараже́."
+  },
+  {
+   "id": "dvor",
+   "ru": "двор",
+   "de": "der Hof",
+   "wo": "во дворе́",
+   "wo_de": "im Hof",
+   "etage": "пе́ред гаражо́м",
+   "etage_de": "vor der Garage",
+   "ansicht": [
+    1560,
+    560,
+    250,
+    230
+   ],
+   "hinweis": "во дворе́ – mit Hilfsvokal о und Betonung auf der Endung. Unser Hof ist leer: Platz zum Wenden fürs Auto."
+  },
+  {
+   "id": "sad",
+   "ru": "сад",
+   "de": "der Garten",
+   "wo": "в саду́",
+   "wo_de": "im Garten",
+   "etage": "ря́дом с до́мом",
+   "etage_de": "neben dem Haus",
+   "ansicht": [
+    -240,
+    420,
+    520,
+    370
+   ],
+   "hinweis": "Sonderendung: в саду́ (wie в аэропорту́)."
+  }
+ ],
+ "woerter": [
+  {
+   "id": "dorozhka",
+   "ru": "бегова́я доро́жка",
+   "de": "das Laufband",
+   "genus": "f",
+   "raum": "sportzal",
+   "hotspot": "hs-dorozhka",
+   "hinweis": "бег – das Laufen, доро́жка – der Weg"
+  },
+  {
+   "id": "ganteli",
+   "ru": "ганте́ли",
+   "de": "die Hanteln",
+   "genus": "pl",
+   "raum": "sportzal",
+   "hotspot": "hs-ganteli"
+  },
+  {
+   "id": "fitbol",
+   "ru": "фитбо́л",
+   "de": "der Gymnastikball",
+   "genus": "m",
+   "raum": "sportzal",
+   "hotspot": "hs-fitbol"
+  },
+  {
+   "id": "kovrik",
+   "ru": "коври́к",
+   "de": "die Matte",
+   "genus": "m",
+   "raum": "sportzal",
+   "hotspot": "hs-kovrik",
+   "hinweis": "Verkleinerung von ковёр – der Teppich"
+  },
+  {
+   "id": "palma",
+   "ru": "па́льма",
+   "de": "die Palme",
+   "genus": "f",
+   "raum": "zimniy_sad",
+   "hotspot": "hs-palma"
+  },
+  {
+   "id": "kreslo_kachalka",
+   "ru": "кре́сло-кача́лка",
+   "de": "der Schaukelstuhl",
+   "genus": "n",
+   "raum": "zimniy_sad",
+   "hotspot": "hs-kreslo-kachalka",
+   "hinweis": "кре́сло ist sächlich; кача́ть – schaukeln"
+  },
+  {
+   "id": "leyka",
+   "ru": "ле́йка",
+   "de": "die Gießkanne",
+   "genus": "f",
+   "raum": "zimniy_sad",
+   "hotspot": "hs-leyka",
+   "hinweis": "von лить – gießen"
+  },
+  {
+   "id": "kaktus",
+   "ru": "ка́ктус",
+   "de": "der Kaktus",
+   "genus": "m",
+   "raum": "zimniy_sad",
+   "hotspot": "hs-kaktus"
+  },
+  {
+   "id": "popugay",
+   "ru": "попуга́й",
+   "de": "der Papagei",
+   "genus": "m",
+   "raum": "zimniy_sad",
+   "hotspot": "hs-popugay"
+  },
+  {
+   "id": "molbert",
+   "ru": "мольбе́рт",
+   "de": "die Staffelei",
+   "genus": "m",
+   "raum": "masterskaya",
+   "hotspot": "hs-molbert"
+  },
+  {
+   "id": "kholst",
+   "ru": "холст",
+   "de": "die Leinwand",
+   "genus": "m",
+   "raum": "masterskaya",
+   "hotspot": "hs-kholst"
+  },
+  {
+   "id": "palitra",
+   "ru": "пали́тра",
+   "de": "die Palette",
+   "genus": "f",
+   "raum": "masterskaya",
+   "hotspot": "hs-palitra"
+  },
+  {
+   "id": "kisti",
+   "ru": "ки́сти",
+   "de": "die Pinsel",
+   "genus": "pl",
+   "raum": "masterskaya",
+   "hotspot": "hs-kisti",
+   "hinweis": "Singular: кисть – weiblich"
+  },
+  {
+   "id": "fartuk",
+   "ru": "фа́ртук",
+   "de": "die Schürze",
+   "genus": "m",
+   "raum": "masterskaya",
+   "hotspot": "hs-fartuk"
+  },
+  {
+   "id": "sunduk",
+   "ru": "сунду́к",
+   "de": "die Truhe",
+   "genus": "m",
+   "raum": "cherdak",
+   "hotspot": "hs-sunduk"
+  },
+  {
+   "id": "chemodan",
+   "ru": "чемода́н",
+   "de": "der Koffer",
+   "genus": "m",
+   "raum": "cherdak",
+   "hotspot": "hs-chemodan"
+  },
+  {
+   "id": "grammofon",
+   "ru": "граммофо́н",
+   "de": "das Grammofon",
+   "genus": "m",
+   "raum": "cherdak",
+   "hotspot": "hs-grammofon"
+  },
+  {
+   "id": "loshadka",
+   "ru": "лоша́дка",
+   "de": "das Schaukelpferd",
+   "genus": "f",
+   "raum": "cherdak",
+   "hotspot": "hs-loshadka",
+   "hinweis": "лоша́дь – das Pferd; genau: лоша́дка-кача́лка"
+  },
+  {
+   "id": "pautina",
+   "ru": "паути́на",
+   "de": "das Spinnennetz",
+   "genus": "f",
+   "raum": "cherdak",
+   "hotspot": "hs-pautina",
+   "hinweis": "пау́к – die Spinne"
+  },
+  {
+   "id": "krovat",
+   "ru": "крова́ть",
+   "de": "das Bett",
+   "genus": "f",
+   "raum": "spalnya",
+   "hotspot": "hs-krovat"
+  },
+  {
+   "id": "podushka",
+   "ru": "поду́шка",
+   "de": "das Kopfkissen",
+   "genus": "f",
+   "raum": "spalnya",
+   "hotspot": "hs-podushka"
+  },
+  {
+   "id": "odeyalo",
+   "ru": "одея́ло",
+   "de": "die Bettdecke",
+   "genus": "n",
+   "raum": "spalnya",
+   "hotspot": "hs-odeyalo"
+  },
+  {
+   "id": "shkaf",
+   "ru": "шкаф",
+   "de": "der Kleiderschrank",
+   "genus": "m",
+   "raum": "spalnya",
+   "hotspot": "hs-shkaf",
+   "hinweis": "Wo? в шкафу́ – Sonderendung wie в саду́."
+  },
+  {
+   "id": "tumbochka",
+   "ru": "ту́мбочка",
+   "de": "der Nachttisch",
+   "genus": "f",
+   "raum": "spalnya",
+   "hotspot": "hs-tumbochka"
+  },
+  {
+   "id": "budilnik",
+   "ru": "буди́льник",
+   "de": "der Wecker",
+   "genus": "m",
+   "raum": "spalnya",
+   "hotspot": "hs-budilnik",
+   "hinweis": "von буди́ть – wecken"
+  },
+  {
+   "id": "myach",
+   "ru": "мяч",
+   "de": "der Ball",
+   "genus": "m",
+   "raum": "detskaya",
+   "hotspot": "hs-myach"
+  },
+  {
+   "id": "kukla",
+   "ru": "ку́кла",
+   "de": "die Puppe",
+   "genus": "f",
+   "raum": "detskaya",
+   "hotspot": "hs-kukla"
+  },
+  {
+   "id": "mishka",
+   "ru": "ми́шка",
+   "de": "der Teddybär",
+   "genus": "m",
+   "raum": "detskaya",
+   "hotspot": "hs-mishka",
+   "hinweis": "плю́шевый ми́шка – der Plüschbär; ми́шка ist männlich, obwohl es auf -а endet."
+  },
+  {
+   "id": "knigi",
+   "ru": "кни́ги",
+   "de": "die Bücher",
+   "genus": "pl",
+   "raum": "detskaya",
+   "hotspot": "hs-knigi",
+   "hinweis": "Singular: кни́га"
+  },
+  {
+   "id": "kubiki",
+   "ru": "ку́бики",
+   "de": "die Bauklötze",
+   "genus": "pl",
+   "raum": "detskaya",
+   "hotspot": "hs-kubiki",
+   "hinweis": "Singular: ку́бик (Würfel)"
+  },
+  {
+   "id": "vanna",
+   "ru": "ва́нна",
+   "de": "die Badewanne",
+   "genus": "f",
+   "raum": "vannaya",
+   "hotspot": "hs-vanna",
+   "hinweis": "ва́нна = Wanne, ва́нная = Badezimmer"
+  },
+  {
+   "id": "dush",
+   "ru": "душ",
+   "de": "die Dusche",
+   "genus": "m",
+   "raum": "vannaya",
+   "hotspot": "hs-dush",
+   "hinweis": "принима́ть душ – duschen"
+  },
+  {
+   "id": "polotentse",
+   "ru": "полоте́нце",
+   "de": "das Handtuch",
+   "genus": "n",
+   "raum": "vannaya",
+   "hotspot": "hs-polotentse"
+  },
+  {
+   "id": "mylo",
+   "ru": "мы́ло",
+   "de": "die Seife",
+   "genus": "n",
+   "raum": "vannaya",
+   "hotspot": "hs-mylo"
+  },
+  {
+   "id": "unitaz",
+   "ru": "унита́з",
+   "de": "die Toilette",
+   "genus": "m",
+   "raum": "vannaya",
+   "hotspot": "hs-unitaz",
+   "hinweis": "Der Raum heißt туале́т; унита́з ist das Becken."
+  },
+  {
+   "id": "rakovina",
+   "ru": "ра́ковина",
+   "de": "das Waschbecken",
+   "genus": "f",
+   "raum": "vannaya",
+   "hotspot": "hs-rakovina"
+  },
+  {
+   "id": "zerkalo",
+   "ru": "зе́ркало",
+   "de": "der Spiegel",
+   "genus": "n",
+   "raum": "vannaya",
+   "hotspot": "hs-zerkalo"
+  },
+  {
+   "id": "shchetka",
+   "ru": "зубна́я щётка",
+   "de": "die Zahnbürste",
+   "genus": "f",
+   "raum": "vannaya",
+   "hotspot": "hs-shchetka",
+   "hinweis": "зуб = Zahn, щётка = Bürste"
+  },
+  {
+   "id": "pasta",
+   "ru": "зубна́я па́ста",
+   "de": "die Zahnpasta",
+   "genus": "f",
+   "raum": "vannaya",
+   "hotspot": "hs-pasta"
+  },
+  {
+   "id": "britva",
+   "ru": "бри́тва",
+   "de": "der Rasierapparat",
+   "genus": "f",
+   "raum": "vannaya",
+   "hotspot": "hs-britva",
+   "hinweis": "электри́ческая бри́тва – der elektrische Rasierer"
+  },
+  {
+   "id": "raschyoska",
+   "ru": "расчёска",
+   "de": "der Kamm",
+   "genus": "f",
+   "raum": "vannaya",
+   "hotspot": "hs-raschyoska",
+   "hinweis": "von расчёсывать – kämmen"
+  },
+  {
+   "id": "knizhny_shkaf",
+   "ru": "кни́жный шкаф",
+   "de": "das Bücherregal",
+   "genus": "m",
+   "raum": "kabinet",
+   "hotspot": "hs-knizhny-shkaf"
+  },
+  {
+   "id": "pismenny_stol",
+   "ru": "пи́сьменный стол",
+   "de": "der Schreibtisch",
+   "genus": "m",
+   "raum": "kabinet",
+   "hotspot": "hs-pismenny-stol",
+   "hinweis": "пи́сьменный – zum Schreiben"
+  },
+  {
+   "id": "kompyuter",
+   "ru": "компью́тер",
+   "de": "der Computer",
+   "genus": "m",
+   "raum": "kabinet",
+   "hotspot": "hs-kompyuter"
+  },
+  {
+   "id": "printer",
+   "ru": "при́нтер",
+   "de": "der Drucker",
+   "genus": "m",
+   "raum": "kabinet",
+   "hotspot": "hs-printer"
+  },
+  {
+   "id": "telefon",
+   "ru": "телефо́н",
+   "de": "das Telefon",
+   "genus": "m",
+   "raum": "kabinet",
+   "hotspot": "hs-telefon"
+  },
+  {
+   "id": "globus",
+   "ru": "гло́бус",
+   "de": "der Globus",
+   "genus": "m",
+   "raum": "kabinet",
+   "hotspot": "hs-globus"
+  },
+  {
+   "id": "dver",
+   "ru": "дверь",
+   "de": "die Tür",
+   "genus": "f",
+   "raum": "prikhozhaya",
+   "hotspot": "hs-dver",
+   "hinweis": "дверь ist weiblich, obwohl auf -ь"
+  },
+  {
+   "id": "lestnitsa",
+   "ru": "ле́стница",
+   "de": "die Treppe",
+   "genus": "f",
+   "raum": "prikhozhaya",
+   "hotspot": "hs-lestnitsa",
+   "hinweis": "подня́ться по ле́стнице – die Treppe hinaufgehen"
+  },
+  {
+   "id": "veshalka",
+   "ru": "ве́шалка",
+   "de": "die Garderobe",
+   "genus": "f",
+   "raum": "prikhozhaya",
+   "hotspot": "hs-veshalka",
+   "hinweis": "von ве́шать – aufhängen"
+  },
+  {
+   "id": "zontik",
+   "ru": "зо́нтик",
+   "de": "der Regenschirm",
+   "genus": "m",
+   "raum": "prikhozhaya",
+   "hotspot": "hs-zontik"
+  },
+  {
+   "id": "pianino",
+   "ru": "пиани́но",
+   "de": "das Klavier",
+   "genus": "n",
+   "raum": "gostinaya",
+   "hotspot": "hs-pianino",
+   "hinweis": "unveränderlich wie кафе́ und меню́; der Flügel heißt роя́ль."
+  },
+  {
+   "id": "kamin",
+   "ru": "ками́н",
+   "de": "der Kamin",
+   "genus": "m",
+   "raum": "gostinaya",
+   "hotspot": "hs-kamin"
+  },
+  {
+   "id": "divan",
+   "ru": "дива́н",
+   "de": "das Sofa",
+   "genus": "m",
+   "raum": "gostinaya",
+   "hotspot": "hs-divan"
+  },
+  {
+   "id": "kartina",
+   "ru": "карти́на",
+   "de": "das Gemälde",
+   "genus": "f",
+   "raum": "gostinaya",
+   "hotspot": "hs-kartina"
+  },
+  {
+   "id": "stol_obedenny",
+   "ru": "обе́денный стол",
+   "de": "der Esstisch",
+   "genus": "m",
+   "raum": "stolovaya",
+   "hotspot": "hs-stol-obedenny",
+   "hinweis": "обе́д – das Mittagessen"
+  },
+  {
+   "id": "stulya",
+   "ru": "сту́лья",
+   "de": "die Stühle",
+   "genus": "pl",
+   "raum": "stolovaya",
+   "hotspot": "hs-stulya",
+   "hinweis": "unregelmäßiger Plural von стул"
+  },
+  {
+   "id": "lyustra",
+   "ru": "лю́стра",
+   "de": "der Kronleuchter",
+   "genus": "f",
+   "raum": "stolovaya",
+   "hotspot": "hs-lyustra"
+  },
+  {
+   "id": "servant",
+   "ru": "серва́нт",
+   "de": "die Vitrine",
+   "genus": "m",
+   "raum": "stolovaya",
+   "hotspot": "hs-servant"
+  },
+  {
+   "id": "frukty",
+   "ru": "фру́кты",
+   "de": "das Obst",
+   "genus": "pl",
+   "raum": "stolovaya",
+   "hotspot": "hs-frukty",
+   "hinweis": "im Russischen Plural: фру́кты",
+   "de_zahl": "sg"
+  },
+  {
+   "id": "kholodilnik",
+   "ru": "холоди́льник",
+   "de": "der Kühlschrank",
+   "genus": "m",
+   "raum": "kukhnya",
+   "hotspot": "hs-kholodilnik",
+   "hinweis": "von хо́лод – Kälte"
+  },
+  {
+   "id": "plita",
+   "ru": "плита́",
+   "de": "der Herd",
+   "genus": "f",
+   "raum": "kukhnya",
+   "hotspot": "hs-plita"
+  },
+  {
+   "id": "skovoroda",
+   "ru": "сковорода́",
+   "de": "die Pfanne",
+   "genus": "f",
+   "raum": "kukhnya",
+   "hotspot": "hs-skovoroda"
+  },
+  {
+   "id": "kastryulya",
+   "ru": "кастрю́ля",
+   "de": "der Kochtopf",
+   "genus": "f",
+   "raum": "kukhnya",
+   "hotspot": "hs-kastryulya"
+  },
+  {
+   "id": "mikrovolnovka",
+   "ru": "микроволно́вка",
+   "de": "die Mikrowelle",
+   "genus": "f",
+   "raum": "kukhnya",
+   "hotspot": "hs-mikrovolnovka"
+  },
+  {
+   "id": "chainik",
+   "ru": "ча́йник",
+   "de": "der Wasserkocher",
+   "genus": "m",
+   "raum": "kukhnya",
+   "hotspot": "hs-chainik",
+   "hinweis": "ча́йник ist Teekanne und Wasserkocher."
+  },
+  {
+   "id": "stiralnaya",
+   "ru": "стира́льная маши́на",
+   "de": "die Waschmaschine",
+   "genus": "f",
+   "raum": "podval",
+   "hotspot": "hs-stiralnaya",
+   "hinweis": "стира́ть – waschen"
+  },
+  {
+   "id": "banki",
+   "ru": "ба́нки",
+   "de": "die Einmachgläser",
+   "genus": "pl",
+   "raum": "podval",
+   "hotspot": "hs-banki",
+   "hinweis": "ба́нки с варе́ньем и огурца́ми – Eingemachtes"
+  },
+  {
+   "id": "lyzhi",
+   "ru": "лы́жи",
+   "de": "die Ski",
+   "genus": "pl",
+   "raum": "podval",
+   "hotspot": "hs-lyzhi"
+  },
+  {
+   "id": "korobki",
+   "ru": "коро́бки",
+   "de": "die Kartons",
+   "genus": "pl",
+   "raum": "podval",
+   "hotspot": "hs-korobki",
+   "hinweis": "Singular: коро́бка"
+  },
+  {
+   "id": "vino",
+   "ru": "вино́",
+   "de": "der Wein",
+   "genus": "n",
+   "raum": "podval",
+   "hotspot": "hs-vino"
+  },
+  {
+   "id": "pech",
+   "ru": "печь",
+   "de": "der Saunaofen",
+   "genus": "f",
+   "raum": "sauna",
+   "hotspot": "hs-pech",
+   "hinweis": "печь ist weiblich."
+  },
+  {
+   "id": "vedro",
+   "ru": "ведро́",
+   "de": "der Eimer",
+   "genus": "n",
+   "raum": "sauna",
+   "hotspot": "hs-vedro"
+  },
+  {
+   "id": "venik",
+   "ru": "ве́ник",
+   "de": "der Birkenquast",
+   "genus": "m",
+   "raum": "sauna",
+   "hotspot": "hs-venik",
+   "hinweis": "Mit dem берёзовый ве́ник klopft man sich in der ба́ня ab."
+  },
+  {
+   "id": "mashina",
+   "ru": "маши́на",
+   "de": "das Auto",
+   "genus": "f",
+   "raum": "garazh",
+   "hotspot": "hs-mashina"
+  },
+  {
+   "id": "velosiped",
+   "ru": "велосипе́д",
+   "de": "das Fahrrad",
+   "genus": "m",
+   "raum": "garazh",
+   "hotspot": "hs-velosiped"
+  },
+  {
+   "id": "instrumenty",
+   "ru": "инструме́нты",
+   "de": "das Werkzeug",
+   "genus": "pl",
+   "raum": "garazh",
+   "hotspot": "hs-instrumenty",
+   "de_zahl": "sg"
+  },
+  {
+   "id": "bassein",
+   "ru": "бассе́йн",
+   "de": "der Swimmingpool",
+   "genus": "m",
+   "raum": "sad",
+   "hotspot": "hs-bassein"
+  },
+  {
+   "id": "shezlong",
+   "ru": "шезло́нг",
+   "de": "der Liegestuhl",
+   "genus": "m",
+   "raum": "sad",
+   "hotspot": "hs-shezlong"
+  },
+  {
+   "id": "mangal",
+   "ru": "манга́л",
+   "de": "der Grill",
+   "genus": "m",
+   "raum": "sad",
+   "hotspot": "hs-mangal",
+   "hinweis": "Auf dem манга́л grillt man шашлы́к."
+  },
+  {
+   "id": "yablonya",
+   "ru": "я́блоня",
+   "de": "der Apfelbaum",
+   "genus": "f",
+   "raum": "sad",
+   "hotspot": "hs-yablonya",
+   "hinweis": "я́блоко – der Apfel"
+  },
+  {
+   "id": "skameyka",
+   "ru": "скаме́йка",
+   "de": "die Bank",
+   "genus": "f",
+   "raum": "sad",
+   "hotspot": "hs-skameyka"
+  },
+  {
+   "id": "kacheli",
+   "ru": "каче́ли",
+   "de": "die Schaukel",
+   "genus": "pl",
+   "raum": "sad",
+   "hotspot": "hs-kacheli",
+   "hinweis": "nur im Plural: каче́ли",
+   "de_zahl": "sg"
+  },
+  {
+   "id": "tsvety",
+   "ru": "цветы́",
+   "de": "die Blumen",
+   "genus": "pl",
+   "raum": "sad",
+   "hotspot": "hs-tsvety",
+   "hinweis": "Singular: цвето́к"
+  },
+  {
+   "id": "zabor",
+   "ru": "забо́р",
+   "de": "der Zaun",
+   "genus": "m",
+   "raum": "sad",
+   "hotspot": "hs-zabor"
+  }
+ ]
+}

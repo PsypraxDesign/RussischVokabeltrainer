@@ -1,0 +1,109 @@
+{
+ "entdecken_hinweis": "Wer wohnt hier? Tippe auf die Briefkästen, den Aufzug, die Concierge …",
+ "woerter": [
+  {
+   "id": "dver",
+   "ru": "дверь",
+   "de": "die Haustür",
+   "genus": "f",
+   "hotspot": "hs-dver",
+   "satz": "Дверь закры́та на ключ.",
+   "hinweis": "Подъе́зд – das Treppenhaus mit Eingang"
+  },
+  {
+   "id": "kovrik",
+   "ru": "коври́к",
+   "de": "die Fußmatte",
+   "genus": "m",
+   "hotspot": "hs-kovrik",
+   "satz": "Коври́к лежи́т у две́ри."
+  },
+  {
+   "id": "domofon",
+   "ru": "домофо́н",
+   "de": "die Gegensprechanlage",
+   "genus": "m",
+   "hotspot": "hs-domofon",
+   "satz": "Домофо́н виси́т у две́ри.",
+   "hinweis": "Man wählt die Wohnungsnummer – hier кварти́ра 47."
+  },
+  {
+   "id": "doska",
+   "ru": "доска́ объявле́ний",
+   "de": "das Schwarze Brett",
+   "genus": "f",
+   "hotspot": "hs-doska",
+   "satz": "Доска́ объявле́ний виси́т на стене́.",
+   "hinweis": "объявле́ние – die Bekanntmachung"
+  },
+  {
+   "id": "yashchiki",
+   "ru": "почто́вые я́щики",
+   "de": "die Briefkästen",
+   "genus": "pl",
+   "hotspot": "hs-yashchiki",
+   "satz": "Почто́вые я́щики вися́т на стене́.",
+   "hinweis": "Singular: почто́вый я́щик"
+  },
+  {
+   "id": "konsyerzhka",
+   "ru": "консье́ржка",
+   "de": "die Concierge",
+   "genus": "f",
+   "hotspot": "hs-konsyerzhka",
+   "satz": "Консье́ржка сиди́т и вя́жет.",
+   "hinweis": "In vielen Moskauer Häusern sitzt eine консье́ржка am Eingang – oft strickend."
+  },
+  {
+   "id": "lift",
+   "ru": "лифт",
+   "de": "der Aufzug",
+   "genus": "m",
+   "hotspot": "hs-lift",
+   "satz": "Лифт е́дет вниз."
+  },
+  {
+   "id": "knopka",
+   "ru": "кно́пка",
+   "de": "der Knopf",
+   "genus": "f",
+   "hotspot": "hs-knopka",
+   "satz": "Нажми́ кно́пку!",
+   "hinweis": "кно́пка вы́зова – der Rufknopf"
+  },
+  {
+   "id": "lestnitsa",
+   "ru": "ле́стница",
+   "de": "die Treppe",
+   "genus": "f",
+   "hotspot": "hs-lestnitsa",
+   "satz": "Ле́стница ведёт наве́рх."
+  }
+ ],
+ "etagen": {
+  "haus": "высо́тка",
+  "stockwerke": 12,
+  "bewohner": [
+   {
+    "ru": "Ба́бушка",
+    "de": "Oma"
+   },
+   {
+    "ru": "Дя́дя Ва́ня",
+    "de": "Onkel Wanja"
+   },
+   {
+    "ru": "Тётя Ма́ша",
+    "de": "Tante Mascha"
+   },
+   {
+    "ru": "Мой друг Макси́м",
+    "de": "Mein Freund Maxim"
+   },
+   {
+    "ru": "Сосе́дка",
+    "de": "Die Nachbarin"
+   }
+  ]
+ }
+}

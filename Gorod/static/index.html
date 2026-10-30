@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Город</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@600;700&family=Manrope:wght@400;500;600;700;800&family=PT+Serif:wght@400;700&family=Playfair+Display:wght@600;700;800&display=swap" rel="stylesheet">
+    <link rel="icon" href="/static/symbol.svg" type="image/svg+xml">
+    <link rel="stylesheet" href="/static/kern.css">
+</head>
+<body data-ansicht="stadt">
+
+<header class="kopf">
+    <button class="logo" id="logo" title="Zur Stadt">Город</button>
+    <button class="zur-karte" id="zur-karte" hidden>🗺️ Zur Karte</button>
+    <div class="kopf-rechts">
+        <span class="kopf-geld" title="Bargeld in deiner Geldbörse"><span class="geld-zeichen">₽</span><span id="geld-betrag">–</span></span>
+        <span class="kopf-geld" title="Guthaben auf deiner Bankkarte"><span class="karten-zeichen"></span><span id="konto-betrag">–</span></span>
+        <label class="stimme-wahl">Stimme
+            <select id="stimme" autocomplete="off" data-bwignore data-lpignore="true" data-1p-ignore data-form-type="other"></select>
+        </label>
+    </div>
+</header>
+
+<main id="inhalt"></main>
+<div class="toast" id="toast" role="status"></div>
+
+<!-- Stimmen und Schlüssel aus dem Vokabeltrainer (vom Server durchgereicht) -->
+<script src="/geteilt/api-key.js"></script>
+<script src="/geteilt/tts.js"></script>
+<script src="/geteilt/azure-tts.js"></script>
+<script src="/static/stimmen.js"></script>
+<script src="/static/zahlwort.js"></script>
+<script src="/static/kern.js"></script>
+<script src="/static/stadt3d.js"></script>
+<script src="/static/bausteine/entdecken.js"></script>
+<script src="/static/bausteine/hoeren.js"></script>
+<script src="/static/bausteine/bezahlen.js"></script>
+<script src="/static/bausteine/dialog.js"></script>
+<script src="/static/bausteine/wo.js"></script>
+<script src="/static/bausteine/etagen.js"></script>
+<script src="/static/bausteine/aufzug.js"></script>
+<script src="/static/bausteine/schalter.js"></script>
+<script src="/static/bausteine/fahrplan.js"></script>
+<script src="/static/bausteine/einkaufen.js"></script>
+</body>
+</html>

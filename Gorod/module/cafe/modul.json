@@ -1,0 +1,9 @@
+{
+  "titel": { "ru": "кафе́", "de": "Café" },
+  "praeposition": "в",
+  "satz_hin": "Я иду́ в кафе́.",
+  "satz_hin_de": "Ich gehe ins Café.",
+  "stufen": ["entdecken", "hoeren", "dialog", "bezahlen"],
+  "grafik": { "aussen": "grafik/aussen.svg", "innen": "grafik/innen.svg" },
+  "farbe": "#c8553d"
+}

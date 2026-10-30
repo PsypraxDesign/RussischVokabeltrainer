@@ -1,0 +1,2146 @@
+{
+ "entdecken_hinweis": "Was gibt es am Bahnhof? Tippe auf den Zug, die Kasse, die Uhr …",
+ "woerter": [
+  {
+   "id": "vokzal",
+   "ru": "вокза́л",
+   "de": "der Bahnhof",
+   "genus": "m",
+   "hotspot": "hs-vokzal",
+   "satz": "Вокза́л большо́й и краси́вый.",
+   "hinweis": "на вокза́ле – am Bahnhof (mit на!)"
+  },
+  {
+   "id": "kassa",
+   "ru": "ка́сса",
+   "de": "der Fahrkartenschalter",
+   "genus": "f",
+   "hotspot": "hs-kassa",
+   "satz": "Ка́сса откры́та.",
+   "hinweis": "биле́тная ка́сса; Plural: ка́ссы"
+  },
+  {
+   "id": "kassirsha",
+   "ru": "касси́рша",
+   "de": "die Kassiererin",
+   "genus": "f",
+   "hotspot": "hs-kassirsha",
+   "satz": "Касси́рша продаёт биле́ты.",
+   "hinweis": "männlich: касси́р"
+  },
+  {
+   "id": "bilet",
+   "ru": "биле́т",
+   "de": "die Fahrkarte",
+   "genus": "m",
+   "hotspot": "hs-bilet",
+   "satz": "Биле́т лежи́т в око́шке.",
+   "hinweis": "биле́т на по́езд – die Zugfahrkarte"
+  },
+  {
+   "id": "raspisanie",
+   "ru": "расписа́ние",
+   "de": "der Fahrplan",
+   "genus": "n",
+   "hotspot": "hs-raspisanie",
+   "satz": "Расписа́ние виси́т на стене́.",
+   "hinweis": "по расписа́нию – planmäßig, pünktlich"
+  },
+  {
+   "id": "chasy",
+   "ru": "часы́",
+   "de": "die Bahnhofsuhr",
+   "genus": "pl",
+   "hotspot": "hs-chasy",
+   "satz": "Часы́ вися́т под потолко́м.",
+   "hinweis": "nur im Plural: часы́",
+   "de_zahl": "sg"
+  },
+  {
+   "id": "poezd",
+   "ru": "по́езд",
+   "de": "der Zug",
+   "genus": "m",
+   "hotspot": "hs-poezd",
+   "satz": "По́езд стои́т у платфо́рмы.",
+   "hinweis": "Plural: поезда́ – Betonung auf der Endung"
+  },
+  {
+   "id": "vagon",
+   "ru": "ваго́н",
+   "de": "der Waggon",
+   "genus": "m",
+   "hotspot": "hs-vagon",
+   "satz": "Ваго́н зелёный.",
+   "hinweis": "купе́ – Abteilwagen, плацка́рт – offener Schlafwagen"
+  },
+  {
+   "id": "provodnitsa",
+   "ru": "проводни́ца",
+   "de": "die Schaffnerin",
+   "genus": "f",
+   "hotspot": "hs-provodnitsa",
+   "satz": "Проводни́ца стои́т у ваго́на.",
+   "hinweis": "Sie betreut einen Wagen und bringt Tee. Männlich: проводни́к"
+  },
+  {
+   "id": "platforma",
+   "ru": "платфо́рма",
+   "de": "der Bahnsteig",
+   "genus": "f",
+   "hotspot": "hs-platforma",
+   "satz": "Пассажи́ры ждут на платфо́рме.",
+   "hinweis": "на платфо́рме – auf dem Bahnsteig"
+  },
+  {
+   "id": "put",
+   "ru": "путь",
+   "de": "das Gleis",
+   "genus": "m",
+   "hotspot": "hs-put",
+   "satz": "По́езд стои́т на пе́рвом пути́.",
+   "hinweis": "unregelmäßig: на пути́, с пути́ – Endung wie bei weiblichen Wörtern"
+  },
+  {
+   "id": "skameyka",
+   "ru": "скаме́йка",
+   "de": "die Bank",
+   "genus": "f",
+   "hotspot": "hs-skameyka",
+   "satz": "Скаме́йка стои́т в за́ле ожида́ния.",
+   "hinweis": "зал ожида́ния – der Wartesaal"
+  },
+  {
+   "id": "passazhir",
+   "ru": "пассажи́р",
+   "de": "der Fahrgast",
+   "genus": "m",
+   "hotspot": "hs-passazhir",
+   "satz": "Пассажи́р идёт с чемода́ном.",
+   "hinweis": "weiblich: пассажи́рка"
+  },
+  {
+   "id": "svetofor",
+   "ru": "светофо́р",
+   "de": "das Signal",
+   "genus": "m",
+   "hotspot": "hs-svetofor",
+   "satz": "Светофо́р зелёный – мо́жно е́хать.",
+   "hinweis": "auch: die Ampel"
+  },
+  {
+   "id": "podstakannik",
+   "ru": "подстака́нник",
+   "de": "der Glashalter",
+   "genus": "m",
+   "hotspot": "hs-podstakannik",
+   "satz": "В по́езде пьют чай из стака́на в подстака́ннике.",
+   "hinweis": "стака́н – das Glas; typisch für russische Züge"
+  }
+ ],
+ "fahrplan": {
+  "titel": "ОТПРАВЛЕ́НИЕ",
+  "zuege": [
+   {
+    "id": "z1",
+    "nr": "002",
+    "ziel": "МОСКВА",
+    "zeit": "08:15",
+    "weg": 1,
+    "status": "ПО РАСПИСАНИЮ"
+   },
+   {
+    "id": "z2",
+    "nr": "018",
+    "ziel": "С.-ПЕТЕРБУРГ",
+    "zeit": "09:40",
+    "weg": 3,
+    "status": "ПОСАДКА"
+   },
+   {
+    "id": "z3",
+    "nr": "102",
+    "ziel": "КАЗАНЬ",
+    "zeit": "10:25",
+    "weg": 5,
+    "status": "ПО РАСПИСАНИЮ"
+   },
+   {
+    "id": "z4",
+    "nr": "058",
+    "ziel": "СОЧИ",
+    "zeit": "12:50",
+    "weg": 2,
+    "status": "ОПАЗДЫВАЕТ НА 20 МИН",
+    "verspaetet": true
+   },
+   {
+    "id": "z5",
+    "nr": "064",
+    "ziel": "Н. НОВГОРОД",
+    "zeit": "14:05",
+    "weg": 4,
+    "status": "ПО РАСПИСАНИЮ"
+   },
+   {
+    "id": "z6",
+    "nr": "076",
+    "ziel": "ЯРОСЛАВЛЬ",
+    "zeit": "16:30",
+    "weg": 6,
+    "status": "ОПАЗДЫВАЕТ НА 15 МИН",
+    "verspaetet": true
+   },
+   {
+    "id": "z7",
+    "nr": "001",
+    "ziel": "ВЛАДИВОСТОК",
+    "zeit": "18:45",
+    "weg": 7,
+    "status": "ПО РАСПИСАНИЮ"
+   },
+   {
+    "id": "z8",
+    "nr": "090",
+    "ziel": "ЕКАТЕРИНБУРГ",
+    "zeit": "21:10",
+    "weg": 8,
+    "status": "ПО РАСПИСАНИЮ"
+   }
+  ],
+  "fragen": [
+   {
+    "zug": "z1",
+    "text": "Во ско́лько отправля́ется по́езд в Москву́?",
+    "de": "Um wie viel Uhr fährt der Zug nach Moskau ab?",
+    "richtig": {
+     "text": "В во́семь пятна́дцать.",
+     "de": "Um 08:15 Uhr."
+    },
+    "falsch": [
+     {
+      "text": "В де́вять со́рок.",
+      "hinweis": "Um 09:40 fährt der Zug nach St. Petersburg. Schau in die Zeile МОСКВА: 08:15."
+     },
+     {
+      "text": "В двена́дцать пятьдеся́т.",
+      "hinweis": "Um 12:50 fährt der Zug nach Sotschi. Schau in die Zeile МОСКВА: 08:15."
+     }
+    ]
+   },
+   {
+    "zug": "z1",
+    "text": "С како́го пути́ отправля́ется по́езд в Москву́?",
+    "de": "Von welchem Gleis fährt der Zug nach Moskau ab?",
+    "richtig": {
+     "text": "С пе́рвого пути́.",
+     "de": "Von Gleis 1."
+    },
+    "falsch": [
+     {
+      "text": "С тре́тьего пути́.",
+      "hinweis": "тре́тий = Gleis 3. Laut Tafel fährt der Zug nach Moskau von Gleis 1."
+     },
+     {
+      "text": "С пе́рвый путь.",
+      "hinweis": "Nach с („von“) steht der Genitiv: с пе́рвого пути́."
+     },
+     {
+      "text": "С пе́рвого путя́.",
+      "hinweis": "путь ist unregelmäßig: Genitiv пути́, nicht путя́."
+     }
+    ]
+   },
+   {
+    "zug": "z1",
+    "text": "Куда́ идёт по́езд, кото́рый отправля́ется в во́семь пятна́дцать?",
+    "de": "Wohin fährt der Zug, der um 08:15 Uhr abfährt?",
+    "richtig": {
+     "text": "В Москву́.",
+     "de": "Nach Moskau."
+    },
+    "falsch": [
+     {
+      "text": "В Москве́.",
+      "hinweis": "в Москве́ heißt „in Moskau“ (wo?). Wohin? в + Akkusativ: в Москву́."
+     },
+     {
+      "text": "В Москва́.",
+      "hinweis": "в + Akkusativ: Москва́ → в Москву́."
+     },
+     {
+      "text": "В Со́чи.",
+      "hinweis": "Der Zug nach Sotschi fährt um 12:50. Gefragt war der Zug um 08:15."
+     }
+    ]
+   },
+   {
+    "zug": "z1",
+    "text": "По́езд в Москву́ опа́здывает?",
+    "de": "Hat der Zug nach Moskau Verspätung?",
+    "richtig": {
+     "text": "Нет, он идёт по расписа́нию.",
+     "de": "Nein, er fährt pünktlich."
+    },
+    "falsch": [
+     {
+      "text": "Да, на два́дцать мину́т.",
+      "hinweis": "20 Minuten Verspätung hat der Zug nach Sotschi. Der Zug nach Moskau fährt по расписа́нию."
+     },
+     {
+      "text": "Нет, он идёт по расписа́ние.",
+      "hinweis": "по + Dativ: по расписа́нию."
+     }
+    ]
+   },
+   {
+    "zug": "z2",
+    "text": "Во ско́лько отправля́ется по́езд в Санкт-Петербу́рг?",
+    "de": "Um wie viel Uhr fährt der Zug nach St. Petersburg ab?",
+    "richtig": {
+     "text": "В де́вять со́рок.",
+     "de": "Um 09:40 Uhr."
+    },
+    "falsch": [
+     {
+      "text": "В де́сять два́дцать пять.",
+      "hinweis": "Um 10:25 fährt der Zug nach Kasan. Schau in die Zeile С.-ПЕТЕРБУРГ: 09:40."
+     },
+     {
+      "text": "В четы́рнадцать ноль пять.",
+      "hinweis": "Um 14:05 fährt der Zug nach Nischni Nowgorod. Schau in die Zeile С.-ПЕТЕРБУРГ: 09:40."
+     }
+    ]
+   },
+   {
+    "zug": "z2",
+    "text": "С како́го пути́ отправля́ется по́езд в Санкт-Петербу́рг?",
+    "de": "Von welchem Gleis fährt der Zug nach St. Petersburg ab?",
+    "richtig": {
+     "text": "С тре́тьего пути́.",
+     "de": "Von Gleis 3."
+    },
+    "falsch": [
+     {
+      "text": "С пя́того пути́.",
+      "hinweis": "пя́тый = Gleis 5. Laut Tafel fährt der Zug nach St. Petersburg von Gleis 3."
+     },
+     {
+      "text": "С тре́тий путь.",
+      "hinweis": "Nach с („von“) steht der Genitiv: с тре́тьего пути́."
+     },
+     {
+      "text": "С тре́тьего путя́.",
+      "hinweis": "путь ist unregelmäßig: Genitiv пути́, nicht путя́."
+     }
+    ]
+   },
+   {
+    "zug": "z2",
+    "text": "Куда́ идёт по́езд, кото́рый отправля́ется в де́вять со́рок?",
+    "de": "Wohin fährt der Zug, der um 09:40 Uhr abfährt?",
+    "richtig": {
+     "text": "В Санкт-Петербу́рг.",
+     "de": "Nach St. Petersburg."
+    },
+    "falsch": [
+     {
+      "text": "В Санкт-Петербу́рге.",
+      "hinweis": "в Санкт-Петербу́рге heißt „in St. Petersburg“ (wo?). Wohin? в + Akkusativ: в Санкт-Петербу́рг."
+     },
+     {
+      "text": "В Ни́жний Но́вгород.",
+      "hinweis": "Der Zug nach Nischni Nowgorod fährt um 14:05. Gefragt war der Zug um 09:40."
+     }
+    ]
+   },
+   {
+    "zug": "z3",
+    "text": "Во ско́лько отправля́ется по́езд в Каза́нь?",
+    "de": "Um wie viel Uhr fährt der Zug nach Kasan ab?",
+    "richtig": {
+     "text": "В де́сять два́дцать пять.",
+     "de": "Um 10:25 Uhr."
+    },
+    "falsch": [
+     {
+      "text": "В двена́дцать пятьдеся́т.",
+      "hinweis": "Um 12:50 fährt der Zug nach Sotschi. Schau in die Zeile КАЗАНЬ: 10:25."
+     },
+     {
+      "text": "В шестна́дцать три́дцать.",
+      "hinweis": "Um 16:30 fährt der Zug nach Jaroslawl. Schau in die Zeile КАЗАНЬ: 10:25."
+     }
+    ]
+   },
+   {
+    "zug": "z3",
+    "text": "С како́го пути́ отправля́ется по́езд в Каза́нь?",
+    "de": "Von welchem Gleis fährt der Zug nach Kasan ab?",
+    "richtig": {
+     "text": "С пя́того пути́.",
+     "de": "Von Gleis 5."
+    },
+    "falsch": [
+     {
+      "text": "Со второ́го пути́.",
+      "hinweis": "второ́й = Gleis 2. Laut Tafel fährt der Zug nach Kasan von Gleis 5."
+     },
+     {
+      "text": "С пя́тый путь.",
+      "hinweis": "Nach с („von“) steht der Genitiv: с пя́того пути́."
+     },
+     {
+      "text": "С пя́того путя́.",
+      "hinweis": "путь ist unregelmäßig: Genitiv пути́, nicht путя́."
+     }
+    ]
+   },
+   {
+    "zug": "z3",
+    "text": "Куда́ идёт по́езд, кото́рый отправля́ется в де́сять два́дцать пять?",
+    "de": "Wohin fährt der Zug, der um 10:25 Uhr abfährt?",
+    "richtig": {
+     "text": "В Каза́нь.",
+     "de": "Nach Kasan."
+    },
+    "falsch": [
+     {
+      "text": "В Каза́ни.",
+      "hinweis": "в Каза́ни heißt „in Kasan“ (wo?). Wohin? в + Akkusativ: в Каза́нь."
+     },
+     {
+      "text": "В Яросла́вль.",
+      "hinweis": "Der Zug nach Jaroslawl fährt um 16:30. Gefragt war der Zug um 10:25."
+     }
+    ]
+   },
+   {
+    "zug": "z3",
+    "text": "По́езд в Каза́нь опа́здывает?",
+    "de": "Hat der Zug nach Kasan Verspätung?",
+    "richtig": {
+     "text": "Нет, он идёт по расписа́нию.",
+     "de": "Nein, er fährt pünktlich."
+    },
+    "falsch": [
+     {
+      "text": "Да, на два́дцать мину́т.",
+      "hinweis": "20 Minuten Verspätung hat der Zug nach Sotschi. Der Zug nach Kasan fährt по расписа́нию."
+     },
+     {
+      "text": "Нет, он идёт по расписа́ние.",
+      "hinweis": "по + Dativ: по расписа́нию."
+     }
+    ]
+   },
+   {
+    "zug": "z4",
+    "text": "Во ско́лько отправля́ется по́езд в Со́чи?",
+    "de": "Um wie viel Uhr fährt der Zug nach Sotschi ab?",
+    "richtig": {
+     "text": "В двена́дцать пятьдеся́т.",
+     "de": "Um 12:50 Uhr."
+    },
+    "falsch": [
+     {
+      "text": "В четы́рнадцать ноль пять.",
+      "hinweis": "Um 14:05 fährt der Zug nach Nischni Nowgorod. Schau in die Zeile СОЧИ: 12:50."
+     },
+     {
+      "text": "В восемна́дцать со́рок пять.",
+      "hinweis": "Um 18:45 fährt der Zug nach Wladiwostok. Schau in die Zeile СОЧИ: 12:50."
+     }
+    ]
+   },
+   {
+    "zug": "z4",
+    "text": "С како́го пути́ отправля́ется по́езд в Со́чи?",
+    "de": "Von welchem Gleis fährt der Zug nach Sotschi ab?",
+    "richtig": {
+     "text": "Со второ́го пути́.",
+     "de": "Von Gleis 2."
+    },
+    "falsch": [
+     {
+      "text": "С четвёртого пути́.",
+      "hinweis": "четвёртый = Gleis 4. Laut Tafel fährt der Zug nach Sotschi von Gleis 2."
+     },
+     {
+      "text": "Со второ́й путь.",
+      "hinweis": "Nach с („von“) steht der Genitiv: со второ́го пути́."
+     },
+     {
+      "text": "Со второ́го путя́.",
+      "hinweis": "путь ist unregelmäßig: Genitiv пути́, nicht путя́."
+     }
+    ]
+   },
+   {
+    "zug": "z4",
+    "text": "По́езд в Со́чи идёт по расписа́нию?",
+    "de": "Fährt der Zug nach Sotschi pünktlich?",
+    "richtig": {
+     "text": "Нет, он опа́здывает на два́дцать мину́т.",
+     "de": "Nein, er hat 20 Minuten Verspätung."
+    },
+    "falsch": [
+     {
+      "text": "Да, по расписа́нию.",
+      "hinweis": "Schau in die Spalte Примеча́ние: опа́здывает heißt „hat Verspätung“."
+     },
+     {
+      "text": "Нет, он опа́здывает на два́дцать мину́ты.",
+      "hinweis": "Nach 20 steht der Genitiv Plural: два́дцать мину́т."
+     }
+    ]
+   },
+   {
+    "zug": "z5",
+    "text": "Во ско́лько отправля́ется по́езд в Ни́жний Но́вгород?",
+    "de": "Um wie viel Uhr fährt der Zug nach Nischni Nowgorod ab?",
+    "richtig": {
+     "text": "В четы́рнадцать ноль пять.",
+     "de": "Um 14:05 Uhr."
+    },
+    "falsch": [
+     {
+      "text": "В шестна́дцать три́дцать.",
+      "hinweis": "Um 16:30 fährt der Zug nach Jaroslawl. Schau in die Zeile Н. НОВГОРОД: 14:05."
+     },
+     {
+      "text": "В два́дцать оди́н де́сять.",
+      "hinweis": "Um 21:10 fährt der Zug nach Jekaterinburg. Schau in die Zeile Н. НОВГОРОД: 14:05."
+     }
+    ]
+   },
+   {
+    "zug": "z5",
+    "text": "С како́го пути́ отправля́ется по́езд в Ни́жний Но́вгород?",
+    "de": "Von welchem Gleis fährt der Zug nach Nischni Nowgorod ab?",
+    "richtig": {
+     "text": "С четвёртого пути́.",
+     "de": "Von Gleis 4."
+    },
+    "falsch": [
+     {
+      "text": "С шесто́го пути́.",
+      "hinweis": "шесто́й = Gleis 6. Laut Tafel fährt der Zug nach Nischni Nowgorod von Gleis 4."
+     },
+     {
+      "text": "С четвёртый путь.",
+      "hinweis": "Nach с („von“) steht der Genitiv: с четвёртого пути́."
+     },
+     {
+      "text": "С четвёртого путя́.",
+      "hinweis": "путь ist unregelmäßig: Genitiv пути́, nicht путя́."
+     }
+    ]
+   },
+   {
+    "zug": "z5",
+    "text": "Куда́ идёт по́езд, кото́рый отправля́ется в четы́рнадцать ноль пять?",
+    "de": "Wohin fährt der Zug, der um 14:05 Uhr abfährt?",
+    "richtig": {
+     "text": "В Ни́жний Но́вгород.",
+     "de": "Nach Nischni Nowgorod."
+    },
+    "falsch": [
+     {
+      "text": "В Ни́жнем Но́вгороде.",
+      "hinweis": "в Ни́жнем Но́вгороде heißt „in Nischni Nowgorod“ (wo?). Wohin? в + Akkusativ: в Ни́жний Но́вгород."
+     },
+     {
+      "text": "В Екатеринбу́рг.",
+      "hinweis": "Der Zug nach Jekaterinburg fährt um 21:10. Gefragt war der Zug um 14:05."
+     }
+    ]
+   },
+   {
+    "zug": "z5",
+    "text": "По́езд в Ни́жний Но́вгород опа́здывает?",
+    "de": "Hat der Zug nach Nischni Nowgorod Verspätung?",
+    "richtig": {
+     "text": "Нет, он идёт по расписа́нию.",
+     "de": "Nein, er fährt pünktlich."
+    },
+    "falsch": [
+     {
+      "text": "Да, на два́дцать мину́т.",
+      "hinweis": "20 Minuten Verspätung hat der Zug nach Sotschi. Der Zug nach Nischni Nowgorod fährt по расписа́нию."
+     },
+     {
+      "text": "Нет, он идёт по расписа́ние.",
+      "hinweis": "по + Dativ: по расписа́нию."
+     }
+    ]
+   },
+   {
+    "zug": "z6",
+    "text": "Во ско́лько отправля́ется по́езд в Яросла́вль?",
+    "de": "Um wie viel Uhr fährt der Zug nach Jaroslawl ab?",
+    "richtig": {
+     "text": "В шестна́дцать три́дцать.",
+     "de": "Um 16:30 Uhr."
+    },
+    "falsch": [
+     {
+      "text": "В восемна́дцать со́рок пять.",
+      "hinweis": "Um 18:45 fährt der Zug nach Wladiwostok. Schau in die Zeile ЯРОСЛАВЛЬ: 16:30."
+     },
+     {
+      "text": "В во́семь пятна́дцать.",
+      "hinweis": "Um 08:15 fährt der Zug nach Moskau. Schau in die Zeile ЯРОСЛАВЛЬ: 16:30."
+     }
+    ]
+   },
+   {
+    "zug": "z6",
+    "text": "С како́го пути́ отправля́ется по́езд в Яросла́вль?",
+    "de": "Von welchem Gleis fährt der Zug nach Jaroslawl ab?",
+    "richtig": {
+     "text": "С шесто́го пути́.",
+     "de": "Von Gleis 6."
+    },
+    "falsch": [
+     {
+      "text": "С седьмо́го пути́.",
+      "hinweis": "седьмо́й = Gleis 7. Laut Tafel fährt der Zug nach Jaroslawl von Gleis 6."
+     },
+     {
+      "text": "С шесто́й путь.",
+      "hinweis": "Nach с („von“) steht der Genitiv: с шесто́го пути́."
+     },
+     {
+      "text": "С шесто́го путя́.",
+      "hinweis": "путь ist unregelmäßig: Genitiv пути́, nicht путя́."
+     }
+    ]
+   },
+   {
+    "zug": "z6",
+    "text": "Куда́ идёт по́езд, кото́рый отправля́ется в шестна́дцать три́дцать?",
+    "de": "Wohin fährt der Zug, der um 16:30 Uhr abfährt?",
+    "richtig": {
+     "text": "В Яросла́вль.",
+     "de": "Nach Jaroslawl."
+    },
+    "falsch": [
+     {
+      "text": "В Яросла́вле.",
+      "hinweis": "в Яросла́вле heißt „in Jaroslawl“ (wo?). Wohin? в + Akkusativ: в Яросла́вль."
+     },
+     {
+      "text": "В Москву́.",
+      "hinweis": "Der Zug nach Moskau fährt um 08:15. Gefragt war der Zug um 16:30."
+     }
+    ]
+   },
+   {
+    "zug": "z6",
+    "text": "По́езд в Яросла́вль идёт по расписа́нию?",
+    "de": "Fährt der Zug nach Jaroslawl pünktlich?",
+    "richtig": {
+     "text": "Нет, он опа́здывает на пятна́дцать мину́т.",
+     "de": "Nein, er hat 15 Minuten Verspätung."
+    },
+    "falsch": [
+     {
+      "text": "Да, по расписа́нию.",
+      "hinweis": "Schau in die Spalte Примеча́ние: опа́здывает heißt „hat Verspätung“."
+     },
+     {
+      "text": "Нет, он опа́здывает на пятна́дцать мину́ты.",
+      "hinweis": "Nach 15 steht der Genitiv Plural: пятна́дцать мину́т."
+     }
+    ]
+   },
+   {
+    "zug": "z7",
+    "text": "Во ско́лько отправля́ется по́езд во Владивосто́к?",
+    "de": "Um wie viel Uhr fährt der Zug nach Wladiwostok ab?",
+    "richtig": {
+     "text": "В восемна́дцать со́рок пять.",
+     "de": "Um 18:45 Uhr."
+    },
+    "falsch": [
+     {
+      "text": "В два́дцать оди́н де́сять.",
+      "hinweis": "Um 21:10 fährt der Zug nach Jekaterinburg. Schau in die Zeile ВЛАДИВОСТОК: 18:45."
+     },
+     {
+      "text": "В де́вять со́рок.",
+      "hinweis": "Um 09:40 fährt der Zug nach St. Petersburg. Schau in die Zeile ВЛАДИВОСТОК: 18:45."
+     }
+    ]
+   },
+   {
+    "zug": "z7",
+    "text": "С како́го пути́ отправля́ется по́езд во Владивосто́к?",
+    "de": "Von welchem Gleis fährt der Zug nach Wladiwostok ab?",
+    "richtig": {
+     "text": "С седьмо́го пути́.",
+     "de": "Von Gleis 7."
+    },
+    "falsch": [
+     {
+      "text": "С восьмо́го пути́.",
+      "hinweis": "восьмо́й = Gleis 8. Laut Tafel fährt der Zug nach Wladiwostok von Gleis 7."
+     },
+     {
+      "text": "С седьмо́й путь.",
+      "hinweis": "Nach с („von“) steht der Genitiv: с седьмо́го пути́."
+     },
+     {
+      "text": "С седьмо́го путя́.",
+      "hinweis": "путь ist unregelmäßig: Genitiv пути́, nicht путя́."
+     }
+    ]
+   },
+   {
+    "zug": "z7",
+    "text": "Куда́ идёт по́езд, кото́рый отправля́ется в восемна́дцать со́рок пять?",
+    "de": "Wohin fährt der Zug, der um 18:45 Uhr abfährt?",
+    "richtig": {
+     "text": "Во Владивосто́к.",
+     "de": "Nach Wladiwostok."
+    },
+    "falsch": [
+     {
+      "text": "Во Владивосто́ке.",
+      "hinweis": "во Владивосто́ке heißt „in Wladiwostok“ (wo?). Wohin? в + Akkusativ: во Владивосто́к."
+     },
+     {
+      "text": "В Санкт-Петербу́рг.",
+      "hinweis": "Der Zug nach St. Petersburg fährt um 09:40. Gefragt war der Zug um 18:45."
+     }
+    ]
+   },
+   {
+    "zug": "z8",
+    "text": "Во ско́лько отправля́ется по́езд в Екатеринбу́рг?",
+    "de": "Um wie viel Uhr fährt der Zug nach Jekaterinburg ab?",
+    "richtig": {
+     "text": "В два́дцать оди́н де́сять.",
+     "de": "Um 21:10 Uhr."
+    },
+    "falsch": [
+     {
+      "text": "В во́семь пятна́дцать.",
+      "hinweis": "Um 08:15 fährt der Zug nach Moskau. Schau in die Zeile ЕКАТЕРИНБУРГ: 21:10."
+     },
+     {
+      "text": "В де́сять два́дцать пять.",
+      "hinweis": "Um 10:25 fährt der Zug nach Kasan. Schau in die Zeile ЕКАТЕРИНБУРГ: 21:10."
+     }
+    ]
+   },
+   {
+    "zug": "z8",
+    "text": "С како́го пути́ отправля́ется по́езд в Екатеринбу́рг?",
+    "de": "Von welchem Gleis fährt der Zug nach Jekaterinburg ab?",
+    "richtig": {
+     "text": "С восьмо́го пути́.",
+     "de": "Von Gleis 8."
+    },
+    "falsch": [
+     {
+      "text": "С пе́рвого пути́.",
+      "hinweis": "пе́рвый = Gleis 1. Laut Tafel fährt der Zug nach Jekaterinburg von Gleis 8."
+     },
+     {
+      "text": "С восьмо́й путь.",
+      "hinweis": "Nach с („von“) steht der Genitiv: с восьмо́го пути́."
+     },
+     {
+      "text": "С восьмо́го путя́.",
+      "hinweis": "путь ist unregelmäßig: Genitiv пути́, nicht путя́."
+     }
+    ]
+   },
+   {
+    "zug": "z8",
+    "text": "Куда́ идёт по́езд, кото́рый отправля́ется в два́дцать оди́н де́сять?",
+    "de": "Wohin fährt der Zug, der um 21:10 Uhr abfährt?",
+    "richtig": {
+     "text": "В Екатеринбу́рг.",
+     "de": "Nach Jekaterinburg."
+    },
+    "falsch": [
+     {
+      "text": "В Екатеринбу́рге.",
+      "hinweis": "в Екатеринбу́рге heißt „in Jekaterinburg“ (wo?). Wohin? в + Akkusativ: в Екатеринбу́рг."
+     },
+     {
+      "text": "В Каза́нь.",
+      "hinweis": "Der Zug nach Kasan fährt um 10:25. Gefragt war der Zug um 21:10."
+     }
+    ]
+   }
+  ]
+ },
+ "reise": {
+  "neu_knopf": "Neue Reise →",
+  "figuren": {
+   "kassirsha": {
+    "name": "Касси́рша",
+    "stimme": "weiblich",
+    "blase": {
+     "x": 0.11,
+     "y": 0.5
+    }
+   },
+   "provodnitsa": {
+    "name": "Проводни́ца",
+    "stimme": "weiblich",
+    "blase": {
+     "x": 0.7,
+     "y": 0.66,
+     "seite": "links"
+    }
+   },
+   "erzaehler": {
+    "name": "",
+    "stimme": "erzaehler",
+    "blase": {
+     "x": 0.47,
+     "y": 0.2
+    }
+   }
+  },
+  "reisende": [
+   {
+    "id": "moskva",
+    "geschlecht": "f",
+    "preis": 4800,
+    "zahlart": "karte",
+    "posten": "биле́т до Москвы́ и обра́тно",
+    "bilet": {
+     "poezd": "002",
+     "abfahrt": "08:15",
+     "datum": "05.05.",
+     "ziel": "Москва́",
+     "wagen": "07",
+     "mesto": "023",
+     "klasse": "КУПЕ",
+     "preis": 4800
+    },
+    "p": {
+     "gen": "Москвы́",
+     "akk": "в Москву́",
+     "praep": "в Москве́",
+     "zeit_ru": "во́семь пятна́дцать",
+     "weg_gen": "пе́рвого",
+     "vom_gleis": "с пе́рвого",
+     "zeit": "08:15",
+     "weg": "1",
+     "stadt_de": "Moskau",
+     "ankunft": "Сего́дня в семь часо́в ве́чера.",
+     "ankunft_de": "Heute um sieben Uhr abends."
+    },
+    "zettel": {
+     "fahrkarte": [
+      "Fahrkarte nach Moskau",
+      "für den 5. Mai",
+      "hin und zurück",
+      "Abteil, unten",
+      "Bezahlen: mit Karte"
+     ],
+     "zug": [
+      "Du fährst nach Moskau",
+      "Du möchtest Tee mit Zitrone"
+     ]
+    },
+    "felder": {
+     "ziel": {
+      "richtig": {
+       "text": "Оди́н биле́т до Москвы́, пожа́луйста.",
+       "de": "Eine Fahrkarte nach Moskau, bitte."
+      },
+      "falsch": [
+       {
+        "text": "Оди́н биле́т до Москва́, пожа́луйста.",
+        "de": "",
+        "hinweis": "до + Genitiv: Москва́ → до Москвы́."
+       },
+       {
+        "text": "Оди́н биле́т из Москвы́, пожа́луйста.",
+        "de": "",
+        "hinweis": "из Москвы́ heißt „aus Moskau“. Du willst nach Moskau: до Москвы́."
+       }
+      ]
+     },
+     "datum": {
+      "richtig": {
+       "text": "На пя́тое ма́я.",
+       "de": "Für den 5. Mai."
+      },
+      "falsch": [
+       {
+        "text": "На пя́того ма́я.",
+        "de": "",
+        "hinweis": "Mit на steht das Datum im Akkusativ: на пя́тое ма́я. Ohne на hieße es пя́того ма́я („am 5. Mai“)."
+       },
+       {
+        "text": "На пя́тое май.",
+        "de": "",
+        "hinweis": "Der Monat steht im Genitiv: ма́я, nicht май."
+       }
+      ]
+     },
+     "richtung": {
+      "richtig": {
+       "text": "Туда́ и обра́тно.",
+       "de": "Hin und zurück."
+      },
+      "falsch": [
+       {
+        "text": "В одну́ сто́рону.",
+        "de": "Nur hin.",
+        "hinweis": "в одну́ сто́рону heißt „nur hin“. Laut Zettel: hin und zurück – туда́ и обра́тно."
+       },
+       {
+        "text": "Туда́ и сюда́.",
+        "de": "Hin und her.",
+        "hinweis": "туда́ и сюда́ heißt „hin und her“. Die Rückfahrkarte: туда́ и обра́тно."
+       }
+      ]
+     },
+     "klasse": {
+      "richtig": {
+       "text": "Купе́, пожа́луйста.",
+       "de": "Abteil, bitte."
+      },
+      "falsch": [
+       {
+        "text": "Плацка́рт, пожа́луйста.",
+        "de": "Offener Schlafwagen, bitte.",
+        "hinweis": "плацка́рт ist der offene Schlafwagen. Laut Zettel: Abteil – купе́."
+       },
+       {
+        "text": "Би́знес-класс, пожа́луйста.",
+        "de": "Businessklasse, bitte.",
+        "hinweis": "Die gibt es im Flugzeug. Im Zug wählt man купе́ (Abteil) oder плацка́рт (offener Schlafwagen)."
+       }
+      ]
+     },
+     "polka": {
+      "richtig": {
+       "text": "Ни́жнее, пожа́луйста.",
+       "de": "Unten, bitte."
+      },
+      "falsch": [
+       {
+        "text": "Ве́рхнее, пожа́луйста.",
+        "de": "",
+        "hinweis": "ве́рхнее heißt oben. Laut Zettel: unten – ни́жнее."
+       },
+       {
+        "text": "Ни́жний, пожа́луйста.",
+        "de": "",
+        "hinweis": "Gemeint ist ме́сто (sächlich): ни́жнее ме́сто."
+       }
+      ]
+     },
+     "bestaetigen": {
+      "richtig": {
+       "text": "Да, до Москвы́.",
+       "de": "Ja, bis Moskau."
+      },
+      "falsch": [
+       {
+        "text": "Да, до Москва́.",
+        "de": "",
+        "hinweis": "до + Genitiv: до Москвы́."
+       },
+       {
+        "text": "Да, в Москве́.",
+        "de": "",
+        "hinweis": "в Москве́ heißt „in Moskau“ (wo?). Gefragt ist: bis wohin – до Москвы́."
+       }
+      ]
+     },
+     "mesto_nr": {
+      "richtig": {
+       "text": "Два́дцать тре́тье.",
+       "de": "Platz 23."
+      },
+      "falsch": [
+       {
+        "text": "Два́дцать тре́тий.",
+        "de": "",
+        "hinweis": "ме́сто ist sächlich: два́дцать тре́тье."
+       },
+       {
+        "text": "Трина́дцатое.",
+        "de": "",
+        "hinweis": "трина́дцатое = Platz 13. Auf deiner Fahrkarte steht Platz 23."
+       }
+      ]
+     },
+     "tee": {
+      "richtig": {
+       "text": "Да, с лимо́ном, пожа́луйста.",
+       "de": "Ja, mit Zitrone, bitte."
+      },
+      "falsch": [
+       {
+        "text": "Да, с лимо́н, пожа́луйста.",
+        "de": "",
+        "hinweis": "с + Instrumental: лимо́н → с лимо́ном."
+       },
+       {
+        "text": "Да, без лимо́ном, пожа́луйста.",
+        "de": "",
+        "hinweis": "без heißt „ohne“ und verlangt den Genitiv. „Mit“: с лимо́ном."
+       }
+      ]
+     }
+    }
+   },
+   {
+    "id": "piter",
+    "geschlecht": "m",
+    "preis": 1650,
+    "zahlart": "bar",
+    "posten": "биле́т до Санкт-Петербу́рга",
+    "bilet": {
+     "poezd": "018",
+     "abfahrt": "09:40",
+     "datum": "12.06.",
+     "ziel": "Санкт-Петербу́рг",
+     "wagen": "03",
+     "mesto": "016",
+     "klasse": "ПЛАЦКАРТ",
+     "preis": 1650
+    },
+    "p": {
+     "gen": "Санкт-Петербу́рга",
+     "akk": "в Санкт-Петербу́рг",
+     "praep": "в Санкт-Петербу́рге",
+     "zeit_ru": "де́вять со́рок",
+     "weg_gen": "тре́тьего",
+     "vom_gleis": "с тре́тьего",
+     "zeit": "09:40",
+     "weg": "3",
+     "stadt_de": "St. Petersburg",
+     "ankunft": "Сего́дня в шесть часо́в ве́чера.",
+     "ankunft_de": "Heute um sechs Uhr abends."
+    },
+    "zettel": {
+     "fahrkarte": [
+      "Fahrkarte nach St. Petersburg",
+      "für den 12. Juni",
+      "nur hin",
+      "offener Schlafwagen, oben",
+      "Bezahlen: bar"
+     ],
+     "zug": [
+      "Du fährst nach St. Petersburg",
+      "Du möchtest Tee mit Zucker"
+     ]
+    },
+    "felder": {
+     "ziel": {
+      "richtig": {
+       "text": "Оди́н биле́т до Санкт-Петербу́рга, пожа́луйста.",
+       "de": "Eine Fahrkarte nach St. Petersburg, bitte."
+      },
+      "falsch": [
+       {
+        "text": "Оди́н биле́т до Санкт-Петербу́рг, пожа́луйста.",
+        "de": "",
+        "hinweis": "до + Genitiv: Санкт-Петербу́рг → до Санкт-Петербу́рга."
+       },
+       {
+        "text": "Оди́н биле́т из Санкт-Петербу́рга, пожа́луйста.",
+        "de": "",
+        "hinweis": "из Санкт-Петербу́рга heißt „aus St. Petersburg“. Du willst nach St. Petersburg: до Санкт-Петербу́рга."
+       }
+      ]
+     },
+     "datum": {
+      "richtig": {
+       "text": "На двена́дцатое ию́ня.",
+       "de": "Für den 12. Juni."
+      },
+      "falsch": [
+       {
+        "text": "На двена́дцатого ию́ня.",
+        "de": "",
+        "hinweis": "Mit на steht das Datum im Akkusativ: на двена́дцатое ию́ня. Ohne на hieße es двена́дцатого ию́ня („am 12. Juni“)."
+       },
+       {
+        "text": "На двена́дцатое ию́нь.",
+        "de": "",
+        "hinweis": "Der Monat steht im Genitiv: ию́ня, nicht ию́нь."
+       }
+      ]
+     },
+     "richtung": {
+      "richtig": {
+       "text": "В одну́ сто́рону.",
+       "de": "Nur hin."
+      },
+      "falsch": [
+       {
+        "text": "Туда́ и обра́тно.",
+        "de": "Hin und zurück.",
+        "hinweis": "Das heißt „hin und zurück“. Laut Zettel: nur hin – в одну́ сто́рону."
+       },
+       {
+        "text": "В оди́н сто́рону.",
+        "de": "",
+        "hinweis": "сторона́ ist weiblich: в одну́ сто́рону."
+       }
+      ]
+     },
+     "klasse": {
+      "richtig": {
+       "text": "Плацка́рт, пожа́луйста.",
+       "de": "offener Schlafwagen, bitte."
+      },
+      "falsch": [
+       {
+        "text": "Купе́, пожа́луйста.",
+        "de": "Abteil, bitte.",
+        "hinweis": "купе́ ist das Abteil mit Tür. Laut Zettel: offener Schlafwagen – плацка́рт."
+       },
+       {
+        "text": "Би́знес-класс, пожа́луйста.",
+        "de": "Businessklasse, bitte.",
+        "hinweis": "Die gibt es im Flugzeug. Im Zug wählt man купе́ (Abteil) oder плацка́рт (offener Schlafwagen)."
+       }
+      ]
+     },
+     "polka": {
+      "richtig": {
+       "text": "Ве́рхнее, пожа́луйста.",
+       "de": "Oben, bitte."
+      },
+      "falsch": [
+       {
+        "text": "Ни́жнее, пожа́луйста.",
+        "de": "",
+        "hinweis": "ни́жнее heißt unten. Laut Zettel: oben – ве́рхнее."
+       },
+       {
+        "text": "Ве́рхний, пожа́луйста.",
+        "de": "",
+        "hinweis": "Gemeint ist ме́сто (sächlich): ве́рхнее ме́сто."
+       }
+      ]
+     },
+     "bestaetigen": {
+      "richtig": {
+       "text": "Да, до Санкт-Петербу́рга.",
+       "de": "Ja, bis St. Petersburg."
+      },
+      "falsch": [
+       {
+        "text": "Да, до Санкт-Петербу́рг.",
+        "de": "",
+        "hinweis": "до + Genitiv: до Санкт-Петербу́рга."
+       },
+       {
+        "text": "Да, в Санкт-Петербу́рге.",
+        "de": "",
+        "hinweis": "в Санкт-Петербу́рге heißt „in St. Petersburg“ (wo?). Gefragt ist: bis wohin – до Санкт-Петербу́рга."
+       }
+      ]
+     },
+     "mesto_nr": {
+      "richtig": {
+       "text": "Шестна́дцатое.",
+       "de": "Platz 16."
+      },
+      "falsch": [
+       {
+        "text": "Шестна́дцатый.",
+        "de": "",
+        "hinweis": "ме́сто ist sächlich: шестна́дцатое."
+       },
+       {
+        "text": "Шесто́е.",
+        "de": "",
+        "hinweis": "шесто́е = Platz 6. Auf deiner Fahrkarte steht Platz 16."
+       }
+      ]
+     },
+     "tee": {
+      "richtig": {
+       "text": "Да, с са́харом, пожа́луйста.",
+       "de": "Ja, mit Zucker, bitte."
+      },
+      "falsch": [
+       {
+        "text": "Да, с са́хар, пожа́луйста.",
+        "de": "",
+        "hinweis": "с + Instrumental: са́хар → с са́харом."
+       },
+       {
+        "text": "Да, без са́хара, пожа́луйста.",
+        "de": "",
+        "hinweis": "без са́хара heißt „ohne Zucker“. Laut Zettel: mit Zucker – с са́харом."
+       }
+      ]
+     }
+    }
+   },
+   {
+    "id": "kazan",
+    "geschlecht": "f",
+    "preis": 2900,
+    "zahlart": "bar",
+    "posten": "биле́т до Каза́ни и обра́тно",
+    "bilet": {
+     "poezd": "102",
+     "abfahrt": "10:25",
+     "datum": "01.07.",
+     "ziel": "Каза́нь",
+     "wagen": "09",
+     "mesto": "003",
+     "klasse": "ПЛАЦКАРТ",
+     "preis": 2900
+    },
+    "p": {
+     "gen": "Каза́ни",
+     "akk": "в Каза́нь",
+     "praep": "в Каза́ни",
+     "zeit_ru": "де́сять два́дцать пять",
+     "weg_gen": "пя́того",
+     "vom_gleis": "с пя́того",
+     "zeit": "10:25",
+     "weg": "5",
+     "stadt_de": "Kasan",
+     "ankunft": "За́втра в пять часо́в утра́.",
+     "ankunft_de": "Morgen um fünf Uhr früh."
+    },
+    "zettel": {
+     "fahrkarte": [
+      "Fahrkarte nach Kasan",
+      "für den 1. Juli",
+      "hin und zurück",
+      "offener Schlafwagen, unten",
+      "Bezahlen: bar"
+     ],
+     "zug": [
+      "Du fährst nach Kasan",
+      "Du möchtest Tee ohne Zucker"
+     ]
+    },
+    "felder": {
+     "ziel": {
+      "richtig": {
+       "text": "Оди́н биле́т до Каза́ни, пожа́луйста.",
+       "de": "Eine Fahrkarte nach Kasan, bitte."
+      },
+      "falsch": [
+       {
+        "text": "Оди́н биле́т до Каза́нь, пожа́луйста.",
+        "de": "",
+        "hinweis": "до + Genitiv: Каза́нь → до Каза́ни."
+       },
+       {
+        "text": "Оди́н биле́т из Каза́ни, пожа́луйста.",
+        "de": "",
+        "hinweis": "из Каза́ни heißt „aus Kasan“. Du willst nach Kasan: до Каза́ни."
+       }
+      ]
+     },
+     "datum": {
+      "richtig": {
+       "text": "На пе́рвое ию́ля.",
+       "de": "Für den 1. Juli."
+      },
+      "falsch": [
+       {
+        "text": "На пе́рвого ию́ля.",
+        "de": "",
+        "hinweis": "Mit на steht das Datum im Akkusativ: на пе́рвое ию́ля. Ohne на hieße es пе́рвого ию́ля („am 1. Juli“)."
+       },
+       {
+        "text": "На пе́рвое ию́ль.",
+        "de": "",
+        "hinweis": "Der Monat steht im Genitiv: ию́ля, nicht ию́ль."
+       }
+      ]
+     },
+     "richtung": {
+      "richtig": {
+       "text": "Туда́ и обра́тно.",
+       "de": "Hin und zurück."
+      },
+      "falsch": [
+       {
+        "text": "В одну́ сто́рону.",
+        "de": "Nur hin.",
+        "hinweis": "в одну́ сто́рону heißt „nur hin“. Laut Zettel: hin und zurück – туда́ и обра́тно."
+       },
+       {
+        "text": "Туда́ и сюда́.",
+        "de": "Hin und her.",
+        "hinweis": "туда́ и сюда́ heißt „hin und her“. Die Rückfahrkarte: туда́ и обра́тно."
+       }
+      ]
+     },
+     "klasse": {
+      "richtig": {
+       "text": "Плацка́рт, пожа́луйста.",
+       "de": "offener Schlafwagen, bitte."
+      },
+      "falsch": [
+       {
+        "text": "Купе́, пожа́луйста.",
+        "de": "Abteil, bitte.",
+        "hinweis": "купе́ ist das Abteil mit Tür. Laut Zettel: offener Schlafwagen – плацка́рт."
+       },
+       {
+        "text": "Би́знес-класс, пожа́луйста.",
+        "de": "Businessklasse, bitte.",
+        "hinweis": "Die gibt es im Flugzeug. Im Zug wählt man купе́ (Abteil) oder плацка́рт (offener Schlafwagen)."
+       }
+      ]
+     },
+     "polka": {
+      "richtig": {
+       "text": "Ни́жнее, пожа́луйста.",
+       "de": "Unten, bitte."
+      },
+      "falsch": [
+       {
+        "text": "Ве́рхнее, пожа́луйста.",
+        "de": "",
+        "hinweis": "ве́рхнее heißt oben. Laut Zettel: unten – ни́жнее."
+       },
+       {
+        "text": "Ни́жний, пожа́луйста.",
+        "de": "",
+        "hinweis": "Gemeint ist ме́сто (sächlich): ни́жнее ме́сто."
+       }
+      ]
+     },
+     "bestaetigen": {
+      "richtig": {
+       "text": "Да, до Каза́ни.",
+       "de": "Ja, bis Kasan."
+      },
+      "falsch": [
+       {
+        "text": "Да, до Каза́нь.",
+        "de": "",
+        "hinweis": "до + Genitiv: до Каза́ни."
+       },
+       {
+        "text": "Да, в Каза́ни.",
+        "de": "",
+        "hinweis": "в Каза́ни heißt „in Kasan“ (wo?). Gefragt ist: bis wohin – до Каза́ни."
+       }
+      ]
+     },
+     "mesto_nr": {
+      "richtig": {
+       "text": "Тре́тье.",
+       "de": "Platz 3."
+      },
+      "falsch": [
+       {
+        "text": "Тре́тий.",
+        "de": "",
+        "hinweis": "ме́сто ist sächlich: тре́тье."
+       },
+       {
+        "text": "Трина́дцатое.",
+        "de": "",
+        "hinweis": "трина́дцатое = Platz 13. Auf deiner Fahrkarte steht Platz 3."
+       }
+      ]
+     },
+     "tee": {
+      "richtig": {
+       "text": "Да, без са́хара, пожа́луйста.",
+       "de": "Ja, ohne Zucker, bitte."
+      },
+      "falsch": [
+       {
+        "text": "Да, без са́харом, пожа́луйста.",
+        "de": "",
+        "hinweis": "без + Genitiv: без са́хара."
+       },
+       {
+        "text": "Да, без са́хар, пожа́луйста.",
+        "de": "",
+        "hinweis": "без + Genitiv: са́хар → без са́хара."
+       }
+      ]
+     }
+    }
+   },
+   {
+    "id": "nn",
+    "geschlecht": "m",
+    "preis": 1900,
+    "zahlart": "karte",
+    "posten": "биле́т до Ни́жнего Но́вгорода",
+    "bilet": {
+     "poezd": "064",
+     "abfahrt": "14:05",
+     "datum": "10.08.",
+     "ziel": "Ни́жний Но́вгород",
+     "wagen": "05",
+     "mesto": "011",
+     "klasse": "КУПЕ",
+     "preis": 1900
+    },
+    "p": {
+     "gen": "Ни́жнего Но́вгорода",
+     "akk": "в Ни́жний Но́вгород",
+     "praep": "в Ни́жнем Но́вгороде",
+     "zeit_ru": "четы́рнадцать ноль пять",
+     "weg_gen": "четвёртого",
+     "vom_gleis": "с четвёртого",
+     "zeit": "14:05",
+     "weg": "4",
+     "stadt_de": "Nischni Nowgorod",
+     "ankunft": "Сего́дня в оди́ннадцать часо́в ве́чера.",
+     "ankunft_de": "Heute um elf Uhr abends."
+    },
+    "zettel": {
+     "fahrkarte": [
+      "Fahrkarte nach Nischni Nowgorod",
+      "für den 10. August",
+      "nur hin",
+      "Abteil, unten",
+      "Bezahlen: mit Karte"
+     ],
+     "zug": [
+      "Du fährst nach Nischni Nowgorod",
+      "Du möchtest Tee mit Milch"
+     ]
+    },
+    "felder": {
+     "ziel": {
+      "richtig": {
+       "text": "Оди́н биле́т до Ни́жнего Но́вгорода, пожа́луйста.",
+       "de": "Eine Fahrkarte nach Nischni Nowgorod, bitte."
+      },
+      "falsch": [
+       {
+        "text": "Оди́н биле́т до Ни́жний Но́вгород, пожа́луйста.",
+        "de": "",
+        "hinweis": "до + Genitiv: Ни́жний Но́вгород → до Ни́жнего Но́вгорода."
+       },
+       {
+        "text": "Оди́н биле́т из Ни́жнего Но́вгорода, пожа́луйста.",
+        "de": "",
+        "hinweis": "из Ни́жнего Но́вгорода heißt „aus Nischni Nowgorod“. Du willst nach Nischni Nowgorod: до Ни́жнего Но́вгорода."
+       }
+      ]
+     },
+     "datum": {
+      "richtig": {
+       "text": "На деся́тое а́вгуста.",
+       "de": "Für den 10. August."
+      },
+      "falsch": [
+       {
+        "text": "На деся́того а́вгуста.",
+        "de": "",
+        "hinweis": "Mit на steht das Datum im Akkusativ: на деся́тое а́вгуста. Ohne на hieße es деся́того а́вгуста („am 10. August“)."
+       },
+       {
+        "text": "На деся́тое а́вгуст.",
+        "de": "",
+        "hinweis": "Der Monat steht im Genitiv: а́вгуста, nicht а́вгуст."
+       }
+      ]
+     },
+     "richtung": {
+      "richtig": {
+       "text": "В одну́ сто́рону.",
+       "de": "Nur hin."
+      },
+      "falsch": [
+       {
+        "text": "Туда́ и обра́тно.",
+        "de": "Hin und zurück.",
+        "hinweis": "Das heißt „hin und zurück“. Laut Zettel: nur hin – в одну́ сто́рону."
+       },
+       {
+        "text": "В оди́н сто́рону.",
+        "de": "",
+        "hinweis": "сторона́ ist weiblich: в одну́ сто́рону."
+       }
+      ]
+     },
+     "klasse": {
+      "richtig": {
+       "text": "Купе́, пожа́луйста.",
+       "de": "Abteil, bitte."
+      },
+      "falsch": [
+       {
+        "text": "Плацка́рт, пожа́луйста.",
+        "de": "Offener Schlafwagen, bitte.",
+        "hinweis": "плацка́рт ist der offene Schlafwagen. Laut Zettel: Abteil – купе́."
+       },
+       {
+        "text": "Би́знес-класс, пожа́луйста.",
+        "de": "Businessklasse, bitte.",
+        "hinweis": "Die gibt es im Flugzeug. Im Zug wählt man купе́ (Abteil) oder плацка́рт (offener Schlafwagen)."
+       }
+      ]
+     },
+     "polka": {
+      "richtig": {
+       "text": "Ни́жнее, пожа́луйста.",
+       "de": "Unten, bitte."
+      },
+      "falsch": [
+       {
+        "text": "Ве́рхнее, пожа́луйста.",
+        "de": "",
+        "hinweis": "ве́рхнее heißt oben. Laut Zettel: unten – ни́жнее."
+       },
+       {
+        "text": "Ни́жний, пожа́луйста.",
+        "de": "",
+        "hinweis": "Gemeint ist ме́сто (sächlich): ни́жнее ме́сто."
+       }
+      ]
+     },
+     "bestaetigen": {
+      "richtig": {
+       "text": "Да, до Ни́жнего Но́вгорода.",
+       "de": "Ja, bis Nischni Nowgorod."
+      },
+      "falsch": [
+       {
+        "text": "Да, до Ни́жний Но́вгород.",
+        "de": "",
+        "hinweis": "до + Genitiv: до Ни́жнего Но́вгорода."
+       },
+       {
+        "text": "Да, в Ни́жнем Но́вгороде.",
+        "de": "",
+        "hinweis": "в Ни́жнем Но́вгороде heißt „in Nischni Nowgorod“ (wo?). Gefragt ist: bis wohin – до Ни́жнего Но́вгорода."
+       }
+      ]
+     },
+     "mesto_nr": {
+      "richtig": {
+       "text": "Оди́ннадцатое.",
+       "de": "Platz 11."
+      },
+      "falsch": [
+       {
+        "text": "Оди́ннадцатый.",
+        "de": "",
+        "hinweis": "ме́сто ist sächlich: оди́ннадцатое."
+       },
+       {
+        "text": "Пе́рвое.",
+        "de": "",
+        "hinweis": "пе́рвое = Platz 1. Auf deiner Fahrkarte steht Platz 11."
+       }
+      ]
+     },
+     "tee": {
+      "richtig": {
+       "text": "Да, с молоко́м, пожа́луйста.",
+       "de": "Ja, mit Milch, bitte."
+      },
+      "falsch": [
+       {
+        "text": "Да, с молоко́, пожа́луйста.",
+        "de": "",
+        "hinweis": "с + Instrumental: молоко́ → с молоко́м."
+       },
+       {
+        "text": "Да, без молока́, пожа́луйста.",
+        "de": "",
+        "hinweis": "без молока́ heißt „ohne Milch“. Laut Zettel: mit Milch – с молоко́м."
+       }
+      ]
+     }
+    }
+   },
+   {
+    "id": "yar",
+    "geschlecht": "f",
+    "preis": 2400,
+    "zahlart": "bar",
+    "posten": "биле́т до Яросла́вля и обра́тно",
+    "bilet": {
+     "poezd": "076",
+     "abfahrt": "16:30",
+     "datum": "03.09.",
+     "ziel": "Яросла́вль",
+     "wagen": "02",
+     "mesto": "018",
+     "klasse": "КУПЕ",
+     "preis": 2400
+    },
+    "p": {
+     "gen": "Яросла́вля",
+     "akk": "в Яросла́вль",
+     "praep": "в Яросла́вле",
+     "zeit_ru": "шестна́дцать три́дцать",
+     "weg_gen": "шесто́го",
+     "vom_gleis": "с шесто́го",
+     "zeit": "16:30",
+     "weg": "6",
+     "stadt_de": "Jaroslawl",
+     "ankunft": "Сего́дня в де́вять часо́в ве́чера.",
+     "ankunft_de": "Heute um neun Uhr abends."
+    },
+    "zettel": {
+     "fahrkarte": [
+      "Fahrkarte nach Jaroslawl",
+      "für den 3. September",
+      "hin und zurück",
+      "Abteil, oben",
+      "Bezahlen: bar"
+     ],
+     "zug": [
+      "Du fährst nach Jaroslawl",
+      "Du möchtest Tee mit Zitrone"
+     ]
+    },
+    "felder": {
+     "ziel": {
+      "richtig": {
+       "text": "Оди́н биле́т до Яросла́вля, пожа́луйста.",
+       "de": "Eine Fahrkarte nach Jaroslawl, bitte."
+      },
+      "falsch": [
+       {
+        "text": "Оди́н биле́т до Яросла́вль, пожа́луйста.",
+        "de": "",
+        "hinweis": "до + Genitiv: Яросла́вль → до Яросла́вля."
+       },
+       {
+        "text": "Оди́н биле́т из Яросла́вля, пожа́луйста.",
+        "de": "",
+        "hinweis": "из Яросла́вля heißt „aus Jaroslawl“. Du willst nach Jaroslawl: до Яросла́вля."
+       }
+      ]
+     },
+     "datum": {
+      "richtig": {
+       "text": "На тре́тье сентября́.",
+       "de": "Für den 3. September."
+      },
+      "falsch": [
+       {
+        "text": "На тре́тьего сентября́.",
+        "de": "",
+        "hinweis": "Mit на steht das Datum im Akkusativ: на тре́тье сентября́. Ohne на hieße es тре́тьего сентября́ („am 3. September“)."
+       },
+       {
+        "text": "На тре́тье сентя́брь.",
+        "de": "",
+        "hinweis": "Der Monat steht im Genitiv: сентября́, nicht сентя́брь."
+       }
+      ]
+     },
+     "richtung": {
+      "richtig": {
+       "text": "Туда́ и обра́тно.",
+       "de": "Hin und zurück."
+      },
+      "falsch": [
+       {
+        "text": "В одну́ сто́рону.",
+        "de": "Nur hin.",
+        "hinweis": "в одну́ сто́рону heißt „nur hin“. Laut Zettel: hin und zurück – туда́ и обра́тно."
+       },
+       {
+        "text": "Туда́ и сюда́.",
+        "de": "Hin und her.",
+        "hinweis": "туда́ и сюда́ heißt „hin und her“. Die Rückfahrkarte: туда́ и обра́тно."
+       }
+      ]
+     },
+     "klasse": {
+      "richtig": {
+       "text": "Купе́, пожа́луйста.",
+       "de": "Abteil, bitte."
+      },
+      "falsch": [
+       {
+        "text": "Плацка́рт, пожа́луйста.",
+        "de": "Offener Schlafwagen, bitte.",
+        "hinweis": "плацка́рт ist der offene Schlafwagen. Laut Zettel: Abteil – купе́."
+       },
+       {
+        "text": "Би́знес-класс, пожа́луйста.",
+        "de": "Businessklasse, bitte.",
+        "hinweis": "Die gibt es im Flugzeug. Im Zug wählt man купе́ (Abteil) oder плацка́рт (offener Schlafwagen)."
+       }
+      ]
+     },
+     "polka": {
+      "richtig": {
+       "text": "Ве́рхнее, пожа́луйста.",
+       "de": "Oben, bitte."
+      },
+      "falsch": [
+       {
+        "text": "Ни́жнее, пожа́луйста.",
+        "de": "",
+        "hinweis": "ни́жнее heißt unten. Laut Zettel: oben – ве́рхнее."
+       },
+       {
+        "text": "Ве́рхний, пожа́луйста.",
+        "de": "",
+        "hinweis": "Gemeint ist ме́сто (sächlich): ве́рхнее ме́сто."
+       }
+      ]
+     },
+     "bestaetigen": {
+      "richtig": {
+       "text": "Да, до Яросла́вля.",
+       "de": "Ja, bis Jaroslawl."
+      },
+      "falsch": [
+       {
+        "text": "Да, до Яросла́вль.",
+        "de": "",
+        "hinweis": "до + Genitiv: до Яросла́вля."
+       },
+       {
+        "text": "Да, в Яросла́вле.",
+        "de": "",
+        "hinweis": "в Яросла́вле heißt „in Jaroslawl“ (wo?). Gefragt ist: bis wohin – до Яросла́вля."
+       }
+      ]
+     },
+     "mesto_nr": {
+      "richtig": {
+       "text": "Восемна́дцатое.",
+       "de": "Platz 18."
+      },
+      "falsch": [
+       {
+        "text": "Восемна́дцатый.",
+        "de": "",
+        "hinweis": "ме́сто ist sächlich: восемна́дцатое."
+       },
+       {
+        "text": "Восьмо́е.",
+        "de": "",
+        "hinweis": "восьмо́е = Platz 8. Auf deiner Fahrkarte steht Platz 18."
+       }
+      ]
+     },
+     "tee": {
+      "richtig": {
+       "text": "Да, с лимо́ном, пожа́луйста.",
+       "de": "Ja, mit Zitrone, bitte."
+      },
+      "falsch": [
+       {
+        "text": "Да, с лимо́н, пожа́луйста.",
+        "de": "",
+        "hinweis": "с + Instrumental: лимо́н → с лимо́ном."
+       },
+       {
+        "text": "Да, без лимо́ном, пожа́луйста.",
+        "de": "",
+        "hinweis": "без heißt „ohne“ und verlangt den Genitiv. „Mit“: с лимо́ном."
+       }
+      ]
+     }
+    }
+   },
+   {
+    "id": "vlad",
+    "geschlecht": "m",
+    "preis": 4900,
+    "zahlart": "karte",
+    "posten": "биле́т до Владивосто́ка",
+    "bilet": {
+     "poezd": "001",
+     "abfahrt": "18:45",
+     "datum": "20.10.",
+     "ziel": "Владивосто́к",
+     "wagen": "10",
+     "mesto": "001",
+     "klasse": "КУПЕ",
+     "preis": 4900
+    },
+    "p": {
+     "gen": "Владивосто́ка",
+     "akk": "во Владивосто́к",
+     "praep": "во Владивосто́ке",
+     "zeit_ru": "восемна́дцать со́рок пять",
+     "weg_gen": "седьмо́го",
+     "vom_gleis": "с седьмо́го",
+     "zeit": "18:45",
+     "weg": "7",
+     "stadt_de": "Wladiwostok",
+     "ankunft": "Че́рез шесть дней! Э́то Транссиби́рская магистра́ль.",
+     "ankunft_de": "In sechs Tagen! Das ist die Transsibirische Eisenbahn."
+    },
+    "zettel": {
+     "fahrkarte": [
+      "Fahrkarte nach Wladiwostok",
+      "für den 20. Oktober",
+      "nur hin",
+      "Abteil, unten",
+      "Bezahlen: mit Karte"
+     ],
+     "zug": [
+      "Du fährst nach Wladiwostok",
+      "Du möchtest Tee mit Zucker"
+     ]
+    },
+    "felder": {
+     "ziel": {
+      "richtig": {
+       "text": "Оди́н биле́т до Владивосто́ка, пожа́луйста.",
+       "de": "Eine Fahrkarte nach Wladiwostok, bitte."
+      },
+      "falsch": [
+       {
+        "text": "Оди́н биле́т до Владивосто́к, пожа́луйста.",
+        "de": "",
+        "hinweis": "до + Genitiv: Владивосто́к → до Владивосто́ка."
+       },
+       {
+        "text": "Оди́н биле́т из Владивосто́ка, пожа́луйста.",
+        "de": "",
+        "hinweis": "из Владивосто́ка heißt „aus Wladiwostok“. Du willst nach Wladiwostok: до Владивосто́ка."
+       }
+      ]
+     },
+     "datum": {
+      "richtig": {
+       "text": "На двадца́тое октября́.",
+       "de": "Für den 20. Oktober."
+      },
+      "falsch": [
+       {
+        "text": "На двадца́того октября́.",
+        "de": "",
+        "hinweis": "Mit на steht das Datum im Akkusativ: на двадца́тое октября́. Ohne на hieße es двадца́того октября́ („am 20. Oktober“)."
+       },
+       {
+        "text": "На двадца́тое октя́брь.",
+        "de": "",
+        "hinweis": "Der Monat steht im Genitiv: октября́, nicht октя́брь."
+       }
+      ]
+     },
+     "richtung": {
+      "richtig": {
+       "text": "В одну́ сто́рону.",
+       "de": "Nur hin."
+      },
+      "falsch": [
+       {
+        "text": "Туда́ и обра́тно.",
+        "de": "Hin und zurück.",
+        "hinweis": "Das heißt „hin und zurück“. Laut Zettel: nur hin – в одну́ сто́рону."
+       },
+       {
+        "text": "В оди́н сто́рону.",
+        "de": "",
+        "hinweis": "сторона́ ist weiblich: в одну́ сто́рону."
+       }
+      ]
+     },
+     "klasse": {
+      "richtig": {
+       "text": "Купе́, пожа́луйста.",
+       "de": "Abteil, bitte."
+      },
+      "falsch": [
+       {
+        "text": "Плацка́рт, пожа́луйста.",
+        "de": "Offener Schlafwagen, bitte.",
+        "hinweis": "плацка́рт ist der offene Schlafwagen. Laut Zettel: Abteil – купе́."
+       },
+       {
+        "text": "Би́знес-класс, пожа́луйста.",
+        "de": "Businessklasse, bitte.",
+        "hinweis": "Die gibt es im Flugzeug. Im Zug wählt man купе́ (Abteil) oder плацка́рт (offener Schlafwagen)."
+       }
+      ]
+     },
+     "polka": {
+      "richtig": {
+       "text": "Ни́жнее, пожа́луйста.",
+       "de": "Unten, bitte."
+      },
+      "falsch": [
+       {
+        "text": "Ве́рхнее, пожа́луйста.",
+        "de": "",
+        "hinweis": "ве́рхнее heißt oben. Laut Zettel: unten – ни́жнее."
+       },
+       {
+        "text": "Ни́жний, пожа́луйста.",
+        "de": "",
+        "hinweis": "Gemeint ist ме́сто (sächlich): ни́жнее ме́сто."
+       }
+      ]
+     },
+     "bestaetigen": {
+      "richtig": {
+       "text": "Да, до Владивосто́ка.",
+       "de": "Ja, bis Wladiwostok."
+      },
+      "falsch": [
+       {
+        "text": "Да, до Владивосто́к.",
+        "de": "",
+        "hinweis": "до + Genitiv: до Владивосто́ка."
+       },
+       {
+        "text": "Да, во Владивосто́ке.",
+        "de": "",
+        "hinweis": "во Владивосто́ке heißt „in Wladiwostok“ (wo?). Gefragt ist: bis wohin – до Владивосто́ка."
+       }
+      ]
+     },
+     "mesto_nr": {
+      "richtig": {
+       "text": "Пе́рвое.",
+       "de": "Platz 1."
+      },
+      "falsch": [
+       {
+        "text": "Пе́рвый.",
+        "de": "",
+        "hinweis": "ме́сто ist sächlich: пе́рвое."
+       },
+       {
+        "text": "Оди́ннадцатое.",
+        "de": "",
+        "hinweis": "оди́ннадцатое = Platz 11. Auf deiner Fahrkarte steht Platz 1."
+       }
+      ]
+     },
+     "tee": {
+      "richtig": {
+       "text": "Да, с са́харом, пожа́луйста.",
+       "de": "Ja, mit Zucker, bitte."
+      },
+      "falsch": [
+       {
+        "text": "Да, с са́хар, пожа́луйста.",
+        "de": "",
+        "hinweis": "с + Instrumental: са́хар → с са́харом."
+       },
+       {
+        "text": "Да, без са́хара, пожа́луйста.",
+        "de": "",
+        "hinweis": "без са́хара heißt „ohne Zucker“. Laut Zettel: mit Zucker – с са́харом."
+       }
+      ]
+     }
+    }
+   }
+  ],
+  "szenen": {
+   "fahrkarte": {
+    "titel": "Fahrkarte",
+    "zettel_titel": "Dein Auftrag",
+    "bilet_drucken": true,
+    "geschafft": "Fahrkarte gekauft – gute Reise!",
+    "start": "ziel",
+    "knoten": {
+     "ziel": {
+      "sprecher": "kassirsha",
+      "text": "Здра́вствуйте! Слу́шаю вас.",
+      "de": "Guten Tag! Was kann ich für Sie tun?",
+      "feld": "ziel",
+      "weiter": "datum"
+     },
+     "datum": {
+      "sprecher": "kassirsha",
+      "text": "На како́е число́?",
+      "de": "Für welches Datum?",
+      "feld": "datum",
+      "weiter": "richtung"
+     },
+     "richtung": {
+      "sprecher": "kassirsha",
+      "text": "В одну́ сто́рону и́ли туда́ и обра́тно?",
+      "de": "Einfach oder hin und zurück?",
+      "feld": "richtung",
+      "weiter": "klasse"
+     },
+     "klasse": {
+      "sprecher": "kassirsha",
+      "text": "Купе́ и́ли плацка́рт?",
+      "de": "Abteil oder offener Schlafwagen?",
+      "feld": "klasse",
+      "weiter": "polka"
+     },
+     "polka": {
+      "sprecher": "kassirsha",
+      "text": "Ве́рхнее и́ли ни́жнее ме́сто?",
+      "de": "Oberes oder unteres Bett?",
+      "feld": "polka",
+      "weiter": "zahlart"
+     },
+     "zahlart": {
+      "sprecher": "kassirsha",
+      "text": "Как бу́дете плати́ть: нали́чными и́ли ка́ртой?",
+      "de": "Wie zahlen Sie: bar oder mit Karte?",
+      "optionen": [
+       {
+        "text": "Нали́чными.",
+        "de": "Bar.",
+        "zahlart": "bar",
+        "weiter": "summe"
+       },
+       {
+        "text": "Ка́ртой.",
+        "de": "Mit Karte.",
+        "zahlart": "karte",
+        "weiter": "summe"
+       }
+      ]
+     },
+     "summe": {
+      "sprecher": "kassirsha",
+      "text": "С вас {summe}.",
+      "de": "Das macht {summe_de}.",
+      "aktion": "bezahlen",
+      "weiter": "drucken"
+     },
+     "drucken": {
+      "sprecher": "kassirsha",
+      "text": "Вот ваш биле́т. По́езд отправля́ется в {zeit_ru} {vom_gleis} пути́.",
+      "de": "Hier ist Ihre Fahrkarte. Der Zug fährt um {zeit} Uhr von Gleis {weg} ab.",
+      "aktion": "drucken",
+      "optionen": [
+       {
+        "text": "Спаси́бо! До свида́ния!",
+        "de": "Danke! Auf Wiedersehen!",
+        "ende": true
+       },
+       {
+        "text": "Пожа́луйста!",
+        "de": "Bitte!",
+        "hinweis": "Du bekommst etwas – also bedankst du dich: Спаси́бо!"
+       }
+      ]
+     }
+    }
+   },
+   "zug": {
+    "titel": "Im Zug",
+    "zettel_titel": "Deine Fahrt",
+    "geschafft": "Du sitzt im Zug – счастли́вого пути́!",
+    "start": "bahnsteig",
+    "knoten": {
+     "bahnsteig": {
+      "sprecher": "erzaehler",
+      "text": "Вы на платфо́рме. Ваш по́езд уже́ стои́т.",
+      "de": "Sie sind auf dem Bahnsteig. Ihr Zug steht schon da.",
+      "pause": 400,
+      "weiter": "kontrolle"
+     },
+     "kontrolle": {
+      "sprecher": "provodnitsa",
+      "text": "Здра́вствуйте! Ваш биле́т и па́спорт, пожа́луйста.",
+      "de": "Guten Tag! Ihre Fahrkarte und Ihren Pass, bitte.",
+      "optionen": [
+       {
+        "text": "Вот, пожа́луйста.",
+        "de": "Hier, bitte.",
+        "weiter": "bestaetigen"
+       },
+       {
+        "text": "Вот мой биле́т в теа́тр.",
+        "de": "Hier ist meine Theaterkarte.",
+        "hinweis": "Das ist eine Theaterkarte – gefragt sind Fahrkarte und Pass."
+       },
+       {
+        "text": "Спаси́бо, не на́до.",
+        "de": "Danke, nicht nötig.",
+        "hinweis": "Damit lehnst du ab – die Schaffnerin will Fahrkarte und Pass sehen."
+       }
+      ]
+     },
+     "bestaetigen": {
+      "sprecher": "provodnitsa",
+      "text": "Вы е́дете до {gen}?",
+      "de": "Sie fahren bis {stadt_de}?",
+      "feld": "bestaetigen",
+      "weiter": "mesto"
+     },
+     "mesto": {
+      "sprecher": "provodnitsa",
+      "text": "Како́е у вас ме́сто?",
+      "de": "Welchen Platz haben Sie?",
+      "feld": "mesto_nr",
+      "weiter": "tee"
+     },
+     "tee": {
+      "sprecher": "provodnitsa",
+      "text": "Проходи́те. Чай бу́дете?",
+      "de": "Bitte einsteigen. Möchten Sie Tee?",
+      "feld": "tee",
+      "weiter": "frage"
+     },
+     "frage": {
+      "sprecher": "erzaehler",
+      "text": "Вы хоти́те знать, когда́ по́езд прие́дет.",
+      "de": "Sie möchten wissen, wann der Zug ankommt.",
+      "optionen": [
+       {
+        "text": "Скажи́те, пожа́луйста, когда́ мы прие́дем {akk}?",
+        "de": "Sagen Sie bitte, wann kommen wir an?",
+        "weiter": "ankunft"
+       },
+       {
+        "text": "Скажи́те, пожа́луйста, где мы прие́дем {akk}?",
+        "de": "",
+        "hinweis": "где heißt „wo“. „Wann“ heißt когда́."
+       },
+       {
+        "text": "Скажи́те, пожа́луйста, когда́ мы прие́дем {praep}?",
+        "de": "",
+        "hinweis": "Wohin? Nach прие́хать steht в + Akkusativ: {akk}."
+       }
+      ]
+     },
+     "ankunft": {
+      "sprecher": "provodnitsa",
+      "text": "{ankunft}",
+      "de": "{ankunft_de}",
+      "weiter": "gute_reise"
+     },
+     "gute_reise": {
+      "sprecher": "provodnitsa",
+      "text": "Счастли́вого пути́!",
+      "de": "Gute Reise!",
+      "optionen": [
+       {
+        "text": "Спаси́бо!",
+        "de": "Danke!",
+        "ende": true
+       },
+       {
+        "text": "Счастли́вого пути́!",
+        "de": "Gute Reise!",
+        "hinweis": "Das wünscht dir die Schaffnerin – du bedankst dich einfach: Спаси́бо!"
+       },
+       {
+        "text": "До́брое у́тро!",
+        "de": "Guten Morgen!",
+        "hinweis": "Das ist eine Begrüßung. Hier bedankst du dich: Спаси́бо!"
+       }
+      ]
+     }
+    }
+   }
+  }
+ }
+}

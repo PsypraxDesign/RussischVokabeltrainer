@@ -1,0 +1,442 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 620" role="img" aria-label="Im Café">
+  <defs>
+    <pattern id="cafe-tapete" width="44" height="44" patternUnits="userSpaceOnUse">
+      <rect width="44" height="44" fill="#24534c"/>
+      <path d="M22 7 L27 22 L22 37 L17 22Z" fill="#2b6158"/>
+      <circle cx="0" cy="0" r="2.2" fill="#d6a446" opacity="0.35"/>
+      <circle cx="44" cy="0" r="2.2" fill="#d6a446" opacity="0.35"/>
+      <circle cx="0" cy="44" r="2.2" fill="#d6a446" opacity="0.35"/>
+      <circle cx="44" cy="44" r="2.2" fill="#d6a446" opacity="0.35"/>
+    </pattern>
+    <pattern id="cafe-fliesen" width="64" height="28" patternUnits="userSpaceOnUse">
+      <rect width="64" height="28" fill="#efe4cf"/>
+      <rect width="32" height="14" fill="#d9906f"/>
+      <rect x="32" y="14" width="32" height="14" fill="#d9906f"/>
+    </pattern>
+    <linearGradient id="cafe-boden-schatten" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#3b2416" stop-opacity="0.35"/>
+      <stop offset="0.35" stop-color="#3b2416" stop-opacity="0.08"/>
+      <stop offset="1" stop-color="#3b2416" stop-opacity="0"/>
+    </linearGradient>
+    <linearGradient id="cafe-himmel" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#9fcde3"/>
+      <stop offset="1" stop-color="#e4f2f6"/>
+    </linearGradient>
+    <linearGradient id="cafe-metall" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#9ea3a8"/>
+      <stop offset="0.45" stop-color="#e3e6e8"/>
+      <stop offset="1" stop-color="#8b9095"/>
+    </linearGradient>
+    <linearGradient id="cafe-messing" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#ecc56a"/>
+      <stop offset="1" stop-color="#b8862f"/>
+    </linearGradient>
+    <radialGradient id="cafe-licht" cx="0.5" cy="0.5" r="0.5">
+      <stop offset="0" stop-color="#ffe9a8" stop-opacity="0.55"/>
+      <stop offset="1" stop-color="#ffe9a8" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="cafe-vignette" cx="0.5" cy="0.45" r="0.75">
+      <stop offset="0.6" stop-color="#000" stop-opacity="0"/>
+      <stop offset="1" stop-color="#000" stop-opacity="0.28"/>
+    </radialGradient>
+    <clipPath id="cafe-glas"><rect x="776" y="66" width="178" height="228"/></clipPath>
+  </defs>
+
+  <!-- Raum -->
+  <rect width="1000" height="470" fill="url(#cafe-tapete)"/>
+  <rect width="1000" height="16" fill="#1b3f3a"/>
+  <rect y="16" width="1000" height="3" fill="#d6a446" opacity="0.7"/>
+  <rect y="338" width="1000" height="132" fill="#6f4327"/>
+  <g fill="none" stroke="#86532f" stroke-width="3">
+    <rect x="16" y="352" width="104" height="100" rx="3"/><rect x="136" y="352" width="104" height="100" rx="3"/>
+    <rect x="256" y="352" width="104" height="100" rx="3"/><rect x="736" y="352" width="104" height="100" rx="3"/>
+    <rect x="856" y="352" width="128" height="100" rx="3"/>
+  </g>
+  <rect y="330" width="1000" height="10" fill="#9a6236"/>
+  <rect y="470" width="1000" height="150" fill="url(#cafe-fliesen)"/>
+  <rect y="470" width="1000" height="150" fill="url(#cafe-boden-schatten)"/>
+  <rect y="464" width="1000" height="8" fill="#4a2c18"/>
+
+  <!-- Lichtschein der Lampen -->
+  <g pointer-events="none">
+    <circle cx="360" cy="150" r="150" fill="url(#cafe-licht)"/>
+    <circle cx="510" cy="200" r="210" fill="url(#cafe-licht)"/>
+  </g>
+
+  <!-- Pflanze (Dekor) -->
+  <g pointer-events="none">
+    <path d="M44 470 L38 432 L88 432 L82 470Z" fill="#c8553d"/>
+    <rect x="34" y="426" width="58" height="9" rx="2" fill="#a8432f"/>
+    <path d="M63 428 C40 400 30 380 36 356 C52 372 60 396 63 428Z" fill="#4f7d46"/>
+    <path d="M63 428 C70 392 86 370 104 362 C100 388 84 410 63 428Z" fill="#5f8f55"/>
+    <path d="M63 428 C58 396 62 368 72 346 C80 372 74 402 63 428Z" fill="#6f9e66"/>
+  </g>
+
+  <!-- Kreidetafel mit Speisekarte -->
+  <g id="hs-menue" class="hotspot">
+    <rect class="treffer" x="36" y="56" width="260" height="262" fill="transparent"/>
+    <rect x="40" y="60" width="252" height="252" rx="6" fill="#8a5530"/>
+    <rect x="52" y="72" width="228" height="228" rx="2" fill="#26332f"/>
+    <g stroke="#ffffff" stroke-opacity="0.05" stroke-width="18" stroke-linecap="round">
+      <path d="M80 150 L240 140"/><path d="M70 230 L230 250"/>
+    </g>
+    <text id="tafel-titel" x="166" y="110" text-anchor="middle" font-family="Caveat, cursive" font-size="38" font-weight="700" fill="#f4efe6">Меню</text>
+    <path d="M100 120 Q166 128 232 118" stroke="#f4efe6" stroke-width="1.6" fill="none" stroke-dasharray="7 5" opacity="0.7"/>
+    <g id="tafel-text" font-family="Caveat, cursive" font-size="21" fill="#f4efe6"></g>
+    <rect x="52" y="300" width="228" height="7" fill="#6b4024"/>
+    <rect x="236" y="296" width="18" height="5" rx="2" fill="#f4efe6"/>
+  </g>
+
+  <!-- Regal -->
+  <g id="hs-polka" class="hotspot">
+    <rect class="treffer" x="316" y="146" width="304" height="28" fill="transparent"/>
+    <rect x="318" y="150" width="300" height="10" rx="2" fill="#9a6236"/>
+    <path d="M336 160 L336 174 L350 160Z" fill="#7a4a2b"/>
+    <path d="M600 160 L600 174 L586 160Z" fill="#7a4a2b"/>
+  </g>
+
+  <!-- Teekanne (Gschel) -->
+  <g id="hs-chainik" class="hotspot">
+    <rect class="treffer" x="334" y="96" width="100" height="56" fill="transparent"/>
+    <path d="M408 132 Q426 126 428 108" stroke="#fbfbf8" stroke-width="7" fill="none" stroke-linecap="round"/>
+    <path d="M408 132 Q426 126 428 108" stroke="#2b5fa8" stroke-width="1.5" fill="none" stroke-linecap="round"/>
+    <path d="M352 122 Q336 128 352 142" stroke="#2b5fa8" stroke-width="4" fill="none"/>
+    <ellipse cx="380" cy="132" rx="30" ry="18" fill="#fbfbf8" stroke="#2b5fa8" stroke-width="2"/>
+    <path d="M362 132 Q370 122 380 132 Q390 142 398 132" stroke="#2b5fa8" stroke-width="2" fill="none"/>
+    <circle cx="380" cy="139" r="2.6" fill="#2b5fa8"/><circle cx="366" cy="140" r="1.8" fill="#2b5fa8"/><circle cx="394" cy="140" r="1.8" fill="#2b5fa8"/>
+    <ellipse cx="380" cy="115" rx="15" ry="5" fill="#fbfbf8" stroke="#2b5fa8" stroke-width="1.5"/>
+    <circle cx="380" cy="108" r="4" fill="#2b5fa8"/>
+  </g>
+
+  <!-- Gläser mit Honig und Konfitüre (Dekor) -->
+  <g pointer-events="none">
+    <rect x="440" y="118" width="26" height="32" rx="4" fill="#e8b84a" opacity="0.9"/>
+    <rect x="438" y="112" width="30" height="8" rx="2" fill="#c8553d"/>
+    <rect x="474" y="126" width="22" height="24" rx="4" fill="#b5344a" opacity="0.9"/>
+    <rect x="472" y="120" width="26" height="7" rx="2" fill="#fbfbf8"/>
+    <rect x="474" y="120" width="5" height="7" fill="#c8553d"/><rect x="484" y="120" width="5" height="7" fill="#c8553d"/>
+  </g>
+  <!-- Tassen auf dem Regal (Dekor) -->
+  <g pointer-events="none">
+    <path d="M570 132 L592 132 L589 150 L573 150Z" fill="#fbfbf8" stroke="#2b5fa8" stroke-width="1.5"/>
+    <path d="M598 132 L620 132 L617 150 L601 150Z" fill="#fbfbf8" stroke="#2b5fa8" stroke-width="1.5"/>
+    <circle cx="581" cy="141" r="2" fill="#2b5fa8"/><circle cx="609" cy="141" r="2" fill="#2b5fa8"/>
+  </g>
+
+  <!-- Wanduhr -->
+  <g id="hs-chasy" class="hotspot">
+    <rect class="treffer" x="644" y="60" width="72" height="72" fill="transparent"/>
+    <circle cx="680" cy="96" r="31" fill="url(#cafe-messing)"/>
+    <circle cx="680" cy="96" r="25" fill="#fbf7ef"/>
+    <g stroke="#3a2a22" stroke-width="2" stroke-linecap="round">
+      <line x1="680" y1="74" x2="680" y2="78"/><line x1="680" y1="114" x2="680" y2="118"/>
+      <line x1="658" y1="96" x2="662" y2="96"/><line x1="698" y1="96" x2="702" y2="96"/>
+    </g>
+    <line x1="680" y1="96" x2="670" y2="88" stroke="#3a2a22" stroke-width="3" stroke-linecap="round"/>
+    <line x1="680" y1="96" x2="694" y2="82" stroke="#3a2a22" stroke-width="2" stroke-linecap="round"/>
+    <circle cx="680" cy="96" r="2.5" fill="#c8553d"/>
+  </g>
+
+  <!-- Fenster mit Blick auf die Straße -->
+  <g id="hs-okno" class="hotspot">
+    <rect class="treffer" x="756" y="50" width="220" height="264" fill="transparent"/>
+    <rect x="764" y="54" width="202" height="252" rx="6" fill="#efe6d6"/>
+    <rect x="776" y="66" width="178" height="228" fill="url(#cafe-himmel)"/>
+    <g clip-path="url(#cafe-glas)">
+      <ellipse cx="820" cy="96" rx="22" ry="7" fill="#fff" opacity="0.9"/>
+      <rect x="776" y="196" width="64" height="100" fill="#d8c3a0"/>
+      <g fill="#9fcde3"><rect x="786" y="208" width="12" height="16"/><rect x="814" y="208" width="12" height="16"/><rect x="786" y="236" width="12" height="16"/><rect x="814" y="236" width="12" height="16"/></g>
+      <rect x="890" y="176" width="34" height="120" fill="#ece3d3"/>
+      <path d="M884 178 Q907 160 900 140 Q907 126 907 120 Q907 126 914 140 Q907 160 930 178Z" fill="#d6a446"/>
+      <line x1="907" y1="104" x2="907" y2="122" stroke="#b8862f" stroke-width="2.5"/>
+      <line x1="901" y1="110" x2="913" y2="110" stroke="#b8862f" stroke-width="2.5"/>
+      <rect x="900" y="196" width="14" height="20" rx="7" fill="#9fcde3"/>
+      <circle cx="862" cy="232" r="22" fill="#6f9e66"/><circle cx="848" cy="248" r="16" fill="#5f8f55"/><circle cx="876" cy="250" r="16" fill="#4f7d46"/>
+      <rect x="859" y="250" width="6" height="40" fill="#6b4024"/>
+      <rect x="776" y="276" width="178" height="18" fill="#b9b2a6"/>
+    </g>
+    <rect x="862" y="66" width="6" height="228" fill="#efe6d6"/>
+    <rect x="776" y="176" width="178" height="6" fill="#efe6d6"/>
+    <rect x="756" y="300" width="218" height="10" rx="2" fill="#d9ccb6"/>
+  </g>
+
+  <!-- Lampen über Theke und Tisch -->
+  <g id="hs-lampa" class="hotspot">
+    <rect class="treffer" x="330" y="16" width="60" height="84" fill="transparent"/>
+    <rect class="treffer" x="480" y="16" width="60" height="96" fill="transparent"/>
+    <line x1="360" y1="16" x2="360" y2="58" stroke="#2a2a2a" stroke-width="2"/>
+    <path d="M340 84 L380 84 L372 58 L348 58Z" fill="url(#cafe-messing)"/>
+    <ellipse cx="360" cy="86" rx="7" ry="5" fill="#fff6d0"/>
+    <line x1="510" y1="16" x2="510" y2="70" stroke="#2a2a2a" stroke-width="2"/>
+    <path d="M486 98 L534 98 L524 70 L496 70Z" fill="url(#cafe-messing)"/>
+    <ellipse cx="510" cy="100" rx="8" ry="5" fill="#fff6d0"/>
+  </g>
+
+  <!-- Kellnerin hinter der Theke -->
+  <g id="hs-ofitsiantka" class="hotspot">
+    <rect class="treffer" x="482" y="176" width="146" height="152" fill="transparent"/>
+    <path d="M484 330 L490 282 Q494 262 535 258 Q576 262 580 282 L586 330Z" fill="#c8553d"/>
+    <path d="M490 282 Q482 300 486 330 L498 330 Q496 300 500 284Z" fill="#b14a35"/>
+    <path d="M517 278 L553 278 L556 330 L514 330Z" fill="#fbf7ef"/>
+    <path d="M517 278 L506 262 M553 278 L564 262" stroke="#fbf7ef" stroke-width="3"/>
+    <rect x="527" y="246" width="16" height="16" fill="#e3b08f"/>
+    <path d="M522 260 L535 270 L548 260 L544 256 L535 263 L526 256Z" fill="#fbf7ef"/>
+    <path d="M578 280 Q594 290 600 304" stroke="#c8553d" stroke-width="13" fill="none" stroke-linecap="round"/>
+    <rect x="596" y="284" width="24" height="30" rx="2" fill="#fbf7ef" stroke="#c9bda8" transform="rotate(10 608 299)"/>
+    <g stroke="#9c9c9c" stroke-width="1"><line x1="600" y1="292" x2="614" y2="294"/><line x1="599" y1="298" x2="613" y2="300"/><line x1="598" y1="304" x2="610" y2="306"/></g>
+    <circle cx="602" cy="306" r="6" fill="#f2c7a6"/>
+    <circle cx="535" cy="228" r="26" fill="#f2c7a6"/>
+    <path d="M509 228 Q508 199 535 198 Q562 199 561 228 Q554 212 535 211 Q516 212 509 228Z" fill="#6b3a26"/>
+    <circle cx="535" cy="193" r="13" fill="#6b3a26"/>
+    <path d="M514 207 Q535 197 556 207 L554 214 Q535 205 516 214Z" fill="#fbfbf8"/>
+    <g fill="#fbfbf8"><circle cx="518" cy="206" r="2.4"/><circle cx="526" cy="202" r="2.4"/><circle cx="535" cy="200" r="2.4"/><circle cx="544" cy="202" r="2.4"/><circle cx="552" cy="206" r="2.4"/></g>
+    <circle cx="526" cy="229" r="2.7" fill="#3a2a22"/><circle cx="544" cy="229" r="2.7" fill="#3a2a22"/>
+    <path d="M521 222 Q526 219 530 222 M540 222 Q544 219 549 222" stroke="#6b3a26" stroke-width="1.6" fill="none"/>
+    <circle cx="519" cy="237" r="5" fill="#f19c86" opacity="0.5"/><circle cx="551" cy="237" r="5" fill="#f19c86" opacity="0.5"/>
+    <path d="M527 240 Q535 246 543 240" stroke="#a0523a" stroke-width="2" fill="none" stroke-linecap="round"/>
+  </g>
+
+  <!-- Theke -->
+  <g pointer-events="none">
+    <rect x="306" y="340" width="408" height="124" fill="#b9503a"/>
+    <g fill="#c8634b" stroke="#9c3f2c" stroke-width="2">
+      <rect x="322" y="354" width="84" height="88" rx="3"/><rect x="418" y="354" width="84" height="88" rx="3"/>
+      <rect x="514" y="354" width="84" height="88" rx="3"/><rect x="610" y="354" width="88" height="88" rx="3"/>
+    </g>
+    <rect x="306" y="448" width="408" height="5" fill="url(#cafe-messing)"/>
+    <rect x="306" y="455" width="408" height="11" fill="#4a2c18"/>
+    <rect x="298" y="326" width="424" height="15" rx="3" fill="#efe6d6"/>
+    <rect x="298" y="338" width="424" height="3" fill="#cfc2aa"/>
+  </g>
+
+  <!-- Kaffeemaschine -->
+  <g id="hs-kofemashina" class="hotspot">
+    <rect class="treffer" x="322" y="240" width="134" height="88" fill="transparent"/>
+    <rect x="326" y="246" width="118" height="8" rx="3" fill="#6f7377"/>
+    <rect x="330" y="252" width="110" height="74" rx="8" fill="url(#cafe-metall)"/>
+    <rect x="342" y="262" width="86" height="20" rx="4" fill="#2e2e2e"/>
+    <circle cx="352" cy="272" r="3" fill="#6fcf97"/><circle cx="362" cy="272" r="3" fill="#c8553d"/>
+    <rect x="374" y="268" width="44" height="8" rx="2" fill="#4a4a4a"/>
+    <rect x="350" y="288" width="22" height="10" rx="2" fill="#4d4d4d"/><rect x="398" y="288" width="22" height="10" rx="2" fill="#4d4d4d"/>
+    <rect x="355" y="304" width="12" height="11" rx="1" fill="#fbfbf8"/>
+    <rect x="340" y="316" width="90" height="8" rx="2" fill="#4d4d4d"/>
+    <path d="M440 270 L452 300" stroke="#8b9095" stroke-width="3" stroke-linecap="round"/>
+  </g>
+
+  <!-- Tasse auf der Theke -->
+  <g id="hs-chashka" class="hotspot">
+    <rect class="treffer" x="446" y="282" width="52" height="46" fill="transparent"/>
+    <ellipse cx="470" cy="324" rx="21" ry="4" fill="#fbfbf8" stroke="#2b5fa8" stroke-width="1.2"/>
+    <path d="M455 300 L485 300 L481 321 Q470 325 459 321Z" fill="#fbfbf8" stroke="#2b5fa8" stroke-width="1.5"/>
+    <path d="M459 308 Q470 304 481 308" stroke="#2b5fa8" stroke-width="1.5" fill="none"/>
+    <circle cx="470" cy="314" r="2" fill="#2b5fa8"/>
+    <path d="M485 304 Q497 307 492 317 L482 318" stroke="#2b5fa8" stroke-width="2.5" fill="none"/>
+    <g class="dampf" stroke="#ffffff" stroke-width="2" fill="none" stroke-linecap="round" opacity="0.65">
+      <path d="M464 296 Q460 288 465 282 Q470 276 466 270"/>
+      <path d="M475 296 Q471 288 476 282 Q481 276 477 270"/>
+    </g>
+  </g>
+
+  <!-- Kasse (Messing, alt) -->
+  <g id="hs-kassa" class="hotspot">
+    <rect class="treffer" x="630" y="240" width="92" height="88" fill="transparent"/>
+    <rect x="636" y="304" width="80" height="22" rx="3" fill="#8a6a2a"/>
+    <rect x="664" y="312" width="24" height="5" rx="2" fill="#5e4718"/>
+    <path d="M644 304 L652 268 L702 268 L710 304Z" fill="url(#cafe-messing)"/>
+    <g fill="#3a2a22">
+      <circle cx="660" cy="280" r="3"/><circle cx="670" cy="280" r="3"/><circle cx="680" cy="280" r="3"/><circle cx="690" cy="280" r="3"/>
+      <circle cx="657" cy="292" r="3"/><circle cx="668" cy="292" r="3"/><circle cx="679" cy="292" r="3"/><circle cx="690" cy="292" r="3"/><circle cx="700" cy="292" r="3"/>
+    </g>
+    <rect x="660" y="248" width="36" height="20" rx="2" fill="#fbf3dd" stroke="#8a6a2a" stroke-width="2"/>
+    <text x="678" y="263" text-anchor="middle" font-family="Georgia, serif" font-size="14" font-weight="700" fill="#5e4718">₽</text>
+    <path d="M710 288 L722 284 L722 270" stroke="#8a6a2a" stroke-width="3" fill="none" stroke-linecap="round"/>
+    <circle cx="722" cy="268" r="4" fill="#c8553d"/>
+  </g>
+
+  <!-- Stühle (hinter dem Tisch) -->
+  <g id="hs-stul" class="hotspot">
+    <rect class="treffer" x="282" y="404" width="100" height="208" fill="transparent"/>
+    <rect class="treffer" x="640" y="404" width="100" height="208" fill="transparent"/>
+    <g stroke="#3f2414" stroke-width="7" fill="none" stroke-linecap="round">
+      <path d="M298 524 L298 444 Q298 410 324 410 Q350 410 350 444 L350 512"/>
+      <path d="M310 520 L310 452 Q310 426 324 426 Q338 426 338 452 L338 514"/>
+      <line x1="300" y1="530" x2="292" y2="606"/><line x1="358" y1="532" x2="366" y2="606"/>
+      <path d="M702 524 L702 444 Q702 410 676 410 Q650 410 650 444 L650 512"/>
+      <path d="M690 520 L690 452 Q690 426 676 426 Q662 426 662 452 L662 514"/>
+      <line x1="700" y1="530" x2="708" y2="606"/><line x1="642" y1="532" x2="634" y2="606"/>
+    </g>
+    <ellipse cx="328" cy="526" rx="42" ry="10" fill="#6f4327"/>
+    <ellipse cx="672" cy="526" rx="42" ry="10" fill="#6f4327"/>
+  </g>
+
+  <!-- Tisch -->
+  <g id="hs-stol" class="hotspot">
+    <ellipse cx="510" cy="606" rx="150" ry="11" fill="#000" opacity="0.13"/>
+    <rect x="500" y="514" width="20" height="86" fill="#4a2c18"/>
+    <ellipse cx="510" cy="602" rx="56" ry="9" fill="#4a2c18"/>
+    <path d="M350 486 Q350 512 364 520 L656 520 Q670 512 670 486Z" fill="#efe6d6"/>
+    <path d="M364 520 Q379 528 394 520 Q409 528 424 520 Q439 528 454 520 Q469 528 484 520 Q499 528 514 520 Q529 528 544 520 Q559 528 574 520 Q589 528 604 520 Q619 528 634 520 Q649 528 656 520" fill="#efe6d6" stroke="#c8553d" stroke-width="2"/>
+    <ellipse cx="510" cy="486" rx="160" ry="26" fill="#fbf7ef"/>
+    <ellipse cx="510" cy="486" rx="160" ry="26" fill="none" stroke="#c8553d" stroke-width="2" stroke-dasharray="2 6" opacity="0.7"/>
+  </g>
+
+  <!-- Auf dem Tisch -->
+  <g id="hs-tarelka" class="hotspot">
+    <rect class="treffer" x="560" y="468" width="80" height="30" fill="transparent"/>
+    <ellipse cx="600" cy="485" rx="40" ry="11" fill="#fbfbf8" stroke="#d6cab5" stroke-width="1.5"/>
+    <ellipse cx="600" cy="485" rx="27" ry="6.5" fill="none" stroke="#2b5fa8" stroke-width="1.2" opacity="0.6"/>
+  </g>
+  <g id="hs-vilka" class="hotspot">
+    <rect class="treffer" x="536" y="464" width="22" height="38" fill="transparent"/>
+    <path d="M543 498 L550 478" stroke="#8f969c" stroke-width="3" stroke-linecap="round"/>
+    <path d="M547 479 L549 468 M551 480 L553 469 M555 481 L556 470" stroke="#8f969c" stroke-width="1.8" stroke-linecap="round"/>
+  </g>
+  <g id="hs-nozh" class="hotspot">
+    <rect class="treffer" x="642" y="462" width="22" height="40" fill="transparent"/>
+    <path d="M648 498 L654 482" stroke="#5e5e5e" stroke-width="3.2" stroke-linecap="round"/>
+    <path d="M654 482 L660 466 Q662 472 657 484Z" fill="#c4c9cd" stroke="#8f969c" stroke-width="1"/>
+  </g>
+  <g id="hs-lozhka" class="hotspot">
+    <rect class="treffer" x="378" y="462" width="24" height="40" fill="transparent"/>
+    <path d="M386 498 L392 478" stroke="#8f969c" stroke-width="2.6" stroke-linecap="round"/>
+    <ellipse cx="394" cy="471" rx="4.5" ry="7" fill="#c4c9cd" stroke="#8f969c" stroke-width="1" transform="rotate(18 394 471)"/>
+  </g>
+  <g id="hs-salfetka" class="hotspot">
+    <rect class="treffer" x="452" y="456" width="34" height="34" fill="transparent"/>
+    <path d="M456 486 L469 460 L483 486Z" fill="#fbfbf8" stroke="#d6cab5" stroke-width="1.5"/>
+    <path d="M469 460 L466 486" stroke="#d6cab5" stroke-width="1"/>
+  </g>
+  <g id="hs-vaza" class="hotspot">
+    <rect class="treffer" x="494" y="450" width="32" height="34" fill="transparent"/>
+    <path d="M501 482 Q491 467 502 452 L518 452 Q529 467 519 482Z" fill="#fbfbf8" stroke="#2b5fa8" stroke-width="1.6"/>
+    <path d="M498 468 Q510 462 522 468" stroke="#2b5fa8" stroke-width="1.5" fill="none"/>
+    <circle cx="510" cy="474" r="2" fill="#2b5fa8"/>
+  </g>
+  <g id="hs-tsvety" class="hotspot">
+    <rect class="treffer" x="474" y="392" width="72" height="62" fill="transparent"/>
+    <g stroke="#4f7d46" stroke-width="2.2" fill="none" stroke-linecap="round">
+      <path d="M508 454 Q500 434 494 418"/><path d="M510 454 Q511 430 510 410"/><path d="M512 454 Q520 436 526 420"/>
+      <path d="M506 454 Q494 442 484 432"/><path d="M514 454 Q526 444 536 432"/>
+    </g>
+    <path d="M503 440 Q496 436 498 428 Q505 432 503 440Z" fill="#5f8f55"/>
+    <path d="M517 442 Q525 437 524 429 Q517 434 517 442Z" fill="#5f8f55"/>
+    <g fill="#fbfbf8">
+      <circle cx="494" cy="412" r="4"/><circle cx="488" cy="418" r="4"/><circle cx="500" cy="418" r="4"/><circle cx="494" cy="424" r="4"/>
+      <circle cx="526" cy="414" r="4"/><circle cx="520" cy="420" r="4"/><circle cx="532" cy="420" r="4"/><circle cx="526" cy="426" r="4"/>
+    </g>
+    <circle cx="494" cy="418" r="3.6" fill="#e8b84a"/><circle cx="526" cy="420" r="3.6" fill="#e8b84a"/>
+    <path d="M502 410 Q510 396 518 410 Q510 416 502 410Z" fill="#c8553d"/>
+    <path d="M476 432 Q484 420 492 432 Q484 438 476 432Z" fill="#c8553d"/>
+    <path d="M528 432 Q536 420 544 432 Q536 438 528 432Z" fill="#d9734f"/>
+  </g>
+
+  <!-- Bestellte Speisen und Getränke: erscheinen erst beim Servieren -->
+  <g id="tisch-chai" class="aufgetischt">
+    <ellipse cx="424" cy="488" rx="23" ry="5" fill="#fbfbf8" stroke="#2b5fa8" stroke-width="1.2"/>
+    <path d="M409 464 L439 464 L435 485 Q424 489 413 485Z" fill="#fbfbf8" stroke="#2b5fa8" stroke-width="1.5"/>
+    <ellipse cx="424" cy="465" rx="14" ry="3" fill="#b8742a"/>
+    <path d="M439 468 Q451 471 446 481 L436 482" stroke="#2b5fa8" stroke-width="2.5" fill="none"/>
+    <g class="dampf" stroke="#ffffff" stroke-width="2" fill="none" stroke-linecap="round" opacity="0.8">
+      <path d="M419 458 Q415 450 420 444 Q425 438 421 432"/><path d="M430 458 Q426 450 431 444 Q436 438 432 432"/>
+    </g>
+  </g>
+  <g id="tisch-kofe" class="aufgetischt">
+    <ellipse cx="424" cy="488" rx="20" ry="4.5" fill="#fbfbf8" stroke="#3a2a22" stroke-width="1.2"/>
+    <path d="M412 468 L436 468 L433 485 Q424 488 415 485Z" fill="#fbfbf8" stroke="#3a2a22" stroke-width="1.5"/>
+    <ellipse cx="424" cy="469" rx="11" ry="2.6" fill="#3b2416"/>
+    <path d="M436 472 Q446 474 442 482 L434 483" stroke="#3a2a22" stroke-width="2.3" fill="none"/>
+    <g class="dampf" stroke="#ffffff" stroke-width="2" fill="none" stroke-linecap="round" opacity="0.8">
+      <path d="M420 462 Q416 454 421 448 Q426 442 422 436"/>
+    </g>
+  </g>
+  <g id="tisch-kapuchino" class="aufgetischt">
+    <ellipse cx="424" cy="488" rx="23" ry="5" fill="#fbfbf8" stroke="#c8553d" stroke-width="1.2"/>
+    <path d="M408 462 L440 462 L436 485 Q424 489 412 485Z" fill="#c8553d"/>
+    <ellipse cx="424" cy="463" rx="15" ry="3.4" fill="#f3e3c8"/>
+    <path d="M420 462 Q424 458 424 463 Q424 458 428 462 Q424 466 424 466 Q424 466 420 462Z" fill="#c89a6a"/>
+    <path d="M440 466 Q452 469 447 479 L437 481" stroke="#c8553d" stroke-width="2.6" fill="none"/>
+  </g>
+  <g id="tisch-sok" class="aufgetischt">
+    <path d="M412 444 L436 444 L433 488 L415 488Z" fill="#f2a33a" opacity="0.92"/>
+    <path d="M412 444 L436 444 L433 488 L415 488Z" fill="none" stroke="#d9e6ea" stroke-width="2"/>
+    <path d="M417 450 L419 482" stroke="#fff" stroke-width="2.5" opacity="0.5" stroke-linecap="round"/>
+    <path d="M428 446 L438 424" stroke="#c8553d" stroke-width="3" stroke-linecap="round"/>
+    <circle cx="436" cy="446" r="5" fill="#f6d365"/>
+  </g>
+  <g id="tisch-bliny" class="aufgetischt">
+    <ellipse cx="600" cy="482" rx="26" ry="6" fill="#d9a54e"/>
+    <ellipse cx="600" cy="478" rx="25" ry="6" fill="#f0c66b"/>
+    <ellipse cx="600" cy="474" rx="24" ry="6" fill="#e4b65c"/>
+    <ellipse cx="600" cy="470" rx="23" ry="5.5" fill="#f3d080"/>
+    <path d="M590 468 Q600 464 608 468 Q604 473 596 472Z" fill="#fbfbf8"/>
+    <circle cx="611" cy="470" r="2.6" fill="#b5344a"/><circle cx="587" cy="472" r="2.2" fill="#b5344a"/>
+  </g>
+  <g id="tisch-syrniki" class="aufgetischt">
+    <ellipse cx="586" cy="481" rx="12" ry="5.5" fill="#d48a3e"/><ellipse cx="586" cy="479" rx="11" ry="4.5" fill="#e9a95a"/>
+    <ellipse cx="612" cy="482" rx="12" ry="5.5" fill="#d48a3e"/><ellipse cx="612" cy="480" rx="11" ry="4.5" fill="#e9a95a"/>
+    <ellipse cx="599" cy="474" rx="12" ry="5.5" fill="#d48a3e"/><ellipse cx="599" cy="472" rx="11" ry="4.5" fill="#e9a95a"/>
+    <path d="M594 468 Q599 462 605 468 Q599 471 594 468Z" fill="#fbfbf8"/>
+  </g>
+  <g id="tisch-tort" class="aufgetischt">
+    <path d="M582 482 L620 482 L620 462 L582 462Z" fill="#f6e7c8"/>
+    <g fill="#e0b46c"><rect x="582" y="478" width="38" height="4"/><rect x="582" y="471" width="38" height="3.5"/><rect x="582" y="464" width="38" height="3"/></g>
+    <rect x="582" y="459" width="38" height="4" rx="1.5" fill="#efd9a8"/>
+    <g fill="#d9a54e"><circle cx="588" cy="459" r="1.4"/><circle cx="596" cy="458" r="1.2"/><circle cx="605" cy="459" r="1.5"/><circle cx="614" cy="458" r="1.2"/></g>
+  </g>
+  <g id="tisch-buterbrod-salyami" class="aufgetischt">
+    <rect x="578" y="470" width="46" height="13" rx="5" fill="#c8893e"/>
+    <rect x="580" y="469" width="42" height="9" rx="4" fill="#e9c27a"/>
+    <path d="M584 466 L618 466 L620 472 L582 472Z" fill="#f6d365"/>
+    <circle cx="592" cy="466" r="5" fill="#c0504d"/><circle cx="606" cy="465" r="5" fill="#c0504d"/>
+    <circle cx="592" cy="466" r="1.3" fill="#f3c6c4"/><circle cx="606" cy="465" r="1.3" fill="#f3c6c4"/>
+  </g>
+
+  <g id="tisch-buterbrod-vetchina" class="aufgetischt">
+    <rect x="578" y="470" width="46" height="13" rx="5" fill="#c8893e"/>
+    <rect x="580" y="469" width="42" height="9" rx="4" fill="#e9c27a"/>
+    <path d="M582 470 Q588 460 596 468 Q602 459 610 467 Q616 460 621 470Z" fill="#e8a0a4"/>
+    <path d="M586 466 Q592 463 598 467 M603 466 Q609 462 615 466" stroke="#f6d3d4" stroke-width="1.5" fill="none"/>
+    <path d="M579 471 Q584 467 588 471" stroke="#7fae5a" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+  </g>
+  <g id="tisch-kruassan" class="aufgetischt">
+    <path d="M574 480 Q578 462 600 460 Q622 462 626 480 Q620 474 612 476 Q606 468 600 469 Q594 468 588 476 Q580 474 574 480Z" fill="#e2a24e"/>
+    <path d="M588 476 Q594 468 600 469 Q606 468 612 476" fill="none" stroke="#b86f27" stroke-width="1.5"/>
+    <path d="M594 471 L592 464 M606 471 L608 464 M600 469 L600 461" stroke="#b86f27" stroke-width="1.3"/>
+    <path d="M580 474 Q590 462 600 461" stroke="#f3cd85" stroke-width="2" fill="none" opacity="0.8"/>
+  </g>
+  <g id="tisch-pirog" class="aufgetischt">
+    <path d="M580 482 L622 482 L606 460Z" fill="#f0c97a"/>
+    <path d="M580 482 L622 482 L620 477 L582 477Z" fill="#c98a3c"/>
+    <path d="M590 477 L605 462 M598 477 L609 466 M606 477 L614 469" stroke="#b9772f" stroke-width="2" stroke-linecap="round"/>
+    <circle cx="596" cy="473" r="2" fill="#e9d38a"/><circle cx="607" cy="474" r="2" fill="#e9d38a"/>
+  </g>
+  <g id="tisch-voda-gaz" class="aufgetischt">
+    <path d="M412 446 L436 446 L433 488 L415 488Z" fill="#dff0f6" opacity="0.95"/>
+    <path d="M412 446 L436 446 L433 488 L415 488Z" fill="none" stroke="#b9d6e0" stroke-width="2"/>
+    <path d="M417 452 L419 482" stroke="#fff" stroke-width="2.5" opacity="0.7" stroke-linecap="round"/>
+    <g class="blaeschen" fill="#ffffff" stroke="#9cc6d6" stroke-width="0.8">
+      <circle cx="424" cy="480" r="1.6"/><circle cx="428" cy="470" r="1.3"/><circle cx="421" cy="462" r="1.5"/><circle cx="429" cy="456" r="1.1"/>
+    </g>
+    <circle cx="430" cy="448" r="4" fill="#f6e98a"/>
+  </g>
+  <g id="tisch-voda" class="aufgetischt">
+    <path d="M412 446 L436 446 L433 488 L415 488Z" fill="#e8f4f8" opacity="0.95"/>
+    <path d="M412 446 L436 446 L433 488 L415 488Z" fill="none" stroke="#b9d6e0" stroke-width="2"/>
+    <path d="M417 452 L419 482" stroke="#fff" stroke-width="2.5" opacity="0.7" stroke-linecap="round"/>
+    <path d="M413 455 L435 455" stroke="#b9d6e0" stroke-width="1" opacity="0.8"/>
+  </g>
+  <g id="tisch-maslo" class="aufgetischt">
+    <ellipse cx="462" cy="506" rx="17" ry="4.5" fill="#fbfbf8" stroke="#2b5fa8" stroke-width="1.2"/>
+    <path d="M454 503 L456 495 L470 495 L470 503Z" fill="#f6e08a"/>
+    <path d="M456 495 L459 492 L472 492 L470 495Z" fill="#fbeeb0"/>
+    <path d="M470 495 L472 492 L472 500 L470 503Z" fill="#e3c866"/>
+  </g>
+  <g id="tisch-dzhem" class="aufgetischt">
+    <path d="M512 508 L512 493 Q512 490 515 490 L529 490 Q532 490 532 493 L532 508Z" fill="#b5344a" opacity="0.92"/>
+    <rect x="510" y="485" width="24" height="7" rx="2" fill="#fbfbf8"/>
+    <rect x="512" y="485" width="5" height="7" fill="#c8553d"/><rect x="522" y="485" width="5" height="7" fill="#c8553d"/>
+    <rect x="515" y="497" width="14" height="7" rx="1.5" fill="#fbf3dd"/>
+  </g>
+
+  <rect width="1000" height="620" fill="url(#cafe-vignette)" pointer-events="none"/>
+</svg>

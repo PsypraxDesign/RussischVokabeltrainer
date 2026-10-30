@@ -1,0 +1,43 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 260 300" role="img" aria-label="Café von außen">
+  <defs>
+    <linearGradient id="aussen-licht" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#ffe3a0"/>
+      <stop offset="1" stop-color="#f4b860"/>
+    </linearGradient>
+    <pattern id="aussen-markise" width="24" height="40" patternUnits="userSpaceOnUse">
+      <rect width="12" height="40" fill="#1f4e47"/>
+      <rect x="12" width="12" height="40" fill="#f6efe3"/>
+    </pattern>
+  </defs>
+  <!-- Fassade -->
+  <rect x="10" y="20" width="240" height="280" fill="#efe1c6"/>
+  <rect x="10" y="20" width="240" height="14" fill="#c8553d"/>
+  <rect x="4" y="12" width="252" height="10" rx="2" fill="#a8432f"/>
+  <!-- Obergeschoss -->
+  <g fill="#9fcde3" stroke="#fbf7ef" stroke-width="4">
+    <rect x="36" y="52" width="44" height="56" rx="20"/>
+    <rect x="108" y="52" width="44" height="56" rx="20"/>
+    <rect x="180" y="52" width="44" height="56" rx="20"/>
+  </g>
+  <g fill="#c8553d"><rect x="32" y="108" width="52" height="6" rx="2"/><rect x="104" y="108" width="52" height="6" rx="2"/><rect x="176" y="108" width="52" height="6" rx="2"/></g>
+  <!-- Schild -->
+  <rect x="50" y="128" width="160" height="34" rx="6" fill="#1f4e47"/>
+  <rect x="54" y="132" width="152" height="26" rx="4" fill="none" stroke="#d6a446" stroke-width="1.5"/>
+  <text x="130" y="152" text-anchor="middle" font-family="'Playfair Display', Georgia, serif" font-size="20" font-weight="700" letter-spacing="3" fill="#f6efe3">КАФЕ</text>
+  <!-- Markise -->
+  <path d="M18 176 L242 176 L250 204 L10 204Z" fill="url(#aussen-markise)"/>
+  <path d="M10 204 Q20 214 30 204 Q40 214 50 204 Q60 214 70 204 Q80 214 90 204 Q100 214 110 204 Q120 214 130 204 Q140 214 150 204 Q160 214 170 204 Q180 214 190 204 Q200 214 210 204 Q220 214 230 204 Q240 214 250 204" fill="#1f4e47"/>
+  <!-- Schaufenster mit warmem Licht -->
+  <rect x="24" y="214" width="128" height="74" rx="3" fill="url(#aussen-licht)" stroke="#5e3920" stroke-width="5"/>
+  <line x1="88" y1="214" x2="88" y2="288" stroke="#5e3920" stroke-width="4"/>
+  <g fill="#c8553d" opacity="0.85">
+    <circle cx="52" cy="262" r="9"/><rect x="48" y="270" width="8" height="18"/>
+    <circle cx="118" cy="258" r="9"/><rect x="114" y="266" width="8" height="22"/>
+  </g>
+  <ellipse cx="70" cy="226" rx="10" ry="5" fill="#d6a446"/><line x1="70" y1="214" x2="70" y2="222" stroke="#5e3920" stroke-width="1.5"/>
+  <!-- Tür -->
+  <rect x="170" y="214" width="62" height="86" rx="3" fill="#5e3920"/>
+  <rect x="178" y="222" width="46" height="40" rx="2" fill="url(#aussen-licht)"/>
+  <circle cx="222" cy="272" r="3.5" fill="#d6a446"/>
+  <rect x="164" y="294" width="74" height="6" fill="#4a2c18"/>
+</svg>

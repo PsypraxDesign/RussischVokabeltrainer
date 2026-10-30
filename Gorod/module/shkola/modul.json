@@ -1,0 +1,25 @@
+{
+  "titel": {
+    "ru": "шко́ла",
+    "de": "Schule"
+  },
+  "praeposition": "в",
+  "satz_hin": "Я иду́ в шко́лу.",
+  "satz_hin_de": "Ich gehe in die Schule.",
+  "stufen": [
+    "entdecken",
+    "hoeren",
+    "einkaufen",
+    "stundenplan",
+    "unterricht"
+  ],
+  "stufen_titel": {
+    "einkaufen": "Ranzen packen"
+  },
+  "grafik": {
+    "aussen": "grafik/aussen.svg",
+    "innen": "grafik/innen.svg"
+  },
+  "farbe": "#c8862f",
+  "breite": 260
+}

@@ -1,0 +1,2110 @@
+{
+ "entdecken_hinweis": "Was gibt es am Flughafen? Tippe auf das Flugzeug, den Koffer, die Passkontrolle …",
+ "woerter": [
+  {
+   "id": "kontrol",
+   "ru": "па́спортный контро́ль",
+   "de": "die Passkontrolle",
+   "genus": "m",
+   "hotspot": "hs-kontrol",
+   "satz": "Снача́ла – па́спортный контро́ль."
+  },
+  {
+   "id": "pogranichnik",
+   "ru": "пограни́чник",
+   "de": "der Grenzbeamte",
+   "genus": "m",
+   "hotspot": "hs-pogranichnik",
+   "satz": "Пограни́чник проверя́ет па́спорт.",
+   "hinweis": "грани́ца – die Grenze"
+  },
+  {
+   "id": "pasport",
+   "ru": "па́спорт",
+   "de": "der Pass",
+   "genus": "m",
+   "hotspot": "hs-pasport",
+   "satz": "Па́спорт лежи́т на сто́йке.",
+   "hinweis": "Für Auslandsreisen: загранпа́спорт"
+  },
+  {
+   "id": "samolyot",
+   "ru": "самолёт",
+   "de": "das Flugzeug",
+   "genus": "m",
+   "hotspot": "hs-samolyot",
+   "satz": "Самолёт стои́т за окно́м.",
+   "hinweis": "прилете́ть – (mit dem Flugzeug) ankommen"
+  },
+  {
+   "id": "tablo",
+   "ru": "табло́",
+   "de": "die Anzeigetafel",
+   "genus": "n",
+   "hotspot": "hs-tablo",
+   "satz": "На табло́ – все ре́йсы.",
+   "hinweis": "unveränderlich wie меню́; рейс – der Flug"
+  },
+  {
+   "id": "lenta",
+   "ru": "бага́жная ле́нта",
+   "de": "das Gepäckband",
+   "genus": "f",
+   "hotspot": "hs-lenta",
+   "satz": "Чемода́ны е́дут по ле́нте."
+  },
+  {
+   "id": "bagazh",
+   "ru": "бага́ж",
+   "de": "das Gepäck",
+   "genus": "m",
+   "hotspot": "hs-bagazh",
+   "satz": "Бага́ж е́дет по ле́нте.",
+   "hinweis": "nur Singular: бага́ж = alles Gepäck zusammen"
+  },
+  {
+   "id": "chemodan",
+   "ru": "чемода́н",
+   "de": "der Koffer",
+   "genus": "m",
+   "hotspot": "hs-chemodan",
+   "satz": "Чемода́н стои́т на теле́жке."
+  },
+  {
+   "id": "telezhka",
+   "ru": "теле́жка",
+   "de": "der Gepäckwagen",
+   "genus": "f",
+   "hotspot": "hs-telezhka",
+   "satz": "Теле́жка стои́т у ле́нты."
+  },
+  {
+   "id": "ryukzak",
+   "ru": "рюкза́к",
+   "de": "der Rucksack",
+   "genus": "m",
+   "hotspot": "hs-ryukzak",
+   "satz": "Рюкза́к лежи́т на полу́.",
+   "hinweis": "на полу́ – auf dem Boden (Sonderendung wie в саду́)"
+  },
+  {
+   "id": "sumka",
+   "ru": "су́мка",
+   "de": "die Tasche",
+   "genus": "f",
+   "hotspot": "hs-sumka",
+   "satz": "Су́мка стои́т ря́дом с рюкзако́м.",
+   "hinweis": "ручна́я кладь – das Handgepäck"
+  },
+  {
+   "id": "passazhirka",
+   "ru": "пассажи́рка",
+   "de": "die Passagierin",
+   "genus": "f",
+   "hotspot": "hs-passazhirka",
+   "satz": "Пассажи́рка ждёт бага́ж.",
+   "hinweis": "männlich: пассажи́р"
+  },
+  {
+   "id": "talon",
+   "ru": "поса́дочный тало́н",
+   "de": "die Bordkarte",
+   "genus": "m",
+   "hotspot": "hs-talon",
+   "satz": "У пассажи́рки в руке́ поса́дочный тало́н.",
+   "hinweis": "бага́жный тало́н – der Gepäckschein"
+  },
+  {
+   "id": "rozysk",
+   "ru": "ро́зыск багажа́",
+   "de": "die Gepäckermittlung",
+   "genus": "m",
+   "hotspot": "hs-rozysk",
+   "satz": "Ро́зыск багажа́ – спра́ва.",
+   "hinweis": "Hier meldet man verlorenes Gepäck."
+  },
+  {
+   "id": "sotrudnitsa",
+   "ru": "сотру́дница",
+   "de": "die Mitarbeiterin",
+   "genus": "f",
+   "hotspot": "hs-sotrudnitsa",
+   "satz": "Сотру́дница помога́ет пассажи́рам.",
+   "hinweis": "männlich: сотру́дник"
+  },
+  {
+   "id": "tamozhnya",
+   "ru": "тамо́жня",
+   "de": "der Zoll",
+   "genus": "f",
+   "hotspot": "hs-tamozhnya",
+   "satz": "Тамо́жня – в конце́ за́ла.",
+   "hinweis": "Grüner Ausgang: „Не́чего деклари́ровать“ – nichts zu verzollen"
+  },
+  {
+   "id": "tamozhennik",
+   "ru": "тамо́женник",
+   "de": "der Zollbeamte",
+   "genus": "m",
+   "hotspot": "hs-tamozhennik",
+   "satz": "Тамо́женник проверя́ет су́мки."
+  },
+  {
+   "id": "vykhod",
+   "ru": "вы́ход",
+   "de": "der Ausgang",
+   "genus": "m",
+   "hotspot": "hs-vykhod",
+   "satz": "Вы́ход – там, за тамо́жней.",
+   "hinweis": "вход – der Eingang"
+  }
+ ],
+ "reise": {
+  "figuren": {
+   "pogranichnik": {
+    "name": "Пограни́чник",
+    "stimme": "maennlich",
+    "blase": {
+     "x": 0.115,
+     "y": 0.43
+    }
+   },
+   "sotrudnitsa": {
+    "name": "Сотру́дница",
+    "stimme": "weiblich",
+    "blase": {
+     "x": 0.79,
+     "y": 0.47,
+     "seite": "links"
+    }
+   },
+   "tamozhennik": {
+    "name": "Тамо́женник",
+    "stimme": "maennlich",
+    "blase": {
+     "x": 0.93,
+     "y": 0.45,
+     "seite": "links"
+    }
+   },
+   "erzaehler": {
+    "name": "",
+    "stimme": "erzaehler",
+    "blase": {
+     "x": 0.36,
+     "y": 0.62
+    }
+   }
+  },
+  "reisende": [
+   {
+    "id": "anna",
+    "geschlecht": "f",
+    "pass": {
+     "familie": "Петро́ва",
+     "imya": "А́нна",
+     "otchestvo": "Серге́евна",
+     "geburt": "12.03.1985"
+    },
+    "gepaeck": {
+     "art": "chemodan",
+     "farbe": "#c8553d",
+     "gross": true
+    },
+    "p": {
+     "vash": "ваш",
+     "gepaeck": "чемода́н",
+     "gepaeck_akk": "чемода́н",
+     "gepaeck_de": "Ihr Koffer",
+     "gepaeck_de_akk": "Ihren Koffer",
+     "ihn_de": "ihn",
+     "nichtda": "Ва́шего чемода́на нет.",
+     "nichtda_de": "Ihr Koffer ist nicht da."
+    },
+    "zettel": {
+     "pass": [
+      "Flug aus Berlin",
+      "Zweck: Urlaub",
+      "Aufenthalt: zwei Wochen"
+     ],
+     "gepaeck": [
+      "Aufgegeben: großer roter Koffer",
+      "Unterkunft: Hotel „Kosmos“"
+     ],
+     "zoll": [
+      "Nichts zu verzollen",
+      "In der Handtasche: ein Geschenk für Mama",
+      "Bargeld: 200 Euro"
+     ]
+    },
+    "felder": {
+     "familie": {
+      "richtig": {
+       "text": "Моя́ фами́лия – Петро́ва.",
+       "de": "Mein Familienname ist Petrowa."
+      },
+      "falsch": [
+       {
+        "text": "Моя́ фами́лия – Петро́в.",
+        "de": "",
+        "hinweis": "Петро́в ist die männliche Form – als Frau heißt du Петро́ва."
+       },
+       {
+        "text": "Мой фами́лия – Петро́ва.",
+        "de": "",
+        "hinweis": "фами́лия ist weiblich: моя́ фами́лия."
+       }
+      ]
+     },
+     "imya": {
+      "richtig": {
+       "text": "Меня́ зову́т А́нна.",
+       "de": "Ich heiße Anna."
+      },
+      "falsch": [
+       {
+        "text": "Я зову́т А́нна.",
+        "de": "",
+        "hinweis": "Wörtlich „mich nennt man“: меня́ зову́т …"
+       },
+       {
+        "text": "Меня́ зову́т Петро́ва.",
+        "de": "",
+        "hinweis": "Петро́ва ist dein Familienname – gefragt ist der Vorname."
+       }
+      ]
+     },
+     "otchestvo": {
+      "richtig": {
+       "text": "Серге́евна.",
+       "de": "Mein Vatersname: Sergejewna."
+      },
+      "falsch": [
+       {
+        "text": "Серге́евич.",
+        "de": "",
+        "hinweis": "-ович/-евич ist die Form für Männer. Frauen: -овна/-евна – also Серге́евна."
+       },
+       {
+        "text": "Серге́й.",
+        "de": "",
+        "hinweis": "Серге́й ist der Vorname deines Vaters – dein Vatersname lautet Серге́евна."
+       }
+      ]
+     },
+     "geburt": {
+      "richtig": {
+       "text": "Двена́дцатое ма́рта ты́сяча девятьсо́т во́семьдесят пя́того го́да.",
+       "de": "Der 12. März 1985."
+      },
+      "falsch": [
+       {
+        "text": "Двена́дцать ма́рта ты́сяча девятьсо́т во́семьдесят пя́того го́да.",
+        "de": "",
+        "hinweis": "Beim Datum steht die Ordnungszahl im Neutrum (wie число́): двена́дцатое, nicht двена́дцать."
+       },
+       {
+        "text": "Двена́дцатое март ты́сяча девятьсо́т во́семьдесят пя́того го́да.",
+        "de": "",
+        "hinweis": "Der Monat steht im Genitiv („des …“): ма́рта, nicht март."
+       },
+       {
+        "text": "Тре́тье декабря́ ты́сяча девятьсо́т во́семьдесят пя́того го́да.",
+        "de": "",
+        "hinweis": "Das wäre der 3. Dezember – im Pass steht 12.03., also der 12. März. Erst der Tag, dann der Monat."
+       }
+      ]
+     },
+     "herkunft": {
+      "richtig": {
+       "text": "Из Берли́на.",
+       "de": "Aus Berlin."
+      },
+      "falsch": [
+       {
+        "text": "Из Берли́н.",
+        "de": "",
+        "hinweis": "Nach из steht der Genitiv: Берли́н → из Берли́на."
+       },
+       {
+        "text": "В Берли́не.",
+        "de": "",
+        "hinweis": "в Берли́не heißt „in Berlin“ (wo?). Gefragt ist woher: из Берли́на."
+       }
+      ]
+     },
+     "zweck": {
+      "richtig": {
+       "text": "Тури́зм.",
+       "de": "Tourismus."
+      },
+      "falsch": [
+       {
+        "text": "Командиро́вка.",
+        "de": "Dienstreise.",
+        "hinweis": "Das heißt „Dienstreise“ – laut deinem Zettel: Urlaub."
+       },
+       {
+        "text": "В го́сти к роди́телям.",
+        "de": "Besuch bei den Eltern.",
+        "hinweis": "Das heißt „Besuch bei den Eltern“ – laut deinem Zettel: Urlaub."
+       }
+      ]
+     },
+     "dauer": {
+      "richtig": {
+       "text": "Две неде́ли.",
+       "de": "Zwei Wochen."
+      },
+      "falsch": [
+       {
+        "text": "Два неде́ли.",
+        "de": "",
+        "hinweis": "неде́ля ist weiblich: две неде́ли."
+       },
+       {
+        "text": "Две неде́ль.",
+        "de": "",
+        "hinweis": "Nach 2, 3, 4 steht der Genitiv Singular: две неде́ли."
+       }
+      ]
+     },
+     "verlust": {
+      "richtig": {
+       "text": "Мой чемода́н не пришёл.",
+       "de": "Mein Koffer ist nicht angekommen."
+      },
+      "falsch": [
+       {
+        "text": "Мой чемода́н пришёл.",
+        "de": "",
+        "hinweis": "пришёл heißt „ist angekommen“ – es fehlt das не: не пришёл."
+       },
+       {
+        "text": "Мой чемода́н не пришла́.",
+        "de": "",
+        "hinweis": "чемода́н ist männlich: мой чемода́н не пришёл."
+       },
+       {
+        "text": "Я потеря́ла па́спорт.",
+        "de": "",
+        "hinweis": "Das heißt „Ich habe den Pass verloren“ – dein Pass ist doch da."
+       }
+      ]
+     },
+     "aussehen": {
+      "richtig": {
+       "text": "Большо́й кра́сный чемода́н.",
+       "de": "Großer roter Koffer."
+      },
+      "falsch": [
+       {
+        "text": "Больша́я кра́сная чемода́н.",
+        "de": "",
+        "hinweis": "чемода́н ist männlich: большо́й кра́сный чемода́н."
+       },
+       {
+        "text": "Большо́й си́ний чемода́н.",
+        "de": "",
+        "hinweis": "си́ний heißt blau. Dein Gepäck ist rot: кра́сный."
+       },
+       {
+        "text": "Ма́ленький кра́сный чемода́н.",
+        "de": "",
+        "hinweis": "ма́ленький heißt klein – schau aufs Bild auf deinem Zettel."
+       }
+      ]
+     },
+     "wohnen": {
+      "richtig": {
+       "text": "В гости́нице «Ко́смос».",
+       "de": "Im Hotel „Kosmos“."
+      },
+      "falsch": [
+       {
+        "text": "В гости́ница «Ко́смос».",
+        "de": "",
+        "hinweis": "Wo? в + Präpositiv: гости́ница → в гости́нице."
+       },
+       {
+        "text": "В гости́ницу «Ко́смос».",
+        "de": "",
+        "hinweis": "в гости́ницу (Akkusativ) heißt „ins Hotel“ (wohin?). Gefragt ist wo: в гости́нице."
+       }
+      ]
+     },
+     "ding": {
+      "richtig": {
+       "text": "Э́то пода́рок для ма́мы.",
+       "de": "Das ist ein Geschenk für Mama."
+      },
+      "falsch": [
+       {
+        "text": "Э́то пода́рок для ма́ма.",
+        "de": "",
+        "hinweis": "для + Genitiv: ма́ма → для ма́мы."
+       },
+       {
+        "text": "Э́то пода́рок с ма́мой.",
+        "de": "",
+        "hinweis": "с ма́мой heißt „mit Mama“. „Für“ heißt для + Genitiv: для ма́мы."
+       }
+      ]
+     },
+     "geld": {
+      "richtig": {
+       "text": "Две́сти е́вро.",
+       "de": "200 Euro."
+      },
+      "falsch": [
+       {
+        "text": "Две́сти е́вров.",
+        "de": "",
+        "hinweis": "е́вро ist unveränderlich: … е́вро."
+       },
+       {
+        "text": "Два́дцать е́вро.",
+        "de": "",
+        "hinweis": "два́дцать = 20. Du hast 200 Euro: две́сти."
+       }
+      ]
+     }
+    }
+   },
+   {
+    "id": "dmitri",
+    "geschlecht": "m",
+    "pass": {
+     "familie": "Смирно́в",
+     "imya": "Дми́трий",
+     "otchestvo": "Алекса́ндрович",
+     "geburt": "03.11.1979"
+    },
+    "gepaeck": {
+     "art": "sumka",
+     "farbe": "#2c2c2e",
+     "gross": false
+    },
+    "p": {
+     "vash": "ва́ша",
+     "gepaeck": "су́мка",
+     "gepaeck_akk": "су́мку",
+     "gepaeck_de": "Ihre Tasche",
+     "gepaeck_de_akk": "Ihre Tasche",
+     "ihn_de": "sie",
+     "nichtda": "Ва́шей су́мки нет.",
+     "nichtda_de": "Ihre Tasche ist nicht da."
+    },
+    "zettel": {
+     "pass": [
+      "Flug aus Frankfurt",
+      "Zweck: Dienstreise",
+      "Aufenthalt: fünf Tage"
+     ],
+     "gepaeck": [
+      "Aufgegeben: kleine schwarze Tasche",
+      "Unterkunft: Hotel „Metropol“"
+     ],
+     "zoll": [
+      "Nichts zu verzollen",
+      "In der Handtasche: Bücher für deinen Bruder",
+      "Bargeld: 500 Euro"
+     ]
+    },
+    "felder": {
+     "familie": {
+      "richtig": {
+       "text": "Моя́ фами́лия – Смирно́в.",
+       "de": "Mein Familienname ist Smirnow."
+      },
+      "falsch": [
+       {
+        "text": "Моя́ фами́лия – Смирно́ва.",
+        "de": "",
+        "hinweis": "Смирно́ва ist die weibliche Form – als Mann heißt du Смирно́в."
+       },
+       {
+        "text": "Мой фами́лия – Смирно́в.",
+        "de": "",
+        "hinweis": "фами́лия ist weiblich: моя́ фами́лия."
+       }
+      ]
+     },
+     "imya": {
+      "richtig": {
+       "text": "Меня́ зову́т Дми́трий.",
+       "de": "Ich heiße Dmitri."
+      },
+      "falsch": [
+       {
+        "text": "Я зову́т Дми́трий.",
+        "de": "",
+        "hinweis": "Wörtlich „mich nennt man“: меня́ зову́т …"
+       },
+       {
+        "text": "Меня́ зову́т Смирно́в.",
+        "de": "",
+        "hinweis": "Смирно́в ist dein Familienname – gefragt ist der Vorname."
+       }
+      ]
+     },
+     "otchestvo": {
+      "richtig": {
+       "text": "Алекса́ндрович.",
+       "de": "Mein Vatersname: Alexandrowitsch."
+      },
+      "falsch": [
+       {
+        "text": "Алекса́ндровна.",
+        "de": "",
+        "hinweis": "-овна/-евна ist die Form für Frauen. Männer: -ович/-евич – also Алекса́ндрович."
+       },
+       {
+        "text": "Алекса́ндр.",
+        "de": "",
+        "hinweis": "Алекса́ндр ist der Vorname deines Vaters – dein Vatersname lautet Алекса́ндрович."
+       }
+      ]
+     },
+     "geburt": {
+      "richtig": {
+       "text": "Тре́тье ноября́ ты́сяча девятьсо́т се́мьдесят девя́того го́да.",
+       "de": "Der 3. November 1979."
+      },
+      "falsch": [
+       {
+        "text": "Три ноября́ ты́сяча девятьсо́т се́мьдесят девя́того го́да.",
+        "de": "",
+        "hinweis": "Beim Datum steht die Ordnungszahl im Neutrum (wie число́): тре́тье, nicht три."
+       },
+       {
+        "text": "Тре́тье ноя́брь ты́сяча девятьсо́т се́мьдесят девя́того го́да.",
+        "de": "",
+        "hinweis": "Der Monat steht im Genitiv („des …“): ноября́, nicht ноя́брь."
+       },
+       {
+        "text": "Оди́ннадцатое ма́рта ты́сяча девятьсо́т се́мьдесят девя́того го́да.",
+        "de": "",
+        "hinweis": "Das wäre der 11. März – im Pass steht 03.11., also der 3. November. Erst der Tag, dann der Monat."
+       }
+      ]
+     },
+     "herkunft": {
+      "richtig": {
+       "text": "Из Фра́нкфурта.",
+       "de": "Aus Frankfurt."
+      },
+      "falsch": [
+       {
+        "text": "Из Фра́нкфурт.",
+        "de": "",
+        "hinweis": "Nach из steht der Genitiv: Фра́нкфурт → из Фра́нкфурта."
+       },
+       {
+        "text": "Во Фра́нкфурте.",
+        "de": "",
+        "hinweis": "во Фра́нкфурте heißt „in Frankfurt“ (wo?). Gefragt ist woher: из Фра́нкфурта."
+       }
+      ]
+     },
+     "zweck": {
+      "richtig": {
+       "text": "Командиро́вка.",
+       "de": "Dienstreise."
+      },
+      "falsch": [
+       {
+        "text": "Тури́зм.",
+        "de": "Tourismus.",
+        "hinweis": "Das heißt „Tourismus“ – laut deinem Zettel: Dienstreise."
+       },
+       {
+        "text": "В го́сти к роди́телям.",
+        "de": "Besuch bei den Eltern.",
+        "hinweis": "Das heißt „Besuch bei den Eltern“ – laut deinem Zettel: Dienstreise."
+       }
+      ]
+     },
+     "dauer": {
+      "richtig": {
+       "text": "Пять дней.",
+       "de": "Fünf Tage."
+      },
+      "falsch": [
+       {
+        "text": "Пять дня.",
+        "de": "",
+        "hinweis": "Ab 5 steht der Genitiv Plural: пять дней."
+       },
+       {
+        "text": "Пять день.",
+        "de": "",
+        "hinweis": "Ab 5 steht der Genitiv Plural: пять дней."
+       }
+      ]
+     },
+     "verlust": {
+      "richtig": {
+       "text": "Моя́ су́мка не пришла́.",
+       "de": "Meine Tasche ist nicht angekommen."
+      },
+      "falsch": [
+       {
+        "text": "Моя́ су́мка пришла́.",
+        "de": "",
+        "hinweis": "пришла́ heißt „ist angekommen“ – es fehlt das не: не пришла́."
+       },
+       {
+        "text": "Моя́ су́мка не пришёл.",
+        "de": "",
+        "hinweis": "су́мка ist weiblich: не пришла́."
+       },
+       {
+        "text": "Я потеря́л па́спорт.",
+        "de": "",
+        "hinweis": "Das heißt „Ich habe den Pass verloren“ – dein Pass ist doch da."
+       }
+      ]
+     },
+     "aussehen": {
+      "richtig": {
+       "text": "Ма́ленькая чёрная су́мка.",
+       "de": "Kleine schwarze Tasche."
+      },
+      "falsch": [
+       {
+        "text": "Ма́ленький чёрный су́мка.",
+        "de": "",
+        "hinweis": "су́мка ist weiblich: ма́ленькая чёрная су́мка."
+       },
+       {
+        "text": "Ма́ленькая си́няя су́мка.",
+        "de": "",
+        "hinweis": "си́няя heißt blau. Dein Gepäck ist schwarz: чёрная."
+       },
+       {
+        "text": "Больша́я чёрная су́мка.",
+        "de": "",
+        "hinweis": "больша́я heißt groß – schau aufs Bild auf deinem Zettel."
+       }
+      ]
+     },
+     "wohnen": {
+      "richtig": {
+       "text": "В гости́нице «Метропо́ль».",
+       "de": "Im Hotel „Metropol“."
+      },
+      "falsch": [
+       {
+        "text": "В гости́ница «Метропо́ль».",
+        "de": "",
+        "hinweis": "Wo? в + Präpositiv: гости́ница → в гости́нице."
+       },
+       {
+        "text": "В гости́ницу «Метропо́ль».",
+        "de": "",
+        "hinweis": "в гости́ницу (Akkusativ) heißt „ins Hotel“ (wohin?). Gefragt ist wo: в гости́нице."
+       }
+      ]
+     },
+     "ding": {
+      "richtig": {
+       "text": "Э́то кни́ги для бра́та.",
+       "de": "Das sind Bücher für meinen Bruder."
+      },
+      "falsch": [
+       {
+        "text": "Э́то кни́ги для брат.",
+        "de": "",
+        "hinweis": "для + Genitiv: брат → для бра́та."
+       },
+       {
+        "text": "Э́то кни́ги с бра́том.",
+        "de": "",
+        "hinweis": "с бра́том heißt „mit meinem Bruder“. „Für“ heißt для + Genitiv: для бра́та."
+       }
+      ]
+     },
+     "geld": {
+      "richtig": {
+       "text": "Пятьсо́т е́вро.",
+       "de": "500 Euro."
+      },
+      "falsch": [
+       {
+        "text": "Пятьсо́т е́вров.",
+        "de": "",
+        "hinweis": "е́вро ist unveränderlich: … е́вро."
+       },
+       {
+        "text": "Пятьдеся́т е́вро.",
+        "de": "",
+        "hinweis": "пятьдеся́т = 50. Du hast 500 Euro: пятьсо́т."
+       }
+      ]
+     }
+    }
+   },
+   {
+    "id": "elena",
+    "geschlecht": "f",
+    "pass": {
+     "familie": "Кузнецо́ва",
+     "imya": "Еле́на",
+     "otchestvo": "Ива́новна",
+     "geburt": "25.07.1992"
+    },
+    "gepaeck": {
+     "art": "ryukzak",
+     "farbe": "#2b5fa8",
+     "gross": true
+    },
+    "p": {
+     "vash": "ваш",
+     "gepaeck": "рюкза́к",
+     "gepaeck_akk": "рюкза́к",
+     "gepaeck_de": "Ihr Rucksack",
+     "gepaeck_de_akk": "Ihren Rucksack",
+     "ihn_de": "ihn",
+     "nichtda": "Ва́шего рюкзака́ нет.",
+     "nichtda_de": "Ihr Rucksack ist nicht da."
+    },
+    "zettel": {
+     "pass": [
+      "Flug aus Wien",
+      "Zweck: Besuch bei den Eltern",
+      "Aufenthalt: einen Monat"
+     ],
+     "gepaeck": [
+      "Aufgegeben: großer blauer Rucksack",
+      "Unterkunft: bei deinen Eltern"
+     ],
+     "zoll": [
+      "Nichts zu verzollen",
+      "In der Handtasche: Schokolade für deine Schwester",
+      "Bargeld: 300 Dollar"
+     ]
+    },
+    "felder": {
+     "familie": {
+      "richtig": {
+       "text": "Моя́ фами́лия – Кузнецо́ва.",
+       "de": "Mein Familienname ist Kusnezowa."
+      },
+      "falsch": [
+       {
+        "text": "Моя́ фами́лия – Кузнецо́в.",
+        "de": "",
+        "hinweis": "Кузнецо́в ist die männliche Form – als Frau heißt du Кузнецо́ва."
+       },
+       {
+        "text": "Мой фами́лия – Кузнецо́ва.",
+        "de": "",
+        "hinweis": "фами́лия ist weiblich: моя́ фами́лия."
+       }
+      ]
+     },
+     "imya": {
+      "richtig": {
+       "text": "Меня́ зову́т Еле́на.",
+       "de": "Ich heiße Jelena."
+      },
+      "falsch": [
+       {
+        "text": "Я зову́т Еле́на.",
+        "de": "",
+        "hinweis": "Wörtlich „mich nennt man“: меня́ зову́т …"
+       },
+       {
+        "text": "Меня́ зову́т Кузнецо́ва.",
+        "de": "",
+        "hinweis": "Кузнецо́ва ist dein Familienname – gefragt ist der Vorname."
+       }
+      ]
+     },
+     "otchestvo": {
+      "richtig": {
+       "text": "Ива́новна.",
+       "de": "Mein Vatersname: Iwanowna."
+      },
+      "falsch": [
+       {
+        "text": "Ива́нович.",
+        "de": "",
+        "hinweis": "-ович/-евич ist die Form für Männer. Frauen: -овна/-евна – also Ива́новна."
+       },
+       {
+        "text": "Ива́н.",
+        "de": "",
+        "hinweis": "Ива́н ist der Vorname deines Vaters – dein Vatersname lautet Ива́новна."
+       }
+      ]
+     },
+     "geburt": {
+      "richtig": {
+       "text": "Два́дцать пя́тое ию́ля ты́сяча девятьсо́т девяно́сто второ́го го́да.",
+       "de": "Der 25. Juli 1992."
+      },
+      "falsch": [
+       {
+        "text": "Два́дцать пять ию́ля ты́сяча девятьсо́т девяно́сто второ́го го́да.",
+        "de": "",
+        "hinweis": "Beim Datum steht die Ordnungszahl im Neutrum (wie число́): два́дцать пя́тое, nicht два́дцать пять."
+       },
+       {
+        "text": "Два́дцать пя́тое ию́ль ты́сяча девятьсо́т девяно́сто второ́го го́да.",
+        "de": "",
+        "hinweis": "Der Monat steht im Genitiv („des …“): ию́ля, nicht ию́ль."
+       },
+       {
+        "text": "Два́дцать пя́тое ию́ля ты́сяча девятьсо́т девяно́сто второ́й год.",
+        "de": "",
+        "hinweis": "Auch das Jahr steht im Genitiv: ты́сяча девятьсо́т девяно́сто второ́го го́да."
+       }
+      ]
+     },
+     "herkunft": {
+      "richtig": {
+       "text": "Из Ве́ны.",
+       "de": "Aus Wien."
+      },
+      "falsch": [
+       {
+        "text": "Из Ве́на.",
+        "de": "",
+        "hinweis": "Nach из steht der Genitiv: Ве́на → из Ве́ны."
+       },
+       {
+        "text": "В Ве́не.",
+        "de": "",
+        "hinweis": "в Ве́не heißt „in Wien“ (wo?). Gefragt ist woher: из Ве́ны."
+       }
+      ]
+     },
+     "zweck": {
+      "richtig": {
+       "text": "В го́сти к роди́телям.",
+       "de": "Besuch bei den Eltern."
+      },
+      "falsch": [
+       {
+        "text": "Тури́зм.",
+        "de": "Tourismus.",
+        "hinweis": "Das heißt „Tourismus“ – laut deinem Zettel: Besuch bei den Eltern."
+       },
+       {
+        "text": "Командиро́вка.",
+        "de": "Dienstreise.",
+        "hinweis": "Das heißt „Dienstreise“ – laut deinem Zettel: Besuch bei den Eltern."
+       }
+      ]
+     },
+     "dauer": {
+      "richtig": {
+       "text": "Оди́н ме́сяц.",
+       "de": "Einen Monat."
+      },
+      "falsch": [
+       {
+        "text": "Одна́ ме́сяц.",
+        "de": "",
+        "hinweis": "ме́сяц ist männlich: оди́н ме́сяц."
+       },
+       {
+        "text": "Оди́н ме́сяца.",
+        "de": "",
+        "hinweis": "Nach оди́н steht der Nominativ Singular: оди́н ме́сяц."
+       }
+      ]
+     },
+     "verlust": {
+      "richtig": {
+       "text": "Мой рюкза́к не пришёл.",
+       "de": "Mein Rucksack ist nicht angekommen."
+      },
+      "falsch": [
+       {
+        "text": "Мой рюкза́к пришёл.",
+        "de": "",
+        "hinweis": "пришёл heißt „ist angekommen“ – es fehlt das не: не пришёл."
+       },
+       {
+        "text": "Моя́ рюкза́к не пришла́.",
+        "de": "",
+        "hinweis": "рюкза́к ist männlich: мой рюкза́к не пришёл."
+       },
+       {
+        "text": "Я потеря́ла па́спорт.",
+        "de": "",
+        "hinweis": "Das heißt „Ich habe den Pass verloren“ – dein Pass ist doch da."
+       }
+      ]
+     },
+     "aussehen": {
+      "richtig": {
+       "text": "Большо́й си́ний рюкза́к.",
+       "de": "Großer blauer Rucksack."
+      },
+      "falsch": [
+       {
+        "text": "Больша́я си́няя рюкза́к.",
+        "de": "",
+        "hinweis": "рюкза́к ist männlich: большо́й си́ний рюкза́к."
+       },
+       {
+        "text": "Большо́й кра́сный рюкза́к.",
+        "de": "",
+        "hinweis": "кра́сный heißt rot. Dein Gepäck ist blau: си́ний."
+       },
+       {
+        "text": "Ма́ленький си́ний рюкза́к.",
+        "de": "",
+        "hinweis": "ма́ленький heißt klein – schau aufs Bild auf deinem Zettel."
+       }
+      ]
+     },
+     "wohnen": {
+      "richtig": {
+       "text": "У роди́телей.",
+       "de": "Bei meinen Eltern."
+      },
+      "falsch": [
+       {
+        "text": "У роди́тели.",
+        "de": "",
+        "hinweis": "у + Genitiv: роди́тели → у роди́телей."
+       },
+       {
+        "text": "В роди́телях.",
+        "de": "",
+        "hinweis": "„bei jemandem“ heißt у + Genitiv: у роди́телей."
+       }
+      ]
+     },
+     "ding": {
+      "richtig": {
+       "text": "Э́то шокола́д для сестры́.",
+       "de": "Das ist Schokolade für meine Schwester."
+      },
+      "falsch": [
+       {
+        "text": "Э́то шокола́д для сестра́.",
+        "de": "",
+        "hinweis": "для + Genitiv: сестра́ → для сестры́."
+       },
+       {
+        "text": "Э́то шокола́д с сестро́й.",
+        "de": "",
+        "hinweis": "с сестро́й heißt „mit meiner Schwester“. „Für“ heißt для + Genitiv: для сестры́."
+       }
+      ]
+     },
+     "geld": {
+      "richtig": {
+       "text": "Три́ста до́лларов.",
+       "de": "300 Dollar."
+      },
+      "falsch": [
+       {
+        "text": "Три́ста до́ллара.",
+        "de": "",
+        "hinweis": "Nach 5 und mehr (auch 300, 700) steht der Genitiv Plural: до́лларов."
+       },
+       {
+        "text": "Три́ста до́ллар.",
+        "de": "",
+        "hinweis": "Nach 5 und mehr steht der Genitiv Plural: до́лларов."
+       }
+      ]
+     }
+    }
+   },
+   {
+    "id": "sergei",
+    "geschlecht": "m",
+    "pass": {
+     "familie": "Попо́в",
+     "imya": "Серге́й",
+     "otchestvo": "Никола́евич",
+     "geburt": "08.01.1968"
+    },
+    "gepaeck": {
+     "art": "chemodan",
+     "farbe": "#3f8f5f",
+     "gross": true
+    },
+    "p": {
+     "vash": "ваш",
+     "gepaeck": "чемода́н",
+     "gepaeck_akk": "чемода́н",
+     "gepaeck_de": "Ihr Koffer",
+     "gepaeck_de_akk": "Ihren Koffer",
+     "ihn_de": "ihn",
+     "nichtda": "Ва́шего чемода́на нет.",
+     "nichtda_de": "Ihr Koffer ist nicht da."
+    },
+    "zettel": {
+     "pass": [
+      "Flug aus München",
+      "Zweck: Urlaub",
+      "Aufenthalt: drei Tage"
+     ],
+     "gepaeck": [
+      "Aufgegeben: großer grüner Koffer",
+      "Unterkunft: bei einem Freund"
+     ],
+     "zoll": [
+      "Nichts zu verzollen",
+      "In der Handtasche: Wein für deinen Freund",
+      "Bargeld: 1000 Euro"
+     ]
+    },
+    "felder": {
+     "familie": {
+      "richtig": {
+       "text": "Моя́ фами́лия – Попо́в.",
+       "de": "Mein Familienname ist Popow."
+      },
+      "falsch": [
+       {
+        "text": "Моя́ фами́лия – Попо́ва.",
+        "de": "",
+        "hinweis": "Попо́ва ist die weibliche Form – als Mann heißt du Попо́в."
+       },
+       {
+        "text": "Мой фами́лия – Попо́в.",
+        "de": "",
+        "hinweis": "фами́лия ist weiblich: моя́ фами́лия."
+       }
+      ]
+     },
+     "imya": {
+      "richtig": {
+       "text": "Меня́ зову́т Серге́й.",
+       "de": "Ich heiße Sergei."
+      },
+      "falsch": [
+       {
+        "text": "Я зову́т Серге́й.",
+        "de": "",
+        "hinweis": "Wörtlich „mich nennt man“: меня́ зову́т …"
+       },
+       {
+        "text": "Меня́ зову́т Попо́в.",
+        "de": "",
+        "hinweis": "Попо́в ist dein Familienname – gefragt ist der Vorname."
+       }
+      ]
+     },
+     "otchestvo": {
+      "richtig": {
+       "text": "Никола́евич.",
+       "de": "Mein Vatersname: Nikolajewitsch."
+      },
+      "falsch": [
+       {
+        "text": "Никола́евна.",
+        "de": "",
+        "hinweis": "-овна/-евна ist die Form für Frauen. Männer: -ович/-евич – also Никола́евич."
+       },
+       {
+        "text": "Никола́й.",
+        "de": "",
+        "hinweis": "Никола́й ist der Vorname deines Vaters – dein Vatersname lautet Никола́евич."
+       }
+      ]
+     },
+     "geburt": {
+      "richtig": {
+       "text": "Восьмо́е января́ ты́сяча девятьсо́т шестьдеся́т восьмо́го го́да.",
+       "de": "Der 8. Januar 1968."
+      },
+      "falsch": [
+       {
+        "text": "Во́семь января́ ты́сяча девятьсо́т шестьдеся́т восьмо́го го́да.",
+        "de": "",
+        "hinweis": "Beim Datum steht die Ordnungszahl im Neutrum (wie число́): восьмо́е, nicht во́семь."
+       },
+       {
+        "text": "Восьмо́е янва́рь ты́сяча девятьсо́т шестьдеся́т восьмо́го го́да.",
+        "de": "",
+        "hinweis": "Der Monat steht im Genitiv („des …“): января́, nicht янва́рь."
+       },
+       {
+        "text": "Пе́рвое а́вгуста ты́сяча девятьсо́т шестьдеся́т восьмо́го го́да.",
+        "de": "",
+        "hinweis": "Das wäre der 1. August – im Pass steht 08.01., also der 8. Januar. Erst der Tag, dann der Monat."
+       }
+      ]
+     },
+     "herkunft": {
+      "richtig": {
+       "text": "Из Мю́нхена.",
+       "de": "Aus München."
+      },
+      "falsch": [
+       {
+        "text": "Из Мю́нхен.",
+        "de": "",
+        "hinweis": "Nach из steht der Genitiv: Мю́нхен → из Мю́нхена."
+       },
+       {
+        "text": "В Мю́нхене.",
+        "de": "",
+        "hinweis": "в Мю́нхене heißt „in München“ (wo?). Gefragt ist woher: из Мю́нхена."
+       }
+      ]
+     },
+     "zweck": {
+      "richtig": {
+       "text": "Тури́зм.",
+       "de": "Tourismus."
+      },
+      "falsch": [
+       {
+        "text": "Командиро́вка.",
+        "de": "Dienstreise.",
+        "hinweis": "Das heißt „Dienstreise“ – laut deinem Zettel: Urlaub."
+       },
+       {
+        "text": "В го́сти к роди́телям.",
+        "de": "Besuch bei den Eltern.",
+        "hinweis": "Das heißt „Besuch bei den Eltern“ – laut deinem Zettel: Urlaub."
+       }
+      ]
+     },
+     "dauer": {
+      "richtig": {
+       "text": "Три дня.",
+       "de": "Drei Tage."
+      },
+      "falsch": [
+       {
+        "text": "Три дней.",
+        "de": "",
+        "hinweis": "Nach 2, 3, 4 steht der Genitiv Singular: три дня."
+       },
+       {
+        "text": "Три день.",
+        "de": "",
+        "hinweis": "Nach 2, 3, 4 steht der Genitiv Singular: три дня."
+       }
+      ]
+     },
+     "verlust": {
+      "richtig": {
+       "text": "Мой чемода́н не пришёл.",
+       "de": "Mein Koffer ist nicht angekommen."
+      },
+      "falsch": [
+       {
+        "text": "Мой чемода́н пришёл.",
+        "de": "",
+        "hinweis": "пришёл heißt „ist angekommen“ – es fehlt das не: не пришёл."
+       },
+       {
+        "text": "Мой чемода́н не пришла́.",
+        "de": "",
+        "hinweis": "чемода́н ist männlich: мой чемода́н не пришёл."
+       },
+       {
+        "text": "Я потеря́л па́спорт.",
+        "de": "",
+        "hinweis": "Das heißt „Ich habe den Pass verloren“ – dein Pass ist doch da."
+       }
+      ]
+     },
+     "aussehen": {
+      "richtig": {
+       "text": "Большо́й зелёный чемода́н.",
+       "de": "Großer grüner Koffer."
+      },
+      "falsch": [
+       {
+        "text": "Больша́я зелёная чемода́н.",
+        "de": "",
+        "hinweis": "чемода́н ist männlich: большо́й зелёный чемода́н."
+       },
+       {
+        "text": "Большо́й си́ний чемода́н.",
+        "de": "",
+        "hinweis": "си́ний heißt blau. Dein Gepäck ist grün: зелёный."
+       },
+       {
+        "text": "Ма́ленький зелёный чемода́н.",
+        "de": "",
+        "hinweis": "ма́ленький heißt klein – schau aufs Bild auf deinem Zettel."
+       }
+      ]
+     },
+     "wohnen": {
+      "richtig": {
+       "text": "У дру́га.",
+       "de": "Bei einem Freund."
+      },
+      "falsch": [
+       {
+        "text": "У друг.",
+        "de": "",
+        "hinweis": "у + Genitiv: друг → у дру́га."
+       },
+       {
+        "text": "У дру́гу.",
+        "de": "",
+        "hinweis": "„bei jemandem“ heißt у + Genitiv: у дру́га."
+       }
+      ]
+     },
+     "ding": {
+      "richtig": {
+       "text": "Э́то вино́ для дру́га.",
+       "de": "Das ist Wein für einen Freund."
+      },
+      "falsch": [
+       {
+        "text": "Э́то вино́ для друг.",
+        "de": "",
+        "hinweis": "для + Genitiv: друг → для дру́га."
+       },
+       {
+        "text": "Э́то вино́ с дру́гом.",
+        "de": "",
+        "hinweis": "с дру́гом heißt „mit einem Freund“. „Für“ heißt для + Genitiv: для дру́га."
+       }
+      ]
+     },
+     "geld": {
+      "richtig": {
+       "text": "Ты́сяча е́вро.",
+       "de": "1000 Euro."
+      },
+      "falsch": [
+       {
+        "text": "Ты́сяча е́вров.",
+        "de": "",
+        "hinweis": "е́вро ist unveränderlich: … е́вро."
+       },
+       {
+        "text": "Сто е́вро.",
+        "de": "",
+        "hinweis": "сто = 100. Du hast 1000 Euro: ты́сяча."
+       }
+      ]
+     }
+    }
+   },
+   {
+    "id": "olga",
+    "geschlecht": "f",
+    "pass": {
+     "familie": "Во́лкова",
+     "imya": "О́льга",
+     "otchestvo": "Дми́триевна",
+     "geburt": "19.09.2001"
+    },
+    "gepaeck": {
+     "art": "sumka",
+     "farbe": "#e2b43c",
+     "gross": true
+    },
+    "p": {
+     "vash": "ва́ша",
+     "gepaeck": "су́мка",
+     "gepaeck_akk": "су́мку",
+     "gepaeck_de": "Ihre Tasche",
+     "gepaeck_de_akk": "Ihre Tasche",
+     "ihn_de": "sie",
+     "nichtda": "Ва́шей су́мки нет.",
+     "nichtda_de": "Ihre Tasche ist nicht da."
+    },
+    "zettel": {
+     "pass": [
+      "Flug aus Zürich",
+      "Zweck: Studium",
+      "Aufenthalt: zwei Monate"
+     ],
+     "gepaeck": [
+      "Aufgegeben: große gelbe Tasche",
+      "Unterkunft: bei deiner Schwester"
+     ],
+     "zoll": [
+      "Nichts zu verzollen",
+      "In der Handtasche: Pralinen für Oma",
+      "Bargeld: 400 Euro"
+     ]
+    },
+    "felder": {
+     "familie": {
+      "richtig": {
+       "text": "Моя́ фами́лия – Во́лкова.",
+       "de": "Mein Familienname ist Wolkowa."
+      },
+      "falsch": [
+       {
+        "text": "Моя́ фами́лия – Во́лков.",
+        "de": "",
+        "hinweis": "Во́лков ist die männliche Form – als Frau heißt du Во́лкова."
+       },
+       {
+        "text": "Мой фами́лия – Во́лкова.",
+        "de": "",
+        "hinweis": "фами́лия ist weiblich: моя́ фами́лия."
+       }
+      ]
+     },
+     "imya": {
+      "richtig": {
+       "text": "Меня́ зову́т О́льга.",
+       "de": "Ich heiße Olga."
+      },
+      "falsch": [
+       {
+        "text": "Я зову́т О́льга.",
+        "de": "",
+        "hinweis": "Wörtlich „mich nennt man“: меня́ зову́т …"
+       },
+       {
+        "text": "Меня́ зову́т Во́лкова.",
+        "de": "",
+        "hinweis": "Во́лкова ist dein Familienname – gefragt ist der Vorname."
+       }
+      ]
+     },
+     "otchestvo": {
+      "richtig": {
+       "text": "Дми́триевна.",
+       "de": "Mein Vatersname: Dmitrijewna."
+      },
+      "falsch": [
+       {
+        "text": "Дми́триевич.",
+        "de": "",
+        "hinweis": "-ович/-евич ist die Form für Männer. Frauen: -овна/-евна – also Дми́триевна."
+       },
+       {
+        "text": "Дми́трий.",
+        "de": "",
+        "hinweis": "Дми́трий ist der Vorname deines Vaters – dein Vatersname lautet Дми́триевна."
+       }
+      ]
+     },
+     "geburt": {
+      "richtig": {
+       "text": "Девятна́дцатое сентября́ две ты́сячи пе́рвого го́да.",
+       "de": "Der 19. September 2001."
+      },
+      "falsch": [
+       {
+        "text": "Девятна́дцать сентября́ две ты́сячи пе́рвого го́да.",
+        "de": "",
+        "hinweis": "Beim Datum steht die Ordnungszahl im Neutrum (wie число́): девятна́дцатое, nicht девятна́дцать."
+       },
+       {
+        "text": "Девятна́дцатое сентя́брь две ты́сячи пе́рвого го́да.",
+        "de": "",
+        "hinweis": "Der Monat steht im Genitiv („des …“): сентября́, nicht сентя́брь."
+       },
+       {
+        "text": "Девятна́дцатое сентября́ две ты́сячи пе́рвый год.",
+        "de": "",
+        "hinweis": "Auch das Jahr steht im Genitiv: две ты́сячи пе́рвого го́да."
+       }
+      ]
+     },
+     "herkunft": {
+      "richtig": {
+       "text": "Из Цю́риха.",
+       "de": "Aus Zürich."
+      },
+      "falsch": [
+       {
+        "text": "Из Цю́рих.",
+        "de": "",
+        "hinweis": "Nach из steht der Genitiv: Цю́рих → из Цю́риха."
+       },
+       {
+        "text": "В Цю́рихе.",
+        "de": "",
+        "hinweis": "в Цю́рихе heißt „in Zürich“ (wo?). Gefragt ist woher: из Цю́риха."
+       }
+      ]
+     },
+     "zweck": {
+      "richtig": {
+       "text": "Учёба.",
+       "de": "Studium."
+      },
+      "falsch": [
+       {
+        "text": "Тури́зм.",
+        "de": "Tourismus.",
+        "hinweis": "Das heißt „Tourismus“ – laut deinem Zettel: Studium."
+       },
+       {
+        "text": "Командиро́вка.",
+        "de": "Dienstreise.",
+        "hinweis": "Das heißt „Dienstreise“ – laut deinem Zettel: Studium."
+       }
+      ]
+     },
+     "dauer": {
+      "richtig": {
+       "text": "Два ме́сяца.",
+       "de": "Zwei Monate."
+      },
+      "falsch": [
+       {
+        "text": "Две ме́сяца.",
+        "de": "",
+        "hinweis": "ме́сяц ist männlich: два ме́сяца."
+       },
+       {
+        "text": "Два ме́сяцев.",
+        "de": "",
+        "hinweis": "Nach 2, 3, 4 steht der Genitiv Singular: два ме́сяца."
+       }
+      ]
+     },
+     "verlust": {
+      "richtig": {
+       "text": "Моя́ су́мка не пришла́.",
+       "de": "Meine Tasche ist nicht angekommen."
+      },
+      "falsch": [
+       {
+        "text": "Моя́ су́мка пришла́.",
+        "de": "",
+        "hinweis": "пришла́ heißt „ist angekommen“ – es fehlt das не: не пришла́."
+       },
+       {
+        "text": "Моя́ су́мка не пришёл.",
+        "de": "",
+        "hinweis": "су́мка ist weiblich: не пришла́."
+       },
+       {
+        "text": "Я потеря́ла па́спорт.",
+        "de": "",
+        "hinweis": "Das heißt „Ich habe den Pass verloren“ – dein Pass ist doch da."
+       }
+      ]
+     },
+     "aussehen": {
+      "richtig": {
+       "text": "Больша́я жёлтая су́мка.",
+       "de": "Große gelbe Tasche."
+      },
+      "falsch": [
+       {
+        "text": "Большо́й жёлтый су́мка.",
+        "de": "",
+        "hinweis": "су́мка ist weiblich: больша́я жёлтая су́мка."
+       },
+       {
+        "text": "Больша́я си́няя су́мка.",
+        "de": "",
+        "hinweis": "си́няя heißt blau. Dein Gepäck ist gelb: жёлтая."
+       },
+       {
+        "text": "Ма́ленькая жёлтая су́мка.",
+        "de": "",
+        "hinweis": "ма́ленькая heißt klein – schau aufs Bild auf deinem Zettel."
+       }
+      ]
+     },
+     "wohnen": {
+      "richtig": {
+       "text": "У сестры́.",
+       "de": "Bei meiner Schwester."
+      },
+      "falsch": [
+       {
+        "text": "У сестра́.",
+        "de": "",
+        "hinweis": "у + Genitiv: сестра́ → у сестры́."
+       },
+       {
+        "text": "У сестре́.",
+        "de": "",
+        "hinweis": "„bei jemandem“ heißt у + Genitiv: у сестры́."
+       }
+      ]
+     },
+     "ding": {
+      "richtig": {
+       "text": "Э́то конфе́ты для ба́бушки.",
+       "de": "Das sind Pralinen für Oma."
+      },
+      "falsch": [
+       {
+        "text": "Э́то конфе́ты для ба́бушка.",
+        "de": "",
+        "hinweis": "для + Genitiv: ба́бушка → для ба́бушки."
+       },
+       {
+        "text": "Э́то конфе́ты с ба́бушкой.",
+        "de": "",
+        "hinweis": "с ба́бушкой heißt „mit Oma“. „Für“ heißt для + Genitiv: для ба́бушки."
+       }
+      ]
+     },
+     "geld": {
+      "richtig": {
+       "text": "Четы́реста е́вро.",
+       "de": "400 Euro."
+      },
+      "falsch": [
+       {
+        "text": "Четы́реста е́вров.",
+        "de": "",
+        "hinweis": "е́вро ist unveränderlich: … е́вро."
+       },
+       {
+        "text": "Со́рок е́вро.",
+        "de": "",
+        "hinweis": "со́рок = 40. Du hast 400 Euro: четы́реста."
+       }
+      ]
+     }
+    }
+   },
+   {
+    "id": "aleksei",
+    "geschlecht": "m",
+    "pass": {
+     "familie": "Моро́зов",
+     "imya": "Алексе́й",
+     "otchestvo": "Петро́вич",
+     "geburt": "30.05.1990"
+    },
+    "gepaeck": {
+     "art": "chemodan",
+     "farbe": "#8b9095",
+     "gross": false
+    },
+    "p": {
+     "vash": "ваш",
+     "gepaeck": "чемода́н",
+     "gepaeck_akk": "чемода́н",
+     "gepaeck_de": "Ihr Koffer",
+     "gepaeck_de_akk": "Ihren Koffer",
+     "ihn_de": "ihn",
+     "nichtda": "Ва́шего чемода́на нет.",
+     "nichtda_de": "Ihr Koffer ist nicht da."
+    },
+    "zettel": {
+     "pass": [
+      "Flug aus Hamburg",
+      "Zweck: Dienstreise",
+      "Aufenthalt: zehn Tage"
+     ],
+     "gepaeck": [
+      "Aufgegeben: kleiner grauer Koffer",
+      "Unterkunft: Hotel „Ukraina“"
+     ],
+     "zoll": [
+      "Nichts zu verzollen",
+      "In der Handtasche: ein Spielzeug für deinen Sohn",
+      "Bargeld: 700 Dollar"
+     ]
+    },
+    "felder": {
+     "familie": {
+      "richtig": {
+       "text": "Моя́ фами́лия – Моро́зов.",
+       "de": "Mein Familienname ist Morosow."
+      },
+      "falsch": [
+       {
+        "text": "Моя́ фами́лия – Моро́зова.",
+        "de": "",
+        "hinweis": "Моро́зова ist die weibliche Form – als Mann heißt du Моро́зов."
+       },
+       {
+        "text": "Мой фами́лия – Моро́зов.",
+        "de": "",
+        "hinweis": "фами́лия ist weiblich: моя́ фами́лия."
+       }
+      ]
+     },
+     "imya": {
+      "richtig": {
+       "text": "Меня́ зову́т Алексе́й.",
+       "de": "Ich heiße Alexei."
+      },
+      "falsch": [
+       {
+        "text": "Я зову́т Алексе́й.",
+        "de": "",
+        "hinweis": "Wörtlich „mich nennt man“: меня́ зову́т …"
+       },
+       {
+        "text": "Меня́ зову́т Моро́зов.",
+        "de": "",
+        "hinweis": "Моро́зов ist dein Familienname – gefragt ist der Vorname."
+       }
+      ]
+     },
+     "otchestvo": {
+      "richtig": {
+       "text": "Петро́вич.",
+       "de": "Mein Vatersname: Petrowitsch."
+      },
+      "falsch": [
+       {
+        "text": "Петро́вна.",
+        "de": "",
+        "hinweis": "-овна/-евна ist die Form für Frauen. Männer: -ович/-евич – also Петро́вич."
+       },
+       {
+        "text": "Пётр.",
+        "de": "",
+        "hinweis": "Пётр ist der Vorname deines Vaters – dein Vatersname lautet Петро́вич."
+       }
+      ]
+     },
+     "geburt": {
+      "richtig": {
+       "text": "Тридца́тое ма́я ты́сяча девятьсо́т девяно́стого го́да.",
+       "de": "Der 30. Mai 1990."
+      },
+      "falsch": [
+       {
+        "text": "Три́дцать ма́я ты́сяча девятьсо́т девяно́стого го́да.",
+        "de": "",
+        "hinweis": "Beim Datum steht die Ordnungszahl im Neutrum (wie число́): тридца́тое, nicht три́дцать."
+       },
+       {
+        "text": "Тридца́тое май ты́сяча девятьсо́т девяно́стого го́да.",
+        "de": "",
+        "hinweis": "Der Monat steht im Genitiv („des …“): ма́я, nicht май."
+       },
+       {
+        "text": "Тридца́тое ма́я ты́сяча девятьсо́т девяно́стый год.",
+        "de": "",
+        "hinweis": "Auch das Jahr steht im Genitiv: ты́сяча девятьсо́т девяно́стого го́да."
+       }
+      ]
+     },
+     "herkunft": {
+      "richtig": {
+       "text": "Из Га́мбурга.",
+       "de": "Aus Hamburg."
+      },
+      "falsch": [
+       {
+        "text": "Из Га́мбург.",
+        "de": "",
+        "hinweis": "Nach из steht der Genitiv: Га́мбург → из Га́мбурга."
+       },
+       {
+        "text": "В Га́мбурге.",
+        "de": "",
+        "hinweis": "в Га́мбурге heißt „in Hamburg“ (wo?). Gefragt ist woher: из Га́мбурга."
+       }
+      ]
+     },
+     "zweck": {
+      "richtig": {
+       "text": "Командиро́вка.",
+       "de": "Dienstreise."
+      },
+      "falsch": [
+       {
+        "text": "Тури́зм.",
+        "de": "Tourismus.",
+        "hinweis": "Das heißt „Tourismus“ – laut deinem Zettel: Dienstreise."
+       },
+       {
+        "text": "В го́сти к роди́телям.",
+        "de": "Besuch bei den Eltern.",
+        "hinweis": "Das heißt „Besuch bei den Eltern“ – laut deinem Zettel: Dienstreise."
+       }
+      ]
+     },
+     "dauer": {
+      "richtig": {
+       "text": "Де́сять дней.",
+       "de": "Zehn Tage."
+      },
+      "falsch": [
+       {
+        "text": "Де́сять дня.",
+        "de": "",
+        "hinweis": "Ab 5 steht der Genitiv Plural: де́сять дней."
+       },
+       {
+        "text": "Де́сять день.",
+        "de": "",
+        "hinweis": "Ab 5 steht der Genitiv Plural: де́сять дней."
+       }
+      ]
+     },
+     "verlust": {
+      "richtig": {
+       "text": "Мой чемода́н не пришёл.",
+       "de": "Mein Koffer ist nicht angekommen."
+      },
+      "falsch": [
+       {
+        "text": "Мой чемода́н пришёл.",
+        "de": "",
+        "hinweis": "пришёл heißt „ist angekommen“ – es fehlt das не: не пришёл."
+       },
+       {
+        "text": "Мой чемода́н не пришла́.",
+        "de": "",
+        "hinweis": "чемода́н ist männlich: мой чемода́н не пришёл."
+       },
+       {
+        "text": "Я потеря́л па́спорт.",
+        "de": "",
+        "hinweis": "Das heißt „Ich habe den Pass verloren“ – dein Pass ist doch da."
+       }
+      ]
+     },
+     "aussehen": {
+      "richtig": {
+       "text": "Ма́ленький се́рый чемода́н.",
+       "de": "Kleiner grauer Koffer."
+      },
+      "falsch": [
+       {
+        "text": "Ма́ленькая се́рая чемода́н.",
+        "de": "",
+        "hinweis": "чемода́н ist männlich: ма́ленький се́рый чемода́н."
+       },
+       {
+        "text": "Ма́ленький си́ний чемода́н.",
+        "de": "",
+        "hinweis": "си́ний heißt blau. Dein Gepäck ist grau: се́рый."
+       },
+       {
+        "text": "Большо́й се́рый чемода́н.",
+        "de": "",
+        "hinweis": "большо́й heißt groß – schau aufs Bild auf deinem Zettel."
+       }
+      ]
+     },
+     "wohnen": {
+      "richtig": {
+       "text": "В гости́нице «Украи́на».",
+       "de": "Im Hotel „Ukraina“."
+      },
+      "falsch": [
+       {
+        "text": "В гости́ница «Украи́на».",
+        "de": "",
+        "hinweis": "Wo? в + Präpositiv: гости́ница → в гости́нице."
+       },
+       {
+        "text": "В гости́ницу «Украи́на».",
+        "de": "",
+        "hinweis": "в гости́ницу (Akkusativ) heißt „ins Hotel“ (wohin?). Gefragt ist wo: в гости́нице."
+       }
+      ]
+     },
+     "ding": {
+      "richtig": {
+       "text": "Э́то игру́шка для сы́на.",
+       "de": "Das ist ein Spielzeug für meinen Sohn."
+      },
+      "falsch": [
+       {
+        "text": "Э́то игру́шка для сын.",
+        "de": "",
+        "hinweis": "для + Genitiv: сын → для сы́на."
+       },
+       {
+        "text": "Э́то игру́шка с сы́ном.",
+        "de": "",
+        "hinweis": "с сы́ном heißt „mit meinem Sohn“. „Für“ heißt для + Genitiv: для сы́на."
+       }
+      ]
+     },
+     "geld": {
+      "richtig": {
+       "text": "Семьсо́т до́лларов.",
+       "de": "700 Dollar."
+      },
+      "falsch": [
+       {
+        "text": "Семьсо́т до́ллара.",
+        "de": "",
+        "hinweis": "Nach 5 und mehr (auch 300, 700) steht der Genitiv Plural: до́лларов."
+       },
+       {
+        "text": "Семьсо́т до́ллар.",
+        "de": "",
+        "hinweis": "Nach 5 und mehr steht der Genitiv Plural: до́лларов."
+       }
+      ]
+     }
+    }
+   }
+  ],
+  "szenen": {
+   "pass": {
+    "titel": "Passkontrolle",
+    "zettel_titel": "Deine Reise",
+    "geschafft": "Eingereist! Der Stempel ist im Pass.",
+    "start": "dokumente",
+    "knoten": {
+     "dokumente": {
+      "sprecher": "pogranichnik",
+      "text": "Здра́вствуйте! Ва́ши докуме́нты, пожа́луйста.",
+      "de": "Guten Tag! Ihre Dokumente, bitte.",
+      "optionen": [
+       {
+        "text": "Здра́вствуйте! Вот мой па́спорт.",
+        "de": "Guten Tag! Hier ist mein Pass.",
+        "weiter": "familie"
+       },
+       {
+        "text": "Здра́вствуйте! Вот моя́ па́спорт.",
+        "de": "",
+        "hinweis": "па́спорт ist männlich: мой па́спорт."
+       },
+       {
+        "text": "Здра́вствуйте! Вот мой биле́т в кино́.",
+        "de": "Guten Tag! Hier ist meine Kinokarte.",
+        "hinweis": "биле́т в кино́ ist eine Kinokarte – gefragt sind die Reisedokumente."
+       }
+      ]
+     },
+     "familie": {
+      "sprecher": "pogranichnik",
+      "text": "Ва́ша фами́лия?",
+      "de": "Ihr Familienname?",
+      "feld": "familie",
+      "weiter": "imya"
+     },
+     "imya": {
+      "sprecher": "pogranichnik",
+      "text": "Как вас зову́т?",
+      "de": "Wie heißen Sie (mit Vornamen)?",
+      "feld": "imya",
+      "weiter": "otchestvo"
+     },
+     "otchestvo": {
+      "sprecher": "pogranichnik",
+      "text": "Ва́ше о́тчество?",
+      "de": "Ihr Vatersname?",
+      "feld": "otchestvo",
+      "weiter": "geburt"
+     },
+     "geburt": {
+      "sprecher": "pogranichnik",
+      "text": "Да́та рожде́ния?",
+      "de": "Geburtsdatum?",
+      "feld": "geburt",
+      "weiter": "herkunft"
+     },
+     "herkunft": {
+      "sprecher": "pogranichnik",
+      "text": "Отку́да вы прилете́ли?",
+      "de": "Woher kommen Sie (mit dem Flugzeug)?",
+      "feld": "herkunft",
+      "weiter": "zweck"
+     },
+     "zweck": {
+      "sprecher": "pogranichnik",
+      "text": "Цель пое́здки?",
+      "de": "Zweck der Reise?",
+      "feld": "zweck",
+      "weiter": "dauer"
+     },
+     "dauer": {
+      "sprecher": "pogranichnik",
+      "text": "Ско́лько вре́мени вы здесь бу́дете?",
+      "de": "Wie lange bleiben Sie hier?",
+      "feld": "dauer",
+      "weiter": "stempel"
+     },
+     "stempel": {
+      "sprecher": "pogranichnik",
+      "text": "Всё в поря́дке. Добро́ пожа́ловать!",
+      "de": "Alles in Ordnung. Willkommen!",
+      "aktion": "stempel",
+      "optionen": [
+       {
+        "text": "Спаси́бо!",
+        "de": "Danke!",
+        "ende": true
+       },
+       {
+        "text": "Добро́ пожа́ловать!",
+        "de": "Willkommen!",
+        "hinweis": "Das sagt der Beamte – du antwortest einfach: Спаси́бо!"
+       }
+      ]
+     }
+    }
+   },
+   "gepaeck": {
+    "titel": "Gepäck",
+    "zettel_titel": "Dein Gepäck",
+    "geschafft": "Verlustmeldung aufgegeben – das Gepäck wird gebracht.",
+    "start": "band",
+    "knoten": {
+     "band": {
+      "sprecher": "erzaehler",
+      "text": "Вы стои́те у бага́жной ле́нты. Чемода́ны е́дут и е́дут…",
+      "de": "Sie stehen am Gepäckband. Die Koffer fahren und fahren …",
+      "pause": 2200,
+      "weiter": "nichtda"
+     },
+     "nichtda": {
+      "sprecher": "erzaehler",
+      "text": "Прошёл час. {nichtda}",
+      "de": "Eine Stunde ist vergangen. {nichtda_de}",
+      "pause": 600,
+      "weiter": "schalter"
+     },
+     "schalter": {
+      "sprecher": "sotrudnitsa",
+      "text": "Здра́вствуйте! Чем могу́ помо́чь?",
+      "de": "Guten Tag! Wie kann ich helfen?",
+      "feld": "verlust",
+      "weiter": "talon"
+     },
+     "talon": {
+      "sprecher": "sotrudnitsa",
+      "text": "Ваш бага́жный тало́н, пожа́луйста.",
+      "de": "Ihren Gepäckschein, bitte.",
+      "optionen": [
+       {
+        "text": "Вот он.",
+        "de": "Hier ist er.",
+        "weiter": "aussehen"
+       },
+       {
+        "text": "Вот она́.",
+        "de": "",
+        "hinweis": "тало́н ist männlich – also вот он."
+       },
+       {
+        "text": "Вот оно́.",
+        "de": "",
+        "hinweis": "тало́н ist männlich – also вот он."
+       }
+      ]
+     },
+     "aussehen": {
+      "sprecher": "sotrudnitsa",
+      "text": "Как вы́глядит {vash} {gepaeck}?",
+      "de": "Wie sieht {gepaeck_de} aus?",
+      "feld": "aussehen",
+      "weiter": "adresse"
+     },
+     "adresse": {
+      "sprecher": "sotrudnitsa",
+      "text": "Мы найдём {gepaeck_akk} и привезём. Где вы бу́дете жить?",
+      "de": "Wir finden {gepaeck_de_akk} und bringen {ihn_de} vorbei. Wo werden Sie wohnen?",
+      "feld": "wohnen",
+      "weiter": "dank"
+     },
+     "dank": {
+      "sprecher": "sotrudnitsa",
+      "text": "Хорошо́. Мы вам позвони́м. Не волну́йтесь!",
+      "de": "Gut. Wir rufen Sie an. Keine Sorge!",
+      "optionen": [
+       {
+        "text": "Спаси́бо большо́е!",
+        "de": "Vielen Dank!",
+        "ende": true
+       },
+       {
+        "text": "Не за что.",
+        "de": "Keine Ursache.",
+        "hinweis": "„Не за что“ antwortet man auf einen Dank – hier bedankst du dich selbst: Спаси́бо большо́е!"
+       },
+       {
+        "text": "Пожа́луйста!",
+        "de": "Bitte!",
+        "hinweis": "Hier bedankst du dich: Спаси́бо большо́е!"
+       }
+      ]
+     }
+    }
+   },
+   "zoll": {
+    "titel": "Zoll",
+    "zettel_titel": "Im Gepäck",
+    "geschafft": "Durch den Zoll – willkommen in der Stadt!",
+    "start": "deklarieren",
+    "knoten": {
+     "deklarieren": {
+      "sprecher": "tamozhennik",
+      "text": "До́брый день. Вам есть что деклари́ровать?",
+      "de": "Guten Tag. Haben Sie etwas zu verzollen?",
+      "optionen": [
+       {
+        "text": "Нет, мне не́чего деклари́ровать.",
+        "de": "Nein, ich habe nichts zu verzollen.",
+        "weiter": "oeffnen"
+       },
+       {
+        "text": "Да, коне́чно.",
+        "de": "Ja, natürlich.",
+        "hinweis": "Auf deinem Zettel steht: nichts zu verzollen."
+       },
+       {
+        "text": "Я не курю́.",
+        "de": "Ich rauche nicht.",
+        "hinweis": "„Я не курю́“ heißt „Ich rauche nicht“ – gefragt war, ob du etwas zu verzollen hast."
+       }
+      ]
+     },
+     "oeffnen": {
+      "sprecher": "tamozhennik",
+      "text": "Откро́йте, пожа́луйста, су́мку.",
+      "de": "Öffnen Sie bitte die Tasche.",
+      "optionen": [
+       {
+        "text": "Хорошо́, вот.",
+        "de": "Gut, bitte.",
+        "weiter": "ding"
+       },
+       {
+        "text": "Нет, спаси́бо.",
+        "de": "Nein, danke.",
+        "hinweis": "Beim Zoll lehnt man nicht ab: Хорошо́, вот."
+       }
+      ]
+     },
+     "ding": {
+      "sprecher": "tamozhennik",
+      "text": "А что э́то?",
+      "de": "Und was ist das?",
+      "feld": "ding",
+      "weiter": "geld"
+     },
+     "geld": {
+      "sprecher": "tamozhennik",
+      "text": "Ско́лько у вас нали́чных?",
+      "de": "Wie viel Bargeld haben Sie?",
+      "feld": "geld",
+      "weiter": "fertig"
+     },
+     "fertig": {
+      "sprecher": "tamozhennik",
+      "text": "Всё в поря́дке. Проходи́те.",
+      "de": "Alles in Ordnung. Gehen Sie durch.",
+      "optionen": [
+       {
+        "text": "Спаси́бо! До свида́ния!",
+        "de": "Danke! Auf Wiedersehen!",
+        "ende": true
+       },
+       {
+        "text": "Приве́т!",
+        "de": "Hallo!",
+        "hinweis": "Приве́т ist eine Begrüßung unter Freunden. Zum Abschied: До свида́ния!"
+       }
+      ]
+     }
+    }
+   }
+  }
+ }
+}

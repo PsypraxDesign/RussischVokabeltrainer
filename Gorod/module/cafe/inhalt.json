@@ -1,0 +1,558 @@
+{
+  "entdecken_hinweis": "Was ist das? Tippe auf die Kellnerin, die Uhr, die Teekanne …",
+  "woerter": [
+    {
+      "id": "menue",
+      "ru": "меню́",
+      "de": "die Speisekarte",
+      "genus": "n",
+      "hotspot": "hs-menue",
+      "satz": "Меню́ виси́т на стене́.",
+      "hinweis": "unveränderlich: меню́ hat keine Endungen"
+    },
+    {
+      "id": "ofitsiantka",
+      "ru": "официа́нтка",
+      "de": "die Kellnerin",
+      "genus": "f",
+      "hotspot": "hs-ofitsiantka",
+      "satz": "Официа́нтка стои́т за сто́йкой."
+    },
+    {
+      "id": "stol",
+      "ru": "стол",
+      "de": "der Tisch",
+      "genus": "m",
+      "hotspot": "hs-stol",
+      "satz": "Стол кру́глый."
+    },
+    {
+      "id": "stul",
+      "ru": "стул",
+      "de": "der Stuhl",
+      "genus": "m",
+      "hotspot": "hs-stul",
+      "satz": "Стул стои́т у стола́."
+    },
+    {
+      "id": "okno",
+      "ru": "окно́",
+      "de": "das Fenster",
+      "genus": "n",
+      "hotspot": "hs-okno",
+      "satz": "Окно́ большо́е."
+    },
+    {
+      "id": "chasy",
+      "ru": "часы́",
+      "de": "die Uhr",
+      "genus": "pl",
+      "hotspot": "hs-chasy",
+      "satz": "Часы́ вися́т на стене́.",
+      "hinweis": "nur im Plural: часы́",
+      "de_zahl": "sg"
+    },
+    {
+      "id": "lampa",
+      "ru": "ла́мпа",
+      "de": "die Lampe",
+      "genus": "f",
+      "hotspot": "hs-lampa",
+      "satz": "Ла́мпа виси́т над столо́м."
+    },
+    {
+      "id": "kassa",
+      "ru": "ка́сса",
+      "de": "die Kasse",
+      "genus": "f",
+      "hotspot": "hs-kassa",
+      "satz": "Ка́сса стои́т на сто́йке."
+    },
+    {
+      "id": "kofemashina",
+      "ru": "кофема́шина",
+      "de": "die Kaffeemaschine",
+      "genus": "f",
+      "hotspot": "hs-kofemashina",
+      "satz": "Кофема́шина стои́т на сто́йке."
+    },
+    {
+      "id": "chashka",
+      "ru": "ча́шка",
+      "de": "die Tasse",
+      "genus": "f",
+      "hotspot": "hs-chashka",
+      "satz": "Ча́шка стои́т на сто́йке."
+    },
+    {
+      "id": "chainik",
+      "ru": "ча́йник",
+      "de": "die Teekanne",
+      "genus": "m",
+      "hotspot": "hs-chainik",
+      "satz": "Ча́йник стои́т на по́лке.",
+      "hinweis": "blau-weiß bemalt: Гжель, ein traditionelles russisches Porzellan"
+    },
+    {
+      "id": "polka",
+      "ru": "по́лка",
+      "de": "das Regal",
+      "genus": "f",
+      "hotspot": "hs-polka",
+      "satz": "По́лка виси́т на стене́."
+    },
+    {
+      "id": "tarelka",
+      "ru": "таре́лка",
+      "de": "der Teller",
+      "genus": "f",
+      "hotspot": "hs-tarelka",
+      "satz": "Таре́лка стои́т на столе́."
+    },
+    {
+      "id": "vilka",
+      "ru": "ви́лка",
+      "de": "die Gabel",
+      "genus": "f",
+      "hotspot": "hs-vilka",
+      "satz": "Ви́лка лежи́т на столе́."
+    },
+    {
+      "id": "nozh",
+      "ru": "нож",
+      "de": "das Messer",
+      "genus": "m",
+      "hotspot": "hs-nozh",
+      "satz": "Нож лежи́т на столе́."
+    },
+    {
+      "id": "lozhka",
+      "ru": "ло́жка",
+      "de": "der Löffel",
+      "genus": "f",
+      "hotspot": "hs-lozhka",
+      "satz": "Ло́жка лежи́т на столе́."
+    },
+    {
+      "id": "salfetka",
+      "ru": "салфе́тка",
+      "de": "die Serviette",
+      "genus": "f",
+      "hotspot": "hs-salfetka",
+      "satz": "Салфе́тка лежи́т на столе́."
+    },
+    {
+      "id": "vaza",
+      "ru": "ва́за",
+      "de": "die Vase",
+      "genus": "f",
+      "hotspot": "hs-vaza",
+      "satz": "Ва́за стои́т на столе́."
+    },
+    {
+      "id": "tsvety",
+      "ru": "цветы́",
+      "de": "die Blumen",
+      "genus": "pl",
+      "hotspot": "hs-tsvety",
+      "satz": "Цветы́ стоя́т в ва́зе."
+    }
+  ],
+  "menue": [
+    {
+      "id": "chai",
+      "ru": "чай",
+      "de": "einen Tee",
+      "art": "getraenk",
+      "preis": 120,
+      "auf_dem_tisch": "tisch-chai"
+    },
+    {
+      "id": "kofe",
+      "ru": "ко́фе",
+      "de": "einen Kaffee",
+      "art": "getraenk",
+      "preis": 150,
+      "auf_dem_tisch": "tisch-kofe",
+      "hinweis": "ко́фе ist männlich: чёрный ко́фе"
+    },
+    {
+      "id": "kapuchino",
+      "ru": "капучи́но",
+      "de": "einen Cappuccino",
+      "art": "getraenk",
+      "preis": 190,
+      "auf_dem_tisch": "tisch-kapuchino"
+    },
+    {
+      "id": "sok",
+      "ru": "сок",
+      "de": "einen Saft",
+      "art": "getraenk",
+      "preis": 110,
+      "auf_dem_tisch": "tisch-sok"
+    },
+    {
+      "id": "voda_gaz",
+      "ru": "минера́льная вода́ с га́зом",
+      "akk": "минера́льную во́ду с га́зом",
+      "de": "ein Mineralwasser mit Kohlensäure",
+      "art": "getraenk",
+      "preis": 90,
+      "auf_dem_tisch": "tisch-voda-gaz",
+      "hinweis": "Akkusativ: вода́ → во́ду (auch die Betonung wandert)"
+    },
+    {
+      "id": "voda",
+      "ru": "минера́льная вода́ без га́за",
+      "akk": "минера́льную во́ду без га́за",
+      "de": "ein stilles Mineralwasser",
+      "art": "getraenk",
+      "preis": 90,
+      "auf_dem_tisch": "tisch-voda",
+      "hinweis": "без га́за = ohne Kohlensäure"
+    },
+    {
+      "id": "bliny",
+      "ru": "блины́",
+      "de": "Blini",
+      "art": "essen",
+      "preis": 240,
+      "auf_dem_tisch": "tisch-bliny",
+      "hinweis": "Blini sind dünne Pfannkuchen"
+    },
+    {
+      "id": "syrniki",
+      "ru": "сы́рники",
+      "de": "Syrniki",
+      "art": "essen",
+      "preis": 260,
+      "auf_dem_tisch": "tisch-syrniki",
+      "hinweis": "Syrniki sind kleine Quarkpuffer"
+    },
+    {
+      "id": "kruassan",
+      "ru": "круасса́н",
+      "de": "ein Croissant",
+      "art": "essen",
+      "preis": 140,
+      "auf_dem_tisch": "tisch-kruassan"
+    },
+    {
+      "id": "buterbrod_vetchina",
+      "ru": "бутербро́д с ветчино́й",
+      "de": "ein Brot mit Schinken",
+      "art": "essen",
+      "preis": 190,
+      "auf_dem_tisch": "tisch-buterbrod-vetchina",
+      "hinweis": "с + Instrumental: ветчина́ → с ветчино́й"
+    },
+    {
+      "id": "buterbrod_salyami",
+      "ru": "бутербро́д с сала́ми",
+      "de": "ein Brot mit Salami",
+      "art": "essen",
+      "preis": 180,
+      "auf_dem_tisch": "tisch-buterbrod-salyami",
+      "hinweis": "сала́ми ist unveränderlich"
+    },
+    {
+      "id": "pirog",
+      "ru": "пиро́г с я́блоками",
+      "de": "Apfelkuchen",
+      "art": "essen",
+      "preis": 170,
+      "auf_dem_tisch": "tisch-pirog"
+    },
+    {
+      "id": "tort",
+      "ru": "торт «Наполео́н»",
+      "de": "Torte „Napoleon“",
+      "art": "essen",
+      "preis": 220,
+      "auf_dem_tisch": "tisch-tort",
+      "hinweis": "„Napoleon“ ist die russische Cremeschnitten-Torte"
+    },
+    {
+      "id": "maslo",
+      "ru": "ма́сло",
+      "de": "Butter",
+      "art": "extra",
+      "preis": 40,
+      "auf_dem_tisch": "tisch-maslo",
+      "hinweis": "eigentlich сли́вочное ма́сло; ма́сло allein heißt auch Öl"
+    },
+    {
+      "id": "dzhem",
+      "ru": "джем",
+      "de": "Marmelade",
+      "art": "extra",
+      "preis": 50,
+      "auf_dem_tisch": "tisch-dzhem",
+      "hinweis": "selbstgemacht heißt sie варе́нье"
+    }
+  ],
+  "dialog": {
+    "start": "begruessung",
+    "figuren": {
+      "kellnerin": {
+        "name": "Ната́ша",
+        "stimme": "weiblich",
+        "hotspot": "hs-ofitsiantka",
+        "blase": {
+          "x": 0.522,
+          "y": 0.29
+        }
+      },
+      "ich": {
+        "stimme": "maennlich"
+      }
+    },
+    "auftraege": [
+      {
+        "de": "einen Tee und Blini",
+        "teile": [
+          "chai",
+          "bliny"
+        ]
+      },
+      {
+        "de": "einen Kaffee und Torte „Napoleon“",
+        "teile": [
+          "kofe",
+          "tort"
+        ]
+      },
+      {
+        "de": "ein Mineralwasser mit Kohlensäure und ein Brot mit Schinken",
+        "teile": [
+          "voda_gaz",
+          "buterbrod_vetchina"
+        ]
+      },
+      {
+        "de": "einen Cappuccino und ein Croissant mit Butter und Marmelade",
+        "teile": [
+          "kapuchino",
+          "kruassan",
+          "maslo",
+          "dzhem"
+        ]
+      },
+      {
+        "de": "ein stilles Mineralwasser und ein Brot mit Salami",
+        "teile": [
+          "voda",
+          "buterbrod_salyami"
+        ]
+      },
+      {
+        "de": "einen Tee und Syrniki mit Marmelade",
+        "teile": [
+          "chai",
+          "syrniki",
+          "dzhem"
+        ]
+      },
+      {
+        "de": "einen Saft und Apfelkuchen",
+        "teile": [
+          "sok",
+          "pirog"
+        ]
+      },
+      {
+        "de": "einen Kaffee und ein Croissant mit Butter",
+        "teile": [
+          "kofe",
+          "kruassan",
+          "maslo"
+        ]
+      }
+    ],
+    "knoten": {
+      "begruessung": {
+        "sprecher": "kellnerin",
+        "text": "До́брый день! Вот меню́.",
+        "de": "Guten Tag! Hier ist die Speisekarte.",
+        "optionen": [
+          {
+            "text": "До́брый день! Спаси́бо.",
+            "de": "Guten Tag! Danke.",
+            "weiter": "getraenk"
+          },
+          {
+            "text": "До свида́ния!",
+            "de": "Auf Wiedersehen!",
+            "hinweis": "„До свида́ния“ heißt „Auf Wiedersehen“ – du bist doch gerade erst gekommen."
+          },
+          {
+            "text": "Спаси́бо, не на́до.",
+            "de": "Danke, nicht nötig.",
+            "hinweis": "Damit lehnst du die Karte ab – du möchtest doch bestellen."
+          }
+        ]
+      },
+      "getraenk": {
+        "sprecher": "kellnerin",
+        "text": "Что бу́дете пить?",
+        "de": "Was möchten Sie trinken?",
+        "auswahl": {
+          "art": "getraenk",
+          "muster": "Мне {akk}, пожа́луйста.",
+          "muster_de": "Für mich {de}, bitte."
+        },
+        "weiter": "essen"
+      },
+      "essen": {
+        "sprecher": "kellnerin",
+        "text": "А что бу́дете есть?",
+        "de": "Und was möchten Sie essen?",
+        "auswahl": {
+          "art": "essen",
+          "muster": "Мне {akk}, пожа́луйста.",
+          "muster_de": "Für mich {de}, bitte."
+        },
+        "weiter": "noch"
+      },
+      "noch": {
+        "sprecher": "kellnerin",
+        "text": "Что́-нибудь ещё?",
+        "de": "Sonst noch etwas?",
+        "auswahl": {
+          "art": "extra",
+          "muster": "Да, ещё {akk}, пожа́луйста.",
+          "muster_de": "Ja, noch {de}, bitte.",
+          "wiederholen": true,
+          "abschluss": {
+            "text": "Нет, спаси́бо. Э́то всё.",
+            "de": "Nein, danke. Das ist alles."
+          }
+        },
+        "weiter": "bringen"
+      },
+      "bringen": {
+        "sprecher": "kellnerin",
+        "text": "Хорошо́. Сейча́с принесу́.",
+        "de": "Gut. Ich bringe es sofort.",
+        "aktion": "servieren",
+        "weiter": "appetit"
+      },
+      "appetit": {
+        "sprecher": "kellnerin",
+        "text": "Прия́тного аппети́та!",
+        "de": "Guten Appetit!",
+        "optionen": [
+          {
+            "text": "Спаси́бо!",
+            "de": "Danke!",
+            "weiter": "spaeter"
+          },
+          {
+            "text": "Пожа́луйста!",
+            "de": "Bitte!",
+            "hinweis": "Auf „Прия́тного аппети́та“ antwortet man mit „Спаси́бо“, nicht mit „Пожа́луйста“."
+          }
+        ]
+      },
+      "spaeter": {
+        "sprecher": "kellnerin",
+        "text": "Всё бы́ло хорошо́?",
+        "de": "War alles gut?",
+        "optionen": [
+          {
+            "text": "Да, о́чень вку́сно! Счёт, пожа́луйста.",
+            "de": "Ja, sehr lecker! Die Rechnung, bitte.",
+            "weiter": "zahlart"
+          },
+          {
+            "text": "Ещё чай, пожа́луйста.",
+            "de": "Noch einen Tee, bitte.",
+            "hinweis": "Du bist satt und möchtest zahlen: „Счёт, пожа́луйста“."
+          }
+        ]
+      },
+      "zahlart": {
+        "sprecher": "kellnerin",
+        "text": "Вы бу́дете плати́ть нали́чными и́ли ка́ртой?",
+        "de": "Zahlen Sie bar oder mit Karte?",
+        "optionen": [
+          {
+            "text": "Нали́чными.",
+            "de": "Bar.",
+            "zahlart": "bar",
+            "weiter": "summe"
+          },
+          {
+            "text": "Ка́ртой, пожа́луйста.",
+            "de": "Mit Karte, bitte.",
+            "zahlart": "karte",
+            "weiter": "summe"
+          }
+        ]
+      },
+      "summe": {
+        "sprecher": "kellnerin",
+        "text": "С вас {summe}.",
+        "de": "Das macht {summe_de}.",
+        "aktion": "bezahlen",
+        "weiter": "chek"
+      },
+      "chek": {
+        "sprecher": "kellnerin",
+        "text": "Чек ну́жен?",
+        "de": "Brauchen Sie den Beleg?",
+        "optionen": [
+          {
+            "text": "Да, пожа́луйста.",
+            "de": "Ja, bitte.",
+            "weiter": "abschied"
+          },
+          {
+            "text": "Нет, спаси́бо.",
+            "de": "Nein, danke.",
+            "weiter": "abschied"
+          }
+        ]
+      },
+      "abschied": {
+        "sprecher": "kellnerin",
+        "text": "Спаси́бо! Приходи́те ещё!",
+        "de": "Danke! Kommen Sie wieder!",
+        "optionen": [
+          {
+            "text": "До свида́ния!",
+            "de": "Auf Wiedersehen!",
+            "ende": true
+          },
+          {
+            "text": "До́брое у́тро!",
+            "de": "Guten Morgen!",
+            "hinweis": "Zum Abschied sagt man „До свида́ния“."
+          }
+        ]
+      }
+    },
+    "zahlarten": true
+  },
+  "arten": {
+    "getraenk": {
+      "ru": "Напи́тки",
+      "de": "Getränke"
+    },
+    "essen": {
+      "ru": "Еда́",
+      "de": "Essen"
+    },
+    "extra": {
+      "ru": "Дополни́тельно",
+      "de": "Dazu"
+    }
+  },
+  "tafel": {
+    "titel": "Напитки",
+    "arten": [
+      "getraenk"
+    ]
+  }
+}

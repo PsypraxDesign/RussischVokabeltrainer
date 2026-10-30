@@ -1,0 +1,22 @@
+{
+  "titel": {
+    "ru": "суперма́ркет",
+    "de": "Supermarkt"
+  },
+  "praeposition": "в",
+  "satz_hin": "Я иду́ в суперма́ркет.",
+  "satz_hin_de": "Ich gehe in den Supermarkt.",
+  "stufen": [
+    "entdecken",
+    "hoeren",
+    "einkaufen",
+    "theke",
+    "kasse"
+  ],
+  "grafik": {
+    "aussen": "grafik/aussen.svg",
+    "innen": "grafik/innen.svg"
+  },
+  "farbe": "#3f8f5f",
+  "breite": 250
+}

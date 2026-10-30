@@ -1,0 +1,22 @@
+{
+  "titel": {
+    "ru": "вокза́л",
+    "de": "Bahnhof"
+  },
+  "praeposition": "на",
+  "satz_hin": "Я иду́ на вокза́л.",
+  "satz_hin_de": "Ich gehe zum Bahnhof.",
+  "stufen": [
+    "entdecken",
+    "hoeren",
+    "fahrplan",
+    "fahrkarte",
+    "zug"
+  ],
+  "grafik": {
+    "aussen": "grafik/aussen.svg",
+    "innen": "grafik/innen.svg"
+  },
+  "farbe": "#b8392b",
+  "breite": 270
+}

@@ -1,0 +1,208 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 680" role="img" aria-label="Ankunftshalle im Flughafen">
+  <defs>
+    <linearGradient id="aer-himmel" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#8cc3e3"/><stop offset="1" stop-color="#d9eef6"/>
+    </linearGradient>
+    <linearGradient id="aer-glas" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#dff0f6" stop-opacity="0.45"/><stop offset="1" stop-color="#b9dcec" stop-opacity="0.25"/>
+    </linearGradient>
+    <pattern id="aer-boden" width="80" height="40" patternUnits="userSpaceOnUse">
+      <rect width="80" height="40" fill="#d8d3c9"/><path d="M0 0 H80 M0 0 V40" stroke="#c6c0b4" stroke-width="2"/>
+    </pattern>
+    <clipPath id="aer-band-fenster"><rect x="434" y="420" width="326" height="72"/></clipPath>
+    <style>
+      #aer-band-koffer { animation: aer-band 11s linear infinite; }
+      @keyframes aer-band { from { transform: translateX(-372px); } to { transform: translateX(0); } }
+      @media (prefers-reduced-motion: reduce) { #aer-band-koffer { animation: none; } }
+    </style>
+  </defs>
+
+  <!-- Halle -->
+  <rect width="1200" height="680" fill="#eceee9"/>
+  <rect width="1200" height="28" fill="#d5d9d4"/>
+  <g fill="#fffbe9"><rect x="120" y="22" width="80" height="6" rx="3"/><rect x="560" y="22" width="80" height="6" rx="3"/><rect x="1000" y="22" width="80" height="6" rx="3"/></g>
+
+  <!-- Fensterfront mit Rollfeld und Flugzeug -->
+  <rect x="262" y="42" width="736" height="210" fill="url(#aer-himmel)"/>
+  <g fill="#fff" opacity="0.85"><ellipse cx="350" cy="86" rx="40" ry="11"/><ellipse cx="378" cy="78" rx="26" ry="12"/><ellipse cx="860" cy="70" rx="46" ry="12"/></g>
+  <rect x="262" y="206" width="736" height="46" fill="#9aa1a7"/>
+  <path d="M262 230 H998" stroke="#f6f2e6" stroke-width="3" stroke-dasharray="26 18"/>
+  <g id="hs-samolyot" class="hotspot">
+    <path d="M318 152 L300 92 L328 92 L372 150 Z" fill="#2b6f9e"/>
+    <path d="M330 168 Q330 146 360 144 L860 144 Q912 144 934 162 Q912 182 860 184 L360 184 Q330 184 330 168 Z" fill="#fbfbfb"/>
+    <path d="M360 172 H880" stroke="#2b6f9e" stroke-width="5"/>
+    <g fill="#5d7f96"><circle cx="420" cy="158" r="4"/><circle cx="450" cy="158" r="4"/><circle cx="480" cy="158" r="4"/><circle cx="510" cy="158" r="4"/><circle cx="540" cy="158" r="4"/><circle cx="570" cy="158" r="4"/><circle cx="600" cy="158" r="4"/><circle cx="630" cy="158" r="4"/><circle cx="660" cy="158" r="4"/><circle cx="690" cy="158" r="4"/><circle cx="720" cy="158" r="4"/><circle cx="750" cy="158" r="4"/><circle cx="780" cy="158" r="4"/><circle cx="810" cy="158" r="4"/></g>
+    <path d="M890 154 Q906 150 918 158 L900 160 Z" fill="#2c3e50"/>
+    <path d="M560 178 L640 178 L600 214 L566 214 Z" fill="#d9dde0"/>
+    <ellipse cx="596" cy="206" rx="24" ry="8" fill="#9ea3a8"/>
+    <path d="M400 184 V204 M820 184 V204" stroke="#3a3a3a" stroke-width="4"/>
+    <circle cx="400" cy="208" r="6" fill="#2a2a2a"/><circle cx="820" cy="208" r="6" fill="#2a2a2a"/>
+  </g>
+  <g fill="none" stroke="#c4c9c6" stroke-width="10">
+    <rect x="262" y="42" width="736" height="210"/>
+    <path d="M446 42 V252 M630 42 V252 M814 42 V252"/>
+  </g>
+  <rect x="262" y="42" width="736" height="210" fill="url(#aer-glas)" pointer-events="none"/>
+
+  <!-- Ausgang -->
+  <g id="hs-vykhod" class="hotspot">
+    <rect x="1050" y="48" width="132" height="44" rx="6" fill="#2f7d50"/>
+    <text x="1104" y="78" text-anchor="middle" font-family="Manrope, sans-serif" font-size="20" font-weight="800" fill="#fff">ВЫХОД</text>
+    <path d="M1150 70 H1168 M1160 62 L1168 70 L1160 78" stroke="#fff" stroke-width="3.5" fill="none" stroke-linecap="round"/>
+    <path d="M1080 28 V48 M1152 28 V48" stroke="#9aa1a7" stroke-width="3"/>
+  </g>
+
+  <!-- Boden -->
+  <rect y="560" width="1200" height="120" fill="url(#aer-boden)"/>
+  <rect y="556" width="1200" height="6" fill="#b9b3a7"/>
+
+  <!-- ===== Passkontrolle ===== -->
+  <g id="hs-kontrol" class="hotspot">
+    <rect x="22" y="262" width="236" height="40" rx="6" fill="#1d3557"/>
+    <text x="140" y="287" text-anchor="middle" font-family="Manrope, sans-serif" font-size="13" font-weight="800" fill="#fff" textLength="214" lengthAdjust="spacingAndGlyphs">ПАСПОРТНЫЙ КОНТРОЛЬ</text>
+    <rect x="40" y="318" width="200" height="118" fill="#cfd8dc"/>
+    <rect x="36" y="430" width="208" height="130" fill="#5c6b7a"/>
+    <rect x="36" y="430" width="208" height="10" fill="#465462"/>
+    <path d="M60 470 H220 M60 500 H220" stroke="#6d7c8b" stroke-width="3"/>
+  </g>
+  <g id="hs-pogranichnik" class="hotspot">
+    <path d="M92 432 Q94 382 140 380 Q186 382 188 432 Z" fill="#4a6b4c"/>
+    <path d="M100 392 L120 388 M180 392 L160 388" stroke="#d6a446" stroke-width="5" stroke-linecap="round"/>
+    <path d="M132 380 L140 404 L148 380 Z" fill="#e9eee4"/>
+    <circle cx="140" cy="360" r="20" fill="#f2c7a6"/>
+    <circle cx="133" cy="360" r="2.2" fill="#2a2a2a"/><circle cx="147" cy="360" r="2.2" fill="#2a2a2a"/>
+    <path d="M134 370 H146" stroke="#a0523a" stroke-width="2" stroke-linecap="round"/>
+    <path d="M114 346 Q140 324 166 346 Z" fill="#3d5a40"/>
+    <rect x="116" y="343" width="48" height="6" rx="2" fill="#263a28"/>
+    <path d="M118 349 Q140 356 162 349" stroke="#1a261b" stroke-width="3" fill="none"/>
+    <circle cx="140" cy="336" r="4" fill="#d6a446"/>
+  </g>
+  <rect x="40" y="318" width="200" height="112" fill="url(#aer-glas)" stroke="#9fb0ba" stroke-width="4" pointer-events="none"/>
+  <g id="hs-pasport" class="hotspot">
+    <rect class="treffer" x="168" y="404" width="56" height="34" fill="transparent"/>
+    <rect x="178" y="412" width="34" height="20" rx="2" fill="#7a1f2b" transform="rotate(-6 195 422)"/>
+    <circle cx="195" cy="422" r="4" fill="#e8c879" transform="rotate(-6 195 422)"/>
+  </g>
+
+  <!-- Passagierin mit Bordkarte -->
+  <g id="hs-passazhirka" class="hotspot">
+    <path d="M286 556 L290 500 M314 556 L310 500" stroke="#3a3f44" stroke-width="9" stroke-linecap="round"/>
+    <path d="M276 504 L282 446 Q300 436 318 446 L324 504 Z" fill="#c8553d"/>
+    <path d="M284 452 Q270 470 276 492" stroke="#c8553d" stroke-width="9" fill="none" stroke-linecap="round"/>
+    <path d="M316 452 Q330 464 330 480" stroke="#c8553d" stroke-width="9" fill="none" stroke-linecap="round"/>
+    <path d="M282 418 Q282 398 300 398 Q318 398 318 418 L318 440 L282 440 Z" fill="#7a4a2b"/>
+    <circle cx="300" cy="420" r="15" fill="#f2c7a6"/>
+    <path d="M286 414 Q300 400 314 414" stroke="#7a4a2b" stroke-width="6" fill="none"/>
+    <circle cx="295" cy="421" r="1.8" fill="#2a2a2a"/><circle cx="305" cy="421" r="1.8" fill="#2a2a2a"/>
+  </g>
+  <g id="hs-talon" class="hotspot">
+    <rect class="treffer" x="320" y="466" width="30" height="30" fill="transparent"/>
+    <rect x="326" y="474" width="20" height="12" rx="1.5" fill="#fbfbfb" stroke="#9aa1a7" transform="rotate(-12 336 480)"/>
+    <rect x="326" y="474" width="6" height="12" fill="#2b6f9e" transform="rotate(-12 336 480)"/>
+  </g>
+
+  <!-- ===== Gepäckband ===== -->
+  <g id="hs-tablo" class="hotspot" font-family="Manrope, sans-serif" font-weight="700">
+    <path d="M520 252 V262 M700 252 V262" stroke="#9aa1a7" stroke-width="3"/>
+    <rect x="466" y="262" width="290" height="98" rx="5" fill="#1b1f22"/>
+    <text x="478" y="282" font-size="12" fill="#9fb0ba" letter-spacing="1">ПРИЛЁТ</text>
+    <g font-size="13" fill="#ffd166">
+      <text x="478" y="304">10:45</text><text x="530" y="304">БЕРЛИН</text>
+      <text x="478" y="324">11:20</text><text x="530" y="324">ФРАНКФУРТ</text>
+      <text x="478" y="344">12:05</text><text x="530" y="344">ВЕНА</text>
+    </g>
+    <g font-size="12" fill="#6fcf97"><text x="664" y="304">ПРИБЫЛ</text><text x="664" y="324">ПРИБЫЛ</text></g>
+    <text x="664" y="344" font-size="12" fill="#ff8a5c">ПОСАДКА</text>
+  </g>
+  <g id="hs-lenta" class="hotspot">
+    <rect x="392" y="408" width="44" height="92" rx="4" fill="#3a4045"/>
+    <path d="M398 416 V492 M406 416 V492 M414 416 V492 M422 416 V492 M430 416 V492" stroke="#23282c" stroke-width="5"/>
+    <rect x="392" y="488" width="378" height="14" fill="#2f3438"/>
+    <path d="M440 488 V502 M470 488 V502 M500 488 V502 M530 488 V502 M560 488 V502 M590 488 V502 M620 488 V502 M650 488 V502 M680 488 V502 M710 488 V502 M740 488 V502" stroke="#454c52" stroke-width="2"/>
+    <rect x="392" y="502" width="378" height="58" fill="#5a636a"/>
+    <rect x="392" y="502" width="378" height="6" fill="#9ea3a8"/>
+  </g>
+  <g id="hs-bagazh" class="hotspot" clip-path="url(#aer-band-fenster)">
+    <g id="aer-band-koffer">
+      <g id="aer-koffer-satz">
+        <rect x="446" y="440" width="52" height="48" rx="6" fill="#8a5a3a"/><path d="M462 440 V432 H482 V440" stroke="#3a3a3a" stroke-width="3.5" fill="none"/>
+        <path d="M528 458 H588 L584 488 H532 Z" fill="#7c5ea8"/><path d="M540 458 Q540 442 558 442 Q576 442 576 458" stroke="#7c5ea8" stroke-width="4" fill="none"/>
+        <rect x="620" y="446" width="44" height="42" rx="12" fill="#e07b39"/><rect x="628" y="466" width="28" height="16" rx="4" fill="rgba(0,0,0,.18)"/>
+        <rect x="696" y="436" width="62" height="52" rx="6" fill="#d9c7a3"/><path d="M714 436 V428 H740 V436" stroke="#3a3a3a" stroke-width="3.5" fill="none"/><path d="M708 444 V482 M746 444 V482" stroke="rgba(0,0,0,.15)" stroke-width="3"/>
+      </g>
+      <use href="#aer-koffer-satz" x="372"/>
+    </g>
+  </g>
+
+  <!-- Gepäckwagen mit Koffer -->
+  <g id="hs-telezhka" class="hotspot">
+    <path d="M854 640 L846 520 Q846 508 858 508" stroke="#8b9095" stroke-width="6" fill="none" stroke-linecap="round"/>
+    <rect x="770" y="626" width="86" height="10" rx="3" fill="#8b9095"/>
+    <circle cx="784" cy="648" r="9" fill="#2a2a2a"/><circle cx="840" cy="648" r="9" fill="#2a2a2a"/>
+  </g>
+  <g id="hs-chemodan" class="hotspot">
+    <rect x="776" y="552" width="64" height="74" rx="7" fill="#1f8a8a"/>
+    <path d="M796 552 V540 H820 V552" stroke="#3a3a3a" stroke-width="4" fill="none"/>
+    <path d="M788 560 V618 M828 560 V618" stroke="rgba(0,0,0,.18)" stroke-width="4"/>
+  </g>
+
+  <!-- Handgepäck auf dem Boden -->
+  <g id="hs-ryukzak" class="hotspot">
+    <rect x="296" y="606" width="46" height="56" rx="16" fill="#3f8f5f"/>
+    <rect x="304" y="632" width="30" height="22" rx="6" fill="rgba(0,0,0,.18)"/>
+    <path d="M308 606 Q319 592 330 606" stroke="#2a3a33" stroke-width="4" fill="none"/>
+  </g>
+  <g id="hs-sumka" class="hotspot">
+    <path d="M356 626 H420 L414 664 H362 Z" fill="#a0523a"/>
+    <path d="M372 626 Q372 604 388 604 Q404 604 404 626" stroke="#a0523a" stroke-width="5" fill="none"/>
+    <path d="M362 638 H414" stroke="rgba(0,0,0,.15)" stroke-width="3"/>
+  </g>
+
+  <!-- ===== Gepäckermittlung ===== -->
+  <g id="hs-rozysk" class="hotspot">
+    <rect x="866" y="262" width="150" height="40" rx="6" fill="#f2c14e"/>
+    <text x="941" y="280" text-anchor="middle" font-family="Manrope, sans-serif" font-size="12.5" font-weight="800" fill="#2a211c">РОЗЫСК</text>
+    <text x="941" y="295" text-anchor="middle" font-family="Manrope, sans-serif" font-size="12.5" font-weight="800" fill="#2a211c">БАГАЖА</text>
+    <rect x="874" y="448" width="140" height="112" fill="#e7e1d6"/>
+    <rect x="874" y="448" width="140" height="10" fill="#c9c1b2"/>
+    <rect x="874" y="500" width="140" height="8" fill="#2b6f9e"/>
+  </g>
+  <g id="hs-sotrudnitsa" class="hotspot">
+    <path d="M908 448 Q910 392 948 390 Q986 392 988 448 Z" fill="#2b6f9e"/>
+    <path d="M940 390 L948 410 L956 390 Z" fill="#fbfbfb"/>
+    <path d="M944 404 L948 414 L952 404" stroke="#c8553d" stroke-width="3" fill="none"/>
+    <circle cx="948" cy="352" r="22" fill="#7a4a2b"/>
+    <circle cx="948" cy="330" r="10" fill="#7a4a2b"/>
+    <circle cx="948" cy="358" r="18" fill="#f2c7a6"/>
+    <path d="M930 352 Q948 330 966 352" stroke="#7a4a2b" stroke-width="7" fill="none"/>
+    <circle cx="941" cy="359" r="1.9" fill="#2a2a2a"/><circle cx="955" cy="359" r="1.9" fill="#2a2a2a"/>
+    <path d="M943 368 Q948 372 953 368" stroke="#a0523a" stroke-width="2" fill="none"/>
+  </g>
+  <g pointer-events="none">
+    <rect x="980" y="410" width="30" height="24" rx="2" fill="#3a3f44"/><rect x="983" y="413" width="24" height="16" fill="#9fcde3"/>
+    <rect x="992" y="434" width="6" height="14" fill="#3a3f44"/>
+  </g>
+
+  <!-- ===== Zoll ===== -->
+  <g id="hs-tamozhnya" class="hotspot">
+    <rect x="1040" y="206" width="150" height="76" rx="6" fill="#2f7d50"/>
+    <text x="1115" y="236" text-anchor="middle" font-family="Manrope, sans-serif" font-size="19" font-weight="800" fill="#fff" letter-spacing="1">ТАМОЖНЯ</text>
+    <text x="1115" y="256" text-anchor="middle" font-family="Manrope, sans-serif" font-size="10.5" font-weight="700" fill="#e4f3e9">НЕЧЕГО</text>
+    <text x="1115" y="270" text-anchor="middle" font-family="Manrope, sans-serif" font-size="10.5" font-weight="700" fill="#e4f3e9">ДЕКЛАРИРОВАТЬ</text>
+    <rect x="1030" y="492" width="56" height="68" fill="#9aa1a7"/>
+    <rect x="1026" y="486" width="64" height="8" fill="#7d848a"/>
+  </g>
+  <g id="hs-tamozhennik" class="hotspot">
+    <path d="M1106 558 L1108 476 M1130 558 L1128 476" stroke="#22303c" stroke-width="12" stroke-linecap="round"/>
+    <path d="M1090 480 L1094 376 Q1118 364 1142 376 L1146 480 Z" fill="#2c3e50"/>
+    <path d="M1096 384 Q1082 420 1092 450 M1140 384 Q1154 420 1144 450" stroke="#2c3e50" stroke-width="11" fill="none" stroke-linecap="round"/>
+    <path d="M1100 380 L1112 378 M1136 380 L1124 378" stroke="#d6a446" stroke-width="4" stroke-linecap="round"/>
+    <path d="M1112 368 L1118 390 L1124 368 Z" fill="#e9eee4"/>
+    <circle cx="1118" cy="342" r="19" fill="#e8b994"/>
+    <circle cx="1111" cy="343" r="2.1" fill="#2a2a2a"/><circle cx="1125" cy="343" r="2.1" fill="#2a2a2a"/>
+    <path d="M1110 352 Q1118 349 1126 352" stroke="#5e3920" stroke-width="3" fill="none"/>
+    <path d="M1094 330 Q1118 308 1142 330 Z" fill="#22303c"/>
+    <rect x="1096" y="327" width="44" height="6" rx="2" fill="#141e27"/>
+    <circle cx="1118" cy="320" r="3.5" fill="#d6a446"/>
+  </g>
+</svg>

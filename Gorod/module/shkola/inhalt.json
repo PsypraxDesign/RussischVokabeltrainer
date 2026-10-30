@@ -1,0 +1,1554 @@
+{
+ "entdecken_hinweis": "Was gibt es im Klassenzimmer? Tippe auf die Tafel, die Lehrerin, die Hefte …",
+ "woerter": [
+  {
+   "id": "doska",
+   "ru": "доска́",
+   "de": "die Tafel",
+   "genus": "f",
+   "hotspot": "hs-doska",
+   "satz": "Доска́ виси́т на стене́.",
+   "hinweis": "у доски́ – an der Tafel"
+  },
+  {
+   "id": "mel",
+   "ru": "мел",
+   "de": "die Kreide",
+   "genus": "m",
+   "hotspot": "hs-mel",
+   "satz": "Мел лежи́т у доски́.",
+   "hinweis": "nur Singular: мел"
+  },
+  {
+   "id": "uchitelnitsa",
+   "ru": "учи́тельница",
+   "de": "die Lehrerin",
+   "genus": "f",
+   "hotspot": "hs-uchitelnitsa",
+   "satz": "Учи́тельница стои́т у доски́.",
+   "hinweis": "männlich: учи́тель. Man spricht sie mit Vor- und Vatersnamen an: Мари́я Ива́новна"
+  },
+  {
+   "id": "uchenik",
+   "ru": "учени́к",
+   "de": "der Schüler",
+   "genus": "m",
+   "hotspot": "hs-uchenik",
+   "satz": "Учени́к сиди́т за па́ртой.",
+   "hinweis": "Plural: ученики́"
+  },
+  {
+   "id": "uchenitsa",
+   "ru": "учени́ца",
+   "de": "die Schülerin",
+   "genus": "f",
+   "hotspot": "hs-uchenitsa",
+   "satz": "Учени́ца пи́шет в тетра́ди."
+  },
+  {
+   "id": "parta",
+   "ru": "па́рта",
+   "de": "die Schulbank",
+   "genus": "f",
+   "hotspot": "hs-parta",
+   "satz": "За па́ртой сидя́т ученики́.",
+   "hinweis": "за па́ртой – an der Schulbank"
+  },
+  {
+   "id": "okno",
+   "ru": "окно́",
+   "de": "das Fenster",
+   "genus": "n",
+   "hotspot": "hs-okno",
+   "satz": "За окно́м о́сень."
+  },
+  {
+   "id": "zvonok",
+   "ru": "звоно́к",
+   "de": "die Schulklingel",
+   "genus": "m",
+   "hotspot": "hs-zvonok",
+   "satz": "Звоно́к звени́т в конце́ уро́ка.",
+   "hinweis": "звоно́к heißt auch „der Anruf“"
+  },
+  {
+   "id": "karta",
+   "ru": "ка́рта",
+   "de": "die Landkarte",
+   "genus": "f",
+   "hotspot": "hs-karta",
+   "satz": "На ка́рте – вся Росси́я.",
+   "hinweis": "auch: die Karte (Bankkarte, Kundenkarte)"
+  },
+  {
+   "id": "globus",
+   "ru": "гло́бус",
+   "de": "der Globus",
+   "genus": "m",
+   "hotspot": "hs-globus",
+   "satz": "Гло́бус стои́т на столе́."
+  },
+  {
+   "id": "zhurnal",
+   "ru": "журна́л",
+   "de": "das Klassenbuch",
+   "genus": "m",
+   "hotspot": "hs-zhurnal",
+   "satz": "Учи́тельница пи́шет в журна́ле.",
+   "hinweis": "Hier stehen die Noten: пятёрка (5) ist die beste, дво́йка (2) eine schlechte"
+  },
+  {
+   "id": "tetradi",
+   "ru": "тетра́ди",
+   "de": "die Hefte",
+   "genus": "pl",
+   "hotspot": "hs-tetradi",
+   "satz": "Тетра́ди лежа́т на па́рте.",
+   "hinweis": "Singular: тетра́дь – weiblich!"
+  },
+  {
+   "id": "ruchki",
+   "ru": "ру́чки",
+   "de": "die Kulis",
+   "genus": "pl",
+   "hotspot": "hs-ruchki",
+   "satz": "Ру́чки стоя́т в стака́не.",
+   "hinweis": "Singular: ру́чка"
+  },
+  {
+   "id": "karandashi",
+   "ru": "карандаши́",
+   "de": "die Bleistifte",
+   "genus": "pl",
+   "hotspot": "hs-karandashi",
+   "satz": "Карандаши́ стоя́т в стака́не.",
+   "hinweis": "Singular: каранда́ш"
+  },
+  {
+   "id": "uchebniki",
+   "ru": "уче́бники",
+   "de": "die Schulbücher",
+   "genus": "pl",
+   "hotspot": "hs-uchebniki",
+   "satz": "Уче́бники лежа́т на па́рте.",
+   "hinweis": "Singular: уче́бник"
+  },
+  {
+   "id": "lineyka",
+   "ru": "лине́йка",
+   "de": "das Lineal",
+   "genus": "f",
+   "hotspot": "hs-lineyka",
+   "satz": "Лине́йка лежи́т на па́рте."
+  },
+  {
+   "id": "lastik",
+   "ru": "ла́стик",
+   "de": "der Radiergummi",
+   "genus": "m",
+   "hotspot": "hs-lastik",
+   "satz": "Ла́стик лежи́т на па́рте."
+  },
+  {
+   "id": "ryukzak",
+   "ru": "рюкза́к",
+   "de": "der Schulranzen",
+   "genus": "m",
+   "hotspot": "hs-ryukzak",
+   "satz": "Рюкза́к стои́т на полу́.",
+   "hinweis": "auch: портфе́ль – die Schultasche"
+  }
+ ],
+ "einkaufen_text": {
+  "titel": "Ranzen packen",
+  "anleitung": "Hör dir an, was in den Rucksack soll, und tippe die Sachen im Bild an – so oft, wie es dasteht.",
+  "zettel": "Что положи́ть в рюкза́к?",
+  "korb": "Рюкза́к",
+  "leer": "Noch leer. Tippe im Bild auf die Schulsachen.",
+  "fertig": "Der Ranzen ist gepackt!",
+  "weiter": "Weiter zum Stundenplan",
+  "lob": "Молоде́ц! Рюкза́к гото́в.",
+  "tipp": "Tipp: Nach положи́ steht der Akkusativ: одну́ ру́чку (1), две ру́чки (2–4), пять ру́чек (ab 5)."
+ },
+ "stundenplan": {
+  "titel": "Расписа́ние уро́ков",
+  "titel_de": "Stundenplan",
+  "stufe_titel": "Stundenplan",
+  "stil": "kreide",
+  "spalten": [
+   "День",
+   "1",
+   "2",
+   "3",
+   "4",
+   "5"
+  ],
+  "raster": "minmax(0, 1.15fr) repeat(5, minmax(0, 1fr))",
+  "zeilen": [
+   {
+    "id": "pn",
+    "zellen": [
+     "Понедельник",
+     "Математика",
+     "Русский",
+     "Чтение",
+     "Музыка",
+     ""
+    ]
+   },
+   {
+    "id": "vt",
+    "zellen": [
+     "Вторник",
+     "Русский",
+     "Математика",
+     "Английский",
+     "Окр. мир",
+     "Чтение"
+    ]
+   },
+   {
+    "id": "sr",
+    "zellen": [
+     "Среда",
+     "Математика",
+     "Рисование",
+     "Чтение",
+     "",
+     ""
+    ]
+   },
+   {
+    "id": "cht",
+    "zellen": [
+     "Четверг",
+     "Английский",
+     "Русский",
+     "Физкультура",
+     "Математика",
+     ""
+    ]
+   },
+   {
+    "id": "pt",
+    "zellen": [
+     "Пятница",
+     "Математика",
+     "Чтение",
+     "Русский",
+     "Окр. мир",
+     "Английский"
+    ]
+   }
+  ],
+  "fragen": [
+   {
+    "zeile": "pn",
+    "text": "Како́й пе́рвый уро́к в понеде́льник?",
+    "de": "Was ist die 1. Stunde am Montag?",
+    "richtig": {
+     "text": "Матема́тика.",
+     "de": "Mathe."
+    },
+    "falsch": [
+     {
+      "text": "Ру́сский язы́к.",
+      "hinweis": "Das ist die 2. Stunde am Montag. Gefragt ist die 1."
+     },
+     {
+      "text": "Англи́йский язы́к.",
+      "hinweis": "Das ist die 1. Stunde am Donnerstag. Schau in die Zeile Понедельник."
+     }
+    ]
+   },
+   {
+    "zeile": "vt",
+    "text": "Како́й тре́тий уро́к во вто́рник?",
+    "de": "Was ist die 3. Stunde am Dienstag?",
+    "richtig": {
+     "text": "Англи́йский язы́к.",
+     "de": "Englisch."
+    },
+    "falsch": [
+     {
+      "text": "Матема́тика.",
+      "hinweis": "Das ist die 2. Stunde am Dienstag. Gefragt ist die 3."
+     },
+     {
+      "text": "Окружа́ющий мир.",
+      "hinweis": "Das ist die 4. Stunde am Dienstag. Gefragt ist die 3."
+     }
+    ]
+   },
+   {
+    "zeile": "sr",
+    "text": "Како́й второ́й уро́к в сре́ду?",
+    "de": "Was ist die 2. Stunde am Mittwoch?",
+    "richtig": {
+     "text": "Рисова́ние.",
+     "de": "Kunst."
+    },
+    "falsch": [
+     {
+      "text": "Матема́тика.",
+      "hinweis": "Das ist die 1. Stunde am Mittwoch. Gefragt ist die 2."
+     },
+     {
+      "text": "Чте́ние.",
+      "hinweis": "Das ist die 3. Stunde am Mittwoch. Gefragt ist die 2."
+     }
+    ]
+   },
+   {
+    "zeile": "cht",
+    "text": "Како́й четвёртый уро́к в четве́рг?",
+    "de": "Was ist die 4. Stunde am Donnerstag?",
+    "richtig": {
+     "text": "Матема́тика.",
+     "de": "Mathe."
+    },
+    "falsch": [
+     {
+      "text": "Физкульту́ра.",
+      "hinweis": "Das ist die 3. Stunde am Donnerstag. Gefragt ist die 4."
+     },
+     {
+      "text": "Му́зыка.",
+      "hinweis": "Das ist die 4. Stunde am Montag. Schau in die Zeile Четверг."
+     }
+    ]
+   },
+   {
+    "zeile": "pt",
+    "text": "Како́й пя́тый уро́к в пя́тницу?",
+    "de": "Was ist die 5. Stunde am Freitag?",
+    "richtig": {
+     "text": "Англи́йский язы́к.",
+     "de": "Englisch."
+    },
+    "falsch": [
+     {
+      "text": "Окружа́ющий мир.",
+      "hinweis": "Das ist die 4. Stunde am Freitag. Gefragt ist die 5."
+     },
+     {
+      "text": "Чте́ние.",
+      "hinweis": "Das ist die 5. Stunde am Dienstag. Schau in die Zeile Пятница."
+     }
+    ]
+   },
+   {
+    "zeile": "pn",
+    "text": "Когда́ у нас му́зыка?",
+    "de": "Wann haben wir Musik?",
+    "richtig": {
+     "text": "В понеде́льник.",
+     "de": "Am Montag."
+    },
+    "falsch": [
+     {
+      "text": "В понеде́льнике.",
+      "hinweis": "Wann? в + Akkusativ: в понеде́льник."
+     },
+     {
+      "text": "Во вто́рник.",
+      "hinweis": "Musik steht am Montag im Plan, nicht am Dienstag."
+     }
+    ]
+   },
+   {
+    "zeile": "sr",
+    "text": "Когда́ у нас рисова́ние?",
+    "de": "Wann haben wir Kunst?",
+    "richtig": {
+     "text": "В сре́ду.",
+     "de": "Am Mittwoch."
+    },
+    "falsch": [
+     {
+      "text": "В среда́.",
+      "hinweis": "в + Akkusativ: среда́ → в сре́ду (die Betonung wandert)."
+     },
+     {
+      "text": "Во вто́рник.",
+      "hinweis": "Kunst steht am Mittwoch im Plan, nicht am Dienstag."
+     }
+    ]
+   },
+   {
+    "zeile": "cht",
+    "text": "Когда́ у нас физкульту́ра?",
+    "de": "Wann haben wir Sport?",
+    "richtig": {
+     "text": "В четве́рг.",
+     "de": "Am Donnerstag."
+    },
+    "falsch": [
+     {
+      "text": "В четверге́.",
+      "hinweis": "Wann? в + Akkusativ: в четве́рг."
+     },
+     {
+      "text": "Во вто́рник.",
+      "hinweis": "Sport steht am Donnerstag im Plan, nicht am Dienstag."
+     }
+    ]
+   },
+   {
+    "zeile": "pn",
+    "text": "Ско́лько уро́ков в понеде́льник?",
+    "de": "Wie viele Stunden sind am Montag?",
+    "richtig": {
+     "text": "Четы́ре уро́ка.",
+     "de": "4 Stunden."
+    },
+    "falsch": [
+     {
+      "text": "Четы́ре уро́ков.",
+      "hinweis": "Nach 2, 3, 4 steht der Genitiv Singular: четы́ре уро́ка."
+     },
+     {
+      "text": "Пять уро́ков.",
+      "hinweis": "Zähl nach: am Montag sind es 4 Stunden."
+     }
+    ]
+   },
+   {
+    "zeile": "vt",
+    "text": "Ско́лько уро́ков во вто́рник?",
+    "de": "Wie viele Stunden sind am Dienstag?",
+    "richtig": {
+     "text": "Пять уро́ков.",
+     "de": "5 Stunden."
+    },
+    "falsch": [
+     {
+      "text": "Пять уро́ка.",
+      "hinweis": "Ab 5 steht der Genitiv Plural: пять уро́ков."
+     },
+     {
+      "text": "Четы́ре уро́ка.",
+      "hinweis": "Zähl nach: am Dienstag sind es 5 Stunden."
+     }
+    ]
+   },
+   {
+    "zeile": "sr",
+    "text": "Ско́лько уро́ков в сре́ду?",
+    "de": "Wie viele Stunden sind am Mittwoch?",
+    "richtig": {
+     "text": "Три уро́ка.",
+     "de": "3 Stunden."
+    },
+    "falsch": [
+     {
+      "text": "Три уро́ков.",
+      "hinweis": "Nach 2, 3, 4 steht der Genitiv Singular: три уро́ка."
+     },
+     {
+      "text": "Четы́ре уро́ка.",
+      "hinweis": "Zähl nach: am Mittwoch sind es 3 Stunden."
+     }
+    ]
+   },
+   {
+    "zeile": "cht",
+    "text": "Ско́лько уро́ков в четве́рг?",
+    "de": "Wie viele Stunden sind am Donnerstag?",
+    "richtig": {
+     "text": "Четы́ре уро́ка.",
+     "de": "4 Stunden."
+    },
+    "falsch": [
+     {
+      "text": "Четы́ре уро́ков.",
+      "hinweis": "Nach 2, 3, 4 steht der Genitiv Singular: четы́ре уро́ка."
+     },
+     {
+      "text": "Пять уро́ков.",
+      "hinweis": "Zähl nach: am Donnerstag sind es 4 Stunden."
+     }
+    ]
+   },
+   {
+    "zeile": "pt",
+    "text": "Ско́лько уро́ков в пя́тницу?",
+    "de": "Wie viele Stunden sind am Freitag?",
+    "richtig": {
+     "text": "Пять уро́ков.",
+     "de": "5 Stunden."
+    },
+    "falsch": [
+     {
+      "text": "Пять уро́ка.",
+      "hinweis": "Ab 5 steht der Genitiv Plural: пять уро́ков."
+     },
+     {
+      "text": "Четы́ре уро́ка.",
+      "hinweis": "Zähl nach: am Freitag sind es 5 Stunden."
+     }
+    ]
+   },
+   {
+    "zeile": "pn",
+    "text": "Како́й по счёту уро́к в понеде́льник – му́зыка?",
+    "de": "Die wievielte Stunde ist am Montag Musik?",
+    "richtig": {
+     "text": "Четвёртый.",
+     "de": "Die 4."
+    },
+    "falsch": [
+     {
+      "text": "Четвёртая.",
+      "hinweis": "уро́к ist männlich: четвёртый."
+     },
+     {
+      "text": "Тре́тий.",
+      "hinweis": "тре́тий = die 3. Stunde. Zähl in der Zeile Понедельник."
+     }
+    ]
+   },
+   {
+    "zeile": "sr",
+    "text": "Како́й по счёту уро́к в сре́ду – рисова́ние?",
+    "de": "Die wievielte Stunde ist am Mittwoch Kunst?",
+    "richtig": {
+     "text": "Второ́й.",
+     "de": "Die 2."
+    },
+    "falsch": [
+     {
+      "text": "Втора́я.",
+      "hinweis": "уро́к ist männlich: второ́й."
+     },
+     {
+      "text": "Пе́рвый.",
+      "hinweis": "пе́рвый = die 1. Stunde. Zähl in der Zeile Среда."
+     }
+    ]
+   },
+   {
+    "zeile": "cht",
+    "text": "Како́й по счёту уро́к в четве́рг – физкульту́ра?",
+    "de": "Die wievielte Stunde ist am Donnerstag Sport?",
+    "richtig": {
+     "text": "Тре́тий.",
+     "de": "Die 3."
+    },
+    "falsch": [
+     {
+      "text": "Тре́тья.",
+      "hinweis": "уро́к ist männlich: тре́тий."
+     },
+     {
+      "text": "Второ́й.",
+      "hinweis": "второ́й = die 2. Stunde. Zähl in der Zeile Четверг."
+     }
+    ]
+   },
+   {
+    "zeile": "sr",
+    "text": "В како́й день у нас то́лько три уро́ка?",
+    "de": "An welchem Tag haben wir nur drei Stunden?",
+    "richtig": {
+     "text": "В сре́ду.",
+     "de": "Am Mittwoch."
+    },
+    "falsch": [
+     {
+      "text": "В среда́.",
+      "hinweis": "в + Akkusativ: среда́ → в сре́ду."
+     },
+     {
+      "text": "В понеде́льник.",
+      "hinweis": "Am Montag sind es vier Stunden."
+     }
+    ]
+   }
+  ]
+ },
+ "reise": {
+  "neu_knopf": "Neuer Schultag →",
+  "start_stufe": "einkaufen",
+  "figuren": {
+   "uchitelnitsa": {
+    "name": "Мари́я Ива́новна",
+    "stimme": "weiblich",
+    "blase": {
+     "x": 0.7,
+     "y": 0.43,
+     "seite": "links"
+    }
+   },
+   "erzaehler": {
+    "name": "",
+    "stimme": "erzaehler",
+    "blase": {
+     "x": 0.3,
+     "y": 0.45
+    }
+   }
+  },
+  "reisende": [
+   {
+    "id": "misha",
+    "geschlecht": "m",
+    "liste": [
+     {
+      "ware": "tetradi",
+      "menge": 2,
+      "text": "две тетра́ди",
+      "de": "2 Hefte",
+      "bild": "📓"
+     },
+     {
+      "ware": "ruchki",
+      "menge": 1,
+      "text": "одну́ ру́чку",
+      "de": "1 Kuli",
+      "bild": "🖊️"
+     },
+     {
+      "ware": "karandashi",
+      "menge": 5,
+      "text": "пять карандаше́й",
+      "de": "5 Bleistifte",
+      "bild": "✏️"
+     },
+     {
+      "ware": "uchebniki",
+      "menge": 1,
+      "text": "оди́н уче́бник",
+      "de": "1 Schulbuch",
+      "bild": "📘"
+     }
+    ],
+    "liste_satz": "Положи́, пожа́луйста, в рюкза́к: две тетра́ди, одну́ ру́чку, пять карандаше́й, оди́н уче́бник.",
+    "p": {
+     "neu": "но́вый учени́к",
+     "neu_de": "einen neuen Schüler"
+    },
+    "zettel": {
+     "unterricht": [
+      "Du heißt Ми́ша",
+      "Du bist 9 Jahre alt",
+      "Deine Schwester ist 3",
+      "Du gehst in die 3. Klasse",
+      "Lieblingsfach: Mathe"
+     ]
+    },
+    "felder": {
+     "imya": {
+      "richtig": {
+       "text": "Меня́ зову́т Ми́ша.",
+       "de": "Ich heiße Mischa."
+      },
+      "falsch": [
+       {
+        "text": "Мне зову́т Ми́ша.",
+        "de": "",
+        "hinweis": "Wörtlich „mich nennt man“: меня́ зову́т (Akkusativ), nicht мне."
+       },
+       {
+        "text": "Меня́ зову́т Ми́шу.",
+        "de": "",
+        "hinweis": "Der Name selbst steht im Nominativ: Ми́ша."
+       }
+      ]
+     },
+     "alter": {
+      "richtig": {
+       "text": "Мне де́вять лет.",
+       "de": "Ich bin 9 Jahre alt."
+      },
+      "falsch": [
+       {
+        "text": "Мне де́вять го́да.",
+        "de": "",
+        "hinweis": "Ab 5 heißt es лет: де́вять лет."
+       },
+       {
+        "text": "Я де́вять лет.",
+        "de": "",
+        "hinweis": "Das Alter steht mit dem Dativ: мне … лет (wörtlich „mir sind … Jahre“)."
+       }
+      ]
+     },
+     "geschwister": {
+      "richtig": {
+       "text": "Да, есть сестра́. Ей три го́да.",
+       "de": "Ja, ich habe eine Schwester. Sie ist 3."
+      },
+      "falsch": [
+       {
+        "text": "Да, есть сестра́. Ему́ три го́да.",
+        "de": "",
+        "hinweis": "Für die Schwester: ей (Dativ von она́). ему́ ist männlich."
+       },
+       {
+        "text": "Да, есть сестра́. Ей три лет.",
+        "de": "",
+        "hinweis": "Nach 2, 3, 4 steht го́да: три го́да."
+       }
+      ]
+     },
+     "klasse": {
+      "richtig": {
+       "text": "В тре́тьем кла́ссе.",
+       "de": "In der 3. Klasse."
+      },
+      "falsch": [
+       {
+        "text": "В тре́тий класс.",
+        "de": "",
+        "hinweis": "Wo? в + Präpositiv: в тре́тьем кла́ссе."
+       },
+       {
+        "text": "В четвёртом кла́ссе.",
+        "de": "",
+        "hinweis": "четвёртый = Klasse 4. Laut Zettel gehst du in die 3."
+       }
+      ]
+     },
+     "fach": {
+      "richtig": {
+       "text": "Мой люби́мый предме́т – матема́тика.",
+       "de": "Mein Lieblingsfach ist Mathe."
+      },
+      "falsch": [
+       {
+        "text": "Моя́ люби́мая предме́т – матема́тика.",
+        "de": "",
+        "hinweis": "предме́т ist männlich: мой люби́мый предме́т."
+       },
+       {
+        "text": "Мой люби́мый предме́т – му́зыка.",
+        "de": "",
+        "hinweis": "му́зыка heißt Musik. Laut Zettel: Mathe."
+       }
+      ]
+     }
+    }
+   },
+   {
+    "id": "masha",
+    "geschlecht": "f",
+    "liste": [
+     {
+      "ware": "tetradi",
+      "menge": 1,
+      "text": "одну́ тетра́дь",
+      "de": "1 Heft",
+      "bild": "📓"
+     },
+     {
+      "ware": "ruchki",
+      "menge": 3,
+      "text": "три ру́чки",
+      "de": "3 Kulis",
+      "bild": "🖊️"
+     },
+     {
+      "ware": "lineyka",
+      "menge": 1,
+      "text": "одну́ лине́йку",
+      "de": "1 Lineal",
+      "bild": "📏"
+     },
+     {
+      "ware": "uchebniki",
+      "menge": 2,
+      "text": "два уче́бника",
+      "de": "2 Schulbücher",
+      "bild": "📘"
+     }
+    ],
+    "liste_satz": "Положи́, пожа́луйста, в рюкза́к: одну́ тетра́дь, три ру́чки, одну́ лине́йку, два уче́бника.",
+    "p": {
+     "neu": "но́вая учени́ца",
+     "neu_de": "eine neue Schülerin"
+    },
+    "zettel": {
+     "unterricht": [
+      "Du heißt Ма́ша",
+      "Du bist 8 Jahre alt",
+      "Dein Bruder ist 1",
+      "Du gehst in die 2. Klasse",
+      "Lieblingsfach: Kunst"
+     ]
+    },
+    "felder": {
+     "imya": {
+      "richtig": {
+       "text": "Меня́ зову́т Ма́ша.",
+       "de": "Ich heiße Mascha."
+      },
+      "falsch": [
+       {
+        "text": "Мне зову́т Ма́ша.",
+        "de": "",
+        "hinweis": "Wörtlich „mich nennt man“: меня́ зову́т (Akkusativ), nicht мне."
+       },
+       {
+        "text": "Меня́ зову́т Ма́шу.",
+        "de": "",
+        "hinweis": "Der Name selbst steht im Nominativ: Ма́ша."
+       }
+      ]
+     },
+     "alter": {
+      "richtig": {
+       "text": "Мне во́семь лет.",
+       "de": "Ich bin 8 Jahre alt."
+      },
+      "falsch": [
+       {
+        "text": "Мне во́семь го́да.",
+        "de": "",
+        "hinweis": "Ab 5 heißt es лет: во́семь лет."
+       },
+       {
+        "text": "Я во́семь лет.",
+        "de": "",
+        "hinweis": "Das Alter steht mit dem Dativ: мне … лет (wörtlich „mir sind … Jahre“)."
+       }
+      ]
+     },
+     "geschwister": {
+      "richtig": {
+       "text": "Да, есть брат. Ему́ оди́н год.",
+       "de": "Ja, ich habe einen Bruder. Er ist 1."
+      },
+      "falsch": [
+       {
+        "text": "Да, есть брат. Ей оди́н год.",
+        "de": "",
+        "hinweis": "Für den Bruder: ему́ (Dativ von он). ей ist weiblich."
+       },
+       {
+        "text": "Да, есть брат. Ему́ оди́н го́да.",
+        "de": "",
+        "hinweis": "Nach 1 steht год: оди́н год."
+       }
+      ]
+     },
+     "klasse": {
+      "richtig": {
+       "text": "Во второ́м кла́ссе.",
+       "de": "In der 2. Klasse."
+      },
+      "falsch": [
+       {
+        "text": "Во второ́й класс.",
+        "de": "",
+        "hinweis": "Wo? в + Präpositiv: во второ́м кла́ссе."
+       },
+       {
+        "text": "В тре́тьем кла́ссе.",
+        "de": "",
+        "hinweis": "тре́тий = Klasse 3. Laut Zettel gehst du in die 2."
+       }
+      ]
+     },
+     "fach": {
+      "richtig": {
+       "text": "Мой люби́мый предме́т – рисова́ние.",
+       "de": "Mein Lieblingsfach ist Kunst."
+      },
+      "falsch": [
+       {
+        "text": "Моя́ люби́мая предме́т – рисова́ние.",
+        "de": "",
+        "hinweis": "предме́т ist männlich: мой люби́мый предме́т."
+       },
+       {
+        "text": "Мой люби́мый предме́т – матема́тика.",
+        "de": "",
+        "hinweis": "матема́тика heißt Mathe. Laut Zettel: Kunst."
+       }
+      ]
+     }
+    }
+   },
+   {
+    "id": "sasha",
+    "geschlecht": "m",
+    "liste": [
+     {
+      "ware": "tetradi",
+      "menge": 3,
+      "text": "три тетра́ди",
+      "de": "3 Hefte",
+      "bild": "📓"
+     },
+     {
+      "ware": "lastik",
+      "menge": 1,
+      "text": "оди́н ла́стик",
+      "de": "1 Radiergummi",
+      "bild": "🧽"
+     },
+     {
+      "ware": "ruchki",
+      "menge": 2,
+      "text": "две ру́чки",
+      "de": "2 Kulis",
+      "bild": "🖊️"
+     },
+     {
+      "ware": "karandashi",
+      "menge": 6,
+      "text": "шесть карандаше́й",
+      "de": "6 Bleistifte",
+      "bild": "✏️"
+     }
+    ],
+    "liste_satz": "Положи́, пожа́луйста, в рюкза́к: три тетра́ди, оди́н ла́стик, две ру́чки, шесть карандаше́й.",
+    "p": {
+     "neu": "но́вый учени́к",
+     "neu_de": "einen neuen Schüler"
+    },
+    "zettel": {
+     "unterricht": [
+      "Du heißt Са́ша",
+      "Du bist 10 Jahre alt",
+      "Deine Schwester ist 4",
+      "Du gehst in die 4. Klasse",
+      "Lieblingsfach: Sport"
+     ]
+    },
+    "felder": {
+     "imya": {
+      "richtig": {
+       "text": "Меня́ зову́т Са́ша.",
+       "de": "Ich heiße Sascha."
+      },
+      "falsch": [
+       {
+        "text": "Мне зову́т Са́ша.",
+        "de": "",
+        "hinweis": "Wörtlich „mich nennt man“: меня́ зову́т (Akkusativ), nicht мне."
+       },
+       {
+        "text": "Меня́ зову́т Са́шу.",
+        "de": "",
+        "hinweis": "Der Name selbst steht im Nominativ: Са́ша."
+       }
+      ]
+     },
+     "alter": {
+      "richtig": {
+       "text": "Мне де́сять лет.",
+       "de": "Ich bin 10 Jahre alt."
+      },
+      "falsch": [
+       {
+        "text": "Мне де́сять го́да.",
+        "de": "",
+        "hinweis": "Ab 5 heißt es лет: де́сять лет."
+       },
+       {
+        "text": "Я де́сять лет.",
+        "de": "",
+        "hinweis": "Das Alter steht mit dem Dativ: мне … лет (wörtlich „mir sind … Jahre“)."
+       }
+      ]
+     },
+     "geschwister": {
+      "richtig": {
+       "text": "Да, есть сестра́. Ей четы́ре го́да.",
+       "de": "Ja, ich habe eine Schwester. Sie ist 4."
+      },
+      "falsch": [
+       {
+        "text": "Да, есть сестра́. Ему́ четы́ре го́да.",
+        "de": "",
+        "hinweis": "Für die Schwester: ей (Dativ von она́). ему́ ist männlich."
+       },
+       {
+        "text": "Да, есть сестра́. Ей четы́ре лет.",
+        "de": "",
+        "hinweis": "Nach 2, 3, 4 steht го́да: четы́ре го́да."
+       }
+      ]
+     },
+     "klasse": {
+      "richtig": {
+       "text": "В четвёртом кла́ссе.",
+       "de": "In der 4. Klasse."
+      },
+      "falsch": [
+       {
+        "text": "В четвёртый класс.",
+        "de": "",
+        "hinweis": "Wo? в + Präpositiv: в четвёртом кла́ссе."
+       },
+       {
+        "text": "В пя́том кла́ссе.",
+        "de": "",
+        "hinweis": "пя́тый = Klasse 5. Laut Zettel gehst du in die 4."
+       }
+      ]
+     },
+     "fach": {
+      "richtig": {
+       "text": "Мой люби́мый предме́т – физкульту́ра.",
+       "de": "Mein Lieblingsfach ist Sport."
+      },
+      "falsch": [
+       {
+        "text": "Моя́ люби́мая предме́т – физкульту́ра.",
+        "de": "",
+        "hinweis": "предме́т ist männlich: мой люби́мый предме́т."
+       },
+       {
+        "text": "Мой люби́мый предме́т – матема́тика.",
+        "de": "",
+        "hinweis": "матема́тика heißt Mathe. Laut Zettel: Sport."
+       }
+      ]
+     }
+    }
+   },
+   {
+    "id": "katya",
+    "geschlecht": "f",
+    "liste": [
+     {
+      "ware": "ruchki",
+      "menge": 1,
+      "text": "одну́ ру́чку",
+      "de": "1 Kuli",
+      "bild": "🖊️"
+     },
+     {
+      "ware": "karandashi",
+      "menge": 4,
+      "text": "четы́ре карандаша́",
+      "de": "4 Bleistifte",
+      "bild": "✏️"
+     },
+     {
+      "ware": "tetradi",
+      "menge": 1,
+      "text": "одну́ тетра́дь",
+      "de": "1 Heft",
+      "bild": "📓"
+     },
+     {
+      "ware": "lastik",
+      "menge": 1,
+      "text": "оди́н ла́стик",
+      "de": "1 Radiergummi",
+      "bild": "🧽"
+     }
+    ],
+    "liste_satz": "Положи́, пожа́луйста, в рюкза́к: одну́ ру́чку, четы́ре карандаша́, одну́ тетра́дь, оди́н ла́стик.",
+    "p": {
+     "neu": "но́вая учени́ца",
+     "neu_de": "eine neue Schülerin"
+    },
+    "zettel": {
+     "unterricht": [
+      "Du heißt Ка́тя",
+      "Du bist 7 Jahre alt",
+      "Dein Bruder ist 2",
+      "Du gehst in die 1. Klasse",
+      "Lieblingsfach: Musik"
+     ]
+    },
+    "felder": {
+     "imya": {
+      "richtig": {
+       "text": "Меня́ зову́т Ка́тя.",
+       "de": "Ich heiße Katja."
+      },
+      "falsch": [
+       {
+        "text": "Мне зову́т Ка́тя.",
+        "de": "",
+        "hinweis": "Wörtlich „mich nennt man“: меня́ зову́т (Akkusativ), nicht мне."
+       },
+       {
+        "text": "Меня́ зову́т Ка́тю.",
+        "de": "",
+        "hinweis": "Der Name selbst steht im Nominativ: Ка́тя."
+       }
+      ]
+     },
+     "alter": {
+      "richtig": {
+       "text": "Мне семь лет.",
+       "de": "Ich bin 7 Jahre alt."
+      },
+      "falsch": [
+       {
+        "text": "Мне семь го́да.",
+        "de": "",
+        "hinweis": "Ab 5 heißt es лет: семь лет."
+       },
+       {
+        "text": "Я семь лет.",
+        "de": "",
+        "hinweis": "Das Alter steht mit dem Dativ: мне … лет (wörtlich „mir sind … Jahre“)."
+       }
+      ]
+     },
+     "geschwister": {
+      "richtig": {
+       "text": "Да, есть брат. Ему́ два го́да.",
+       "de": "Ja, ich habe einen Bruder. Er ist 2."
+      },
+      "falsch": [
+       {
+        "text": "Да, есть брат. Ей два го́да.",
+        "de": "",
+        "hinweis": "Für den Bruder: ему́ (Dativ von он). ей ist weiblich."
+       },
+       {
+        "text": "Да, есть брат. Ему́ два лет.",
+        "de": "",
+        "hinweis": "Nach 2, 3, 4 steht го́да: два го́да."
+       }
+      ]
+     },
+     "klasse": {
+      "richtig": {
+       "text": "В пе́рвом кла́ссе.",
+       "de": "In der 1. Klasse."
+      },
+      "falsch": [
+       {
+        "text": "В пе́рвый класс.",
+        "de": "",
+        "hinweis": "Wo? в + Präpositiv: в пе́рвом кла́ссе."
+       },
+       {
+        "text": "Во второ́м кла́ссе.",
+        "de": "",
+        "hinweis": "второ́й = Klasse 2. Laut Zettel gehst du in die 1."
+       }
+      ]
+     },
+     "fach": {
+      "richtig": {
+       "text": "Мой люби́мый предме́т – му́зыка.",
+       "de": "Mein Lieblingsfach ist Musik."
+      },
+      "falsch": [
+       {
+        "text": "Моя́ люби́мая предме́т – му́зыка.",
+        "de": "",
+        "hinweis": "предме́т ist männlich: мой люби́мый предме́т."
+       },
+       {
+        "text": "Мой люби́мый предме́т – матема́тика.",
+        "de": "",
+        "hinweis": "матема́тика heißt Mathe. Laut Zettel: Musik."
+       }
+      ]
+     }
+    }
+   },
+   {
+    "id": "dima",
+    "geschlecht": "m",
+    "liste": [
+     {
+      "ware": "tetradi",
+      "menge": 5,
+      "text": "пять тетра́дей",
+      "de": "5 Hefte",
+      "bild": "📓"
+     },
+     {
+      "ware": "uchebniki",
+      "menge": 2,
+      "text": "два уче́бника",
+      "de": "2 Schulbücher",
+      "bild": "📘"
+     },
+     {
+      "ware": "lineyka",
+      "menge": 1,
+      "text": "одну́ лине́йку",
+      "de": "1 Lineal",
+      "bild": "📏"
+     },
+     {
+      "ware": "ruchki",
+      "menge": 2,
+      "text": "две ру́чки",
+      "de": "2 Kulis",
+      "bild": "🖊️"
+     }
+    ],
+    "liste_satz": "Положи́, пожа́луйста, в рюкза́к: пять тетра́дей, два уче́бника, одну́ лине́йку, две ру́чки.",
+    "p": {
+     "neu": "но́вый учени́к",
+     "neu_de": "einen neuen Schüler"
+    },
+    "zettel": {
+     "unterricht": [
+      "Du heißt Ди́ма",
+      "Du bist 11 Jahre alt",
+      "Deine Schwester ist 1",
+      "Du gehst in die 5. Klasse",
+      "Lieblingsfach: Geschichte"
+     ]
+    },
+    "felder": {
+     "imya": {
+      "richtig": {
+       "text": "Меня́ зову́т Ди́ма.",
+       "de": "Ich heiße Dima."
+      },
+      "falsch": [
+       {
+        "text": "Мне зову́т Ди́ма.",
+        "de": "",
+        "hinweis": "Wörtlich „mich nennt man“: меня́ зову́т (Akkusativ), nicht мне."
+       },
+       {
+        "text": "Меня́ зову́т Ди́му.",
+        "de": "",
+        "hinweis": "Der Name selbst steht im Nominativ: Ди́ма."
+       }
+      ]
+     },
+     "alter": {
+      "richtig": {
+       "text": "Мне оди́ннадцать лет.",
+       "de": "Ich bin 11 Jahre alt."
+      },
+      "falsch": [
+       {
+        "text": "Мне оди́ннадцать го́да.",
+        "de": "",
+        "hinweis": "Ab 5 heißt es лет: оди́ннадцать лет."
+       },
+       {
+        "text": "Я оди́ннадцать лет.",
+        "de": "",
+        "hinweis": "Das Alter steht mit dem Dativ: мне … лет (wörtlich „mir sind … Jahre“)."
+       }
+      ]
+     },
+     "geschwister": {
+      "richtig": {
+       "text": "Да, есть сестра́. Ей оди́н год.",
+       "de": "Ja, ich habe eine Schwester. Sie ist 1."
+      },
+      "falsch": [
+       {
+        "text": "Да, есть сестра́. Ему́ оди́н год.",
+        "de": "",
+        "hinweis": "Für die Schwester: ей (Dativ von она́). ему́ ist männlich."
+       },
+       {
+        "text": "Да, есть сестра́. Ей оди́н го́да.",
+        "de": "",
+        "hinweis": "Nach 1 steht год: оди́н год."
+       }
+      ]
+     },
+     "klasse": {
+      "richtig": {
+       "text": "В пя́том кла́ссе.",
+       "de": "In der 5. Klasse."
+      },
+      "falsch": [
+       {
+        "text": "В пя́тый класс.",
+        "de": "",
+        "hinweis": "Wo? в + Präpositiv: в пя́том кла́ссе."
+       },
+       {
+        "text": "В четвёртом кла́ссе.",
+        "de": "",
+        "hinweis": "четвёртый = Klasse 4. Laut Zettel gehst du in die 5."
+       }
+      ]
+     },
+     "fach": {
+      "richtig": {
+       "text": "Мой люби́мый предме́т – исто́рия.",
+       "de": "Mein Lieblingsfach ist Geschichte."
+      },
+      "falsch": [
+       {
+        "text": "Моя́ люби́мая предме́т – исто́рия.",
+        "de": "",
+        "hinweis": "предме́т ist männlich: мой люби́мый предме́т."
+       },
+       {
+        "text": "Мой люби́мый предме́т – матема́тика.",
+        "de": "",
+        "hinweis": "матема́тика heißt Mathe. Laut Zettel: Geschichte."
+       }
+      ]
+     }
+    }
+   },
+   {
+    "id": "anya",
+    "geschlecht": "f",
+    "liste": [
+     {
+      "ware": "tetradi",
+      "menge": 4,
+      "text": "четы́ре тетра́ди",
+      "de": "4 Hefte",
+      "bild": "📓"
+     },
+     {
+      "ware": "lastik",
+      "menge": 1,
+      "text": "оди́н ла́стик",
+      "de": "1 Radiergummi",
+      "bild": "🧽"
+     },
+     {
+      "ware": "uchebniki",
+      "menge": 3,
+      "text": "три уче́бника",
+      "de": "3 Schulbücher",
+      "bild": "📘"
+     },
+     {
+      "ware": "karandashi",
+      "menge": 1,
+      "text": "оди́н каранда́ш",
+      "de": "1 Bleistift",
+      "bild": "✏️"
+     }
+    ],
+    "liste_satz": "Положи́, пожа́луйста, в рюкза́к: четы́ре тетра́ди, оди́н ла́стик, три уче́бника, оди́н каранда́ш.",
+    "p": {
+     "neu": "но́вая учени́ца",
+     "neu_de": "eine neue Schülerin"
+    },
+    "zettel": {
+     "unterricht": [
+      "Du heißt А́ня",
+      "Du bist 9 Jahre alt",
+      "Dein Bruder ist 3",
+      "Du gehst in die 3. Klasse",
+      "Lieblingsfach: Russisch"
+     ]
+    },
+    "felder": {
+     "imya": {
+      "richtig": {
+       "text": "Меня́ зову́т А́ня.",
+       "de": "Ich heiße Anja."
+      },
+      "falsch": [
+       {
+        "text": "Мне зову́т А́ня.",
+        "de": "",
+        "hinweis": "Wörtlich „mich nennt man“: меня́ зову́т (Akkusativ), nicht мне."
+       },
+       {
+        "text": "Меня́ зову́т А́ню.",
+        "de": "",
+        "hinweis": "Der Name selbst steht im Nominativ: А́ня."
+       }
+      ]
+     },
+     "alter": {
+      "richtig": {
+       "text": "Мне де́вять лет.",
+       "de": "Ich bin 9 Jahre alt."
+      },
+      "falsch": [
+       {
+        "text": "Мне де́вять го́да.",
+        "de": "",
+        "hinweis": "Ab 5 heißt es лет: де́вять лет."
+       },
+       {
+        "text": "Я де́вять лет.",
+        "de": "",
+        "hinweis": "Das Alter steht mit dem Dativ: мне … лет (wörtlich „mir sind … Jahre“)."
+       }
+      ]
+     },
+     "geschwister": {
+      "richtig": {
+       "text": "Да, есть брат. Ему́ три го́да.",
+       "de": "Ja, ich habe einen Bruder. Er ist 3."
+      },
+      "falsch": [
+       {
+        "text": "Да, есть брат. Ей три го́да.",
+        "de": "",
+        "hinweis": "Für den Bruder: ему́ (Dativ von он). ей ist weiblich."
+       },
+       {
+        "text": "Да, есть брат. Ему́ три лет.",
+        "de": "",
+        "hinweis": "Nach 2, 3, 4 steht го́да: три го́да."
+       }
+      ]
+     },
+     "klasse": {
+      "richtig": {
+       "text": "В тре́тьем кла́ссе.",
+       "de": "In der 3. Klasse."
+      },
+      "falsch": [
+       {
+        "text": "В тре́тий класс.",
+        "de": "",
+        "hinweis": "Wo? в + Präpositiv: в тре́тьем кла́ссе."
+       },
+       {
+        "text": "В четвёртом кла́ссе.",
+        "de": "",
+        "hinweis": "четвёртый = Klasse 4. Laut Zettel gehst du in die 3."
+       }
+      ]
+     },
+     "fach": {
+      "richtig": {
+       "text": "Мой люби́мый предме́т – ру́сский язы́к.",
+       "de": "Mein Lieblingsfach ist Russisch."
+      },
+      "falsch": [
+       {
+        "text": "Моя́ люби́мая предме́т – ру́сский язы́к.",
+        "de": "",
+        "hinweis": "предме́т ist männlich: мой люби́мый предме́т."
+       },
+       {
+        "text": "Мой люби́мый предме́т – матема́тика.",
+        "de": "",
+        "hinweis": "матема́тика heißt Mathe. Laut Zettel: Russisch."
+       }
+      ]
+     }
+    }
+   }
+  ],
+  "szenen": {
+   "unterricht": {
+    "titel": "Im Unterricht",
+    "zettel_titel": "Das bist du",
+    "geschafft": "Der erste Schultag ist geschafft!",
+    "start": "gruss",
+    "knoten": {
+     "gruss": {
+      "sprecher": "uchitelnitsa",
+      "text": "До́брое у́тро, де́ти! Сади́тесь.",
+      "de": "Guten Morgen, Kinder! Setzt euch.",
+      "optionen": [
+       {
+        "text": "До́брое у́тро, Мари́я Ива́новна!",
+        "de": "Guten Morgen, Maria Iwanowna!",
+        "weiter": "imya"
+       },
+       {
+        "text": "Приве́т, Мари́я!",
+        "de": "Hallo, Maria!",
+        "hinweis": "Lehrerinnen spricht man mit Vor- und Vatersnamen an und siezt sie: До́брое у́тро, Мари́я Ива́новна!"
+       },
+       {
+        "text": "Споко́йной но́чи!",
+        "de": "Gute Nacht!",
+        "hinweis": "Das sagt man vor dem Schlafen. Am Morgen: До́брое у́тро!"
+       }
+      ]
+     },
+     "imya": {
+      "sprecher": "uchitelnitsa",
+      "text": "У нас {neu}. Как тебя́ зову́т?",
+      "de": "Wir haben {neu_de}. Wie heißt du?",
+      "feld": "imya",
+      "weiter": "alter"
+     },
+     "alter": {
+      "sprecher": "uchitelnitsa",
+      "text": "Ско́лько тебе́ лет?",
+      "de": "Wie alt bist du?",
+      "feld": "alter",
+      "weiter": "geschwister"
+     },
+     "geschwister": {
+      "sprecher": "uchitelnitsa",
+      "text": "У тебя́ есть брат и́ли сестра́?",
+      "de": "Hast du einen Bruder oder eine Schwester?",
+      "feld": "geschwister",
+      "weiter": "klasse"
+     },
+     "klasse": {
+      "sprecher": "uchitelnitsa",
+      "text": "Ты в како́м кла́ссе?",
+      "de": "In welcher Klasse bist du?",
+      "feld": "klasse",
+      "weiter": "fach"
+     },
+     "fach": {
+      "sprecher": "uchitelnitsa",
+      "text": "Како́й твой люби́мый предме́т?",
+      "de": "Was ist dein Lieblingsfach?",
+      "feld": "fach",
+      "weiter": "seite"
+     },
+     "seite": {
+      "sprecher": "uchitelnitsa",
+      "text": "Хорошо́. Откро́йте уче́бники на страни́це два́дцать пять.",
+      "de": "Gut. Schlagt die Bücher auf Seite 25 auf.",
+      "optionen": [
+       {
+        "text": "Извини́те, на како́й страни́це?",
+        "de": "Entschuldigung, auf welcher Seite?",
+        "weiter": "seite2"
+       },
+       {
+        "text": "Что?!",
+        "de": "Was?!",
+        "hinweis": "Das klingt unhöflich. Höflich nachfragen: Извини́те, на како́й страни́це?"
+       },
+       {
+        "text": "Извини́те, на како́м страни́це?",
+        "de": "",
+        "hinweis": "страни́ца ist weiblich: на како́й страни́це."
+       }
+      ]
+     },
+     "seite2": {
+      "sprecher": "uchitelnitsa",
+      "text": "На два́дцать пя́той. Ну, начина́ем!",
+      "de": "Auf der fünfundzwanzigsten. Also, wir fangen an!",
+      "weiter": "glocke"
+     },
+     "glocke": {
+      "sprecher": "erzaehler",
+      "text": "Прошло́ со́рок пять мину́т… Звени́т звоно́к!",
+      "de": "45 Minuten sind vergangen … Es klingelt!",
+      "aktion": "klingeln",
+      "weiter": "ende"
+     },
+     "ende": {
+      "sprecher": "uchitelnitsa",
+      "text": "Уро́к око́нчен. До свида́ния, де́ти!",
+      "de": "Die Stunde ist zu Ende. Auf Wiedersehen, Kinder!",
+      "optionen": [
+       {
+        "text": "До свида́ния, Мари́я Ива́новна!",
+        "de": "Auf Wiedersehen, Maria Iwanowna!",
+        "ende": true
+       },
+       {
+        "text": "Пока́, Мари́я!",
+        "de": "Tschüss, Maria!",
+        "hinweis": "Zur Lehrerin sagt man nicht пока́: До свида́ния, Мари́я Ива́новна!"
+       }
+      ]
+     }
+    }
+   }
+  }
+ }
+}

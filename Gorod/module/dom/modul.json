@@ -1,0 +1,21 @@
+{
+  "titel": {
+    "ru": "дом",
+    "de": "Wohnhaus"
+  },
+  "praeposition": "в",
+  "satz_hin": "Я иду́ домо́й.",
+  "satz_hin_de": "Ich gehe nach Hause.",
+  "stufen": [
+    "entdecken",
+    "hoeren",
+    "wo",
+    "etagen"
+  ],
+  "grafik": {
+    "aussen": "grafik/aussen.svg",
+    "innen": "grafik/innen.svg"
+  },
+  "farbe": "#2b5fa8",
+  "breite": 285
+}

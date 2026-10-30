@@ -1,0 +1,191 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 680" role="img" aria-label="Im Supermarkt">
+  <defs>
+    <pattern id="sup-boden" width="80" height="40" patternUnits="userSpaceOnUse">
+      <rect width="80" height="40" fill="#e3ddd2"/><path d="M0 0 H80 M0 0 V40" stroke="#d1c9bb" stroke-width="2"/>
+    </pattern>
+    <linearGradient id="sup-glas" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#e8f4f8" stop-opacity="0.55"/><stop offset="1" stop-color="#b9dcec" stop-opacity="0.25"/>
+    </linearGradient>
+    <g id="sup-apfel"><circle r="11" fill="#c8302a"/><path d="M0 -10 V-15" stroke="#5e3920" stroke-width="2"/><ellipse cx="-4" cy="-4" rx="3" ry="2" fill="#fff" opacity="0.35"/></g>
+    <g id="sup-tomate"><circle r="10" fill="#e5483a"/><path d="M-5 -8 L0 -11 L5 -8 L0 -6Z" fill="#3f8f5f"/></g>
+    <g id="sup-zitrone"><ellipse rx="12" ry="9" fill="#f2d046"/><circle cx="12" r="2" fill="#e2b43c"/></g>
+    <!-- Wasserflasche: durchsichtig, sichtbarer Wasserstand, blauer Deckel, Tropfen-Etikett -->
+    <g id="sup-flasche">
+      <path d="M-14 0 V-52 Q-14 -62 -6 -66 V-74 H6 V-66 Q14 -62 14 -52 V0 Z" fill="#eef8fd" stroke="#3d8fc0" stroke-width="2"/>
+      <path d="M-12 -2 V-46 Q-6 -50 0 -46 Q6 -42 12 -46 V-2 Z" fill="#6cbbe6"/>
+      <path d="M-9 -40 V-8" stroke="#ffffff" stroke-width="2.5" opacity="0.7"/>
+      <rect x="-8" y="-82" width="16" height="9" rx="2" fill="#2b5fa8"/>
+      <rect x="-14" y="-34" width="28" height="17" fill="#ffffff"/>
+      <path d="M0 -32 Q5 -26 5 -23 A5 5 0 0 1 -5 -23 Q-5 -26 0 -32 Z" fill="#2b5fa8"/>
+    </g>
+    <g id="sup-saft"><path d="M-12 0 V-40 L-6 -48 H6 L12 -40 V0 Z" fill="#f08a2c"/><rect x="-12" y="-30" width="24" height="14" fill="#fff6dd"/><circle cy="-23" r="5" fill="#f08a2c"/></g>
+    <g id="sup-tee"><rect x="-15" y="-30" width="30" height="30" rx="2" fill="#2f6b4f"/><rect x="-11" y="-24" width="22" height="9" fill="#e8c879"/></g>
+    <g id="sup-brot"><path d="M-28 0 Q-30 -26 0 -27 Q30 -26 28 0 Z" fill="#c8862f"/><path d="M-14 -20 L-8 -10 M0 -22 L6 -12 M14 -20 L20 -10" stroke="#9c6420" stroke-width="3" stroke-linecap="round"/></g>
+    <g id="sup-milch"><path d="M-12 0 V-38 L-6 -46 H6 L12 -38 V0 Z" fill="#fbfbfb" stroke="#c9d3d9" stroke-width="1.5"/><rect x="-12" y="-26" width="24" height="12" fill="#2b5fa8"/></g>
+  </defs>
+
+  <!-- Wand, Decke, Boden -->
+  <rect width="1200" height="680" fill="#f4efe6"/>
+  <rect width="1200" height="24" fill="#dcd5c8"/>
+  <g fill="#fffbe9"><rect x="140" y="20" width="120" height="6" rx="3"/><rect x="540" y="20" width="120" height="6" rx="3"/><rect x="940" y="20" width="120" height="6" rx="3"/></g>
+  <rect y="230" width="1200" height="10" fill="#3f8f5f"/>
+  <rect y="560" width="1200" height="120" fill="url(#sup-boden)"/>
+  <rect y="556" width="1200" height="6" fill="#c9c1b2"/>
+
+  <!-- Schilder -->
+  <g font-family="Manrope, sans-serif" font-weight="800" text-anchor="middle" fill="#fff">
+    <rect x="40" y="150" width="300" height="40" rx="6" fill="#3f8f5f"/><text x="190" y="177" font-size="17" letter-spacing="1">ОВОЩИ И ФРУКТЫ</text>
+    <rect x="400" y="150" width="210" height="40" rx="6" fill="#c8862f"/><text x="505" y="177" font-size="17" letter-spacing="1">ПРОДУКТЫ</text>
+    <rect x="636" y="150" width="130" height="40" rx="6" fill="#2b5fa8"/><text x="701" y="177" font-size="17" letter-spacing="1">МОЛОКО</text>
+    <rect x="790" y="150" width="190" height="40" rx="6" fill="#b8392b"/><text x="885" y="177" font-size="15" letter-spacing="0.5">СЫРЫ И КОЛБАСЫ</text>
+    <rect x="1010" y="150" width="170" height="40" rx="6" fill="#1d3557"/><text x="1095" y="177" font-size="18" letter-spacing="3">КАССА</text>
+    <path d="M190 24 V150 M505 24 V150 M701 24 V150 M885 24 V150 M1095 24 V150" stroke="#9aa1a7" stroke-width="2"/>
+  </g>
+
+  <!-- ===== Obst und Gemüse ===== -->
+  <g pointer-events="none">
+    <path d="M30 330 L350 330 L350 560 L30 560 Z" fill="#a0673c"/>
+    <path d="M30 400 H350 M30 500 H350" stroke="#7a4a2b" stroke-width="4"/>
+    <path d="M44 560 V600 M336 560 V600" stroke="#5e3920" stroke-width="8"/>
+  </g>
+  <g id="hs-yabloki" class="hotspot">
+    <path d="M36 300 L130 300 L126 330 L40 330 Z" fill="#c9a26b"/>
+    <use href="#sup-apfel" x="56" y="292"/><use href="#sup-apfel" x="80" y="290"/><use href="#sup-apfel" x="104" y="292"/>
+    <use href="#sup-apfel" x="68" y="276"/><use href="#sup-apfel" x="92" y="276"/>
+  </g>
+  <g id="hs-banany" class="hotspot">
+    <path d="M140 300 L240 300 L236 330 L144 330 Z" fill="#c9a26b"/>
+    <path d="M152 292 Q190 316 228 284 Q226 296 190 304 Q160 304 152 292Z" fill="#f2d046" stroke="#c9a42c" stroke-width="1.5"/>
+    <path d="M156 280 Q192 300 226 270 Q226 284 190 292 Q162 292 156 280Z" fill="#f5dc5a" stroke="#c9a42c" stroke-width="1.5"/>
+    <path d="M226 270 L232 264 M228 284 L234 280" stroke="#5e3920" stroke-width="3"/>
+  </g>
+  <g id="hs-limony" class="hotspot">
+    <path d="M250 300 L344 300 L340 330 L254 330 Z" fill="#c9a26b"/>
+    <use href="#sup-zitrone" x="272" y="290"/><use href="#sup-zitrone" x="298" y="292"/><use href="#sup-zitrone" x="324" y="290"/><use href="#sup-zitrone" x="286" y="276"/><use href="#sup-zitrone" x="312" y="276"/>
+  </g>
+  <g id="hs-pomidory" class="hotspot">
+    <path d="M36 410 L180 410 L176 440 L40 440 Z" fill="#c9a26b"/>
+    <use href="#sup-tomate" x="58" y="402"/><use href="#sup-tomate" x="80" y="404"/><use href="#sup-tomate" x="102" y="402"/><use href="#sup-tomate" x="124" y="404"/><use href="#sup-tomate" x="146" y="402"/><use href="#sup-tomate" x="166" y="404"/>
+    <use href="#sup-tomate" x="70" y="386"/><use href="#sup-tomate" x="92" y="386"/><use href="#sup-tomate" x="114" y="386"/><use href="#sup-tomate" x="136" y="386"/><use href="#sup-tomate" x="156" y="386"/>
+  </g>
+  <g id="hs-ogurtsy" class="hotspot">
+    <path d="M196 410 L344 410 L340 440 L200 440 Z" fill="#c9a26b"/>
+    <g fill="#3f8f5f" stroke="#2a6a45" stroke-width="1.5">
+      <rect x="208" y="394" width="60" height="16" rx="8" transform="rotate(-6 238 402)"/><rect x="272" y="394" width="60" height="16" rx="8" transform="rotate(5 302 402)"/>
+      <rect x="236" y="378" width="62" height="16" rx="8" transform="rotate(3 267 386)"/>
+    </g>
+  </g>
+  <g id="hs-korzina" class="hotspot">
+    <path d="M300 612 L380 612 L372 662 L308 662 Z" fill="#c8302a"/>
+    <path d="M310 626 H370 M312 640 H368" stroke="#9c2620" stroke-width="3"/>
+    <path d="M314 612 Q340 584 366 612" stroke="#3a3a3a" stroke-width="4" fill="none"/>
+  </g>
+
+  <!-- ===== Regal mit Trockenwaren ===== -->
+  <g id="hs-polka" class="hotspot">
+    <rect x="390" y="248" width="230" height="312" fill="#d9cdb9"/>
+    <rect x="390" y="248" width="230" height="10" fill="#b9ad97"/>
+    <rect x="384" y="330" width="242" height="10" fill="#9c8d72"/>
+    <rect x="384" y="440" width="242" height="10" fill="#9c8d72"/>
+    <rect x="384" y="550" width="242" height="10" fill="#9c8d72"/>
+    <path d="M390 248 V560 M620 248 V560" stroke="#9c8d72" stroke-width="8"/>
+  </g>
+  <g id="hs-chay" class="hotspot">
+    <use href="#sup-tee" x="418" y="330"/><use href="#sup-tee" x="452" y="330"/><use href="#sup-tee" x="486" y="330"/>
+  </g>
+  <g id="hs-sok" class="hotspot">
+    <use href="#sup-saft" x="528" y="330"/><use href="#sup-saft" x="560" y="330"/><use href="#sup-saft" x="592" y="330"/>
+  </g>
+  <g id="hs-voda" class="hotspot">
+    <use href="#sup-flasche" x="414" y="440"/><use href="#sup-flasche" x="447" y="440"/><use href="#sup-flasche" x="480" y="440"/>
+  </g>
+  <g id="hs-khleb" class="hotspot">
+    <use href="#sup-brot" x="546" y="440"/><use href="#sup-brot" x="584" y="426" transform="rotate(0)"/>
+  </g>
+  <g id="hs-yaytsa" class="hotspot">
+    <rect x="404" y="516" width="94" height="34" rx="4" fill="#a8916a"/>
+    <g fill="#fbf3e2" stroke="#d9c9a8"><ellipse cx="420" cy="514" rx="9" ry="11"/><ellipse cx="440" cy="514" rx="9" ry="11"/><ellipse cx="460" cy="514" rx="9" ry="11"/><ellipse cx="480" cy="514" rx="9" ry="11"/></g>
+    <rect x="510" y="516" width="94" height="34" rx="4" fill="#a8916a"/>
+    <g fill="#f3e3c8" stroke="#d9c9a8"><ellipse cx="526" cy="514" rx="9" ry="11"/><ellipse cx="546" cy="514" rx="9" ry="11"/><ellipse cx="566" cy="514" rx="9" ry="11"/><ellipse cx="586" cy="514" rx="9" ry="11"/></g>
+  </g>
+
+  <!-- ===== Kühlregal ===== -->
+  <g id="hs-kholodilnik" class="hotspot">
+    <rect x="636" y="230" width="130" height="330" rx="6" fill="#dfe6ea"/>
+    <rect x="646" y="244" width="110" height="300" fill="#a9c3cf"/>
+    <path d="M646 352 H756 M646 450 H756" stroke="#b9c7cf" stroke-width="5"/>
+  </g>
+  <g id="hs-moloko" class="hotspot">
+    <use href="#sup-milch" x="666" y="350"/><use href="#sup-milch" x="694" y="350"/><use href="#sup-milch" x="722" y="350"/>
+    <use href="#sup-milch" x="666" y="448"/><use href="#sup-milch" x="694" y="448"/><use href="#sup-milch" x="722" y="448"/>
+  </g>
+  <rect x="646" y="244" width="110" height="300" fill="url(#sup-glas)" fill-opacity="0.45" stroke="#9fb0ba" stroke-width="4" pointer-events="none"/>
+  <path d="M700 250 V540" stroke="#9fb0ba" stroke-width="3" pointer-events="none"/>
+
+  <!-- ===== Theke ===== -->
+  <g id="hs-prodavshchitsa" class="hotspot">
+    <path d="M808 470 Q810 400 852 398 Q894 400 896 470 Z" fill="#fbfbfb" stroke="#d9dde0" stroke-width="2"/>
+    <path d="M834 400 L852 430 L870 400" stroke="#b8392b" stroke-width="4" fill="none"/>
+    <circle cx="852" cy="370" r="19" fill="#f2c7a6"/>
+    <path d="M832 368 Q832 346 852 346 Q872 346 872 368 Q866 356 852 356 Q838 356 832 368Z" fill="#a0523a"/>
+    <path d="M834 352 L870 352 L866 340 L838 340 Z" fill="#fbfbfb" stroke="#d9dde0"/>
+    <circle cx="845" cy="372" r="2" fill="#2a2a2a"/><circle cx="859" cy="372" r="2" fill="#2a2a2a"/>
+    <path d="M846 381 Q852 385 858 381" stroke="#a0523a" stroke-width="2" fill="none"/>
+  </g>
+  <g pointer-events="none">
+    <rect x="790" y="458" width="190" height="102" fill="#b8392b"/>
+    <rect x="790" y="458" width="190" height="12" fill="#9c2f22"/>
+    <rect x="796" y="474" width="178" height="46" fill="#f6f2e6"/>
+  </g>
+  <g id="hs-syr" class="hotspot">
+    <path d="M802 516 L802 494 L846 480 L846 516 Z" fill="#f2c14e"/>
+    <path d="M802 494 L846 480 L846 486 L802 500 Z" fill="#e2a83a"/>
+    <g fill="#d99a2b"><circle cx="814" cy="506" r="3"/><circle cx="830" cy="498" r="2.5"/><circle cx="836" cy="510" r="3"/></g>
+  </g>
+  <g id="hs-kolbasa" class="hotspot">
+    <rect x="852" y="494" width="58" height="12" rx="6" fill="#8a2f28"/><rect x="856" y="506" width="56" height="12" rx="6" fill="#9c3a30"/>
+    <g fill="#e8b0a0"><circle cx="864" cy="500" r="1.6"/><circle cx="880" cy="502" r="1.6"/><circle cx="896" cy="499" r="1.6"/><circle cx="870" cy="512" r="1.6"/><circle cx="894" cy="513" r="1.6"/></g>
+  </g>
+  <g id="hs-vetchina" class="hotspot">
+    <path d="M918 516 Q916 494 940 490 Q966 488 968 506 L968 516 Z" fill="#f0a3a3"/>
+    <path d="M920 512 Q942 500 966 508" stroke="#fbe0e0" stroke-width="3" fill="none"/>
+  </g>
+  <rect x="796" y="474" width="178" height="46" fill="url(#sup-glas)" stroke="#d9dde0" stroke-width="2" pointer-events="none"/>
+  <g id="hs-vesy" class="hotspot">
+    <rect x="904" y="436" width="62" height="22" rx="3" fill="#d9dde0"/>
+    <rect x="898" y="430" width="74" height="7" rx="3" fill="#9aa1a7"/>
+    <rect x="912" y="442" width="30" height="11" fill="#15191b"/><text x="927" y="451" text-anchor="middle" font-family="Manrope, sans-serif" font-size="8" font-weight="800" fill="#6fcf97">0,200</text>
+  </g>
+
+  <!-- ===== Kasse ===== -->
+  <g id="hs-paket" class="hotspot">
+    <rect class="treffer" x="1000" y="400" width="44" height="60" fill="transparent"/>
+    <path d="M1006 456 V418 L1012 408 H1032 L1038 418 V456 Z" fill="#fbfbfb" stroke="#c9d3d9" stroke-width="2"/>
+    <path d="M1014 408 Q1022 396 1030 408" stroke="#c9d3d9" stroke-width="3" fill="none"/>
+    <text x="1022" y="440" text-anchor="middle" font-family="Manrope, sans-serif" font-size="9" font-weight="800" fill="#3f8f5f">ГОРОД</text>
+  </g>
+  <g id="hs-kassir" class="hotspot">
+    <path d="M1100 470 Q1102 412 1140 410 Q1178 412 1180 470 Z" fill="#3f8f5f"/>
+    <rect x="1132" y="420" width="16" height="10" rx="2" fill="#fbfbfb"/>
+    <circle cx="1140" cy="386" r="18" fill="#e8b994"/>
+    <path d="M1122 380 Q1124 362 1140 362 Q1156 362 1158 380 Q1150 370 1140 371 Q1130 370 1122 380Z" fill="#2a211c"/>
+    <circle cx="1134" cy="388" r="2" fill="#2a2a2a"/><circle cx="1146" cy="388" r="2" fill="#2a2a2a"/>
+    <path d="M1135 396 Q1140 399 1145 396" stroke="#a0523a" stroke-width="2" fill="none"/>
+  </g>
+  <g id="hs-kassa" class="hotspot">
+    <rect x="1000" y="470" width="190" height="90" fill="#5c6b7a"/>
+    <rect x="1000" y="462" width="130" height="12" rx="4" fill="#22303c"/>
+    <path d="M1010 468 H1120" stroke="#3a4650" stroke-width="2" stroke-dasharray="8 6"/>
+    <rect x="1062" y="426" width="44" height="34" rx="3" fill="#3a3f44"/>
+    <rect x="1066" y="430" width="36" height="16" fill="#15191b"/>
+    <text x="1084" y="442" text-anchor="middle" font-family="Manrope, sans-serif" font-size="9" font-weight="800" fill="#6fcf97">ИТОГО</text>
+  </g>
+
+  <!-- Einkaufswagen vorne -->
+  <g id="hs-telezhka" class="hotspot">
+    <path d="M860 586 L876 586 L892 650 H990 L1004 600 H884" stroke="#9aa1a7" stroke-width="5" fill="none" stroke-linejoin="round"/>
+    <path d="M884 600 L896 644 H988 L1000 604" fill="#dfe6ea" fill-opacity="0.6"/>
+    <path d="M904 606 V644 M924 606 V644 M944 606 V644 M964 606 V644 M984 606 V644 M892 622 H996" stroke="#b9c7cf" stroke-width="2"/>
+    <circle cx="904" cy="664" r="8" fill="#2a2a2a"/><circle cx="978" cy="664" r="8" fill="#2a2a2a"/>
+  </g>
+</svg>

@@ -1,0 +1,20 @@
+{
+  "titel": {
+    "ru": "высо́тка",
+    "de": "Hochhaus"
+  },
+  "praeposition": "в",
+  "satz_hin": "Я иду́ в высо́тку.",
+  "satz_hin_de": "Ich gehe ins Hochhaus.",
+  "stufen": [
+    "entdecken",
+    "hoeren",
+    "aufzug"
+  ],
+  "grafik": {
+    "aussen": "grafik/aussen.svg",
+    "innen": "grafik/innen.svg"
+  },
+  "farbe": "#7c5ea8",
+  "breite": 165
+}

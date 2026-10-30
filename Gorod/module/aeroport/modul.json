@@ -1,0 +1,22 @@
+{
+  "titel": {
+    "ru": "аэропо́рт",
+    "de": "Flughafen"
+  },
+  "praeposition": "в",
+  "satz_hin": "Я е́ду в аэропо́рт.",
+  "satz_hin_de": "Ich fahre zum Flughafen.",
+  "stufen": [
+    "entdecken",
+    "hoeren",
+    "pass",
+    "gepaeck",
+    "zoll"
+  ],
+  "grafik": {
+    "aussen": "grafik/aussen.svg",
+    "innen": "grafik/innen.svg"
+  },
+  "farbe": "#2b6f9e",
+  "breite": 250
+}

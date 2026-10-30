@@ -14,6 +14,7 @@
 /*
 !/.gitignore
 !/Vokabeltrainer/
+!/Gorod/
 
 # ═══════════════════════════════════════════════════════════════
 #  SCHLUESSEL — NIEMALS VERSIONIEREN
@@ -39,6 +40,10 @@ Vokabeltrainer/aussprachetrainer_MS-Azure_key.txt
 # node_modules: 51 MB, 4.375 Dateien. Wird aus package.json per
 # "npm install" wiederhergestellt und gehoert nicht ins Repo.
 node_modules/
+
+# Spielstand der Stadt-App (Laufzeitdaten)
+Gorod/daten/
+__pycache__/
 
 # Sicherungskopien, die Git ueberfluessig macht
 *.bak

@@ -1,0 +1,182 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 680" role="img" aria-label="Bahnhofshalle und Bahnsteig">
+  <defs>
+    <linearGradient id="vok-himmel" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#8cc3e3"/><stop offset="1" stop-color="#e3f0f4"/>
+    </linearGradient>
+    <linearGradient id="vok-glas" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#e8f4f8" stop-opacity="0.5"/><stop offset="1" stop-color="#b9dcec" stop-opacity="0.25"/>
+    </linearGradient>
+    <pattern id="vok-boden" width="60" height="60" patternUnits="userSpaceOnUse">
+      <rect width="60" height="60" fill="#d9cdb9"/><rect width="30" height="30" fill="#cfc1a8"/><rect x="30" y="30" width="30" height="30" fill="#cfc1a8"/>
+    </pattern>
+  </defs>
+
+  <!-- ===== Halle ===== -->
+  <rect width="556" height="680" fill="#efe4cf"/>
+  <rect width="556" height="18" fill="#d9cdb9"/>
+  <path d="M60 260 V150 Q60 100 130 100 Q200 100 200 150 V260 Z" fill="url(#vok-himmel)" stroke="#fbf7ef" stroke-width="8"/>
+  <path d="M130 100 V260 M60 180 H200" stroke="#fbf7ef" stroke-width="5"/>
+  <g id="hs-vokzal" class="hotspot">
+    <rect x="236" y="30" width="290" height="58" rx="6" fill="#1f4e47"/>
+    <rect x="244" y="38" width="274" height="42" rx="3" fill="none" stroke="#d6a446" stroke-width="2"/>
+    <text x="381" y="72" text-anchor="middle" font-family="'PT Serif', Georgia, serif" font-size="32" font-weight="700" fill="#e8c879" letter-spacing="8">ВОКЗАЛ</text>
+  </g>
+  <g id="hs-chasy" class="hotspot">
+    <path d="M300 88 V106" stroke="#3a3f44" stroke-width="4"/>
+    <circle cx="300" cy="148" r="42" fill="#2c3e50"/>
+    <circle cx="300" cy="148" r="35" fill="#fbf7ef"/>
+    <g stroke="#2a2a2a" stroke-width="3"><path d="M300 117 V123 M300 173 V179 M269 148 H275 M325 148 H331"/></g>
+    <path d="M300 148 L284 138" stroke="#2a2a2a" stroke-width="4" stroke-linecap="round"/>
+    <path d="M300 148 L316 130" stroke="#2a2a2a" stroke-width="3" stroke-linecap="round"/>
+    <circle cx="300" cy="148" r="3.5" fill="#b8392b"/>
+  </g>
+  <g id="hs-raspisanie" class="hotspot" font-family="Manrope, sans-serif" font-weight="700">
+    <rect x="352" y="112" width="180" height="210" rx="5" fill="#1d3557"/>
+    <text x="442" y="134" text-anchor="middle" font-size="12" fill="#fff" letter-spacing="1">РАСПИСАНИЕ</text>
+    <path d="M362 142 H522" stroke="#3b5a85" stroke-width="2"/>
+    <g font-size="11" fill="#dfe9ee">
+      <text x="364" y="162">08:15</text><text x="408" y="162">МОСКВА</text>
+      <text x="364" y="184">09:40</text><text x="408" y="184">С.-ПЕТЕРБУРГ</text>
+      <text x="364" y="206">10:25</text><text x="408" y="206">КАЗАНЬ</text>
+      <text x="364" y="228">12:50</text><text x="408" y="228">СОЧИ</text>
+      <text x="364" y="250">14:05</text><text x="408" y="250">Н. НОВГОРОД</text>
+      <text x="364" y="272">16:30</text><text x="408" y="272">ЯРОСЛАВЛЬ</text>
+      <text x="364" y="294">18:45</text><text x="408" y="294">ВЛАДИВОСТОК</text>
+      <text x="364" y="316">21:10</text><text x="408" y="316">ЕКАТЕРИНБУРГ</text>
+    </g>
+  </g>
+
+  <!-- Kasse -->
+  <g id="hs-kassa" class="hotspot">
+    <rect x="40" y="282" width="190" height="38" rx="5" fill="#b8392b"/>
+    <text x="135" y="309" text-anchor="middle" font-family="Manrope, sans-serif" font-size="20" font-weight="800" fill="#fff" letter-spacing="3">КАССА</text>
+    <rect x="30" y="320" width="210" height="240" fill="#8a5a3a"/>
+    <rect x="58" y="340" width="154" height="104" fill="#e9dcc2"/>
+    <rect x="50" y="444" width="170" height="12" fill="#6b4226"/>
+    <path d="M44 480 H226 M44 520 H226" stroke="#7a4a2b" stroke-width="3"/>
+  </g>
+  <g id="hs-kassirsha" class="hotspot">
+    <path d="M90 444 Q92 400 130 398 Q168 400 170 444 Z" fill="#7c5ea8"/>
+    <path d="M122 398 L130 414 L138 398 Z" fill="#fbf7ef"/>
+    <circle cx="130" cy="372" r="21" fill="#c9a26b"/>
+    <circle cx="130" cy="377" r="17" fill="#f2c7a6"/>
+    <path d="M112 370 Q130 350 148 370" stroke="#c9a26b" stroke-width="7" fill="none"/>
+    <circle cx="123" cy="378" r="5.5" fill="none" stroke="#3a3a3a" stroke-width="1.6"/><circle cx="137" cy="378" r="5.5" fill="none" stroke="#3a3a3a" stroke-width="1.6"/>
+    <path d="M128.5 378 H131.5" stroke="#3a3a3a" stroke-width="1.6"/>
+    <path d="M125 388 Q130 391 135 388" stroke="#a0523a" stroke-width="2" fill="none"/>
+  </g>
+  <rect x="58" y="340" width="154" height="104" fill="url(#vok-glas)" stroke="#5e3920" stroke-width="5" pointer-events="none"/>
+  <rect x="108" y="428" width="44" height="16" rx="7" fill="#6b4226" pointer-events="none"/>
+  <g id="hs-bilet" class="hotspot">
+    <rect class="treffer" x="150" y="424" width="56" height="30" fill="transparent"/>
+    <rect x="160" y="436" width="36" height="10" rx="1" fill="#fdfcf6" stroke="#b8392b" stroke-width="1.5" transform="rotate(-8 178 441)"/>
+    <rect x="160" y="436" width="9" height="10" fill="#b8392b" transform="rotate(-8 178 441)"/>
+  </g>
+
+  <!-- Wartebank und Fahrgast -->
+  <rect y="560" width="556" height="120" fill="url(#vok-boden)"/>
+  <rect y="556" width="556" height="6" fill="#b9ad97"/>
+  <g id="hs-skameyka" class="hotspot">
+    <rect x="262" y="500" width="168" height="10" rx="3" fill="#8a5a3a"/>
+    <rect x="262" y="514" width="168" height="10" rx="3" fill="#8a5a3a"/>
+    <rect x="256" y="532" width="180" height="12" rx="3" fill="#a0673c"/>
+    <path d="M270 544 V586 M422 544 V586 M270 500 V532 M422 500 V532" stroke="#3a2a1e" stroke-width="6"/>
+  </g>
+  <g id="hs-passazhir" class="hotspot">
+    <path d="M462 600 L466 532 M486 600 L482 532" stroke="#2c3e50" stroke-width="11" stroke-linecap="round"/>
+    <path d="M450 536 L454 462 Q474 452 494 462 L498 536 Z" fill="#5d7f96"/>
+    <path d="M494 470 Q512 492 514 520" stroke="#5d7f96" stroke-width="10" fill="none" stroke-linecap="round"/>
+    <circle cx="474" cy="438" r="17" fill="#e8b994"/>
+    <path d="M457 434 Q458 416 474 416 Q490 416 491 434 Q484 424 474 425 Q464 424 457 434 Z" fill="#4a3a2e"/>
+    <circle cx="468" cy="440" r="1.9" fill="#2a2a2a"/><circle cx="480" cy="440" r="1.9" fill="#2a2a2a"/>
+    <rect x="500" y="520" width="38" height="62" rx="5" fill="#c8553d"/>
+    <path d="M512 520 V512 H526 V520" stroke="#3a3a3a" stroke-width="3" fill="none"/>
+    <circle cx="506" cy="586" r="4" fill="#2a2a2a"/><circle cx="532" cy="586" r="4" fill="#2a2a2a"/>
+  </g>
+
+  <!-- ===== Bahnsteig ===== -->
+  <rect x="556" width="644" height="600" fill="url(#vok-himmel)"/>
+  <g fill="#fff" opacity="0.85"><ellipse cx="700" cy="70" rx="46" ry="12"/><ellipse cx="730" cy="60" rx="30" ry="13"/><ellipse cx="1050" cy="110" rx="52" ry="12"/></g>
+  <g fill="#c7d3d9"><rect x="600" y="300" width="70" height="80"/><rect x="690" y="270" width="50" height="110"/><rect x="1000" y="290" width="90" height="90"/><rect x="1110" y="320" width="60" height="60"/></g>
+
+  <!-- Wagen -->
+  <g id="hs-vagon" class="hotspot">
+    <rect x="570" y="372" width="392" height="14" rx="7" fill="#6b7a86"/>
+    <rect x="570" y="382" width="392" height="216" rx="8" fill="#2f6b4f"/>
+    <rect x="570" y="470" width="392" height="6" fill="#e2b43c"/>
+    <g fill="#bfe0ee" stroke="#1f4a36" stroke-width="3">
+      <rect x="586" y="402" width="46" height="50" rx="5"/><rect x="644" y="402" width="46" height="50" rx="5"/><rect x="702" y="402" width="46" height="50" rx="5"/>
+      <rect x="900" y="402" width="46" height="50" rx="5"/>
+    </g>
+    <g fill="#f3ead9" opacity="0.9"><path d="M586 404 h12 v46 h-12z M620 404 h12 v46 h-12z M702 404 h12 v46 h-12z M736 404 h12 v46 h-12z M900 404 h12 v46 h-12z M934 404 h12 v46 h-12z"/></g>
+    <rect x="766" y="396" width="44" height="200" rx="4" fill="#24563f"/>
+    <rect x="774" y="408" width="28" height="40" rx="3" fill="#bfe0ee"/>
+    <rect x="816" y="404" width="22" height="22" rx="3" fill="#fbf7ef"/>
+    <text x="827" y="421" text-anchor="middle" font-family="Manrope, sans-serif" font-size="15" font-weight="800" fill="#1f4a36">7</text>
+    <rect x="590" y="586" width="80" height="14" fill="#2a2a2a"/><rect x="862" y="586" width="80" height="14" fill="#2a2a2a"/>
+  </g>
+  <g id="hs-podstakannik" class="hotspot">
+    <rect class="treffer" x="644" y="402" width="46" height="50" fill="transparent"/>
+    <path d="M646 444 H688" stroke="#8a5a3a" stroke-width="3"/>
+    <path d="M660 420 L662 440 H674 L676 420 Z" fill="#c8862f" opacity="0.9"/>
+    <path d="M659 428 H677 L675 442 H661 Z" fill="#9aa1a7"/>
+    <path d="M677 430 Q684 432 677 438" stroke="#9aa1a7" stroke-width="2.5" fill="none"/>
+    <path d="M664 418 Q668 410 664 404" stroke="#ffffff" stroke-width="1.5" fill="none" opacity="0.8"/>
+  </g>
+
+  <!-- Lok -->
+  <g id="hs-poezd" class="hotspot">
+    <path d="M962 598 V380 Q962 364 978 364 H1090 Q1118 364 1132 396 L1148 466 V598 Z" fill="#b8392b"/>
+    <path d="M1096 378 H1112 Q1124 380 1130 400 L1138 434 H1096 Z" fill="#bfe0ee" stroke="#7c2318" stroke-width="3"/>
+    <rect x="980" y="396" width="40" height="34" rx="4" fill="#bfe0ee" stroke="#7c2318" stroke-width="3"/>
+    <rect x="962" y="470" width="186" height="8" fill="#d9dde0"/>
+    <circle cx="1136" cy="500" r="7" fill="#fff6c9" stroke="#7c2318" stroke-width="2"/>
+    <path d="M1010 364 L1030 336 L1060 336 M1030 336 L1046 364" stroke="#3a3f44" stroke-width="3" fill="none"/>
+    <path d="M990 336 H1090" stroke="#3a3f44" stroke-width="2"/>
+    <rect x="980" y="586" width="150" height="14" fill="#2a2a2a"/>
+  </g>
+
+  <!-- Signal -->
+  <g id="hs-svetofor" class="hotspot">
+    <rect x="1172" y="350" width="8" height="250" fill="#5c6b7a"/>
+    <rect x="1160" y="290" width="32" height="70" rx="8" fill="#22303c"/>
+    <circle cx="1176" cy="310" r="9" fill="#5a2a24"/>
+    <circle cx="1176" cy="340" r="9" fill="#4ade80"/>
+    <circle cx="1176" cy="340" r="14" fill="#4ade80" opacity="0.25"/>
+  </g>
+
+  <!-- Bahnsteigdach mit Gleisschild -->
+  <rect x="556" y="250" width="644" height="24" fill="#3e4855"/>
+  <path d="M740 274 V600 M1010 274 V600" stroke="#5c6b7a" stroke-width="8"/>
+  <g id="hs-put" class="hotspot">
+    <path d="M630 274 V292 M686 274 V292" stroke="#9aa1a7" stroke-width="3"/>
+    <rect x="612" y="292" width="92" height="46" rx="6" fill="#fff" stroke="#2b5fa8" stroke-width="4"/>
+    <text x="640" y="326" text-anchor="middle" font-family="Manrope, sans-serif" font-size="28" font-weight="800" fill="#2b5fa8">1</text>
+    <text x="676" y="321" text-anchor="middle" font-family="Manrope, sans-serif" font-size="12" font-weight="800" fill="#2b5fa8">ПУТЬ</text>
+  </g>
+
+  <!-- Bahnsteig vorne -->
+  <g id="hs-platforma" class="hotspot">
+    <rect x="556" y="596" width="644" height="84" fill="#b9b3a7"/>
+    <rect x="556" y="596" width="644" height="8" fill="#f2c14e"/>
+    <path d="M600 604 V680 M680 604 V680 M760 604 V680 M840 604 V680 M920 604 V680 M1000 604 V680 M1080 604 V680 M1160 604 V680" stroke="#a8a294" stroke-width="2"/>
+  </g>
+
+  <!-- Schaffnerin -->
+  <g id="hs-provodnitsa" class="hotspot">
+    <path d="M836 650 L838 600 M856 650 L854 600" stroke="#2a2a2a" stroke-width="8" stroke-linecap="round"/>
+    <path d="M818 604 L824 520 Q846 508 868 520 L874 604 Z" fill="#1d3557"/>
+    <path d="M826 528 Q812 556 818 584 M866 528 Q880 556 874 584" stroke="#1d3557" stroke-width="10" fill="none" stroke-linecap="round"/>
+    <path d="M836 512 Q846 530 856 512" stroke="#c8553d" stroke-width="7" fill="none"/>
+    <path d="M832 530 H838 M832 540 H838" stroke="#d6a446" stroke-width="3"/>
+    <circle cx="846" cy="490" r="17" fill="#f2c7a6"/>
+    <path d="M829 492 Q826 470 846 470 Q866 470 863 492 Q860 478 846 478 Q832 478 829 492Z" fill="#7a4a2b"/>
+    <path d="M830 474 L862 474 L858 464 L834 464 Z" fill="#1d3557"/>
+    <circle cx="840" cy="491" r="1.9" fill="#2a2a2a"/><circle cx="852" cy="491" r="1.9" fill="#2a2a2a"/>
+    <path d="M841 499 Q846 503 851 499" stroke="#a0523a" stroke-width="2" fill="none"/>
+  </g>
+
+  <!-- Hallenpfeiler -->
+  <rect x="540" y="0" width="22" height="680" fill="#d9cdb9"/>
+  <rect x="536" y="0" width="30" height="18" fill="#c9bda6"/>
+</svg>

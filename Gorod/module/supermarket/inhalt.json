@@ -1,0 +1,1436 @@
+{
+ "entdecken_hinweis": "Was gibt es im Supermarkt? Tippe auf die Äpfel, die Milch, die Kasse …",
+ "woerter": [
+  {
+   "id": "yabloki",
+   "ru": "я́блоки",
+   "de": "die Äpfel",
+   "genus": "pl",
+   "hotspot": "hs-yabloki",
+   "satz": "Я́блоки лежа́т в я́щике.",
+   "hinweis": "Singular: я́блоко; fünf Äpfel: пять я́блок"
+  },
+  {
+   "id": "banany",
+   "ru": "бана́ны",
+   "de": "die Bananen",
+   "genus": "pl",
+   "hotspot": "hs-banany",
+   "satz": "Бана́ны жёлтые.",
+   "hinweis": "Singular: бана́н"
+  },
+  {
+   "id": "limony",
+   "ru": "лимо́ны",
+   "de": "die Zitronen",
+   "genus": "pl",
+   "hotspot": "hs-limony",
+   "satz": "Лимо́ны ки́слые.",
+   "hinweis": "Singular: лимо́н"
+  },
+  {
+   "id": "pomidory",
+   "ru": "помидо́ры",
+   "de": "die Tomaten",
+   "genus": "pl",
+   "hotspot": "hs-pomidory",
+   "satz": "Помидо́ры кра́сные.",
+   "hinweis": "Singular: помидо́р"
+  },
+  {
+   "id": "ogurtsy",
+   "ru": "огурцы́",
+   "de": "die Gurken",
+   "genus": "pl",
+   "hotspot": "hs-ogurtsy",
+   "satz": "Огурцы́ зелёные.",
+   "hinweis": "Singular: огуре́ц – das е fällt weg: огурцы́"
+  },
+  {
+   "id": "chay",
+   "ru": "чай",
+   "de": "der Tee",
+   "genus": "m",
+   "hotspot": "hs-chay",
+   "satz": "Чай стои́т на по́лке.",
+   "hinweis": "па́чка ча́я – eine Packung Tee"
+  },
+  {
+   "id": "sok",
+   "ru": "сок",
+   "de": "der Saft",
+   "genus": "m",
+   "hotspot": "hs-sok",
+   "satz": "Сок апельси́новый.",
+   "hinweis": "паке́т со́ка – eine Packung Saft"
+  },
+  {
+   "id": "voda",
+   "ru": "вода́",
+   "de": "das Wasser",
+   "genus": "f",
+   "hotspot": "hs-voda",
+   "satz": "Вода́ стои́т на по́лке.",
+   "hinweis": "буты́лка воды́ – eine Flasche Wasser"
+  },
+  {
+   "id": "khleb",
+   "ru": "хлеб",
+   "de": "das Brot",
+   "genus": "m",
+   "hotspot": "hs-khleb",
+   "satz": "Хлеб све́жий.",
+   "hinweis": "буха́нка хле́ба – ein Laib Brot"
+  },
+  {
+   "id": "yaytsa",
+   "ru": "я́йца",
+   "de": "die Eier",
+   "genus": "pl",
+   "hotspot": "hs-yaytsa",
+   "satz": "Я́йца лежа́т в коро́бке.",
+   "hinweis": "Singular: яйцо́; sechs Eier: шесть яи́ц"
+  },
+  {
+   "id": "moloko",
+   "ru": "молоко́",
+   "de": "die Milch",
+   "genus": "n",
+   "hotspot": "hs-moloko",
+   "satz": "Молоко́ стои́т в холоди́льнике.",
+   "hinweis": "паке́т молока́ – eine Packung Milch"
+  },
+  {
+   "id": "kholodilnik",
+   "ru": "холоди́льник",
+   "de": "das Kühlregal",
+   "genus": "m",
+   "hotspot": "hs-kholodilnik",
+   "satz": "В холоди́льнике хо́лодно.",
+   "hinweis": "eigentlich: der Kühlschrank"
+  },
+  {
+   "id": "polka",
+   "ru": "по́лка",
+   "de": "das Regal",
+   "genus": "f",
+   "hotspot": "hs-polka",
+   "satz": "На по́лке мно́го проду́ктов.",
+   "hinweis": "на по́лке – im Regal (wörtlich: auf dem Brett)"
+  },
+  {
+   "id": "syr",
+   "ru": "сыр",
+   "de": "der Käse",
+   "genus": "m",
+   "hotspot": "hs-syr",
+   "satz": "Сыр лежи́т на прила́вке.",
+   "hinweis": "две́сти гра́ммов сы́ра – 200 g Käse",
+   "an_der_theke": true
+  },
+  {
+   "id": "kolbasa",
+   "ru": "колбаса́",
+   "de": "die Wurst",
+   "genus": "f",
+   "hotspot": "hs-kolbasa",
+   "satz": "Колбаса́ лежи́т на прила́вке.",
+   "hinweis": "полкило́ колбасы́ – ein halbes Kilo Wurst",
+   "an_der_theke": true
+  },
+  {
+   "id": "vetchina",
+   "ru": "ветчина́",
+   "de": "der Schinken",
+   "genus": "f",
+   "hotspot": "hs-vetchina",
+   "satz": "Ветчина́ ро́зовая.",
+   "hinweis": "бутербро́д с ветчино́й – ein Schinkenbrot",
+   "an_der_theke": true
+  },
+  {
+   "id": "vesy",
+   "ru": "весы́",
+   "de": "die Waage",
+   "genus": "pl",
+   "hotspot": "hs-vesy",
+   "satz": "Весы́ стоя́т на прила́вке.",
+   "hinweis": "nur im Plural: весы́",
+   "de_zahl": "sg"
+  },
+  {
+   "id": "prodavshchitsa",
+   "ru": "продавщи́ца",
+   "de": "die Verkäuferin",
+   "genus": "f",
+   "hotspot": "hs-prodavshchitsa",
+   "satz": "Продавщи́ца стои́т за прила́вком.",
+   "hinweis": "männlich: продаве́ц"
+  },
+  {
+   "id": "kassa",
+   "ru": "ка́сса",
+   "de": "die Kasse",
+   "genus": "f",
+   "hotspot": "hs-kassa",
+   "satz": "Ка́сса откры́та.",
+   "hinweis": "Plural: ка́ссы"
+  },
+  {
+   "id": "kassir",
+   "ru": "касси́р",
+   "de": "der Kassierer",
+   "genus": "m",
+   "hotspot": "hs-kassir",
+   "satz": "Касси́р сиди́т за ка́ссой.",
+   "hinweis": "weiblich: касси́рша"
+  },
+  {
+   "id": "paket",
+   "ru": "паке́т",
+   "de": "die Tüte",
+   "genus": "m",
+   "hotspot": "hs-paket",
+   "satz": "Паке́т сто́ит пять рубле́й.",
+   "hinweis": "auch: die Packung – паке́т молока́"
+  },
+  {
+   "id": "telezhka",
+   "ru": "теле́жка",
+   "de": "der Einkaufswagen",
+   "genus": "f",
+   "hotspot": "hs-telezhka",
+   "satz": "Теле́жка пуста́я.",
+   "hinweis": "Am Flughafen: der Gepäckwagen"
+  },
+  {
+   "id": "korzina",
+   "ru": "корзи́на",
+   "de": "der Einkaufskorb",
+   "genus": "f",
+   "hotspot": "hs-korzina",
+   "satz": "Корзи́на кра́сная.",
+   "hinweis": "в корзи́не – im Korb"
+  }
+ ],
+ "reise": {
+  "neu_knopf": "Neuer Zettel →",
+  "start_stufe": "einkaufen",
+  "figuren": {
+   "prodavshchitsa": {
+    "name": "Продавщи́ца",
+    "stimme": "weiblich",
+    "blase": {
+     "x": 0.71,
+     "y": 0.5,
+     "seite": "links"
+    }
+   },
+   "kassir": {
+    "name": "Касси́р",
+    "stimme": "maennlich",
+    "blase": {
+     "x": 0.93,
+     "y": 0.55,
+     "seite": "links"
+    }
+   },
+   "erzaehler": {
+    "name": "",
+    "stimme": "erzaehler",
+    "blase": {
+     "x": 0.3,
+     "y": 0.45
+    }
+   }
+  },
+  "reisende": [
+   {
+    "id": "e1",
+    "geschlecht": "f",
+    "zahlart": "bar",
+    "liste": [
+     {
+      "ware": "yabloki",
+      "menge": 3,
+      "text": "три я́блока",
+      "de": "3 Äpfel",
+      "bild": "🍎",
+      "preis": 90
+     },
+     {
+      "ware": "moloko",
+      "menge": 2,
+      "text": "два паке́та молока́",
+      "de": "2 Packungen Milch",
+      "bild": "🥛",
+      "preis": 180
+     },
+     {
+      "ware": "yaytsa",
+      "menge": 6,
+      "text": "шесть яи́ц",
+      "de": "6 Eier",
+      "bild": "🥚",
+      "preis": 72
+     },
+     {
+      "ware": "khleb",
+      "menge": 1,
+      "text": "одна́ буха́нка хле́ба",
+      "de": "1 Brot",
+      "bild": "🍞",
+      "preis": 55
+     }
+    ],
+    "liste_satz": "Купи́, пожа́луйста: три я́блока, два паке́та молока́, шесть яи́ц, одна́ буха́нка хле́ба.",
+    "posten": [
+     {
+      "ru": "три я́блока",
+      "preis": 90
+     },
+     {
+      "ru": "два паке́та молока́",
+      "preis": 180
+     },
+     {
+      "ru": "шесть яи́ц",
+      "preis": 72
+     },
+     {
+      "ru": "одна́ буха́нка хле́ба",
+      "preis": 55
+     },
+     {
+      "ru": "сыр, 200 г",
+      "preis": 240
+     },
+     {
+      "ru": "колбаса́, 0,5 кг",
+      "preis": 400
+     }
+    ],
+    "preis": 1037,
+    "zettel": {
+     "theke": [
+      "An der Theke:",
+      "200 g Käse",
+      "ein halbes Kilo Wurst",
+      "geschnitten"
+     ],
+     "kasse": [
+      "Keine Tasche dabei",
+      "Keine Kundenkarte",
+      "Bezahlen: bar"
+     ]
+    },
+    "felder": {
+     "theke1": {
+      "richtig": {
+       "text": "Две́сти гра́ммов сы́ра, пожа́луйста.",
+       "de": "200 Gramm Käse, bitte."
+      },
+      "falsch": [
+       {
+        "text": "Две́сти гра́ммов сыр, пожа́луйста.",
+        "de": "",
+        "hinweis": "Nach Mengenangaben steht der Genitiv: сыр → сы́ра."
+       },
+       {
+        "text": "Две́сти гра́мма сы́ра, пожа́луйста.",
+        "de": "",
+        "hinweis": "Nach 200 steht der Genitiv Plural: гра́ммов."
+       }
+      ]
+     },
+     "theke2": {
+      "richtig": {
+       "text": "И полкило́ колбасы́, пожа́луйста.",
+       "de": "Und ein halbes Kilo Wurst, bitte."
+      },
+      "falsch": [
+       {
+        "text": "И полкило́ колбаса́, пожа́луйста.",
+        "de": "",
+        "hinweis": "Nach Mengenangaben steht der Genitiv: колбаса́ → колбасы́."
+       },
+       {
+        "text": "И килогра́мм колбасы́, пожа́луйста.",
+        "de": "",
+        "hinweis": "килогра́мм ist ein ganzes Kilo. Laut Zettel: ein halbes – полкило́."
+       }
+      ]
+     },
+     "schneiden": {
+      "richtig": {
+       "text": "Да, наре́жьте, пожа́луйста.",
+       "de": "Ja, schneiden Sie es bitte."
+      },
+      "falsch": [
+       {
+        "text": "Нет, куско́м, пожа́луйста.",
+        "de": "Nein, am Stück, bitte.",
+        "hinweis": "Laut Zettel: geschnitten – наре́жьте."
+       },
+       {
+        "text": "Да, свари́те, пожа́луйста.",
+        "de": "Ja, kochen Sie es bitte.",
+        "hinweis": "свари́те heißt „kochen Sie“. Schneiden: наре́жьте."
+       }
+      ]
+     },
+     "paket": {
+      "richtig": {
+       "text": "Да, оди́н паке́т, пожа́луйста.",
+       "de": "Ja, eine Tüte, bitte."
+      },
+      "falsch": [
+       {
+        "text": "Да, одна́ паке́т, пожа́луйста.",
+        "de": "",
+        "hinweis": "паке́т ist männlich: оди́н паке́т."
+       },
+       {
+        "text": "Нет, спаси́бо, у меня́ есть су́мка.",
+        "de": "Nein danke, ich habe eine Tasche.",
+        "hinweis": "Laut Zettel hast du keine Tasche dabei."
+       }
+      ]
+     },
+     "karta": {
+      "richtig": {
+       "text": "Нет, у меня́ нет ка́рты.",
+       "de": "Nein, ich habe keine Karte."
+      },
+      "falsch": [
+       {
+        "text": "Нет, у меня́ нет ка́рта.",
+        "de": "",
+        "hinweis": "Nach нет steht der Genitiv: у меня́ нет ка́рты."
+       },
+       {
+        "text": "Да, вот она́.",
+        "de": "Ja, hier ist sie.",
+        "hinweis": "Laut Zettel hast du keine Kundenkarte."
+       }
+      ]
+     }
+    }
+   },
+   {
+    "id": "e2",
+    "geschlecht": "m",
+    "zahlart": "karte",
+    "liste": [
+     {
+      "ware": "banany",
+      "menge": 4,
+      "text": "четы́ре бана́на",
+      "de": "4 Bananen",
+      "bild": "🍌",
+      "preis": 100
+     },
+     {
+      "ware": "voda",
+      "menge": 2,
+      "text": "две буты́лки воды́",
+      "de": "2 Flaschen Wasser",
+      "bild": "💧",
+      "preis": 120
+     },
+     {
+      "ware": "chay",
+      "menge": 1,
+      "text": "одна́ па́чка ча́я",
+      "de": "1 Packung Tee",
+      "bild": "🍵",
+      "preis": 150
+     },
+     {
+      "ware": "pomidory",
+      "menge": 5,
+      "text": "пять помидо́ров",
+      "de": "5 Tomaten",
+      "bild": "🍅",
+      "preis": 200
+     }
+    ],
+    "liste_satz": "Купи́, пожа́луйста: четы́ре бана́на, две буты́лки воды́, одна́ па́чка ча́я, пять помидо́ров.",
+    "posten": [
+     {
+      "ru": "четы́ре бана́на",
+      "preis": 100
+     },
+     {
+      "ru": "две буты́лки воды́",
+      "preis": 120
+     },
+     {
+      "ru": "одна́ па́чка ча́я",
+      "preis": 150
+     },
+     {
+      "ru": "пять помидо́ров",
+      "preis": 200
+     },
+     {
+      "ru": "ветчина́, 300 г",
+      "preis": 300
+     },
+     {
+      "ru": "сыр, 150 г",
+      "preis": 180
+     }
+    ],
+    "preis": 1050,
+    "zettel": {
+     "theke": [
+      "An der Theke:",
+      "300 g Schinken",
+      "150 g Käse",
+      "am Stück"
+     ],
+     "kasse": [
+      "Eigene Tasche dabei",
+      "Kundenkarte dabei",
+      "Bezahlen: mit Karte"
+     ]
+    },
+    "felder": {
+     "theke1": {
+      "richtig": {
+       "text": "Три́ста гра́ммов ветчины́, пожа́луйста.",
+       "de": "300 Gramm Schinken, bitte."
+      },
+      "falsch": [
+       {
+        "text": "Три́ста гра́ммов ветчина́, пожа́луйста.",
+        "de": "",
+        "hinweis": "Nach Mengenangaben steht der Genitiv: ветчина́ → ветчины́."
+       },
+       {
+        "text": "Три́ста гра́мма ветчины́, пожа́луйста.",
+        "de": "",
+        "hinweis": "Nach 300 steht der Genitiv Plural: гра́ммов."
+       }
+      ]
+     },
+     "theke2": {
+      "richtig": {
+       "text": "И сто пятьдеся́т гра́ммов сы́ра, пожа́луйста.",
+       "de": "Und 150 Gramm Käse, bitte."
+      },
+      "falsch": [
+       {
+        "text": "И сто пятьдеся́т гра́ммов сыр, пожа́луйста.",
+        "de": "",
+        "hinweis": "Nach Mengenangaben steht der Genitiv: сыр → сы́ра."
+       },
+       {
+        "text": "И сто пятьдеся́т гра́мма сы́ра, пожа́луйста.",
+        "de": "",
+        "hinweis": "Nach 150 steht der Genitiv Plural: гра́ммов."
+       }
+      ]
+     },
+     "schneiden": {
+      "richtig": {
+       "text": "Нет, куско́м, пожа́луйста.",
+       "de": "Nein, am Stück, bitte."
+      },
+      "falsch": [
+       {
+        "text": "Да, наре́жьте, пожа́луйста.",
+        "de": "Ja, schneiden Sie es bitte.",
+        "hinweis": "Laut Zettel: am Stück – куско́м."
+       },
+       {
+        "text": "Нет, куски́, пожа́луйста.",
+        "de": "",
+        "hinweis": "„Am Stück“ heißt куско́м – Instrumental von кусо́к."
+       }
+      ]
+     },
+     "paket": {
+      "richtig": {
+       "text": "Нет, спаси́бо, у меня́ есть су́мка.",
+       "de": "Nein danke, ich habe eine Tasche."
+      },
+      "falsch": [
+       {
+        "text": "Нет, спаси́бо, у меня́ есть су́мку.",
+        "de": "",
+        "hinweis": "у меня́ есть … + Nominativ: су́мка."
+       },
+       {
+        "text": "Да, оди́н паке́т, пожа́луйста.",
+        "de": "Ja, eine Tüte, bitte.",
+        "hinweis": "Laut Zettel hast du eine eigene Tasche dabei."
+       }
+      ]
+     },
+     "karta": {
+      "richtig": {
+       "text": "Да, вот она́.",
+       "de": "Ja, hier ist sie."
+      },
+      "falsch": [
+       {
+        "text": "Да, вот он.",
+        "de": "",
+        "hinweis": "ка́рта ist weiblich: вот она́."
+       },
+       {
+        "text": "Нет, у меня́ нет ка́рты.",
+        "de": "Nein, ich habe keine Karte.",
+        "hinweis": "Laut Zettel hast du eine Kundenkarte dabei."
+       }
+      ]
+     }
+    }
+   },
+   {
+    "id": "e3",
+    "geschlecht": "f",
+    "zahlart": "karte",
+    "liste": [
+     {
+      "ware": "ogurtsy",
+      "menge": 2,
+      "text": "два огурца́",
+      "de": "2 Gurken",
+      "bild": "🥒",
+      "preis": 70
+     },
+     {
+      "ware": "limony",
+      "menge": 3,
+      "text": "три лимо́на",
+      "de": "3 Zitronen",
+      "bild": "🍋",
+      "preis": 135
+     },
+     {
+      "ware": "sok",
+      "menge": 2,
+      "text": "два паке́та со́ка",
+      "de": "2 Packungen Saft",
+      "bild": "🧃",
+      "preis": 240
+     },
+     {
+      "ware": "khleb",
+      "menge": 1,
+      "text": "одна́ буха́нка хле́ба",
+      "de": "1 Brot",
+      "bild": "🍞",
+      "preis": 55
+     }
+    ],
+    "liste_satz": "Купи́, пожа́луйста: два огурца́, три лимо́на, два паке́та со́ка, одна́ буха́нка хле́ба.",
+    "posten": [
+     {
+      "ru": "два огурца́",
+      "preis": 70
+     },
+     {
+      "ru": "три лимо́на",
+      "preis": 135
+     },
+     {
+      "ru": "два паке́та со́ка",
+      "preis": 240
+     },
+     {
+      "ru": "одна́ буха́нка хле́ба",
+      "preis": 55
+     },
+     {
+      "ru": "колбаса́, 250 г",
+      "preis": 200
+     },
+     {
+      "ru": "сыр, 0,5 кг",
+      "preis": 600
+     }
+    ],
+    "preis": 1300,
+    "zettel": {
+     "theke": [
+      "An der Theke:",
+      "250 g Wurst",
+      "ein halbes Kilo Käse",
+      "geschnitten"
+     ],
+     "kasse": [
+      "Keine Tasche dabei",
+      "Kundenkarte dabei",
+      "Bezahlen: mit Karte"
+     ]
+    },
+    "felder": {
+     "theke1": {
+      "richtig": {
+       "text": "Две́сти пятьдеся́т гра́ммов колбасы́, пожа́луйста.",
+       "de": "250 Gramm Wurst, bitte."
+      },
+      "falsch": [
+       {
+        "text": "Две́сти пятьдеся́т гра́ммов колбаса́, пожа́луйста.",
+        "de": "",
+        "hinweis": "Nach Mengenangaben steht der Genitiv: колбаса́ → колбасы́."
+       },
+       {
+        "text": "Две́сти пятьдеся́т гра́мма колбасы́, пожа́луйста.",
+        "de": "",
+        "hinweis": "Nach 250 steht der Genitiv Plural: гра́ммов."
+       }
+      ]
+     },
+     "theke2": {
+      "richtig": {
+       "text": "И полкило́ сы́ра, пожа́луйста.",
+       "de": "Und ein halbes Kilo Käse, bitte."
+      },
+      "falsch": [
+       {
+        "text": "И полкило́ сыр, пожа́луйста.",
+        "de": "",
+        "hinweis": "Nach Mengenangaben steht der Genitiv: сыр → сы́ра."
+       },
+       {
+        "text": "И килогра́мм сы́ра, пожа́луйста.",
+        "de": "",
+        "hinweis": "килогра́мм ist ein ganzes Kilo. Laut Zettel: ein halbes – полкило́."
+       }
+      ]
+     },
+     "schneiden": {
+      "richtig": {
+       "text": "Да, наре́жьте, пожа́луйста.",
+       "de": "Ja, schneiden Sie es bitte."
+      },
+      "falsch": [
+       {
+        "text": "Нет, куско́м, пожа́луйста.",
+        "de": "Nein, am Stück, bitte.",
+        "hinweis": "Laut Zettel: geschnitten – наре́жьте."
+       },
+       {
+        "text": "Да, свари́те, пожа́луйста.",
+        "de": "Ja, kochen Sie es bitte.",
+        "hinweis": "свари́те heißt „kochen Sie“. Schneiden: наре́жьте."
+       }
+      ]
+     },
+     "paket": {
+      "richtig": {
+       "text": "Да, оди́н паке́т, пожа́луйста.",
+       "de": "Ja, eine Tüte, bitte."
+      },
+      "falsch": [
+       {
+        "text": "Да, одна́ паке́т, пожа́луйста.",
+        "de": "",
+        "hinweis": "паке́т ist männlich: оди́н паке́т."
+       },
+       {
+        "text": "Нет, спаси́бо, у меня́ есть су́мка.",
+        "de": "Nein danke, ich habe eine Tasche.",
+        "hinweis": "Laut Zettel hast du keine Tasche dabei."
+       }
+      ]
+     },
+     "karta": {
+      "richtig": {
+       "text": "Да, вот она́.",
+       "de": "Ja, hier ist sie."
+      },
+      "falsch": [
+       {
+        "text": "Да, вот он.",
+        "de": "",
+        "hinweis": "ка́рта ist weiblich: вот она́."
+       },
+       {
+        "text": "Нет, у меня́ нет ка́рты.",
+        "de": "Nein, ich habe keine Karte.",
+        "hinweis": "Laut Zettel hast du eine Kundenkarte dabei."
+       }
+      ]
+     }
+    }
+   },
+   {
+    "id": "e4",
+    "geschlecht": "m",
+    "zahlart": "bar",
+    "liste": [
+     {
+      "ware": "yabloki",
+      "menge": 5,
+      "text": "пять я́блок",
+      "de": "5 Äpfel",
+      "bild": "🍎",
+      "preis": 150
+     },
+     {
+      "ware": "moloko",
+      "menge": 1,
+      "text": "оди́н паке́т молока́",
+      "de": "1 Packung Milch",
+      "bild": "🥛",
+      "preis": 90
+     },
+     {
+      "ware": "yaytsa",
+      "menge": 4,
+      "text": "четы́ре яйца́",
+      "de": "4 Eier",
+      "bild": "🥚",
+      "preis": 48
+     },
+     {
+      "ware": "voda",
+      "menge": 1,
+      "text": "одна́ буты́лка воды́",
+      "de": "1 Flasche Wasser",
+      "bild": "💧",
+      "preis": 60
+     }
+    ],
+    "liste_satz": "Купи́, пожа́луйста: пять я́блок, оди́н паке́т молока́, четы́ре яйца́, одна́ буты́лка воды́.",
+    "posten": [
+     {
+      "ru": "пять я́блок",
+      "preis": 150
+     },
+     {
+      "ru": "оди́н паке́т молока́",
+      "preis": 90
+     },
+     {
+      "ru": "четы́ре яйца́",
+      "preis": 48
+     },
+     {
+      "ru": "одна́ буты́лка воды́",
+      "preis": 60
+     },
+     {
+      "ru": "сыр, 300 г",
+      "preis": 360
+     },
+     {
+      "ru": "ветчина́, 0,5 кг",
+      "preis": 500
+     }
+    ],
+    "preis": 1208,
+    "zettel": {
+     "theke": [
+      "An der Theke:",
+      "300 g Käse",
+      "ein halbes Kilo Schinken",
+      "am Stück"
+     ],
+     "kasse": [
+      "Eigene Tasche dabei",
+      "Keine Kundenkarte",
+      "Bezahlen: bar"
+     ]
+    },
+    "felder": {
+     "theke1": {
+      "richtig": {
+       "text": "Три́ста гра́ммов сы́ра, пожа́луйста.",
+       "de": "300 Gramm Käse, bitte."
+      },
+      "falsch": [
+       {
+        "text": "Три́ста гра́ммов сыр, пожа́луйста.",
+        "de": "",
+        "hinweis": "Nach Mengenangaben steht der Genitiv: сыр → сы́ра."
+       },
+       {
+        "text": "Три́ста гра́мма сы́ра, пожа́луйста.",
+        "de": "",
+        "hinweis": "Nach 300 steht der Genitiv Plural: гра́ммов."
+       }
+      ]
+     },
+     "theke2": {
+      "richtig": {
+       "text": "И полкило́ ветчины́, пожа́луйста.",
+       "de": "Und ein halbes Kilo Schinken, bitte."
+      },
+      "falsch": [
+       {
+        "text": "И полкило́ ветчина́, пожа́луйста.",
+        "de": "",
+        "hinweis": "Nach Mengenangaben steht der Genitiv: ветчина́ → ветчины́."
+       },
+       {
+        "text": "И килогра́мм ветчины́, пожа́луйста.",
+        "de": "",
+        "hinweis": "килогра́мм ist ein ganzes Kilo. Laut Zettel: ein halbes – полкило́."
+       }
+      ]
+     },
+     "schneiden": {
+      "richtig": {
+       "text": "Нет, куско́м, пожа́луйста.",
+       "de": "Nein, am Stück, bitte."
+      },
+      "falsch": [
+       {
+        "text": "Да, наре́жьте, пожа́луйста.",
+        "de": "Ja, schneiden Sie es bitte.",
+        "hinweis": "Laut Zettel: am Stück – куско́м."
+       },
+       {
+        "text": "Нет, куски́, пожа́луйста.",
+        "de": "",
+        "hinweis": "„Am Stück“ heißt куско́м – Instrumental von кусо́к."
+       }
+      ]
+     },
+     "paket": {
+      "richtig": {
+       "text": "Нет, спаси́бо, у меня́ есть су́мка.",
+       "de": "Nein danke, ich habe eine Tasche."
+      },
+      "falsch": [
+       {
+        "text": "Нет, спаси́бо, у меня́ есть су́мку.",
+        "de": "",
+        "hinweis": "у меня́ есть … + Nominativ: су́мка."
+       },
+       {
+        "text": "Да, оди́н паке́т, пожа́луйста.",
+        "de": "Ja, eine Tüte, bitte.",
+        "hinweis": "Laut Zettel hast du eine eigene Tasche dabei."
+       }
+      ]
+     },
+     "karta": {
+      "richtig": {
+       "text": "Нет, у меня́ нет ка́рты.",
+       "de": "Nein, ich habe keine Karte."
+      },
+      "falsch": [
+       {
+        "text": "Нет, у меня́ нет ка́рта.",
+        "de": "",
+        "hinweis": "Nach нет steht der Genitiv: у меня́ нет ка́рты."
+       },
+       {
+        "text": "Да, вот она́.",
+        "de": "Ja, hier ist sie.",
+        "hinweis": "Laut Zettel hast du keine Kundenkarte."
+       }
+      ]
+     }
+    }
+   },
+   {
+    "id": "e5",
+    "geschlecht": "f",
+    "zahlart": "karte",
+    "liste": [
+     {
+      "ware": "pomidory",
+      "menge": 2,
+      "text": "два помидо́ра",
+      "de": "2 Tomaten",
+      "bild": "🍅",
+      "preis": 80
+     },
+     {
+      "ware": "ogurtsy",
+      "menge": 3,
+      "text": "три огурца́",
+      "de": "3 Gurken",
+      "bild": "🥒",
+      "preis": 105
+     },
+     {
+      "ware": "khleb",
+      "menge": 2,
+      "text": "две буха́нки хле́ба",
+      "de": "2 Brote",
+      "bild": "🍞",
+      "preis": 110
+     },
+     {
+      "ware": "chay",
+      "menge": 1,
+      "text": "одна́ па́чка ча́я",
+      "de": "1 Packung Tee",
+      "bild": "🍵",
+      "preis": 150
+     }
+    ],
+    "liste_satz": "Купи́, пожа́луйста: два помидо́ра, три огурца́, две буха́нки хле́ба, одна́ па́чка ча́я.",
+    "posten": [
+     {
+      "ru": "два помидо́ра",
+      "preis": 80
+     },
+     {
+      "ru": "три огурца́",
+      "preis": 105
+     },
+     {
+      "ru": "две буха́нки хле́ба",
+      "preis": 110
+     },
+     {
+      "ru": "одна́ па́чка ча́я",
+      "preis": 150
+     },
+     {
+      "ru": "ветчина́, 200 г",
+      "preis": 200
+     },
+     {
+      "ru": "колбаса́, 300 г",
+      "preis": 240
+     }
+    ],
+    "preis": 885,
+    "zettel": {
+     "theke": [
+      "An der Theke:",
+      "200 g Schinken",
+      "300 g Wurst",
+      "geschnitten"
+     ],
+     "kasse": [
+      "Keine Tasche dabei",
+      "Keine Kundenkarte",
+      "Bezahlen: mit Karte"
+     ]
+    },
+    "felder": {
+     "theke1": {
+      "richtig": {
+       "text": "Две́сти гра́ммов ветчины́, пожа́луйста.",
+       "de": "200 Gramm Schinken, bitte."
+      },
+      "falsch": [
+       {
+        "text": "Две́сти гра́ммов ветчина́, пожа́луйста.",
+        "de": "",
+        "hinweis": "Nach Mengenangaben steht der Genitiv: ветчина́ → ветчины́."
+       },
+       {
+        "text": "Две́сти гра́мма ветчины́, пожа́луйста.",
+        "de": "",
+        "hinweis": "Nach 200 steht der Genitiv Plural: гра́ммов."
+       }
+      ]
+     },
+     "theke2": {
+      "richtig": {
+       "text": "И три́ста гра́ммов колбасы́, пожа́луйста.",
+       "de": "Und 300 Gramm Wurst, bitte."
+      },
+      "falsch": [
+       {
+        "text": "И три́ста гра́ммов колбаса́, пожа́луйста.",
+        "de": "",
+        "hinweis": "Nach Mengenangaben steht der Genitiv: колбаса́ → колбасы́."
+       },
+       {
+        "text": "И три́ста гра́мма колбасы́, пожа́луйста.",
+        "de": "",
+        "hinweis": "Nach 300 steht der Genitiv Plural: гра́ммов."
+       }
+      ]
+     },
+     "schneiden": {
+      "richtig": {
+       "text": "Да, наре́жьте, пожа́луйста.",
+       "de": "Ja, schneiden Sie es bitte."
+      },
+      "falsch": [
+       {
+        "text": "Нет, куско́м, пожа́луйста.",
+        "de": "Nein, am Stück, bitte.",
+        "hinweis": "Laut Zettel: geschnitten – наре́жьте."
+       },
+       {
+        "text": "Да, свари́те, пожа́луйста.",
+        "de": "Ja, kochen Sie es bitte.",
+        "hinweis": "свари́те heißt „kochen Sie“. Schneiden: наре́жьте."
+       }
+      ]
+     },
+     "paket": {
+      "richtig": {
+       "text": "Да, оди́н паке́т, пожа́луйста.",
+       "de": "Ja, eine Tüte, bitte."
+      },
+      "falsch": [
+       {
+        "text": "Да, одна́ паке́т, пожа́луйста.",
+        "de": "",
+        "hinweis": "паке́т ist männlich: оди́н паке́т."
+       },
+       {
+        "text": "Нет, спаси́бо, у меня́ есть су́мка.",
+        "de": "Nein danke, ich habe eine Tasche.",
+        "hinweis": "Laut Zettel hast du keine Tasche dabei."
+       }
+      ]
+     },
+     "karta": {
+      "richtig": {
+       "text": "Нет, у меня́ нет ка́рты.",
+       "de": "Nein, ich habe keine Karte."
+      },
+      "falsch": [
+       {
+        "text": "Нет, у меня́ нет ка́рта.",
+        "de": "",
+        "hinweis": "Nach нет steht der Genitiv: у меня́ нет ка́рты."
+       },
+       {
+        "text": "Да, вот она́.",
+        "de": "Ja, hier ist sie.",
+        "hinweis": "Laut Zettel hast du keine Kundenkarte."
+       }
+      ]
+     }
+    }
+   },
+   {
+    "id": "e6",
+    "geschlecht": "m",
+    "zahlart": "bar",
+    "liste": [
+     {
+      "ware": "banany",
+      "menge": 6,
+      "text": "шесть бана́нов",
+      "de": "6 Bananen",
+      "bild": "🍌",
+      "preis": 150
+     },
+     {
+      "ware": "limony",
+      "menge": 1,
+      "text": "оди́н лимо́н",
+      "de": "1 Zitrone",
+      "bild": "🍋",
+      "preis": 45
+     },
+     {
+      "ware": "sok",
+      "menge": 1,
+      "text": "оди́н паке́т со́ка",
+      "de": "1 Packung Saft",
+      "bild": "🧃",
+      "preis": 120
+     },
+     {
+      "ware": "yaytsa",
+      "menge": 5,
+      "text": "пять яи́ц",
+      "de": "5 Eier",
+      "bild": "🥚",
+      "preis": 60
+     }
+    ],
+    "liste_satz": "Купи́, пожа́луйста: шесть бана́нов, оди́н лимо́н, оди́н паке́т со́ка, пять яи́ц.",
+    "posten": [
+     {
+      "ru": "шесть бана́нов",
+      "preis": 150
+     },
+     {
+      "ru": "оди́н лимо́н",
+      "preis": 45
+     },
+     {
+      "ru": "оди́н паке́т со́ка",
+      "preis": 120
+     },
+     {
+      "ru": "пять яи́ц",
+      "preis": 60
+     },
+     {
+      "ru": "сыр, 150 г",
+      "preis": 180
+     },
+     {
+      "ru": "колбаса́, 0,5 кг",
+      "preis": 400
+     }
+    ],
+    "preis": 955,
+    "zettel": {
+     "theke": [
+      "An der Theke:",
+      "150 g Käse",
+      "ein halbes Kilo Wurst",
+      "geschnitten"
+     ],
+     "kasse": [
+      "Eigene Tasche dabei",
+      "Kundenkarte dabei",
+      "Bezahlen: bar"
+     ]
+    },
+    "felder": {
+     "theke1": {
+      "richtig": {
+       "text": "Сто пятьдеся́т гра́ммов сы́ра, пожа́луйста.",
+       "de": "150 Gramm Käse, bitte."
+      },
+      "falsch": [
+       {
+        "text": "Сто пятьдеся́т гра́ммов сыр, пожа́луйста.",
+        "de": "",
+        "hinweis": "Nach Mengenangaben steht der Genitiv: сыр → сы́ра."
+       },
+       {
+        "text": "Сто пятьдеся́т гра́мма сы́ра, пожа́луйста.",
+        "de": "",
+        "hinweis": "Nach 150 steht der Genitiv Plural: гра́ммов."
+       }
+      ]
+     },
+     "theke2": {
+      "richtig": {
+       "text": "И полкило́ колбасы́, пожа́луйста.",
+       "de": "Und ein halbes Kilo Wurst, bitte."
+      },
+      "falsch": [
+       {
+        "text": "И полкило́ колбаса́, пожа́луйста.",
+        "de": "",
+        "hinweis": "Nach Mengenangaben steht der Genitiv: колбаса́ → колбасы́."
+       },
+       {
+        "text": "И килогра́мм колбасы́, пожа́луйста.",
+        "de": "",
+        "hinweis": "килогра́мм ist ein ganzes Kilo. Laut Zettel: ein halbes – полкило́."
+       }
+      ]
+     },
+     "schneiden": {
+      "richtig": {
+       "text": "Да, наре́жьте, пожа́луйста.",
+       "de": "Ja, schneiden Sie es bitte."
+      },
+      "falsch": [
+       {
+        "text": "Нет, куско́м, пожа́луйста.",
+        "de": "Nein, am Stück, bitte.",
+        "hinweis": "Laut Zettel: geschnitten – наре́жьте."
+       },
+       {
+        "text": "Да, свари́те, пожа́луйста.",
+        "de": "Ja, kochen Sie es bitte.",
+        "hinweis": "свари́те heißt „kochen Sie“. Schneiden: наре́жьте."
+       }
+      ]
+     },
+     "paket": {
+      "richtig": {
+       "text": "Нет, спаси́бо, у меня́ есть су́мка.",
+       "de": "Nein danke, ich habe eine Tasche."
+      },
+      "falsch": [
+       {
+        "text": "Нет, спаси́бо, у меня́ есть су́мку.",
+        "de": "",
+        "hinweis": "у меня́ есть … + Nominativ: су́мка."
+       },
+       {
+        "text": "Да, оди́н паке́т, пожа́луйста.",
+        "de": "Ja, eine Tüte, bitte.",
+        "hinweis": "Laut Zettel hast du eine eigene Tasche dabei."
+       }
+      ]
+     },
+     "karta": {
+      "richtig": {
+       "text": "Да, вот она́.",
+       "de": "Ja, hier ist sie."
+      },
+      "falsch": [
+       {
+        "text": "Да, вот он.",
+        "de": "",
+        "hinweis": "ка́рта ist weiblich: вот она́."
+       },
+       {
+        "text": "Нет, у меня́ нет ка́рты.",
+        "de": "Nein, ich habe keine Karte.",
+        "hinweis": "Laut Zettel hast du eine Kundenkarte dabei."
+       }
+      ]
+     }
+    }
+   }
+  ],
+  "szenen": {
+   "theke": {
+    "titel": "Theke",
+    "zettel_titel": "Dein Zettel",
+    "geschafft": "Käse und Wurst sind eingepackt!",
+    "start": "was",
+    "knoten": {
+     "was": {
+      "sprecher": "prodavshchitsa",
+      "text": "Здра́вствуйте! Что вам?",
+      "de": "Guten Tag! Was darf es sein?",
+      "feld": "theke1",
+      "weiter": "noch"
+     },
+     "noch": {
+      "sprecher": "prodavshchitsa",
+      "text": "Так. Что ещё?",
+      "de": "So. Was noch?",
+      "feld": "theke2",
+      "weiter": "schneiden"
+     },
+     "schneiden": {
+      "sprecher": "prodavshchitsa",
+      "text": "Вам наре́зать?",
+      "de": "Soll ich es Ihnen schneiden?",
+      "feld": "schneiden",
+      "weiter": "alles"
+     },
+     "alles": {
+      "sprecher": "prodavshchitsa",
+      "text": "Что́-нибудь ещё?",
+      "de": "Sonst noch etwas?",
+      "optionen": [
+       {
+        "text": "Нет, спаси́бо, э́то всё.",
+        "de": "Nein danke, das ist alles.",
+        "weiter": "fertig"
+       },
+       {
+        "text": "Да, э́то всё.",
+        "de": "Ja, das ist alles.",
+        "hinweis": "Auf „Sonst noch etwas?“ antwortet man: Нет, спаси́бо, э́то всё."
+       }
+      ]
+     },
+     "fertig": {
+      "sprecher": "prodavshchitsa",
+      "text": "Вот, пожа́луйста. Ка́сса – там.",
+      "de": "Bitte schön. Die Kasse ist dort.",
+      "optionen": [
+       {
+        "text": "Спаси́бо!",
+        "de": "Danke!",
+        "ende": true
+       },
+       {
+        "text": "Не за что!",
+        "de": "Keine Ursache!",
+        "hinweis": "„Не за что“ sagt man, wenn sich jemand bei dir bedankt. Hier bedankst du dich: Спаси́бо!"
+       }
+      ]
+     }
+    }
+   },
+   "kasse": {
+    "titel": "Kasse",
+    "zettel_titel": "Dein Zettel",
+    "geschafft": "Bezahlt – der Einkauf ist geschafft!",
+    "start": "band",
+    "knoten": {
+     "band": {
+      "sprecher": "erzaehler",
+      "text": "Вы на ка́ссе. Касси́р пробива́ет това́ры.",
+      "de": "Sie sind an der Kasse. Der Kassierer scannt die Waren.",
+      "aktion": "scannen",
+      "weiter": "paket"
+     },
+     "paket": {
+      "sprecher": "kassir",
+      "text": "Паке́т ну́жен?",
+      "de": "Brauchen Sie eine Tüte?",
+      "feld": "paket",
+      "weiter": "karta"
+     },
+     "karta": {
+      "sprecher": "kassir",
+      "text": "Ка́рта магази́на есть?",
+      "de": "Haben Sie eine Kundenkarte?",
+      "feld": "karta",
+      "weiter": "zahlart"
+     },
+     "zahlart": {
+      "sprecher": "kassir",
+      "text": "Нали́чными и́ли ка́ртой?",
+      "de": "Bar oder mit Karte?",
+      "optionen": [
+       {
+        "text": "Нали́чными.",
+        "de": "Bar.",
+        "zahlart": "bar",
+        "weiter": "summe"
+       },
+       {
+        "text": "Ка́ртой.",
+        "de": "Mit Karte.",
+        "zahlart": "karte",
+        "weiter": "summe"
+       }
+      ]
+     },
+     "summe": {
+      "sprecher": "kassir",
+      "text": "С вас {summe}.",
+      "de": "Das macht {summe_de}.",
+      "aktion": "bezahlen",
+      "weiter": "chek"
+     },
+     "chek": {
+      "sprecher": "kassir",
+      "text": "Чек ну́жен?",
+      "de": "Brauchen Sie den Kassenbon?",
+      "optionen": [
+       {
+        "text": "Да, пожа́луйста.",
+        "de": "Ja, bitte.",
+        "weiter": "abschied"
+       },
+       {
+        "text": "Нет, спаси́бо.",
+        "de": "Nein, danke.",
+        "weiter": "abschied"
+       }
+      ]
+     },
+     "abschied": {
+      "sprecher": "kassir",
+      "text": "Спаси́бо за поку́пку! Всего́ до́брого!",
+      "de": "Danke für Ihren Einkauf! Alles Gute!",
+      "optionen": [
+       {
+        "text": "Спаси́бо, до свида́ния!",
+        "de": "Danke, auf Wiedersehen!",
+        "ende": true
+       },
+       {
+        "text": "Прия́тного аппети́та!",
+        "de": "Guten Appetit!",
+        "hinweis": "Das wünscht man beim Essen. Zum Abschied: До свида́ния!"
+       }
+      ]
+     }
+    }
+   }
+  }
+ }
+}

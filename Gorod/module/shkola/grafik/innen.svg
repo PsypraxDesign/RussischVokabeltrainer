@@ -1,0 +1,158 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 680" role="img" aria-label="Klassenzimmer">
+  <defs>
+    <linearGradient id="shk-himmel" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#9fcde3"/><stop offset="1" stop-color="#e3f0f4"/>
+    </linearGradient>
+    <radialGradient id="shk-tafel" cx="0.35" cy="0.3" r="0.9">
+      <stop offset="0" stop-color="#3d6352"/><stop offset="1" stop-color="#26443a"/>
+    </radialGradient>
+    <pattern id="shk-parkett" width="60" height="30" patternUnits="userSpaceOnUse">
+      <rect width="60" height="30" fill="#c99a63"/><rect width="30" height="15" fill="#bb8b55"/><rect x="30" y="15" width="30" height="15" fill="#bb8b55"/>
+    </pattern>
+  </defs>
+
+  <!-- Wand und Boden -->
+  <rect width="1200" height="680" fill="#efe6cf"/>
+  <rect y="400" width="1200" height="170" fill="#dfe8d8"/>
+  <rect y="396" width="1200" height="6" fill="#c9b994"/>
+  <rect y="560" width="1200" height="120" fill="url(#shk-parkett)"/>
+  <rect y="556" width="1200" height="6" fill="#8a5a3a"/>
+
+  <!-- Fenster -->
+  <g id="hs-okno" class="hotspot">
+    <rect x="34" y="90" width="210" height="250" fill="url(#shk-himmel)"/>
+    <circle cx="90" cy="300" r="42" fill="#d9822b"/><circle cx="120" cy="270" r="34" fill="#e2a13a"/>
+    <rect x="96" y="300" width="10" height="40" fill="#7a4a2b"/>
+    <g fill="#d9822b"><circle cx="190" cy="150" r="4"/><circle cx="170" cy="190" r="3.5"/><circle cx="210" cy="230" r="4"/></g>
+    <g fill="none" stroke="#fbf7ef" stroke-width="10"><rect x="34" y="90" width="210" height="250"/><path d="M139 90 V340 M34 200 H244"/></g>
+    <rect x="26" y="338" width="226" height="12" fill="#fbf7ef"/>
+  </g>
+
+  <!-- Tafel -->
+  <g id="hs-doska" class="hotspot">
+    <rect x="296" y="104" width="468" height="236" rx="4" fill="#8a5a3a"/>
+    <rect x="308" y="116" width="444" height="212" fill="url(#shk-tafel)"/>
+    <g font-family="Caveat, cursive" fill="#f4f1e8">
+      <text x="530" y="160" text-anchor="middle" font-size="32" font-weight="700">Классная работа</text>
+      <text x="340" y="216" font-size="30">Ма-ма мы-ла ра-му.</text>
+      <text x="340" y="270" font-size="30">2 + 3 = 5</text>
+      <text x="560" y="270" font-size="30">5 – 1 = 4</text>
+    </g>
+    <path d="M330 300 Q420 292 520 302" stroke="#f4f1e8" stroke-width="2" opacity="0.3" fill="none"/>
+    <rect x="300" y="336" width="460" height="10" fill="#6b4226"/>
+  </g>
+  <g id="hs-mel" class="hotspot">
+    <rect class="treffer" x="330" y="322" width="54" height="26" fill="transparent"/>
+    <rect x="338" y="331" width="22" height="6" rx="3" fill="#fbfbfb"/><rect x="364" y="332" width="14" height="5" rx="2.5" fill="#f2d6d6"/>
+  </g>
+
+  <!-- Landkarte -->
+  <g id="hs-karta" class="hotspot">
+    <path d="M800 108 V100 M1010 108 V100" stroke="#6b4226" stroke-width="3"/>
+    <rect x="790" y="106" width="230" height="140" rx="3" fill="#fbf7ef" stroke="#8a5a3a" stroke-width="5"/>
+    <rect x="800" y="116" width="210" height="120" fill="#9fcde3"/>
+    <path d="M812 160 Q840 132 890 140 Q930 124 968 136 Q1000 132 1004 156 Q996 186 960 190 Q930 206 896 196 Q860 210 832 196 Q808 186 812 160 Z" fill="#a8c98a" stroke="#7fa362" stroke-width="2"/>
+    <path d="M860 170 Q900 158 940 172" stroke="#c8553d" stroke-width="2" fill="none" opacity="0.6"/>
+    <circle cx="846" cy="168" r="3.5" fill="#c8302a"/>
+  </g>
+
+  <!-- Schulklingel -->
+  <g id="hs-zvonok" class="hotspot">
+    <rect class="treffer" x="1080" y="60" width="70" height="70" fill="transparent"/>
+    <rect x="1104" y="66" width="22" height="10" fill="#6b7a86"/>
+    <path d="M1096 116 Q1096 80 1115 78 Q1134 80 1134 116 Z" fill="#c8302a"/>
+    <rect x="1092" y="114" width="46" height="7" rx="3" fill="#9c2620"/>
+    <circle cx="1115" cy="126" r="5" fill="#d6a446"/>
+  </g>
+
+  <!-- Lehrerin mit Zeigestock -->
+  <g id="hs-uchitelnitsa" class="hotspot">
+    <path d="M826 556 L828 480 M850 556 L848 480" stroke="#3a3f44" stroke-width="10" stroke-linecap="round"/>
+    <path d="M808 486 L814 376 Q838 362 862 376 L868 486 Z" fill="#7c5ea8"/>
+    <path d="M820 384 Q800 340 770 300" stroke="#7c5ea8" stroke-width="11" fill="none" stroke-linecap="round"/>
+    <path d="M770 300 L700 250" stroke="#8a5a3a" stroke-width="4" stroke-linecap="round"/>
+    <path d="M824 368 L838 392 L852 368" stroke="#fbf7ef" stroke-width="5" fill="none"/>
+    <circle cx="838" cy="340" r="21" fill="#f2c7a6"/>
+    <path d="M816 338 Q814 312 838 312 Q862 312 860 338 Q854 322 838 322 Q822 322 816 338Z" fill="#5e3920"/>
+    <circle cx="838" cy="310" r="11" fill="#5e3920"/>
+    <circle cx="830" cy="342" r="6" fill="none" stroke="#3a3a3a" stroke-width="1.6"/><circle cx="846" cy="342" r="6" fill="none" stroke="#3a3a3a" stroke-width="1.6"/>
+    <path d="M836 342 H840" stroke="#3a3a3a" stroke-width="1.6"/>
+    <path d="M832 354 Q838 358 844 354" stroke="#a0523a" stroke-width="2" fill="none"/>
+  </g>
+
+  <!-- Lehrertisch mit Globus und Klassenbuch -->
+  <g pointer-events="none">
+    <rect x="900" y="440" width="230" height="16" fill="#8a5a3a"/>
+    <rect x="910" y="456" width="210" height="104" fill="#a0673c"/>
+    <path d="M920 500 H1110" stroke="#8a5a3a" stroke-width="3"/>
+  </g>
+  <g id="hs-globus" class="hotspot">
+    <path d="M1080 440 V428 M1068 440 H1092" stroke="#5e3920" stroke-width="5"/>
+    <circle cx="1080" cy="396" r="30" fill="#6fa8d6"/>
+    <path d="M1060 384 Q1072 370 1088 380 Q1098 392 1090 404 Q1076 412 1066 404 Z" fill="#a8c98a"/>
+    <path d="M1080 366 A30 30 0 0 1 1080 426" stroke="#d6a446" stroke-width="3" fill="none"/>
+  </g>
+  <g id="hs-zhurnal" class="hotspot">
+    <rect x="940" y="424" width="76" height="16" rx="2" fill="#2b5fa8"/>
+    <rect x="944" y="420" width="70" height="6" fill="#fbf7ef"/>
+    <text x="978" y="436" text-anchor="middle" font-family="Manrope, sans-serif" font-size="8" font-weight="800" fill="#fbf7ef">ЖУРНАЛ</text>
+  </g>
+
+  <!-- Schulbänke mit Kindern -->
+  <g id="hs-uchenik" class="hotspot">
+    <path d="M190 520 Q192 470 220 468 Q248 470 250 520 Z" fill="#2b5fa8"/>
+    <circle cx="220" cy="446" r="18" fill="#f2c7a6"/>
+    <path d="M202 442 Q204 424 220 424 Q236 424 238 442 Q230 432 220 433 Q210 432 202 442Z" fill="#c9a26b"/>
+    <circle cx="214" cy="448" r="1.9" fill="#2a2a2a"/><circle cx="226" cy="448" r="1.9" fill="#2a2a2a"/>
+  </g>
+  <g id="hs-uchenitsa" class="hotspot">
+    <path d="M630 520 Q632 470 660 468 Q688 470 690 520 Z" fill="#c8553d"/>
+    <circle cx="660" cy="446" r="18" fill="#f2c7a6"/>
+    <path d="M640 446 Q638 420 660 420 Q682 420 680 446 Q674 430 660 430 Q646 430 640 446Z" fill="#7a4a2b"/>
+    <circle cx="642" cy="424" r="8" fill="#fbfbfb"/><circle cx="678" cy="424" r="8" fill="#fbfbfb"/>
+    <circle cx="654" cy="448" r="1.9" fill="#2a2a2a"/><circle cx="666" cy="448" r="1.9" fill="#2a2a2a"/>
+  </g>
+  <g id="hs-parta" class="hotspot">
+    <rect x="110" y="506" width="330" height="16" rx="3" fill="#3f8f5f"/>
+    <rect x="124" y="522" width="300" height="50" fill="#4f9c6c"/>
+    <path d="M130 572 V620 M418 572 V620" stroke="#5c6b7a" stroke-width="8"/>
+    <rect x="550" y="506" width="330" height="16" rx="3" fill="#3f8f5f"/>
+    <rect x="564" y="522" width="300" height="50" fill="#4f9c6c"/>
+    <path d="M570 572 V620 M858 572 V620" stroke="#5c6b7a" stroke-width="8"/>
+  </g>
+
+  <!-- Schulsachen auf den Bänken -->
+  <g id="hs-tetradi" class="hotspot">
+    <rect x="128" y="494" width="58" height="8" rx="1" fill="#2b5fa8"/><rect x="132" y="486" width="58" height="8" rx="1" fill="#3f8f5f"/><rect x="126" y="478" width="58" height="8" rx="1" fill="#e2b43c"/>
+  </g>
+  <g id="hs-uchebniki" class="hotspot">
+    <rect x="300" y="490" width="70" height="14" rx="2" fill="#b8392b"/><rect x="304" y="476" width="66" height="14" rx="2" fill="#2f6b4f"/><rect x="298" y="462" width="70" height="14" rx="2" fill="#7c5ea8"/>
+    <path d="M300 497 H370 M304 483 H370 M298 469 H368" stroke="#fbf7ef" stroke-width="1.5" opacity="0.6"/>
+  </g>
+  <g id="hs-ruchki" class="hotspot">
+    <path d="M570 474 L582 450 M578 474 L586 448 M586 474 L590 452" stroke-width="3" stroke-linecap="round" stroke="#2b5fa8"/>
+    <path d="M566 474 H596 L592 506 H570 Z" fill="#9aa1a7"/>
+  </g>
+  <g id="hs-karandashi" class="hotspot">
+    <path d="M610 474 L604 446 M618 474 L620 444 M626 474 L634 448" stroke-width="4" stroke-linecap="round" stroke="#e2b43c"/>
+    <path d="M604 446 L602 440 M620 444 L620 438 M634 448 L636 442" stroke-width="3" stroke-linecap="round" stroke="#3a3a3a"/>
+    <path d="M602 474 H636 L632 506 H606 Z" fill="#c8553d"/>
+  </g>
+  <g id="hs-lineyka" class="hotspot">
+    <rect class="treffer" x="700" y="488" width="104" height="24" fill="transparent"/>
+    <rect x="704" y="496" width="96" height="10" rx="1" fill="#f2d046" transform="rotate(-4 752 501)"/>
+    <path d="M714 497 V501 M724 496 V500 M734 496 V502 M744 495 V499 M754 494 V500 M764 494 V498 M774 493 V499 M784 492 V496" stroke="#3a3a3a" stroke-width="1.2" transform="rotate(-4 752 501)"/>
+  </g>
+  <g id="hs-lastik" class="hotspot">
+    <rect class="treffer" x="812" y="484" width="44" height="28" fill="transparent"/>
+    <rect x="818" y="492" width="30" height="13" rx="3" fill="#f0a3a3"/><rect x="818" y="492" width="12" height="13" rx="3" fill="#2b5fa8"/>
+  </g>
+
+  <!-- Rucksack -->
+  <g id="hs-ryukzak" class="hotspot">
+    <rect x="460" y="586" width="64" height="76" rx="20" fill="#c8862f"/>
+    <rect x="470" y="618" width="44" height="32" rx="8" fill="#a0673c"/>
+    <path d="M476 586 Q492 566 508 586" stroke="#5e3920" stroke-width="5" fill="none"/>
+    <rect x="484" y="628" width="16" height="6" rx="2" fill="#f2d046"/>
+  </g>
+</svg>

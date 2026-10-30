@@ -1,0 +1,988 @@
+/* Город — Aussehen
+   Richtung: Moskauer Café, warm illustriert. Malachitgrün als Grundton,
+   Terrakotta und Messing als Akzente, Papier statt Weiß.
+   Schriften: Playfair Display (Titel), PT Serif (alles Russische),
+   Manrope (Bedienung), Caveat (Kreide, Zettel). */
+
+:root {
+    --malachit: #1f4e47;
+    --malachit-tief: #14332f;
+    --malachit-hell: #e3eeeb;
+    --terrakotta: #c8553d;
+    --terrakotta-tief: #9c3f2c;
+    --creme: #f3ead9;
+    --papier: #fbf7ef;
+    --messing: #d6a446;
+    --messing-tief: #a97a28;
+    --holz: #5e3920;
+    --tinte: #2a211c;
+    --grau: #776b61;
+    --grau-hell: #ddd2c1;
+    --gut: #2f7d50;
+    --gut-hell: #e4f3e9;
+    --schlecht: #b8392b;
+    --schlecht-hell: #fbe9e6;
+    --gzhel: #2b5fa8;
+
+    --schrift-titel: 'Playfair Display', Georgia, serif;
+    --schrift-ru: 'PT Serif', Georgia, serif;
+    --schrift-ui: 'Manrope', 'Segoe UI', sans-serif;
+    --schrift-hand: 'Caveat', cursive;
+
+    --schatten-1: 0 1px 2px rgba(42, 33, 28, .07), 0 6px 16px -6px rgba(42, 33, 28, .12);
+    --schatten-2: 0 2px 6px rgba(42, 33, 28, .08), 0 22px 48px -18px rgba(42, 33, 28, .35);
+    --schatten-3: 0 30px 70px -20px rgba(20, 51, 47, .45);
+    --feder: cubic-bezier(.34, 1.56, .64, 1);
+    --sanft: cubic-bezier(.22, .8, .3, 1);
+}
+
+* { box-sizing: border-box; }
+
+body {
+    margin: 0;
+    min-height: 100vh;
+    font-family: var(--schrift-ui);
+    font-size: 15.5px;
+    line-height: 1.55;
+    color: var(--tinte);
+    background-color: var(--creme);
+    background-image:
+        url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='180' height='180'><filter id='k'><feTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 .16 0 0 0 0 .13 0 0 0 0 .1 0 0 0 .07 0'/></filter><rect width='100%' height='100%' filter='url(%23k)'/></svg>"),
+        radial-gradient(1100px 600px at 12% -10%, rgba(214, 164, 70, .18), transparent 60%),
+        radial-gradient(900px 700px at 105% 20%, rgba(31, 78, 71, .14), transparent 60%),
+        radial-gradient(800px 500px at 50% 110%, rgba(200, 85, 61, .10), transparent 60%);
+    background-attachment: fixed;
+    user-select: none;
+}
+
+button { font: inherit; color: inherit; }
+button:focus-visible, select:focus-visible, input:focus-visible { outline: 3px solid var(--messing); outline-offset: 2px; }
+
+/* ------------------------------------------------------------------ Kopf */
+.kopf {
+    position: sticky; top: 0; z-index: 50;
+    display: flex; align-items: center; gap: 14px;
+    padding: 10px 24px;
+    background: linear-gradient(180deg, #173b36, var(--malachit-tief));
+    color: var(--papier);
+    border-bottom: 2px solid var(--messing);
+    box-shadow: 0 6px 20px -10px rgba(0, 0, 0, .5);
+}
+.logo {
+    border: 0; background: none; cursor: pointer;
+    font-family: var(--schrift-titel); font-weight: 800; font-size: 27px;
+    letter-spacing: -0.02em; color: var(--papier); padding: 0 6px 0 0;
+    display: flex; align-items: center; gap: 10px;
+}
+.logo::before {
+    content: ''; width: 22px; height: 26px;
+    background: var(--messing);
+    clip-path: path('M11 0 C12 4 22 9 20 17 C19 21 16 23 11 26 C6 23 3 21 2 17 C0 9 10 4 11 0Z');
+    transition: transform .4s var(--feder);
+}
+.logo:hover::before { transform: rotate(-8deg) scale(1.08); }
+.zur-karte {
+    border: 0; cursor: pointer;
+    padding: 8px 16px; border-radius: 999px;
+    background: var(--messing); color: var(--tinte); font-weight: 700; font-size: 14.5px;
+    box-shadow: 0 2px 0 var(--messing-tief);
+    transition: transform .15s var(--sanft), box-shadow .15s;
+}
+.zur-karte:hover { transform: translateY(-1px); box-shadow: 0 3px 0 var(--messing-tief); }
+.zur-karte:active { transform: translateY(1px); box-shadow: 0 1px 0 var(--messing-tief); }
+.kopf-rechts { margin-left: auto; display: flex; align-items: center; gap: 16px; font-size: 13.5px; }
+.kopf-geld {
+    display: inline-flex; align-items: center; gap: 8px;
+    padding: 4px 12px 4px 4px; border-radius: 999px;
+    background: rgba(255, 255, 255, .08); border: 1px solid rgba(214, 164, 70, .45);
+    font-weight: 700; font-variant-numeric: tabular-nums; font-size: 15px;
+}
+.geld-zeichen {
+    width: 26px; height: 26px; border-radius: 50%;
+    display: grid; place-items: center;
+    background: radial-gradient(circle at 35% 30%, #f3d37f, var(--messing) 55%, var(--messing-tief));
+    color: var(--tinte); font-size: 14px;
+}
+.stimme-wahl { display: flex; align-items: center; gap: 8px; color: rgba(251, 247, 239, .75); }
+.stimme-wahl select {
+    max-width: 190px;
+    background: rgba(255, 255, 255, .1); color: var(--papier);
+    border: 1px solid rgba(255, 255, 255, .25); border-radius: 8px; padding: 5px 8px; font: inherit;
+}
+.stimme-wahl option { color: var(--tinte); }
+
+/* ------------------------------------------------------------------ Startseite */
+.stadt { max-width: 1240px; margin: 0 auto; padding: 34px 24px 56px; }
+.stadt-intro { display: flex; align-items: baseline; gap: 24px; flex-wrap: wrap; margin-bottom: 22px; }
+.stadt-intro h1 {
+    margin: 0; font-family: var(--schrift-titel); font-weight: 800;
+    font-size: clamp(54px, 8vw, 92px); letter-spacing: -0.035em; line-height: .95;
+    color: var(--malachit);
+}
+.stadt-intro p { margin: 0; max-width: 360px; color: var(--grau); font-size: 16.5px; line-height: 1.6; }
+
+.strasse {
+    position: relative; height: 510px; border-radius: 26px; overflow: hidden;
+    background: linear-gradient(180deg, #b9dcec 0%, #e1eff4 55%, #f6ead2 78%);
+    box-shadow: var(--schatten-3);
+    isolation: isolate;
+}
+.himmel { position: absolute; inset: 0; pointer-events: none; z-index: -1; }
+.sonne {
+    position: absolute; top: 18px; right: 3.5%; width: 64px; height: 64px; border-radius: 50%;
+    background: radial-gradient(circle, #fff4c8 0 40%, #f3cf6d 60%, rgba(243, 207, 109, 0) 72%);
+    box-shadow: 0 0 80px 30px rgba(255, 230, 150, .5);
+}
+.wolke { position: absolute; height: 26px; border-radius: 26px; background: rgba(255, 255, 255, .92); animation: wolke 60s linear infinite; }
+.wolke::before, .wolke::after { content: ''; position: absolute; background: inherit; border-radius: 50%; }
+.wolke::before { width: 40px; height: 40px; left: 18px; top: -20px; }
+.wolke::after { width: 30px; height: 30px; left: 48px; top: -12px; }
+.wolke.w1 { width: 110px; top: 60px; left: 12%; }
+.wolke.w2 { width: 80px; top: 104px; left: 52%; animation-duration: 85s; animation-delay: -30s; opacity: .8; }
+@keyframes wolke { from { transform: translateX(-30vw); } to { transform: translateX(80vw); } }
+
+.haeuser {
+    position: absolute; left: 0; right: 0; bottom: 118px;
+    display: flex; align-items: flex-end; justify-content: center; gap: 20px; padding: 0 24px;
+}
+.haus {
+    position: relative; display: flex; flex-direction: column; align-items: center;
+    border: 0; background: none; padding: 0; width: 210px;
+}
+.haus img, .haus svg { display: block; width: 100%; height: auto; }
+.haus.offen { cursor: pointer; width: var(--breite, 215px); transition: transform .45s var(--feder), filter .3s; }
+.haus.offen img { filter: drop-shadow(0 18px 18px rgba(42, 33, 28, .25)); }
+.haus.offen:hover { transform: translateY(-8px); }
+.haus.offen:active { transform: translateY(-2px) scale(.99); }
+.haus.betreten { transform: translateY(-4px) scale(1.03); }
+.haus.bald { color: var(--malachit); opacity: .38; }
+.haus.bald svg { width: 118px; height: var(--hoehe); }
+.haus-schild {
+    order: -1; margin-bottom: 10px;
+    display: flex; flex-direction: column; align-items: center;
+    padding: 6px 14px 7px; border-radius: 10px;
+    background: rgba(251, 247, 239, .92); box-shadow: var(--schatten-1);
+    line-height: 1.2;
+}
+.haus-schild .ru { font-family: var(--schrift-ru); font-weight: 700; font-size: 20px; color: var(--malachit); }
+.haus-schild .de { font-size: 12px; color: var(--grau); }
+.haus.bald .haus-schild .ru { color: var(--grau); font-weight: 400; }
+.haus.offen .haus-schild { background: var(--papier); border: 1.5px solid var(--akzent); }
+.haus.offen .haus-schild::after {
+    content: 'hineingehen →'; font-size: 11px; font-weight: 700; letter-spacing: .04em;
+    color: var(--akzent); margin-top: 2px; opacity: 0; transform: translateY(-3px);
+    transition: opacity .25s, transform .25s var(--sanft);
+}
+.haus.offen:hover .haus-schild::after { opacity: 1; transform: none; }
+
+.gehweg {
+    position: absolute; left: 0; right: 0; bottom: 64px; height: 56px;
+    background:
+        repeating-linear-gradient(90deg, transparent 0 62px, rgba(94, 57, 32, .12) 62px 64px),
+        linear-gradient(180deg, #e6dccb, #d3c6af);
+    border-top: 5px solid #bdb09a;
+}
+.laeufer {
+    position: absolute; left: 18px; bottom: 6px; font-size: 40px; line-height: 1;
+    --x: 0px;
+    transform: translateX(var(--x)) scaleX(-1);
+    transition: transform 1.45s cubic-bezier(.45, .05, .4, 1);
+}
+.laeufer.geht { --x: var(--ziel); }
+.fahrbahn {
+    position: absolute; left: 0; right: 0; bottom: 0; height: 64px;
+    background: linear-gradient(180deg, #6e655c, #5c544c);
+    display: flex; flex-direction: column; justify-content: center; gap: 16px;
+}
+.schiene { display: block; height: 3px; background: linear-gradient(90deg, #b9a888, #e7d7b4, #b9a888); opacity: .85; }
+
+.modul-fehler {
+    margin-top: 22px; padding: 14px 18px; border-radius: 12px;
+    background: var(--schlecht-hell); border-left: 4px solid var(--schlecht); color: #6d2017; font-size: 14px;
+}
+.modul-fehler ul { margin: 6px 0 0 18px; padding: 0; }
+
+/* ------------------------------------------------------------------ Modul-Ansicht */
+.modul { max-width: 1480px; margin: 0 auto; padding: 18px 24px 34px; }
+.modul-kopf { display: flex; align-items: center; justify-content: space-between; gap: 16px; flex-wrap: wrap; }
+.modul-kopf h1 { margin: 0; display: flex; align-items: baseline; gap: 12px; }
+.modul-kopf h1 .ru { font-family: var(--schrift-titel); font-weight: 800; font-size: 40px; letter-spacing: -0.03em; color: var(--malachit); }
+.modul-kopf h1 .de { font-size: 13px; font-weight: 700; letter-spacing: .14em; text-transform: uppercase; color: var(--akzent); }
+.stufen { list-style: none; margin: 0; padding: 4px; display: flex; gap: 4px; border-radius: 999px; background: rgba(255, 255, 255, .55); box-shadow: inset 0 0 0 1px var(--grau-hell); }
+.stufen button {
+    display: flex; align-items: center; gap: 8px; cursor: pointer;
+    border: 0; background: none; border-radius: 999px; padding: 7px 14px 7px 7px;
+    font-weight: 600; font-size: 14px; color: var(--grau);
+    transition: background .2s, color .2s;
+}
+.stufen button:hover { color: var(--tinte); background: rgba(255, 255, 255, .7); }
+.stufen .nr {
+    width: 24px; height: 24px; border-radius: 50%; display: grid; place-items: center;
+    font-size: 12px; font-weight: 800; background: var(--grau-hell); color: var(--tinte);
+}
+.stufen button.aktiv { background: var(--malachit); color: var(--papier); }
+.stufen button.aktiv .nr { background: var(--messing); }
+
+.modul-buehne {
+    margin-top: 16px;
+    display: grid; grid-template-columns: minmax(0, 1.62fr) minmax(350px, 1fr); gap: 22px; align-items: start;
+}
+.szene-rahmen {
+    position: sticky; top: 78px;
+    padding: 10px; border-radius: 22px;
+    background: linear-gradient(160deg, #2a5f57, var(--malachit-tief));
+    box-shadow: var(--schatten-3), inset 0 0 0 1px rgba(214, 164, 70, .5);
+}
+.szene { position: relative; border-radius: 14px; overflow: hidden; }
+.szene svg { display: block; width: 100%; height: auto; }
+
+/* Klickflächen im Bild */
+.hotspot { transition: filter .2s; }
+.szene.klickbar .hotspot { cursor: pointer; }
+.szene.klickbar .hotspot:hover { filter: drop-shadow(0 0 5px rgba(255, 220, 130, .95)) drop-shadow(0 0 1.5px #fff); }
+.hotspot.gewaehlt { filter: drop-shadow(0 0 7px #ffd36e) drop-shadow(0 0 2px #fff); }
+.hotspot.richtig { filter: drop-shadow(0 0 8px #74e39a) drop-shadow(0 0 2px #fff); }
+.hotspot.falsch { filter: drop-shadow(0 0 8px #ff6b5b) drop-shadow(0 0 2px #fff); }
+.hotspot.tipp { filter: drop-shadow(0 0 4px #fff) drop-shadow(0 0 10px #ffb300) drop-shadow(0 0 18px #ffb300); }
+/* Goldrahmen + Pfeil (kern.js: tippRahmen) – gut sichtbar auch auf hellem Grund */
+.tipp-rahmen rect {
+    fill: rgba(255, 179, 0, .14); stroke: #ffb300; transform-box: fill-box; transform-origin: center;
+    animation: tipp-puls .8s ease-in-out infinite alternate;
+}
+.tipp-rahmen .pfeil { fill: #ffb300; stroke: #7a4a00; transform-box: fill-box; animation: tipp-pfeil .55s ease-in-out infinite alternate; }
+@keyframes tipp-puls { from { transform: scale(1); stroke-opacity: 1; } to { transform: scale(1.07); stroke-opacity: .55; } }
+@keyframes tipp-pfeil { to { transform: translateY(30%); } }
+@media (prefers-reduced-motion: reduce) { .tipp-rahmen rect, .tipp-rahmen .pfeil { animation: none; } }
+@keyframes blinken { to { opacity: .55; } }
+
+.aufgetischt { opacity: 0; transform: translateY(-16px); transform-box: fill-box; transition: opacity .45s, transform .6s var(--feder); pointer-events: none; }
+.aufgetischt.da { opacity: 1; transform: none; }
+.dampf { transform-box: fill-box; animation: dampf 2.6s ease-in-out infinite; }
+@keyframes dampf { 0% { opacity: 0; transform: translateY(4px); } 40% { opacity: .8; } 100% { opacity: 0; transform: translateY(-9px); } }
+
+/* Sprechblase im Bild */
+.blase {
+    position: absolute; z-index: 3; width: max-content; max-width: 46%;
+    transform: translate(-30px, calc(-100% - 16px)); transform-origin: 30px 100%;
+    padding: 10px 16px 11px; border-radius: 18px 18px 18px 6px;
+    background: var(--papier); box-shadow: 0 10px 26px -8px rgba(0, 0, 0, .45);
+    border: 2px solid var(--tinte);
+}
+.blase::after {
+    content: ''; position: absolute; left: 22px; bottom: -13px;
+    width: 18px; height: 14px; background: var(--papier);
+    border: 2px solid var(--tinte); border-top: 0; border-right: 0;
+    clip-path: polygon(0 0, 100% 0, 0 100%); transform: skewX(-12deg);
+}
+.blase .ru { display: block; font-family: var(--schrift-ru); font-weight: 700; font-size: 20px; line-height: 1.3; }
+.blase .de { display: block; font-size: 12.5px; color: var(--grau); }
+.blase.auf { animation: blase .45s var(--feder); }
+@keyframes blase { from { opacity: 0; transform: translate(-30px, calc(-100% - 6px)) scale(.88); } }
+
+/* ------------------------------------------------------------------ Tafel (rechte Spalte) */
+.tafel {
+    position: relative;
+    padding: 22px 22px 24px; border-radius: 22px;
+    background: var(--papier); box-shadow: var(--schatten-2);
+    border-top: 5px solid var(--akzent);
+}
+.tafel-kopf { display: flex; align-items: baseline; justify-content: space-between; flex-wrap: wrap; gap: 4px 12px; margin-bottom: 14px; }
+.tafel-kopf h2 { margin: 0; font-family: var(--schrift-titel); font-size: 28px; font-weight: 700; letter-spacing: -0.02em; }
+.tafel-kopf p { margin: 0; width: 100%; color: var(--grau); font-size: 14.5px; }
+.klein { font-size: 13px; color: var(--grau); }
+
+.knopf-haupt, .knopf-zweit {
+    display: flex; align-items: center; justify-content: space-between; gap: 10px;
+    width: 100%; cursor: pointer; border-radius: 13px; padding: 13px 18px;
+    font-weight: 700; font-size: 15px;
+    transition: transform .15s var(--sanft), box-shadow .15s, background .2s;
+}
+.knopf-haupt { border: 0; background: var(--malachit); color: var(--papier); box-shadow: 0 3px 0 var(--malachit-tief); }
+.knopf-haupt:hover { transform: translateY(-1px); box-shadow: 0 4px 0 var(--malachit-tief); }
+.knopf-haupt:active { transform: translateY(2px); box-shadow: 0 1px 0 var(--malachit-tief); }
+.knopf-haupt:disabled { opacity: .4; cursor: default; transform: none; box-shadow: none; }
+.knopf-haupt span { transition: transform .3s var(--feder); }
+.knopf-haupt:hover span { transform: translateX(4px); }
+.knopf-haupt.lockt span { animation: lockt 1.1s var(--feder) infinite; }
+@keyframes lockt { 50% { transform: translateX(6px); } }
+.knopf-zweit { border: 1.5px solid var(--malachit); background: transparent; color: var(--malachit); justify-content: center; }
+.knopf-zweit:hover { background: var(--malachit-hell); }
+.knopf-reihe { display: flex; gap: 10px; margin-top: 12px; }
+.mini {
+    border: 1px solid var(--grau-hell); background: #fff; border-radius: 999px;
+    padding: 4px 10px; font-size: 12.5px; font-weight: 600; cursor: pointer;
+}
+.mini:hover { border-color: var(--malachit); }
+
+/* Entdecken */
+.wortkarte {
+    min-height: 196px; padding: 18px 20px; border-radius: 16px;
+    background: #fff; box-shadow: inset 0 0 0 1px var(--grau-hell);
+}
+.wortkarte.leer { display: grid; place-items: center; }
+.leer-hinweis { text-align: center; color: var(--grau); max-width: 260px; }
+.finger { display: block; font-size: 30px; margin-bottom: 6px; animation: finger 1.6s ease-in-out infinite; }
+@keyframes finger { 50% { transform: translateY(-6px); } }
+.wortkarte.rein > * { animation: rein .45s var(--sanft) backwards; }
+.wortkarte.rein > *:nth-child(2) { animation-delay: .05s; }
+.wortkarte.rein > *:nth-child(3) { animation-delay: .1s; }
+.wortkarte.rein > *:nth-child(4) { animation-delay: .15s; }
+@keyframes rein { from { opacity: 0; transform: translateY(8px); } }
+.wk-oben { display: flex; gap: 8px; }
+.genus { font-size: 11.5px; font-weight: 700; letter-spacing: .04em; padding: 2px 9px; border-radius: 999px; }
+.g-m { background: #e5edf8; color: var(--gzhel); }
+.g-f { background: #fbe7e1; color: var(--terrakotta-tief); }
+.g-n { background: var(--malachit-hell); color: var(--malachit); }
+.g-pl { background: #f8eed6; color: var(--messing-tief); }
+.neu { font-size: 11.5px; font-weight: 800; padding: 2px 9px; border-radius: 999px; background: var(--messing); color: var(--tinte); }
+.wk-ru {
+    display: inline-flex; align-items: center; gap: 10px;
+    border: 0; background: none; padding: 0; margin-top: 8px; cursor: pointer;
+    font-family: var(--schrift-ru); font-weight: 700; font-size: 46px; line-height: 1.15; color: var(--malachit);
+}
+.lautsprecher { font-size: 18px; opacity: .45; transition: opacity .2s, transform .3s var(--feder); }
+.sprich:hover .lautsprecher { opacity: 1; transform: scale(1.15); }
+.wk-de { font-size: 18px; color: var(--grau); margin-top: 2px; }
+.wk-satz {
+    display: flex; align-items: center; justify-content: space-between; gap: 10px; width: 100%;
+    margin-top: 14px; padding: 9px 13px; border: 0; border-radius: 11px; cursor: pointer; text-align: left;
+    background: var(--creme); font-family: var(--schrift-ru); font-size: 19px;
+}
+.wk-satz:hover { background: #ece0c8; }
+.wk-hinweis { margin-top: 10px; padding: 8px 12px; border-radius: 0 9px 9px 0; background: #fff6dd; border-left: 3px solid var(--messing); font-size: 14px; }
+.fortschritt { display: flex; align-items: center; gap: 12px; margin: 16px 0 14px; }
+.perlen { display: flex; flex-wrap: wrap; gap: 5px; flex: 1; }
+.perlen i { width: 11px; height: 11px; border-radius: 50%; box-shadow: inset 0 0 0 1.5px var(--grau-hell); transition: background .3s; }
+.perlen i.an { background: var(--malachit); box-shadow: none; animation: perle .5s var(--feder); }
+@keyframes perle { from { transform: scale(.3); } }
+#zaehler { font-size: 13px; font-weight: 600; color: var(--grau); white-space: nowrap; }
+
+/* Hören & Zeigen */
+.hoer-buehne { display: flex; align-items: center; gap: 18px; padding: 10px 4px 18px; }
+.hoer-knopf {
+    position: relative; flex: none; width: 84px; height: 84px; border-radius: 50%; border: 0; cursor: pointer;
+    background: radial-gradient(circle at 35% 30%, #2f6d63, var(--malachit) 60%, var(--malachit-tief));
+    color: var(--papier); font-size: 32px; box-shadow: 0 10px 24px -8px rgba(20, 51, 47, .7);
+    transition: transform .2s var(--feder);
+}
+.hoer-knopf:hover { transform: scale(1.05); }
+.hoer-knopf.spricht::after {
+    content: ''; position: absolute; inset: -6px; border-radius: 50%; border: 3px solid var(--messing);
+    animation: welle 1.1s ease-out infinite;
+}
+@keyframes welle { from { opacity: .9; transform: scale(.92); } to { opacity: 0; transform: scale(1.35); } }
+.hoer-frage { font-family: var(--schrift-ru); font-size: 32px; font-weight: 700; color: var(--tinte); }
+.hoer-frage .verdeckt { color: var(--grau-hell); letter-spacing: .1em; }
+.hoer-buehne.fertig { opacity: .5; }
+.balken { height: 8px; border-radius: 99px; background: var(--grau-hell); overflow: hidden; }
+#balken-fuellung { height: 100%; width: 0; background: linear-gradient(90deg, var(--malachit), #3a8a7c); transition: width .5s var(--sanft); }
+.rueckmeldung { min-height: 54px; margin-top: 12px; padding: 0; border-radius: 12px; font-size: 15.5px; }
+.rueckmeldung.gut, .rueckmeldung.schlecht { padding: 11px 14px; animation: rein .35s var(--sanft); }
+.rueckmeldung.gut { background: var(--gut-hell); color: #1d5a37; }
+.rueckmeldung.schlecht { background: var(--schlecht-hell); color: #7c2318; }
+.rueckmeldung strong { font-family: var(--schrift-ru); font-size: 18px; }
+.ergebnis { text-align: center; padding: 14px 6px 4px; animation: rein .45s var(--sanft); }
+.ergebnis p { margin: 6px 0; }
+.sterne { font-size: 42px; letter-spacing: 8px; line-height: 1; }
+.sterne .an { color: var(--messing); display: inline-block; animation: stern .5s var(--feder) backwards; }
+.sterne .aus { color: var(--grau-hell); }
+@keyframes stern { from { transform: scale(0) rotate(-40deg); } }
+
+/* Bestellen (Dialog) */
+.tafel.beim-zahlen .zettel { display: none; }
+.tafel.beim-zahlen .gespraech { max-height: 84px; }
+.schalter { display: inline-flex; align-items: center; gap: 7px; font-size: 13px; font-weight: 600; color: var(--grau); cursor: pointer; }
+.schalter input { appearance: none; width: 34px; height: 20px; border-radius: 99px; background: var(--grau-hell); position: relative; cursor: pointer; transition: background .2s; margin: 0; }
+.schalter input::after { content: ''; position: absolute; top: 2px; left: 2px; width: 16px; height: 16px; border-radius: 50%; background: #fff; transition: transform .25s var(--feder); }
+.schalter input:checked { background: var(--malachit); }
+.schalter input:checked::after { transform: translateX(14px); }
+.zettel {
+    position: relative; display: block; margin: 4px 6px 16px; padding: 12px 18px 12px;
+    background: #fff4c9; transform: rotate(-1.2deg);
+    box-shadow: 0 10px 18px -12px rgba(42, 33, 28, .5);
+}
+.zettel::before {
+    content: ''; position: absolute; top: -9px; left: 50%; width: 76px; height: 20px; transform: translateX(-50%) rotate(2deg);
+    background: rgba(214, 164, 70, .45);
+}
+.zettel-titel { display: block; font-size: 11px; font-weight: 800; letter-spacing: .12em; text-transform: uppercase; color: var(--messing-tief); }
+.zettel-text { display: block; font-family: var(--schrift-hand); font-size: 27px; line-height: 1.15; color: #3b2d22; }
+.gespraech { display: flex; flex-direction: column; gap: 8px; max-height: 250px; overflow-y: auto; padding: 2px 2px 6px; scrollbar-width: thin; }
+.zeile { max-width: 88%; padding: 7px 13px 9px; border-radius: 15px; animation: rein .35s var(--sanft); }
+.zeile.sie { align-self: flex-start; background: #fff; box-shadow: inset 0 0 0 1px var(--grau-hell); border-bottom-left-radius: 5px; }
+.zeile.ich { align-self: flex-end; background: var(--malachit); color: var(--papier); border-bottom-right-radius: 5px; }
+.zeile-wer { display: block; font-size: 10.5px; font-weight: 800; letter-spacing: .1em; text-transform: uppercase; opacity: .55; }
+.zeile-ru { border: 0; background: none; padding: 0; cursor: pointer; text-align: left; font-family: var(--schrift-ru); font-size: 17.5px; line-height: 1.35; }
+.zeile-de { display: none; font-size: 13px; opacity: .75; }
+.mit-de .zeile-de { display: block; }
+.hinweis-karte { margin: 10px 0 0; padding: 10px 14px; border-radius: 0 10px 10px 0; background: #fff6dd; border-left: 4px solid var(--messing); font-size: 14.5px; }
+.hinweis-karte.auf { animation: rein .35s var(--sanft); }
+.antworten { display: grid; gap: 8px; margin-top: 12px; }
+.antwort {
+    display: flex; flex-direction: column; align-items: flex-start; gap: 1px;
+    text-align: left; cursor: pointer; padding: 11px 15px; border-radius: 13px;
+    background: #fff; border: 1.5px solid var(--grau-hell);
+    animation: rein .4s var(--sanft) backwards;
+    transition: border-color .2s, transform .15s var(--sanft), background .2s;
+}
+.antwort:hover { border-color: var(--malachit); transform: translateY(-1px); }
+.antwort:active { transform: translateY(1px); }
+.antwort .ru { font-family: var(--schrift-ru); font-size: 18.5px; font-weight: 700; color: var(--tinte); }
+.antwort .de { display: none; font-size: 13px; color: var(--grau); }
+.antworten.mit-de .antwort .de { display: block; }
+.antwort.daneben { border-color: var(--schlecht); background: var(--schlecht-hell); opacity: .6; cursor: default; animation: wackeln .4s; }
+@keyframes wackeln { 25% { transform: translateX(-6px); } 75% { transform: translateX(6px); } }
+
+/* Bezahlen */
+.kasse { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.35fr); gap: 14px; margin-top: 14px; align-items: start; animation: rein .45s var(--sanft); }
+.rechnung {
+    position: relative; padding: 14px 14px 22px; background: #fff; font-size: 13.5px;
+    box-shadow: var(--schatten-1);
+    -webkit-mask: linear-gradient(#000 0 0) top / 100% calc(100% - 8px) no-repeat, conic-gradient(from -45deg at bottom, #0000, #000 1deg 89deg, #0000 90deg) bottom / 16px 8px repeat-x;
+            mask: linear-gradient(#000 0 0) top / 100% calc(100% - 8px) no-repeat, conic-gradient(from -45deg at bottom, #0000, #000 1deg 89deg, #0000 90deg) bottom / 16px 8px repeat-x;
+}
+.rechnung-kopf { text-align: center; font-family: var(--schrift-ru); font-weight: 700; font-size: 21px; letter-spacing: .06em; border-bottom: 1.5px dashed var(--grau-hell); padding-bottom: 6px; margin-bottom: 6px; }
+.rechnung ul { list-style: none; margin: 0; padding: 0; }
+.rechnung li { display: flex; justify-content: space-between; gap: 8px; padding: 4px 0; font-family: var(--schrift-ru); border-bottom: 1px dotted var(--grau-hell); }
+.rechnung-summe { display: flex; justify-content: space-between; margin-top: 8px; font-weight: 800; font-size: 15px; }
+.betrag { font-variant-numeric: tabular-nums; }
+.betrag.verdeckt { color: var(--grau); letter-spacing: .08em; }
+.rechnung-knoepfe { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 10px; }
+.kasse.bezahlt .rechnung::after {
+    content: 'ОПЛАЧЕНО'; position: absolute; top: 44%; left: 50%;
+    transform: translate(-50%, -50%) rotate(-14deg);
+    padding: 3px 10px; border: 3px solid var(--schlecht); border-radius: 6px;
+    color: var(--schlecht); font-weight: 800; letter-spacing: .14em; font-size: 17px; opacity: .85;
+    animation: stempel .4s var(--feder);
+}
+@keyframes stempel { from { transform: translate(-50%, -50%) rotate(-14deg) scale(1.8); opacity: 0; } }
+.teller {
+    min-height: 82px; padding: 14px; border-radius: 50% / 46%;
+    display: flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: 5px;
+    background: radial-gradient(ellipse at 50% 40%, #fff 0 55%, #efe7d8 72%, #e2d6c1);
+    box-shadow: inset 0 0 0 2px #e2d6c1, 0 6px 12px -8px rgba(42, 33, 28, .4);
+}
+.teller-leer { font-size: 12.5px; color: var(--grau); text-align: center; max-width: 160px; }
+.teller-summe { text-align: center; font-size: 13px; font-weight: 700; color: var(--grau); margin: 6px 0 10px; font-variant-numeric: tabular-nums; }
+.boerse {
+    display: flex; flex-wrap: wrap; gap: 8px; padding: 12px; margin-bottom: 12px; border-radius: 14px;
+    background: linear-gradient(160deg, #6b4227, var(--holz));
+    box-shadow: inset 0 2px 0 rgba(255, 255, 255, .12), inset 0 -3px 0 rgba(0, 0, 0, .2);
+}
+.boerse .leer { color: rgba(255, 255, 255, .7); font-size: 13px; }
+.geld { position: relative; border: 0; background: none; padding: 0; cursor: pointer; transition: transform .2s var(--feder); }
+.geld:hover { transform: translateY(-3px) rotate(-2deg); }
+.geld:active { transform: translateY(1px); }
+.geld em {
+    position: absolute; top: -7px; right: -7px; min-width: 22px; height: 22px; border-radius: 99px; padding: 0 5px;
+    display: grid; place-items: center; font-style: normal; font-size: 11.5px; font-weight: 800;
+    background: var(--messing); color: var(--tinte); box-shadow: 0 1px 3px rgba(0, 0, 0, .3);
+}
+.schein {
+    display: inline-flex; flex-direction: column; justify-content: center; align-items: flex-start;
+    width: 78px; height: 42px; padding: 0 8px; border-radius: 4px; color: #fff; line-height: 1.05;
+    box-shadow: inset 0 0 0 2px rgba(255, 255, 255, .28), 0 2px 4px rgba(0, 0, 0, .25);
+    background-image: radial-gradient(circle at 82% 50%, rgba(255, 255, 255, .28) 0 9px, transparent 10px);
+}
+.schein b { font-size: 16px; font-weight: 800; }
+.schein small { font-size: 7.5px; opacity: .85; letter-spacing: .02em; }
+.w1000 { background-color: #3f7f6b; }
+.w500 { background-color: #7c5ea8; }
+.w100 { background-color: #a5703f; }
+.w50 { background-color: #4f7aa0; }
+.muenze {
+    width: 40px; height: 40px; border-radius: 50%; display: inline-flex; flex-direction: column; align-items: center; justify-content: center; line-height: 1;
+    background: radial-gradient(circle at 35% 30%, #f6dd94, var(--messing) 55%, var(--messing-tief));
+    box-shadow: inset 0 0 0 2px rgba(255, 255, 255, .35), 0 2px 4px rgba(0, 0, 0, .3); color: #4a3510;
+}
+.muenze b { font-size: 13px; font-weight: 800; }
+.muenze small { font-size: 9px; }
+.geld.klein .schein { transform: scale(.82); margin: -4px -7px; }
+.geld.klein .muenze { transform: scale(.85); }
+.kassen-meldung { min-height: 0; margin-top: 10px; border-radius: 12px; font-size: 14.5px; }
+.kassen-meldung.gut, .kassen-meldung.schlecht { padding: 10px 13px; animation: rein .35s var(--sanft); }
+.kassen-meldung.gut { background: var(--gut-hell); color: #1d5a37; }
+.kassen-meldung.schlecht { background: var(--schlecht-hell); color: #7c2318; }
+.kassen-meldung .ru { display: block; font-family: var(--schrift-ru); font-size: 17px; font-weight: 700; margin-top: 2px; }
+
+/* ------------------------------------------------------------------ Toast */
+.toast {
+    position: fixed; left: 50%; bottom: 26px; z-index: 100; max-width: min(560px, 92vw);
+    padding: 12px 18px; border-radius: 14px; font-weight: 600; font-size: 14.5px;
+    background: var(--tinte); color: var(--papier); box-shadow: var(--schatten-2);
+    opacity: 0; transform: translate(-50%, 14px); pointer-events: none;
+    transition: opacity .3s, transform .4s var(--feder);
+}
+.toast.sichtbar { opacity: 1; transform: translate(-50%, 0); }
+.toast.fehler { background: var(--schlecht); }
+.toast.gut { background: var(--malachit); }
+
+/* ------------------------------------------------------------------ Schmale Fenster */
+@media (max-width: 1020px) {
+    .modul-buehne { grid-template-columns: 1fr; }
+    .szene-rahmen { position: static; }
+    .kasse { grid-template-columns: 1fr; }
+}
+@media (max-width: 720px) {
+    .kopf { flex-wrap: wrap; padding: 8px 14px; gap: 10px; }
+    .stimme-wahl { display: none; }
+    .stadt, .modul { padding-left: 14px; padding-right: 14px; }
+    .strasse { height: 440px; }
+    .haeuser { justify-content: flex-start; overflow-x: auto; bottom: 118px; gap: 16px; padding: 0 16px; }
+    .haus, .haus.offen { flex: none; width: 170px; }
+    .haus.bald svg { width: 140px; }
+    .stufen { overflow-x: auto; max-width: 100%; }
+    .stufen button { white-space: nowrap; }
+    .blase { max-width: 70%; }
+    .blase .ru { font-size: 16px; }
+    .wk-ru { font-size: 38px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after { animation: none !important; transition: none !important; }
+}
+
+/* ------------------------------------------------------------------ Bankkarte und Terminal */
+.karten-zeichen {
+    width: 30px; height: 20px; border-radius: 4px; position: relative;
+    background: linear-gradient(135deg, #2f6d63, var(--malachit) 60%, var(--malachit-tief));
+    box-shadow: inset 0 0 0 1px rgba(214, 164, 70, .7);
+}
+.karten-zeichen::before { content: ''; position: absolute; left: 5px; top: 6px; width: 8px; height: 6px; border-radius: 1.5px; background: var(--messing); }
+.kopf-geld:has(.karten-zeichen) { padding-left: 8px; }
+
+.karten-kasse { grid-template-columns: minmax(0, 1fr) minmax(0, 1.25fr); }
+.terminal-bereich { display: flex; flex-direction: column; align-items: center; gap: 10px; }
+.terminal {
+    width: 150px; padding: 12px 12px 14px; border-radius: 16px 16px 22px 22px;
+    background: linear-gradient(170deg, #3a3f44, #1f2326);
+    box-shadow: 0 14px 26px -12px rgba(0, 0, 0, .6), inset 0 1px 0 rgba(255, 255, 255, .12);
+}
+.terminal-schirm {
+    display: flex; flex-direction: column; align-items: center; gap: 2px;
+    padding: 10px 6px; border-radius: 8px; min-height: 86px; justify-content: center;
+    background: #cfe3d6; color: #1d3a2c; text-align: center;
+    box-shadow: inset 0 2px 6px rgba(0, 0, 0, .25); transition: background .3s;
+}
+.terminal-schirm.ok { background: #8fd4a4; }
+.terminal-schirm.abgelehnt { background: #f0a99f; color: #5e1810; }
+.t-klein { font-size: 10.5px; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; opacity: .7; }
+.t-betrag { font-family: var(--schrift-ru); font-weight: 700; font-size: 22px; line-height: 1.1; }
+.t-hinweis { font-family: var(--schrift-ru); font-size: 13px; animation: blinken 1s ease-in-out infinite alternate; }
+.terminal-schirm.ok .t-hinweis, .terminal-schirm.abgelehnt .t-hinweis { animation: none; }
+.terminal-tasten { display: grid; grid-template-columns: repeat(3, 1fr); gap: 5px; margin-top: 10px; }
+.terminal-tasten i { height: 12px; border-radius: 4px; background: #4a5056; box-shadow: inset 0 -2px 0 rgba(0, 0, 0, .3); }
+.bankkarte {
+    position: relative; width: 168px; height: 104px; border: 0; cursor: pointer; padding: 0;
+    border-radius: 12px; color: var(--papier); text-align: left;
+    background:
+        radial-gradient(120px 80px at 85% 10%, rgba(214, 164, 70, .35), transparent 70%),
+        linear-gradient(135deg, #2f6d63, var(--malachit) 55%, var(--malachit-tief));
+    box-shadow: 0 12px 22px -10px rgba(20, 51, 47, .8), inset 0 0 0 1px rgba(214, 164, 70, .55);
+    transition: transform .8s var(--sanft), box-shadow .3s;
+}
+.bankkarte:hover { transform: translateY(-4px) rotate(-2deg); }
+.bankkarte.angelegt { transform: translateY(-112px) scale(.86) rotate(0); box-shadow: 0 4px 10px -4px rgba(0, 0, 0, .5); }
+.bk-bank { position: absolute; top: 10px; left: 12px; font-family: var(--schrift-titel); font-weight: 700; font-size: 14px; }
+.bk-chip { position: absolute; top: 38px; left: 14px; width: 28px; height: 21px; border-radius: 4px; background: linear-gradient(135deg, #f3d37f, var(--messing-tief)); }
+.bk-funk { position: absolute; top: 40px; left: 50px; font-weight: 800; font-size: 13px; letter-spacing: -2px; transform: rotate(90deg); opacity: .8; }
+.bk-nummer { position: absolute; bottom: 10px; left: 14px; font-size: 13px; letter-spacing: .14em; font-variant-numeric: tabular-nums; opacity: .9; }
+.konto-zeile { font-size: 13px; color: var(--grau); }
+.konto-zeile strong { color: var(--tinte); font-variant-numeric: tabular-nums; }
+.karten-kasse .kassen-meldung { align-self: stretch; }
+
+/* ------------------------------------------------------------------ Speisekarte im Bestellen */
+.menue-karte { margin: 0 4px 12px; border-radius: 12px; background: #fff; box-shadow: inset 0 0 0 1px var(--grau-hell); }
+.menue-karte summary { cursor: pointer; padding: 9px 14px; font-size: 13px; color: var(--grau); list-style: none; }
+.menue-karte summary::-webkit-details-marker { display: none; }
+.menue-karte summary::before { content: '▸'; display: inline-block; margin-right: 6px; transition: transform .2s; }
+.menue-karte[open] summary::before { transform: rotate(90deg); }
+.mk-titel { font-family: var(--schrift-ru); font-weight: 700; font-size: 17px; color: var(--malachit); margin-right: 6px; }
+.mk-inhalt { padding: 0 14px 12px; columns: 2 220px; column-gap: 22px; }
+.mk-gruppe { break-inside: avoid; margin-bottom: 8px; }
+.mk-gruppe h4 { margin: 6px 0 4px; font-family: var(--schrift-ru); font-size: 15px; color: var(--terrakotta-tief); }
+.mk-gruppe h4 small { font-family: var(--schrift-ui); font-weight: 600; font-size: 11px; color: var(--grau); }
+.mk-posten {
+    display: flex; align-items: baseline; gap: 6px; width: 100%; padding: 2px 0;
+    border: 0; background: none; cursor: pointer; text-align: left;
+    font-family: var(--schrift-ru); font-size: 14.5px; color: var(--tinte);
+}
+.mk-posten:hover .mk-name { color: var(--malachit); text-decoration: underline dotted; }
+.mk-punkte { flex: 1; border-bottom: 1.5px dotted var(--grau-hell); transform: translateY(-3px); }
+.mk-preis { font-family: var(--schrift-ui); font-size: 13px; font-weight: 700; font-variant-numeric: tabular-nums; }
+.tafel.beim-zahlen .menue-karte { display: none; }
+
+/* Bläschen im Sprudelwasser */
+.aufgetischt.da .blaeschen circle { transform-box: fill-box; animation: blaeschen 1.6s ease-in infinite; }
+.aufgetischt.da .blaeschen circle:nth-child(2) { animation-delay: .4s; }
+.aufgetischt.da .blaeschen circle:nth-child(3) { animation-delay: .8s; }
+.aufgetischt.da .blaeschen circle:nth-child(4) { animation-delay: 1.2s; }
+@keyframes blaeschen { from { transform: translateY(6px); opacity: 0; } 30% { opacity: 1; } to { transform: translateY(-14px); opacity: 0; } }
+
+
+/* ------------------------------------------------------------------ Räume und Zoom */
+.ganzes {
+    position: absolute; top: 12px; left: 12px; z-index: 4; border: 0; cursor: pointer;
+    padding: 8px 14px; border-radius: 999px; font-weight: 700; font-size: 14px;
+    background: var(--messing); color: var(--tinte); box-shadow: 0 3px 0 var(--messing-tief), 0 8px 18px -8px rgba(0, 0, 0, .5);
+    animation: rein .35s var(--sanft);
+}
+.ganzes:hover { transform: translateY(-1px); }
+.szene.mit-raeumen svg .raum { transition: opacity .5s, filter .25s; }
+.szene.mit-raeumen svg:not(.gezoomt) .raum { cursor: pointer; }
+.szene.mit-raeumen svg:not(.gezoomt) .raum:hover { filter: drop-shadow(0 0 10px rgba(255, 214, 120, .95)) brightness(1.04); }
+.szene.mit-raeumen svg:not(.gezoomt) .hotspot:hover { filter: none; }
+.szene.mit-raeumen svg.gezoomt .raum:not(.aktiv) { opacity: .28; }
+.raum.richtig { filter: drop-shadow(0 0 14px #74e39a) !important; }
+.raum.falsch { filter: drop-shadow(0 0 14px #ff6b5b) !important; }
+.raum.tipp { filter: drop-shadow(0 0 16px #ffd36e) !important; animation: blinken .9s ease-in-out infinite alternate; }
+.raum-namen { opacity: 0; transition: opacity .3s; }
+.namen-an:not(.gezoomt) .raum-namen { opacity: 1; }
+.raum-namen rect { fill: rgba(251, 247, 239, .93); stroke: var(--malachit); stroke-width: 1.5; }
+.raum-namen text { font-family: var(--schrift-ru); font-weight: 700; font-size: 25px; fill: var(--malachit); }
+.flamme { transform-box: fill-box; transform-origin: 50% 100%; animation: flackern .5s ease-in-out infinite alternate; }
+@keyframes flackern { to { transform: scaleY(1.08) scaleX(.95); opacity: .9; } }
+.welle { animation: welle-zieht 3s ease-in-out infinite alternate; }
+@keyframes welle-zieht { to { transform: translateX(6px); } }
+
+.haus-liste { display: flex; flex-wrap: wrap; gap: 7px; }
+.raum-chip {
+    display: inline-flex; align-items: baseline; gap: 7px; cursor: pointer;
+    padding: 6px 12px; border-radius: 999px; border: 1.5px solid var(--grau-hell); background: #fff;
+    transition: border-color .2s, transform .15s var(--sanft);
+}
+.raum-chip:hover { border-color: var(--malachit); transform: translateY(-1px); }
+.raum-chip .ru { font-family: var(--schrift-ru); font-weight: 700; font-size: 16px; }
+.raum-chip .zahl { font-size: 11.5px; font-weight: 700; color: var(--grau); }
+.raum-chip.fertig { background: var(--gut-hell); border-color: #9fd3b0; }
+.raum-zeile { margin: -4px 0 8px; font-size: 13px; color: var(--grau); }
+.raum-zeile span { font-family: var(--schrift-ru); font-weight: 700; color: var(--malachit); }
+.g-raum { background: var(--creme); color: var(--holz); }
+.raum-fakten { display: grid; grid-template-columns: max-content max-content 1fr; gap: 6px 10px; align-items: baseline; margin-top: 12px; }
+.raum-fakten .lbl { font-size: 11px; font-weight: 800; letter-spacing: .1em; text-transform: uppercase; color: var(--grau); }
+.raum-fakten button { border: 0; background: var(--creme); border-radius: 8px; padding: 3px 10px; cursor: pointer; font-family: var(--schrift-ru); font-weight: 700; font-size: 17px; }
+.raum-fakten button:hover { background: #ece0c8; }
+.raum-fakten .de { font-size: 13px; color: var(--grau); }
+
+/* Wo ist das? */
+.wo-frage { display: flex; align-items: center; gap: 16px; padding: 4px 2px 16px; }
+.wo-frage.fertig { opacity: .5; }
+.hoer-knopf.klein { width: 60px; height: 60px; font-size: 24px; }
+.wo-wort { font-family: var(--schrift-ru); font-weight: 700; font-size: 32px; line-height: 1.15; color: var(--malachit); }
+.wo-de { font-size: 14px; color: var(--grau); }
+.wo-optionen { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-top: 14px; }
+.wo-option .ru { font-size: 20px; }
+.antwort.treffer { border-color: var(--gut); background: var(--gut-hell); }
+
+.etagen { transition: opacity .5s; }
+.gezoomt .etagen { opacity: .2; }
+
+
+/* ------------------------------------------------------------------ Übersetzung (Hilfe) */
+.hilfe-zeile { display: flex; align-items: baseline; gap: 10px; flex-wrap: wrap; margin: -4px 0 12px; min-height: 30px; }
+.hilfe-knopf {
+    flex: none; border: 1.5px solid var(--grau-hell); background: #fff; border-radius: 999px;
+    padding: 5px 12px; font-size: 13px; font-weight: 700; color: var(--tinte); cursor: pointer;
+    transition: border-color .2s, background .2s;
+}
+.hilfe-knopf:hover { border-color: var(--malachit); }
+.hilfe-knopf.benutzt { background: #fff6dd; border-color: var(--messing); }
+.uebersetzung { font-size: 14.5px; color: var(--grau); font-style: italic; line-height: 1.45; }
+.uebersetzung strong { font-family: var(--schrift-ru); font-style: normal; color: var(--malachit); }
+.uebersetzung:not(:empty) { animation: rein .3s var(--sanft); }
+.klein-block { display: block; font-size: 12.5px; margin-top: 6px; }
+.zeile-text { display: flex; align-items: flex-start; gap: 6px; }
+.zeile-hilfe {
+    flex: none; border: 0; background: rgba(0, 0, 0, .06); border-radius: 6px; padding: 1px 5px;
+    font-size: 12px; cursor: pointer; opacity: .65; transition: opacity .2s; margin-top: 2px;
+}
+.zeile.ich .zeile-hilfe { background: rgba(255, 255, 255, .18); }
+.zeile-hilfe:hover { opacity: 1; }
+.zeile.offen .zeile-de { display: block; }
+
+/* Gezeichnete Flagge statt Emoji (Windows zeigt Flaggen-Emojis als Buchstaben) */
+.flagge {
+    display: inline-block; width: 16px; height: 11px; margin-right: 6px; vertical-align: -1px; border-radius: 2px;
+    background: linear-gradient(#1e1a17 0 33.3%, #c8302a 33.3% 66.6%, #e2b43c 66.6%);
+    box-shadow: 0 0 0 1px rgba(0, 0, 0, .12);
+}
+.zeile-hilfe .flagge { margin-right: 0; }
+
+
+/* ------------------------------------------------------------------ Stockwerke (Aufzug) */
+.aufzug-buehne {
+    position: absolute; inset: 0; z-index: 3;
+    display: grid; grid-template-columns: minmax(0, 1fr) minmax(150px, 27%); grid-template-rows: minmax(0, 1fr);
+    gap: 3%; align-items: center; padding: 2% 5%; overflow: hidden;
+    background:
+        linear-gradient(180deg, #b9dcec 0%, #e3f0f4 62%, transparent 62%),
+        linear-gradient(180deg, #e9dfcb, #d8cbb2);
+    animation: rein .45s var(--sanft);
+}
+.hochhaus { display: block; height: 100%; max-height: 100%; max-width: 100%; justify-self: center; }
+.hochhaus .etage-nr circle { fill: rgba(255, 255, 255, .85); stroke: #b9ad97; stroke-width: 1.5; transition: fill .2s; }
+.hochhaus .etage-nr text { font: 700 13px var(--schrift-ui); text-anchor: middle; fill: var(--tinte); }
+.hochhaus .etage-nr.jetzt circle { fill: var(--messing); stroke: var(--messing-tief); }
+#kabine .tuer-l, #kabine .tuer-r { transform-box: fill-box; transition: transform .45s var(--sanft); }
+#kabine.offen .tuer-l { transform: translateX(-75%); }
+#kabine.offen .tuer-r { transform: translateX(75%); }
+
+.aufzug-panel {
+    display: flex; flex-direction: column; gap: 10px; padding: 12px; border-radius: 16px; max-height: 100%; box-sizing: border-box;
+    background: linear-gradient(135deg, #d5dade, #a7aeb4 55%, #cdd2d6);
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, .6), 0 18px 34px -16px rgba(0, 0, 0, .55);
+    transition: opacity .3s;
+}
+.aufzug-anzeige {
+    display: flex; justify-content: center; align-items: center; gap: 10px; padding: 6px 10px; border-radius: 9px;
+    background: #15191b; color: #ff6a3d; font: 800 28px/1.1 var(--schrift-ui); font-variant-numeric: tabular-nums;
+    text-shadow: 0 0 10px rgba(255, 106, 61, .7); box-shadow: inset 0 2px 6px rgba(0, 0, 0, .8);
+}
+#pfeil { font-size: 20px; min-width: 18px; }
+.aufzug-tasten { display: grid; grid-template-columns: repeat(3, minmax(0, 46px)); justify-content: center; gap: 8px; }
+.taste {
+    width: 100%; aspect-ratio: 1; border-radius: 50%; cursor: pointer; padding: 0;
+    border: 2px solid #868d93; color: #2a2d31; font: 800 17px var(--schrift-ui);
+    background: radial-gradient(circle at 35% 30%, #f4f6f7, #c4cacf 70%);
+    box-shadow: 0 2px 0 #6f767c, inset 0 -2px 3px rgba(0, 0, 0, .15);
+    transition: transform .1s, box-shadow .2s, color .2s;
+}
+.taste:hover { transform: translateY(-1px); }
+.taste:active { transform: translateY(1px); box-shadow: 0 1px 0 #6f767c; }
+.taste.leuchtet { color: #c8553d; box-shadow: 0 0 0 3px #ffb347, 0 0 14px rgba(255, 179, 71, .9); }
+.taste.falsch { border-color: var(--schlecht); animation: wackeln .4s; }
+.taste.tipp { box-shadow: 0 0 0 3px #ffd36e; animation: blinken .8s ease-in-out infinite alternate; }
+.aufzug-panel.gesperrt .taste { cursor: default; opacity: .55; }
+.aufzug-panel.gesperrt .taste:hover { transform: none; }
+.aufzug-schild { text-align: center; font: 700 12px var(--schrift-ru); color: #3a3f44; letter-spacing: .04em; }
+.tasten-hinweis { margin: 4px 0 10px; padding: 9px 13px; border-radius: 10px; background: #fff6dd; border-left: 4px solid var(--messing); font-size: 14.5px; font-weight: 600; }
+.etagen-frage { font-size: 24px; }
+
+/* Schmale Fenster: Für den Aufzug braucht das Bild mehr Höhe */
+@media (max-width: 720px) {
+    .szene:has(.aufzug-buehne) { height: 430px; }
+    .szene:has(.aufzug-buehne) > svg { visibility: hidden; }
+    .aufzug-buehne { grid-template-columns: minmax(0, 1fr) minmax(140px, 46%); padding: 3% 3%; }
+}
+
+
+/* Stockwerke im Haus */
+.raum.gewaehlt { filter: drop-shadow(0 0 12px #ffd36e) drop-shadow(0 0 3px #fff) !important; }
+.ohne-etagen .etagen { opacity: 0 !important; }
+.szene.mit-raeumen svg { max-height: calc(100vh - 210px); margin: 0 auto; }
+
+
+/* ------------------------------------------------------------------ Flughafen (Schalter) */
+.blase.links { transform: translate(calc(-100% + 30px), calc(-100% - 16px)); transform-origin: calc(100% - 30px) 100%; border-radius: 18px 18px 6px 18px; }
+.blase.links::after { left: auto; right: 22px; transform: scaleX(-1) skewX(-12deg); }
+.blase.links.auf { animation-name: blase-links; }
+@keyframes blase-links { from { opacity: 0; transform: translate(calc(-100% + 30px), calc(-100% - 6px)) scale(.88); } }
+
+.reise-papiere { display: grid; grid-template-columns: minmax(0, 1.25fr) minmax(0, 1fr); gap: 12px; align-items: start; margin-bottom: 6px; }
+@media (max-width: 520px) { .reise-papiere { grid-template-columns: 1fr; } }
+.reisepass {
+    position: relative; overflow: hidden; border-radius: 10px; background: var(--papier);
+    box-shadow: 0 10px 20px -14px rgba(42, 33, 28, .6), inset 0 0 0 1px #d9cdb9;
+}
+.rp-kopf {
+    display: flex; align-items: center; gap: 8px; padding: 6px 11px;
+    background: #7a1f2b; color: #e8c879; font: 700 13px var(--schrift-ru); letter-spacing: .2em;
+}
+.rp-kopf small { font: 600 11px var(--schrift-ui); letter-spacing: 0; opacity: .75; }
+.rp-wappen { width: 13px; height: 15px; background: #e8c879; clip-path: polygon(50% 0, 100% 18%, 92% 74%, 50% 100%, 8% 74%, 0 18%); }
+.rp-seite {
+    display: grid; grid-template-columns: 52px minmax(0, 1fr); gap: 10px; padding: 9px 11px 11px;
+    background: repeating-linear-gradient(135deg, #f7f0e3 0 7px, #f2e9d9 7px 14px);
+}
+.rp-foto { width: 52px; height: auto; border-radius: 3px; box-shadow: 0 0 0 1px #cbbfa9; }
+.reisepass dl { margin: 0; display: grid; gap: 3px; min-width: 0; }
+.reisepass dt { font-size: 9px; line-height: 1.1; font-weight: 800; letter-spacing: .06em; text-transform: uppercase; color: var(--grau); }
+.reisepass dd { margin: 0; font-family: var(--schrift-ru); font-weight: 700; font-size: 15px; line-height: 1.2; color: var(--tinte); overflow-wrap: anywhere; }
+.reisepass dd .sprich { border: 0; background: none; padding: 0; font: inherit; color: inherit; cursor: pointer; border-bottom: 1px dotted var(--grau); }
+.rp-stempel {
+    position: absolute; right: 12px; bottom: 10px; display: flex; flex-direction: column; align-items: center; line-height: 1.05;
+    padding: 2px 9px 3px; border: 3px solid var(--gzhel); border-radius: 8px; color: var(--gzhel);
+    font: 800 14px var(--schrift-ui); letter-spacing: .16em; opacity: 0; pointer-events: none;
+    transform: rotate(-14deg) scale(2.2); mix-blend-mode: multiply;
+}
+.rp-stempel small { font-size: 9px; letter-spacing: 0; }
+.reisepass.gestempelt .rp-stempel { animation: stempel .55s var(--feder) forwards; }
+@keyframes stempel {
+    0% { opacity: 0; transform: rotate(-14deg) scale(2.2); }
+    60% { opacity: .95; transform: rotate(-14deg) scale(.9); }
+    100% { opacity: .85; transform: rotate(-14deg) scale(1); }
+}
+.reise-zettel { margin: 2px 4px 10px; padding: 10px 14px; }
+.zettel-zeile { display: block; font-family: var(--schrift-hand); font-size: 21px; line-height: 1.12; color: #3b2d22; }
+.gepaeck-bild { display: block; width: 50px; height: 54px; margin-top: 4px; }
+.zeile.erzaehler { align-self: center; max-width: 94%; background: transparent; box-shadow: none; text-align: center; }
+.zeile.erzaehler .zeile-ru { font-style: italic; font-weight: 400; color: var(--grau); text-align: center; }
+
+/* Fahrkarte (Bahnhof) */
+.fahrkarte {
+    position: relative; overflow: hidden; border-radius: 6px; background: #fdfcf6;
+    box-shadow: 0 10px 20px -14px rgba(42, 33, 28, .6), inset 0 0 0 1px #d9cdb9;
+    background-image: repeating-linear-gradient(0deg, transparent 0 21px, rgba(43, 111, 158, .07) 21px 22px);
+}
+.fahrkarte.ungedruckt { visibility: hidden; height: 0; }
+.fahrkarte.gedruckt { animation: drucken 1s var(--sanft); transform-origin: top; }
+@keyframes drucken { from { clip-path: inset(0 0 100% 0); transform: translateY(-14px); } to { clip-path: inset(0 0 0 0); transform: none; } }
+.fk-kopf { padding: 5px 10px; background: #b8392b; color: #fff; font: 700 11.5px var(--schrift-ru); letter-spacing: .08em; }
+.fk-kopf small { font: 600 10.5px var(--schrift-ui); letter-spacing: 0; opacity: .8; margin-left: 4px; }
+.fk-felder { margin: 0; padding: 8px 10px 4px; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 4px 8px; }
+.fk-felder .breit { grid-column: 1 / -1; }
+.fk-felder dt { font-size: 9px; font-weight: 800; letter-spacing: .05em; text-transform: uppercase; color: var(--grau); }
+.fk-felder dd { margin: 0; font: 700 15px/1.2 'Courier New', monospace; color: var(--tinte); overflow-wrap: anywhere; }
+.fk-felder .breit dd { font-family: var(--schrift-ru); }
+.fk-preis { padding: 0 10px 8px; text-align: right; font: 800 16px var(--schrift-ui); color: #b8392b; }
+
+/* Abfahrtstafel (Fallblatt) */
+.fahrplan-buehne {
+    position: absolute; inset: 0; z-index: 2; display: grid; place-items: center; padding: 3%;
+    background: rgba(28, 32, 30, .55); backdrop-filter: blur(2px); animation: rein .4s var(--sanft);
+}
+.abfahrt-tafel {
+    width: min(100%, 760px); padding: 12px 14px 14px; border-radius: 10px;
+    background: #15191b; box-shadow: 0 24px 40px -18px rgba(0, 0, 0, .7), inset 0 0 0 3px #2d3337;
+    font-family: 'Courier New', monospace; color: #ffd166;
+}
+.at-kopf { display: flex; align-items: baseline; justify-content: space-between; margin-bottom: 8px; padding: 0 4px; font: 800 clamp(14px, 2.2vw, 20px) var(--schrift-ui); letter-spacing: .2em; color: #fff; }
+.at-kopf .at-de { font-size: 12px; letter-spacing: 0; font-weight: 600; color: #9fb0ba; }
+.at-zeile {
+    display: grid; grid-template-columns: var(--raster, 4.2em 3em minmax(0, 1fr) 2.6em minmax(0, 1.25fr)); gap: 6px; align-items: center;
+    padding: 4px 4px; border-radius: 4px; font-size: clamp(11px, 1.55vw, 16px); font-weight: 700; transition: background .3s, box-shadow .3s;
+}
+.at-zeile + .at-zeile { border-top: 1px solid #23292d; }
+.at-spalten { font: 700 clamp(9px, 1.1vw, 11.5px) var(--schrift-ui); color: #9fb0ba; letter-spacing: .04em; }
+.at-zeile .fb { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.at-zeile .weg { text-align: center; color: #fff; }
+.at-zeile .status { color: #6fcf97; font-size: .82em; }
+.at-zeile.spaet .status { color: #ff8a5c; }
+.at-zeile.markiert { background: rgba(255, 209, 102, .16); box-shadow: inset 0 0 0 2px #ffd166; }
+.fp-frage { font-family: var(--schrift-ru); font-size: 21px; font-weight: 700; line-height: 1.3; }
+@media (max-width: 720px) {
+    .szene:has(.fahrplan-buehne) { height: 400px; }
+    .szene:has(.fahrplan-buehne) > svg { visibility: hidden; }
+    .fahrplan-buehne { padding: 8px; place-items: start center; overflow-y: auto; }
+    .abfahrt-tafel { padding: 8px 8px 10px; }
+    .fahrplan-buehne:not(.kreide) .at-zeile { grid-template-columns: 3.4em minmax(0, 1fr) 2.4em minmax(0, .95fr); gap: 4px; font-size: 11.5px; }
+    .fahrplan-buehne:not(.kreide) .at-zeile > :nth-child(2) { display: none; }      /* Zugnummer: auf dem Handy entbehrlich */
+    .kreide .at-zeile { font-size: 13px; gap: 3px; }
+    .at-zeile .status { white-space: normal; line-height: 1.15; font-size: 9.5px; }
+}
+
+/* Supermarkt: Einkaufszettel, Korb, Scanner */
+.einkaufszettel {
+    position: relative; margin: 2px 4px 14px; padding: 12px 16px 12px 40px; transform: rotate(-.8deg);
+    background: repeating-linear-gradient(#fffdf6 0 29px, #cfe0ee 29px 30px); background-position: 0 6px;
+    box-shadow: 0 10px 18px -12px rgba(42, 33, 28, .5);
+}
+.einkaufszettel::before { content: ''; position: absolute; left: 28px; top: 0; bottom: 0; width: 2px; background: #e8a3a3; }
+.ez-kopf { display: flex; align-items: center; justify-content: space-between; gap: 8px; margin-bottom: 2px; }
+.ez-titel { font-family: var(--schrift-hand); font-size: 26px; font-weight: 700; color: var(--malachit); }
+.einkaufszettel ul { list-style: none; margin: 0 0 8px; padding: 0; }
+.einkaufszettel li { display: flex; align-items: baseline; gap: 8px; flex-wrap: wrap; padding: 1px 6px; border-radius: 8px; transition: background .25s; }
+.einkaufszettel li.falsch { background: var(--schlecht-hell); }
+.einkaufszettel li.richtig { background: var(--gut-hell); }
+.einkaufszettel li.richtig .ez-ru::after { content: ' ✓'; color: var(--gut); }
+.ez-ru { border: 0; background: none; padding: 0; cursor: pointer; font-family: var(--schrift-hand); font-size: 25px; line-height: 1.15; color: #26374f; text-align: left; }
+.ez-de { display: none; font-size: 13px; color: var(--grau); }
+.einkaufszettel.mit-de .ez-de { display: inline; }
+.ez-stand { margin-left: auto; font: 800 13px var(--schrift-ui); color: var(--malachit); }
+.korb { margin: 0 0 6px; padding: 10px 12px 12px; border-radius: 14px; background: #fff; box-shadow: inset 0 0 0 1.5px var(--grau-hell); }
+.korb-kopf { font: 700 16px var(--schrift-ru); margin-bottom: 8px; }
+.korb-kopf small { font: 500 12px var(--schrift-ui); color: var(--grau); }
+.korb-inhalt { display: flex; flex-wrap: wrap; gap: 7px; min-height: 40px; }
+.korb-leer { font-size: 13.5px; color: var(--grau); font-style: italic; }
+.korb-ware {
+    display: inline-flex; align-items: center; gap: 6px; padding: 5px 10px 5px 7px; border-radius: 99px; cursor: pointer;
+    border: 1.5px solid var(--grau-hell); background: var(--papier); animation: rein .3s var(--feder);
+}
+.korb-ware:hover { border-color: var(--schlecht); }
+.kw-bild { font-size: 18px; }
+.kw-name { font-family: var(--schrift-ru); font-size: 15px; font-weight: 700; }
+.korb-ware b { font: 800 13px var(--schrift-ui); color: var(--malachit); }
+.plus-eins {
+    position: absolute; z-index: 4; pointer-events: none; transform: translate(-50%, -50%);
+    font: 800 20px var(--schrift-ui); color: var(--gut); text-shadow: 0 2px 6px rgba(255, 255, 255, .9);
+    animation: plus-eins .9s var(--sanft) forwards;
+}
+@keyframes plus-eins { to { transform: translate(-50%, -160%); opacity: 0; } }
+.scanner { margin-top: 12px; border-radius: 12px; overflow: hidden; background: #fff; box-shadow: inset 0 0 0 1.5px var(--grau-hell); animation: rein .35s var(--sanft); }
+.scan-kopf { display: flex; justify-content: space-between; align-items: center; padding: 8px 12px; background: #15191b; color: #fff; font: 700 13px var(--schrift-ui); }
+.scan-anzeige { font-family: 'Courier New', monospace; color: #6fcf97; font-size: 16px; }
+#scan-liste { list-style: none; margin: 0; padding: 6px 12px 10px; max-height: 180px; overflow-y: auto; }
+#scan-liste li { display: flex; justify-content: space-between; gap: 10px; padding: 3px 0; border-bottom: 1px dashed var(--grau-hell); font-family: var(--schrift-ru); font-size: 15px; animation: scan-rein .35s var(--sanft); }
+@keyframes scan-rein { from { opacity: 0; transform: translateX(30px); background: #e4f3e9; } }
+
+/* Stundenplan als Kreidetafel (Schule) */
+.fahrplan-buehne.kreide .abfahrt-tafel {
+    background: radial-gradient(ellipse at 30% 20%, #3d6352, #2a4a3b 70%); border: 12px solid #8a5a3a;
+    box-shadow: 0 24px 40px -18px rgba(0, 0, 0, .7), inset 0 0 30px rgba(0, 0, 0, .35);
+    font-family: var(--schrift-hand); color: #f4f1e8;
+}
+.kreide .at-kopf { font-family: var(--schrift-hand); font-size: clamp(22px, 3vw, 32px); letter-spacing: .02em; font-weight: 700; color: #fff; }
+.kreide .at-kopf .at-de { font-family: var(--schrift-ui); color: #c9dccf; }
+.kreide .at-spalten { font-family: var(--schrift-hand); font-size: clamp(15px, 1.8vw, 19px); color: #ffe08a; }
+.kreide .at-zeile { font-size: clamp(13px, 1.45vw, 18px); font-weight: 600; }
+.kreide .at-zeile .fb { overflow: visible; text-overflow: clip; }
+.kreide .at-zeile + .at-zeile { border-top: 1px dashed rgba(244, 241, 232, .25); }
+.kreide .at-zeile .fb:first-child { color: #ffe08a; }
+.kreide .at-zeile.markiert { background: rgba(255, 255, 255, .1); box-shadow: inset 0 0 0 2px #ffe08a; }
+
+/* Schulklingel (Schalter-aktion „klingeln“) */
+.klingelt { transform-box: fill-box; transform-origin: 50% 0; animation: klingeln .14s ease-in-out infinite alternate; }
+@keyframes klingeln { from { transform: rotate(-9deg); } to { transform: rotate(9deg); } }
+
+
+/* ------------------------------------------------------------------ 3D-Stadt */
+.stadt3d-knopf { margin-top: 14px; }
+body[data-ansicht="stadt3d"] { overflow: hidden; }
+.stadt3d { position: fixed; left: 0; right: 0; bottom: 0; top: 64px; z-index: 1; background: #bfe3f2; overflow: hidden; touch-action: none; }
+.stadt3d canvas:first-child { display: block; width: 100%; height: 100%; cursor: grab; }
+.stadt3d canvas:first-child:active { cursor: grabbing; }
+.stadt3d canvas.ueber-haus { cursor: pointer; }
+.stadt3d::after { content: ''; position: absolute; inset: 0; background: #14332f; opacity: 0; pointer-events: none; transition: opacity .45s; }
+.stadt3d.blende::after { opacity: 1; }
+.s3-laden { position: absolute; inset: 0; display: grid; place-items: center; align-content: center; gap: 10px; font: 700 18px var(--schrift-ui); color: var(--malachit); }
+.s3-kran { font-size: 48px; animation: kran 1s ease-in-out infinite alternate; }
+@keyframes kran { to { transform: rotate(-12deg) translateY(-6px); } }
+.s3-ort {
+    position: absolute; left: 16px; top: 14px; display: flex; flex-direction: column; gap: 1px; padding: 9px 15px 10px;
+    border-radius: 14px; background: rgba(251, 247, 239, .93); box-shadow: 0 8px 20px -10px rgba(0, 0, 0, .4);
+}
+.s3-ort .ru { font: 700 19px var(--schrift-ru); color: var(--malachit); }
+.s3-ort .de { font-size: 12.5px; color: var(--grau); }
+.s3-ort.neu { animation: rein .45s var(--feder); }
+.s3-knoepfe { position: absolute; right: 16px; top: 14px; display: flex; gap: 8px; }
+.s3-knopf { padding: 9px 14px; border-radius: 12px; border: 0; cursor: pointer; font: 700 14px var(--schrift-ui); background: rgba(251, 247, 239, .93); color: var(--tinte); box-shadow: 0 8px 20px -10px rgba(0, 0, 0, .4); }
+.s3-knopf:hover { background: #fff; }
+.s3-hilfe {
+    position: absolute; right: 16px; top: 62px; display: flex; flex-direction: column; gap: 4px; padding: 12px 16px; max-width: 330px;
+    border-radius: 14px; background: rgba(20, 51, 47, .88); color: #fbf7ef; font-size: 13.5px; transition: opacity .4s, transform .4s;
+    pointer-events: none;     /* reine Anzeige: Klicks gehen durch auf die Häuser */
+}
+.s3-hilfe.zu { opacity: 0; transform: translateY(-8px); pointer-events: none; }
+.s3-hilfe kbd { display: inline-block; min-width: 20px; padding: 0 5px; border-radius: 5px; background: rgba(255, 255, 255, .18); font: 700 12px var(--schrift-ui); text-align: center; }
+.s3-tuer {
+    position: absolute; left: 50%; bottom: 28px; transform: translateX(-50%); display: flex; align-items: baseline; gap: 10px;
+    padding: 12px 20px; border: 3px solid #ffb300; border-radius: 16px; cursor: pointer;
+    background: var(--papier); box-shadow: 0 14px 30px -12px rgba(0, 0, 0, .55); animation: rein .35s var(--feder);
+}
+.s3-tuer[hidden] { display: none; }
+.s3-tuer .ru { font: 700 24px var(--schrift-ru); color: var(--malachit); }
+.s3-tuer .de { font-size: 13px; color: var(--grau); }
+.s3-tuer .los { font: 800 14px var(--schrift-ui); color: #9c6a00; }
+.s3-steuer { position: absolute; left: 16px; bottom: 16px; display: grid; grid-template-columns: repeat(3, 46px); grid-template-rows: repeat(2, 46px); gap: 5px; }
+.s3-steuer button { border: 0; border-radius: 12px; background: rgba(251, 247, 239, .85); font-size: 18px; cursor: pointer; touch-action: none; user-select: none; }
+.s3-steuer button:active { background: #ffe3a0; }
+.s3-steuer [data-taste="vor"] { grid-column: 2; grid-row: 1; }
+.s3-steuer [data-taste="links"] { grid-column: 1; grid-row: 2; }
+.s3-steuer [data-taste="zurueck"] { grid-column: 2; grid-row: 2; }
+.s3-steuer [data-taste="rechts"] { grid-column: 3; grid-row: 2; }
+.s3-karte { position: absolute; right: 16px; bottom: 16px; width: 220px; height: 140px; border-radius: 12px; border: 3px solid rgba(251, 247, 239, .9); box-shadow: 0 8px 20px -10px rgba(0, 0, 0, .5); }
+@media (max-width: 720px) {
+    .s3-karte { width: 150px; height: 96px; }
+    .s3-tuer { bottom: 130px; }
+    .s3-ort .ru { font-size: 16px; }
+}
