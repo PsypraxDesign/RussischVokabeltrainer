@@ -914,9 +914,11 @@
             box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
         }
 
+        /* Rueckseite: neutrales Dunkelblau mit Goldrand statt Gruen —
+           gruene Schrift auf gruenem Verlauf war kaum lesbar */
         .flashcard-back {
-            background: linear-gradient(145deg, #1a3a2e 0%, #1e2d3d 100%);
-            border: 1px solid rgba(72, 187, 120, 0.3);
+            background: linear-gradient(145deg, #26324a 0%, #1a2332 100%);
+            border: 1px solid rgba(232, 179, 65, 0.35);
             transform: rotateY(180deg);
             box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
         }
@@ -954,8 +956,11 @@
             font-size: 2rem;
         }
 
+        /* Antwortseite (traegt je nach Richtung Deutsch oder Russisch):
+           warmes Hellweiss, hebt sich von der Vorderseite ab und bleibt
+           auf dem dunklen Grund gut lesbar */
         .card-text-de {
-            color: var(--success);
+            color: #f6ecd6;
         }
 
         /* Die russische Vokabel ist anklickbar und wird dann erneut vorgelesen.
@@ -4920,7 +4925,16 @@
                 vocabEl.removeAttribute('title');
             }
 
-            flashcard.classList.remove('flipped');
+            // Beim Kartenwechsel ohne Drehung auf die Vorderseite: die Texte
+            // der neuen Karte stehen schon, eine animierte Drehung zeigte
+            // sonst kurz deren Rueckseite (= die Loesung). Nur der Klick
+            // zum Umdrehen bleibt animiert.
+            if (flashcard.classList.contains('flipped')) {
+                flashcard.style.transition = 'none';
+                flashcard.classList.remove('flipped');
+                void flashcard.offsetWidth;  // Zustand sofort uebernehmen
+                flashcard.style.transition = '';
+            }
             hideRatingButtons();
 
             // Use base form for TTS only if single-word conjugated/declined form
