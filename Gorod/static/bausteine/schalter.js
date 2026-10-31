@@ -162,6 +162,7 @@
               <span class="zeile-text"><button class="zeile-ru" title="Nochmal anhören">${G.esc(ru)}</button>${de ? '<button class="zeile-hilfe" title="Auf Deutsch"><span class="flagge" aria-hidden="true"></span></button>' : ''}</span>
               <span class="zeile-de">${G.esc(de || '')}</span>`;
             div.querySelector('.zeile-ru').addEventListener('click', () => ctx.sage(ru, stimmeVon(sprecher)));
+            G.satz(div.querySelector('.zeile-ru'), ru, { anker: div.querySelector('.zeile-text'), stimme: stimmeVon(sprecher) });
             const hilfe = div.querySelector('.zeile-hilfe');
             if (hilfe) hilfe.addEventListener('click', () => div.classList.toggle('offen'));
             q('#gespraech').appendChild(div);

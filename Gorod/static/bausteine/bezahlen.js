@@ -110,10 +110,12 @@
                 let satz;
                 if (wechsel === 0) {
                     satz = 'Спаси́бо! Без сда́чи.';
-                    meldung.innerHTML = `✓ Passend bezahlt. <span class="ru">${satz}</span>`;
+                    meldung.innerHTML = `✓ Passend bezahlt. <span class="ru"></span>`;
+                    G.satz(meldung.querySelector('.ru'), satz, { box: G.gramBox(meldung) });
                 } else {
                     satz = `Спаси́бо! Ва́ша сда́ча — ${Zahlwort.rubel(wechsel)}.`;
-                    meldung.innerHTML = `✓ Bezahlt, ${wechsel} ₽ Wechselgeld zurück. <span class="ru">${G.esc(satz)}</span>`;
+                    meldung.innerHTML = `✓ Bezahlt, ${wechsel} ₽ Wechselgeld zurück. <span class="ru"></span>`;
+                    G.satz(meldung.querySelector('.ru'), satz, { box: G.gramBox(meldung) });
                 }
                 box.querySelector('.kasse').classList.add('bezahlt');
                 await ctx.sage(satz, 'weiblich');
@@ -204,7 +206,8 @@
                 box.querySelector('.kasse').classList.add('bezahlt');
                 const satz = 'Опла́та прошла́. Спаси́бо!';
                 $('#meldung').className = 'kassen-meldung gut';
-                $('#meldung').innerHTML = `✓ Mit Karte bezahlt. <span class="ru">${satz}</span>`;
+                $('#meldung').innerHTML = `✓ Mit Karte bezahlt. <span class="ru"></span>`;
+                G.satz($('#meldung .ru'), satz, { box: G.gramBox($('#meldung')) });
                 await ctx.sage(satz, 'weiblich');
                 resolve({ karte: true });
             });

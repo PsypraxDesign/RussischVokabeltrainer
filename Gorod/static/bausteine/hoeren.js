@@ -42,7 +42,7 @@
                 const f = aktuelles();
                 if (!f || gesperrt) return;
                 hilfe = true;
-                ctx.tafel.querySelector('#frage').innerHTML = `Где <strong>${G.esc(f.ru)}</strong>?`;
+                G.satz(ctx.tafel.querySelector('#frage'), `Где ${f.ru}?`);
                 ctx.tafel.querySelector('#uebersetzung').textContent = G.woFrageDe(f.de, f.genus, f.deZahl);
                 ctx.tafel.querySelector('#uebersetzen').classList.add('benutzt');
             }
@@ -67,6 +67,7 @@
                 if (!f || !laufend) return;
                 const knopf = ctx.tafel.querySelector('#nochmal');
                 ctx.tafel.querySelector('#frage').innerHTML = `Где <span class="verdeckt">…</span>?`;
+                G.gramZu(ctx.tafel.querySelector('#frage'));
                 ctx.tafel.querySelector('#uebersetzung').textContent = '';
                 ctx.tafel.querySelector('#uebersetzen').classList.remove('benutzt');
                 hilfe = false;
@@ -97,7 +98,7 @@
                     if (fehler === 0 && !hilfe) richtig++;
                     ctx.entmarkiere('tipp');
                     ctx.markiere(zielId, 'richtig', 1300);
-                    ctx.tafel.querySelector('#frage').innerHTML = `Где <strong>${G.esc(f.ru)}</strong>?`;
+                    G.satz(ctx.tafel.querySelector('#frage'), `Где ${f.ru}?`);
                     rm.className = 'rueckmeldung gut';
                     rm.innerHTML = `✓ <strong>${G.esc(f.ru)}</strong> – ${G.esc(f.de)}`;
                     ctx.sage(f.ru);

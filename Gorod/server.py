@@ -44,7 +44,7 @@ app = Flask(__name__, static_folder=None)
 # ---------------------------------------------------------------------------
 SCHALTER = {"pass", "gepaeck", "zoll", "fahrkarte", "zug", "theke", "kasse", "unterricht"}   # schalter.js
 TAFELN = {"fahrplan", "stundenplan"}   # fahrplan.js: Abfahrtstafel / Stundenplan
-STUFEN = {"entdecken", "hoeren", "dialog", "bezahlen", "wo", "etagen", "aufzug", "einkaufen"} | SCHALTER | TAFELN
+STUFEN = {"entdecken", "hoeren", "dialog", "bezahlen", "wo", "etagen", "aufzug", "einkaufen", "rechnen", "literatur", "wege"} | SCHALTER | TAFELN
 
 
 def _pflicht(obj, schluessel, typ, ort, fehler):
@@ -209,6 +209,40 @@ def pruefe_modul(ordner: Path):
                     fehler.append(f"{ort}: Einkauf '{r.get('id')}': Ware '{posten.get('ware')}' ist kein Wort mit Klickflaeche")
             if not r.get("liste"):
                 fehler.append(f"{ort}: Einkauf '{r.get('id')}' hat keine 'liste'")
+
+    if "rechnen" in stufen:
+        r = _pflicht(inhalt, "rechnen", dict, ort, fehler) or {}
+        nomen_ids = {n.get("id") for n in r.get("nomen", []) if len(n.get("ru", [])) == 3}
+        if not nomen_ids:
+            fehler.append(f"{ort}: rechnen.nomen braucht Woerter mit drei Formen")
+        for i, a in enumerate(r.get("aufgaben", [])):
+            if a.get("op") not in ("+", "−") or not set(a.get("nomen", [])) <= nomen_ids:
+                fehler.append(f"{ort}: rechnen.aufgaben[{i}]: op muss + oder − sein, Nomen muessen existieren")
+            for key in re.findall(r"\[[^\]|]+\|(\w+)\]", a.get("text", "")):
+                if key not in r.get("grammatik", {}):
+                    fehler.append(f"{ort}: rechnen.aufgaben[{i}]: Grammatik-Schluessel '{key}' fehlt in rechnen.grammatik")
+
+    if "literatur" in stufen:
+        lit = _pflicht(inhalt, "literatur", dict, ort, fehler) or {}
+        if not lit.get("texte"):
+            fehler.append(f"{ort}: literatur.texte ist leer")
+        for t in lit.get("texte", []):
+            if not t.get("zeilen") or not t.get("fragen"):
+                fehler.append(f"{ort}: Text '{t.get('id')}' braucht zeilen und fragen")
+            for i, f in enumerate(t.get("fragen", [])):
+                if not (f.get("richtig") and f.get("falsch")):
+                    fehler.append(f"{ort}: Text '{t.get('id')}' Frage {i}: richtig und falsch fehlen")
+                if f.get("zeile") is not None and not 0 <= f["zeile"] < len(t.get("zeilen", [])):
+                    fehler.append(f"{ort}: Text '{t.get('id')}' Frage {i}: Zeile {f['zeile']} gibt es nicht")
+
+    if "wege" in stufen:
+        wege = _pflicht(inhalt, "wege", dict, ort, fehler) or {}
+        if not wege.get("fragen"):
+            fehler.append(f"{ort}: wege.fragen ist leer")
+        for i, f in enumerate(wege.get("fragen", [])):
+            texte = [(f.get("richtig") or {}).get("text")] + [x.get("text") for x in f.get("falsch", [])]
+            if "…" not in f.get("text", "") or not f.get("bild") or len(texte) < 2 or len(set(texte)) != len(texte):
+                fehler.append(f"{ort}: wege.fragen[{i}]: braucht Lücke (…), bild, richtig und verschiedene falsche Antworten")
 
     for tafel in [x for x in stufen if x in TAFELN]:
         fp = _pflicht(inhalt, tafel, dict, ort, fehler) or {}

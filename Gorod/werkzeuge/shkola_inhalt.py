@@ -1,7 +1,8 @@
 """Erzeugt module/shkola/modul.json und inhalt.json (Schule).
 
-Ranzen packen (Zahl + Akkusativ), Stundenplan (Wochentage, Ordnungszahlen, уро́ка/уро́ков)
-und Unterricht (Name, Alter, Klasse, Lieblingsfach) entstehen hier aus wenigen Tabellen.
+Ranzen packen (Zahl + Akkusativ), Stundenplan (Wochentage, Ordnungszahlen, уро́ка/уро́ков),
+Unterricht (Name, Alter, Klasse, Lieblingsfach), Mathe (Zahlen, Textaufgaben mit Kasus) und
+Literatur (gemeinfreie Klassiker: Ре́пка, Пу́шкин, Крыло́в, Ле́рмонтов) entstehen hier.
 Alle Schülerinnen und Schüler sind erfunden. Aufruf aus dem Gorod-Ordner:
     python werkzeuge/shkola_inhalt.py
 """
@@ -14,7 +15,7 @@ modul = {
   "praeposition": "в",
   "satz_hin": "Я иду́ в шко́лу.",
   "satz_hin_de": "Ich gehe in die Schule.",
-  "stufen": ["entdecken", "hoeren", "einkaufen", "stundenplan", "unterricht"],
+  "stufen": ["entdecken", "hoeren", "einkaufen", "stundenplan", "unterricht", "rechnen", "literatur"],
   "stufen_titel": {"einkaufen": "Ranzen packen"},
   "grafik": {"aussen": "grafik/aussen.svg", "innen": "grafik/innen.svg"},
   "farbe": "#c8862f",
@@ -245,6 +246,206 @@ szenen = {
   }},
 }
 
+# ------------------------------------------------------------------ Mathe
+RECHNEN = {
+  "stimme": "weiblich",
+  "nomen": [  # Formen nach 1 / 2–4 / 5+ (Nominativ = Akkusativ, nur m/n – „одну́“ entfällt)
+    {"id": "yabloko", "ru": ["я́блоко", "я́блока", "я́блок"], "g": "n", "de": ["Apfel", "Äpfel"], "bild": "🍎"},
+    {"id": "karandash", "ru": ["каранда́ш", "карандаша́", "карандаше́й"], "g": "m", "de": ["Bleistift", "Bleistifte"], "bild": "✏️"},
+    {"id": "myach", "ru": ["мяч", "мяча́", "мяче́й"], "g": "m", "de": ["Ball", "Bälle"], "bild": "⚽"},
+    {"id": "grib", "ru": ["гриб", "гриба́", "грибо́в"], "g": "m", "de": ["Pilz", "Pilze"], "bild": "🍄"},
+    {"id": "pirozhok", "ru": ["пирожо́к", "пирожка́", "пирожко́в"], "g": "m", "de": ["Piroschok", "Piroschki"], "bild": "🥟"},
+  ],
+  # [Text|schlüssel] = antippbare Grammatik-Stelle, Erklärung unter "grammatik".
+  # Enthält die Stelle {a} oder {b}, hängt rechnen.js die passende Zahlregel an.
+  # "person" füllt {p_de} {p_nom} {p_gen} {p_regel} in den Erklärungen – so geht es um Dima, nicht um „Oma“.
+  "aufgaben": [
+    {"op": "+", "nomen": ["yabloko", "karandash", "myach"], "a": [2, 9], "b": [1, 8],
+     "person": {"de": "Mascha", "nom": "Ма́ша", "gen": "Ма́ши", "regel": "Aus -а wird -и: Nach ш steht nie ы (Rechtschreibregel)."},
+     "text": "[У Ма́ши|u_gen] [{a}|menge_nom]. [Ма́ма дала́|dala] [ей|ej] [ещё|eshchyo] [{b}|menge_akk]. [Ско́лько {pl}|skolko] [у Ма́ши|u_gen] [тепе́рь|teper]?",
+     "de": "Mascha hat {a_de}. Mama gibt ihr noch {b_de}. Wie viele {pl_de} hat Mascha jetzt?"},
+    {"op": "+", "nomen": ["grib"], "a": [3, 10], "b": [2, 9],
+     "text": "[В корзи́не|v_prep] [{a}|menge_nom]. [Ми́ша нашёл|nashyol] [в лесу́|v_lesu] [ещё|eshchyo] [{b}|menge_akk]. [Ско́лько {pl}|skolko] в корзи́не?",
+     "de": "Im Korb sind {a_de}. Mischa findet im Wald noch {b_de}. Wie viele {pl_de} sind im Korb?"},
+    {"op": "−", "nomen": ["yabloko", "pirozhok"], "a": [6, 15], "b": [1, 5],
+     "person": {"de": "Oma", "nom": "ба́бушка", "gen": "ба́бушки", "regel": "Aus -а wird -и: Nach к steht nie ы (Rechtschreibregel)."},
+     "text": "[У ба́бушки|u_gen] [бы́ло|bylo] [{a}|menge_nom]. [Де́ти съе́ли|syeli] [{b}|menge_akk]. [Ско́лько {pl}|skolko] [оста́лось|ostalos]?",
+     "de": "Oma hatte {a_de}. Die Kinder haben {b_de} gegessen. Wie viele {pl_de} sind übrig?"},
+    {"op": "−", "nomen": ["karandash", "myach"], "a": [5, 12], "b": [1, 4],
+     "person": {"de": "Dima", "nom": "Ди́ма", "gen": "Ди́мы", "regel": "Aus -а wird -ы – wie bei weiblichen Wörtern, obwohl Dima ein Junge ist: Es zählt die Endung."},
+     "text": "[У Ди́мы|u_gen] [бы́ло|bylo] [{a}|menge_nom]. [Он отда́л|otdal] [дру́гу|drugu] [{b}|menge_akk]. [Ско́лько {pl}|skolko] [оста́лось|ostalos] [у Ди́мы|u_gen]?",
+     "de": "Dima hatte {a_de}. Er hat einem Freund {b_de} gegeben. Wie viele {pl_de} hat Dima noch?"},
+  ],
+  # Erklärungen zu den Stellen; \n = neuer Absatz. {pl}/{pl_de}, {b}/{b_de} und {p_…} werden ersetzt,
+  # {menge} in zahl_* durch die Mengenangabe (z. B. „пять я́блок“).
+  "grammatik": {
+    "u_gen": {"titel": "у + Genitiv = haben",
+              "text": "Russisch sagt nicht „{p_de} hat …“, sondern „bei {p_de} (ist) …“: у + Genitiv. Das, was man hat, ist das Subjekt.\n{p_nom} → у {p_gen}. {p_regel}\nDas „есть“ (ist) fällt bei Mengenangaben meist weg."},
+    "v_prep": {"titel": "в + Präpositiv (wo?)",
+               "text": "Auf die Frage „wo?“ steht в mit dem Präpositiv: корзи́на → в корзи́не (im Korb).\nWeibliche Nomen auf -а bekommen im Präpositiv -е."},
+    "v_lesu": {"titel": "в лесу́ – Präpositiv auf -у́",
+               "text": "Einige männliche Nomen enden nach в/на auf ein betontes -у́ statt -е: лес → в лесу́, сад → в саду́, шкаф → в шкафу́.\nAber: о ле́се (über den Wald) – mit о bleibt es bei -е."},
+    "menge_nom": {"titel": "Zahl + Nomen (Subjekt)",
+                  "text": "Die ganze Mengenangabe ist hier das Subjekt. Die Zahl steht im Nominativ – das Nomen dahinter aber in der Form, die die Zahl verlangt:"},
+    "menge_akk": {"titel": "Zahl + Nomen (Akkusativ)",
+                  "text": "Die ganze Mengenangabe ist hier das Objekt (was?), also Akkusativ. Bei Sachen sieht der Akkusativ aus wie der Nominativ – die Zahl bleibt gleich, und das Nomen dahinter richtet sich wieder nach der Zahl:"},
+    "dala": {"titel": "Vergangenheit, weiblich",
+             "text": "дала́ – Vergangenheit von дать (geben). Im Präteritum richtet sich das Verb nach dem Geschlecht des Subjekts: ма́ма дала́, па́па дал, они́ да́ли."},
+    "ej": {"titel": "Dativ von она́",
+           "text": "ей = ihr (wem? → Dativ). дать кому́ – jemandem etwas geben: дать ей, дать ему́, дать мне."},
+    "eshchyo": {"titel": "ещё = noch (dazu)",
+                "text": "ещё bedeutet hier „noch, zusätzlich“: ещё {b} = noch {b_de}.\nNicht verwechseln mit ещё не = noch nicht."},
+    "teper": {"titel": "тепе́рь = jetzt",
+              "text": "тепе́рь heißt „jetzt, nun“ – im Gegensatz zu vorher. Für „gerade jetzt, in diesem Moment“ sagt man сейча́с."},
+    "skolko": {"titel": "ско́лько + Genitiv Plural",
+               "text": "Nach ско́лько (wie viele) steht bei zählbaren Dingen der Genitiv Plural: ско́лько {pl}? = wie viele {pl_de}?\nDas Verb steht dabei im Neutrum Singular: ско́лько оста́лось?"},
+    "nashyol": {"titel": "Vergangenheit, männlich",
+                "text": "нашёл – Vergangenheit von найти́ (finden), männlich. Ми́ша ist ein Jungenname, auch wenn er auf -а endet – darum нашёл, nicht нашла́.\nFormen: он нашёл, она́ нашла́, они́ нашли́."},
+    "bylo": {"titel": "бы́ло = hatte",
+             "text": "бы́ло ist die Vergangenheit von есть: у {p_gen} есть … ({p_de} hat) → у {p_gen} бы́ло … ({p_de} hatte).\nSteht eine Mengenangabe als Subjekt, nimmt man meist das Neutrum: бы́ло – nicht был oder была́."},
+    "syeli": {"titel": "Plural, vollendeter Aspekt",
+              "text": "съе́ли – Vergangenheit von съесть (aufessen), Plural, weil де́ти (die Kinder) Plural ist.\nVollendeter Aspekt: Es geht ums Ergebnis – die Stücke sind weg. Unvollendet wäre е́ли (aßen gerade)."},
+    "ostalos": {"titel": "Vergangenheit, Neutrum",
+                "text": "оста́лось – „ist übrig geblieben“, von оста́ться (übrig bleiben). Bei ско́лько und Mengenangaben steht das Verb im Neutrum Singular: ско́лько оста́лось? – оста́лось пять."},
+    "otdal": {"titel": "Vergangenheit, männlich",
+              "text": "отда́л – Vergangenheit von отда́ть (hergeben, weggeben), männlich: он отда́л. Weiblich: она́ отдала́."},
+    "drugu": {"titel": "Dativ: wem?",
+              "text": "дру́гу – Dativ von друг (dem Freund). Wem gibt er etwas? → дру́гу. Männliche Nomen bekommen im Dativ -у: брат → бра́ту, учи́тель → учи́телю."},
+    "skolko_budet": {"titel": "Wie viel ergibt …?",
+                     "text": "Ско́лько бу́дет …? – wörtlich „wie viel wird sein …?“. бу́дет ist die Zukunft von быть. Die feste Frage im Matheunterricht."},
+    "plus_minus": {"titel": "plus, minus",
+                   "text": "плюс und ми́нус funktionieren wie im Deutschen. Die Zahlen bleiben im Nominativ: семь плюс пять."},
+    "umnozhit": {"titel": "умно́жить на = mal",
+                 "text": "умно́жить на – „multipliziert mit“ (wörtlich „vervielfachen auf“). на steht hier mit dem Akkusativ; bei den Zahlen hört man keinen Unterschied: пять умно́жить на два."},
+    "razdelit": {"titel": "раздели́ть на = geteilt durch",
+                 "text": "раздели́ть на – „geteilt durch“ (wörtlich „aufteilen auf“). Wie bei умно́жить steht на mit dem Akkusativ: де́сять раздели́ть на два."},
+    "tire": {"titel": "Strich statt „ist“",
+             "text": "Im Präsens fällt „sein“ weg. Geschrieben steht dafür ein Gedankenstrich, gesprochen eine kleine Pause: семь плюс пять – двена́дцать.\nGanz förmlich sagt man auch равно́ + Dativ: … равно́ двена́дцати."},
+    "prochitai": {"titel": "Befehlsform (du)",
+                  "text": "Прочита́й – Imperativ von прочита́ть (vorlesen, durchlesen), du-Form. Zu mehreren oder höflich: Прочита́йте."},
+    "primer": {"titel": "приме́р = Rechenaufgabe",
+               "text": "приме́р heißt sonst „Beispiel“, in Mathe „Rechenaufgabe“. Männlich und unbelebt, darum ist der Akkusativ gleich dem Nominativ: прочита́й приме́р."},
+    # Zahlregel: eine der vier Zeilen für die Zahl, danach immer zahl_alle.
+    # {f1} {f2} {f5} = die drei Formen des Nomens, {eins} = оди́н/одно́ passend zum Genus.
+    "zahl_1": {"text": "Nach 1 steht der Nominativ Singular: {menge}. Die Eins richtet sich nach dem Geschlecht: оди́н мяч (m), одно́ я́блоко (n), одна́ кни́га (f)."},
+    "zahl_2_4": {"text": "Nach 2, 3 und 4 steht der Genitiv Singular: {menge}."},
+    "zahl_5": {"text": "Nach 5 bis 20 steht der Genitiv Plural: {menge}."},
+    "zahl_11_14": {"text": "Nach 5 bis 20 steht der Genitiv Plural: {menge}.\nVorsicht Falle: {zahlwort} klingt nach {klingt} – trotzdem nicht {falle}, denn 11 bis 14 gehören zu 5–20."},
+    "zahl_alle": {"text": "Bis 20 also:  1 → {eins} {f1}  ·  2, 3, 4 → два {f2}  ·  5 bis 20 → пять {f5}.\nAb 21 zählt die letzte Ziffer: два́дцать {eins} {f1}, два́дцать два {f2}, два́дцать пять {f5}."},
+  },
+}
+
+# ------------------------------------------------------------------ Literatur (gemeinfrei)
+def frage(text, de, richtig, richtig_de, falsch, zeile=None):
+    f = {"text": text, "de": de, "richtig": {"text": richtig, "de": richtig_de},
+         "falsch": [{"text": t, "hinweis": h} for t, h in falsch]}
+    if zeile is not None:
+        f["zeile"] = zeile
+    return f
+
+LITERATUR = {
+  "stimme": "weiblich",
+  "texte": [
+    {"id": "repka", "titel": "Ре́пка", "autor": "Ру́сская наро́дная ска́зка", "jahr": "", "bild": "repka",
+     "hinweis": "Ein Kettenmärchen: jeder hält sich am nächsten fest – за + Akkusativ (за де́дку, за ре́пку).",
+     "zeilen": [
+       {"ru": "Посади́л дед ре́пку.", "de": "Der Großvater pflanzte eine Rübe."},
+       {"ru": "Вы́росла ре́пка больша́я-пребольша́я.", "de": "Die Rübe wuchs riesengroß."},
+       {"ru": "Стал дед ре́пку из земли́ тащи́ть: тя́нет-потя́нет, вы́тянуть не мо́жет.", "de": "Der Großvater zog an der Rübe: er zieht und zieht, bekommt sie nicht heraus."},
+       {"ru": "Позва́л дед ба́бку.", "de": "Der Großvater rief die Großmutter."},
+       {"ru": "Ба́бка за де́дку, де́дка за ре́пку – тя́нут-потя́нут, вы́тянуть не мо́гут.", "de": "Die Großmutter am Großvater, der Großvater an der Rübe – sie ziehen und ziehen, bekommen sie nicht heraus."},
+       {"ru": "Позвала́ ба́бка вну́чку. Позвала́ вну́чка Жу́чку.", "de": "Die Großmutter rief die Enkelin. Die Enkelin rief Shutschka (den Hund)."},
+       {"ru": "Позвала́ Жу́чка ко́шку. Позвала́ ко́шка мы́шку.", "de": "Shutschka rief die Katze. Die Katze rief die Maus."},
+       {"ru": "Мы́шка за ко́шку, ко́шка за Жу́чку, Жу́чка за вну́чку, вну́чка за ба́бку, ба́бка за де́дку, де́дка за ре́пку – тя́нут-потя́нут – и вы́тянули ре́пку!",
+        "de": "Die Maus an der Katze, die Katze an Shutschka, Shutschka an der Enkelin, die Enkelin an der Großmutter, die Großmutter am Großvater, der Großvater an der Rübe – sie ziehen und ziehen – und haben die Rübe herausgezogen!"},
+     ],
+     "fragen": [
+       frage("Кто посади́л ре́пку?", "Wer hat die Rübe gepflanzt?", "Дед.", "Der Großvater.",
+             [("Ба́бка.", "Die Großmutter kam erst später dazu – gepflanzt hat der дед."),
+              ("Мы́шка.", "Die Maus kam ganz zum Schluss.")], 0),
+       frage("Кого́ позва́л дед?", "Wen rief der Großvater?", "Ба́бку.", "Die Großmutter.",
+             [("Ба́бка.", "Кого́? (wen?) – Akkusativ: ба́бка → ба́бку."),
+              ("Вну́чку.", "Die Enkelin hat die Großmutter gerufen, nicht der Großvater.")], 3),
+       frage("Ба́бка за … , де́дка за ре́пку.", "Die Großmutter (hält sich) am …, der Großvater an der Rübe.", "Де́дку.", "Am Großvater.",
+             [("Де́дка.", "за + Akkusativ: де́дка → де́дку (wie ба́бка → ба́бку)."),
+              ("Де́дкой.", "за mit Instrumental heißt „hinter“. Hier „sich festhalten an“: за + Akkusativ – де́дку.")], 4),
+       frage("Кто помо́г в конце́?", "Wer half am Ende?", "Мы́шка.", "Die Maus.",
+             [("Ко́шка.", "Die Katze hat noch jemanden gerufen – die Maus."),
+              ("Никто́.", "Am Ende ziehen alle zusammen – mit der Maus.")], 7),
+     ]},
+    {"id": "lukomorye", "titel": "У лукомо́рья дуб зелёный…", "autor": "Алекса́ндр Пу́шкин", "jahr": 1828, "bild": "lukomorye",
+     "hinweis": "Aus dem Vorspruch zu „Руслан и Людмила“ – fast jedes russische Kind kann ihn auswendig. злата́я = alte, poetische Form von золота́я (golden).",
+     "zeilen": [
+       {"ru": "У лукомо́рья дуб зелёный;", "de": "An der Meeresbucht steht eine grüne Eiche;"},
+       {"ru": "Злата́я цепь на ду́бе том:", "de": "eine goldene Kette hängt an jener Eiche:"},
+       {"ru": "И днём и но́чью кот учёный", "de": "Und Tag und Nacht geht ein gelehrter Kater"},
+       {"ru": "Всё хо́дит по цепи́ круго́м;", "de": "an der Kette immerzu im Kreis;"},
+       {"ru": "Идёт напра́во – песнь заво́дит,", "de": "geht er nach rechts, stimmt er ein Lied an,"},
+       {"ru": "Нале́во – ска́зку говори́т.", "de": "nach links – erzählt er ein Märchen."},
+     ],
+     "fragen": [
+       frage("Како́й дуб у лукомо́рья?", "Was für eine Eiche steht an der Bucht?", "Зелёный.", "Eine grüne.",
+             [("Зелёная.", "дуб ist männlich: зелёный."),
+              ("Злата́я.", "Golden (злата́я) ist die Kette. Die Eiche ist зелёный.")], 0),
+       frage("Кто хо́дит по цепи́?", "Wer geht an der Kette entlang?", "Кот учёный.", "Ein gelehrter Kater.",
+             [("Ко́шка учёная.", "Bei Puschkin ist es ein Kater: кот учёный."),
+              ("Дуб зелёный.", "Die Eiche steht still – es geht der Kater: кот.")], 2),
+       frage("Что де́лает кот, когда́ идёт нале́во?", "Was macht der Kater, wenn er nach links geht?", "Ска́зку говори́т.", "Er erzählt ein Märchen.",
+             [("Песнь заво́дит.", "Das macht er, wenn er nach rechts (напра́во) geht."),
+              ("Спит.", "Er geht Tag und Nacht – и днём и но́чью.")], 5),
+       frage("Злата́я … на ду́бе том.", "Eine goldene … an jener Eiche.", "Цепь.", "Kette.",
+             [("Цепи́.", "Hier ist die Kette Subjekt (Nominativ): цепь. по цепи́ heißt „an der Kette entlang“."),
+              ("Кот.", "злата́я ist weiblich und passt nicht zu кот. Es ist die Kette: цепь.")], 1),
+     ]},
+    {"id": "vorona", "titel": "Воро́на и Лиси́ца", "autor": "Ива́н Крыло́в", "jahr": 1807, "bild": "vorona",
+     "hinweis": "Krylows bekannteste Fabel. сы́ру ist eine alte Form – heute sagt man кусо́чек сы́ра.",
+     "zeilen": [
+       {"ru": "Воро́не где́-то Бог посла́л кусо́чек сы́ру;", "de": "Der Krähe hatte Gott irgendwo ein Stückchen Käse geschickt;"},
+       {"ru": "На ель Воро́на взгромозди́лась,", "de": "auf eine Tanne hatte sich die Krähe gehockt,"},
+       {"ru": "Поза́втракать бы́ло совсе́м уж собрала́сь,", "de": "wollte gerade frühstücken,"},
+       {"ru": "Да позаду́малась, а сыр во рту держа́ла.", "de": "wurde aber nachdenklich und hielt den Käse im Schnabel."},
+       {"ru": "На ту беду́ Лиса́ близёхонько бежа́ла;", "de": "Zum Unglück lief der Fuchs ganz in der Nähe vorbei;"},
+       {"ru": "Вдруг сы́рный дух Лису́ останови́л:", "de": "plötzlich ließ der Käseduft den Fuchs anhalten:"},
+     ],
+     "fragen": [
+       frage("Что Бог посла́л Воро́не?", "Was hatte Gott der Krähe geschickt?", "Кусо́чек сы́ру.", "Ein Stückchen Käse.",
+             [("Кусо́чек хле́ба.", "Es war Käse – сыр."),
+              ("Большо́й торт.", "Nur ein Stückchen – кусо́чек сы́ру.")], 0),
+       frage("Куда́ взгромозди́лась Воро́на?", "Wohin hatte sich die Krähe gehockt?", "На ель.", "Auf eine Tanne.",
+             [("В ель.", "„Auf“ (einen Baum hinauf) heißt на: на ель."),
+              ("На стол.", "Die Krähe sitzt auf einem Baum: на ель – auf die Tanne.")], 1),
+       frage("Кто бежа́л ми́мо?", "Wer lief vorbei?", "Лиса́.", "Der Fuchs.",
+             [("Волк.", "Es war der Fuchs – лиса́ (im Russischen weiblich)."),
+              ("Воро́на.", "Die Krähe sitzt oben auf der Tanne.")], 4),
+       frage("Что останови́ло Лису́?", "Was ließ den Fuchs anhalten?", "Сы́рный дух.", "Der Käseduft.",
+             [("Пе́сня Воро́ны.", "Gesungen hat die Krähe erst später. Den Fuchs hielt der Käseduft auf: сы́рный дух."),
+              ("Хо́лод.", "Vom Wetter steht hier nichts – es war der Duft: сы́рный дух.")], 5),
+     ]},
+    {"id": "parus", "titel": "Па́рус", "autor": "Михаи́л Ле́рмонтов", "jahr": 1832, "bild": "parus",
+     "hinweis": "Lermontow schrieb das Gedicht mit 17 Jahren. беле́ет = schimmert weiß (von бе́лый).",
+     "zeilen": [
+       {"ru": "Беле́ет па́рус одино́кий", "de": "Es schimmert weiß ein einsames Segel"},
+       {"ru": "В тума́не мо́ря голубо́м!..", "de": "im Nebel des blauen Meeres!.."},
+       {"ru": "Что и́щет он в стране́ далёкой?", "de": "Was sucht es in dem fernen Land?"},
+       {"ru": "Что ки́нул он в краю́ родно́м?..", "de": "Was ließ es zurück in der Heimat?.."},
+     ],
+     "fragen": [
+       frage("Како́й па́рус?", "Was für ein Segel?", "Одино́кий.", "Ein einsames.",
+             [("Одино́кая.", "па́рус ist männlich: одино́кий."),
+              ("Голубо́й.", "Blau (голубо́е) ist das Meer. Das Segel ist одино́кий und schimmert weiß.")], 0),
+       frage("Где беле́ет па́рус?", "Wo schimmert das Segel weiß?", "В тума́не мо́ря.", "Im Nebel des Meeres.",
+             [("В лесу́.", "Ein Segel gehört aufs Meer – в тума́не мо́ря."),
+              ("На ду́бе.", "An der Eiche hängt Puschkins Kette. Hier: в тума́не мо́ря.")], 1),
+       frage("Како́е мо́ре в стихотворе́нии?", "Was für ein Meer ist im Gedicht?", "Голубо́е.", "Ein blaues.",
+             [("Голубо́й.", "мо́ре ist sächlich: голубо́е."),
+              ("Чёрное.", "Im Gedicht ist das Meer голубо́е (im Text: мо́ря голубо́м).")], 1),
+       frage("Что … он в стране́ далёкой?", "Was … es in dem fernen Land?", "И́щет.", "Sucht.",
+             [("Ки́нул.", "ки́нул (ließ zurück) steht in der nächsten Zeile – in der Heimat."),
+              ("Спит.", "Das Segel schläft nicht – es sucht: и́щет.")], 2),
+     ]},
+  ],
+}
+
 inhalt = {
   "entdecken_hinweis": "Was gibt es im Klassenzimmer? Tippe auf die Tafel, die Lehrerin, die Hefte …",
   "woerter": [dict(id=i, ru=ru, de=de, genus=g, hotspot="hs-" + i, satz=satz, **({"hinweis": h} if h else {}))
@@ -257,6 +458,8 @@ inhalt = {
     "tipp": "Tipp: Nach положи́ steht der Akkusativ: одну́ ру́чку (1), две ру́чки (2–4), пять ру́чек (ab 5).",
   },
   "stundenplan": stundenplan,
+  "rechnen": RECHNEN,
+  "literatur": LITERATUR,
   "reise": {
     "neu_knopf": "Neuer Schultag →",
     "start_stufe": "einkaufen",

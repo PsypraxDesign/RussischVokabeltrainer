@@ -54,6 +54,13 @@
                   <div class="knopf-reihe" id="danach"><button class="knopf-haupt" id="pruefen" disabled>✓ Prüfen</button></div>`;
                 q('#vorlesen').addEventListener('click', () => ctx.sage(wer.liste_satz));
                 ctx.tafel.querySelectorAll('.ez-ru').forEach(b => b.addEventListener('click', () => ctx.sage(b.dataset.text)));
+                const ezBox = document.createElement('div');
+                ezBox.className = 'gram-box';
+                ezBox.hidden = true;
+                q('.einkaufszettel ul').after(ezBox);
+                ctx.tafel.querySelectorAll('.ez-ru').forEach(b => G.satz(b, b.dataset.text, { box: ezBox }));
+                // Handschrift: Betonung selbst zeichnen (auch in der Überschrift)
+                ctx.tafel.querySelectorAll('.ez-ru, .ez-titel').forEach(G.betonungMalen);
                 q('#ez-uebersetzen').addEventListener('click', () => {
                     if (!uebersetzt) hinweise++;
                     uebersetzt = true;

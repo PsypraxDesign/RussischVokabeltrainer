@@ -10,7 +10,8 @@
 
     const STUFEN_TITEL = { entdecken: 'Entdecken', hoeren: 'Hören & Zeigen', dialog: 'Bestellen', bezahlen: 'Bezahlen', wo: 'Wo ist das?', etagen: 'Stockwerke', aufzug: 'Aufzug', pass: 'Passkontrolle', gepaeck: 'Gepäck', zoll: 'Zoll',
         fahrplan: 'Abfahrtstafel', fahrkarte: 'Fahrkarte', zug: 'Im Zug',
-        einkaufen: 'Einkaufen', theke: 'Theke', kasse: 'Kasse', stundenplan: 'Stundenplan', unterricht: 'Im Unterricht' };
+        einkaufen: 'Einkaufen', theke: 'Theke', kasse: 'Kasse', stundenplan: 'Stundenplan', unterricht: 'Im Unterricht',
+        rechnen: 'Mathe', literatur: 'Literatur', wege: 'Gehen & Fahren' };
     const START_GELD = { 1000: 1, 500: 2, 100: 4, 50: 2, 10: 10 };
     // Noch nicht gebaute Gebäude — als Ausblick auf der Straße
     const BALD = [
@@ -31,6 +32,98 @@
     // (solche Wörter tragen de_zahl: "sg").
     G.woFrageDe = (de, genus, deZahl) => `Wo ${genus === 'pl' && deZahl !== 'sg' ? 'sind' : 'ist'} ${de}?`;
     G.sterne = (n) => [0, 1, 2].map(i => `<span class="${i < n ? 'an' : 'aus'}" style="animation-delay:${i * 0.18}s">★</span>`).join('');
+
+    // Satz mit antippbaren Grammatik-Stellen. teile: Text oder { text, titel, erkl }.
+    // Antippen hebt die Stelle hervor, liest sie vor und zeigt die Erklärung in `box`;
+    // nochmal antippen schließt sie wieder.
+    G.grammatikSatz = function (ziel, teile, box, sage) {
+        ziel.innerHTML = '';
+        box.innerHTML = '';
+        box.hidden = true;
+        teile.forEach(t => {
+            if (typeof t === 'string' || !t.erkl) { ziel.append(typeof t === 'string' ? t : t.text); return; }
+            const s = document.createElement('span');
+            s.className = 'gram-stelle';
+            s.tabIndex = 0;
+            s.setAttribute('role', 'button');
+            s.title = 'Grammatik erklären';
+            s.textContent = t.text;
+            const zeigen = () => {
+                const offen = s.classList.contains('aktiv');
+                ziel.querySelectorAll('.gram-stelle.aktiv').forEach(x => x.classList.remove('aktiv'));
+                if (box._aktiv) box._aktiv.classList.remove('aktiv');   // mehrere Sätze, ein Erklärfeld
+                if (offen) { box.hidden = true; box._aktiv = null; return; }
+                s.classList.add('aktiv');
+                box._aktiv = s;
+                box.innerHTML = `<div class="gb-kopf"><span class="ru">${G.esc(t.text)}</span>${t.titel ? `<span class="gb-titel">${G.esc(t.titel)}</span>` : ''}</div>
+                  ${G.esc(t.erkl).split('\n').map(z => `<p>${z}</p>`).join('')}`;
+                box.hidden = false;
+                if (sage) sage(t.text);
+            };
+            // stopPropagation: Die Zeile im Gespräch spielt sonst den ganzen Satz ab
+            s.addEventListener('click', (e) => { e.stopPropagation(); zeigen(); });
+            s.addEventListener('keydown', (e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); e.stopPropagation(); zeigen(); } });
+            ziel.appendChild(s);
+        });
+        return teile.some(t => typeof t !== 'string' && t.erkl);
+    };
+
+    // Erklärfeld zu einer Frage schließen (wenn die Frage verdeckt wird)
+    G.gramZu = function (el) {
+        const a = el.closest('.wo-frage') || el;
+        const b = a.nextElementSibling;
+        if (b && b.classList.contains('gram-box')) { b.hidden = true; b.innerHTML = ''; }
+    };
+
+    // Betonungszeichen selbst zeichnen: Die Handschrift (Caveat) hat kein passendes
+    // Zeichen, der Browser setzt es aus einer Ersatzschrift daneben („одна ́па́чка“).
+    // Aus „а́“ wird <span class="bt">а</span>, der Akzent kommt per CSS darüber.
+    G.betonungMalen = function (el) {
+        const knoten = [];
+        const gang = document.createTreeWalker(el, NodeFilter.SHOW_TEXT);
+        while (gang.nextNode()) if (gang.currentNode.nodeValue.includes('́')) knoten.push(gang.currentNode);
+        knoten.forEach(k => {
+            const frag = document.createDocumentFragment();
+            k.nodeValue.split(/(.́)/).forEach(teil => {
+                if (!teil) return;
+                if (teil.length === 2 && teil[1] === '́') {
+                    const s = document.createElement('span');
+                    s.className = 'bt';
+                    s.textContent = teil[0];
+                    frag.appendChild(s);
+                } else frag.appendChild(document.createTextNode(teil.replace(/́/g, '')));
+            });
+            k.replaceWith(frag);
+        });
+    };
+
+    // Leeres Erklärfeld am Ende eines Behälters (z. B. der Rückmeldung)
+    G.gramBox = function (behaelter) {
+        const b = document.createElement('div');
+        b.className = 'gram-box';
+        b.hidden = true;
+        behaelter.appendChild(b);
+        return b;
+    };
+
+    // Russischen Satz anzeigen; Stellen mit Erklärung findet static/grammatik.js.
+    // box: Erklärfeld – ohne Angabe wird eins direkt hinter `anker` (Standard: el) angelegt.
+    G.satz = function (el, text, { box, anker, stimme } = {}) {
+        if (!box) {
+            const a = anker || el.closest('.wo-frage') || el;
+            const naechstes = a.nextElementSibling;
+            box = naechstes && naechstes.classList.contains('gram-box') ? naechstes : null;
+            if (!box) { box = document.createElement('div'); box.className = 'gram-box'; a.after(box); }
+        }
+        const teile = window.Grammatik ? Grammatik.teile(text) : [text];
+        const mitStellen = G.grammatikSatz(el, teile, box, (t) => Stimmen.sage(t, stimme));
+        if (mitStellen && !G.stand.gram_tipp) {
+            G.stand.gram_tipp = true;
+            G.speichern();
+            G.toast('Tipp: Gepunktet unterstrichene Wörter antippen – dann gibt es die Grammatik dazu.');
+        }
+        return mitStellen;
+    };
 
     let toastTimer = null;
     G.toast = function (text, art = 'info') {
@@ -494,7 +587,9 @@
     async function start() {
         const [stand, mod] = await Promise.all([
             fetch('/api/spielstand').then(r => r.json()).catch(() => ({})),
-            fetch('/api/module').then(r => r.json())
+            fetch('/api/module').then(r => r.json()),
+            // Grammatik-Regeln: fehlen sie, gibt es eben keine Stellen zum Antippen
+            fetch('/static/grammatik.json').then(r => r.json()).then(d => Grammatik.laden(d)).catch(() => {})
         ]);
         if (stand._warnung) { G.toast(stand._warnung, 'fehler'); delete stand._warnung; }
         G.stand = stand || {};

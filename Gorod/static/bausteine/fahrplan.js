@@ -113,7 +113,7 @@
                 if (!f || !laufend) return;
                 fehlversuch = false;
                 buehne.querySelectorAll('.at-zeile').forEach(z => z.classList.remove('markiert'));
-                q('#frage').textContent = f.text;
+                G.satz(q('#frage'), f.text);
                 q('#uebersetzung').textContent = '';
                 q('#uebersetzen').classList.remove('benutzt');
                 q('#rueckmeldung').className = 'rueckmeldung';
@@ -142,7 +142,8 @@
                     const zeile = buehne.querySelector(`.at-zeile[data-zeile="${zeileVon(f)}"]`);
                     if (zeile) zeile.classList.add('markiert');
                     rm.className = 'rueckmeldung gut';
-                    rm.innerHTML = `✓ <strong>${G.esc(o.text)}</strong><br><span class="klein">${G.esc(o.de || '')}</span>`;
+                    rm.innerHTML = `✓ <strong></strong><br><span class="klein">${G.esc(o.de || '')}</span>`;
+                    G.satz(rm.querySelector('strong'), o.text, { box: G.gramBox(rm) });
                     ctx.sage(o.text);
                     q('#danach').innerHTML = `<button class="knopf-haupt" id="weiter">${i + 1 < deck.length ? 'Weiter' : 'Ergebnis'} <span>→</span></button>`;
                     q('#weiter').addEventListener('click', () => {

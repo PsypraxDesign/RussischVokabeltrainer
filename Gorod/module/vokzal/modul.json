@@ -11,7 +11,8 @@
     "hoeren",
     "fahrplan",
     "fahrkarte",
-    "zug"
+    "zug",
+    "wege"
   ],
   "grafik": {
     "aussen": "grafik/aussen.svg",

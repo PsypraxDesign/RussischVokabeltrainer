@@ -89,7 +89,7 @@
 
                 if (a.typ === 'zimmer') {
                     ctx.markiere('raum-' + a.r.id, 'gewaehlt');
-                    q('#frage-ru').textContent = t.ru;
+                    G.satz(q('#frage-ru'), t.ru);
                     q('#frage-de').textContent = 'Das leuchtende Zimmer – welches Stockwerk?';
                     ctx.sage(t.ru);
                     const n = a.r.etage_nr;
@@ -98,6 +98,7 @@
                     optionen(a, liste);
                 } else if (a.typ === 'hoeren') {
                     q('#frage-ru').innerHTML = '<span class="verdeckt">… … …</span>';
+                    G.gramZu(q('#frage-ru'));
                     q('#frage-de').textContent = 'Hör zu – welches Stockwerk?';
                     q('#tipp-hinweis').hidden = false;
                     ctx.sage(t.ru);
@@ -105,6 +106,7 @@
                     const n = a.r.etage_nr;
                     ctx.markiere('raum-' + a.r.id, 'gewaehlt');
                     q('#frage-ru').textContent = `${gross(ohneBetonung(a.r.de))} ist ${deStock(n)}.`;
+                    G.gramZu(q('#frage-ru'));
                     q('#frage-de').textContent = 'So zählt man in Deutschland. Wie sagt man das auf Russisch?';
                     const liste = [{ text: wo(n), richtig: true }];
                     if (n > 1) liste.push({ text: wo(n - 1), art: 'falle' });
@@ -132,7 +134,8 @@
                 ctx.svg.classList.remove('ohne-etagen');       // jetzt darf die Beschriftung zur Bestätigung erscheinen
                 const rm = q('#rueckmeldung');
                 rm.className = 'rueckmeldung gut';
-                rm.innerHTML = `✓ <strong>${G.esc(satz)}</strong><br><span class="klein">${G.esc(satzDe)}</span>`;
+                rm.innerHTML = `✓ <strong></strong><br><span class="klein">${G.esc(satzDe)}</span>`;
+                G.satz(rm.querySelector('strong'), satz, { box: G.gramBox(rm) });
                 ctx.sage(satz);
                 q('#danach').innerHTML = `<button class="knopf-haupt" id="weiter">${i + 1 < deck.length ? 'Weiter' : 'Ergebnis'} <span>→</span></button>`;
                 q('#weiter').addEventListener('click', () => {
@@ -180,7 +183,7 @@
                 const rm = q('#rueckmeldung');
                 if (r && r.etage_nr === a.n) {
                     q('#tipp-hinweis').hidden = true;
-                    q('#frage-ru').textContent = texte(a).ru;
+                    G.satz(q('#frage-ru'), texte(a).ru);
                     ctx.entmarkiere('tipp');
                     etageLeuchten(a.n, 'richtig', 1500);
                     geloest(a.akk ? `${gross(Z.ordinal(a.n))} эта́ж – ${r.ru} ${wo(a.n)}.` : `${a.wer.ru} ${r.wo}, ${wo(a.n)}.`,
@@ -207,7 +210,7 @@
                     return;
                 }
                 const t = texte(a);
-                q('#frage-ru').textContent = t.ru;
+                G.satz(q('#frage-ru'), t.ru);
                 q('#uebersetzung').textContent = t.de;
                 ctx.svg.classList.remove('ohne-etagen');      // Beschriftung als zusätzliche Hilfe
             });

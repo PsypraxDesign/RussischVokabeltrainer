@@ -11,7 +11,9 @@
     "hoeren",
     "einkaufen",
     "stundenplan",
-    "unterricht"
+    "unterricht",
+    "rechnen",
+    "literatur"
   ],
   "stufen_titel": {
     "einkaufen": "Ranzen packen"

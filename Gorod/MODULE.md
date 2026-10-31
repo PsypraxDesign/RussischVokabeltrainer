@@ -21,7 +21,7 @@ module/cafe/
 | `titel` | ja | `{ "ru": "кафе́", "de": "Café" }` |
 | `praeposition` | ja | `в` oder `на` (Я иду́ в/на …) |
 | `satz_hin`, `satz_hin_de` | nein | gesprochen beim Hineingehen |
-| `stufen` | ja | Reihenfolge der Bausteine: `entdecken`, `hoeren`, `dialog`, `bezahlen`, `wo`, `etagen`, `aufzug`, `pass`, `gepaeck`, `zoll`, `fahrplan`, `fahrkarte`, `zug`, `einkaufen`, `theke`, `kasse`, `stundenplan`, `unterricht` |
+| `stufen` | ja | Reihenfolge der Bausteine: `entdecken`, `hoeren`, `dialog`, `bezahlen`, `wo`, `etagen`, `aufzug`, `pass`, `gepaeck`, `zoll`, `fahrplan`, `fahrkarte`, `zug`, `einkaufen`, `theke`, `kasse`, `stundenplan`, `unterricht`, `rechnen`, `literatur`, `wege` |
 | `grafik` | ja | `{ "aussen": "grafik/aussen.svg", "innen": "grafik/innen.svg" }` |
 | `stufen_titel` | nein | eigene Namen in der Stufenleiste, z. B. `{ "einkaufen": "Ranzen packen" }` |
 | `farbe` | nein | Akzentfarbe des Gebäudes |
@@ -96,6 +96,45 @@ module/cafe/
   vorgelesen). Jedes Antippen im Bild legt eins in den Korb; „Prüfen“ vergleicht die Mengen.
   Wörter mit `an_der_theke: true` bekommen den Hinweis „gibt es gleich an der Theke“.
   Bausteine mit `klickbar: true` machen das Bild antippbar (Mauszeiger).
+
+- `rechnen` (Baustein `rechnen.js`): `nomen[]` {`id`, `ru` [1, 2–4, 5+], `g`, `de` [Sg, Pl], `bild`} und
+  `aufgaben[]` {`op` (+/−), `nomen` [ids], `text`, `de` (Platzhalter {a} {b} {pl} {a_de} {b_de} {pl_de}),
+  `a`/`b` [von, bis]}. Hör- und Leseaufgaben erzeugt der Baustein selbst (Zahlwort.js).
+  Grammatik zum Antippen: Im `text` markiert `[Wörter|schlüssel]` eine Stelle, die Erklärung steht in
+  `grammatik` {schlüssel: {`titel`, `text`}} (`\n` = Absatz). Enthält die Stelle {a}/{b}, wird die
+  Zahlregel `zahl_1` / `zahl_2_4` / `zahl_5` / `zahl_11_14` ({menge}, {zahlwort}, {klingt}, {falle}) plus die
+  Übersicht `zahl_alle` ({eins} {f1} {f2} {f5} = Formen des Nomens) angehängt. `person` {de, nom, gen, regel}
+  einer Aufgabe füllt {p_de} {p_nom} {p_gen} {p_regel}. Der Server meldet fehlende Schlüssel.
+  Anzeige über `Gorod.grammatikSatz(ziel, teile, box, sage)` in kern.js – auch für andere Bausteine nutzbar.
+- `literatur` (Baustein `literatur.js`): `texte[]` {`id`, `titel`, `autor`, `jahr`, `bild`
+  (repka/lukomorye/vorona/parus), `hinweis`, `zeilen` [{ru, de}], `fragen` [{text, de, zeile, richtig, falsch}]}.
+  Nur gemeinfreie Texte verwenden.
+- `wege` (Baustein `wege.js`, Stufe „Gehen & Fahren“ – Verben der Bewegung): `fragen[]` {`muster`
+  (`jetzt`, `regel`, `umher`, `hin_zurueck`, `unterwegs`, `los`, `zukunft`, `zukunft_regel`), `bild` {`art` geh/fahr,
+  `mittel` fuss/bus/auto/metro/zug, `ziel` {`icon` haus/stadt/meer/datscha/park, `schild`, `farbe`}, `zeit` (Schild oben),
+  `tage` (0 = пн … 6 = вс), `ereignis` telefon/regen, `leer`, `geist`}, `vor` {text, de}, `text` (Lücke = …), `de`,
+  `richtig` {`text`, `satz`, `erklaerung`}, `falsch` [{`text`, `hinweis`}]}. Die Szene über dem Bild zeigt das Muster
+  als Bewegung (einmal hin, hin und zurück, Wochentage, umher, Haus bleibt leer, blass = geplant).
+  Erzeugt von `werkzeuge/wege.py` (`from wege import fragen`) – jedes Modul kann die Stufe so bekommen; Bahnhof nutzt sie.
+  Lernschritte 1–7 stecken im Baustein (`STUFEN`): Zu Fuß/fahren → jetzt/regelmäßig → Gegenwart komplett →
+  Vergangenheit (war dort / unterwegs) → + losgegangen → Zukunft (einmal / regelmäßig) → alles gemischt. Jeder Schritt
+  zeigt nur die Antworten, die sich im geübten Punkt unterscheiden (`richtig.m` / `falsch[].m` = [art, typ, zeit]).
+  Ab Schritt 2 kommt vor der Verbwahl ein Zwischenschritt „Was zeigt das Bild?“ (`schritt` {frage, texte, bildhinweis, merke}).
+  Sterne je Schritt: `stand.wege_stufen`, zuletzt gewählter Schritt: `stand.wege_stufe`.
+
+## Grammatik zum Antippen (alle Gebäude)
+
+Jeder russische Satz, den ein Baustein anzeigt (Fragen, Lösungssätze, Gesprächszeilen,
+Einkaufszettel, Kassensatz), läuft durch `Gorod.satz(el, text)`. Gefundene Stellen
+(Präposition + Fall, Zahl + Nomen, Datum, Verben, feste Wendungen …) sind gepunktet
+unterstrichen; Antippen zeigt die Erklärung. Antwort-Knöpfe bleiben ohne Stellen.
+
+- Regeln: `werkzeuge/grammatik_regeln.py` → `static/grammatik.json` (nie von Hand ändern).
+  Reihenfolge = Vorrang. Grundformen („Москва́ → в Москве́“) im `LEXIKON` dort.
+- Suche: `static/grammatik.js` (ohne Betonung, е statt ё; Regeln mit `betont` sehen die Betonung).
+- Prüfen: `node werkzeuge/grammatik_pruefen.js` zeigt je Regel Treffer über alle Module,
+  `… pruefen.js <regel-id>` alle Treffer einer Regel mit Erklärung. Nach neuen Inhalten laufen lassen.
+- Ein Modul muss nichts dafür tun. Mathe (`rechnen`) hat zusätzlich eigene, handgeschriebene Stellen.
 
 ## Grafik
 

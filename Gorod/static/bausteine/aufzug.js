@@ -196,6 +196,7 @@
 
                 if (a.typ === 'hoerenAkk' || a.typ === 'hoerenPraep') {
                     q('#frage-ru').innerHTML = '<span class="verdeckt">… … …</span>';
+                    G.gramZu(q('#frage-ru'));
                     q('#frage-de').textContent = 'Hör zu – wohin geht die Fahrt?';
                     q('#tasten-hinweis').hidden = false;
                     panel.classList.remove('gesperrt');
@@ -205,10 +206,11 @@
                     q('#tasten-hinweis').hidden = true;
                     panel.classList.add('gesperrt');
                     q('#frage-ru').textContent = '…';
+                    G.gramZu(q('#frage-ru'));
                     q('#frage-de').textContent = 'Der Aufzug fährt …';
                     await fahre(a.n);
                     if (!laufend) return;
-                    q('#frage-ru').textContent = t.ru;
+                    G.satz(q('#frage-ru'), t.ru);
                     q('#frage-de').textContent = 'Schau auf die Anzeige.';
                     ctx.sage(t.ru);
                     optionen(a, [
@@ -221,6 +223,7 @@
                     q('#tasten-hinweis').hidden = true;
                     panel.classList.add('gesperrt');
                     a.familie = a.familie || FAMILIEN[Math.floor(Math.random() * FAMILIEN.length)];
+                    G.gramZu(q('#frage-ru'));
                     q('#frage-ru').textContent = `Familie ${a.familie} wohnt ${a.deutsch === 0 ? 'im Erdgeschoss' : `im ${a.deutsch}. Stock`}.`;
                     q('#frage-de').textContent = 'So zählt man in Deutschland. Wie sagt man das auf Russisch?';
                     const r = a.deutsch + 1;
@@ -251,7 +254,8 @@
                 if (fehler === 0 && !hilfe) richtig++;
                 const rm = q('#rueckmeldung');
                 rm.className = 'rueckmeldung gut';
-                rm.innerHTML = `✓ <strong>${G.esc(satz)}</strong><br><span class="klein">${G.esc(satzDe)}</span>`;
+                rm.innerHTML = `✓ <strong></strong><br><span class="klein">${G.esc(satzDe)}</span>`;
+                G.satz(rm.querySelector('strong'), satz, { box: G.gramBox(rm) });
                 ctx.sage(satz);
                 q('#danach').innerHTML = `<button class="knopf-haupt" id="weiter">${i + 1 < deck.length ? 'Weiter' : 'Ergebnis'} <span>→</span></button>`;
                 q('#weiter').addEventListener('click', () => {
@@ -273,7 +277,7 @@
                     lage.querySelectorAll('.taste').forEach(t => t.classList.remove('tipp'));
                     q('#tasten-hinweis').hidden = true;
                     const t = texte(a);
-                    q('#frage-ru').textContent = t.ru;
+                    G.satz(q('#frage-ru'), t.ru);
                     await fahre(n);
                     if (!laufend) return;
                     taste.classList.remove('leuchtet');
@@ -339,7 +343,7 @@
                 if (a.typ === 'falle') {
                     q('#uebersetzung').innerHTML = 'Tipp: Der deutsche Stock plus eins – das Erdgeschoss ist russisch <strong>пе́рвый эта́ж</strong>.';
                 } else {
-                    q('#frage-ru').textContent = t.ru;
+                    G.satz(q('#frage-ru'), t.ru);
                     q('#uebersetzung').textContent = t.de;
                 }
             });

@@ -6,6 +6,7 @@ Aufruf aus dem Gorod-Ordner:
     python werkzeuge/vokzal_inhalt.py
 """
 import json, os
+from wege import fragen as wege_fragen    # Stufe „Gehen & Fahren“ (werkzeuge/wege.py)
 B = os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", "module", "vokzal")
 os.makedirs(os.path.join(B, "grafik"), exist_ok=True)
 
@@ -14,7 +15,7 @@ modul = {
   "praeposition": "на",
   "satz_hin": "Я иду́ на вокза́л.",
   "satz_hin_de": "Ich gehe zum Bahnhof.",
-  "stufen": ["entdecken", "hoeren", "fahrplan", "fahrkarte", "zug"],
+  "stufen": ["entdecken", "hoeren", "fahrplan", "fahrkarte", "zug", "wege"],
   "grafik": {"aussen": "grafik/aussen.svg", "innen": "grafik/innen.svg"},
   "farbe": "#b8392b",
   "breite": 270
@@ -272,6 +273,7 @@ inhalt = {
   "woerter": [dict(id=i, ru=ru, de=de, genus=g, hotspot="hs-" + i, satz=satz, hinweis=h, **({"de_zahl": "sg"} if i == "chasy" else {}))
               for i, ru, de, g, satz, h in W],
   "fahrplan": fahrplan,
+  "wege": wege_fragen(),
   "reise": {
     "neu_knopf": "Neue Reise →",
     "figuren": {

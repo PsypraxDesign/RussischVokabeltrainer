@@ -123,7 +123,8 @@
                     knopf.classList.add('treffer');
                     ctx.markiere(w.hotspot, 'richtig', 1400);
                     rm.className = 'rueckmeldung gut';
-                    rm.innerHTML = `✓ <strong>${G.esc(satz)}</strong><br><span class="klein">${G.esc(w.de)} – ${G.esc(r.wo_de)}${r.hinweis ? ' · ' + G.esc(r.hinweis) : ''}</span>`;
+                    rm.innerHTML = `✓ <strong></strong><br><span class="klein">${G.esc(w.de)} – ${G.esc(r.wo_de)}${r.hinweis ? ' · ' + G.esc(r.hinweis) : ''}</span>`;
+                    G.satz(rm.querySelector('strong'), satz, { box: G.gramBox(rm) });
                     ctx.sage(satz);
                     ctx.tafel.querySelector('#danach').innerHTML = `<button class="knopf-haupt" id="weiter">${i + 1 < deck.length ? 'Weiter' : 'Ergebnis'} <span>→</span></button>`;
                     ctx.tafel.querySelector('#weiter').addEventListener('click', () => {

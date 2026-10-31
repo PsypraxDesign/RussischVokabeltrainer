@@ -47,6 +47,8 @@ __pycache__/
 
 # Sicherungskopien, die Git ueberfluessig macht
 *.bak
+*.vor_*
+*_vor_bereinigung_*
 Vokabeltrainer/backup_index/
 
 # ═══════════════════════════════════════════════════════════════

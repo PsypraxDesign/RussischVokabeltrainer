@@ -519,7 +519,7 @@ button:focus-visible, select:focus-visible, input:focus-visible { outline: 3px s
 
 /* ------------------------------------------------------------------ Schmale Fenster */
 @media (max-width: 1020px) {
-    .modul-buehne { grid-template-columns: 1fr; }
+    .modul-buehne { grid-template-columns: minmax(0, 1fr); }
     .szene-rahmen { position: static; }
     .kasse { grid-template-columns: 1fr; }
 }
@@ -985,4 +985,172 @@ body[data-ansicht="stadt3d"] { overflow: hidden; }
     .s3-karte { width: 150px; height: 96px; }
     .s3-tuer { bottom: 130px; }
     .s3-ort .ru { font-size: 16px; }
+}
+
+/* Mathe: Kreidetafel mit Aufgabe und Bildern */
+.rechen-tafel { display: flex; flex-direction: column; align-items: center; min-height: 58%; }
+.rechen-tafel .at-kopf { align-self: stretch; }
+.rt-aufgabe { min-height: 1.3em; margin: 4% 0 2%; font-family: var(--schrift-hand); font-weight: 700; font-size: clamp(40px, 7vw, 84px); color: #fff; letter-spacing: .04em; }
+.rt-bilder { display: flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: 8px 14px; max-width: 92%; font-size: clamp(20px, 3vw, 34px); }
+.rt-gruppe { display: flex; flex-wrap: wrap; gap: 4px; justify-content: center; }
+.rt-ding { display: inline-block; animation: rein .4s var(--feder) backwards; }
+.rt-ding.weg { opacity: .35; position: relative; }
+.rt-ding.weg::after { content: ''; position: absolute; left: -2px; right: -2px; top: 50%; height: 3px; background: #f4f1e8; transform: rotate(-35deg); }
+.rt-op { font-family: var(--schrift-hand); font-size: 1.5em; color: #ffe08a; }
+.wo-optionen.zahlen { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+.wo-optionen.zahlen .antwort .ru { font-size: 26px; }
+
+/* Literatur: aufgeschlagenes Buch */
+.buch-buehne { position: absolute; inset: 0; z-index: 2; display: grid; place-items: center; padding: 3%; background: rgba(28, 32, 30, .5); backdrop-filter: blur(2px); animation: rein .4s var(--sanft); }
+.buch {
+    display: grid; grid-template-columns: minmax(0, .8fr) minmax(0, 1.2fr); width: min(100%, 820px); max-height: 100%;
+    border-radius: 6px 6px 10px 10px; box-shadow: 0 26px 46px -18px rgba(0, 0, 0, .7); background: #6b4226; padding: 8px;
+}
+.buch-seite { background: #fbf6ea; min-height: 0; overflow: auto; }
+.buch-seite.links { display: grid; place-items: center; padding: 6%; border-radius: 4px 0 0 6px; background: linear-gradient(90deg, #fbf6ea 85%, #e9dfc9); }
+.buch-seite.links svg { width: 100%; max-width: 260px; border-radius: 6px; box-shadow: 0 6px 14px -8px rgba(0, 0, 0, .4); }
+.buch-seite.rechts { padding: 5% 6% 5% 7%; border-radius: 0 4px 6px 0; background: linear-gradient(90deg, #e9dfc9, #fbf6ea 15%); }
+.buch-kopf { display: flex; flex-direction: column; margin-bottom: 10px; }
+.buch-autor { font: 600 12px var(--schrift-ui); letter-spacing: .08em; text-transform: uppercase; color: var(--grau); }
+.buch-titel { font: 700 24px var(--schrift-ru); color: var(--tinte); }
+.buch-text { display: flex; flex-direction: column; gap: 3px; }
+.buch-zeile { display: flex; flex-direction: column; align-items: flex-start; text-align: left; border: 0; background: none; padding: 3px 8px; border-radius: 8px; cursor: pointer; opacity: 0; transform: translateY(4px); transition: opacity .5s, transform .5s, background .3s; }
+.buch-zeile.da { opacity: 1; transform: none; }
+.buch-zeile .ru { font: 400 clamp(15px, 1.7vw, 19px)/1.4 var(--schrift-ru); color: var(--tinte); }
+.buch-zeile .de { display: none; font-size: 12.5px; color: var(--grau); font-style: italic; }
+.buch-zeile.offen .de { display: block; }
+.buch-zeile.liest { background: #fff3c4; box-shadow: inset 3px 0 0 #ffb300; }
+.buch-zeile:hover { background: rgba(255, 243, 196, .55); }
+.lit-karte { margin: 0 0 12px; padding: 12px 16px; border-radius: 14px; background: #fff; box-shadow: inset 0 0 0 1.5px var(--grau-hell); }
+.lit-titel { font: 700 22px var(--schrift-ru); color: var(--malachit); }
+.lit-autor { font-size: 13.5px; color: var(--grau); margin-bottom: 6px; }
+@media (max-width: 720px) {
+    .szene:has(.buch-buehne) { height: 430px; }
+    .szene:has(.rechen-buehne) { height: 300px; }
+    .szene:has(.buch-buehne) > svg, .szene:has(.rechen-buehne) > svg { visibility: hidden; }
+    .buch { grid-template-columns: 1fr; }
+    .buch-seite.links { display: none; }
+    .wo-optionen.zahlen { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+
+/* Gehen & Fahren (Baustein wege): bewegte Szene über dem Bild */
+.wege-buehne { position: absolute; inset: 0; z-index: 2; display: grid; place-items: center; padding: 3%; background: rgba(28, 32, 30, .5); backdrop-filter: blur(2px); animation: rein .4s var(--sanft); }
+.wege-karte { display: flex; flex-direction: column; gap: 8px; width: min(100%, 820px); max-height: 100%; padding: 10px; border-radius: 14px; background: var(--papier); box-shadow: 0 26px 46px -18px rgba(0, 0, 0, .7); }
+.wege-chips { display: flex; flex-wrap: wrap; align-items: center; gap: 6px; }
+.wege-chip { font: 700 15px var(--schrift-ru); padding: 3px 11px; border-radius: 999px; background: var(--malachit-hell); color: var(--malachit-tief); }
+.wege-chip.zeit { background: #fff3c4; color: var(--tinte); }
+.wege-chip.mittel { margin-left: auto; }
+.wege-woche { display: inline-flex; gap: 3px; }
+.wege-woche span { min-width: 27px; padding: 3px 4px; border-radius: 6px; text-align: center; font: 700 12px var(--schrift-ui); background: #eee6d6; color: #b5a993; transition: background .2s, color .2s, transform .2s; }
+.wege-woche span.plan { background: var(--malachit-hell); color: var(--malachit); }
+.wege-woche span.war { background: var(--malachit); color: #fff; }
+.wege-woche span.jetzt { background: var(--messing); color: var(--tinte); transform: translateY(-2px); }
+.wege-svg { display: block; width: 100%; height: auto; min-height: 0; border-radius: 10px; }
+.wege-schild-text { font: 700 15px var(--schrift-ru); fill: var(--tinte); }
+.wege-schild-text.klein { font-size: 13px; fill: var(--holz); }
+.wege-mover .bein, .wege-mover .arm { transform-box: fill-box; transform-origin: top center; }
+.wege-mover.laeuft .bein.b1, .wege-mover.laeuft .arm.a2 { animation: wege-schritt .42s ease-in-out infinite alternate; }
+.wege-mover.laeuft .bein.b2, .wege-mover.laeuft .arm.a1 { animation: wege-schritt .42s ease-in-out infinite alternate-reverse; }
+.wege-mover.laeuft .fz { animation: wege-wippen .3s ease-in-out infinite alternate; }
+.wege-mover.laeuft .rad > path { animation: wege-rad .5s linear infinite; transform-box: fill-box; transform-origin: center; }
+.wege-mover.geist .koerper { opacity: .5; }
+.wege-karte.geplant .wege-svg { filter: saturate(.75); }
+@keyframes wege-schritt { from { transform: rotate(-26deg); } to { transform: rotate(26deg); } }
+@keyframes wege-wippen { from { transform: translateY(0); } to { transform: translateY(-1.5px); } }
+@keyframes wege-rad { to { transform: rotate(360deg); } }
+.wege-spur path { fill: none; stroke: var(--malachit); stroke-width: 3; stroke-linecap: round; opacity: .7; }
+.wege-spur .gestrichelt { stroke-dasharray: 7 7; }
+.wege-spur .duenn { stroke-width: 2; stroke-dasharray: 5 6; }
+.wege-spur .punkt { fill: var(--terrakotta); }
+.wege-ereignis, .wege-leer { opacity: 0; transition: opacity .3s; }
+.wege-ereignis.an, .wege-leer.an { opacity: 1; }
+.wege-ereignis .welle { animation: wege-ring .8s ease-out infinite; }
+.wege-ereignis .tropfen { animation: wege-regen .7s linear infinite; }
+@keyframes wege-ring { from { opacity: 1; } to { opacity: .15; } }
+@keyframes wege-regen { from { transform: translateY(-6px); opacity: 1; } to { transform: translateY(10px); opacity: .2; } }
+.wege-vor { font: italic 400 16px var(--schrift-ru); color: var(--grau); margin-bottom: 2px; }
+.luecke { display: inline-block; min-width: 3em; padding: 0 6px; margin: 0 2px; border-bottom: 3px solid var(--messing); border-radius: 4px 4px 0 0; background: #fff6dd; text-align: center; color: var(--messing-tief); }
+.luecke.gefuellt { background: var(--gut-hell); border-color: var(--gut); color: var(--gut); font-weight: 700; animation: rein .3s var(--sanft); }
+.wege-merk { margin: 0 0 12px; padding: 10px 12px; border-radius: 12px; background: #fff; box-shadow: inset 0 0 0 1.5px var(--grau-hell); font-size: 14px; line-height: 1.45; }
+.wege-merk[hidden] { display: none; }
+.wege-merk table { width: 100%; border-collapse: collapse; margin-bottom: 6px; }
+.wege-merk th, .wege-merk td { padding: 5px 6px; border-bottom: 1px solid var(--grau-hell); text-align: left; vertical-align: top; }
+.wege-merk th { font-size: 12.5px; color: var(--grau); font-weight: 600; }
+.wege-merk td { font-family: var(--schrift-ru); }
+.wege-merk td b { color: var(--malachit); font-size: 16px; }
+.wege-merk td span { color: var(--grau); font-size: 13px; }
+.wege-merk ul { margin: 4px 0 0; padding-left: 18px; }
+.wege-merk li { margin: 3px 0; }
+.wege-merk #merk-zu { width: 100%; margin-top: 8px; padding: 8px 12px; font-size: 14px; }
+.wege-merk { overflow-x: auto; }
+.wege-merk p { margin: 0 0 7px; }
+.wege-merk table td { font-size: 14px; white-space: nowrap; }
+.wege-merk tr.wm-fuss > * { background: #eef7ee; }
+.wege-merk tr.wm-auto > * { background: #eaf1fa; }
+.wege-merk tr.wm-fuss > th:first-child { box-shadow: inset 4px 0 0 #4f9a5a; }
+.wege-merk tr.wm-auto > th:first-child { box-shadow: inset 4px 0 0 #3d74b8; }
+.wege-merk tr > th:first-child { white-space: nowrap; }
+.wege-merk th, .wege-merk td { padding-left: 4px; padding-right: 4px; }
+.wege-merk th small { display: block; padding-left: 1.5em; font-size: 11.5px; font-weight: 500; }
+.wege-merk tr:not([class]) th small { padding-left: 0; }
+.wege-merk .wm-symbol { display: inline-block; width: 1.5em; font-size: 17px; line-height: 1; vertical-align: -2px; font-family: "Segoe UI Emoji", "Apple Color Emoji", "Noto Color Emoji", sans-serif; }
+/* Lernschritte 1–7 */
+.wege-stufen { display: flex; flex-wrap: wrap; gap: 5px; margin: 8px 0 4px; }
+.wege-stufe { display: inline-flex; flex-direction: column; align-items: center; min-width: 38px; padding: 4px 6px 2px; border: 1.5px solid var(--grau-hell); border-radius: 10px; background: #fff; cursor: pointer; font: inherit; transition: border-color .2s, background .2s; }
+.wege-stufe .nr { font: 700 15px var(--schrift-ui); color: var(--malachit); }
+.wege-stufe .st { min-height: 12px; font-size: 10px; line-height: 1; color: var(--messing); letter-spacing: -1px; }
+.wege-stufe:hover { border-color: var(--malachit); }
+.wege-stufe.aktiv { background: var(--malachit); border-color: var(--malachit); }
+.wege-stufe.aktiv .nr { color: #fff; }
+.wege-stufe.aktiv .st { color: #f3d37f; }
+.wege-stufe-titel { margin: 4px 0 0; }
+/* Zwischenschritt: erst verstehen, dann die Form wählen */
+.wege-schritt { margin: 0 0 10px; }
+.wege-schritt[hidden] { display: none; }
+.ws-kopf { display: flex; align-items: center; gap: 8px; margin: 6px 0; font-weight: 700; font-size: 15px; color: var(--tinte); }
+.ws-kopf.fertig { color: var(--gut); font-weight: 600; }
+.ws-nr { display: inline-grid; place-items: center; flex: none; width: 24px; height: 24px; border-radius: 50%; background: var(--messing); color: var(--tinte); font-size: 13px; }
+.ws-kopf.fertig .ws-nr { background: var(--gut); color: #fff; }
+.ws-optionen { display: grid; gap: 7px; }
+.ws-option { text-align: left; font: 500 15px/1.35 var(--schrift-ui); padding: 10px 14px; }
+.ws-rm { margin-top: 6px; font-size: 14px; color: var(--schlecht); }
+.ws-rm:empty { display: none; }
+.ws-merke { margin: 2px 0 10px 32px; padding: 7px 11px; border-radius: 10px; background: #fff6dd; box-shadow: inset 3px 0 0 var(--messing); font: 400 15px/1.4 var(--schrift-ru); }
+@media (prefers-reduced-motion: reduce) {
+    .wege-mover.laeuft * { animation: none !important; }
+}
+@media (max-width: 720px) {
+    .szene:has(.wege-buehne) { height: 250px; }
+    .szene:has(.wege-buehne) > svg { visibility: hidden; }
+    .wege-buehne { padding: 8px; }
+    .wege-chip { font-size: 13px; }
+    .wege-woche span { min-width: 22px; font-size: 11px; }
+}
+
+/* Grammatik: antippbare Stellen im Satz (G.grammatikSatz) */
+.gram-stelle { cursor: pointer; border-bottom: 2px dotted var(--malachit); border-radius: 3px; padding: 0 1px; transition: background .2s; }
+.gram-stelle:hover, .gram-stelle:focus-visible { background: rgba(255, 243, 196, .7); outline: none; }
+.gram-stelle.aktiv { background: #fff3c4; border-bottom: 2px solid #ffb300; }
+.gram-box { margin: -6px 0 14px; padding: 10px 14px; border-radius: 12px; background: #fffaf0; box-shadow: inset 4px 0 0 #ffb300, 0 0 0 1px var(--grau-hell); font-size: 14.5px; line-height: 1.45; color: var(--tinte); animation: rein .25s var(--sanft); }
+.gram-box[hidden] { display: none; }
+.gram-box p { margin: 4px 0 0; }
+.gb-kopf { display: flex; flex-wrap: wrap; align-items: baseline; gap: 4px 10px; }
+.gb-kopf .ru { font: 700 18px var(--schrift-ru); }
+.gb-titel { font-size: 12.5px; font-weight: 700; color: var(--malachit); }
+.gram-tipp { margin: 4px 0 0; font-size: 12.5px; color: var(--grau); }
+.gram-tipp[hidden] { display: none; }
+.rueckmeldung .gram-box { margin: 10px 0 0; }
+.wo-frage > div { min-width: 0; }
+.fp-frage { overflow-wrap: break-word; }
+/* Grammatik in Gesprächszeilen, Kasse und Einkaufszettel */
+.zeile.ich .gram-stelle { border-bottom-color: rgba(255, 255, 255, .55); }
+.zeile.ich .gram-stelle:hover, .zeile.ich .gram-stelle.aktiv { color: var(--tinte); }
+.zeile .gram-box { margin: 8px 0 2px; font-family: var(--schrift-ui); text-align: left; }
+.zeile.erzaehler .gram-box { font-style: normal; }
+.kassen-meldung .gram-box, .einkaufszettel .gram-box { margin: 8px 0 4px; font-weight: 400; }
+/* Selbst gezeichnete Betonung (G.betonungMalen) – für Schriften ohne passendes Zeichen */
+.bt { position: relative; }
+.bt::after {
+    content: ''; position: absolute; left: 54%; top: .17em; width: .085em; height: .2em;
+    background: currentColor; border-radius: .05em; transform: translateX(-20%) rotate(28deg); transform-origin: bottom center;
 }
