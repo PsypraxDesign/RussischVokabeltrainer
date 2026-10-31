@@ -113,8 +113,10 @@
                   </div>
                   <button class="wk-ru sprich" data-text="${G.esc(w.ru)}">${G.esc(w.ru)}<span class="lautsprecher">🔊</span></button>
                   <div class="wk-de">${G.esc(w.de)}</div>
-                  ${satz ? `<button class="wk-satz sprich" data-text="${G.esc(satz)}">${G.esc(satz)}<span class="lautsprecher">🔊</span></button>` : ''}
+                  ${satz ? `<button class="wk-satz sprich" data-text="${G.esc(satz)}"><span class="ru"></span><span class="lautsprecher">🔊</span></button>` : ''}
                   ${w.hinweis ? `<div class="wk-hinweis">💡 ${G.esc(w.hinweis)}</div>` : ''}`;
+                const satzKnopf = karte.querySelector('.wk-satz');
+                if (satzKnopf) G.satz(satzKnopf.querySelector('.ru'), satz, { anker: satzKnopf });
                 einblenden();
                 sprechKnoepfe(karte);
                 ctx.sage(w.ru);

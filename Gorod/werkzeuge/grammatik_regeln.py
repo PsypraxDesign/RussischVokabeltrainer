@@ -41,7 +41,7 @@ ZAHL5 = wahl("пять", "шесть", "семь", "восемь", "девять
              "тридцать", "сорок", "пятьдесят", "шестьдесят", "семьдесят", "восемьдесят", "девяносто", "сто",
              "двести", "триста", "четыреста", "пятьсот", "шестьсот", "семьсот", "восемьсот", "девятьсот")
 TAUSEND = wahl("тысяча", "тысячи", "тысяч")
-ZAHL = rf"(?:{ZAHL1}|{ZAHL24}|{ZAHL5}|{TAUSEND}|ноль|\d+)"
+ZAHL = rf"(?:{ZAHL1}|{ZAHL24}|{ZAHL5}|{TAUSEND}|ноль|\d+(?!\d))"     # Ziffern nie nur teilweise (sonst „в 193|0 году“)
 ZAHLEN = rf"(?:{ZAHL}\s+)*"
 # Wörter, die nach einer Zahl kein gezähltes Nomen sind
 KEIN_NOMEN = rf"(?!(?:{ZAHL}|и|в|во|на|с|со|по|из|до|у|к|за|о|а|но|или|не|уже|ещё|еще)(?![\p{{L}}-]))"
@@ -66,7 +66,7 @@ MONAT_G = wahl("января", "февраля", "марта", "апреля", "
 
 LOC2 = wahl("саду", "лесу", "шкафу", "аэропорту", "полу", "краю", "углу", "мосту", "году", "снегу", "берегу",
             "носу", "рту", "порту")
-SUBST_ADJ = wahl("ванной", "столовой", "гостиной", "прихожей", "детской", "мастерской", "учительской", "кладовой")
+SUBST_ADJ = wahl("ванной", "столовой", "гостиной", "прихожей", "детской", "мастерской", "учительской", "кладовой", "примерочной")
 UNVERAENDERLICH = wahl("сочи", "кафе", "кино", "метро", "табло", "купе", "меню", "такси", "евро", "салями", "пальто",
                        "кофе", "радио", "фойе")
 WOCHENTAG = wahl("понедельник", "вторник", "среду", "четверг", "пятницу", "субботу", "воскресенье")
@@ -123,6 +123,32 @@ regel("u_pron", r"у\s+(?<wen>меня|тебя|него|неё|нее|нас|в
       "?est: есть = es gibt, also „haben“. Mit нет („es gibt nicht“) steht das Fehlende im Genitiv: У меня́ нет ка́рты.")
 regel("vsyo_v_poryadke", r"всё\s+в\s+порядке", "Alles in Ordnung",
       "в + Präpositiv: поря́док → в поря́дке (das о fällt in der Endung weg).")
+# Kleidung (Damen- und Herrenmode im GUM)
+# Getrennt nach „zu groß“ und „zu klein“, damit das Beispiel immer zum angetippten Satz passt
+regel("kurz_gross",
+      r"(?<wem>мне|тебе|вам|ему|ей|нам|им)\s+(?<kurz>велик|велика|велико|велики)(?![\p{L}])",
+      "zu groß (Kurzform + Dativ)",
+      "вели́к = zu groß. Die Kurzform richtet sich nach dem Kleidungsstück: вели́к (m), велика́ (f), велико́ (n), велики́ (Plural).\n"
+      "Wem es zu groß ist, steht im Dativ – hier {wem}: Пиджа́к мне вели́к = Das Sakko ist mir zu groß.\n"
+      "Das Gegenteil: мал, мала́, мало́, малы́ = zu klein.")
+regel("kurz_klein",
+      r"(?<wem>мне|тебе|вам|ему|ей|нам|им)\s+(?<kurz>мал|мала|мало|малы)(?![\p{L}])",
+      "zu klein (Kurzform + Dativ)",
+      "мал = zu klein. Die Kurzform richtet sich nach dem Kleidungsstück: мал (m), мала́ (f), мало́ (n), малы́ (Plural).\n"
+      "Wem es zu klein ist, steht im Dativ – hier {wem}: Пла́тье мне мало́ = Das Kleid ist mir zu klein.\n"
+      "Das Gegenteil: вели́к, велика́, велико́, велики́ = zu groß.")
+regel("idti_komu", r"(?<wem>мне|тебе|вам|ему|ей|нам|им)\s+(?:очень\s+|не\s+)?(?:идёт|идут)", "идти́ кому́ = jemandem stehen",
+      "Bei Kleidung heißt идти́ „stehen, gut aussehen“: Вам о́чень идёт! = Das steht Ihnen sehr gut!\n"
+      "Wem es steht, steht im Dativ: {wem}. Das Kleidungsstück ist Subjekt – bei mehreren иду́т: Вам иду́т э́ти брю́ки.")
+regel("nravitsya", r"(?<wem>мне|тебе|вам|ему|ей|нам|им)\s+(?:очень\s+|тоже\s+|не\s+)?(?:нравится|нравятся|понравился|понравилась|понравилось|понравились)",
+      "нра́виться = gefallen",
+      "Мне нра́вится … = mir gefällt …: Wem etwas gefällt, steht im Dativ ({wem}); die Sache ist das Subjekt im Nominativ.\n"
+      "Darum Plural, wenn es mehrere sind: Мне нра́вится э́тот костю́м – Мне нра́вятся э́ти брю́ки.")
+regel("kak_raz", r"как\s+раз", "как раз = genau richtig",
+      "как раз heißt „genau, gerade richtig“. Bei Kleidung: Он мне как раз = Er passt mir genau.")
+regel("na_zdorove", r"на\s+здоровье", "на здоро́вье – Wohl bekomm’s",
+      "Fester Wunsch, wörtlich „zur Gesundheit“: nach dem Essen als Antwort auf спаси́бо, beim Einkauf: Носи́те на здоро́вье! = Tragen Sie es gesund (viel Freude damit)!\n"
+      "Beim Niesen sagt man dagegen Будь здоро́в! / Бу́дьте здоро́вы!")
 
 # ------------------------------------------------------------------ Zeitangaben
 regel("datum", rf"(?:(?<na>на)\s+)?(?:(?:двадцать|тридцать)\s+)?(?:(?<tagn>{ORD_N})|(?<tagg>{ORD_G}))\s+(?<monat>{MONAT_G})",
@@ -137,6 +163,14 @@ regel("jahr_nom", rf"(?:{ZAHL}\s+)*{ORD_NOM}\s+год", "Jahreszahl",
       "Bei Jahreszahlen ist nur die letzte Zahl eine Ordnungszahl: две ты́сячи пе́рвый год = das Jahr 2001.")
 regel("jahr_p", rf"(?:в|во)\s+(?:{ZAHL}\s+)*{ORD_P}\s+году", "в + Jahr (Präpositiv)",
       "Im Jahr …: в + Präpositiv, nur die letzte Zahl wird gebeugt, го́д wird zu году́: в две ты́сячи пе́рвом году́ = im Jahr 2001.")
+# Jahreszahlen in Ziffern (Geschichtsstunde): gelesen wie oben, nur die letzte Zahl gebeugt
+regel("jahr_p_ziffern", r"(?:в|во)\s+\d{3,4}\s+году", "в + Jahr (Präpositiv)",
+      "Im Jahr …: в + Präpositiv, го́д wird zu году́. Beim Lesen wird nur die letzte Zahl als Ordnungszahl gebeugt, "
+      "davor stehen Grundzahlen – z. B. в 1924 году́ = в ты́сяча девятьсо́т два́дцать четвёртом году́ = im Jahr 1924.")
+regel("datum_jahr", r"\d{1,2}\s+(?:января|февраля|марта|апреля|мая|июня|июля|августа|сентября|октября|ноября|декабря)\s+\d{3,4}\s+года",
+      "Datum mit Jahr",
+      "Tag als Ordnungszahl, Monat und Jahr im Genitiv: 24 ию́ня 1945 го́да = два́дцать четвёртого ию́ня ты́сяча девятьсо́т "
+      "со́рок пя́того го́да = am 24. Juni 1945 – wörtlich „des Juni des Jahres 1945“.")
 regel("uhrzeit", rf"(?:в|во)\s+{ZAHL}(?:\s+{ZAHL})*(?:\s+(?<h>час|часа|часов))?(?!\s+(?:конец|сторону|раз|день|год|класс|вагон|билет|чемодан|место))", "в + Uhrzeit",
       "в + Uhrzeit = um … Uhr: в во́семь пятна́дцать = um 8:15.\n"
       "?h: Nach der Zahl: 1 час, 2–4 часа́, 5–20 часо́в: в пять часо́в.")
@@ -175,26 +209,38 @@ regel("praep_u", rf"(?<prae>в|во|на)\s+(?<np>{ADJP}{LOC2})", "Präpositiv a
       "{prae} + Präpositiv (wo?). Einige männliche Wörter enden hier auf ein betontes -у́ statt -е: сад → в саду́, лес → в лесу́, шкаф → в шкафу́, аэропо́рт → в аэропорту́, пол → на полу́.\n"
       "Aber mit о (über): о са́де, о ле́се.\nHier: {L}")
 regel("subst_adj", rf"(?<prae>в|во|на)\s+(?<np>{SUBST_ADJ})", "Zimmer-Name = Adjektiv",
-      "ва́нная, гости́ная, столо́вая, прихо́жая, де́тская sind eigentlich Adjektive (ко́мната, Zimmer, ist mitgedacht). Darum Präpositiv wie bei Adjektiven: в ва́нной, в гости́ной (wo?).\nHier: {L}")
+      "ва́нная, гости́ная, столо́вая, прихо́жая, де́тская, приме́рочная (Umkleidekabine) sind eigentlich Adjektive (ко́мната, Zimmer, ist mitgedacht). Darum Präpositiv wie bei Adjektiven: в ва́нной, в гости́ной (wo?).\nHier: {L}")
 
+# Beispiele je Präposition – in der Erklärung zu на stehen nur Beispiele mit на, zu в nur mit в
 PRAEP = {
-    "в": ("в", "in"), "на": ("на", "auf / an"),
+    "в": {"de": "in",
+          "praep": "Endung meist -е (в Москве́, в кла́ссе), bei weiblichen Wörtern auf -ь und bei -ия/-ие: -и (в тетра́ди, в Росси́и), im Plural -ах/-ях (в магази́нах).",
+          "adj": "в пе́рвом кла́ссе",
+          "akk_f": "Москва́ → в Москву́, гости́ница → в гости́ницу. Adjektive davor: -ую (в каку́ю, в одну́).",
+          "akk_m": "в Яросла́вль, в Ни́жний Но́вгород, в Каза́нь, в рюкза́к",
+          "wo": "в Яросла́вле, в Каза́ни"},
+    "на": {"de": "auf / an",
+           "praep": "Endung meist -е (на столе́, на вокза́ле), bei weiblichen Wörtern auf -ь: -и (на пло́щади), im Plural -ах/-ях (на уро́ках).",
+           "adj": "на пе́рвом этаже́",
+           "akk_f": "по́лка → на по́лку, платфо́рма → на платфо́рму. Adjektive davor: -ую (на каку́ю, на пе́рвую).",
+           "akk_m": "на вокза́л, на уро́к, на второ́й эта́ж, на пло́щадь",
+           "wo": "на вокза́ле, на уро́ке"},
 }
-for p, (wort, de) in PRAEP.items():
+for p, b in PRAEP.items():
     alt = "(?:в|(?<vo>во))" if p == "в" else "на"
     zusatz = VO if p == "в" else ""
-    regel(f"{p}_praep", rf"{alt}\s+{np('(?:е|и|ах|ях)')}", f"{wort} + Präpositiv (wo?)",
-          f"{wort} = {de}. Auf die Frage „wo?“ (где?) steht {wort} mit dem Präpositiv.\n"
-          "Endung meist -е (в Москве́, на столе́), bei weiblichen Wörtern auf -ь und bei -ия/-ие: -и (в тетра́ди, в Каза́ни), im Plural -ах/-ях (в роди́телях).\n"
+    regel(f"{p}_praep", rf"{alt}\s+{np('(?:е|и|ах|ях)')}", f"{p} + Präpositiv (wo?)",
+          f"{p} = {b['de']}. Auf die Frage „wo?“ (где?) steht {p} mit dem Präpositiv.\n"
+          + b["praep"] + "\n"
           + ("на statt в bei Flächen, Plätzen und Veranstaltungen: на вокза́ле, на платфо́рме, на ка́ссе, на уро́ке.\n" if p == "на" else "")
-          + "?np: Adjektive davor enden auf -ом/-ем (m, n) bzw. -ой/-ей (f): в пе́рвом кла́ссе.\nHier: {L}" + zusatz)
-    regel(f"{p}_akk_f", rf"{alt}\s+{np('(?:у|ю)')}", f"{wort} + Akkusativ (wohin?)",
-          f"Auf die Frage „wohin?“ (куда́?) steht {wort} mit dem Akkusativ.\n"
-          "Weibliche Wörter auf -а/-я bekommen -у/-ю: Москва́ → в Москву́, гости́ница → в гости́ницу. Adjektive davor: -ую (в каку́ю, в одну́).\nHier: {L}" + zusatz)
-    regel(f"{p}_akk_m", rf"{alt}\s+{np('(?:[бвгджзклмнпрстфхцчшщ]|ь|й|о)(?<!каком|котором|этом|том|одном)')}", f"{wort} + Akkusativ (wohin?)",
-          f"Auf die Frage „wohin?“ (куда́?) steht {wort} mit dem Akkusativ.\n"
-          "Bei männlichen Sachen (und Wörtern auf -о oder weiblich auf -ь) sieht der Akkusativ aus wie der Nominativ: в Яросла́вль, в Ни́жний Но́вгород, в Каза́нь, в рюкза́к."
-          + "\nZum Vergleich „wo?“: в Яросла́вле, в Каза́ни." + zusatz)
+          + f"?np: Adjektive davor enden auf -ом/-ем (m, n) bzw. -ой/-ей (f): {b['adj']}.\nHier: {{L}}" + zusatz)
+    regel(f"{p}_akk_f", rf"{alt}\s+{np('(?:у|ю)')}", f"{p} + Akkusativ (wohin?)",
+          f"Auf die Frage „wohin?“ (куда́?) steht {p} mit dem Akkusativ.\n"
+          f"Weibliche Wörter auf -а/-я bekommen -у/-ю: {b['akk_f']}\nHier: {{L}}" + zusatz)
+    regel(f"{p}_akk_m", rf"{alt}\s+{np('(?:[бвгджзклмнпрстфхцчшщ]|ь|й|о)(?<!каком|котором|этом|том|одном)')}", f"{p} + Akkusativ (wohin?)",
+          f"Auf die Frage „wohin?“ (куда́?) steht {p} mit dem Akkusativ.\n"
+          f"Bei männlichen Sachen (und Wörtern auf -о oder weiblich auf -ь) sieht der Akkusativ aus wie der Nominativ: {b['akk_m']}."
+          + f"\nZum Vergleich „wo?“: {b['wo']}." + zusatz)
 
 regel("s_instr", rf"(?:с|(?<so>со))\s+{np('(?:ом|ем|ой|ей|ью|ами|ями|ыми|ими)')}", "с + Instrumental = mit",
       "с mit dem Instrumental heißt „mit, zusammen mit“: чай с лимо́ном, с бра́том.\n"
@@ -249,6 +295,13 @@ regel("menge", rf"(?:(?<zahl>{ZAHLEN}{ZAHL})\s+)?(?<menge>{MENGE})\s+(?<np>[\p{{
       "Hier: {L}")
 regel("euro", rf"(?:{ZAHLEN}{ZAHL})\s+евро", "е́вро – unveränderlich",
       "е́вро wird nie gebeugt: оди́н е́вро, два е́вро, пять е́вро. Bei рубль und до́ллар gilt die Zahlregel: пять рубле́й, пять до́лларов.")
+# Größen und Stockwerke als Ordnungszahl – vor den Zahlregeln, sonst gilt „со́рок восьмо́й“ als Zahl + Genitiv Plural
+regel("ordnungszahl", rf"(?:(?:{ZAHL}\s+)+{ORD_NOM}|(?<ziffer>\d+)-(?:й|ый|ой|ий))(?:\s+(?<np>размер|этаж|ряд|номер|вагон|класс))?",
+      "Ordnungszahl (Größe, Stockwerk …)",
+      "?ziffer: Hier steht {0}: Die Endung -й zeigt, dass man {ziffer} als Ordnungszahl liest.\n"
+      "Kleidergrößen, Stockwerke und Nummern sagt man als Ordnungszahl, z. B. со́рок восьмо́й разме́р = Größe 48, пя́тый эта́ж = 5. Stock.\n"
+      "Nur die letzte Zahl wird zur Ordnungszahl, davor stehen Grundzahlen: со́рок (40, Grundzahl) + восьмо́й (8., Ordnungszahl) = 48. Geschrieben 48-й.\n"
+      "Sie richtet sich wie ein Adjektiv nach dem Nomen: разме́р und эта́ж sind männlich – also -ой/-ый/-ий.")
 regel("zahl_1", rf"(?:{ZAHLEN})?(?<zahl>{ZAHL1})\s+(?<np>{ADJP}{NOMEN})", "Zahl + Nomen",
       "Nach 1 steht das Nomen im Singular, im selben Fall wie die Zahl. Ebenso bei 21, 31, 101 … – nur nicht bei 11 (оди́ннадцать → Genitiv Plural).\n"
       "Die Eins richtet sich nach dem Geschlecht: оди́н биле́т (m), одна́ су́мка (f), одно́ ме́сто (n); als Objekt weiblich: одну́ ру́чку.\n"
@@ -380,6 +433,13 @@ regel("familienname_f", r"[А-Я][\p{L}]{2,}(?:ова|ева)", "Familienname, w
       "Frauen tragen die weibliche Form des Familiennamens: Во́лков → Во́лкова, Петро́в → Петро́ва, Кузнецо́в → Кузнецо́ва.",
       gross=True)
 KEINWORT = r"(?!(?:и|или|а|но|в|во|на|с|со|по|из|до|у|к|за|о|не|это|как|что)(?![\p{L}]))"
+ADJ_ENDUNG = r"(?:ый|ий|ой|ая|яя|ое|ее|ые|ие|ую|юю|ого|его|ом|ем|ым|им|ых|их)"
+regel("demonstrativ", rf"(?<dem>этот|эта|эти|этого|этой|этом|эту|этим|этих)\s+(?<np>(?:[\p{{L}}]+{ADJ_ENDUNG}\s+)?{KEINWORT}[\p{{L}}-]{{2,}})"
+                      rf"|(?<=(?:стоит|стоят|нравится|возьму|беру)\s)это\s+{KEINWORT}[\p{{L}}-]{{2,}}"
+                      rf"|это\s+[\p{{L}}]+(?:ое|ее)\s+{KEINWORT}[\p{{L}}-]{{2,}}",
+      "э́тот / э́та / э́то / э́ти = dieser",
+      "Das Demonstrativ richtet sich wie ein Adjektiv nach dem Nomen: э́тот се́рый костю́м (m), э́та бе́лая руба́шка (f), э́то пальто́ (n), э́ти брю́ки (Pl).\n"
+      "Steht э́то allein am Satzanfang, heißt es dagegen „das (ist)“: Э́то мой брат.")
 ADJ_M_TEXT = ("Das Adjektiv richtet sich nach dem Nomen: männlich -ый/-ий (betont -о́й) – кра́сный чемода́н, си́ний рюкза́к, большо́й паке́т.\n"
               "Weiblich: -ая/-яя, sächlich: -ое/-ее, Plural: -ые/-ие.")
 regel("adj_m", r"(?:(?!(?:дмитрий|василий|геннадий|евгений|григорий|аркадий|анатолий|виталий|юрий)(?![\p{L}]))[\p{L}]+(?:ый|ий)\s+)+" + KEINWORT + r"[\p{L}-]{2,}",

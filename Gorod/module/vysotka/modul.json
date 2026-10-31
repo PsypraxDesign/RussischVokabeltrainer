@@ -1,11 +1,11 @@
 {
   "titel": {
-    "ru": "высо́тка",
-    "de": "Hochhaus"
+    "ru": "университе́т",
+    "de": "Lomonossow-Universität"
   },
   "praeposition": "в",
-  "satz_hin": "Я иду́ в высо́тку.",
-  "satz_hin_de": "Ich gehe ins Hochhaus.",
+  "satz_hin": "Я иду́ в университе́т.",
+  "satz_hin_de": "Ich gehe in die Universität.",
   "stufen": [
     "entdecken",
     "hoeren",
@@ -16,5 +16,5 @@
     "innen": "grafik/innen.svg"
   },
   "farbe": "#7c5ea8",
-  "breite": 165
+  "breite": 200
 }

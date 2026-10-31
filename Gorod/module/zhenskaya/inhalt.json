@@ -1,0 +1,1713 @@
+{
+ "entdecken_hinweis": "Was gibt es in der Damenabteilung? Tippe auf die Kleider, den Spiegel, die Verkäuferin …",
+ "woerter": [
+  {
+   "id": "plate_krasnoe",
+   "ru": "кра́сное пла́тье",
+   "de": "das rote Kleid",
+   "genus": "n",
+   "hotspot": "hs-plate-krasnoe",
+   "satz": "Кра́сное пла́тье дли́нное.",
+   "hinweis": "пла́тье ist sächlich: кра́сн-ое. Plural: пла́тья"
+  },
+  {
+   "id": "plate_sinee",
+   "ru": "си́нее пла́тье",
+   "de": "das blaue Kleid",
+   "genus": "n",
+   "hotspot": "hs-plate-sinee",
+   "satz": "Си́нее пла́тье коро́ткое.",
+   "hinweis": "си́ний hat ein weiches н: си́ний, си́няя, си́нее, си́ние"
+  },
+  {
+   "id": "yubka_chernaya",
+   "ru": "чёрная ю́бка",
+   "de": "der schwarze Rock",
+   "genus": "f",
+   "hotspot": "hs-yubka-chernaya",
+   "satz": "Чёрная ю́бка дли́нная.",
+   "hinweis": "der Rock – aber ю́бка ist weiblich: чёрн-ая"
+  },
+  {
+   "id": "yubka_krasnaya",
+   "ru": "кра́сная ю́бка",
+   "de": "der rote Rock",
+   "genus": "f",
+   "hotspot": "hs-yubka-krasnaya",
+   "satz": "Кра́сная ю́бка коро́ткая.",
+   "hinweis": "кра́сный – кра́сная – кра́сное – кра́сные: die Endung folgt dem Nomen"
+  },
+  {
+   "id": "bryuki_sinie",
+   "ru": "си́ние брю́ки",
+   "de": "die blaue Hose",
+   "genus": "pl",
+   "hotspot": "hs-bryuki-sinie",
+   "satz": "Си́ние брю́ки дли́нные.",
+   "hinweis": "брю́ки gibt es nur im Plural – die Farbe auch: си́ни-е",
+   "de_zahl": "sg"
+  },
+  {
+   "id": "bryuki_chernye",
+   "ru": "чёрные брю́ки",
+   "de": "die schwarze Hose",
+   "genus": "pl",
+   "hotspot": "hs-bryuki-chernye",
+   "satz": "Чёрные брю́ки у́зкие.",
+   "hinweis": "nur im Plural: чёрные брю́ки – eine Hose",
+   "de_zahl": "sg"
+  },
+  {
+   "id": "sviter_belyy",
+   "ru": "бе́лый сви́тер",
+   "de": "der weiße Pullover",
+   "genus": "m",
+   "hotspot": "hs-sviter-belyy",
+   "satz": "Бе́лый сви́тер лежи́т на по́лке.",
+   "hinweis": "сви́тер ist männlich: бе́л-ый (aus dem Englischen: sweater)"
+  },
+  {
+   "id": "sviter_krasnyy",
+   "ru": "кра́сный сви́тер",
+   "de": "der rote Pullover",
+   "genus": "m",
+   "hotspot": "hs-sviter-krasnyy",
+   "satz": "Кра́сный сви́тер тёплый.",
+   "hinweis": "кра́сный сви́тер (m), кра́сная ю́бка (f), кра́сное пла́тье (n)"
+  },
+  {
+   "id": "bluzka",
+   "ru": "блу́зка",
+   "de": "die Bluse",
+   "genus": "f",
+   "hotspot": "hs-bluzka",
+   "satz": "Блу́зка бе́лая.",
+   "hinweis": "Plural: блу́зки"
+  },
+  {
+   "id": "kurtka",
+   "ru": "ку́ртка",
+   "de": "die Jacke",
+   "genus": "f",
+   "hotspot": "hs-kurtka",
+   "satz": "Ку́ртка зелёная.",
+   "hinweis": "Plural: ку́ртки"
+  },
+  {
+   "id": "palto",
+   "ru": "пальто́",
+   "de": "der Mantel",
+   "genus": "n",
+   "hotspot": "hs-palto",
+   "satz": "Пальто́ тёплое.",
+   "hinweis": "unveränderlich: в пальто́, без пальто́. Sächlich: тёплое пальто́"
+  },
+  {
+   "id": "sharf",
+   "ru": "шарф",
+   "de": "der Schal",
+   "genus": "m",
+   "hotspot": "hs-sharf",
+   "satz": "Шарф дли́нный.",
+   "hinweis": "шарф ist männlich: дли́нный шарф"
+  },
+  {
+   "id": "perchatki",
+   "ru": "перча́тки",
+   "de": "die Handschuhe",
+   "genus": "pl",
+   "hotspot": "hs-perchatki",
+   "satz": "Перча́тки лежа́т на по́лке.",
+   "hinweis": "Singular: перча́тка; ein Paar Handschuhe: па́ра перча́ток"
+  },
+  {
+   "id": "tufli",
+   "ru": "ту́фли",
+   "de": "die Pumps",
+   "genus": "pl",
+   "hotspot": "hs-tufli",
+   "satz": "Ту́фли на высо́ком каблуке́.",
+   "hinweis": "Singular: ту́фля – ein Damenschuh"
+  },
+  {
+   "id": "sapogi",
+   "ru": "сапоги́",
+   "de": "die Stiefel",
+   "genus": "pl",
+   "hotspot": "hs-sapogi",
+   "satz": "Сапоги́ стоя́т на полу́.",
+   "hinweis": "Singular: сапо́г; ein Paar Stiefel: па́ра сапо́г"
+  },
+  {
+   "id": "sumka",
+   "ru": "су́мка",
+   "de": "die Handtasche",
+   "genus": "f",
+   "hotspot": "hs-sumka",
+   "satz": "Су́мка ко́жаная.",
+   "hinweis": "у меня́ есть су́мка – ich habe eine Tasche"
+  },
+  {
+   "id": "razmer",
+   "ru": "разме́р",
+   "de": "die Größe",
+   "genus": "m",
+   "hotspot": "hs-razmer",
+   "satz": "Како́й у вас разме́р?",
+   "hinweis": "Größen sind Ordnungszahlen: 46-й (со́рок шесто́й) разме́р = Größe 46"
+  },
+  {
+   "id": "primerochnaya",
+   "ru": "приме́рочная",
+   "de": "die Umkleidekabine",
+   "genus": "f",
+   "hotspot": "hs-primerochnaya",
+   "satz": "Приме́рочная свобо́дна.",
+   "hinweis": "eigentlich ein Adjektiv: в приме́рочной – in der Kabine. Von приме́рить – anprobieren"
+  },
+  {
+   "id": "zerkalo",
+   "ru": "зе́ркало",
+   "de": "der Spiegel",
+   "genus": "n",
+   "hotspot": "hs-zerkalo",
+   "satz": "Зе́ркало большо́е.",
+   "hinweis": "смотре́ть в зе́ркало – in den Spiegel schauen (в + Akkusativ)"
+  },
+  {
+   "id": "veshalka",
+   "ru": "ве́шалка",
+   "de": "der Kleiderbügel",
+   "genus": "f",
+   "hotspot": "hs-veshalka",
+   "satz": "Ве́шалка пуста́я.",
+   "hinweis": "ве́шалка heißt auch Garderobe oder Kleiderständer"
+  },
+  {
+   "id": "maneken",
+   "ru": "манеке́н",
+   "de": "die Schaufensterpuppe",
+   "genus": "m",
+   "hotspot": "hs-maneken",
+   "satz": "Манеке́н в жёлтом пла́тье.",
+   "hinweis": "манеке́н ist männlich – auch im Kleid. в + Präpositiv: в жёлтом пла́тье"
+  },
+  {
+   "id": "polka",
+   "ru": "по́лка",
+   "de": "das Regal",
+   "genus": "f",
+   "hotspot": "hs-polka",
+   "satz": "На по́лке лежа́т сви́теры.",
+   "hinweis": "на по́лке – im Regal (wörtlich: auf dem Brett)"
+  },
+  {
+   "id": "prodavshchitsa",
+   "ru": "продавщи́ца",
+   "de": "die Verkäuferin",
+   "genus": "f",
+   "hotspot": "hs-prodavshchitsa",
+   "satz": "Продавщи́ца улыба́ется.",
+   "hinweis": "männlich: продаве́ц"
+  },
+  {
+   "id": "kassa",
+   "ru": "ка́сса",
+   "de": "die Kasse",
+   "genus": "f",
+   "hotspot": "hs-kassa",
+   "satz": "Ка́сса у вы́хода.",
+   "hinweis": "у + Genitiv: вы́ход → у вы́хода (am Ausgang)"
+  },
+  {
+   "id": "kassir",
+   "ru": "касси́р",
+   "de": "die Kassiererin",
+   "genus": "m",
+   "hotspot": "hs-kassir",
+   "satz": "Касси́р сиди́т за ка́ссой.",
+   "hinweis": "касси́р ist männlich, gilt aber auch für Frauen; umgangssprachlich: касси́рша"
+  }
+ ],
+ "einkaufen_text": {
+  "titel": "Aussuchen",
+  "anleitung": "Hör dir deinen Zettel an und tippe die Sachen im Bild an. Achte auf die Farbe!",
+  "zettel": "Мой спи́сок",
+  "korb": "Мой вы́бор",
+  "leer": "Noch nichts ausgesucht. Tippe im Bild auf die Sachen.",
+  "fertig": "Alles ausgesucht!",
+  "weiter": "Weiter zur Anprobe",
+  "lob": "Молоде́ц! Всё есть.",
+  "tipp": "Tipp: Die Farbe passt sich an – кра́сный шарф, кра́сная ю́бка, кра́сное пла́тье, кра́сные брю́ки."
+ },
+ "reise": {
+  "neu_knopf": "Neuer Zettel →",
+  "start_stufe": "einkaufen",
+  "figuren": {
+   "prodavshchitsa": {
+    "name": "Продавщи́ца",
+    "stimme": "weiblich",
+    "blase": {
+     "x": 0.79,
+     "y": 0.4,
+     "seite": "links"
+    }
+   },
+   "kassir": {
+    "name": "Касси́р",
+    "stimme": "weiblich",
+    "blase": {
+     "x": 0.93,
+     "y": 0.52,
+     "seite": "links"
+    }
+   },
+   "erzaehler": {
+    "name": "",
+    "stimme": "erzaehler",
+    "blase": {
+     "x": 0.08,
+     "y": 0.3
+    }
+   }
+  },
+  "reisende": [
+   {
+    "id": "k1",
+    "geschlecht": "f",
+    "zahlart": "karte",
+    "liste": [
+     {
+      "ware": "plate_krasnoe",
+      "menge": 1,
+      "text": "кра́сное пла́тье",
+      "de": "das rote Kleid",
+      "bild": "👗"
+     },
+     {
+      "ware": "bluzka",
+      "menge": 1,
+      "text": "блу́зка",
+      "de": "die Bluse",
+      "bild": "👚"
+     },
+     {
+      "ware": "sharf",
+      "menge": 1,
+      "text": "шарф",
+      "de": "der Schal",
+      "bild": "🧣"
+     }
+    ],
+    "liste_satz": "Мой спи́сок: кра́сное пла́тье, блу́зка и шарф.",
+    "posten": [
+     {
+      "ru": "кра́сное пла́тье",
+      "preis": 2400
+     },
+     {
+      "ru": "блу́зка",
+      "preis": 1300
+     },
+     {
+      "ru": "шарф",
+      "preis": 600
+     }
+    ],
+    "preis": 4300,
+    "p": {
+     "r2": "46-й",
+     "r2_de": "46",
+     "akk": "кра́сное пла́тье",
+     "akk_de": "das rote Kleid",
+     "preis_ru": "Оно́ сто́ит две ты́сячи четы́реста рубле́й.",
+     "preis_de": "Das rote Kleid kostet 2400 Rubel.",
+     "nehmen_de": "es",
+     "zub": "Шарф",
+     "zub_de": "der Schal",
+     "zub_ist": "Ist"
+    },
+    "zettel": {
+     "theke": [
+      "Du suchst das rote Kleid.",
+      "Deine Größe: 44",
+      "Beim Anprobieren: zu klein"
+     ],
+     "kasse": [
+      "Der Schal ist ein Geschenk für Mama.",
+      "Eigene Tasche dabei",
+      "Bezahlen: mit Karte"
+     ]
+    },
+    "felder": {
+     "suche": {
+      "richtig": {
+       "text": "Да, пожа́луйста. Я ищу́ кра́сное пла́тье.",
+       "de": "Ja, bitte. Ich suche das rote Kleid."
+      },
+      "falsch": [
+       {
+        "text": "Да, пожа́луйста. Я ищу́ кра́сный пла́тье.",
+        "de": "",
+        "hinweis": "пла́тье ist sächlich: кра́сное пла́тье."
+       },
+       {
+        "text": "Да, пожа́луйста. Я ищу́ си́нее пла́тье.",
+        "de": "Ja, bitte. Ich suche das blaue Kleid.",
+        "hinweis": "Laut Zettel suchst du das rote Kleid – кра́сное пла́тье."
+       }
+      ]
+     },
+     "razmer": {
+      "richtig": {
+       "text": "У меня́ 44-й разме́р.",
+       "de": "Ich habe Größe 44."
+      },
+      "falsch": [
+       {
+        "text": "У меня́ 44-я разме́р.",
+        "de": "",
+        "hinweis": "разме́р ist männlich: 44-й разме́р – gesprochen со́рок четвёртый разме́р."
+       },
+       {
+        "text": "У меня́ 46-й разме́р.",
+        "de": "Ich habe Größe 46.",
+        "hinweis": "Laut Zettel hast du Größe 44."
+       }
+      ]
+     },
+     "passt": {
+      "richtig": {
+       "text": "Нет, оно́ мне мало́.",
+       "de": "Nein, es ist mir zu klein."
+      },
+      "falsch": [
+       {
+        "text": "Нет, она́ мне мала́.",
+        "de": "",
+        "hinweis": "пла́тье ist sächlich: оно́ мне мало́."
+       },
+       {
+        "text": "Нет, оно́ мне велико́.",
+        "de": "Nein, es ist mir zu groß.",
+        "hinweis": "Laut Zettel: zu klein – мало́. велико́ heißt „zu groß“."
+       }
+      ]
+     },
+     "nehmen": {
+      "richtig": {
+       "text": "Да, я его́ возьму́.",
+       "de": "Ja, ich nehme es."
+      },
+      "falsch": [
+       {
+        "text": "Да, я оно́ возьму́.",
+        "de": "",
+        "hinweis": "Nach возьму́ steht der Akkusativ: оно́ → его́."
+       },
+       {
+        "text": "Да, я её возьму́.",
+        "de": "",
+        "hinweis": "пла́тье ist sächlich – Akkusativ его́ (wie männlich)."
+       }
+      ]
+     },
+     "paket": {
+      "richtig": {
+       "text": "Нет, спаси́бо, у меня́ есть су́мка.",
+       "de": "Nein danke, ich habe eine Tasche."
+      },
+      "falsch": [
+       {
+        "text": "Нет, спаси́бо, у меня́ есть су́мку.",
+        "de": "",
+        "hinweis": "у меня́ есть … + Nominativ: су́мка."
+       },
+       {
+        "text": "Да, оди́н паке́т, пожа́луйста.",
+        "de": "Ja, eine Tüte, bitte.",
+        "hinweis": "Laut Zettel hast du eine eigene Tasche dabei."
+       }
+      ]
+     },
+     "podarok": {
+      "richtig": {
+       "text": "Да, для ма́мы.",
+       "de": "Ja, für Mama."
+      },
+      "falsch": [
+       {
+        "text": "Да, для ма́ма.",
+        "de": "",
+        "hinweis": "для + Genitiv: ма́ма → ма́мы."
+       },
+       {
+        "text": "Нет, э́то для меня́.",
+        "de": "Nein, das ist für mich.",
+        "hinweis": "Laut Zettel ist der Schal ein Geschenk für Mama."
+       }
+      ]
+     }
+    }
+   },
+   {
+    "id": "k2",
+    "geschlecht": "f",
+    "zahlart": "bar",
+    "liste": [
+     {
+      "ware": "yubka_chernaya",
+      "menge": 1,
+      "text": "чёрная ю́бка",
+      "de": "der schwarze Rock",
+      "bild": "👗"
+     },
+     {
+      "ware": "tufli",
+      "menge": 1,
+      "text": "ту́фли",
+      "de": "die Pumps",
+      "bild": "👠"
+     },
+     {
+      "ware": "perchatki",
+      "menge": 1,
+      "text": "перча́тки",
+      "de": "die Handschuhe",
+      "bild": "🧤"
+     }
+    ],
+    "liste_satz": "Мой спи́сок: чёрная ю́бка, ту́фли и перча́тки.",
+    "posten": [
+     {
+      "ru": "чёрная ю́бка",
+      "preis": 1600
+     },
+     {
+      "ru": "ту́фли",
+      "preis": 2300
+     },
+     {
+      "ru": "перча́тки",
+      "preis": 500
+     }
+    ],
+    "preis": 4400,
+    "p": {
+     "r2": "44-й",
+     "r2_de": "44",
+     "akk": "чёрную ю́бку",
+     "akk_de": "den schwarzen Rock",
+     "preis_ru": "Она́ сто́ит ты́сячу шестьсо́т рубле́й.",
+     "preis_de": "Der schwarze Rock kostet 1600 Rubel.",
+     "nehmen_de": "ihn",
+     "zub": "Перча́тки",
+     "zub_de": "die Handschuhe",
+     "zub_ist": "Sind"
+    },
+    "zettel": {
+     "theke": [
+      "Du suchst den schwarzen Rock.",
+      "Deine Größe: 46",
+      "Beim Anprobieren: zu groß"
+     ],
+     "kasse": [
+      "Alles ist für dich selbst.",
+      "Keine Tasche dabei",
+      "Bezahlen: bar"
+     ]
+    },
+    "felder": {
+     "suche": {
+      "richtig": {
+       "text": "Да, пожа́луйста. Я ищу́ чёрную ю́бку.",
+       "de": "Ja, bitte. Ich suche den schwarzen Rock."
+      },
+      "falsch": [
+       {
+        "text": "Да, пожа́луйста. Я ищу́ чёрная ю́бка.",
+        "de": "",
+        "hinweis": "иска́ть + Akkusativ: чёрная ю́бка → чёрную ю́бку."
+       },
+       {
+        "text": "Да, пожа́луйста. Я ищу́ кра́сную ю́бку.",
+        "de": "Ja, bitte. Ich suche den roten Rock.",
+        "hinweis": "Laut Zettel suchst du den schwarzen Rock – чёрная ю́бка."
+       }
+      ]
+     },
+     "razmer": {
+      "richtig": {
+       "text": "У меня́ 46-й разме́р.",
+       "de": "Ich habe Größe 46."
+      },
+      "falsch": [
+       {
+        "text": "У меня́ 46-я разме́р.",
+        "de": "",
+        "hinweis": "разме́р ist männlich: 46-й разме́р – gesprochen со́рок шесто́й разме́р."
+       },
+       {
+        "text": "У меня́ 44-й разме́р.",
+        "de": "Ich habe Größe 44.",
+        "hinweis": "Laut Zettel hast du Größe 46."
+       }
+      ]
+     },
+     "passt": {
+      "richtig": {
+       "text": "Нет, она́ мне велика́.",
+       "de": "Nein, er ist mir zu groß."
+      },
+      "falsch": [
+       {
+        "text": "Нет, он мне вели́к.",
+        "de": "",
+        "hinweis": "ю́бка ist weiblich: она́ мне велика́."
+       },
+       {
+        "text": "Нет, она́ мне мала́.",
+        "de": "Nein, er ist mir zu klein.",
+        "hinweis": "Laut Zettel: zu groß – велика́. мала́ heißt „zu klein“."
+       }
+      ]
+     },
+     "nehmen": {
+      "richtig": {
+       "text": "Да, я её возьму́.",
+       "de": "Ja, ich nehme ihn."
+      },
+      "falsch": [
+       {
+        "text": "Да, я она́ возьму́.",
+        "de": "",
+        "hinweis": "Nach возьму́ steht der Akkusativ: она́ → её."
+       },
+       {
+        "text": "Да, я его́ возьму́.",
+        "de": "",
+        "hinweis": "ю́бка ist weiblich – Akkusativ её."
+       }
+      ]
+     },
+     "paket": {
+      "richtig": {
+       "text": "Да, оди́н паке́т, пожа́луйста.",
+       "de": "Ja, eine Tüte, bitte."
+      },
+      "falsch": [
+       {
+        "text": "Да, одна́ паке́т, пожа́луйста.",
+        "de": "",
+        "hinweis": "паке́т ist männlich: оди́н паке́т."
+       },
+       {
+        "text": "Нет, спаси́бо, у меня́ есть су́мка.",
+        "de": "Nein danke, ich habe eine Tasche.",
+        "hinweis": "Laut Zettel hast du keine Tasche dabei."
+       }
+      ]
+     },
+     "podarok": {
+      "richtig": {
+       "text": "Нет, э́то для меня́.",
+       "de": "Nein, das ist für mich."
+      },
+      "falsch": [
+       {
+        "text": "Нет, э́то для я.",
+        "de": "",
+        "hinweis": "для + Genitiv: я → меня́."
+       },
+       {
+        "text": "Да, для ма́мы.",
+        "de": "Ja, für Mama.",
+        "hinweis": "Laut Zettel sind die Handschuhe für dich selbst."
+       }
+      ]
+     }
+    }
+   },
+   {
+    "id": "k3",
+    "geschlecht": "f",
+    "zahlart": "karte",
+    "liste": [
+     {
+      "ware": "bryuki_sinie",
+      "menge": 1,
+      "text": "си́ние брю́ки",
+      "de": "die blaue Hose",
+      "bild": "👖"
+     },
+     {
+      "ware": "bluzka",
+      "menge": 1,
+      "text": "блу́зка",
+      "de": "die Bluse",
+      "bild": "👚"
+     },
+     {
+      "ware": "perchatki",
+      "menge": 1,
+      "text": "перча́тки",
+      "de": "die Handschuhe",
+      "bild": "🧤"
+     }
+    ],
+    "liste_satz": "Мой спи́сок: си́ние брю́ки, блу́зка и перча́тки.",
+    "posten": [
+     {
+      "ru": "си́ние брю́ки",
+      "preis": 1900
+     },
+     {
+      "ru": "блу́зка",
+      "preis": 1300
+     },
+     {
+      "ru": "перча́тки",
+      "preis": 500
+     }
+    ],
+    "preis": 3700,
+    "p": {
+     "r2": "44-й",
+     "r2_de": "44",
+     "akk": "си́ние брю́ки",
+     "akk_de": "die blaue Hose",
+     "preis_ru": "Они́ сто́ят ты́сячу девятьсо́т рубле́й.",
+     "preis_de": "Die blaue Hose kostet 1900 Rubel.",
+     "nehmen_de": "sie",
+     "zub": "Перча́тки",
+     "zub_de": "die Handschuhe",
+     "zub_ist": "Sind"
+    },
+    "zettel": {
+     "theke": [
+      "Du suchst die blaue Hose.",
+      "Deine Größe: 42",
+      "Beim Anprobieren: zu klein"
+     ],
+     "kasse": [
+      "Die Handschuhe sind ein Geschenk für deine Schwester.",
+      "Eigene Tasche dabei",
+      "Bezahlen: mit Karte"
+     ]
+    },
+    "felder": {
+     "suche": {
+      "richtig": {
+       "text": "Да, пожа́луйста. Я ищу́ си́ние брю́ки.",
+       "de": "Ja, bitte. Ich suche die blaue Hose."
+      },
+      "falsch": [
+       {
+        "text": "Да, пожа́луйста. Я ищу́ си́нюю брю́ки.",
+        "de": "",
+        "hinweis": "брю́ки sind Plural: си́ние брю́ки."
+       },
+       {
+        "text": "Да, пожа́луйста. Я ищу́ чёрные брю́ки.",
+        "de": "Ja, bitte. Ich suche die schwarze Hose.",
+        "hinweis": "Laut Zettel suchst du die blaue Hose – си́ние брю́ки."
+       }
+      ]
+     },
+     "razmer": {
+      "richtig": {
+       "text": "У меня́ 42-й разме́р.",
+       "de": "Ich habe Größe 42."
+      },
+      "falsch": [
+       {
+        "text": "У меня́ 42-я разме́р.",
+        "de": "",
+        "hinweis": "разме́р ist männlich: 42-й разме́р – gesprochen со́рок второ́й разме́р."
+       },
+       {
+        "text": "У меня́ 44-й разме́р.",
+        "de": "Ich habe Größe 44.",
+        "hinweis": "Laut Zettel hast du Größe 42."
+       }
+      ]
+     },
+     "passt": {
+      "richtig": {
+       "text": "Нет, они́ мне малы́.",
+       "de": "Nein, sie ist mir zu klein."
+      },
+      "falsch": [
+       {
+        "text": "Нет, оно́ мне мало́.",
+        "de": "",
+        "hinweis": "брю́ки sind Plural: они́ мне малы́."
+       },
+       {
+        "text": "Нет, они́ мне велики́.",
+        "de": "Nein, sie ist mir zu groß.",
+        "hinweis": "Laut Zettel: zu klein – малы́. велики́ heißt „zu groß“."
+       }
+      ]
+     },
+     "nehmen": {
+      "richtig": {
+       "text": "Да, я их возьму́.",
+       "de": "Ja, ich nehme sie."
+      },
+      "falsch": [
+       {
+        "text": "Да, я они́ возьму́.",
+        "de": "",
+        "hinweis": "Nach возьму́ steht der Akkusativ: они́ → их."
+       },
+       {
+        "text": "Да, я его́ возьму́.",
+        "de": "",
+        "hinweis": "брю́ки sind Plural – Akkusativ их."
+       }
+      ]
+     },
+     "paket": {
+      "richtig": {
+       "text": "Нет, спаси́бо, у меня́ есть су́мка.",
+       "de": "Nein danke, ich habe eine Tasche."
+      },
+      "falsch": [
+       {
+        "text": "Нет, спаси́бо, у меня́ есть су́мку.",
+        "de": "",
+        "hinweis": "у меня́ есть … + Nominativ: су́мка."
+       },
+       {
+        "text": "Да, оди́н паке́т, пожа́луйста.",
+        "de": "Ja, eine Tüte, bitte.",
+        "hinweis": "Laut Zettel hast du eine eigene Tasche dabei."
+       }
+      ]
+     },
+     "podarok": {
+      "richtig": {
+       "text": "Да, для сестры́.",
+       "de": "Ja, für deine Schwester."
+      },
+      "falsch": [
+       {
+        "text": "Да, для сестра́.",
+        "de": "",
+        "hinweis": "для + Genitiv: сестра́ → сестры́."
+       },
+       {
+        "text": "Нет, э́то для меня́.",
+        "de": "Nein, das ist für mich.",
+        "hinweis": "Laut Zettel sind die Handschuhe ein Geschenk für deine Schwester."
+       }
+      ]
+     }
+    }
+   },
+   {
+    "id": "k4",
+    "geschlecht": "f",
+    "zahlart": "bar",
+    "liste": [
+     {
+      "ware": "sviter_belyy",
+      "menge": 1,
+      "text": "бе́лый сви́тер",
+      "de": "der weiße Pullover",
+      "bild": "🧶"
+     },
+     {
+      "ware": "yubka_chernaya",
+      "menge": 1,
+      "text": "чёрная ю́бка",
+      "de": "der schwarze Rock",
+      "bild": "👗"
+     },
+     {
+      "ware": "sharf",
+      "menge": 1,
+      "text": "шарф",
+      "de": "der Schal",
+      "bild": "🧣"
+     }
+    ],
+    "liste_satz": "Мой спи́сок: бе́лый сви́тер, чёрная ю́бка и шарф.",
+    "posten": [
+     {
+      "ru": "бе́лый сви́тер",
+      "preis": 2100
+     },
+     {
+      "ru": "чёрная ю́бка",
+      "preis": 1600
+     },
+     {
+      "ru": "шарф",
+      "preis": 600
+     }
+    ],
+    "preis": 4300,
+    "p": {
+     "r2": "46-й",
+     "r2_de": "46",
+     "akk": "бе́лый сви́тер",
+     "akk_de": "den weißen Pullover",
+     "preis_ru": "Он сто́ит две ты́сячи сто рубле́й.",
+     "preis_de": "Der weiße Pullover kostet 2100 Rubel.",
+     "nehmen_de": "ihn",
+     "zub": "Шарф",
+     "zub_de": "der Schal",
+     "zub_ist": "Ist"
+    },
+    "zettel": {
+     "theke": [
+      "Du suchst den weißen Pullover.",
+      "Deine Größe: 48",
+      "Beim Anprobieren: zu groß"
+     ],
+     "kasse": [
+      "Der Schal ist ein Geschenk für Oma.",
+      "Keine Tasche dabei",
+      "Bezahlen: bar"
+     ]
+    },
+    "felder": {
+     "suche": {
+      "richtig": {
+       "text": "Да, пожа́луйста. Я ищу́ бе́лый сви́тер.",
+       "de": "Ja, bitte. Ich suche den weißen Pullover."
+      },
+      "falsch": [
+       {
+        "text": "Да, пожа́луйста. Я ищу́ бе́лое сви́тер.",
+        "de": "",
+        "hinweis": "сви́тер ist männlich: бе́лый сви́тер."
+       },
+       {
+        "text": "Да, пожа́луйста. Я ищу́ кра́сный сви́тер.",
+        "de": "Ja, bitte. Ich suche den roten Pullover.",
+        "hinweis": "Laut Zettel suchst du den weißen Pullover – бе́лый сви́тер."
+       }
+      ]
+     },
+     "razmer": {
+      "richtig": {
+       "text": "У меня́ 48-й разме́р.",
+       "de": "Ich habe Größe 48."
+      },
+      "falsch": [
+       {
+        "text": "У меня́ 48-я разме́р.",
+        "de": "",
+        "hinweis": "разме́р ist männlich: 48-й разме́р – gesprochen со́рок восьмо́й разме́р."
+       },
+       {
+        "text": "У меня́ 46-й разме́р.",
+        "de": "Ich habe Größe 46.",
+        "hinweis": "Laut Zettel hast du Größe 48."
+       }
+      ]
+     },
+     "passt": {
+      "richtig": {
+       "text": "Нет, он мне вели́к.",
+       "de": "Nein, er ist mir zu groß."
+      },
+      "falsch": [
+       {
+        "text": "Нет, она́ мне велика́.",
+        "de": "",
+        "hinweis": "сви́тер ist männlich: он мне вели́к."
+       },
+       {
+        "text": "Нет, он мне мал.",
+        "de": "Nein, er ist mir zu klein.",
+        "hinweis": "Laut Zettel: zu groß – вели́к. мал heißt „zu klein“."
+       }
+      ]
+     },
+     "nehmen": {
+      "richtig": {
+       "text": "Да, я его́ возьму́.",
+       "de": "Ja, ich nehme ihn."
+      },
+      "falsch": [
+       {
+        "text": "Да, я он возьму́.",
+        "de": "",
+        "hinweis": "Nach возьму́ steht der Akkusativ: он → его́."
+       },
+       {
+        "text": "Да, я её возьму́.",
+        "de": "",
+        "hinweis": "сви́тер ist männlich – Akkusativ его́."
+       }
+      ]
+     },
+     "paket": {
+      "richtig": {
+       "text": "Да, оди́н паке́т, пожа́луйста.",
+       "de": "Ja, eine Tüte, bitte."
+      },
+      "falsch": [
+       {
+        "text": "Да, одна́ паке́т, пожа́луйста.",
+        "de": "",
+        "hinweis": "паке́т ist männlich: оди́н паке́т."
+       },
+       {
+        "text": "Нет, спаси́бо, у меня́ есть су́мка.",
+        "de": "Nein danke, ich habe eine Tasche.",
+        "hinweis": "Laut Zettel hast du keine Tasche dabei."
+       }
+      ]
+     },
+     "podarok": {
+      "richtig": {
+       "text": "Да, для ба́бушки.",
+       "de": "Ja, für Oma."
+      },
+      "falsch": [
+       {
+        "text": "Да, для ба́бушка.",
+        "de": "",
+        "hinweis": "для + Genitiv: ба́бушка → ба́бушки."
+       },
+       {
+        "text": "Нет, э́то для меня́.",
+        "de": "Nein, das ist für mich.",
+        "hinweis": "Laut Zettel ist der Schal ein Geschenk für Oma."
+       }
+      ]
+     }
+    }
+   },
+   {
+    "id": "k5",
+    "geschlecht": "f",
+    "zahlart": "karte",
+    "liste": [
+     {
+      "ware": "plate_sinee",
+      "menge": 1,
+      "text": "си́нее пла́тье",
+      "de": "das blaue Kleid",
+      "bild": "👗"
+     },
+     {
+      "ware": "sharf",
+      "menge": 1,
+      "text": "шарф",
+      "de": "der Schal",
+      "bild": "🧣"
+     },
+     {
+      "ware": "sumka",
+      "menge": 1,
+      "text": "су́мка",
+      "de": "die Handtasche",
+      "bild": "👜"
+     }
+    ],
+    "liste_satz": "Мой спи́сок: си́нее пла́тье, шарф и су́мка.",
+    "posten": [
+     {
+      "ru": "си́нее пла́тье",
+      "preis": 2200
+     },
+     {
+      "ru": "шарф",
+      "preis": 600
+     },
+     {
+      "ru": "су́мка",
+      "preis": 1200
+     }
+    ],
+    "preis": 4000,
+    "p": {
+     "r2": "44-й",
+     "r2_de": "44",
+     "akk": "си́нее пла́тье",
+     "akk_de": "das blaue Kleid",
+     "preis_ru": "Оно́ сто́ит две ты́сячи две́сти рубле́й.",
+     "preis_de": "Das blaue Kleid kostet 2200 Rubel.",
+     "nehmen_de": "es",
+     "zub": "Су́мка",
+     "zub_de": "die Handtasche",
+     "zub_ist": "Ist"
+    },
+    "zettel": {
+     "theke": [
+      "Du suchst das blaue Kleid.",
+      "Deine Größe: 46",
+      "Beim Anprobieren: zu groß"
+     ],
+     "kasse": [
+      "Die Handtasche ist ein Geschenk für deine Freundin.",
+      "Keine Tasche dabei",
+      "Bezahlen: mit Karte"
+     ]
+    },
+    "felder": {
+     "suche": {
+      "richtig": {
+       "text": "Да, пожа́луйста. Я ищу́ си́нее пла́тье.",
+       "de": "Ja, bitte. Ich suche das blaue Kleid."
+      },
+      "falsch": [
+       {
+        "text": "Да, пожа́луйста. Я ищу́ си́ний пла́тье.",
+        "de": "",
+        "hinweis": "пла́тье ist sächlich: си́нее пла́тье."
+       },
+       {
+        "text": "Да, пожа́луйста. Я ищу́ кра́сное пла́тье.",
+        "de": "Ja, bitte. Ich suche das rote Kleid.",
+        "hinweis": "Laut Zettel suchst du das blaue Kleid – си́нее пла́тье."
+       }
+      ]
+     },
+     "razmer": {
+      "richtig": {
+       "text": "У меня́ 46-й разме́р.",
+       "de": "Ich habe Größe 46."
+      },
+      "falsch": [
+       {
+        "text": "У меня́ 46-я разме́р.",
+        "de": "",
+        "hinweis": "разме́р ist männlich: 46-й разме́р – gesprochen со́рок шесто́й разме́р."
+       },
+       {
+        "text": "У меня́ 44-й разме́р.",
+        "de": "Ich habe Größe 44.",
+        "hinweis": "Laut Zettel hast du Größe 46."
+       }
+      ]
+     },
+     "passt": {
+      "richtig": {
+       "text": "Нет, оно́ мне велико́.",
+       "de": "Nein, es ist mir zu groß."
+      },
+      "falsch": [
+       {
+        "text": "Нет, она́ мне велика́.",
+        "de": "",
+        "hinweis": "пла́тье ist sächlich: оно́ мне велико́."
+       },
+       {
+        "text": "Нет, оно́ мне мало́.",
+        "de": "Nein, es ist mir zu klein.",
+        "hinweis": "Laut Zettel: zu groß – велико́. мало́ heißt „zu klein“."
+       }
+      ]
+     },
+     "nehmen": {
+      "richtig": {
+       "text": "Да, я его́ возьму́.",
+       "de": "Ja, ich nehme es."
+      },
+      "falsch": [
+       {
+        "text": "Да, я оно́ возьму́.",
+        "de": "",
+        "hinweis": "Nach возьму́ steht der Akkusativ: оно́ → его́."
+       },
+       {
+        "text": "Да, я её возьму́.",
+        "de": "",
+        "hinweis": "пла́тье ist sächlich – Akkusativ его́ (wie männlich)."
+       }
+      ]
+     },
+     "paket": {
+      "richtig": {
+       "text": "Да, оди́н паке́т, пожа́луйста.",
+       "de": "Ja, eine Tüte, bitte."
+      },
+      "falsch": [
+       {
+        "text": "Да, одна́ паке́т, пожа́луйста.",
+        "de": "",
+        "hinweis": "паке́т ist männlich: оди́н паке́т."
+       },
+       {
+        "text": "Нет, спаси́бо, у меня́ есть су́мка.",
+        "de": "Nein danke, ich habe eine Tasche.",
+        "hinweis": "Laut Zettel hast du keine Tasche dabei."
+       }
+      ]
+     },
+     "podarok": {
+      "richtig": {
+       "text": "Да, для подру́ги.",
+       "de": "Ja, für deine Freundin."
+      },
+      "falsch": [
+       {
+        "text": "Да, для подру́га.",
+        "de": "",
+        "hinweis": "для + Genitiv: подру́га → подру́ги."
+       },
+       {
+        "text": "Нет, э́то для меня́.",
+        "de": "Nein, das ist für mich.",
+        "hinweis": "Laut Zettel ist die Handtasche ein Geschenk für deine Freundin."
+       }
+      ]
+     }
+    }
+   },
+   {
+    "id": "k6",
+    "geschlecht": "f",
+    "zahlart": "bar",
+    "liste": [
+     {
+      "ware": "sviter_krasnyy",
+      "menge": 1,
+      "text": "кра́сный сви́тер",
+      "de": "der rote Pullover",
+      "bild": "🧶"
+     },
+     {
+      "ware": "bryuki_chernye",
+      "menge": 1,
+      "text": "чёрные брю́ки",
+      "de": "die schwarze Hose",
+      "bild": "👖"
+     },
+     {
+      "ware": "perchatki",
+      "menge": 1,
+      "text": "перча́тки",
+      "de": "die Handschuhe",
+      "bild": "🧤"
+     }
+    ],
+    "liste_satz": "Мой спи́сок: кра́сный сви́тер, чёрные брю́ки и перча́тки.",
+    "posten": [
+     {
+      "ru": "кра́сный сви́тер",
+      "preis": 1800
+     },
+     {
+      "ru": "чёрные брю́ки",
+      "preis": 2000
+     },
+     {
+      "ru": "перча́тки",
+      "preis": 500
+     }
+    ],
+    "preis": 4300,
+    "p": {
+     "r2": "46-й",
+     "r2_de": "46",
+     "akk": "кра́сный сви́тер",
+     "akk_de": "den roten Pullover",
+     "preis_ru": "Он сто́ит ты́сячу восемьсо́т рубле́й.",
+     "preis_de": "Der rote Pullover kostet 1800 Rubel.",
+     "nehmen_de": "ihn",
+     "zub": "Перча́тки",
+     "zub_de": "die Handschuhe",
+     "zub_ist": "Sind"
+    },
+    "zettel": {
+     "theke": [
+      "Du suchst den roten Pullover.",
+      "Deine Größe: 44",
+      "Beim Anprobieren: zu klein"
+     ],
+     "kasse": [
+      "Alles ist für dich selbst.",
+      "Eigene Tasche dabei",
+      "Bezahlen: bar"
+     ]
+    },
+    "felder": {
+     "suche": {
+      "richtig": {
+       "text": "Да, пожа́луйста. Я ищу́ кра́сный сви́тер.",
+       "de": "Ja, bitte. Ich suche den roten Pullover."
+      },
+      "falsch": [
+       {
+        "text": "Да, пожа́луйста. Я ищу́ кра́сная сви́тер.",
+        "de": "",
+        "hinweis": "сви́тер ist männlich: кра́сный сви́тер."
+       },
+       {
+        "text": "Да, пожа́луйста. Я ищу́ бе́лый сви́тер.",
+        "de": "Ja, bitte. Ich suche den weißen Pullover.",
+        "hinweis": "Laut Zettel suchst du den roten Pullover – кра́сный сви́тер."
+       }
+      ]
+     },
+     "razmer": {
+      "richtig": {
+       "text": "У меня́ 44-й разме́р.",
+       "de": "Ich habe Größe 44."
+      },
+      "falsch": [
+       {
+        "text": "У меня́ 44-я разме́р.",
+        "de": "",
+        "hinweis": "разме́р ist männlich: 44-й разме́р – gesprochen со́рок четвёртый разме́р."
+       },
+       {
+        "text": "У меня́ 46-й разме́р.",
+        "de": "Ich habe Größe 46.",
+        "hinweis": "Laut Zettel hast du Größe 44."
+       }
+      ]
+     },
+     "passt": {
+      "richtig": {
+       "text": "Нет, он мне мал.",
+       "de": "Nein, er ist mir zu klein."
+      },
+      "falsch": [
+       {
+        "text": "Нет, она́ мне мала́.",
+        "de": "",
+        "hinweis": "сви́тер ist männlich: он мне мал."
+       },
+       {
+        "text": "Нет, он мне вели́к.",
+        "de": "Nein, er ist mir zu groß.",
+        "hinweis": "Laut Zettel: zu klein – мал. вели́к heißt „zu groß“."
+       }
+      ]
+     },
+     "nehmen": {
+      "richtig": {
+       "text": "Да, я его́ возьму́.",
+       "de": "Ja, ich nehme ihn."
+      },
+      "falsch": [
+       {
+        "text": "Да, я он возьму́.",
+        "de": "",
+        "hinweis": "Nach возьму́ steht der Akkusativ: он → его́."
+       },
+       {
+        "text": "Да, я её возьму́.",
+        "de": "",
+        "hinweis": "сви́тер ist männlich – Akkusativ его́."
+       }
+      ]
+     },
+     "paket": {
+      "richtig": {
+       "text": "Нет, спаси́бо, у меня́ есть су́мка.",
+       "de": "Nein danke, ich habe eine Tasche."
+      },
+      "falsch": [
+       {
+        "text": "Нет, спаси́бо, у меня́ есть су́мку.",
+        "de": "",
+        "hinweis": "у меня́ есть … + Nominativ: су́мка."
+       },
+       {
+        "text": "Да, оди́н паке́т, пожа́луйста.",
+        "de": "Ja, eine Tüte, bitte.",
+        "hinweis": "Laut Zettel hast du eine eigene Tasche dabei."
+       }
+      ]
+     },
+     "podarok": {
+      "richtig": {
+       "text": "Нет, э́то для меня́.",
+       "de": "Nein, das ist für mich."
+      },
+      "falsch": [
+       {
+        "text": "Нет, э́то для я.",
+        "de": "",
+        "hinweis": "для + Genitiv: я → меня́."
+       },
+       {
+        "text": "Да, для ма́мы.",
+        "de": "Ja, für Mama.",
+        "hinweis": "Laut Zettel sind die Handschuhe für dich selbst."
+       }
+      ]
+     }
+    }
+   },
+   {
+    "id": "k7",
+    "geschlecht": "f",
+    "zahlart": "karte",
+    "liste": [
+     {
+      "ware": "yubka_krasnaya",
+      "menge": 1,
+      "text": "кра́сная ю́бка",
+      "de": "der rote Rock",
+      "bild": "👗"
+     },
+     {
+      "ware": "bluzka",
+      "menge": 1,
+      "text": "блу́зка",
+      "de": "die Bluse",
+      "bild": "👚"
+     },
+     {
+      "ware": "sharf",
+      "menge": 1,
+      "text": "шарф",
+      "de": "der Schal",
+      "bild": "🧣"
+     }
+    ],
+    "liste_satz": "Мой спи́сок: кра́сная ю́бка, блу́зка и шарф.",
+    "posten": [
+     {
+      "ru": "кра́сная ю́бка",
+      "preis": 1500
+     },
+     {
+      "ru": "блу́зка",
+      "preis": 1300
+     },
+     {
+      "ru": "шарф",
+      "preis": 600
+     }
+    ],
+    "preis": 3400,
+    "p": {
+     "r2": "44-й",
+     "r2_de": "44",
+     "akk": "кра́сную ю́бку",
+     "akk_de": "den roten Rock",
+     "preis_ru": "Она́ сто́ит ты́сячу пятьсо́т рубле́й.",
+     "preis_de": "Der rote Rock kostet 1500 Rubel.",
+     "nehmen_de": "ihn",
+     "zub": "Шарф",
+     "zub_de": "der Schal",
+     "zub_ist": "Ist"
+    },
+    "zettel": {
+     "theke": [
+      "Du suchst den roten Rock.",
+      "Deine Größe: 42",
+      "Beim Anprobieren: zu klein"
+     ],
+     "kasse": [
+      "Der Schal ist ein Geschenk für Mama.",
+      "Keine Tasche dabei",
+      "Bezahlen: mit Karte"
+     ]
+    },
+    "felder": {
+     "suche": {
+      "richtig": {
+       "text": "Да, пожа́луйста. Я ищу́ кра́сную ю́бку.",
+       "de": "Ja, bitte. Ich suche den roten Rock."
+      },
+      "falsch": [
+       {
+        "text": "Да, пожа́луйста. Я ищу́ кра́сная ю́бка.",
+        "de": "",
+        "hinweis": "иска́ть + Akkusativ: кра́сная ю́бка → кра́сную ю́бку."
+       },
+       {
+        "text": "Да, пожа́луйста. Я ищу́ чёрную ю́бку.",
+        "de": "Ja, bitte. Ich suche den schwarzen Rock.",
+        "hinweis": "Laut Zettel suchst du den roten Rock – кра́сная ю́бка."
+       }
+      ]
+     },
+     "razmer": {
+      "richtig": {
+       "text": "У меня́ 42-й разме́р.",
+       "de": "Ich habe Größe 42."
+      },
+      "falsch": [
+       {
+        "text": "У меня́ 42-я разме́р.",
+        "de": "",
+        "hinweis": "разме́р ist männlich: 42-й разме́р – gesprochen со́рок второ́й разме́р."
+       },
+       {
+        "text": "У меня́ 44-й разме́р.",
+        "de": "Ich habe Größe 44.",
+        "hinweis": "Laut Zettel hast du Größe 42."
+       }
+      ]
+     },
+     "passt": {
+      "richtig": {
+       "text": "Нет, она́ мне мала́.",
+       "de": "Nein, er ist mir zu klein."
+      },
+      "falsch": [
+       {
+        "text": "Нет, он мне мал.",
+        "de": "",
+        "hinweis": "ю́бка ist weiblich: она́ мне мала́."
+       },
+       {
+        "text": "Нет, она́ мне велика́.",
+        "de": "Nein, er ist mir zu groß.",
+        "hinweis": "Laut Zettel: zu klein – мала́. велика́ heißt „zu groß“."
+       }
+      ]
+     },
+     "nehmen": {
+      "richtig": {
+       "text": "Да, я её возьму́.",
+       "de": "Ja, ich nehme ihn."
+      },
+      "falsch": [
+       {
+        "text": "Да, я она́ возьму́.",
+        "de": "",
+        "hinweis": "Nach возьму́ steht der Akkusativ: она́ → её."
+       },
+       {
+        "text": "Да, я его́ возьму́.",
+        "de": "",
+        "hinweis": "ю́бка ist weiblich – Akkusativ её."
+       }
+      ]
+     },
+     "paket": {
+      "richtig": {
+       "text": "Да, оди́н паке́т, пожа́луйста.",
+       "de": "Ja, eine Tüte, bitte."
+      },
+      "falsch": [
+       {
+        "text": "Да, одна́ паке́т, пожа́луйста.",
+        "de": "",
+        "hinweis": "паке́т ist männlich: оди́н паке́т."
+       },
+       {
+        "text": "Нет, спаси́бо, у меня́ есть су́мка.",
+        "de": "Nein danke, ich habe eine Tasche.",
+        "hinweis": "Laut Zettel hast du keine Tasche dabei."
+       }
+      ]
+     },
+     "podarok": {
+      "richtig": {
+       "text": "Да, для ма́мы.",
+       "de": "Ja, für Mama."
+      },
+      "falsch": [
+       {
+        "text": "Да, для ма́ма.",
+        "de": "",
+        "hinweis": "для + Genitiv: ма́ма → ма́мы."
+       },
+       {
+        "text": "Нет, э́то для меня́.",
+        "de": "Nein, das ist für mich.",
+        "hinweis": "Laut Zettel ist der Schal ein Geschenk für Mama."
+       }
+      ]
+     }
+    }
+   }
+  ],
+  "szenen": {
+   "theke": {
+    "titel": "Anprobe",
+    "zettel_titel": "Dein Zettel",
+    "geschafft": "Anprobiert – jetzt passt es!",
+    "start": "hallo",
+    "knoten": {
+     "hallo": {
+      "sprecher": "prodavshchitsa",
+      "text": "Здра́вствуйте! Вам помо́чь?",
+      "de": "Guten Tag! Kann ich Ihnen helfen?",
+      "feld": "suche",
+      "weiter": "razmer"
+     },
+     "razmer": {
+      "sprecher": "prodavshchitsa",
+      "text": "Како́й у вас разме́р?",
+      "de": "Welche Größe haben Sie?",
+      "feld": "razmer",
+      "weiter": "vot"
+     },
+     "vot": {
+      "sprecher": "prodavshchitsa",
+      "text": "Вот, пожа́луйста.",
+      "de": "Bitte schön.",
+      "optionen": [
+       {
+        "text": "Спаси́бо. Мо́жно приме́рить?",
+        "de": "Danke. Darf ich es anprobieren?",
+        "weiter": "kabine"
+       },
+       {
+        "text": "Спаси́бо, до свида́ния!",
+        "de": "Danke, auf Wiedersehen!",
+        "hinweis": "Du willst es doch erst anprobieren: Мо́жно приме́рить?"
+       }
+      ]
+     },
+     "kabine": {
+      "sprecher": "prodavshchitsa",
+      "text": "Коне́чно. Приме́рочная – там.",
+      "de": "Natürlich. Die Umkleidekabine ist dort.",
+      "optionen": [
+       {
+        "text": "Спаси́бо!",
+        "de": "Danke!",
+        "weiter": "spiegel"
+       },
+       {
+        "text": "Не за что!",
+        "de": "Keine Ursache!",
+        "hinweis": "„Не за что“ sagt man, wenn sich jemand bei dir bedankt. Hier bedankst du dich: Спаси́бо!"
+       }
+      ]
+     },
+     "spiegel": {
+      "sprecher": "erzaehler",
+      "text": "Вы примеря́ете {akk} и смо́трите в зе́ркало.",
+      "de": "Sie probieren {akk_de} an und schauen in den Spiegel.",
+      "pause": 500,
+      "weiter": "kak"
+     },
+     "kak": {
+      "sprecher": "prodavshchitsa",
+      "text": "Ну как? Подхо́дит?",
+      "de": "Na, wie ist es? Passt es?",
+      "feld": "passt",
+      "weiter": "idet"
+     },
+     "idet": {
+      "sprecher": "prodavshchitsa",
+      "text": "Вот {r2} разме́р. Вам о́чень идёт!",
+      "de": "Hier ist Größe {r2_de}. Das steht Ihnen sehr gut!",
+      "optionen": [
+       {
+        "text": "Спаси́бо! Мне то́же нра́вится.",
+        "de": "Danke! Mir gefällt es auch.",
+        "weiter": "preis"
+       },
+       {
+        "text": "Спаси́бо! Я то́же нра́вится.",
+        "de": "",
+        "hinweis": "нра́виться: Wem gefällt es? Russisch sagt „mir gefällt“ – мне нра́вится (Dativ)."
+       },
+       {
+        "text": "Пожа́луйста!",
+        "de": "Bitte!",
+        "hinweis": "Auf ein Kompliment antwortet man mit спаси́бо."
+       }
+      ]
+     },
+     "preis": {
+      "sprecher": "prodavshchitsa",
+      "text": "{preis_ru} Берёте?",
+      "de": "{preis_de} Nehmen Sie {nehmen_de}?",
+      "feld": "nehmen",
+      "weiter": "kasse"
+     },
+     "kasse": {
+      "sprecher": "prodavshchitsa",
+      "text": "Отли́чно! Ка́сса – там, у вы́хода.",
+      "de": "Prima! Die Kasse ist dort, am Ausgang.",
+      "optionen": [
+       {
+        "text": "Спаси́бо большо́е!",
+        "de": "Vielen Dank!",
+        "ende": true
+       },
+       {
+        "text": "Пожа́луйста!",
+        "de": "Bitte!",
+        "hinweis": "Пожа́луйста antwortet man auf спаси́бо. Hier bedankst du dich: Спаси́бо!"
+       }
+      ]
+     }
+    }
+   },
+   "kasse": {
+    "titel": "Kasse",
+    "zettel_titel": "Dein Zettel",
+    "geschafft": "Bezahlt – viel Freude mit den neuen Sachen!",
+    "start": "band",
+    "knoten": {
+     "band": {
+      "sprecher": "erzaehler",
+      "text": "Вы на ка́ссе. Касси́р пробива́ет поку́пки.",
+      "de": "Sie sind an der Kasse. Die Kassiererin scannt die Einkäufe.",
+      "aktion": "scannen",
+      "weiter": "paket"
+     },
+     "paket": {
+      "sprecher": "kassir",
+      "text": "Паке́т ну́жен?",
+      "de": "Brauchen Sie eine Tüte?",
+      "feld": "paket",
+      "weiter": "podarok"
+     },
+     "podarok": {
+      "sprecher": "kassir",
+      "text": "{zub} – э́то пода́рок?",
+      "de": "{zub_ist} {zub_de} ein Geschenk?",
+      "feld": "podarok",
+      "weiter": "zahlart"
+     },
+     "zahlart": {
+      "sprecher": "kassir",
+      "text": "Нали́чными и́ли ка́ртой?",
+      "de": "Bar oder mit Karte?",
+      "optionen": [
+       {
+        "text": "Нали́чными.",
+        "de": "Bar.",
+        "zahlart": "bar",
+        "weiter": "summe"
+       },
+       {
+        "text": "Ка́ртой.",
+        "de": "Mit Karte.",
+        "zahlart": "karte",
+        "weiter": "summe"
+       }
+      ]
+     },
+     "summe": {
+      "sprecher": "kassir",
+      "text": "С вас {summe}.",
+      "de": "Das macht {summe_de}.",
+      "aktion": "bezahlen",
+      "weiter": "abschied"
+     },
+     "abschied": {
+      "sprecher": "kassir",
+      "text": "Спаси́бо за поку́пку! Носи́те с удово́льствием!",
+      "de": "Danke für Ihren Einkauf! Viel Freude beim Tragen!",
+      "optionen": [
+       {
+        "text": "Спаси́бо, до свида́ния!",
+        "de": "Danke, auf Wiedersehen!",
+        "ende": true
+       },
+       {
+        "text": "Прия́тного аппети́та!",
+        "de": "Guten Appetit!",
+        "hinweis": "Das wünscht man beim Essen. Zum Abschied: До свида́ния!"
+       }
+      ]
+     }
+    }
+   }
+  }
+ }
+}

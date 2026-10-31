@@ -8,7 +8,12 @@
 // Auch in Node nutzbar (werkzeuge/grammatik_pruefen.js).
 
 (function (wurzel) {
-    let regeln = [], lemmata = {};
+    let regeln = [], lemmata = {}, woerter = {};
+
+    // Wörterbuch zum Antippen (static/woerterbuch.json, erzeugt von werkzeuge/woerterbuch.py):
+    // Wortform → [Grundform, Deutsch, Form]
+    function ladenWoerter(daten) { woerter = daten || {}; }
+    function wort(w) { return woerter[schluessel(w).replace(/^-+|-+$/g, '')] || null; }
 
     function laden(daten) {
         lemmata = daten.lemmata || {};
@@ -107,5 +112,5 @@
         return aus;
     }
 
-    wurzel.Grammatik = { laden, teile, get anzahl() { return regeln.length; } };
+    wurzel.Grammatik = { laden, ladenWoerter, teile, wort, get anzahl() { return regeln.length; } };
 })(typeof window !== 'undefined' ? window : globalThis);

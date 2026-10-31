@@ -1,0 +1,325 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 680" role="img" aria-label="Damenabteilung im GUM">
+  <defs>
+    <pattern id="zhe-boden" width="80" height="80" patternUnits="userSpaceOnUse">
+      <rect width="80" height="80" fill="#e9e0d3"/>
+      <path d="M40 0 L80 40 L40 80 L0 40 Z" fill="#ded2c1"/>
+      <path d="M40 0 L80 40 L40 80 L0 40 Z" fill="none" stroke="#d2c4b0" stroke-width="1.5"/>
+    </pattern>
+    <linearGradient id="zhe-spiegel" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#eef6f9"/><stop offset="0.55" stop-color="#bcd6e2"/><stop offset="1" stop-color="#9fbccb"/>
+    </linearGradient>
+    <linearGradient id="zhe-glas" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#e3eff4"/><stop offset="1" stop-color="#bcd3de"/>
+    </linearGradient>
+    <!-- Bogen der Galerie (GUM-Passage) -->
+    <g id="zhe-bogen">
+      <path d="M-34 78 V30 A34 34 0 0 1 34 30 V78 Z" fill="#f8f0e4"/>
+      <path d="M-27 78 V31 A27 27 0 0 1 27 31 V78 Z" fill="url(#zhe-glas)"/>
+      <path d="M0 4 V78 M-27 40 H27" stroke="#f8f0e4" stroke-width="3"/>
+    </g>
+    <!-- Kleiderbügel: Haken über der Stange (y = 0), Schultern bei y = 28 -->
+    <g id="zhe-buegel">
+      <path d="M0 14 V5 Q0 -6 7 -6 Q13 -6 13 0" stroke="#8a949b" stroke-width="2.2" fill="none"/>
+      <path d="M-24 28 L0 14 L24 28" stroke="#a8743f" stroke-width="4.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+    </g>
+    <!-- Klammerbügel für Röcke und Hosen: Stange bei y = 22 -->
+    <g id="zhe-klammer">
+      <path d="M0 14 V5 Q0 -6 7 -6 Q13 -6 13 0" stroke="#8a949b" stroke-width="2.2" fill="none"/>
+      <path d="M0 14 V22" stroke="#8a949b" stroke-width="2.2"/>
+      <rect x="-24" y="20" width="48" height="5" rx="2" fill="#5c6670"/>
+      <rect x="-21" y="23" width="6" height="8" rx="1" fill="#8a949b"/><rect x="15" y="23" width="6" height="8" rx="1" fill="#8a949b"/>
+    </g>
+  </defs>
+
+  <!-- ===== Raum: Glasdach, Galerie mit Bögen, Wand, Steinboden ===== -->
+  <rect width="1200" height="680" fill="#f3ebe0"/>
+  <rect width="1200" height="26" fill="#cfe0e8"/>
+  <path d="M0 26 H1200" stroke="#b9c7cf" stroke-width="3"/>
+  <path d="M100 0 V26 M300 0 V26 M500 0 V26 M700 0 V26 M900 0 V26 M1100 0 V26" stroke="#9fb0ba" stroke-width="3"/>
+  <rect y="26" width="1200" height="80" fill="#ecdcc8"/>
+  <g>
+    <use href="#zhe-bogen" x="80" y="26"/><use href="#zhe-bogen" x="220" y="26"/><use href="#zhe-bogen" x="360" y="26"/>
+    <use href="#zhe-bogen" x="840" y="26"/><use href="#zhe-bogen" x="980" y="26"/><use href="#zhe-bogen" x="1120" y="26"/>
+  </g>
+  <rect y="100" width="1200" height="8" fill="#9b3d6b"/>
+  <rect y="108" width="1200" height="3" fill="#c9a24a"/>
+  <rect y="560" width="1200" height="120" fill="url(#zhe-boden)"/>
+  <rect y="554" width="1200" height="7" fill="#d8c8b3"/>
+
+  <!-- Großes Schild der Abteilung -->
+  <g>
+    <rect x="430" y="32" width="340" height="56" rx="8" fill="#9b3d6b"/>
+    <rect x="437" y="39" width="326" height="42" rx="5" fill="none" stroke="#c9a24a" stroke-width="2"/>
+    <text x="600" y="69" text-anchor="middle" font-family="'Playfair Display', Georgia, serif" font-size="25" font-weight="700" letter-spacing="3" fill="#f6efe3">ЖЕНСКАЯ ОДЕЖДА</text>
+  </g>
+
+  <!-- ===== Umkleidekabine ===== -->
+  <g id="hs-primerochnaya" class="hotspot">
+    <rect x="28" y="150" width="162" height="410" fill="#c9a77d"/>
+    <rect x="40" y="178" width="138" height="382" fill="#efe3d3"/>
+    <rect x="40" y="178" width="138" height="14" fill="#dccbb5"/>
+    <!-- Bank und Haken in der Kabine -->
+    <rect x="124" y="466" width="50" height="12" rx="3" fill="#a8743f"/>
+    <path d="M130 478 V520 M168 478 V520" stroke="#8a5a2e" stroke-width="5"/>
+    <path d="M158 214 V226" stroke="#8a949b" stroke-width="3"/><circle cx="158" cy="228" r="3" fill="#8a949b"/>
+    <path d="M140 250 L158 238 L176 250" stroke="#a8743f" stroke-width="4" fill="none" stroke-linecap="round"/>
+    <!-- Vorhang, halb zur Seite gezogen -->
+    <path d="M40 184 H178" stroke="#8a949b" stroke-width="4"/>
+    <path d="M40 186 H114 Q104 300 118 556 H40 Z" fill="#b0477a"/>
+    <path d="M56 188 Q50 360 58 556 M76 188 Q70 360 80 556 M96 188 Q88 360 100 556" stroke="#8a2f5c" stroke-width="3" fill="none" opacity="0.8"/>
+    <path d="M66 188 Q60 360 69 556 M86 188 Q80 360 90 556" stroke="#c96a97" stroke-width="2" fill="none" opacity="0.7"/>
+    <rect x="22" y="146" width="174" height="30" rx="4" fill="#9b3d6b"/>
+    <text x="109" y="167" text-anchor="middle" font-family="Manrope, sans-serif" font-size="14" font-weight="800" letter-spacing="1.5" fill="#fff">ПРИМЕРОЧНАЯ</text>
+  </g>
+
+  <!-- ===== Spiegel ===== -->
+  <g id="hs-zerkalo" class="hotspot">
+    <ellipse cx="240" cy="560" rx="34" ry="5" fill="#000" opacity="0.08"/>
+    <path d="M240 496 L212 558 M240 496 L268 558" stroke="#a8822f" stroke-width="6" stroke-linecap="round"/>
+    <ellipse cx="240" cy="372" rx="40" ry="126" fill="#c9a24a"/>
+    <ellipse cx="240" cy="372" rx="32" ry="117" fill="url(#zhe-spiegel)"/>
+    <path d="M221 300 L252 266 M223 334 L258 296" stroke="#fff" stroke-linecap="round" opacity="0.7" stroke-width="5"/>
+    <path d="M226 452 L250 426" stroke="#fff" stroke-linecap="round" opacity="0.45" stroke-width="3"/>
+  </g>
+
+  <!-- ===== Schaufensterpuppe ===== -->
+  <g id="hs-maneken" class="hotspot">
+    <ellipse cx="335" cy="556" rx="46" ry="7" fill="#000" opacity="0.08"/>
+    <rect x="291" y="538" width="88" height="14" rx="4" fill="#d6c3ac"/>
+    <ellipse cx="335" cy="538" rx="44" ry="8" fill="#e9dccb"/>
+    <rect x="332" y="468" width="6" height="72" fill="#8a8f94"/>
+    <path d="M318 294 Q306 330 310 376" stroke="#ece7df" stroke-width="7" stroke-linecap="round" fill="none"/>
+    <path d="M352 294 Q364 330 360 376" stroke="#ece7df" stroke-width="7" stroke-linecap="round" fill="none"/>
+    <path d="M318 290 Q335 297 352 290 L356 340 L374 470 L296 470 L314 340 Z" fill="#e8b923"/>
+    <path d="M314 290 L320 306 L318 290 M356 290 L350 306 L352 290" fill="#d9a816"/>
+    <rect x="313" y="336" width="44" height="7" fill="#b98a10"/>
+    <path d="M322 352 L310 466 M348 352 L360 466" stroke="#d9a816" stroke-width="2.5" opacity="0.8"/>
+    <rect x="331" y="274" width="8" height="18" fill="#ece7df"/>
+    <ellipse cx="335" cy="262" rx="13" ry="16" fill="#ece7df"/>
+    <!-- Hut -->
+    <path d="M321 251 Q323 232 335 232 Q347 232 349 251 Z" fill="#d9c29a"/>
+    <rect x="321" y="244" width="28" height="5" fill="#9b3d6b"/>
+    <ellipse cx="335" cy="251" rx="27" ry="6" fill="#d9c29a"/>
+  </g>
+
+  <!-- ===== Größentabelle an der Wand ===== -->
+  <g id="hs-razmer" class="hotspot">
+    <rect x="420" y="122" width="192" height="112" rx="6" fill="#fffaf2" stroke="#9b3d6b" stroke-width="3"/>
+    <path d="M420 128 Q420 122 426 122 H606 Q612 122 612 128 V152 H420 Z" fill="#9b3d6b"/>
+    <text x="516" y="143" text-anchor="middle" font-family="Manrope, sans-serif" font-size="15" font-weight="800" letter-spacing="2" fill="#fff">РАЗМЕР</text>
+    <g font-family="Manrope, sans-serif" font-weight="800" text-anchor="middle">
+      <g font-size="22" fill="#2a2a2a"><text x="444" y="186">42</text><text x="492" y="186">44</text><text x="540" y="186">46</text><text x="588" y="186">48</text></g>
+      <g font-size="14" fill="#8a7f72"><text x="444" y="218">XS</text><text x="492" y="218">S</text><text x="540" y="218">M</text><text x="588" y="218">L</text></g>
+    </g>
+    <path d="M468 160 V226 M516 160 V226 M564 160 V226 M428 196 H604" stroke="#e5d6c6" stroke-width="2"/>
+  </g>
+
+  <!-- ===== Kleiderständer 1: Kleider und Bluse ===== -->
+  <g pointer-events="none">
+    <ellipse cx="525" cy="557" rx="135" ry="6" fill="#000" opacity="0.07"/>
+    <rect x="400" y="246" width="6" height="304" fill="#9aa4ab"/><rect x="646" y="246" width="6" height="304" fill="#9aa4ab"/>
+    <rect x="390" y="546" width="26" height="6" rx="3" fill="#7d878e"/><rect x="636" y="546" width="26" height="6" rx="3" fill="#7d878e"/>
+    <circle cx="394" cy="555" r="4" fill="#3a3a3a"/><circle cx="412" cy="555" r="4" fill="#3a3a3a"/>
+    <circle cx="640" cy="555" r="4" fill="#3a3a3a"/><circle cx="658" cy="555" r="4" fill="#3a3a3a"/>
+    <rect x="398" y="248" width="256" height="7" rx="3" fill="#c4cdd3" stroke="#8a949b" stroke-width="1.5"/>
+  </g>
+  <g id="hs-plate-krasnoe" class="hotspot">
+    <use href="#zhe-buegel" x="440" y="252"/>
+    <path d="M426 280 Q440 289 454 280 L460 330 L480 470 L400 470 L420 330 Z" fill="#c8302a"/>
+    <path d="M426 280 L420 292 L424 298 M454 280 L460 292 L456 298" stroke="#c8302a" stroke-width="5" stroke-linecap="round"/>
+    <rect x="419" y="326" width="42" height="7" fill="#9c2620"/>
+    <path d="M430 342 L418 466 M450 342 L462 466 M440 342 V466" stroke="#a82822" stroke-width="2" opacity="0.7"/>
+  </g>
+  <g id="hs-plate-sinee" class="hotspot">
+    <use href="#zhe-buegel" x="502" y="252"/>
+    <path d="M488 280 Q502 289 516 280 L520 326 L538 392 L466 392 L484 326 Z" fill="#2b5fa8"/>
+    <path d="M488 280 L478 296 L484 302 M516 280 L526 296 L520 302" fill="#2b5fa8" stroke="#2b5fa8" stroke-width="4" stroke-linejoin="round"/>
+    <path d="M491 282 Q502 298 513 282" stroke="#fff" stroke-width="3.5" fill="none"/>
+    <path d="M494 334 L482 388 M510 334 L522 388" stroke="#1f4a86" stroke-width="2" opacity="0.8"/>
+  </g>
+  <g id="hs-bluzka" class="hotspot">
+    <use href="#zhe-buegel" x="564" y="252"/>
+    <path d="M548 282 L580 282 L604 300 L598 344 L588 340 L586 372 L542 372 L540 340 L530 344 L524 300 Z" fill="#fbfbfb" stroke="#cfcfcf" stroke-width="1.5" stroke-linejoin="round"/>
+    <path d="M555 282 L564 296 L573 282" stroke="#cfcfcf" stroke-width="2" fill="none"/>
+    <g fill="#c9c9c9"><circle cx="564" cy="306" r="2"/><circle cx="564" cy="322" r="2"/><circle cx="564" cy="338" r="2"/><circle cx="564" cy="354" r="2"/></g>
+  </g>
+  <g id="hs-veshalka" class="hotspot">
+    <rect class="treffer" x="598" y="238" width="52" height="46" fill="transparent"/>
+    <use href="#zhe-buegel" x="624" y="252"/>
+  </g>
+
+  <!-- ===== Regal an der Wand ===== -->
+  <g id="hs-polka" class="hotspot">
+    <rect x="664" y="110" width="240" height="136" fill="#e6d7c2"/>
+    <rect x="660" y="106" width="248" height="8" fill="#b08a62"/>
+    <rect x="660" y="168" width="248" height="8" fill="#b08a62"/>
+    <rect x="660" y="236" width="248" height="9" fill="#b08a62"/>
+    <rect x="660" y="106" width="8" height="139" fill="#a07a52"/><rect x="900" y="106" width="8" height="139" fill="#a07a52"/>
+    <!-- gefaltete Strickjacken (Deko) -->
+    <rect x="836" y="218" width="58" height="18" rx="3" fill="#d9c7a7"/><rect x="840" y="202" width="52" height="16" rx="3" fill="#cbb48e"/>
+    <path d="M846 210 H886 M842 227 H888" stroke="#b9a07a" stroke-width="1.5"/>
+  </g>
+  <g id="hs-sviter-belyy" class="hotspot">
+    <rect x="676" y="150" width="64" height="18" rx="3" fill="#f8f6f0" stroke="#d8d2c4" stroke-width="1.5"/>
+    <rect x="680" y="133" width="56" height="17" rx="3" fill="#fdfcf8" stroke="#d8d2c4" stroke-width="1.5"/>
+    <path d="M686 158 H730 M688 141 H728" stroke="#e0dacd" stroke-width="2"/>
+    <path d="M694 133 Q708 141 722 133" stroke="#d8d2c4" stroke-width="2" fill="none"/>
+  </g>
+  <g id="hs-sviter-krasnyy" class="hotspot">
+    <rect x="752" y="150" width="64" height="18" rx="3" fill="#c8302a"/>
+    <rect x="756" y="133" width="56" height="17" rx="3" fill="#d23b33"/>
+    <path d="M762 158 H806 M764 141 H804" stroke="#a82822" stroke-width="2"/>
+    <path d="M770 133 Q784 141 798 133" stroke="#a82822" stroke-width="2" fill="none"/>
+  </g>
+  <g id="hs-sumka" class="hotspot">
+    <rect class="treffer" x="830" y="116" width="66" height="54" fill="transparent"/>
+    <path d="M850 142 Q864 116 878 142" stroke="#6b3b1f" stroke-width="4.5" fill="none"/>
+    <path d="M836 168 L841 140 H887 L892 168 Z" fill="#8a4f2c"/>
+    <path d="M841 140 H887 L885 150 Q864 158 843 150 Z" fill="#6b3b1f"/>
+    <rect x="860" y="148" width="8" height="7" rx="1.5" fill="#c9a24a"/>
+  </g>
+  <g id="hs-sharf" class="hotspot">
+    <rect class="treffer" x="672" y="204" width="80" height="50" fill="transparent"/>
+    <rect x="676" y="212" width="72" height="24" rx="11" fill="#2f8f8a"/>
+    <path d="M692 212 V236 M708 212 V236 M724 212 V236 M740 212 V236" stroke="#f3e7cf" stroke-width="4"/>
+    <path d="M684 236 V250 M689 236 V251 M694 236 V250 M699 236 V251 M704 236 V250" stroke="#2f8f8a" stroke-width="2"/>
+  </g>
+  <g id="hs-perchatki" class="hotspot">
+    <rect class="treffer" x="760" y="198" width="66" height="40" fill="transparent"/>
+    <g fill="#8e7cc3" stroke="#6f5ea6" stroke-width="1">
+      <path d="M766 236 V216 Q766 210 771 210 V206 Q774 202 777 206 V210 Q780 204 783 208 V212 Q786 208 789 212 V218 Q794 214 796 218 L790 230 V236 Z"/>
+      <path d="M794 236 V216 Q794 210 799 210 V206 Q802 202 805 206 V210 Q808 204 811 208 V212 Q814 208 817 212 V218 Q822 214 824 218 L818 230 V236 Z"/>
+    </g>
+  </g>
+
+  <!-- ===== Kleiderständer 2: Röcke und Hosen ===== -->
+  <g pointer-events="none">
+    <ellipse cx="785" cy="557" rx="125" ry="6" fill="#000" opacity="0.07"/>
+    <rect x="670" y="246" width="6" height="304" fill="#9aa4ab"/><rect x="894" y="246" width="6" height="304" fill="#9aa4ab"/>
+    <rect x="660" y="546" width="26" height="6" rx="3" fill="#7d878e"/><rect x="884" y="546" width="26" height="6" rx="3" fill="#7d878e"/>
+    <circle cx="664" cy="555" r="4" fill="#3a3a3a"/><circle cx="682" cy="555" r="4" fill="#3a3a3a"/>
+    <circle cx="888" cy="555" r="4" fill="#3a3a3a"/><circle cx="906" cy="555" r="4" fill="#3a3a3a"/>
+    <rect x="668" y="248" width="234" height="7" rx="3" fill="#c4cdd3" stroke="#8a949b" stroke-width="1.5"/>
+  </g>
+  <g id="hs-yubka-chernaya" class="hotspot">
+    <use href="#zhe-klammer" x="706" y="252"/>
+    <path d="M688 278 H724 L744 442 H668 Z" fill="#26272c"/>
+    <rect x="688" y="278" width="36" height="8" fill="#3a3c42"/>
+    <path d="M698 290 L686 438 M714 290 L726 438" stroke="#3d3f46" stroke-width="2.5"/>
+  </g>
+  <g id="hs-yubka-krasnaya" class="hotspot">
+    <use href="#zhe-klammer" x="764" y="252"/>
+    <path d="M748 278 H780 L798 354 H730 Z" fill="#c8302a"/>
+    <rect x="748" y="278" width="32" height="8" fill="#9c2620"/>
+    <path d="M756 288 L744 352 M764 288 V352 M772 288 L784 352" stroke="#a82822" stroke-width="2"/>
+  </g>
+  <g id="hs-bryuki-sinie" class="hotspot">
+    <rect class="treffer" x="799" y="278" width="42" height="192" fill="transparent"/>
+    <use href="#zhe-klammer" x="820" y="252"/>
+    <path d="M803 278 H837 L841 470 H823 L820 334 L817 470 H799 Z" fill="#2b5fa8"/>
+    <rect x="803" y="278" width="34" height="7" fill="#1f4a86"/>
+    <path d="M808 290 L805 466 M832 290 L835 466" stroke="#e08a3c" stroke-width="1.5" stroke-dasharray="4 3"/>
+  </g>
+  <g id="hs-bryuki-chernye" class="hotspot">
+    <rect class="treffer" x="853" y="278" width="36" height="192" fill="transparent"/>
+    <use href="#zhe-klammer" x="871" y="252"/>
+    <path d="M855 278 H887 L889 470 H873 L871 334 L869 470 H853 Z" fill="#2e3036"/>
+    <rect x="855" y="278" width="32" height="7" fill="#1d1e22"/>
+    <path d="M862 290 L861 466 M880 290 L881 466" stroke="#45474f" stroke-width="2"/>
+  </g>
+
+  <!-- ===== Verkäuferin (mit Maßband) ===== -->
+  <g id="hs-prodavshchitsa" class="hotspot">
+    <ellipse cx="952" cy="558" rx="30" ry="5" fill="#000" opacity="0.1"/>
+    <rect x="940" y="470" width="9" height="82" fill="#f2c7a6"/><rect x="955" y="470" width="9" height="82" fill="#f2c7a6"/>
+    <ellipse cx="943" cy="555" rx="9" ry="4" fill="#2a2a2a"/><ellipse cx="961" cy="555" rx="9" ry="4" fill="#2a2a2a"/>
+    <path d="M928 418 H976 L980 478 H924 Z" fill="#2a2d36"/>
+    <path d="M930 332 Q918 380 922 418" stroke="#9b3d6b" stroke-width="11" stroke-linecap="round" fill="none"/>
+    <path d="M974 332 Q986 380 982 418" stroke="#9b3d6b" stroke-width="11" stroke-linecap="round" fill="none"/>
+    <circle cx="922" cy="424" r="6" fill="#f2c7a6"/><circle cx="982" cy="424" r="6" fill="#f2c7a6"/>
+    <path d="M928 334 Q952 318 976 334 L976 422 H928 Z" fill="#9b3d6b"/>
+    <path d="M942 322 L952 340 L962 322" fill="#fbf7ef"/>
+    <rect x="958" y="350" width="13" height="8" rx="1.5" fill="#f6efe3"/>
+    <path d="M940 322 Q936 362 932 396 M964 322 Q968 362 972 396" stroke="#f2d046" stroke-width="4" fill="none"/>
+    <path d="M933 380 H937 M935 370 H939 M970 380 H974 M969 370 H973" stroke="#7a6418" stroke-width="1.2"/>
+    <rect x="947" y="308" width="10" height="14" fill="#f2c7a6"/>
+    <circle cx="952" cy="298" r="18" fill="#f2c7a6"/>
+    <circle cx="952" cy="274" r="9" fill="#5a3825"/>
+    <path d="M934 298 Q933 278 952 278 Q971 278 970 298 Q965 286 952 286 Q939 286 934 298Z" fill="#5a3825"/>
+    <circle cx="945" cy="300" r="2" fill="#2a2a2a"/><circle cx="959" cy="300" r="2" fill="#2a2a2a"/>
+    <path d="M945 308 Q952 313 959 308" stroke="#a0523a" stroke-width="2" fill="none"/>
+  </g>
+
+  <!-- ===== Garderobe an der Wand: Mantel und Jacke ===== -->
+  <g pointer-events="none">
+    <rect x="1004" y="117" width="184" height="6" rx="3" fill="#c4cdd3" stroke="#8a949b" stroke-width="1.5"/>
+    <path d="M1010 112 V126 M1182 112 V126" stroke="#8a949b" stroke-width="4"/>
+  </g>
+  <g id="hs-palto" class="hotspot">
+    <use href="#zhe-buegel" x="1050" y="120"/>
+    <path d="M1028 150 L1012 282 H1024 L1032 196 Z M1072 150 L1088 282 H1076 L1068 196 Z" fill="#a8794a"/>
+    <path d="M1026 148 H1074 L1084 330 H1016 Z" fill="#b98b5a"/>
+    <path d="M1040 148 L1050 192 L1060 148" stroke="#8f6640" stroke-width="3" fill="#a8794a"/>
+    <rect x="1018" y="218" width="64" height="8" fill="#8f6640"/>
+    <g fill="#5e3920"><circle cx="1042" cy="204" r="2.5"/><circle cx="1058" cy="204" r="2.5"/><circle cx="1042" cy="246" r="2.5"/><circle cx="1058" cy="246" r="2.5"/></g>
+  </g>
+  <g id="hs-kurtka" class="hotspot">
+    <use href="#zhe-buegel" x="1142" y="120"/>
+    <path d="M1122 150 L1106 246 H1118 L1126 190 Z M1162 150 L1178 246 H1166 L1158 190 Z" fill="#356b43"/>
+    <path d="M1120 148 H1164 L1170 252 H1114 Z" fill="#3f7d4f"/>
+    <path d="M1142 150 V252" stroke="#c9d3d9" stroke-width="2"/>
+    <path d="M1122 148 Q1142 166 1162 148" stroke="#2f5f3c" stroke-width="5" fill="none"/>
+    <rect x="1114" y="242" width="56" height="10" fill="#356b43"/>
+  </g>
+
+  <!-- ===== Kasse ===== -->
+  <g id="hs-kassir" class="hotspot">
+    <path d="M1102 452 Q1104 400 1136 398 Q1168 400 1170 452 Z" fill="#9b3d6b"/>
+    <path d="M1128 400 L1136 414 L1144 400" fill="#fbf7ef"/>
+    <rect x="1131" y="388" width="10" height="12" fill="#e8b994"/>
+    <circle cx="1136" cy="378" r="17" fill="#e8b994"/>
+    <path d="M1118 384 Q1114 356 1136 356 Q1158 356 1154 384 Q1152 368 1136 367 Q1121 368 1118 384Z" fill="#d9b56a"/>
+    <path d="M1118 384 Q1116 398 1122 404 M1154 384 Q1156 398 1150 404" stroke="#d9b56a" stroke-width="5" stroke-linecap="round" fill="none"/>
+    <circle cx="1130" cy="380" r="2" fill="#2a2a2a"/><circle cx="1142" cy="380" r="2" fill="#2a2a2a"/>
+    <path d="M1131 388 Q1136 391 1141 388" stroke="#a0523a" stroke-width="2" fill="none"/>
+  </g>
+  <g id="hs-kassa" class="hotspot">
+    <rect x="1000" y="440" width="192" height="116" fill="#9b3d6b"/>
+    <rect x="994" y="432" width="204" height="12" rx="3" fill="#e9dccb"/>
+    <path d="M1000 458 H1192" stroke="#c9a24a" stroke-width="2.5"/>
+    <text x="1096" y="514" text-anchor="middle" font-family="'Playfair Display', Georgia, serif" font-size="24" font-weight="700" letter-spacing="5" fill="#f3e2b0">КАССА</text>
+    <rect x="1040" y="420" width="10" height="13" fill="#3a3f44"/>
+    <rect x="1020" y="388" width="52" height="34" rx="3" fill="#3a3f44"/>
+    <rect x="1024" y="392" width="44" height="22" fill="#15191b"/>
+    <text x="1046" y="407" text-anchor="middle" font-family="Manrope, sans-serif" font-size="9" font-weight="800" fill="#6fcf97">ИТОГО</text>
+    <rect x="1082" y="412" width="20" height="21" rx="3" fill="#22303c"/><rect x="1085" y="415" width="14" height="7" fill="#6fcf97"/>
+  </g>
+
+  <!-- ===== Podest mit Schuhen ===== -->
+  <g pointer-events="none">
+    <rect x="440" y="598" width="264" height="32" rx="5" fill="#d9c7af"/>
+    <rect x="434" y="590" width="276" height="12" rx="5" fill="#efe3d2"/>
+  </g>
+  <g id="hs-tufli" class="hotspot">
+    <rect class="treffer" x="456" y="548" width="122" height="46" fill="transparent"/>
+    <!-- zwei Pumps von der Seite: Ferse links mit Pfennigabsatz, Spitze rechts -->
+    <g transform="translate(462 590) scale(1.45)">
+      <path d="M2 -26 Q6 -14 20 -13 Q36 -12 50 -5 Q60 -1 60 0 L36 0 Q22 -5 10 -8 L8 -8 Z" fill="#1f1f24"/>
+      <path d="M5 -9 L10 -9 L8.6 0 L7 0 Z" fill="#1f1f24"/>
+      <path d="M5 -23 Q9 -16 20 -15.5 Q33 -15 44 -9" stroke="#6b6f78" stroke-width="1.6" fill="none"/>
+    </g>
+    <g transform="translate(486 592) scale(1.45)">
+      <path d="M2 -26 Q6 -14 20 -13 Q36 -12 50 -5 Q60 -1 60 0 L36 0 Q22 -5 10 -8 L8 -8 Z" fill="#2c2c33"/>
+      <path d="M5 -9 L10 -9 L8.6 0 L7 0 Z" fill="#2c2c33"/>
+      <path d="M5 -23 Q9 -16 20 -15.5 Q33 -15 44 -9" stroke="#7a7e88" stroke-width="1.6" fill="none"/>
+    </g>
+  </g>
+  <g id="hs-sapogi" class="hotspot">
+    <rect class="treffer" x="594" y="510" width="96" height="84" fill="transparent"/>
+    <g fill="#7a4a2b">
+      <rect x="602" y="516" width="24" height="64" rx="3"/><path d="M602 572 H636 Q646 578 644 590 H602 Z"/>
+      <rect x="646" y="516" width="24" height="64" rx="3"/><path d="M646 572 H680 Q690 578 688 590 H646 Z"/>
+    </g>
+    <path d="M602 524 H626 M646 524 H670" stroke="#5e3920" stroke-width="3"/>
+  </g>
+</svg>

@@ -21,7 +21,7 @@ module/cafe/
 | `titel` | ja | `{ "ru": "кафе́", "de": "Café" }` |
 | `praeposition` | ja | `в` oder `на` (Я иду́ в/на …) |
 | `satz_hin`, `satz_hin_de` | nein | gesprochen beim Hineingehen |
-| `stufen` | ja | Reihenfolge der Bausteine: `entdecken`, `hoeren`, `dialog`, `bezahlen`, `wo`, `etagen`, `aufzug`, `pass`, `gepaeck`, `zoll`, `fahrplan`, `fahrkarte`, `zug`, `einkaufen`, `theke`, `kasse`, `stundenplan`, `unterricht`, `rechnen`, `literatur`, `wege` |
+| `stufen` | ja | Reihenfolge der Bausteine: `entdecken`, `hoeren`, `dialog`, `bezahlen`, `wo`, `etagen`, `aufzug`, `pass`, `gepaeck`, `zoll`, `fahrplan`, `fahrkarte`, `zug`, `einkaufen`, `theke`, `kasse`, `stundenplan`, `unterricht`, `anprobe`, `rechnen`, `literatur`, `wege` |
 | `grafik` | ja | `{ "aussen": "grafik/aussen.svg", "innen": "grafik/innen.svg" }` |
 | `stufen_titel` | nein | eigene Namen in der Stufenleiste, z. B. `{ "einkaufen": "Ranzen packen" }` |
 | `farbe` | nein | Akzentfarbe des Gebäudes |
@@ -80,7 +80,7 @@ module/cafe/
   `szene.bilet_drucken: true` zeigt sie erst nach `drucken`. `reise.neu_knopf` beschriftet den
   Knopf für die nächste Reise. Eine Reise gilt für alle Schalter, bis man
   „Neue Reise“ wählt. Erzeugt werden Flughafen, Bahnhof und Supermarkt per Skript (`werkzeuge/aeroport_inhalt.py`,
-  `werkzeuge/vokzal_inhalt.py`, `werkzeuge/supermarket_inhalt.py`, `werkzeuge/shkola_inhalt.py`), damit alle Formen
+  `werkzeuge/vokzal_inhalt.py`, `werkzeuge/supermarket_inhalt.py`, `werkzeuge/shkola_inhalt.py`, `werkzeuge/zhenskaya_inhalt.py`, `werkzeuge/muzhskaya_inhalt.py`), damit alle Formen
   einheitlich sind – Namen und Daten der Reisenden sind erfunden.
 
 - `stundenplan` (Stufe `stundenplan`, derselbe Baustein): statt `zuege` gibt es `spalten[]`, `zeilen[]`

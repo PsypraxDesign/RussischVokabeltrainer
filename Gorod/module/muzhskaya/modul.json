@@ -1,0 +1,27 @@
+{
+  "titel": {
+    "ru": "мужска́я оде́жда",
+    "de": "Herrenmode"
+  },
+  "praeposition": "в",
+  "satz_hin": "Я иду́ в отде́л мужско́й оде́жды.",
+  "satz_hin_de": "Ich gehe in die Herrenabteilung.",
+  "stufen": [
+    "entdecken",
+    "hoeren",
+    "theke",
+    "anprobe",
+    "kasse"
+  ],
+  "stufen_titel": {
+    "theke": "Auswählen",
+    "anprobe": "Anprobe",
+    "kasse": "Kasse"
+  },
+  "grafik": {
+    "aussen": "grafik/aussen.svg",
+    "innen": "grafik/innen.svg"
+  },
+  "farbe": "#2b4a6b",
+  "breite": 250
+}

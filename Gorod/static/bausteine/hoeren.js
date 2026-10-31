@@ -140,7 +140,8 @@
                 ctx.stand.hoeren_bestes = Math.max(ctx.stand.hoeren_bestes || 0, richtig);
                 ctx.speichern();
                 const weiterStufe = ctx.modul.stufen[ctx.modul.stufen.indexOf('hoeren') + 1];
-                const weiterTitel = { dialog: 'Bestellen', wo: 'Wo ist das?', bezahlen: 'Bezahlen', etagen: 'Stockwerke', aufzug: 'Aufzug' }[weiterStufe];
+                const weiterTitel = (ctx.modul.stufen_titel || {})[weiterStufe]
+                    || { dialog: 'Bestellen', wo: 'Wo ist das?', bezahlen: 'Bezahlen', etagen: 'Stockwerke', aufzug: 'Aufzug', einkaufen: 'Einkaufen', theke: 'Theke' }[weiterStufe];
                 ctx.tafel.querySelector('#ergebnis').innerHTML = `
                   <div class="ergebnis">
                     <div class="sterne">${G.sterne(sterne)}</div>

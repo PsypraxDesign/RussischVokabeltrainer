@@ -1,0 +1,322 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 680" role="img" aria-label="Herrenabteilung im GUM">
+  <defs>
+    <linearGradient id="muzh-glas" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#f4f9fb"/><stop offset="1" stop-color="#cddfe7"/>
+    </linearGradient>
+    <linearGradient id="muzh-spiegel" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#eef6f9"/><stop offset="0.55" stop-color="#c9dee7"/><stop offset="1" stop-color="#a9c6d3"/>
+    </linearGradient>
+    <!-- Fischgrätparkett -->
+    <pattern id="muzh-parkett" width="40" height="20" patternUnits="userSpaceOnUse">
+      <rect width="40" height="20" fill="#b5865a"/>
+      <path d="M0 0 L20 10 L20 20 L0 10 Z" fill="#c49464"/>
+      <path d="M20 10 L40 0 L40 10 L20 20 Z" fill="#a97b4f"/>
+      <path d="M0 10 L20 20 L40 10" stroke="#8f6640" stroke-width="1" fill="none"/>
+    </pattern>
+    <!-- Anzug auf dem Bügel; Farbe über color="…" -->
+    <g id="muzh-anzug">
+      <path d="M0 -16 Q0 -24 6 -24 Q11 -24 10 -18" stroke="#9aa1a7" stroke-width="2.5" fill="none"/>
+      <path d="M-20 90 L-22 186 L-5 186 L0 110 L5 186 L22 186 L20 90 Z" fill="currentColor"/>
+      <path d="M-20 90 L-22 186 L-5 186 L0 110 L5 186 L22 186 L20 90 Z" fill="#000" opacity="0.2"/>
+      <path d="M-30 4 L0 -12 L30 4" stroke="#8a6a4a" stroke-width="4" fill="none" stroke-linecap="round"/>
+      <path d="M-30 2 L-32 106 L32 106 L30 2 L11 -6 L0 34 L-11 -6 Z" fill="currentColor"/>
+      <path d="M-9 -6 L0 30 L9 -6 Z" fill="#f7f5f0"/>
+      <path d="M-11 -6 L-4 46 L0 34 Z M11 -6 L4 46 L0 34 Z" fill="#000" opacity="0.22"/>
+      <path d="M0 34 V106" stroke="#000" stroke-opacity="0.25" stroke-width="1.5"/>
+      <circle cx="3" cy="62" r="2.2" fill="#000" opacity="0.4"/><circle cx="3" cy="80" r="2.2" fill="#000" opacity="0.4"/>
+      <path d="M-24 76 H-12 M12 76 H24 M14 30 H24" stroke="#000" stroke-opacity="0.25" stroke-width="2"/>
+    </g>
+    <!-- Zusammengelegtes Hemd, Pullover, Jeans -->
+    <g id="muzh-hemd"><rect x="-26" y="-14" width="52" height="14" rx="2" fill="currentColor" stroke="#000" stroke-opacity="0.15"/></g>
+    <g id="muzh-hemd-kragen">
+      <rect x="-26" y="-14" width="52" height="14" rx="2" fill="currentColor" stroke="#000" stroke-opacity="0.15"/>
+      <path d="M-11 -14 L0 -5 L11 -14 Z" fill="currentColor" stroke="#000" stroke-opacity="0.3"/>
+      <path d="M0 -5 V0" stroke="#000" stroke-opacity="0.25"/><circle cx="0" cy="-2.5" r="1.3" fill="#8a8f96"/>
+    </g>
+    <g id="muzh-pulli">
+      <rect x="-27" y="-16" width="54" height="16" rx="5" fill="currentColor"/>
+      <path d="M-22 -8 H22" stroke="#000" stroke-opacity="0.18" stroke-width="2" stroke-dasharray="2 2"/>
+    </g>
+    <g id="muzh-jeans">
+      <rect x="-27" y="-12" width="54" height="12" rx="2" fill="currentColor"/>
+      <path d="M-23 -3 H23" stroke="#e0a050" stroke-width="1" stroke-dasharray="3 2"/>
+      <path d="M14 -12 V-6 H24" stroke="#000" stroke-opacity="0.25" fill="none"/>
+    </g>
+    <!-- Schuh von der Seite -->
+    <g id="muzh-schuh">
+      <path d="M0 0 V-15 Q0 -21 7 -21 H17 Q21 -11 33 -8 Q43 -6 43 0 Z" fill="currentColor"/>
+      <path d="M-1 0 H44" stroke="#1a1a1a" stroke-width="3"/>
+      <path d="M18 -14 L24 -12 M20 -10 L26 -9" stroke="#fff" stroke-opacity="0.45" stroke-width="1.2"/>
+    </g>
+    <g id="muzh-krawatte">
+      <path d="M-4 0 H4 L3 6 H-3 Z" fill="currentColor"/>
+      <path d="M-3 6 H3 L6 44 L0 52 L-6 44 Z" fill="currentColor"/>
+      <path d="M-4 18 L4 14 M-5 30 L5 26 M-6 42 L6 38" stroke="#fff" stroke-opacity="0.28" stroke-width="2"/>
+    </g>
+  </defs>
+
+  <!-- ===== Raum: Glasdach des GUM, Wand, Parkett ===== -->
+  <rect width="1200" height="680" fill="#f3ece0"/>
+  <rect width="1200" height="72" fill="url(#muzh-glas)"/>
+  <g stroke="#7d8f98" fill="none">
+    <path d="M0 72 Q200 -24 400 72 Q600 -24 800 72 Q1000 -24 1200 72" stroke-width="4"/>
+    <path d="M40 0 V72 M80 0 V72 M120 0 V72 M160 0 V72 M200 0 V72 M240 0 V72 M280 0 V72 M320 0 V72 M360 0 V72 M440 0 V72 M480 0 V72 M520 0 V72 M560 0 V72 M600 0 V72 M640 0 V72 M680 0 V72 M720 0 V72 M760 0 V72 M840 0 V72 M880 0 V72 M920 0 V72 M960 0 V72 M1000 0 V72 M1040 0 V72 M1080 0 V72 M1120 0 V72 M1160 0 V72" stroke-width="1.5" opacity="0.6"/>
+  </g>
+  <rect y="70" width="1200" height="14" fill="#c9ad74"/>
+  <path d="M0 84 H1200" stroke="#a88a52" stroke-width="3"/>
+  <path d="M6 87 H1200" stroke="#b39660" stroke-width="6" stroke-dasharray="10 14"/>
+  <!-- Blendbögen an der Wand -->
+  <g fill="#ece2d0" stroke="#d8c8a8" stroke-width="3">
+    <path d="M196 236 V170 A60 60 0 0 1 316 170 V236"/>
+    <path d="M800 236 V170 A60 60 0 0 1 920 170 V236"/>
+  </g>
+  <!-- Kugellampen -->
+  <g>
+    <path d="M250 84 V116 M950 84 V116" stroke="#a88a52" stroke-width="2"/>
+    <circle cx="250" cy="128" r="22" fill="#fff6d8" opacity="0.35"/><circle cx="250" cy="128" r="12" fill="#fff6d8" stroke="#c9ad74" stroke-width="2"/>
+    <circle cx="950" cy="128" r="22" fill="#fff6d8" opacity="0.35"/><circle cx="950" cy="128" r="12" fill="#fff6d8" stroke="#c9ad74" stroke-width="2"/>
+  </g>
+  <rect y="560" width="1200" height="120" fill="url(#muzh-parkett)"/>
+  <rect y="552" width="1200" height="8" fill="#7a5636"/>
+
+  <!-- Schilder -->
+  <g pointer-events="none" font-family="PT Serif, serif" font-weight="700" text-anchor="middle">
+    <rect x="440" y="96" width="320" height="46" rx="6" fill="#2b4a6b" stroke="#c9ad74" stroke-width="3"/>
+    <text x="600" y="127" font-size="22" fill="#f1d79a" letter-spacing="3">МУЖСКАЯ ОДЕЖДА</text>
+    <path d="M846 84 V150 M906 84 V150" stroke="#9aa1a7" stroke-width="1.5"/>
+    <rect x="826" y="150" width="100" height="32" rx="4" fill="#b8392b"/>
+    <text x="876" y="172" font-size="15" fill="#fff" letter-spacing="2">СКИДКИ</text>
+    <path d="M1090 84 V160 M1150 84 V160" stroke="#9aa1a7" stroke-width="1.5"/>
+    <rect x="1060" y="160" width="120" height="30" rx="4" fill="#2b4a6b" stroke="#c9ad74" stroke-width="2"/>
+    <text x="1120" y="181" font-size="16" fill="#f1d79a" letter-spacing="4">КАССА</text>
+  </g>
+
+  <!-- ===== Umkleidekabine ===== -->
+  <g id="hs-primerochnaya" class="hotspot">
+    <rect x="22" y="160" width="152" height="28" rx="4" fill="#2b4a6b"/>
+    <text x="98" y="179" text-anchor="middle" font-family="PT Serif, serif" font-weight="700" font-size="13" fill="#f1d79a" letter-spacing="1.5">ПРИМЕРОЧНАЯ</text>
+    <rect x="24" y="196" width="148" height="358" fill="#d9ccb4"/>
+    <path d="M150 262 Q158 262 158 270" stroke="#9aa1a7" stroke-width="3" fill="none"/>
+    <rect x="132" y="500" width="30" height="8" rx="2" fill="#8a5a36"/><path d="M136 508 V552 M158 508 V552" stroke="#6f4528" stroke-width="4"/>
+    <rect x="20" y="192" width="156" height="10" fill="#7a5636"/>
+    <rect x="20" y="192" width="8" height="362" fill="#7a5636"/><rect x="168" y="192" width="8" height="362" fill="#7a5636"/>
+    <rect x="28" y="206" width="140" height="4" fill="#c9ad74"/>
+    <path d="M28 210 H124 Q118 300 126 380 Q118 460 124 552 H28 Z" fill="#8e2a35"/>
+    <path d="M48 212 V550 M70 212 V550 M92 212 V550 M112 212 Q108 380 114 550" stroke="#6d1f29" stroke-width="5" fill="none"/>
+    <g fill="#c9ad74"><circle cx="34" cy="210" r="3"/><circle cx="56" cy="210" r="3"/><circle cx="78" cy="210" r="3"/><circle cx="100" cy="210" r="3"/><circle cx="121" cy="210" r="3"/></g>
+  </g>
+
+  <!-- ===== Spiegel ===== -->
+  <g id="hs-zerkalo" class="hotspot">
+    <path d="M198 554 L206 518 M234 554 L226 518" stroke="#a88a52" stroke-width="6" stroke-linecap="round"/>
+    <rect x="190" y="262" width="52" height="262" rx="26" fill="#c9ad74" stroke="#a88a52" stroke-width="2"/>
+    <rect x="197" y="270" width="38" height="246" rx="19" fill="url(#muzh-spiegel)"/>
+    <path d="M205 302 L225 282 M203 332 L231 304 M206 472 L228 450" stroke="#fff" stroke-width="3" opacity="0.65"/>
+  </g>
+
+  <!-- ===== Kleiderständer mit Anzügen und Hosen ===== -->
+  <g pointer-events="none">
+    <rect x="256" y="250" width="216" height="6" rx="3" fill="#b9c2c8"/>
+    <path d="M262 250 V550 M466 250 V550" stroke="#9aa1a7" stroke-width="6"/>
+    <path d="M246 552 H278 M454 552 H484" stroke="#7d868c" stroke-width="7" stroke-linecap="round"/>
+  </g>
+  <g id="hs-razmer" class="hotspot">
+    <path d="M318 250 L322 238 M378 250 L374 238" stroke="#9aa1a7" stroke-width="1.5"/>
+    <rect x="300" y="206" width="96" height="34" rx="4" fill="#fffaf0" stroke="#2b4a6b" stroke-width="2"/>
+    <text x="348" y="220" text-anchor="middle" font-family="PT Serif, serif" font-weight="700" font-size="9" fill="#2b4a6b" letter-spacing="1">РАЗМЕРЫ</text>
+    <text x="348" y="235" text-anchor="middle" font-family="PT Serif, serif" font-weight="700" font-size="13" fill="#2b4a6b">46 – 56</text>
+  </g>
+  <g id="hs-kostyum" class="hotspot">
+    <use href="#muzh-anzug" x="300" y="276" color="#2a2c30"/>
+    <use href="#muzh-anzug" x="340" y="276" color="#2b3f63"/>
+    <use href="#muzh-anzug" x="380" y="276" color="#7b8089"/>
+  </g>
+  <g id="hs-bryuki" class="hotspot">
+    <g transform="translate(450 270)">
+      <path d="M0 -10 Q0 -18 5 -18 Q9 -18 8 -13" stroke="#9aa1a7" stroke-width="2" fill="none"/>
+      <path d="M-18 0 H18" stroke="#7d868c" stroke-width="4"/>
+      <path d="M-17 2 H17 L19 150 H3 L0 40 L-3 150 H-19 Z" fill="#c8b48f"/>
+    </g>
+    <g transform="translate(426 268)">
+      <path d="M0 -10 Q0 -16 5 -16 Q9 -16 8 -11" stroke="#9aa1a7" stroke-width="2" fill="none"/>
+      <path d="M-18 0 H18" stroke="#7d868c" stroke-width="4"/>
+      <path d="M-17 2 H17 L19 158 H3 L0 40 L-3 158 H-19 Z" fill="#2a2c30"/>
+      <path d="M-17 8 H17" stroke="#000" stroke-opacity="0.35" stroke-width="2"/>
+    </g>
+  </g>
+
+  <!-- ===== Schaufensterpuppe mit Sakko ===== -->
+  <g id="hs-pidzhak" class="hotspot">
+    <path d="M525 440 V548" stroke="#7d868c" stroke-width="5"/>
+    <ellipse cx="525" cy="550" rx="24" ry="6" fill="#7d868c"/>
+    <rect x="518" y="290" width="14" height="20" rx="4" fill="#d9d4cc"/>
+    <ellipse cx="525" cy="290" rx="8" ry="4" fill="#bdb6aa"/>
+    <path d="M500 312 Q525 302 550 312 L548 440 L502 440 Z" fill="#d9d4cc"/>
+    <path d="M490 330 L482 420 L494 424 L498 352 Z M560 330 L568 420 L556 424 L552 352 Z" fill="#7a4e32"/>
+    <path d="M494 314 Q508 306 516 306 L525 350 L534 306 Q542 306 556 314 L560 330 L558 446 L492 446 L490 330 Z" fill="#8a5a3a"/>
+    <path d="M496 364 H556 M496 384 H556 M496 404 H556 M496 424 H556" stroke="#6b4228" stroke-width="1.2" stroke-dasharray="3 3"/>
+    <path d="M516 306 L510 372 L525 350 Z M534 306 L540 372 L525 350 Z" fill="#6b4228"/>
+    <path d="M525 350 V446" stroke="#5a3820" stroke-width="1.5"/>
+    <circle cx="529" cy="392" r="2.6" fill="#3a2618"/><circle cx="529" cy="414" r="2.6" fill="#3a2618"/>
+    <path d="M500 420 H516 M534 420 H550 M538 340 H550" stroke="#5a3820" stroke-width="2"/>
+  </g>
+
+  <!-- ===== Regal: Hemden, Pullover, Jeans ===== -->
+  <g pointer-events="none">
+    <rect x="574" y="214" width="202" height="14" fill="#6f4528"/>
+    <rect x="574" y="226" width="202" height="4" fill="#c9ad74"/>
+    <rect x="578" y="230" width="194" height="324" fill="#8a5a36"/>
+    <rect x="588" y="236" width="174" height="268" fill="#efe5d2"/>
+    <rect x="588" y="318" width="174" height="8" fill="#8a5a36"/>
+    <rect x="588" y="408" width="174" height="8" fill="#8a5a36"/>
+    <rect x="588" y="498" width="174" height="8" fill="#8a5a36"/>
+    <rect x="590" y="512" width="82" height="38" rx="2" fill="#7a4e30"/><rect x="678" y="512" width="82" height="38" rx="2" fill="#7a4e30"/>
+    <circle cx="664" cy="531" r="3" fill="#c9ad74"/><circle cx="686" cy="531" r="3" fill="#c9ad74"/>
+  </g>
+  <g id="hs-rubashka" class="hotspot">
+    <rect class="treffer" x="588" y="240" width="174" height="78" fill="transparent"/>
+    <use href="#muzh-hemd" x="616" y="318" color="#fbfbfb"/><use href="#muzh-hemd" x="616" y="304" color="#fbfbfb"/><use href="#muzh-hemd-kragen" x="616" y="290" color="#fbfbfb"/>
+    <use href="#muzh-hemd" x="675" y="318" color="#a9cbe8"/><use href="#muzh-hemd" x="675" y="304" color="#a9cbe8"/><use href="#muzh-hemd-kragen" x="675" y="290" color="#a9cbe8"/>
+    <use href="#muzh-hemd" x="734" y="318" color="#f2c4c8"/><use href="#muzh-hemd" x="734" y="304" color="#f2c4c8"/><use href="#muzh-hemd-kragen" x="734" y="290" color="#f2c4c8"/>
+  </g>
+  <g id="hs-sviter" class="hotspot">
+    <rect class="treffer" x="588" y="330" width="174" height="78" fill="transparent"/>
+    <use href="#muzh-pulli" x="616" y="408" color="#3f7a4f"/><use href="#muzh-pulli" x="616" y="392" color="#3f7a4f"/><use href="#muzh-pulli" x="616" y="376" color="#4c8a5c"/>
+    <use href="#muzh-pulli" x="675" y="408" color="#7d2a35"/><use href="#muzh-pulli" x="675" y="392" color="#7d2a35"/><use href="#muzh-pulli" x="675" y="376" color="#8e3542"/>
+    <use href="#muzh-pulli" x="734" y="408" color="#d8c3a0"/><use href="#muzh-pulli" x="734" y="392" color="#d8c3a0"/><use href="#muzh-pulli" x="734" y="376" color="#e2cfae"/>
+  </g>
+  <g id="hs-dzhinsy" class="hotspot">
+    <rect class="treffer" x="588" y="420" width="174" height="78" fill="transparent"/>
+    <use href="#muzh-jeans" x="616" y="498" color="#2c4466"/><use href="#muzh-jeans" x="616" y="486" color="#2c4466"/><use href="#muzh-jeans" x="616" y="474" color="#2c4466"/><use href="#muzh-jeans" x="616" y="462" color="#344f75"/>
+    <use href="#muzh-jeans" x="675" y="498" color="#3b5f8f"/><use href="#muzh-jeans" x="675" y="486" color="#3b5f8f"/><use href="#muzh-jeans" x="675" y="474" color="#3b5f8f"/>
+    <use href="#muzh-jeans" x="734" y="498" color="#5b7fae"/><use href="#muzh-jeans" x="734" y="486" color="#5b7fae"/><use href="#muzh-jeans" x="734" y="474" color="#5b7fae"/><use href="#muzh-jeans" x="734" y="462" color="#6a8cb8"/>
+  </g>
+
+  <!-- ===== Wandstange: Mantel und Jacke ===== -->
+  <g pointer-events="none">
+    <rect x="792" y="240" width="170" height="5" rx="2" fill="#b9c2c8"/>
+    <path d="M800 228 V244 M954 228 V244" stroke="#9aa1a7" stroke-width="4"/>
+  </g>
+  <g id="hs-palto" class="hotspot">
+    <path d="M836 248 Q836 238 841 238 Q846 238 845 243" stroke="#9aa1a7" stroke-width="2" fill="none"/>
+    <path d="M800 266 L790 420 L802 422 L808 300 Z M872 266 L882 420 L870 422 L864 300 Z" fill="#b0874f"/>
+    <path d="M800 262 Q836 248 872 262 L878 444 L794 444 Z" fill="#c49a62"/>
+    <path d="M824 254 L836 304 L848 254 Z" fill="#a67d48"/>
+    <path d="M818 256 L828 330 L836 304 Z M854 256 L844 330 L836 304 Z" fill="#b0874f"/>
+    <rect x="795" y="372" width="82" height="8" fill="#a67d48"/>
+    <g fill="#6b4a2a"><circle cx="826" cy="330" r="3"/><circle cx="846" cy="330" r="3"/><circle cx="826" cy="354" r="3"/><circle cx="846" cy="354" r="3"/></g>
+  </g>
+  <g id="hs-kurtka" class="hotspot">
+    <path d="M918 248 Q918 238 923 238 Q928 238 927 243" stroke="#9aa1a7" stroke-width="2" fill="none"/>
+    <path d="M884 266 L874 362 L886 364 L890 290 Z M952 266 L962 362 L950 364 L946 290 Z" fill="#45602f"/>
+    <path d="M884 262 Q918 248 952 262 L956 372 L880 372 Z" fill="#4f6b3a"/>
+    <path d="M882 290 H954 M881 318 H955 M880 346 H956" stroke="#3d5530" stroke-width="2.5"/>
+    <path d="M918 256 V372" stroke="#c9c9c9" stroke-width="2"/>
+    <path d="M904 254 Q918 262 932 254 L930 244 Q918 252 906 244 Z" fill="#3d5530"/>
+  </g>
+
+  <!-- ===== Schuhregal ===== -->
+  <g pointer-events="none">
+    <rect x="788" y="476" width="176" height="8" fill="#6f4528"/>
+    <rect x="788" y="516" width="176" height="8" fill="#6f4528"/>
+    <rect x="788" y="476" width="8" height="78" fill="#6f4528"/><rect x="956" y="476" width="8" height="78" fill="#6f4528"/>
+  </g>
+  <g id="hs-botinki" class="hotspot">
+    <rect class="treffer" x="796" y="446" width="160" height="70" fill="transparent"/>
+    <use href="#muzh-schuh" x="804" y="476" color="#3a3d42"/><use href="#muzh-schuh" x="818" y="476" color="#1d1f22"/>
+    <use href="#muzh-schuh" x="878" y="476" color="#7a4626"/><use href="#muzh-schuh" x="892" y="476" color="#5e3420"/>
+    <use href="#muzh-schuh" x="810" y="516" color="#5e3420"/><use href="#muzh-schuh" x="824" y="516" color="#4a2a18"/>
+    <use href="#muzh-schuh" x="886" y="516" color="#3a3d42"/><use href="#muzh-schuh" x="900" y="516" color="#1d1f22"/>
+  </g>
+
+  <!-- ===== Verkäufer (mit Maßband) ===== -->
+  <g id="hs-prodavets" class="hotspot">
+    <path d="M984 448 L982 548 L998 548 L1002 470 L1006 548 L1022 548 L1020 448 Z" fill="#23324a"/>
+    <ellipse cx="988" cy="550" rx="12" ry="5" fill="#1a1a1a"/><ellipse cx="1016" cy="550" rx="12" ry="5" fill="#1a1a1a"/>
+    <path d="M980 376 L972 440 L982 442 L988 392 Z M1024 376 L1032 440 L1022 442 L1016 392 Z" fill="#24405e"/>
+    <circle cx="977" cy="445" r="6" fill="#f2c7a6"/><circle cx="1027" cy="445" r="6" fill="#f2c7a6"/>
+    <path d="M980 372 Q1002 362 1024 372 L1030 454 L974 454 Z" fill="#2b4a6b"/>
+    <path d="M994 368 L1002 400 L1010 368 Z" fill="#fbfbfb"/>
+    <path d="M1000 371 H1004 L1006 398 L1002 404 L998 398 Z" fill="#b8392b"/>
+    <path d="M992 368 L998 412 L1002 400 Z M1012 368 L1006 412 L1002 400 Z" fill="#1f3650"/>
+    <rect x="1010" y="392" width="12" height="6" rx="1" fill="#f1d79a"/>
+    <rect x="996" y="352" width="12" height="16" fill="#f2c7a6"/>
+    <path d="M990 364 Q987 400 985 434 M1014 364 Q1017 400 1019 434" stroke="#f2d046" stroke-width="5" fill="none"/>
+    <path d="M990 364 Q987 400 985 434 M1014 364 Q1017 400 1019 434" stroke="#2a2a2a" stroke-width="5" stroke-dasharray="1 6" fill="none"/>
+    <circle cx="1002" cy="336" r="19" fill="#f2c7a6"/>
+    <path d="M983 334 Q984 314 1002 314 Q1020 314 1021 334 Q1014 322 1002 323 Q990 322 983 334Z" fill="#5a4636"/>
+    <path d="M983 334 Q982 326 986 322 M1021 334 Q1022 326 1018 322" stroke="#a9a29a" stroke-width="3" fill="none"/>
+    <circle cx="995" cy="338" r="2" fill="#2a2a2a"/><circle cx="1009" cy="338" r="2" fill="#2a2a2a"/>
+    <path d="M994 346 Q1002 342 1010 346 Q1002 349 994 346Z" fill="#5a4636"/>
+    <path d="M997 351 Q1002 354 1007 351" stroke="#a0523a" stroke-width="2" fill="none"/>
+  </g>
+
+  <!-- ===== Kasse mit Kassiererin ===== -->
+  <g id="hs-kassirsha" class="hotspot">
+    <path d="M1112 470 Q1114 404 1146 402 Q1178 404 1180 470 Z" fill="#7d2a35"/>
+    <rect x="1140" y="390" width="12" height="14" fill="#e8b994"/>
+    <path d="M1136 404 L1146 418 L1156 404" stroke="#fbfbfb" stroke-width="4" fill="none"/>
+    <circle cx="1146" cy="352" r="9" fill="#8a4a2a"/>
+    <circle cx="1146" cy="378" r="18" fill="#e8b994"/>
+    <path d="M1128 376 Q1128 358 1146 358 Q1164 358 1164 376 Q1158 366 1146 366 Q1134 366 1128 376Z" fill="#8a4a2a"/>
+    <circle cx="1140" cy="380" r="2" fill="#2a2a2a"/><circle cx="1152" cy="380" r="2" fill="#2a2a2a"/>
+    <path d="M1141 388 Q1146 391 1151 388" stroke="#a0523a" stroke-width="2" fill="none"/>
+  </g>
+  <g id="hs-kassa" class="hotspot">
+    <rect x="1054" y="404" width="40" height="30" rx="3" fill="#3a3f44"/>
+    <rect x="1058" y="408" width="32" height="18" fill="#15191b"/>
+    <text x="1074" y="420" text-anchor="middle" font-family="Manrope, sans-serif" font-size="7" font-weight="800" fill="#6fcf97">ИТОГО</text>
+    <rect x="1070" y="434" width="8" height="8" fill="#3a3f44"/>
+    <rect x="1100" y="424" width="15" height="17" rx="2" fill="#2a2c30"/><rect x="1103" y="427" width="9" height="5" fill="#6fcf97"/>
+    <rect x="1040" y="440" width="160" height="10" fill="#6f4528"/>
+    <rect x="1044" y="450" width="152" height="104" fill="#8a5a36"/>
+    <rect x="1044" y="462" width="152" height="3" fill="#c9ad74"/>
+    <rect x="1060" y="476" width="120" height="66" rx="4" fill="none" stroke="#c9ad74" stroke-width="2"/>
+  </g>
+
+  <!-- ===== Tisch vorne: Krawatten, Gürtel, Socken, Mütze, Schal ===== -->
+  <g pointer-events="none">
+    <rect x="286" y="586" width="320" height="12" rx="2" fill="#6f4528"/>
+    <rect x="294" y="598" width="304" height="50" fill="#8a5a36"/>
+    <rect x="294" y="606" width="304" height="3" fill="#c9ad74"/>
+    <path d="M302 648 V674 M590 648 V674" stroke="#5a3820" stroke-width="10"/>
+  </g>
+  <g id="hs-galstuk" class="hotspot">
+    <rect class="treffer" x="320" y="500" width="80" height="90" fill="transparent"/>
+    <path d="M360 512 V586" stroke="#9aa1a7" stroke-width="4"/>
+    <ellipse cx="360" cy="586" rx="22" ry="4" fill="#7d868c"/>
+    <rect x="324" y="506" width="72" height="5" rx="2" fill="#b9c2c8"/>
+    <use href="#muzh-krawatte" x="333" y="511" color="#b8392b"/>
+    <use href="#muzh-krawatte" x="350" y="511" color="#2b5fa8"/>
+    <use href="#muzh-krawatte" x="370" y="511" color="#3f7a4f"/>
+    <use href="#muzh-krawatte" x="387" y="511" color="#7d2a35"/>
+  </g>
+  <g id="hs-remen" class="hotspot">
+    <rect class="treffer" x="402" y="552" width="76" height="36" fill="transparent"/>
+    <circle cx="420" cy="572" r="14" fill="#6b3e22"/><circle cx="420" cy="572" r="9" fill="none" stroke="#4e2c16" stroke-width="2"/><circle cx="420" cy="572" r="4" fill="#4e2c16"/>
+    <rect x="428" y="565" width="10" height="13" rx="2" fill="none" stroke="#d0d0d0" stroke-width="2.5"/>
+    <circle cx="458" cy="572" r="14" fill="#232427"/><circle cx="458" cy="572" r="9" fill="none" stroke="#111" stroke-width="2"/><circle cx="458" cy="572" r="4" fill="#111"/>
+    <rect x="466" y="565" width="10" height="13" rx="2" fill="none" stroke="#c9ad74" stroke-width="2.5"/>
+  </g>
+  <g id="hs-noski" class="hotspot">
+    <rect class="treffer" x="484" y="550" width="60" height="38" fill="transparent"/>
+    <ellipse cx="497" cy="565" rx="8" ry="6" fill="#2b5fa8"/><ellipse cx="512" cy="563" rx="8" ry="6" fill="#2a2c30"/>
+    <ellipse cx="527" cy="565" rx="8" ry="6" fill="#b8392b"/><ellipse cx="505" cy="569" rx="8" ry="5" fill="#7b8089"/><ellipse cx="521" cy="569" rx="8" ry="5" fill="#d8c3a0"/>
+    <path d="M486 568 H542 L540 586 H488 Z" fill="#e8dcc6" stroke="#c9b48a" stroke-width="1.5"/>
+  </g>
+  <g id="hs-shapka" class="hotspot">
+    <path d="M572 586 V560" stroke="#9aa1a7" stroke-width="3"/>
+    <ellipse cx="572" cy="586" rx="11" ry="3" fill="#7d868c"/>
+    <ellipse cx="572" cy="548" rx="13" ry="15" fill="#e8e1d6"/>
+    <path d="M558 548 Q558 522 572 522 Q586 522 586 548 Z" fill="#8a8f96"/>
+    <path d="M564 528 V546 M572 524 V546 M580 528 V546" stroke="#6f747a" stroke-width="1.5"/>
+    <rect x="557" y="541" width="30" height="9" rx="3" fill="#7b8089"/>
+    <circle cx="572" cy="520" r="5" fill="#a0a5ab"/>
+  </g>
+  <g id="hs-sharf" class="hotspot">
+    <rect class="treffer" x="290" y="574" width="44" height="74" fill="transparent"/>
+    <path d="M296 582 Q314 575 332 582 L330 640 H316 L318 598 L310 598 L306 640 H292 Z" fill="#b8392b"/>
+    <path d="M293 622 H307 M316 622 H331" stroke="#f1d79a" stroke-width="2.5"/>
+    <path d="M294 640 v7 M298 640 v7 M302 640 v7 M318 640 v7 M322 640 v7 M326 640 v7" stroke="#b8392b" stroke-width="1.5"/>
+  </g>
+</svg>

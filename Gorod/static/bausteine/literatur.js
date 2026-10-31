@@ -60,7 +60,7 @@
                     <div class="buch-seite rechts">
                       <div class="buch-kopf"><span class="buch-autor">${G.esc(text.autor)}</span><span class="buch-titel">${G.esc(text.titel)}</span></div>
                       <div class="buch-text">${text.zeilen.map((z, n) => `
-                        <button class="buch-zeile" data-n="${n}"><span class="ru">${G.esc(z.ru)}</span><span class="de">${G.esc(z.de)}</span></button>`).join('')}</div>
+                        <button class="buch-zeile" data-n="${n}"><span class="ru"></span><span class="de">${G.esc(z.de)}</span></button>`).join('')}</div>
                     </div>
                   </div>`;
                 buehne.querySelectorAll('.buch-zeile').forEach(b => b.addEventListener('click', () => {
@@ -91,17 +91,21 @@
                 ctx.tafel.innerHTML = `
                   <header class="tafel-kopf">
                     <h2>Literatur</h2>
-                    <p>Мари́я Ива́новна liest vor. Tippe auf eine Zeile, um sie noch einmal zu hören und die Übersetzung zu sehen.</p>
+                    <p>Мари́я Ива́новна liest vor. Tippe auf eine Zeile, um sie noch einmal zu hören und die Übersetzung zu sehen – oder auf ein Wort, um es erklärt zu bekommen.</p>
                   </header>
                   <div class="lit-karte">
                     <div class="lit-titel">${G.esc(text.titel)}</div>
                     <div class="lit-autor">${G.esc(text.autor)}${text.jahr ? ` · ${G.esc(String(text.jahr))}` : ''}</div>
                     ${text.hinweis ? `<div class="wk-hinweis">💡 ${G.esc(text.hinweis)}</div>` : ''}
                   </div>
+                  <div class="gram-box buch-gram" hidden></div>
                   <div class="knopf-reihe">
                     <button class="knopf-zweit" id="vorlesen">▶ Noch einmal vorlesen</button>
                     <button class="knopf-haupt" id="zu-fragen">Fragen zum Text <span>→</span></button>
                   </div>`;
+                // Wörter und Grammatik der Buchzeilen erklärt das Feld rechts in der Tafel
+                const buchBox = q('.buch-gram');
+                buehne.querySelectorAll('.buch-zeile').forEach(b => G.satz(b.querySelector('.ru'), text.zeilen[b.dataset.n].ru, { box: buchBox, stimme }));
                 q('#vorlesen').addEventListener('click', () => vorlesen());
                 q('#zu-fragen').addEventListener('click', () => fragenStart());
                 vorlesen();

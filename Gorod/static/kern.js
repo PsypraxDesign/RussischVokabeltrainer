@@ -10,7 +10,7 @@
 
     const STUFEN_TITEL = { entdecken: 'Entdecken', hoeren: 'Hören & Zeigen', dialog: 'Bestellen', bezahlen: 'Bezahlen', wo: 'Wo ist das?', etagen: 'Stockwerke', aufzug: 'Aufzug', pass: 'Passkontrolle', gepaeck: 'Gepäck', zoll: 'Zoll',
         fahrplan: 'Abfahrtstafel', fahrkarte: 'Fahrkarte', zug: 'Im Zug',
-        einkaufen: 'Einkaufen', theke: 'Theke', kasse: 'Kasse', stundenplan: 'Stundenplan', unterricht: 'Im Unterricht',
+        einkaufen: 'Einkaufen', theke: 'Theke', kasse: 'Kasse', stundenplan: 'Stundenplan', unterricht: 'Im Unterricht', anprobe: 'Anprobe',
         rechnen: 'Mathe', literatur: 'Literatur', wege: 'Gehen & Fahren' };
     const START_GELD = { 1000: 1, 500: 2, 100: 4, 50: 2, 10: 10 };
     // Noch nicht gebaute Gebäude — als Ausblick auf der Straße
@@ -33,39 +33,74 @@
     G.woFrageDe = (de, genus, deZahl) => `Wo ${genus === 'pl' && deZahl !== 'sg' ? 'sind' : 'ist'} ${de}?`;
     G.sterne = (n) => [0, 1, 2].map(i => `<span class="${i < n ? 'an' : 'aus'}" style="animation-delay:${i * 0.18}s">★</span>`).join('');
 
-    // Satz mit antippbaren Grammatik-Stellen. teile: Text oder { text, titel, erkl }.
-    // Antippen hebt die Stelle hervor, liest sie vor und zeigt die Erklärung in `box`;
-    // nochmal antippen schließt sie wieder.
+    // Satz zum Antippen. teile: Text oder { text, titel, erkl } (Grammatik-Stellen aus grammatik.js).
+    // Jedes Wort mit Wörterbuch-Eintrag ist antippbar (Bedeutung, Grundform, Form); eine Grammatik-Stelle
+    // zeigt ihre Regel und darunter die Wörter, aus denen sie besteht. Erklärt wird in `box`,
+    // vorgelesen wird das Angetippte; nochmal antippen schließt das Feld wieder.
+    const WORT_RE = /([А-Яа-яЁё́]+(?:-[А-Яа-яЁё́]+)*)/;
+    const wortEintrag = (w) => (window.Grammatik && Grammatik.wort ? Grammatik.wort(w) : null);
+    const flachWort = (w) => w.toLowerCase().replace(/́/g, '').replace(/ё/g, 'е');
+    // „Form – Merkhilfe“: die Merkhilfe ist ein allgemeines Beispiel und steht in einer eigenen Zeile,
+    // damit sie nicht als Aussage über den angetippten Satz gelesen wird
+    const formUndTipp = (form) => { const i = form.indexOf(' – '); return i < 0 ? [form, ''] : [form.slice(0, i), form.slice(i + 3)]; };
+    function wortHtml(wort, [grund, de, form]) {
+        const gleich = flachWort(grund) === flachWort(wort);
+        const [f, tipp] = formUndTipp(form);
+        return `<div class="gb-kopf"><span class="ru">${G.esc(wort)}</span><span class="gb-titel gb-de">${G.esc(de)}</span></div>
+          <p class="gb-wort">${gleich ? '' : `Grundform <b class="ru">${G.esc(grund)}</b> · `}${G.esc(f)}</p>
+          ${tipp ? `<p class="gb-tipp">Tipp: ${G.esc(tipp)}</p>` : ''}`;
+    }
+    function stelleHtml(t) {
+        const woerter = t.text.split(WORT_RE).filter((w, i) => i % 2 && wortEintrag(w));
+        return `<div class="gb-kopf"><span class="ru">${G.esc(t.text)}</span>${t.titel ? `<span class="gb-titel">${G.esc(t.titel)}</span>` : ''}</div>
+          ${G.esc(t.erkl).split('\n').map(z => `<p>${z}</p>`).join('')}
+          ${woerter.length ? `<div class="gb-woerter">${woerter.map(w => {
+              const [, de, form] = wortEintrag(w);
+              return `<span><b class="ru">${G.esc(w)}</b> ${G.esc(de)} <i>${G.esc(formUndTipp(form)[0])}</i></span>`;
+          }).join('')}</div>` : ''}`;
+    }
     G.grammatikSatz = function (ziel, teile, box, sage) {
         ziel.innerHTML = '';
         box.innerHTML = '';
         box.hidden = true;
+        let antippbar = false;
+        const umschalten = (el, html, vorlesen) => {
+            const offen = el.classList.contains('aktiv');
+            if (box._aktiv) box._aktiv.classList.remove('aktiv');   // mehrere Sätze, ein Erklärfeld
+            if (offen) { box.hidden = true; box._aktiv = null; return; }
+            el.classList.add('aktiv');
+            box._aktiv = el;
+            box.innerHTML = html;
+            box.hidden = false;
+            if (sage) sage(vorlesen);
+        };
+        const knopf = (el, aktion, titel) => {
+            el.tabIndex = 0;
+            el.setAttribute('role', 'button');
+            el.title = titel;
+            // stopPropagation: Die Zeile im Gespräch spielt sonst den ganzen Satz ab
+            el.addEventListener('click', (e) => { e.stopPropagation(); aktion(); });
+            el.addEventListener('keydown', (e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); e.stopPropagation(); aktion(); } });
+            antippbar = true;
+        };
+        const woerterEinfuegen = (text) => text.split(WORT_RE).forEach((teil, i) => {
+            const eintrag = i % 2 ? wortEintrag(teil) : null;
+            if (!eintrag) { if (teil) ziel.append(teil); return; }
+            const w = document.createElement('span');
+            w.className = 'wort';
+            w.textContent = teil;
+            knopf(w, () => umschalten(w, wortHtml(teil, eintrag), teil), 'Wort erklären');
+            ziel.appendChild(w);
+        });
         teile.forEach(t => {
-            if (typeof t === 'string' || !t.erkl) { ziel.append(typeof t === 'string' ? t : t.text); return; }
+            if (typeof t === 'string' || !t.erkl) { woerterEinfuegen(typeof t === 'string' ? t : t.text); return; }
             const s = document.createElement('span');
             s.className = 'gram-stelle';
-            s.tabIndex = 0;
-            s.setAttribute('role', 'button');
-            s.title = 'Grammatik erklären';
             s.textContent = t.text;
-            const zeigen = () => {
-                const offen = s.classList.contains('aktiv');
-                ziel.querySelectorAll('.gram-stelle.aktiv').forEach(x => x.classList.remove('aktiv'));
-                if (box._aktiv) box._aktiv.classList.remove('aktiv');   // mehrere Sätze, ein Erklärfeld
-                if (offen) { box.hidden = true; box._aktiv = null; return; }
-                s.classList.add('aktiv');
-                box._aktiv = s;
-                box.innerHTML = `<div class="gb-kopf"><span class="ru">${G.esc(t.text)}</span>${t.titel ? `<span class="gb-titel">${G.esc(t.titel)}</span>` : ''}</div>
-                  ${G.esc(t.erkl).split('\n').map(z => `<p>${z}</p>`).join('')}`;
-                box.hidden = false;
-                if (sage) sage(t.text);
-            };
-            // stopPropagation: Die Zeile im Gespräch spielt sonst den ganzen Satz ab
-            s.addEventListener('click', (e) => { e.stopPropagation(); zeigen(); });
-            s.addEventListener('keydown', (e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); e.stopPropagation(); zeigen(); } });
+            knopf(s, () => umschalten(s, stelleHtml(t), t.text), 'Grammatik erklären');
             ziel.appendChild(s);
         });
-        return teile.some(t => typeof t !== 'string' && t.erkl);
+        return antippbar;
     };
 
     // Erklärfeld zu einer Frage schließen (wenn die Frage verdeckt wird)
@@ -117,10 +152,10 @@
         }
         const teile = window.Grammatik ? Grammatik.teile(text) : [text];
         const mitStellen = G.grammatikSatz(el, teile, box, (t) => Stimmen.sage(t, stimme));
-        if (mitStellen && !G.stand.gram_tipp) {
-            G.stand.gram_tipp = true;
+        if (mitStellen && !G.stand.wort_tipp) {
+            G.stand.wort_tipp = true;
             G.speichern();
-            G.toast('Tipp: Gepunktet unterstrichene Wörter antippen – dann gibt es die Grammatik dazu.');
+            G.toast('Tipp: Jedes russische Wort antippen – dann gibt es Bedeutung und Form. Gepunktet unterstrichene Stellen erklären die Grammatik.');
         }
         return mitStellen;
     };
@@ -169,6 +204,19 @@
         if (typeof G.stand.konto !== 'number') G.stand.konto = 5000;
         return G.stand.konto;
     };
+    // Gehalt: einmal am Tag wird das Kartenkonto auf mindestens 10 000 ₽ aufgefüllt –
+    // ein Einkauf in der Mode im GUM kostet bis zu 7 000 ₽, danach würde jede Karte abgelehnt
+    const GEHALT = 10000;
+    function zahltag() {
+        const heute = new Date().toISOString().slice(0, 10);
+        if (G.stand.zahltag === heute) return;
+        G.stand.zahltag = heute;
+        if (G.konto() < GEHALT) {
+            G.stand.konto = GEHALT;
+            setTimeout(() => G.toast(`Зарплата пришла! – Dein Gehalt ist da: ${GEHALT.toLocaleString('de-DE')} ₽ auf der Karte.`), 1200);
+        }
+        G.speichern();
+    }
     G.geldAnzeigen = function () {
         $('#geld-betrag').textContent = G.summe(G.boerse()).toLocaleString('de-DE');
         $('#konto-betrag').textContent = G.konto().toLocaleString('de-DE');
@@ -279,7 +327,7 @@
           <div class="stadt-intro">
             <h1>Го́род</h1>
             <p>Eine kleine Stadt zum Russischlernen. Tippe auf ein Haus, um hineinzugehen.</p>
-            <button class="knopf-haupt stadt3d-knopf" id="stadt3d-start">🚶 In 3D durch die Stadt <span>→</span></button>
+            <button class="knopf-haupt stadt3d-knopf" id="stadt3d-start">🚶 In 3D über den Roten Platz <span>→</span></button>
           </div>
           <div class="strasse">
             <div class="himmel"><span class="sonne"></span><span class="wolke w1"></span><span class="wolke w2"></span></div>
@@ -296,12 +344,14 @@
         $('#stadt3d-start').addEventListener('click', () => G.zeigeStadt3D());
     }
 
-    // Aus der 3D-Stadt direkt ins Haus (Satz beim Hineingehen wie auf der Straße)
-    G.oeffneModul = function (id) {
+    // Aus der 3D-Stadt direkt ins Haus (Satz beim Hineingehen wie auf der Straße;
+    // die Metro gibt einen eigenen Satz mit, z. B. „Я иду́ в аэропо́рт.“)
+    G.oeffneModul = function (id, satz, satzDe) {
         const m = G.module.find(x => x.id === id);
         if (!m) return;
-        Stimmen.sage(m.satz_hin || `Я иду́ ${m.praeposition} ${m.titel.ru}.`);
-        if (m.satz_hin) G.toast(m.satz_hin.replace(/́/g, '') + (m.satz_hin_de ? ` – ${m.satz_hin_de}` : ''));
+        const ru = satz || m.satz_hin, de = satz ? satzDe : m.satz_hin_de;
+        Stimmen.sage(ru || `Я иду́ ${m.praeposition} ${m.titel.ru}.`);
+        if (ru) G.toast(ru.replace(/́/g, '') + (de ? ` – ${de}` : ''));
         zeigeModul(m.id, null, true);
     };
 
@@ -340,6 +390,7 @@
           <div class="modul-buehne">
             <div class="szene-rahmen"><div class="szene ${inhalt.raeume ? 'mit-raeumen' : ''}" id="szene">
               <div class="blase" id="blase" hidden></div>
+              <div class="gram-box blase-gram" id="blase-gram" hidden></div>
               <button class="ganzes" id="ganzes" hidden>⤢ ${G.esc(inhalt.uebersicht || 'Übersicht')}</button>
             </div></div>
             <aside class="tafel" id="tafel"></aside>
@@ -486,6 +537,7 @@
         szene.classList.remove('gezoomt', 'namen-an');
         $('#ganzes').hidden = true;
         $('#blase').hidden = true;
+        $('#blase-gram').hidden = true;
         if (!baustein) { $('#tafel').innerHTML = `<p>Baustein „${G.esc(stufe)}“ fehlt.</p>`; return; }
         const { ctx, loesen } = erzeugeKontext(m, stufe);
         const eigenes = baustein.start(ctx);
@@ -530,11 +582,14 @@
                 b.style.top = (pos.y * 100) + '%';
                 // Figuren am rechten Bildrand: Blase öffnet nach links
                 b.classList.toggle('links', pos.seite === 'links');
-                b.innerHTML = `<span class="ru">${G.esc(text)}</span>${de ? `<span class="de">${G.esc(de)}</span>` : ''}`;
+                b.innerHTML = `<span class="ru"></span>${de ? `<span class="de">${G.esc(de)}</span>` : ''}`;
+                // Wörter und Grammatik der Figur antippbar; die Erklärung erscheint unten im Bild
+                // (in der Blase würde sie nach oben aus dem Bild wachsen)
+                G.satz(b.querySelector('.ru'), text, { box: $('#blase-gram'), stimme: figur && figur.stimme });
                 b.hidden = false;
                 b.classList.remove('auf'); void b.offsetWidth; b.classList.add('auf');
             },
-            blaseWeg() { $('#blase').hidden = true; },
+            blaseWeg() { $('#blase').hidden = true; $('#blase-gram').hidden = true; },
 
             // Räume (Module mit inhalt.raeume): Zoom in ein Zimmer und zurück
             raeume: G.inhalte[m.id].raeume || [],
@@ -589,7 +644,9 @@
             fetch('/api/spielstand').then(r => r.json()).catch(() => ({})),
             fetch('/api/module').then(r => r.json()),
             // Grammatik-Regeln: fehlen sie, gibt es eben keine Stellen zum Antippen
-            fetch('/static/grammatik.json').then(r => r.json()).then(d => Grammatik.laden(d)).catch(() => {})
+            fetch('/static/grammatik.json').then(r => r.json()).then(d => Grammatik.laden(d)).catch(() => {}),
+            // Wörterbuch: fehlt es, sind eben nur die Grammatik-Stellen antippbar
+            fetch('/static/woerterbuch.json').then(r => r.json()).then(d => Grammatik.ladenWoerter(d)).catch(() => {})
         ]);
         if (stand._warnung) { G.toast(stand._warnung, 'fehler'); delete stand._warnung; }
         G.stand = stand || {};
@@ -597,6 +654,7 @@
         G.fehler = mod.fehler;
         await Promise.all(G.module.map(m =>
             fetch(`/api/module/${m.id}/inhalt`).then(r => r.json()).then(i => { G.inhalte[m.id] = i; })));
+        zahltag();
         G.geldAnzeigen();
         Stimmen.laden(stimmenAuswahl);
         zeigeStadt();

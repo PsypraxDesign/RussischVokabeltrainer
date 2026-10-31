@@ -1,0 +1,49 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 260" role="img" aria-label="Herrenmode im GUM von außen">
+  <!-- Türmchen mit grünen Zeltdächern wie am GUM -->
+  <g>
+    <rect x="14" y="44" width="40" height="40" fill="#e8dcc6"/>
+    <path d="M10 46 L34 8 L58 46 Z" fill="#4f7a5a"/>
+    <path d="M34 8 V2" stroke="#c9ad74" stroke-width="2"/><circle cx="34" cy="3" r="2.5" fill="#c9ad74"/>
+    <rect x="266" y="44" width="40" height="40" fill="#e8dcc6"/>
+    <path d="M262 46 L286 8 L310 46 Z" fill="#4f7a5a"/>
+    <path d="M286 8 V2" stroke="#c9ad74" stroke-width="2"/><circle cx="286" cy="3" r="2.5" fill="#c9ad74"/>
+  </g>
+  <!-- Mittelgiebel -->
+  <path d="M96 80 Q160 18 224 80 Z" fill="#e8dcc6"/>
+  <path d="M118 80 Q160 40 202 80" fill="#d9c9ae"/>
+  <circle cx="160" cy="62" r="10" fill="#bfe0ee" stroke="#c9ad74" stroke-width="2"/>
+  <!-- Fassade -->
+  <rect x="10" y="78" width="300" height="182" fill="#efe5d3"/>
+  <path d="M10 79 H310" stroke="#c9ad74" stroke-width="4"/>
+  <path d="M10 124 H310 M10 254 H310" stroke="#ddd0b8" stroke-width="2"/>
+  <rect x="62" y="88" width="196" height="28" rx="4" fill="#2b4a6b" stroke="#c9ad74" stroke-width="2"/>
+  <text x="160" y="107" text-anchor="middle" font-family="PT Serif, serif" font-weight="700" font-size="13.5" fill="#f1d79a" letter-spacing="1.5">МУЖСКАЯ ОДЕЖДА</text>
+  <!-- Schaufenster links: Puppe im Anzug -->
+  <path d="M24 250 V160 Q24 132 72 132 Q120 132 120 160 V250 Z" fill="#bfe0ee" stroke="#c9ad74" stroke-width="3"/>
+  <g>
+    <path d="M72 238 V250" stroke="#7d868c" stroke-width="3"/><ellipse cx="72" cy="248" rx="14" ry="3" fill="#7d868c"/>
+    <rect x="67" y="174" width="10" height="12" rx="3" fill="#d9d4cc"/>
+    <path d="M50 192 Q72 182 94 192 L96 238 L48 238 Z" fill="#2b3f63"/>
+    <path d="M65 186 L72 214 L79 186 Z" fill="#fbfbfb"/>
+    <path d="M70 188 H74 L75 208 L72 212 L69 208 Z" fill="#b8392b"/>
+    <path d="M63 186 L68 222 L72 214 Z M81 186 L76 222 L72 214 Z" fill="#1f2d48"/>
+  </g>
+  <!-- Schaufenster rechts: Hemden, Krawatte, Mütze -->
+  <path d="M200 250 V160 Q200 132 248 132 Q296 132 296 160 V250 Z" fill="#bfe0ee" stroke="#c9ad74" stroke-width="3"/>
+  <g>
+    <rect x="212" y="236" width="72" height="6" fill="#8a5a36"/>
+    <rect x="216" y="226" width="40" height="10" rx="2" fill="#fbfbfb" stroke="#c9d3d9"/>
+    <rect x="216" y="216" width="40" height="10" rx="2" fill="#a9cbe8"/>
+    <rect x="216" y="206" width="40" height="10" rx="2" fill="#f2c4c8"/>
+    <path d="M228 206 L236 212 L244 206" fill="#f2c4c8" stroke="#c99" stroke-width="1"/>
+    <path d="M268 180 H276 L275 186 L279 226 L272 234 L265 226 L269 186 Z" fill="#2b5fa8"/>
+    <path d="M262 176 H282" stroke="#9aa1a7" stroke-width="3"/>
+    <path d="M222 192 Q222 170 236 170 Q250 170 250 192 Z" fill="#8a8f96"/><circle cx="236" cy="168" r="4" fill="#a0a5ab"/>
+  </g>
+  <!-- Tür -->
+  <path d="M134 260 V172 Q134 150 160 150 Q186 150 186 172 V260 Z" fill="#6f4528"/>
+  <path d="M140 258 V176 Q140 158 160 158 Q180 158 180 176 V258 Z" fill="#7fb3cf"/>
+  <path d="M160 158 V258" stroke="#6f4528" stroke-width="3"/>
+  <circle cx="155" cy="212" r="2" fill="#c9ad74"/><circle cx="165" cy="212" r="2" fill="#c9ad74"/>
+  <rect x="0" y="254" width="320" height="6" fill="#c9c1b2"/>
+</svg>

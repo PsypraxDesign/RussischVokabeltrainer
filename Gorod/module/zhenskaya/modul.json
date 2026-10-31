@@ -1,0 +1,26 @@
+{
+  "titel": {
+    "ru": "же́нская оде́жда",
+    "de": "Damenmode"
+  },
+  "praeposition": "в",
+  "satz_hin": "Я иду́ в отде́л же́нской оде́жды.",
+  "satz_hin_de": "Ich gehe in die Damenabteilung.",
+  "stufen": [
+    "entdecken",
+    "hoeren",
+    "einkaufen",
+    "theke",
+    "kasse"
+  ],
+  "stufen_titel": {
+    "einkaufen": "Aussuchen",
+    "theke": "Anprobe"
+  },
+  "grafik": {
+    "aussen": "grafik/aussen.svg",
+    "innen": "grafik/innen.svg"
+  },
+  "farbe": "#9b3d6b",
+  "breite": 250
+}

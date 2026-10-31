@@ -112,7 +112,7 @@ button:focus-visible, select:focus-visible, input:focus-visible { outline: 3px s
 .stimme-wahl option { color: var(--tinte); }
 
 /* ------------------------------------------------------------------ Startseite */
-.stadt { max-width: 1240px; margin: 0 auto; padding: 34px 24px 56px; }
+.stadt { max-width: 1880px; margin: 0 auto; padding: 34px 24px 56px; }
 .stadt-intro { display: flex; align-items: baseline; gap: 24px; flex-wrap: wrap; margin-bottom: 22px; }
 .stadt-intro h1 {
     margin: 0; font-family: var(--schrift-titel); font-weight: 800;
@@ -143,14 +143,17 @@ button:focus-visible, select:focus-visible, input:focus-visible { outline: 3px s
 
 .haeuser {
     position: absolute; left: 0; right: 0; bottom: 118px;
-    display: flex; align-items: flex-end; justify-content: center; gap: 20px; padding: 0 24px;
+    display: flex; align-items: flex-end; justify-content: center; gap: 14px; padding: 0 20px;
 }
 .haus {
     position: relative; display: flex; flex-direction: column; align-items: center;
     border: 0; background: none; padding: 0; width: 210px;
 }
 .haus img, .haus svg { display: block; width: 100%; height: auto; }
-.haus.offen { cursor: pointer; width: var(--breite, 215px); transition: transform .45s var(--feder), filter .3s; }
+/* Häuser schrumpfen gleichmäßig, wenn die Straße zu schmal wird – so passen immer alle hinein */
+.haus.offen { cursor: pointer; flex: 0 1 var(--breite, 215px); width: var(--breite, 215px); min-width: 0; transition: transform .45s var(--feder), filter .3s; }
+.haus.offen .haus-schild { max-width: calc(100% + 14px); padding-left: 8px; padding-right: 8px; text-align: center; }
+.haus.offen .haus-schild .ru { font-size: clamp(14px, 1.15vw, 20px); }
 .haus.offen img { filter: drop-shadow(0 18px 18px rgba(42, 33, 28, .25)); }
 .haus.offen:hover { transform: translateY(-8px); }
 .haus.offen:active { transform: translateY(-2px) scale(.99); }
@@ -203,7 +206,7 @@ button:focus-visible, select:focus-visible, input:focus-visible { outline: 3px s
 .modul-fehler ul { margin: 6px 0 0 18px; padding: 0; }
 
 /* ------------------------------------------------------------------ Modul-Ansicht */
-.modul { max-width: 1480px; margin: 0 auto; padding: 18px 24px 34px; }
+.modul { max-width: 1880px; margin: 0 auto; padding: 18px 24px 34px; }
 .modul-kopf { display: flex; align-items: center; justify-content: space-between; gap: 16px; flex-wrap: wrap; }
 .modul-kopf h1 { margin: 0; display: flex; align-items: baseline; gap: 12px; }
 .modul-kopf h1 .ru { font-family: var(--schrift-titel); font-weight: 800; font-size: 40px; letter-spacing: -0.03em; color: var(--malachit); }
@@ -276,6 +279,8 @@ button:focus-visible, select:focus-visible, input:focus-visible { outline: 3px s
 }
 .blase .ru { display: block; font-family: var(--schrift-ru); font-weight: 700; font-size: 20px; line-height: 1.3; }
 .blase .de { display: block; font-size: 12.5px; color: var(--grau); }
+.blase-gram { position: absolute; left: 12px; right: 12px; bottom: 12px; z-index: 4; max-height: 62%; overflow: auto; margin: 0;
+    box-shadow: inset 4px 0 0 #ffb300, 0 12px 28px -10px rgba(0, 0, 0, .5); }
 .blase.auf { animation: blase .45s var(--feder); }
 @keyframes blase { from { opacity: 0; transform: translate(-30px, calc(-100% - 6px)) scale(.88); } }
 
@@ -980,11 +985,119 @@ body[data-ansicht="stadt3d"] { overflow: hidden; }
 .s3-steuer [data-taste="links"] { grid-column: 1; grid-row: 2; }
 .s3-steuer [data-taste="zurueck"] { grid-column: 2; grid-row: 2; }
 .s3-steuer [data-taste="rechts"] { grid-column: 3; grid-row: 2; }
-.s3-karte { position: absolute; right: 16px; bottom: 16px; width: 220px; height: 140px; border-radius: 12px; border: 3px solid rgba(251, 247, 239, .9); box-shadow: 0 8px 20px -10px rgba(0, 0, 0, .5); }
+.s3-karte { position: absolute; right: 16px; bottom: 16px; width: 140px; height: 240px; border-radius: 12px; border: 3px solid rgba(251, 247, 239, .9); box-shadow: 0 8px 20px -10px rgba(0, 0, 0, .5); }
 @media (max-width: 720px) {
-    .s3-karte { width: 150px; height: 96px; }
+    .s3-karte { width: 72px; height: 124px; }
     .s3-tuer { bottom: 130px; }
     .s3-ort .ru { font-size: 16px; }
+}
+
+/* Metro: Ziel wählen, dann Fahrt mit Ansagen */
+.s3-metro {
+    position: absolute; inset: 0; z-index: 3; display: grid; grid-template-columns: minmax(0, 1fr); place-items: center; padding: 16px; overflow-y: auto;
+    background: radial-gradient(ellipse at 50% 0%, #3a3f4c, #15171d 75%); animation: rein .35s var(--feder);
+}
+.s3-metro[hidden] { display: none; }
+.metro-tafel { width: min(640px, 100%); display: flex; flex-direction: column; gap: 14px; padding: 20px; border-radius: 20px; background: var(--papier); box-shadow: 0 30px 60px -20px rgba(0, 0, 0, .7); }
+.metro-kopf { display: flex; align-items: center; gap: 14px; }
+.metro-m { flex: none; width: 52px; height: 52px; display: grid; place-items: center; border-radius: 50%; background: #d52b1e; color: #fff; font: 900 30px Arial, sans-serif; }
+.metro-kopf .ru { display: block; font: 700 22px var(--schrift-ru); color: var(--malachit); }
+.metro-kopf .de { display: block; font-size: 13.5px; color: var(--grau); }
+.metro-ziele { display: grid; gap: 10px; }
+.metro-ziel {
+    display: grid; grid-template-columns: auto 1fr auto; align-items: center; gap: 14px; padding: 14px 16px;
+    border: 2px solid var(--grau-hell); border-radius: 16px; background: #fff; cursor: pointer; text-align: left; font: inherit; color: var(--tinte);
+    transition: transform .2s var(--feder), border-color .2s;
+}
+.metro-ziel:hover { transform: translateY(-2px); border-color: #d52b1e; }
+.metro-icon { font-size: 30px; }
+.metro-text { display: flex; flex-direction: column; gap: 2px; min-width: 0; }
+.metro-text .ru { font: 700 20px var(--schrift-ru); color: var(--malachit); }
+.metro-text .zusatz { font: 14px var(--schrift-ru); }
+.metro-text .de { font-size: 12.5px; color: var(--grau); }
+.metro-linien { display: flex; align-items: center; gap: 6px; }
+.metro-chip { width: 26px; height: 26px; display: grid; place-items: center; border-radius: 50%; background: var(--linie); color: #fff; font: 800 13px var(--schrift-ui); }
+.metro-um { font-size: 11px; color: var(--grau); }
+.metro-hoch { align-self: center; }
+.metro-fahrt { width: min(760px, 100%); display: flex; flex-direction: column; gap: 14px; }
+.metro-tunnel { position: relative; height: 190px; border-radius: 18px; overflow: hidden; background: #22252c; box-shadow: inset 0 0 0 3px rgba(255, 255, 255, .08); }
+.metro-wand {
+    position: absolute; inset: 0; display: flex; justify-content: center; padding-top: 12px; transition: background-color .5s;
+    background: linear-gradient(90deg, rgba(255, 214, 140, .95) 0 12px, transparent 12px) 0 46px / 220px 5px repeat-x,
+                linear-gradient(#2b2f37, #1b1d22);
+}
+.metro-tunnel.faehrt .metro-wand { animation: metro-licht .16s linear infinite; }
+@keyframes metro-licht { to { background-position: -220px 46px, 0 0; } }
+.metro-tunnel.halt .metro-wand { background: linear-gradient(135deg, #efe9de, #d6cdbd); }
+.metro-schild { height: fit-content; padding: 6px 18px; border-radius: 6px; background: #1f2a44; color: #fff; font: 700 20px var(--schrift-ru); opacity: 0; transition: opacity .4s; }
+.metro-tunnel.halt .metro-schild { opacity: 1; }
+.metro-zug { position: absolute; left: 0; bottom: 8px; width: 100%; height: 120px; }
+.metro-tunnel.faehrt .metro-zug { animation: metro-ruckeln .22s ease-in-out infinite alternate; }
+@keyframes metro-ruckeln { to { transform: translateY(1.5px); } }
+.metro-tunnel::after { content: ''; position: absolute; left: 0; right: 0; bottom: 0; height: 8px; background: #8d8a86; }
+.metro-umsteigen { position: absolute; left: 50%; top: 58px; transform: translateX(-50%); padding: 5px 14px; border-radius: 99px; background: #f2c200; color: #222; font: 700 15px var(--schrift-ru); animation: rein .35s var(--feder); }
+.metro-umsteigen[hidden] { display: none; }
+.metro-ansage { min-height: 64px; display: flex; flex-direction: column; justify-content: center; gap: 2px; padding: 10px 16px; border-radius: 14px; background: rgba(251, 247, 239, .96); }
+.metro-ansage .ru { font: 700 18px var(--schrift-ru); color: var(--malachit); }
+.metro-ansage .de { font-size: 13px; color: var(--grau); }
+.metro-linie { position: relative; height: 84px; margin: 0 48px; }
+.metro-strecke { position: absolute; top: 39px; height: 6px; background: var(--linie); }
+.metro-halt { position: absolute; top: 34px; width: 16px; height: 16px; margin-left: -8px; border-radius: 50%; background: #fff; border: 4px solid var(--linie); box-sizing: border-box; }
+.metro-halt.durch { top: 38px; width: 8px; height: 8px; margin-left: -4px; border: 0; background: rgba(255, 255, 255, .7); }
+.metro-halt span { position: absolute; bottom: 20px; left: 50%; transform: translateX(-50%); white-space: nowrap; font: 12.5px var(--schrift-ru); color: #f3efe6; }
+.metro-halt.unten span { top: 20px; bottom: auto; }
+.metro-halt.erste span { left: -6px; transform: none; }
+.metro-halt.letzte span { left: auto; right: -6px; transform: none; }
+.metro-wagen { position: absolute; top: 26px; margin-left: -15px; font-size: 26px; line-height: 1; filter: drop-shadow(0 2px 3px rgba(0, 0, 0, .6)); }
+.metro-fahrt .knopf-zweit { align-self: center; color: #fbf7ef; border-color: rgba(251, 247, 239, .6); }
+.metro-fahrt .knopf-zweit:hover { background: rgba(251, 247, 239, .12); }
+@media (max-width: 720px) {
+    .metro-ziel { grid-template-columns: auto 1fr; }
+    .metro-linien { grid-column: 2; }
+    .metro-linie { margin: 0 14px; }
+    .metro-halt span { font-size: 10.5px; }
+    .metro-halt:not(.wichtig) span { display: none; }     /* schmal: nur Start, Umstieg und Ziel beschriften */
+}
+@media (prefers-reduced-motion: reduce) {
+    .metro-tunnel.faehrt .metro-wand, .metro-tunnel.faehrt .metro-zug { animation: none; }
+}
+
+/* Geschichtsstunde am Lenin-Mausoleum: Zeitleiste, Satzkarte, Quiz */
+.metro-tafel.lektion { width: min(680px, 100%); }
+.lektion-symbol { flex: none; width: 52px; height: 52px; display: grid; place-items: center; border-radius: 50%; background: #7a2620; font-size: 26px; }
+.lektion .metro-kopf > div { flex: 1; min-width: 0; }
+.lektion-zu { flex: none; padding: 8px 12px; }
+.lektion-zeit { display: flex; gap: 4px; overflow-x: auto; padding-bottom: 2px; }
+.lektion-zeit button {
+    flex: 1 0 auto; padding: 7px 10px; border: 0; border-radius: 10px; cursor: pointer;
+    background: var(--grau-hell); color: var(--tinte); font: 700 13px var(--schrift-ui); position: relative;
+}
+.lektion-zeit button.war { background: #e9cfc9; color: #7a2620; }
+.lektion-zeit button.an { background: #7a2620; color: #fff; }
+.lektion-karte { display: flex; flex-direction: column; gap: 8px; padding: 16px 18px; border-radius: 16px; background: #fff; box-shadow: inset 0 0 0 1.5px var(--grau-hell); animation: rein .35s var(--feder); }
+.lektion-jahr { font: 700 30px var(--schrift-ru); color: #7a2620; line-height: 1.1; }
+.lektion-satz { display: flex; align-items: flex-start; gap: 10px; }
+.lektion-satz .ru { flex: 1; font: 700 21px/1.4 var(--schrift-ru); color: var(--malachit); }
+.lektion-de { font-size: 15px; color: var(--tinte); }
+.lektion-info { margin: 4px 0 0; padding-top: 8px; border-top: 1px dashed var(--grau-hell); font-size: 14px; line-height: 1.5; color: var(--grau); }
+.lektion-knoepfe { display: flex; justify-content: space-between; gap: 10px; }
+.lektion-optionen { display: grid; gap: 8px; margin-top: 6px; }
+.lektion-option {
+    padding: 12px 16px; border: 2px solid var(--grau-hell); border-radius: 12px; background: var(--papier); cursor: pointer;
+    text-align: left; font: 700 18px var(--schrift-ru); color: var(--tinte); transition: transform .2s var(--feder), border-color .2s;
+}
+.lektion-option:hover:not(:disabled) { transform: translateY(-1px); border-color: #7a2620; }
+.lektion-option.gut { border-color: #3f8f5f; background: #e6f3ea; color: #24603c; }
+.lektion-option.falsch { border-color: #c8553d; background: #fbe9e5; color: #9b3a28; text-decoration: line-through; }
+.lektion-option:disabled { cursor: default; }
+.lektion-rueck { padding: 10px 14px; border-radius: 12px; font-size: 14.5px; }
+.lektion-rueck.gut { background: #e6f3ea; color: #24603c; }
+.lektion-rueck.falsch { background: #fbe9e5; color: #9b3a28; }
+.lektion-rueck[hidden] { display: none; }
+.lektion-ende { align-items: center; text-align: center; padding: 26px 18px; }
+@media (max-width: 720px) {
+    .lektion-satz .ru { font-size: 18px; }
+    .lektion-jahr { font-size: 24px; }
 }
 
 /* Mathe: Kreidetafel mit Aufgabe und Bildern */
@@ -1134,6 +1247,18 @@ body[data-ansicht="stadt3d"] { overflow: hidden; }
 .gram-box { margin: -6px 0 14px; padding: 10px 14px; border-radius: 12px; background: #fffaf0; box-shadow: inset 4px 0 0 #ffb300, 0 0 0 1px var(--grau-hell); font-size: 14.5px; line-height: 1.45; color: var(--tinte); animation: rein .25s var(--sanft); }
 .gram-box[hidden] { display: none; }
 .gram-box p { margin: 4px 0 0; }
+/* Wörter zum Antippen: unauffällig, beim Zeigen und Antippen hervorgehoben */
+.wort { cursor: pointer; border-radius: 3px; transition: background .15s; }
+.wort:hover, .wort:focus-visible { background: rgba(255, 243, 196, .75); outline: none; }
+.wort.aktiv { background: #fff3c4; box-shadow: inset 0 -2px 0 #ffb300; }
+.zeile.ich .wort:hover, .zeile.ich .wort.aktiv { color: var(--tinte); }
+.gb-de { font-size: 14px; }
+.gb-wort { color: var(--grau); }
+.gb-wort b { color: var(--tinte); font-size: 16px; }
+.gb-tipp { font-size: 13.5px; color: var(--grau); }
+.gb-woerter { display: flex; flex-direction: column; gap: 3px; margin-top: 8px; padding-top: 7px; border-top: 1px dashed var(--grau-hell); font-size: 13.5px; }
+.gb-woerter b { font-size: 15px; }
+.gb-woerter i { font-style: normal; font-size: 12.5px; color: var(--grau); }
 .gb-kopf { display: flex; flex-wrap: wrap; align-items: baseline; gap: 4px 10px; }
 .gb-kopf .ru { font: 700 18px var(--schrift-ru); }
 .gb-titel { font-size: 12.5px; font-weight: 700; color: var(--malachit); }

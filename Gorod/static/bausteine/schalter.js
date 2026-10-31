@@ -18,7 +18,7 @@
 // Platzhalter {schluessel} in Texten kommen aus reisende[].p
 
 (function () {
-    const SCHALTER_STUFEN = ['pass', 'gepaeck', 'zoll', 'fahrkarte', 'zug', 'theke', 'kasse', 'unterricht'];
+    const SCHALTER_STUFEN = ['pass', 'gepaeck', 'zoll', 'fahrkarte', 'zug', 'theke', 'kasse', 'unterricht', 'anprobe'];
 
     // Eine Reise (ein Pass, ein Fahrauftrag, ein Einkaufszettel) gilt über mehrere Stufen,
     // auch über andere Bausteine (Einkaufen) – deshalb hier für alle.

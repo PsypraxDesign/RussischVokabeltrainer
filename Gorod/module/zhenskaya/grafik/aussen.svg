@@ -1,0 +1,49 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 260" role="img" aria-label="Damenmode im GUM von außen">
+  <defs>
+    <linearGradient id="zhe-aussen-licht" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#fff3df"/><stop offset="1" stop-color="#f3d9b4"/>
+    </linearGradient>
+  </defs>
+  <!-- Türmchen mit grünen Zeltdächern wie am GUM -->
+  <rect x="12" y="36" width="34" height="40" fill="#e6d2bb"/>
+  <rect x="274" y="36" width="34" height="40" fill="#e6d2bb"/>
+  <path d="M8 38 L29 4 L50 38 Z" fill="#4f7d5c"/>
+  <path d="M270 38 L291 4 L312 38 Z" fill="#4f7d5c"/>
+  <!-- Fassade -->
+  <rect x="10" y="62" width="300" height="198" fill="#ecd9c3"/>
+  <rect x="6" y="56" width="308" height="10" fill="#dcc3a6"/>
+  <g fill="#f8f0e4">
+    <path d="M62 112 V94 A22 22 0 0 1 106 94 V112 Z"/><path d="M138 112 V94 A22 22 0 0 1 182 94 V112 Z"/><path d="M214 112 V94 A22 22 0 0 1 258 94 V112 Z"/>
+  </g>
+  <g fill="#6b8396">
+    <path d="M66 112 V95 A18 18 0 0 1 102 95 V112 Z"/><path d="M142 112 V95 A18 18 0 0 1 178 95 V112 Z"/><path d="M218 112 V95 A18 18 0 0 1 254 95 V112 Z"/>
+  </g>
+  <path d="M84 77 V112 M160 77 V112 M236 77 V112" stroke="#f8f0e4" stroke-width="2.5"/>
+  <!-- Schild -->
+  <rect x="42" y="118" width="236" height="30" rx="5" fill="#9b3d6b"/>
+  <rect x="46" y="122" width="228" height="22" rx="3" fill="none" stroke="#c9a24a" stroke-width="1.5"/>
+  <text x="160" y="139" text-anchor="middle" font-family="'Playfair Display', Georgia, serif" font-size="15" font-weight="700" letter-spacing="1.5" fill="#f6efe3">ЖЕНСКАЯ ОДЕЖДА</text>
+  <!-- Markise -->
+  <path d="M14 152 H306 L300 166 H20 Z" fill="#9b3d6b"/>
+  <path d="M20 166 Q34 176 48 166 Q62 176 76 166 Q90 176 104 166 Q118 176 132 166 Q146 176 160 166 Q174 176 188 166 Q202 176 216 166 Q230 176 244 166 Q258 176 272 166 Q286 176 300 166" fill="#9b3d6b"/>
+  <!-- Schaufenster links: zwei Puppen in Rot und Blau -->
+  <path d="M22 254 V196 Q22 178 40 178 H104 Q122 178 122 196 V254 Z" fill="url(#zhe-aussen-licht)" stroke="#c9a24a" stroke-width="3"/>
+  <g>
+    <circle cx="52" cy="198" r="6" fill="#ece7df"/><path d="M45 208 Q52 212 59 208 L62 222 L68 248 H36 L42 222 Z" fill="#c8302a"/>
+    <circle cx="92" cy="198" r="6" fill="#ece7df"/><path d="M85 208 Q92 212 99 208 L102 222 L108 240 H76 L82 222 Z" fill="#2b5fa8"/>
+    <path d="M92 240 V250 M52 248 V251" stroke="#8a8f94" stroke-width="2"/>
+  </g>
+  <!-- Schaufenster rechts: Tasche, Schal, Pumps -->
+  <path d="M198 254 V196 Q198 178 216 178 H280 Q298 178 298 196 V254 Z" fill="url(#zhe-aussen-licht)" stroke="#c9a24a" stroke-width="3"/>
+  <g>
+    <path d="M216 232 L219 214 H245 L248 232 Z" fill="#8a4f2c"/><path d="M224 214 Q232 200 240 214" stroke="#6b3b1f" stroke-width="2.5" fill="none"/>
+    <rect x="256" y="200" width="30" height="10" rx="5" fill="#2f8f8a"/><path d="M262 210 V230 M268 210 V226" stroke="#2f8f8a" stroke-width="5" stroke-linecap="round"/>
+    <path d="M236 248 L239 240 Q243 236 248 240 L262 246 Q266 248 266 249 Z" fill="#1f1f24"/>
+  </g>
+  <!-- Tür im Bogen -->
+  <path d="M136 260 V196 Q136 180 160 180 Q184 180 184 196 V260 Z" fill="#3a2c24"/>
+  <path d="M142 260 V200 Q142 188 160 188 Q178 188 178 200 V260 Z" fill="#9fcde3" opacity="0.85"/>
+  <path d="M160 188 V260" stroke="#3a2c24" stroke-width="3"/>
+  <circle cx="154" cy="228" r="2.5" fill="#c9a24a"/><circle cx="166" cy="228" r="2.5" fill="#c9a24a"/>
+  <rect x="0" y="254" width="320" height="6" fill="#c9c1b2"/>
+</svg>

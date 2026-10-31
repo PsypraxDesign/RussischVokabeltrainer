@@ -42,7 +42,7 @@ app = Flask(__name__, static_folder=None)
 # ---------------------------------------------------------------------------
 # Modul-Pruefung
 # ---------------------------------------------------------------------------
-SCHALTER = {"pass", "gepaeck", "zoll", "fahrkarte", "zug", "theke", "kasse", "unterricht"}   # schalter.js
+SCHALTER = {"pass", "gepaeck", "zoll", "fahrkarte", "zug", "theke", "kasse", "unterricht", "anprobe"}   # schalter.js
 TAFELN = {"fahrplan", "stundenplan"}   # fahrplan.js: Abfahrtstafel / Stundenplan
 STUFEN = {"entdecken", "hoeren", "dialog", "bezahlen", "wo", "etagen", "aufzug", "einkaufen", "rechnen", "literatur", "wege"} | SCHALTER | TAFELN
 

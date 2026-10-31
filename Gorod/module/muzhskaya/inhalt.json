@@ -1,0 +1,2061 @@
+{
+ "entdecken_hinweis": "Was gibt es in der Herrenabteilung? Tippe auf den Anzug, die Krawatte, den Spiegel …",
+ "woerter": [
+  {
+   "id": "kostyum",
+   "ru": "костю́м",
+   "de": "der Anzug",
+   "genus": "m",
+   "hotspot": "hs-kostyum",
+   "satz": "Костю́мы вися́т на ве́шалке.",
+   "hinweis": "Plural: костю́мы. Zum Anzug gehören пиджа́к и брю́ки."
+  },
+  {
+   "id": "pidzhak",
+   "ru": "пиджа́к",
+   "de": "das Sakko",
+   "genus": "m",
+   "hotspot": "hs-pidzhak",
+   "satz": "Э́тот пиджа́к кори́чневый.",
+   "hinweis": "Plural: пиджаки́ – die Betonung wandert ans Ende"
+  },
+  {
+   "id": "bryuki",
+   "ru": "брю́ки",
+   "de": "die Hose",
+   "genus": "pl",
+   "hotspot": "hs-bryuki",
+   "satz": "Э́ти брю́ки чёрные.",
+   "hinweis": "nur im Plural: э́ти брю́ки, они́ мне велики́",
+   "de_zahl": "sg"
+  },
+  {
+   "id": "rubashka",
+   "ru": "руба́шка",
+   "de": "das Hemd",
+   "genus": "f",
+   "hotspot": "hs-rubashka",
+   "satz": "Руба́шки лежа́т на по́лке.",
+   "hinweis": "э́та бе́лая руба́шка; fünf Hemden: пять руба́шек"
+  },
+  {
+   "id": "sviter",
+   "ru": "сви́тер",
+   "de": "der Pullover",
+   "genus": "m",
+   "hotspot": "hs-sviter",
+   "satz": "Э́тот зелёный сви́тер о́чень тёплый.",
+   "hinweis": "Plural: сви́теры"
+  },
+  {
+   "id": "dzhinsy",
+   "ru": "джи́нсы",
+   "de": "die Jeans",
+   "genus": "pl",
+   "hotspot": "hs-dzhinsy",
+   "satz": "Джи́нсы лежа́т на ни́жней по́лке.",
+   "hinweis": "nur im Plural: э́ти си́ние джи́нсы",
+   "de_zahl": "sg"
+  },
+  {
+   "id": "palto",
+   "ru": "пальто́",
+   "de": "der Mantel",
+   "genus": "n",
+   "hotspot": "hs-palto",
+   "satz": "Э́то пальто́ бе́жевое.",
+   "hinweis": "unveränderlich und sächlich: э́то пальто́, в пальто́, без пальто́"
+  },
+  {
+   "id": "kurtka",
+   "ru": "ку́ртка",
+   "de": "die Jacke",
+   "genus": "f",
+   "hotspot": "hs-kurtka",
+   "satz": "Э́та ку́ртка зелёная и о́чень тёплая.",
+   "hinweis": "в ку́ртке – in der Jacke"
+  },
+  {
+   "id": "botinki",
+   "ru": "боти́нки",
+   "de": "die Schuhe",
+   "genus": "pl",
+   "hotspot": "hs-botinki",
+   "satz": "Боти́нки стоя́т на по́лке.",
+   "hinweis": "Singular: боти́нок; ein Paar Schuhe: па́ра боти́нок"
+  },
+  {
+   "id": "galstuk",
+   "ru": "га́лстук",
+   "de": "die Krawatte",
+   "genus": "m",
+   "hotspot": "hs-galstuk",
+   "satz": "Га́лстуки вися́т на сто́йке.",
+   "hinweis": "Achtung: га́лстук ist männlich – э́тот кра́сный га́лстук"
+  },
+  {
+   "id": "remen",
+   "ru": "реме́нь",
+   "de": "der Gürtel",
+   "genus": "m",
+   "hotspot": "hs-remen",
+   "satz": "Ремни́ лежа́т на столе́.",
+   "hinweis": "Das е fällt weg: ремни́, без ремня́"
+  },
+  {
+   "id": "noski",
+   "ru": "носки́",
+   "de": "die Socken",
+   "genus": "pl",
+   "hotspot": "hs-noski",
+   "satz": "Носки́ лежа́т в коро́бке.",
+   "hinweis": "Singular: носо́к; zwei Paar Socken: две па́ры носко́в"
+  },
+  {
+   "id": "shapka",
+   "ru": "ша́пка",
+   "de": "die Mütze",
+   "genus": "f",
+   "hotspot": "hs-shapka",
+   "satz": "Э́та ша́пка се́рая и тёплая.",
+   "hinweis": "Akkusativ: Я беру́ ша́пку."
+  },
+  {
+   "id": "sharf",
+   "ru": "шарф",
+   "de": "der Schal",
+   "genus": "m",
+   "hotspot": "hs-sharf",
+   "satz": "Э́тот шарф кра́сный.",
+   "hinweis": "Plural: шарфы́ – die Betonung wandert ans Ende"
+  },
+  {
+   "id": "razmer",
+   "ru": "разме́р",
+   "de": "die Größe",
+   "genus": "m",
+   "hotspot": "hs-razmer",
+   "satz": "Како́й у вас разме́р?",
+   "hinweis": "Größen sagt man mit der Ordnungszahl: пятидеся́тый разме́р = Größe 50"
+  },
+  {
+   "id": "zerkalo",
+   "ru": "зе́ркало",
+   "de": "der Spiegel",
+   "genus": "n",
+   "hotspot": "hs-zerkalo",
+   "satz": "Зе́ркало стои́т у приме́рочной.",
+   "hinweis": "в зе́ркале – im Spiegel"
+  },
+  {
+   "id": "primerochnaya",
+   "ru": "приме́рочная",
+   "de": "die Umkleidekabine",
+   "genus": "f",
+   "hotspot": "hs-primerochnaya",
+   "satz": "Приме́рочная – сле́ва.",
+   "hinweis": "eigentlich ein Adjektiv: в приме́рочной – in der Kabine"
+  },
+  {
+   "id": "kassa",
+   "ru": "ка́сса",
+   "de": "die Kasse",
+   "genus": "f",
+   "hotspot": "hs-kassa",
+   "satz": "Ка́сса – спра́ва.",
+   "hinweis": "Plural: ка́ссы"
+  },
+  {
+   "id": "prodavets",
+   "ru": "продаве́ц",
+   "de": "der Verkäufer",
+   "genus": "m",
+   "hotspot": "hs-prodavets",
+   "satz": "Продаве́ц о́чень ве́жливый.",
+   "hinweis": "Das е fällt weg: продавца́. Weiblich: продавщи́ца"
+  },
+  {
+   "id": "kassirsha",
+   "ru": "касси́рша",
+   "de": "die Kassiererin",
+   "genus": "f",
+   "hotspot": "hs-kassirsha",
+   "satz": "Касси́рша сиди́т за ка́ссой.",
+   "hinweis": "auch: касси́р – für Männer und Frauen"
+  }
+ ],
+ "reise": {
+  "neu_knopf": "Nächster Einkauf →",
+  "start_stufe": "theke",
+  "figuren": {
+   "prodavets": {
+    "name": "Продаве́ц",
+    "stimme": "maennlich",
+    "blase": {
+     "x": 0.835,
+     "y": 0.44,
+     "seite": "links"
+    }
+   },
+   "kassirsha": {
+    "name": "Касси́рша",
+    "stimme": "weiblich",
+    "blase": {
+     "x": 0.955,
+     "y": 0.5,
+     "seite": "links"
+    }
+   },
+   "erzaehler": {
+    "name": "",
+    "stimme": "erzaehler",
+    "blase": {
+     "x": 0.3,
+     "y": 0.45
+    }
+   }
+  },
+  "reisende": [
+   {
+    "id": "k1",
+    "geschlecht": "m",
+    "zahlart": "bar",
+    "p": {
+     "zeigen1": "Вот костю́мы: се́рый, си́ний и чёрный. Како́й вам нра́вится?",
+     "zeigen1_de": "Hier sind die Anzüge: grau, blau und schwarz. Was gefällt Ihnen?",
+     "zeigen2": "Вот га́лстуки: кра́сный, си́ний и зелёный. Како́й вам нра́вится?",
+     "zeigen2_de": "Hier sind die Krawatten: rot, blau und grün. Was gefällt Ihnen?",
+     "preis1": "Он сто́ит пять ты́сяч девятьсо́т рубле́й.",
+     "preis1_de": "Das kostet 5900 Rubel.",
+     "anprobe": "Костю́м мо́жно приме́рить. Приме́рочная – сле́ва.",
+     "anprobe_de": "Den Anzug können Sie anprobieren. Die Umkleidekabine ist links.",
+     "akk1": "костю́м",
+     "akk1_de": "den Anzug",
+     "bringe": "Поня́тно. Сейча́с принесу́ разме́р поме́ньше.",
+     "bringe_de": "Verstehe. Ich bringe Ihnen gleich eine Nummer kleiner."
+    },
+    "zettel": {
+     "theke": [
+      "Du suchst: Anzug – grau",
+      "Dazu: Krawatte – blau"
+     ],
+     "anprobe": [
+      "Deine Größe: 50",
+      "Größe 50 ist zu groß",
+      "Größe 48 passt genau"
+     ],
+     "kasse": [
+      "Anzug und Krawatte",
+      "Bezahlen: bar"
+     ]
+    },
+    "felder": {
+     "brauche1": {
+      "richtig": {
+       "text": "Мне ну́жен костю́м.",
+       "de": "Ich brauche einen Anzug."
+      },
+      "falsch": [
+       {
+        "text": "Мне нужна́ костю́м.",
+        "de": "",
+        "hinweis": "костю́м ist männlich: ну́жен костю́м. (ну́жен – m, нужна́ – f, ну́жно – n, нужны́ – Pl.)"
+       },
+       {
+        "text": "Мне ну́жен га́лстук.",
+        "de": "Ich brauche eine Krawatte.",
+        "hinweis": "Laut Zettel suchst du zuerst einen Anzug."
+       },
+       {
+        "text": "Я ну́жен костю́м.",
+        "de": "",
+        "hinweis": "„Ich brauche“ heißt мне ну́жен … (wörtlich: mir ist nötig). Я ну́жен hieße „ich werde gebraucht“."
+       }
+      ]
+     },
+     "gefallen1": {
+      "richtig": {
+       "text": "Мне нра́вится э́тот се́рый костю́м.",
+       "de": "Mir gefällt dieser graue Anzug."
+      },
+      "falsch": [
+       {
+        "text": "Мне нра́вится э́та се́рая костю́м.",
+        "de": "",
+        "hinweis": "костю́м ist männlich: э́тот се́рый костю́м. (э́тот – m, э́та – f, э́то – n, э́ти – Pl.)"
+       },
+       {
+        "text": "Мне нра́вятся э́тот се́рый костю́м.",
+        "de": "",
+        "hinweis": "Ein Stück → Singular: нра́вится. нра́вятся steht nur beim Plural."
+       },
+       {
+        "text": "Мне нра́вится э́тот чёрный костю́м.",
+        "de": "Mir gefällt dieser schwarze Anzug.",
+        "hinweis": "Laut Zettel: grau – се́рый."
+       }
+      ]
+     },
+     "preis1": {
+      "richtig": {
+       "text": "Ско́лько сто́ит э́тот костю́м?",
+       "de": "Was kostet dieser Anzug?"
+      },
+      "falsch": [
+       {
+        "text": "Ско́лько сто́ят э́тот костю́м?",
+        "de": "",
+        "hinweis": "Ein Stück → сто́ит. сто́ят steht nur beim Plural."
+       },
+       {
+        "text": "Ско́лько сто́ит э́та костю́м?",
+        "de": "",
+        "hinweis": "костю́м ist männlich: э́тот костю́м."
+       },
+       {
+        "text": "Ско́лько стои́т э́тот костю́м?",
+        "de": "",
+        "hinweis": "Achtung Betonung: стои́т (hinten betont) heißt „steht“. Kosten: сто́ит."
+       }
+      ]
+     },
+     "brauche2": {
+      "richtig": {
+       "text": "Да, мне ещё ну́жен га́лстук.",
+       "de": "Ja, ich brauche noch eine Krawatte."
+      },
+      "falsch": [
+       {
+        "text": "Да, мне ещё нужна́ га́лстук.",
+        "de": "",
+        "hinweis": "га́лстук ist männlich: ну́жен га́лстук. (ну́жен – m, нужна́ – f, ну́жно – n, нужны́ – Pl.)"
+       },
+       {
+        "text": "Да, мне ещё ну́жен костю́м.",
+        "de": "Ja, ich brauche noch einen Anzug.",
+        "hinweis": "Das hast du schon gefunden. Laut Zettel brauchst du noch eine Krawatte."
+       },
+       {
+        "text": "Нет, спаси́бо, э́то всё.",
+        "de": "Nein danke, das ist alles.",
+        "hinweis": "Laut Zettel brauchst du noch eine Krawatte."
+       }
+      ]
+     },
+     "gefallen2": {
+      "richtig": {
+       "text": "Мне нра́вится э́тот си́ний га́лстук.",
+       "de": "Mir gefällt diese blaue Krawatte."
+      },
+      "falsch": [
+       {
+        "text": "Мне нра́вится э́та си́няя га́лстук.",
+        "de": "",
+        "hinweis": "га́лстук ist männlich: э́тот си́ний га́лстук. (э́тот – m, э́та – f, э́то – n, э́ти – Pl.)"
+       },
+       {
+        "text": "Мне нра́вятся э́тот си́ний га́лстук.",
+        "de": "",
+        "hinweis": "Ein Stück → Singular: нра́вится. нра́вятся steht nur beim Plural."
+       },
+       {
+        "text": "Мне нра́вится э́тот кра́сный га́лстук.",
+        "de": "Mir gefällt diese rote Krawatte.",
+        "hinweis": "Laut Zettel: blau – си́ний."
+       }
+      ]
+     },
+     "groesse": {
+      "richtig": {
+       "text": "У меня́ пятидеся́тый разме́р.",
+       "de": "Ich habe Größe 50."
+      },
+      "falsch": [
+       {
+        "text": "У меня́ пятьдеся́т разме́р.",
+        "de": "",
+        "hinweis": "Größen sagt man mit der Ordnungszahl: пятидеся́тый разме́р (wörtlich: die 50. Größe)."
+       },
+       {
+        "text": "У меня́ пятьдеся́т второ́й разме́р.",
+        "de": "Ich habe Größe 52.",
+        "hinweis": "Laut Zettel hast du Größe 50."
+       },
+       {
+        "text": "Я пятидеся́тый разме́р.",
+        "de": "",
+        "hinweis": "„Ich habe Größe …“ heißt: У меня́ пятидеся́тый разме́р."
+       }
+      ]
+     },
+     "passt1": {
+      "richtig": {
+       "text": "Нет, он мне вели́к.",
+       "de": "Nein, er ist mir zu groß."
+      },
+      "falsch": [
+       {
+        "text": "Нет, она́ мне велика́.",
+        "de": "",
+        "hinweis": "костю́м ist männlich: он мне вели́к. (вели́к – m, велика́ – f, велико́ – n, велики́ – Pl.)"
+       },
+       {
+        "text": "Нет, он мне мал.",
+        "de": "Nein, er ist mir zu klein.",
+        "hinweis": "Laut Zettel: zu groß – вели́к."
+       },
+       {
+        "text": "Нет, он мне большо́й.",
+        "de": "",
+        "hinweis": "„Zu groß“ ist die Kurzform вели́к. большо́й heißt einfach „groß“."
+       }
+      ]
+     },
+     "passt2": {
+      "richtig": {
+       "text": "Тепе́рь он мне как раз!",
+       "de": "Jetzt passt er genau!"
+      },
+      "falsch": [
+       {
+        "text": "Тепе́рь она́ мне как раз!",
+        "de": "",
+        "hinweis": "костю́м ist männlich: он."
+       },
+       {
+        "text": "Тепе́рь он мне мал.",
+        "de": "",
+        "hinweis": "Laut Zettel passt die zweite Größe genau: как раз."
+       }
+      ]
+     }
+    },
+    "posten": [
+     {
+      "ru": "костю́м се́рый, разм. 48",
+      "preis": 5900
+     },
+     {
+      "ru": "га́лстук си́ний",
+      "preis": 900
+     }
+    ],
+    "preis": 6800
+   },
+   {
+    "id": "k2",
+    "geschlecht": "m",
+    "zahlart": "karte",
+    "p": {
+     "zeigen1": "Вот ку́ртки: зелёная, чёрная и кори́чневая. Кака́я вам нра́вится?",
+     "zeigen1_de": "Hier sind die Jacken: grün, schwarz und braun. Was gefällt Ihnen?",
+     "zeigen2": "Вот ша́пки: чёрная, се́рая и си́няя. Кака́я вам нра́вится?",
+     "zeigen2_de": "Hier sind die Mützen: schwarz, grau und blau. Was gefällt Ihnen?",
+     "preis1": "Она́ сто́ит три ты́сячи девятьсо́т рубле́й.",
+     "preis1_de": "Das kostet 3900 Rubel.",
+     "anprobe": "Ку́ртка мо́жно приме́рить. Приме́рочная – сле́ва.",
+     "anprobe_de": "Die Jacke können Sie anprobieren. Die Umkleidekabine ist links.",
+     "akk1": "ку́ртку",
+     "akk1_de": "die Jacke",
+     "bringe": "Поня́тно. Сейча́с принесу́ разме́р побо́льше.",
+     "bringe_de": "Verstehe. Ich bringe Ihnen gleich eine Nummer größer."
+    },
+    "zettel": {
+     "theke": [
+      "Du suchst: Jacke – braun",
+      "Dazu: Mütze – grau"
+     ],
+     "anprobe": [
+      "Deine Größe: 52",
+      "Größe 52 ist zu klein",
+      "Größe 54 passt genau"
+     ],
+     "kasse": [
+      "Jacke und Mütze",
+      "Bezahlen: mit Karte"
+     ]
+    },
+    "felder": {
+     "brauche1": {
+      "richtig": {
+       "text": "Мне нужна́ ку́ртка.",
+       "de": "Ich brauche eine Jacke."
+      },
+      "falsch": [
+       {
+        "text": "Мне ну́жен ку́ртка.",
+        "de": "",
+        "hinweis": "ку́ртка ist weiblich: нужна́ ку́ртка. (ну́жен – m, нужна́ – f, ну́жно – n, нужны́ – Pl.)"
+       },
+       {
+        "text": "Мне нужна́ ша́пка.",
+        "de": "Ich brauche eine Mütze.",
+        "hinweis": "Laut Zettel suchst du zuerst eine Jacke."
+       },
+       {
+        "text": "Мне нужны́ ку́ртка.",
+        "de": "",
+        "hinweis": "Ein Stück → Singular: нужна́ ку́ртка. нужны́ steht beim Plural."
+       }
+      ]
+     },
+     "gefallen1": {
+      "richtig": {
+       "text": "Мне нра́вится э́та кори́чневая ку́ртка.",
+       "de": "Mir gefällt diese braune Jacke."
+      },
+      "falsch": [
+       {
+        "text": "Мне нра́вится э́тот кори́чневый ку́ртка.",
+        "de": "",
+        "hinweis": "ку́ртка ist weiblich: э́та кори́чневая ку́ртка. (э́тот – m, э́та – f, э́то – n, э́ти – Pl.)"
+       },
+       {
+        "text": "Мне нра́вятся э́та кори́чневая ку́ртка.",
+        "de": "",
+        "hinweis": "Ein Stück → Singular: нра́вится. нра́вятся steht nur beim Plural."
+       },
+       {
+        "text": "Мне нра́вится э́та зелёная ку́ртка.",
+        "de": "Mir gefällt diese grüne Jacke.",
+        "hinweis": "Laut Zettel: braun – кори́чневая."
+       }
+      ]
+     },
+     "preis1": {
+      "richtig": {
+       "text": "Ско́лько сто́ит э́та ку́ртка?",
+       "de": "Was kostet diese Jacke?"
+      },
+      "falsch": [
+       {
+        "text": "Ско́лько сто́ят э́та ку́ртка?",
+        "de": "",
+        "hinweis": "Ein Stück → сто́ит. сто́ят steht nur beim Plural."
+       },
+       {
+        "text": "Ско́лько сто́ит э́тот ку́ртка?",
+        "de": "",
+        "hinweis": "ку́ртка ist weiblich: э́та ку́ртка."
+       },
+       {
+        "text": "Ско́лько стои́т э́та ку́ртка?",
+        "de": "",
+        "hinweis": "Achtung Betonung: стои́т (hinten betont) heißt „steht“. Kosten: сто́ит."
+       }
+      ]
+     },
+     "brauche2": {
+      "richtig": {
+       "text": "Да, мне ещё нужна́ ша́пка.",
+       "de": "Ja, ich brauche noch eine Mütze."
+      },
+      "falsch": [
+       {
+        "text": "Да, мне ещё ну́жен ша́пка.",
+        "de": "",
+        "hinweis": "ша́пка ist weiblich: нужна́ ша́пка. (ну́жен – m, нужна́ – f, ну́жно – n, нужны́ – Pl.)"
+       },
+       {
+        "text": "Да, мне ещё нужна́ ку́ртка.",
+        "de": "Ja, ich brauche noch eine Jacke.",
+        "hinweis": "Das hast du schon gefunden. Laut Zettel brauchst du noch eine Mütze."
+       },
+       {
+        "text": "Нет, спаси́бо, э́то всё.",
+        "de": "Nein danke, das ist alles.",
+        "hinweis": "Laut Zettel brauchst du noch eine Mütze."
+       }
+      ]
+     },
+     "gefallen2": {
+      "richtig": {
+       "text": "Мне нра́вится э́та се́рая ша́пка.",
+       "de": "Mir gefällt diese graue Mütze."
+      },
+      "falsch": [
+       {
+        "text": "Мне нра́вится э́тот се́рый ша́пка.",
+        "de": "",
+        "hinweis": "ша́пка ist weiblich: э́та се́рая ша́пка. (э́тот – m, э́та – f, э́то – n, э́ти – Pl.)"
+       },
+       {
+        "text": "Мне нра́вятся э́та се́рая ша́пка.",
+        "de": "",
+        "hinweis": "Ein Stück → Singular: нра́вится. нра́вятся steht nur beim Plural."
+       },
+       {
+        "text": "Мне нра́вится э́та чёрная ша́пка.",
+        "de": "Mir gefällt diese schwarze Mütze.",
+        "hinweis": "Laut Zettel: grau – се́рая."
+       }
+      ]
+     },
+     "groesse": {
+      "richtig": {
+       "text": "У меня́ пятьдеся́т второ́й разме́р.",
+       "de": "Ich habe Größe 52."
+      },
+      "falsch": [
+       {
+        "text": "У меня́ пятьдеся́т два разме́р.",
+        "de": "",
+        "hinweis": "Größen sagt man mit der Ordnungszahl: пятьдеся́т второ́й разме́р (wörtlich: die 52. Größe)."
+       },
+       {
+        "text": "У меня́ пятидеся́тый разме́р.",
+        "de": "Ich habe Größe 50.",
+        "hinweis": "Laut Zettel hast du Größe 52."
+       },
+       {
+        "text": "Я пятьдеся́т второ́й разме́р.",
+        "de": "",
+        "hinweis": "„Ich habe Größe …“ heißt: У меня́ пятьдеся́т второ́й разме́р."
+       }
+      ]
+     },
+     "passt1": {
+      "richtig": {
+       "text": "Нет, она́ мне мала́.",
+       "de": "Nein, sie ist mir zu klein."
+      },
+      "falsch": [
+       {
+        "text": "Нет, он мне мал.",
+        "de": "",
+        "hinweis": "ку́ртка ist weiblich: она́ мне мала́. (мал – m, мала́ – f, мало́ – n, малы́ – Pl.)"
+       },
+       {
+        "text": "Нет, она́ мне велика́.",
+        "de": "Nein, sie ist mir zu groß.",
+        "hinweis": "Laut Zettel: zu klein – мала́."
+       },
+       {
+        "text": "Нет, она́ мне ма́ленькая.",
+        "de": "",
+        "hinweis": "„Zu klein“ ist die Kurzform мала́. ма́ленькая heißt einfach „klein“."
+       }
+      ]
+     },
+     "passt2": {
+      "richtig": {
+       "text": "Тепе́рь она́ мне как раз!",
+       "de": "Jetzt passt sie genau!"
+      },
+      "falsch": [
+       {
+        "text": "Тепе́рь он мне как раз!",
+        "de": "",
+        "hinweis": "ку́ртка ist weiblich: она́."
+       },
+       {
+        "text": "Тепе́рь она́ мне велика́.",
+        "de": "",
+        "hinweis": "Laut Zettel passt die zweite Größe genau: как раз."
+       }
+      ]
+     }
+    },
+    "posten": [
+     {
+      "ru": "ку́ртка кори́чневая, разм. 54",
+      "preis": 3900
+     },
+     {
+      "ru": "ша́пка се́рая",
+      "preis": 800
+     }
+    ],
+    "preis": 4700
+   },
+   {
+    "id": "k3",
+    "geschlecht": "m",
+    "zahlart": "bar",
+    "p": {
+     "zeigen1": "Вот брю́ки: чёрные, се́рые и бе́жевые. Каки́е вам нра́вятся?",
+     "zeigen1_de": "Hier sind die Hosen: schwarz, grau und beige. Was gefällt Ihnen?",
+     "zeigen2": "Вот руба́шки: бе́лая, голуба́я и кра́сная. Кака́я вам нра́вится?",
+     "zeigen2_de": "Hier sind die Hemden: weiß, hellblau und rot. Was gefällt Ihnen?",
+     "preis1": "Они́ сто́ят две ты́сячи девятьсо́т рубле́й.",
+     "preis1_de": "Das kostet 2900 Rubel.",
+     "anprobe": "Брю́ки мо́жно приме́рить. Приме́рочная – сле́ва.",
+     "anprobe_de": "Die Hose können Sie anprobieren. Die Umkleidekabine ist links.",
+     "akk1": "брю́ки",
+     "akk1_de": "die Hose",
+     "bringe": "Поня́тно. Сейча́с принесу́ разме́р поме́ньше.",
+     "bringe_de": "Verstehe. Ich bringe Ihnen gleich eine Nummer kleiner."
+    },
+    "zettel": {
+     "theke": [
+      "Du suchst: Hose – schwarz",
+      "Dazu: Hemd – weiß"
+     ],
+     "anprobe": [
+      "Deine Größe: 48",
+      "Größe 48 ist zu groß",
+      "Größe 46 passt genau"
+     ],
+     "kasse": [
+      "Hose und Hemd",
+      "Bezahlen: bar"
+     ]
+    },
+    "felder": {
+     "brauche1": {
+      "richtig": {
+       "text": "Мне нужны́ брю́ки.",
+       "de": "Ich brauche eine Hose."
+      },
+      "falsch": [
+       {
+        "text": "Мне ну́жен брю́ки.",
+        "de": "",
+        "hinweis": "брю́ки ist Plural: нужны́ брю́ки. (ну́жен – m, нужна́ – f, ну́жно – n, нужны́ – Pl.)"
+       },
+       {
+        "text": "Мне нужна́ руба́шка.",
+        "de": "Ich brauche ein Hemd.",
+        "hinweis": "Laut Zettel suchst du zuerst eine Hose."
+       },
+       {
+        "text": "Мне нужна́ брю́ки.",
+        "de": "",
+        "hinweis": "брю́ки ist Plural: нужны́ брю́ки. (ну́жен – m, нужна́ – f, ну́жно – n, нужны́ – Pl.)"
+       }
+      ]
+     },
+     "gefallen1": {
+      "richtig": {
+       "text": "Мне нра́вятся э́ти чёрные брю́ки.",
+       "de": "Mir gefällt diese schwarze Hose."
+      },
+      "falsch": [
+       {
+        "text": "Мне нра́вится э́ти чёрные брю́ки.",
+        "de": "",
+        "hinweis": "брю́ки ist Plural – also auch das Verb: нра́вятся."
+       },
+       {
+        "text": "Мне нра́вятся э́ти чёрный брю́ки.",
+        "de": "",
+        "hinweis": "Das Adjektiv richtet sich nach брю́ки (Plural): чёрные."
+       },
+       {
+        "text": "Мне нра́вятся э́ти се́рые брю́ки.",
+        "de": "Mir gefällt diese graue Hose.",
+        "hinweis": "Laut Zettel: schwarz – чёрные."
+       }
+      ]
+     },
+     "preis1": {
+      "richtig": {
+       "text": "Ско́лько сто́ят э́ти брю́ки?",
+       "de": "Was kostet diese Hose?"
+      },
+      "falsch": [
+       {
+        "text": "Ско́лько сто́ит э́ти брю́ки?",
+        "de": "",
+        "hinweis": "брю́ки ist Plural: Ско́лько сто́ят …?"
+       },
+       {
+        "text": "Ско́лько сто́ят э́то брю́ки?",
+        "de": "",
+        "hinweis": "Vor einem Plural steht э́ти: э́ти брю́ки."
+       },
+       {
+        "text": "Ско́лько стоя́т э́ти брю́ки?",
+        "de": "",
+        "hinweis": "Achtung Betonung: стоя́т (hinten betont) heißt „sie stehen“. Kosten: сто́ят."
+       }
+      ]
+     },
+     "brauche2": {
+      "richtig": {
+       "text": "Да, мне ещё нужна́ руба́шка.",
+       "de": "Ja, ich brauche noch ein Hemd."
+      },
+      "falsch": [
+       {
+        "text": "Да, мне ещё ну́жен руба́шка.",
+        "de": "",
+        "hinweis": "руба́шка ist weiblich: нужна́ руба́шка. (ну́жен – m, нужна́ – f, ну́жно – n, нужны́ – Pl.)"
+       },
+       {
+        "text": "Да, мне ещё нужны́ брю́ки.",
+        "de": "Ja, ich brauche noch eine Hose.",
+        "hinweis": "Das hast du schon gefunden. Laut Zettel brauchst du noch ein Hemd."
+       },
+       {
+        "text": "Нет, спаси́бо, э́то всё.",
+        "de": "Nein danke, das ist alles.",
+        "hinweis": "Laut Zettel brauchst du noch ein Hemd."
+       }
+      ]
+     },
+     "gefallen2": {
+      "richtig": {
+       "text": "Мне нра́вится э́та бе́лая руба́шка.",
+       "de": "Mir gefällt dieses weiße Hemd."
+      },
+      "falsch": [
+       {
+        "text": "Мне нра́вится э́тот бе́лый руба́шка.",
+        "de": "",
+        "hinweis": "руба́шка ist weiblich: э́та бе́лая руба́шка. (э́тот – m, э́та – f, э́то – n, э́ти – Pl.)"
+       },
+       {
+        "text": "Мне нра́вятся э́та бе́лая руба́шка.",
+        "de": "",
+        "hinweis": "Ein Stück → Singular: нра́вится. нра́вятся steht nur beim Plural."
+       },
+       {
+        "text": "Мне нра́вится э́та голуба́я руба́шка.",
+        "de": "Mir gefällt dieses hellblaue Hemd.",
+        "hinweis": "Laut Zettel: weiß – бе́лая."
+       }
+      ]
+     },
+     "groesse": {
+      "richtig": {
+       "text": "У меня́ со́рок восьмо́й разме́р.",
+       "de": "Ich habe Größe 48."
+      },
+      "falsch": [
+       {
+        "text": "У меня́ со́рок во́семь разме́р.",
+        "de": "",
+        "hinweis": "Größen sagt man mit der Ordnungszahl: со́рок восьмо́й разме́р (wörtlich: die 48. Größe)."
+       },
+       {
+        "text": "У меня́ пятидеся́тый разме́р.",
+        "de": "Ich habe Größe 50.",
+        "hinweis": "Laut Zettel hast du Größe 48."
+       },
+       {
+        "text": "Я со́рок восьмо́й разме́р.",
+        "de": "",
+        "hinweis": "„Ich habe Größe …“ heißt: У меня́ со́рок восьмо́й разме́р."
+       }
+      ]
+     },
+     "passt1": {
+      "richtig": {
+       "text": "Нет, они́ мне велики́.",
+       "de": "Nein, sie ist mir zu groß."
+      },
+      "falsch": [
+       {
+        "text": "Нет, он мне вели́к.",
+        "de": "",
+        "hinweis": "брю́ки ist Plural: они́ мне велики́. (вели́к – m, велика́ – f, велико́ – n, велики́ – Pl.)"
+       },
+       {
+        "text": "Нет, они́ мне малы́.",
+        "de": "Nein, sie ist mir zu klein.",
+        "hinweis": "Laut Zettel: zu groß – велики́."
+       },
+       {
+        "text": "Нет, они́ мне больши́е.",
+        "de": "",
+        "hinweis": "„Zu groß“ ist die Kurzform велики́. больши́е heißt einfach „groß“."
+       }
+      ]
+     },
+     "passt2": {
+      "richtig": {
+       "text": "Тепе́рь они́ мне как раз!",
+       "de": "Jetzt passt sie genau!"
+      },
+      "falsch": [
+       {
+        "text": "Тепе́рь он мне как раз!",
+        "de": "",
+        "hinweis": "брю́ки ist Plural: они́."
+       },
+       {
+        "text": "Тепе́рь они́ мне малы́.",
+        "de": "",
+        "hinweis": "Laut Zettel passt die zweite Größe genau: как раз."
+       }
+      ]
+     }
+    },
+    "posten": [
+     {
+      "ru": "брю́ки чёрные, разм. 46",
+      "preis": 2900
+     },
+     {
+      "ru": "руба́шка бе́лая",
+      "preis": 1500
+     }
+    ],
+    "preis": 4400
+   },
+   {
+    "id": "k4",
+    "geschlecht": "m",
+    "zahlart": "bar",
+    "p": {
+     "zeigen1": "Вот пальто́: чёрное, се́рое и бе́жевое. Како́е вам нра́вится?",
+     "zeigen1_de": "Hier sind die Mäntel: schwarz, grau und beige. Was gefällt Ihnen?",
+     "zeigen2": "Вот шарфы́: се́рый, кра́сный и си́ний. Како́й вам нра́вится?",
+     "zeigen2_de": "Hier sind die Schals: grau, rot und blau. Was gefällt Ihnen?",
+     "preis1": "Оно́ сто́ит пять ты́сяч девятьсо́т рубле́й.",
+     "preis1_de": "Das kostet 5900 Rubel.",
+     "anprobe": "Пальто́ мо́жно приме́рить. Приме́рочная – сле́ва.",
+     "anprobe_de": "Den Mantel können Sie anprobieren. Die Umkleidekabine ist links.",
+     "akk1": "пальто́",
+     "akk1_de": "den Mantel",
+     "bringe": "Поня́тно. Сейча́с принесу́ разме́р побо́льше.",
+     "bringe_de": "Verstehe. Ich bringe Ihnen gleich eine Nummer größer."
+    },
+    "zettel": {
+     "theke": [
+      "Du suchst: Mantel – beige",
+      "Dazu: Schal – rot"
+     ],
+     "anprobe": [
+      "Deine Größe: 52",
+      "Größe 52 ist zu klein",
+      "Größe 54 passt genau"
+     ],
+     "kasse": [
+      "Mantel und Schal",
+      "Bezahlen: bar"
+     ]
+    },
+    "felder": {
+     "brauche1": {
+      "richtig": {
+       "text": "Мне ну́жно пальто́.",
+       "de": "Ich brauche einen Mantel."
+      },
+      "falsch": [
+       {
+        "text": "Мне ну́жен пальто́.",
+        "de": "",
+        "hinweis": "пальто́ ist sächlich: ну́жно пальто́. (ну́жен – m, нужна́ – f, ну́жно – n, нужны́ – Pl.)"
+       },
+       {
+        "text": "Мне ну́жен шарф.",
+        "de": "Ich brauche einen Schal.",
+        "hinweis": "Laut Zettel suchst du zuerst einen Mantel."
+       },
+       {
+        "text": "Мне нужны́ пальто́.",
+        "de": "",
+        "hinweis": "Ein Stück → Singular: ну́жно пальто́. нужны́ steht beim Plural."
+       }
+      ]
+     },
+     "gefallen1": {
+      "richtig": {
+       "text": "Мне нра́вится э́то бе́жевое пальто́.",
+       "de": "Mir gefällt dieser beige Mantel."
+      },
+      "falsch": [
+       {
+        "text": "Мне нра́вится э́тот бе́жевый пальто́.",
+        "de": "",
+        "hinweis": "пальто́ ist sächlich: э́то бе́жевое пальто́. (э́тот – m, э́та – f, э́то – n, э́ти – Pl.)"
+       },
+       {
+        "text": "Мне нра́вятся э́то бе́жевое пальто́.",
+        "de": "",
+        "hinweis": "Ein Stück → Singular: нра́вится. нра́вятся steht nur beim Plural."
+       },
+       {
+        "text": "Мне нра́вится э́то чёрное пальто́.",
+        "de": "Mir gefällt dieser schwarze Mantel.",
+        "hinweis": "Laut Zettel: beige – бе́жевое."
+       }
+      ]
+     },
+     "preis1": {
+      "richtig": {
+       "text": "Ско́лько сто́ит э́то пальто́?",
+       "de": "Was kostet dieser Mantel?"
+      },
+      "falsch": [
+       {
+        "text": "Ско́лько сто́ят э́то пальто́?",
+        "de": "",
+        "hinweis": "Ein Stück → сто́ит. сто́ят steht nur beim Plural."
+       },
+       {
+        "text": "Ско́лько сто́ит э́тот пальто́?",
+        "de": "",
+        "hinweis": "пальто́ ist sächlich: э́то пальто́."
+       },
+       {
+        "text": "Ско́лько стои́т э́то пальто́?",
+        "de": "",
+        "hinweis": "Achtung Betonung: стои́т (hinten betont) heißt „steht“. Kosten: сто́ит."
+       }
+      ]
+     },
+     "brauche2": {
+      "richtig": {
+       "text": "Да, мне ещё ну́жен шарф.",
+       "de": "Ja, ich brauche noch einen Schal."
+      },
+      "falsch": [
+       {
+        "text": "Да, мне ещё нужна́ шарф.",
+        "de": "",
+        "hinweis": "шарф ist männlich: ну́жен шарф. (ну́жен – m, нужна́ – f, ну́жно – n, нужны́ – Pl.)"
+       },
+       {
+        "text": "Да, мне ещё ну́жно пальто́.",
+        "de": "Ja, ich brauche noch einen Mantel.",
+        "hinweis": "Das hast du schon gefunden. Laut Zettel brauchst du noch einen Schal."
+       },
+       {
+        "text": "Нет, спаси́бо, э́то всё.",
+        "de": "Nein danke, das ist alles.",
+        "hinweis": "Laut Zettel brauchst du noch einen Schal."
+       }
+      ]
+     },
+     "gefallen2": {
+      "richtig": {
+       "text": "Мне нра́вится э́тот кра́сный шарф.",
+       "de": "Mir gefällt dieser rote Schal."
+      },
+      "falsch": [
+       {
+        "text": "Мне нра́вится э́та кра́сная шарф.",
+        "de": "",
+        "hinweis": "шарф ist männlich: э́тот кра́сный шарф. (э́тот – m, э́та – f, э́то – n, э́ти – Pl.)"
+       },
+       {
+        "text": "Мне нра́вятся э́тот кра́сный шарф.",
+        "de": "",
+        "hinweis": "Ein Stück → Singular: нра́вится. нра́вятся steht nur beim Plural."
+       },
+       {
+        "text": "Мне нра́вится э́тот се́рый шарф.",
+        "de": "Mir gefällt dieser graue Schal.",
+        "hinweis": "Laut Zettel: rot – кра́сный."
+       }
+      ]
+     },
+     "groesse": {
+      "richtig": {
+       "text": "У меня́ пятьдеся́т второ́й разме́р.",
+       "de": "Ich habe Größe 52."
+      },
+      "falsch": [
+       {
+        "text": "У меня́ пятьдеся́т два разме́р.",
+        "de": "",
+        "hinweis": "Größen sagt man mit der Ordnungszahl: пятьдеся́т второ́й разме́р (wörtlich: die 52. Größe)."
+       },
+       {
+        "text": "У меня́ пятидеся́тый разме́р.",
+        "de": "Ich habe Größe 50.",
+        "hinweis": "Laut Zettel hast du Größe 52."
+       },
+       {
+        "text": "Я пятьдеся́т второ́й разме́р.",
+        "de": "",
+        "hinweis": "„Ich habe Größe …“ heißt: У меня́ пятьдеся́т второ́й разме́р."
+       }
+      ]
+     },
+     "passt1": {
+      "richtig": {
+       "text": "Нет, оно́ мне мало́.",
+       "de": "Nein, er ist mir zu klein."
+      },
+      "falsch": [
+       {
+        "text": "Нет, он мне мал.",
+        "de": "",
+        "hinweis": "пальто́ ist sächlich: оно́ мне мало́. (мал – m, мала́ – f, мало́ – n, малы́ – Pl.)"
+       },
+       {
+        "text": "Нет, оно́ мне велико́.",
+        "de": "Nein, er ist mir zu groß.",
+        "hinweis": "Laut Zettel: zu klein – мало́."
+       },
+       {
+        "text": "Нет, оно́ мне ма́ленькое.",
+        "de": "",
+        "hinweis": "„Zu klein“ ist die Kurzform мало́. ма́ленькое heißt einfach „klein“."
+       }
+      ]
+     },
+     "passt2": {
+      "richtig": {
+       "text": "Тепе́рь оно́ мне как раз!",
+       "de": "Jetzt passt er genau!"
+      },
+      "falsch": [
+       {
+        "text": "Тепе́рь он мне как раз!",
+        "de": "",
+        "hinweis": "пальто́ ist sächlich: оно́."
+       },
+       {
+        "text": "Тепе́рь оно́ мне велико́.",
+        "de": "",
+        "hinweis": "Laut Zettel passt die zweite Größe genau: как раз."
+       }
+      ]
+     }
+    },
+    "posten": [
+     {
+      "ru": "пальто́ бе́жевое, разм. 54",
+      "preis": 5900
+     },
+     {
+      "ru": "шарф кра́сный",
+      "preis": 1100
+     }
+    ],
+    "preis": 7000
+   },
+   {
+    "id": "k5",
+    "geschlecht": "m",
+    "zahlart": "karte",
+    "p": {
+     "zeigen1": "Вот джи́нсы: си́ние, чёрные и бе́лые. Каки́е вам нра́вятся?",
+     "zeigen1_de": "Hier sind die Jeans: blau, schwarz und weiß. Was gefällt Ihnen?",
+     "zeigen2": "Вот ремни́: чёрный, кори́чневый и се́рый. Како́й вам нра́вится?",
+     "zeigen2_de": "Hier sind die Gürtel: schwarz, braun und grau. Was gefällt Ihnen?",
+     "preis1": "Они́ сто́ят две ты́сячи семьсо́т рубле́й.",
+     "preis1_de": "Das kostet 2700 Rubel.",
+     "anprobe": "Джи́нсы мо́жно приме́рить. Приме́рочная – сле́ва.",
+     "anprobe_de": "Die Jeans können Sie anprobieren. Die Umkleidekabine ist links.",
+     "akk1": "джи́нсы",
+     "akk1_de": "die Jeans",
+     "bringe": "Поня́тно. Сейча́с принесу́ разме́р побо́льше.",
+     "bringe_de": "Verstehe. Ich bringe Ihnen gleich eine Nummer größer."
+    },
+    "zettel": {
+     "theke": [
+      "Du suchst: Jeans – blau",
+      "Dazu: Gürtel – braun"
+     ],
+     "anprobe": [
+      "Deine Größe: 50",
+      "Größe 50 ist zu klein",
+      "Größe 52 passt genau"
+     ],
+     "kasse": [
+      "Jeans und Gürtel",
+      "Bezahlen: mit Karte"
+     ]
+    },
+    "felder": {
+     "brauche1": {
+      "richtig": {
+       "text": "Мне нужны́ джи́нсы.",
+       "de": "Ich brauche eine Jeans."
+      },
+      "falsch": [
+       {
+        "text": "Мне ну́жен джи́нсы.",
+        "de": "",
+        "hinweis": "джи́нсы ist Plural: нужны́ джи́нсы. (ну́жен – m, нужна́ – f, ну́жно – n, нужны́ – Pl.)"
+       },
+       {
+        "text": "Мне ну́жен реме́нь.",
+        "de": "Ich brauche einen Gürtel.",
+        "hinweis": "Laut Zettel suchst du zuerst eine Jeans."
+       },
+       {
+        "text": "Мне нужна́ джи́нсы.",
+        "de": "",
+        "hinweis": "джи́нсы ist Plural: нужны́ джи́нсы. (ну́жен – m, нужна́ – f, ну́жно – n, нужны́ – Pl.)"
+       }
+      ]
+     },
+     "gefallen1": {
+      "richtig": {
+       "text": "Мне нра́вятся э́ти си́ние джи́нсы.",
+       "de": "Mir gefällt diese blaue Jeans."
+      },
+      "falsch": [
+       {
+        "text": "Мне нра́вится э́ти си́ние джи́нсы.",
+        "de": "",
+        "hinweis": "джи́нсы ist Plural – also auch das Verb: нра́вятся."
+       },
+       {
+        "text": "Мне нра́вятся э́ти си́ний джи́нсы.",
+        "de": "",
+        "hinweis": "Das Adjektiv richtet sich nach джи́нсы (Plural): си́ние."
+       },
+       {
+        "text": "Мне нра́вятся э́ти чёрные джи́нсы.",
+        "de": "Mir gefällt diese schwarze Jeans.",
+        "hinweis": "Laut Zettel: blau – си́ние."
+       }
+      ]
+     },
+     "preis1": {
+      "richtig": {
+       "text": "Ско́лько сто́ят э́ти джи́нсы?",
+       "de": "Was kostet diese Jeans?"
+      },
+      "falsch": [
+       {
+        "text": "Ско́лько сто́ит э́ти джи́нсы?",
+        "de": "",
+        "hinweis": "джи́нсы ist Plural: Ско́лько сто́ят …?"
+       },
+       {
+        "text": "Ско́лько сто́ят э́то джи́нсы?",
+        "de": "",
+        "hinweis": "Vor einem Plural steht э́ти: э́ти джи́нсы."
+       },
+       {
+        "text": "Ско́лько стоя́т э́ти джи́нсы?",
+        "de": "",
+        "hinweis": "Achtung Betonung: стоя́т (hinten betont) heißt „sie stehen“. Kosten: сто́ят."
+       }
+      ]
+     },
+     "brauche2": {
+      "richtig": {
+       "text": "Да, мне ещё ну́жен реме́нь.",
+       "de": "Ja, ich brauche noch einen Gürtel."
+      },
+      "falsch": [
+       {
+        "text": "Да, мне ещё нужна́ реме́нь.",
+        "de": "",
+        "hinweis": "реме́нь ist männlich: ну́жен реме́нь. (ну́жен – m, нужна́ – f, ну́жно – n, нужны́ – Pl.)"
+       },
+       {
+        "text": "Да, мне ещё нужны́ джи́нсы.",
+        "de": "Ja, ich brauche noch eine Jeans.",
+        "hinweis": "Das hast du schon gefunden. Laut Zettel brauchst du noch einen Gürtel."
+       },
+       {
+        "text": "Нет, спаси́бо, э́то всё.",
+        "de": "Nein danke, das ist alles.",
+        "hinweis": "Laut Zettel brauchst du noch einen Gürtel."
+       }
+      ]
+     },
+     "gefallen2": {
+      "richtig": {
+       "text": "Мне нра́вится э́тот кори́чневый реме́нь.",
+       "de": "Mir gefällt dieser braune Gürtel."
+      },
+      "falsch": [
+       {
+        "text": "Мне нра́вится э́та кори́чневая реме́нь.",
+        "de": "",
+        "hinweis": "реме́нь ist männlich: э́тот кори́чневый реме́нь. (э́тот – m, э́та – f, э́то – n, э́ти – Pl.)"
+       },
+       {
+        "text": "Мне нра́вятся э́тот кори́чневый реме́нь.",
+        "de": "",
+        "hinweis": "Ein Stück → Singular: нра́вится. нра́вятся steht nur beim Plural."
+       },
+       {
+        "text": "Мне нра́вится э́тот чёрный реме́нь.",
+        "de": "Mir gefällt dieser schwarze Gürtel.",
+        "hinweis": "Laut Zettel: braun – кори́чневый."
+       }
+      ]
+     },
+     "groesse": {
+      "richtig": {
+       "text": "У меня́ пятидеся́тый разме́р.",
+       "de": "Ich habe Größe 50."
+      },
+      "falsch": [
+       {
+        "text": "У меня́ пятьдеся́т разме́р.",
+        "de": "",
+        "hinweis": "Größen sagt man mit der Ordnungszahl: пятидеся́тый разме́р (wörtlich: die 50. Größe)."
+       },
+       {
+        "text": "У меня́ со́рок восьмо́й разме́р.",
+        "de": "Ich habe Größe 48.",
+        "hinweis": "Laut Zettel hast du Größe 50."
+       },
+       {
+        "text": "Я пятидеся́тый разме́р.",
+        "de": "",
+        "hinweis": "„Ich habe Größe …“ heißt: У меня́ пятидеся́тый разме́р."
+       }
+      ]
+     },
+     "passt1": {
+      "richtig": {
+       "text": "Нет, они́ мне малы́.",
+       "de": "Nein, sie ist mir zu klein."
+      },
+      "falsch": [
+       {
+        "text": "Нет, он мне мал.",
+        "de": "",
+        "hinweis": "джи́нсы ist Plural: они́ мне малы́. (мал – m, мала́ – f, мало́ – n, малы́ – Pl.)"
+       },
+       {
+        "text": "Нет, они́ мне велики́.",
+        "de": "Nein, sie ist mir zu groß.",
+        "hinweis": "Laut Zettel: zu klein – малы́."
+       },
+       {
+        "text": "Нет, они́ мне ма́ленькие.",
+        "de": "",
+        "hinweis": "„Zu klein“ ist die Kurzform малы́. ма́ленькие heißt einfach „klein“."
+       }
+      ]
+     },
+     "passt2": {
+      "richtig": {
+       "text": "Тепе́рь они́ мне как раз!",
+       "de": "Jetzt passt sie genau!"
+      },
+      "falsch": [
+       {
+        "text": "Тепе́рь он мне как раз!",
+        "de": "",
+        "hinweis": "джи́нсы ist Plural: они́."
+       },
+       {
+        "text": "Тепе́рь они́ мне велики́.",
+        "de": "",
+        "hinweis": "Laut Zettel passt die zweite Größe genau: как раз."
+       }
+      ]
+     }
+    },
+    "posten": [
+     {
+      "ru": "джи́нсы си́ние, разм. 52",
+      "preis": 2700
+     },
+     {
+      "ru": "реме́нь кори́чневый",
+      "preis": 1200
+     }
+    ],
+    "preis": 3900
+   },
+   {
+    "id": "k6",
+    "geschlecht": "m",
+    "zahlart": "bar",
+    "p": {
+     "zeigen1": "Вот сви́теры: се́рый, зелёный и кра́сный. Како́й вам нра́вится?",
+     "zeigen1_de": "Hier sind die Pullover: grau, grün und rot. Was gefällt Ihnen?",
+     "zeigen2": "Вот руба́шки: бе́лая, голуба́я и се́рая. Кака́я вам нра́вится?",
+     "zeigen2_de": "Hier sind die Hemden: weiß, hellblau und grau. Was gefällt Ihnen?",
+     "preis1": "Он сто́ит две ты́сячи четы́реста рубле́й.",
+     "preis1_de": "Das kostet 2400 Rubel.",
+     "anprobe": "Сви́тер мо́жно приме́рить. Приме́рочная – сле́ва.",
+     "anprobe_de": "Den Pullover können Sie anprobieren. Die Umkleidekabine ist links.",
+     "akk1": "сви́тер",
+     "akk1_de": "den Pullover",
+     "bringe": "Поня́тно. Сейча́с принесу́ разме́р поме́ньше.",
+     "bringe_de": "Verstehe. Ich bringe Ihnen gleich eine Nummer kleiner."
+    },
+    "zettel": {
+     "theke": [
+      "Du suchst: Pullover – grün",
+      "Dazu: Hemd – hellblau"
+     ],
+     "anprobe": [
+      "Deine Größe: 52",
+      "Größe 52 ist zu groß",
+      "Größe 50 passt genau"
+     ],
+     "kasse": [
+      "Pullover und Hemd",
+      "Bezahlen: bar"
+     ]
+    },
+    "felder": {
+     "brauche1": {
+      "richtig": {
+       "text": "Мне ну́жен сви́тер.",
+       "de": "Ich brauche einen Pullover."
+      },
+      "falsch": [
+       {
+        "text": "Мне нужна́ сви́тер.",
+        "de": "",
+        "hinweis": "сви́тер ist männlich: ну́жен сви́тер. (ну́жен – m, нужна́ – f, ну́жно – n, нужны́ – Pl.)"
+       },
+       {
+        "text": "Мне нужна́ руба́шка.",
+        "de": "Ich brauche ein Hemd.",
+        "hinweis": "Laut Zettel suchst du zuerst einen Pullover."
+       },
+       {
+        "text": "Я ну́жен сви́тер.",
+        "de": "",
+        "hinweis": "„Ich brauche“ heißt мне ну́жен … (wörtlich: mir ist nötig). Я ну́жен hieße „ich werde gebraucht“."
+       }
+      ]
+     },
+     "gefallen1": {
+      "richtig": {
+       "text": "Мне нра́вится э́тот зелёный сви́тер.",
+       "de": "Mir gefällt dieser grüne Pullover."
+      },
+      "falsch": [
+       {
+        "text": "Мне нра́вится э́та зелёная сви́тер.",
+        "de": "",
+        "hinweis": "сви́тер ist männlich: э́тот зелёный сви́тер. (э́тот – m, э́та – f, э́то – n, э́ти – Pl.)"
+       },
+       {
+        "text": "Мне нра́вятся э́тот зелёный сви́тер.",
+        "de": "",
+        "hinweis": "Ein Stück → Singular: нра́вится. нра́вятся steht nur beim Plural."
+       },
+       {
+        "text": "Мне нра́вится э́тот се́рый сви́тер.",
+        "de": "Mir gefällt dieser graue Pullover.",
+        "hinweis": "Laut Zettel: grün – зелёный."
+       }
+      ]
+     },
+     "preis1": {
+      "richtig": {
+       "text": "Ско́лько сто́ит э́тот сви́тер?",
+       "de": "Was kostet dieser Pullover?"
+      },
+      "falsch": [
+       {
+        "text": "Ско́лько сто́ят э́тот сви́тер?",
+        "de": "",
+        "hinweis": "Ein Stück → сто́ит. сто́ят steht nur beim Plural."
+       },
+       {
+        "text": "Ско́лько сто́ит э́та сви́тер?",
+        "de": "",
+        "hinweis": "сви́тер ist männlich: э́тот сви́тер."
+       },
+       {
+        "text": "Ско́лько стои́т э́тот сви́тер?",
+        "de": "",
+        "hinweis": "Achtung Betonung: стои́т (hinten betont) heißt „steht“. Kosten: сто́ит."
+       }
+      ]
+     },
+     "brauche2": {
+      "richtig": {
+       "text": "Да, мне ещё нужна́ руба́шка.",
+       "de": "Ja, ich brauche noch ein Hemd."
+      },
+      "falsch": [
+       {
+        "text": "Да, мне ещё ну́жен руба́шка.",
+        "de": "",
+        "hinweis": "руба́шка ist weiblich: нужна́ руба́шка. (ну́жен – m, нужна́ – f, ну́жно – n, нужны́ – Pl.)"
+       },
+       {
+        "text": "Да, мне ещё ну́жен сви́тер.",
+        "de": "Ja, ich brauche noch einen Pullover.",
+        "hinweis": "Das hast du schon gefunden. Laut Zettel brauchst du noch ein Hemd."
+       },
+       {
+        "text": "Нет, спаси́бо, э́то всё.",
+        "de": "Nein danke, das ist alles.",
+        "hinweis": "Laut Zettel brauchst du noch ein Hemd."
+       }
+      ]
+     },
+     "gefallen2": {
+      "richtig": {
+       "text": "Мне нра́вится э́та голуба́я руба́шка.",
+       "de": "Mir gefällt dieses hellblaue Hemd."
+      },
+      "falsch": [
+       {
+        "text": "Мне нра́вится э́тот голубо́й руба́шка.",
+        "de": "",
+        "hinweis": "руба́шка ist weiblich: э́та голуба́я руба́шка. (э́тот – m, э́та – f, э́то – n, э́ти – Pl.)"
+       },
+       {
+        "text": "Мне нра́вятся э́та голуба́я руба́шка.",
+        "de": "",
+        "hinweis": "Ein Stück → Singular: нра́вится. нра́вятся steht nur beim Plural."
+       },
+       {
+        "text": "Мне нра́вится э́та бе́лая руба́шка.",
+        "de": "Mir gefällt dieses weiße Hemd.",
+        "hinweis": "Laut Zettel: hellblau – голуба́я."
+       }
+      ]
+     },
+     "groesse": {
+      "richtig": {
+       "text": "У меня́ пятьдеся́т второ́й разме́р.",
+       "de": "Ich habe Größe 52."
+      },
+      "falsch": [
+       {
+        "text": "У меня́ пятьдеся́т два разме́р.",
+        "de": "",
+        "hinweis": "Größen sagt man mit der Ordnungszahl: пятьдеся́т второ́й разме́р (wörtlich: die 52. Größe)."
+       },
+       {
+        "text": "У меня́ пятьдеся́т четвёртый разме́р.",
+        "de": "Ich habe Größe 54.",
+        "hinweis": "Laut Zettel hast du Größe 52."
+       },
+       {
+        "text": "Я пятьдеся́т второ́й разме́р.",
+        "de": "",
+        "hinweis": "„Ich habe Größe …“ heißt: У меня́ пятьдеся́т второ́й разме́р."
+       }
+      ]
+     },
+     "passt1": {
+      "richtig": {
+       "text": "Нет, он мне вели́к.",
+       "de": "Nein, er ist mir zu groß."
+      },
+      "falsch": [
+       {
+        "text": "Нет, она́ мне велика́.",
+        "de": "",
+        "hinweis": "сви́тер ist männlich: он мне вели́к. (вели́к – m, велика́ – f, велико́ – n, велики́ – Pl.)"
+       },
+       {
+        "text": "Нет, он мне мал.",
+        "de": "Nein, er ist mir zu klein.",
+        "hinweis": "Laut Zettel: zu groß – вели́к."
+       },
+       {
+        "text": "Нет, он мне большо́й.",
+        "de": "",
+        "hinweis": "„Zu groß“ ist die Kurzform вели́к. большо́й heißt einfach „groß“."
+       }
+      ]
+     },
+     "passt2": {
+      "richtig": {
+       "text": "Тепе́рь он мне как раз!",
+       "de": "Jetzt passt er genau!"
+      },
+      "falsch": [
+       {
+        "text": "Тепе́рь она́ мне как раз!",
+        "de": "",
+        "hinweis": "сви́тер ist männlich: он."
+       },
+       {
+        "text": "Тепе́рь он мне мал.",
+        "de": "",
+        "hinweis": "Laut Zettel passt die zweite Größe genau: как раз."
+       }
+      ]
+     }
+    },
+    "posten": [
+     {
+      "ru": "сви́тер зелёный, разм. 50",
+      "preis": 2400
+     },
+     {
+      "ru": "руба́шка голуба́я",
+      "preis": 1500
+     }
+    ],
+    "preis": 3900
+   },
+   {
+    "id": "k7",
+    "geschlecht": "m",
+    "zahlart": "karte",
+    "p": {
+     "zeigen1": "Вот боти́нки: чёрные, кори́чневые и се́рые. Каки́е вам нра́вятся?",
+     "zeigen1_de": "Hier sind die Schuhe: schwarz, braun und grau. Welche gefallen Ihnen?",
+     "zeigen2": "Вот носки́: си́ние, чёрные и се́рые. Каки́е вам нра́вятся?",
+     "zeigen2_de": "Hier sind die Socken: blau, schwarz und grau. Welche gefallen Ihnen?",
+     "preis1": "Они́ сто́ят три ты́сячи девятьсо́т рубле́й.",
+     "preis1_de": "Sie kosten 3900 Rubel.",
+     "anprobe": "Боти́нки мо́жно приме́рить. Приме́рочная – сле́ва.",
+     "anprobe_de": "Die Schuhe können Sie anprobieren. Die Umkleidekabine ist links.",
+     "akk1": "боти́нки",
+     "akk1_de": "die Schuhe",
+     "bringe": "Поня́тно. Сейча́с принесу́ разме́р побо́льше.",
+     "bringe_de": "Verstehe. Ich bringe Ihnen gleich eine Nummer größer."
+    },
+    "zettel": {
+     "theke": [
+      "Du suchst: Schuhe – schwarz",
+      "Dazu: Socken – schwarz"
+     ],
+     "anprobe": [
+      "Deine Schuhgröße: 42",
+      "Schuhgröße 42 ist zu klein",
+      "Schuhgröße 43 passt genau"
+     ],
+     "kasse": [
+      "Schuhe und Socken",
+      "Bezahlen: mit Karte"
+     ]
+    },
+    "felder": {
+     "brauche1": {
+      "richtig": {
+       "text": "Мне нужны́ боти́нки.",
+       "de": "Ich brauche Schuhe."
+      },
+      "falsch": [
+       {
+        "text": "Мне ну́жен боти́нки.",
+        "de": "",
+        "hinweis": "боти́нки ist Plural: нужны́ боти́нки. (ну́жен – m, нужна́ – f, ну́жно – n, нужны́ – Pl.)"
+       },
+       {
+        "text": "Мне нужны́ носки́.",
+        "de": "Ich brauche Socken.",
+        "hinweis": "Laut Zettel suchst du zuerst Schuhe."
+       },
+       {
+        "text": "Мне нужна́ боти́нки.",
+        "de": "",
+        "hinweis": "боти́нки ist Plural: нужны́ боти́нки. (ну́жен – m, нужна́ – f, ну́жно – n, нужны́ – Pl.)"
+       }
+      ]
+     },
+     "gefallen1": {
+      "richtig": {
+       "text": "Мне нра́вятся э́ти чёрные боти́нки.",
+       "de": "Mir gefallen diese schwarzen Schuhe."
+      },
+      "falsch": [
+       {
+        "text": "Мне нра́вится э́ти чёрные боти́нки.",
+        "de": "",
+        "hinweis": "боти́нки ist Plural – also auch das Verb: нра́вятся."
+       },
+       {
+        "text": "Мне нра́вятся э́ти чёрный боти́нки.",
+        "de": "",
+        "hinweis": "Das Adjektiv richtet sich nach боти́нки (Plural): чёрные."
+       },
+       {
+        "text": "Мне нра́вятся э́ти кори́чневые боти́нки.",
+        "de": "Mir gefallen diese braunen Schuhe.",
+        "hinweis": "Laut Zettel: schwarz – чёрные."
+       }
+      ]
+     },
+     "preis1": {
+      "richtig": {
+       "text": "Ско́лько сто́ят э́ти боти́нки?",
+       "de": "Was kosten diese Schuhe?"
+      },
+      "falsch": [
+       {
+        "text": "Ско́лько сто́ит э́ти боти́нки?",
+        "de": "",
+        "hinweis": "боти́нки ist Plural: Ско́лько сто́ят …?"
+       },
+       {
+        "text": "Ско́лько сто́ят э́то боти́нки?",
+        "de": "",
+        "hinweis": "Vor einem Plural steht э́ти: э́ти боти́нки."
+       },
+       {
+        "text": "Ско́лько стоя́т э́ти боти́нки?",
+        "de": "",
+        "hinweis": "Achtung Betonung: стоя́т (hinten betont) heißt „sie stehen“. Kosten: сто́ят."
+       }
+      ]
+     },
+     "brauche2": {
+      "richtig": {
+       "text": "Да, мне ещё нужны́ носки́.",
+       "de": "Ja, ich brauche noch Socken."
+      },
+      "falsch": [
+       {
+        "text": "Да, мне ещё ну́жен носки́.",
+        "de": "",
+        "hinweis": "носки́ ist Plural: нужны́ носки́. (ну́жен – m, нужна́ – f, ну́жно – n, нужны́ – Pl.)"
+       },
+       {
+        "text": "Да, мне ещё нужны́ боти́нки.",
+        "de": "Ja, ich brauche noch Schuhe.",
+        "hinweis": "Das hast du schon gefunden. Laut Zettel brauchst du noch Socken."
+       },
+       {
+        "text": "Нет, спаси́бо, э́то всё.",
+        "de": "Nein danke, das ist alles.",
+        "hinweis": "Laut Zettel brauchst du noch Socken."
+       }
+      ]
+     },
+     "gefallen2": {
+      "richtig": {
+       "text": "Мне нра́вятся э́ти чёрные носки́.",
+       "de": "Mir gefallen diese schwarzen Socken."
+      },
+      "falsch": [
+       {
+        "text": "Мне нра́вится э́ти чёрные носки́.",
+        "de": "",
+        "hinweis": "носки́ ist Plural – also auch das Verb: нра́вятся."
+       },
+       {
+        "text": "Мне нра́вятся э́ти чёрный носки́.",
+        "de": "",
+        "hinweis": "Das Adjektiv richtet sich nach носки́ (Plural): чёрные."
+       },
+       {
+        "text": "Мне нра́вятся э́ти си́ние носки́.",
+        "de": "Mir gefallen diese blauen Socken.",
+        "hinweis": "Laut Zettel: schwarz – чёрные."
+       }
+      ]
+     },
+     "groesse": {
+      "richtig": {
+       "text": "У меня́ со́рок второ́й разме́р.",
+       "de": "Ich habe Größe 42."
+      },
+      "falsch": [
+       {
+        "text": "У меня́ со́рок два разме́р.",
+        "de": "",
+        "hinweis": "Größen sagt man mit der Ordnungszahl: со́рок второ́й разме́р (wörtlich: die 42. Größe)."
+       },
+       {
+        "text": "У меня́ сороково́й разме́р.",
+        "de": "Ich habe Größe 40.",
+        "hinweis": "Laut Zettel hast du Größe 42."
+       },
+       {
+        "text": "Я со́рок второ́й разме́р.",
+        "de": "",
+        "hinweis": "„Ich habe Größe …“ heißt: У меня́ со́рок второ́й разме́р."
+       }
+      ]
+     },
+     "passt1": {
+      "richtig": {
+       "text": "Нет, они́ мне малы́.",
+       "de": "Nein, sie sind mir zu klein."
+      },
+      "falsch": [
+       {
+        "text": "Нет, он мне мал.",
+        "de": "",
+        "hinweis": "боти́нки ist Plural: они́ мне малы́. (мал – m, мала́ – f, мало́ – n, малы́ – Pl.)"
+       },
+       {
+        "text": "Нет, они́ мне велики́.",
+        "de": "Nein, sie sind mir zu groß.",
+        "hinweis": "Laut Zettel: zu klein – малы́."
+       },
+       {
+        "text": "Нет, они́ мне ма́ленькие.",
+        "de": "",
+        "hinweis": "„Zu klein“ ist die Kurzform малы́. ма́ленькие heißt einfach „klein“."
+       }
+      ]
+     },
+     "passt2": {
+      "richtig": {
+       "text": "Тепе́рь они́ мне как раз!",
+       "de": "Jetzt passen sie genau!"
+      },
+      "falsch": [
+       {
+        "text": "Тепе́рь он мне как раз!",
+        "de": "",
+        "hinweis": "боти́нки ist Plural: они́."
+       },
+       {
+        "text": "Тепе́рь они́ мне велики́.",
+        "de": "",
+        "hinweis": "Laut Zettel passt die zweite Größe genau: как раз."
+       }
+      ]
+     }
+    },
+    "posten": [
+     {
+      "ru": "боти́нки чёрные, разм. 43",
+      "preis": 3900
+     },
+     {
+      "ru": "носки́ чёрные",
+      "preis": 300
+     }
+    ],
+    "preis": 4200
+   }
+  ],
+  "szenen": {
+   "theke": {
+    "titel": "Auswählen",
+    "zettel_titel": "Dein Zettel",
+    "geschafft": "Ausgesucht! Jetzt geht es zur Anprobe.",
+    "start": "hallo",
+    "knoten": {
+     "hallo": {
+      "sprecher": "prodavets",
+      "text": "Здра́вствуйте! Чем могу́ помо́чь?",
+      "de": "Guten Tag! Wie kann ich Ihnen helfen?",
+      "feld": "brauche1",
+      "weiter": "zeigen1"
+     },
+     "zeigen1": {
+      "sprecher": "prodavets",
+      "text": "{zeigen1}",
+      "de": "{zeigen1_de}",
+      "feld": "gefallen1",
+      "weiter": "gut"
+     },
+     "gut": {
+      "sprecher": "prodavets",
+      "text": "Хоро́ший вы́бор!",
+      "de": "Gute Wahl!",
+      "feld": "preis1",
+      "weiter": "preis"
+     },
+     "preis": {
+      "sprecher": "prodavets",
+      "text": "{preis1} Что́-нибудь ещё?",
+      "de": "{preis1_de} Sonst noch etwas?",
+      "feld": "brauche2",
+      "weiter": "zeigen2"
+     },
+     "zeigen2": {
+      "sprecher": "prodavets",
+      "text": "{zeigen2}",
+      "de": "{zeigen2_de}",
+      "feld": "gefallen2",
+      "weiter": "anprobe"
+     },
+     "anprobe": {
+      "sprecher": "prodavets",
+      "text": "{anprobe}",
+      "de": "{anprobe_de}",
+      "optionen": [
+       {
+        "text": "Спаси́бо, с удово́льствием!",
+        "de": "Danke, gern!",
+        "ende": true
+       },
+       {
+        "text": "Не за что!",
+        "de": "Keine Ursache!",
+        "hinweis": "„Не за что“ sagt man, wenn sich jemand bei dir bedankt. Hier bedankst du dich: Спаси́бо!"
+       }
+      ]
+     }
+    }
+   },
+   "anprobe": {
+    "titel": "Anprobe",
+    "zettel_titel": "Dein Zettel",
+    "geschafft": "Passt wie angegossen!",
+    "start": "groesse",
+    "knoten": {
+     "groesse": {
+      "sprecher": "prodavets",
+      "text": "Како́й у вас разме́р?",
+      "de": "Welche Größe haben Sie?",
+      "feld": "groesse",
+      "weiter": "bitte"
+     },
+     "bitte": {
+      "sprecher": "prodavets",
+      "text": "Вот, пожа́луйста.",
+      "de": "Bitte schön.",
+      "optionen": [
+       {
+        "text": "Спаси́бо. Мо́жно приме́рить?",
+        "de": "Danke. Darf ich es anprobieren?",
+        "weiter": "kabine"
+       },
+       {
+        "text": "Спаси́бо. Мо́жно заплати́ть?",
+        "de": "Danke. Kann ich bezahlen?",
+        "hinweis": "Erst anprobieren! Frag: Мо́жно приме́рить?"
+       },
+       {
+        "text": "Спаси́бо. Мо́жно посмотре́ть?",
+        "de": "Danke. Darf ich mal sehen?",
+        "hinweis": "Ansehen kannst du es schon – jetzt möchtest du es anprobieren: приме́рить."
+       }
+      ]
+     },
+     "kabine": {
+      "sprecher": "prodavets",
+      "text": "Коне́чно! Приме́рочная – сле́ва.",
+      "de": "Natürlich! Die Umkleidekabine ist links.",
+      "weiter": "drin"
+     },
+     "drin": {
+      "sprecher": "erzaehler",
+      "text": "Вы в приме́рочной и примеря́ете {akk1}.",
+      "de": "Sie sind in der Kabine und probieren {akk1_de} an.",
+      "pause": 600,
+      "weiter": "wie"
+     },
+     "wie": {
+      "sprecher": "prodavets",
+      "text": "Ну как?",
+      "de": "Na, wie ist es?",
+      "feld": "passt1",
+      "weiter": "bringe"
+     },
+     "bringe": {
+      "sprecher": "prodavets",
+      "text": "{bringe}",
+      "de": "{bringe_de}",
+      "weiter": "nochmal"
+     },
+     "nochmal": {
+      "sprecher": "erzaehler",
+      "text": "Вы примеря́ете друго́й разме́р.",
+      "de": "Sie probieren eine andere Größe an.",
+      "pause": 600,
+      "weiter": "jetzt"
+     },
+     "jetzt": {
+      "sprecher": "prodavets",
+      "text": "А тепе́рь?",
+      "de": "Und jetzt?",
+      "feld": "passt2",
+      "weiter": "nehmen"
+     },
+     "nehmen": {
+      "sprecher": "prodavets",
+      "text": "Отли́чно! Берёте?",
+      "de": "Prima! Nehmen Sie es?",
+      "optionen": [
+       {
+        "text": "Да, беру́!",
+        "de": "Ja, ich nehme es!",
+        "weiter": "fertig"
+       },
+       {
+        "text": "Да, берёте!",
+        "de": "",
+        "hinweis": "берёте heißt „Sie nehmen“. Ich nehme: беру́."
+       },
+       {
+        "text": "Нет, спаси́бо.",
+        "de": "Nein, danke.",
+        "hinweis": "Es passt doch genau – laut Zettel nimmst du es."
+       }
+      ]
+     },
+     "fertig": {
+      "sprecher": "prodavets",
+      "text": "Прекра́сно! Ка́сса – спра́ва.",
+      "de": "Wunderbar! Die Kasse ist rechts.",
+      "optionen": [
+       {
+        "text": "Спаси́бо большо́е!",
+        "de": "Vielen Dank!",
+        "ende": true
+       },
+       {
+        "text": "Пожа́луйста!",
+        "de": "Bitte!",
+        "hinweis": "Der Verkäufer hat dir geholfen – du bedankst dich: Спаси́бо!"
+       }
+      ]
+     }
+    }
+   },
+   "kasse": {
+    "titel": "Kasse",
+    "zettel_titel": "Dein Zettel",
+    "geschafft": "Bezahlt – viel Freude mit den neuen Sachen!",
+    "start": "band",
+    "knoten": {
+     "band": {
+      "sprecher": "erzaehler",
+      "text": "Вы на ка́ссе. Касси́рша пробива́ет поку́пки.",
+      "de": "Sie sind an der Kasse. Die Kassiererin tippt die Einkäufe ein.",
+      "aktion": "scannen",
+      "weiter": "alles"
+     },
+     "alles": {
+      "sprecher": "kassirsha",
+      "text": "Э́то всё?",
+      "de": "Ist das alles?",
+      "optionen": [
+       {
+        "text": "Да, э́то всё.",
+        "de": "Ja, das ist alles.",
+        "weiter": "zahlart"
+       },
+       {
+        "text": "Да, э́то все.",
+        "de": "",
+        "hinweis": "все heißt „alle“ (Leute). „Alles“ ist всё – mit ё."
+       },
+       {
+        "text": "Нет, спаси́бо.",
+        "de": "Nein, danke.",
+        "hinweis": "Du hast alles vom Zettel. Antworte: Да, э́то всё."
+       }
+      ]
+     },
+     "zahlart": {
+      "sprecher": "kassirsha",
+      "text": "Нали́чными и́ли ка́ртой?",
+      "de": "Bar oder mit Karte?",
+      "optionen": [
+       {
+        "text": "Нали́чными.",
+        "de": "Bar.",
+        "zahlart": "bar",
+        "weiter": "summe"
+       },
+       {
+        "text": "Ка́ртой.",
+        "de": "Mit Karte.",
+        "zahlart": "karte",
+        "weiter": "summe"
+       }
+      ]
+     },
+     "summe": {
+      "sprecher": "kassirsha",
+      "text": "С вас {summe}.",
+      "de": "Das macht {summe_de}.",
+      "aktion": "bezahlen",
+      "weiter": "chek"
+     },
+     "chek": {
+      "sprecher": "kassirsha",
+      "text": "Вот ваш чек. Носи́те на здоро́вье!",
+      "de": "Hier ist Ihr Kassenbon. Tragen Sie es mit Freude!",
+      "optionen": [
+       {
+        "text": "Спаси́бо! До свида́ния!",
+        "de": "Danke! Auf Wiedersehen!",
+        "ende": true
+       },
+       {
+        "text": "На здоро́вье!",
+        "de": "Wohl bekomm’s!",
+        "hinweis": "„Носи́те на здоро́вье“ ist ein guter Wunsch – darauf sagt man Спаси́бо."
+       }
+      ]
+     }
+    }
+   }
+  }
+ }
+}
